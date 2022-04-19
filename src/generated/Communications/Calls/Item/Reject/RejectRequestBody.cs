@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,9 @@ namespace ApiSdk.Communications.Calls.Item.Reject {
     public class RejectRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The callbackUri property</summary>
         public string CallbackUri { get; set; }
+        /// <summary>The reason property</summary>
         public RejectReason? Reason { get; set; }
         /// <summary>
         /// Instantiates a new rejectRequestBody and sets the default values.
@@ -21,17 +23,17 @@ namespace ApiSdk.Communications.Calls.Item.Reject {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Communications.Calls.Item.Reject.RejectRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static RejectRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RejectRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"callbackUri", (o,n) => { (o as RejectRequestBody).CallbackUri = n.GetStringValue(); } },
-                {"reason", (o,n) => { (o as RejectRequestBody).Reason = n.GetEnumValue<RejectReason>(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"callbackUri", n => { CallbackUri = n.GetStringValue(); } },
+                {"reason", n => { Reason = n.GetEnumValue<RejectReason>(); } },
             };
         }
         /// <summary>

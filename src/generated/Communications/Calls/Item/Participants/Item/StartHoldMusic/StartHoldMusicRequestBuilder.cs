@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -62,14 +62,13 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("call_id", callId);
-                PathParameters.Add("participant_id", participantId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic.StartHoldMusicRequestBody>(ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic.StartHoldMusicRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<StartHoldMusicRequestBody>(StartHoldMusicRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("call%2Did", callId);
+                requestInfo.PathParameters.Add("participant%2Did", participantId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -86,7 +85,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
         public StartHoldMusicRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/communications/calls/{call_id}/participants/{participant_id}/microsoft.graph.startHoldMusic";
+            UrlTemplate = "{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}/microsoft.graph.startHoldMusic";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -97,7 +96,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic.StartHoldMusicRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(StartHoldMusicRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

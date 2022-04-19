@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -62,12 +62,11 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Reassi
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("educationClass_id", educationClassId);
-                PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                PathParameters.Add("educationSubmission_id", educationSubmissionId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -84,7 +83,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Reassi
         public ReassignRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/education/classes/{educationClass_id}/assignments/{educationAssignment_id}/submissions/{educationSubmission_id}/microsoft.graph.reassign";
+            UrlTemplate = "{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/microsoft.graph.reassign";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

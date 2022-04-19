@@ -1,7 +1,7 @@
 using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resources.Count;
 using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resources.Item;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -84,15 +84,14 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("educationUser_id", educationUserId);
-                PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                PathParameters.Add("educationSubmission_id", educationSubmissionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationSubmissionResource>(EducationSubmissionResource.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
+                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -190,10 +189,6 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
                 var outputFilter = (IOutputFilter) parameters[14];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[15];
                 var cancellationToken = (CancellationToken) parameters[16];
-                PathParameters.Clear();
-                PathParameters.Add("educationUser_id", educationUserId);
-                PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                PathParameters.Add("educationSubmission_id", educationSubmissionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -204,6 +199,9 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
+                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -224,7 +222,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
         public ResourcesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/education/users/{educationUser_id}/assignments/{educationAssignment_id}/submissions/{educationSubmission_id}/resources{?top,skip,search,filter,count,orderby,select,expand}";
+            UrlTemplate = "{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/resources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -271,20 +269,28 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
         /// <summary>Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
+            [QueryParameter("%24count")]
             public bool? Count { get; set; }
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Filter items by property values</summary>
+            [QueryParameter("%24filter")]
             public string Filter { get; set; }
             /// <summary>Order items by property values</summary>
+            [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
             /// <summary>Search items by search phrases</summary>
+            [QueryParameter("%24search")]
             public string Search { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
             /// <summary>Skip the first n items</summary>
+            [QueryParameter("%24skip")]
             public int? Skip { get; set; }
             /// <summary>Show only the first n items</summary>
+            [QueryParameter("%24top")]
             public int? Top { get; set; }
         }
     }

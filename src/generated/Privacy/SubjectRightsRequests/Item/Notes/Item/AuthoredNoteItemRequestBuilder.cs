@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -36,22 +36,27 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             };
             authoredNoteIdOption.IsRequired = true;
             command.AddOption(authoredNoteIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var subjectRightsRequestId = (string) parameters[0];
                 var authoredNoteId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("subjectRightsRequest_id", subjectRightsRequestId);
-                PathParameters.Add("authoredNote_id", authoredNoteId);
+                var ifMatch = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("subjectRightsRequest%2Did", subjectRightsRequestId);
+                requestInfo.PathParameters.Add("authoredNote%2Did", authoredNoteId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(subjectRightsRequestIdOption, authoredNoteIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(subjectRightsRequestIdOption, authoredNoteIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -103,13 +108,12 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("subjectRightsRequest_id", subjectRightsRequestId);
-                PathParameters.Add("authoredNote_id", authoredNoteId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("subjectRightsRequest%2Did", subjectRightsRequestId);
+                requestInfo.PathParameters.Add("authoredNote%2Did", authoredNoteId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -146,14 +150,13 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
                 var authoredNoteId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("subjectRightsRequest_id", subjectRightsRequestId);
-                PathParameters.Add("authoredNote_id", authoredNoteId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AuthoredNote>(AuthoredNote.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("subjectRightsRequest%2Did", subjectRightsRequestId);
+                requestInfo.PathParameters.Add("authoredNote%2Did", authoredNoteId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -171,7 +174,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
         public AuthoredNoteItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest_id}/notes/{authoredNote_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/notes/{authoredNote%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -233,8 +236,10 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
         /// <summary>List of notes associcated with the request.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

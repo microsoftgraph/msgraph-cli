@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.Search.Query;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -119,7 +119,7 @@ namespace ApiSdk.Search {
         public SearchRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/search{?select,expand}";
+            UrlTemplate = "{+baseurl}/search{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -166,8 +166,10 @@ namespace ApiSdk.Search {
         /// <summary>Get search</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

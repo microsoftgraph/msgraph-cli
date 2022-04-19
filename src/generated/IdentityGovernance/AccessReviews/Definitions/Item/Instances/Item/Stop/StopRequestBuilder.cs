@@ -38,11 +38,10 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 var accessReviewScheduleDefinitionId = (string) parameters[0];
                 var accessReviewInstanceId = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("accessReviewScheduleDefinition_id", accessReviewScheduleDefinitionId);
-                PathParameters.Add("accessReviewInstance_id", accessReviewInstanceId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
+                requestInfo.PathParameters.Add("accessReviewInstance%2Did", accessReviewInstanceId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -56,7 +55,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         public StopRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition_id}/instances/{accessReviewInstance_id}/microsoft.graph.stop";
+            UrlTemplate = "{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/instances/{accessReviewInstance%2Did}/microsoft.graph.stop";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

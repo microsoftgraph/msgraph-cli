@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -52,10 +52,9 @@ namespace ApiSdk.Me.Messages.Item.CalendarSharingMessage.Accept {
                 var outputFilter = (IOutputFilter) parameters[4];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("message_id", messageId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("message%2Did", messageId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -72,7 +71,7 @@ namespace ApiSdk.Me.Messages.Item.CalendarSharingMessage.Accept {
         public AcceptRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/messages/{message_id}/microsoft.graph.calendarSharingMessage/microsoft.graph.accept";
+            UrlTemplate = "{+baseurl}/me/messages/{message%2Did}/microsoft.graph.calendarSharingMessage/microsoft.graph.accept";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

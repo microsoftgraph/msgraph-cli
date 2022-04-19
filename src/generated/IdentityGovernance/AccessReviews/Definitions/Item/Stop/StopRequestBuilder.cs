@@ -33,10 +33,9 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
             command.SetHandler(async (object[] parameters) => {
                 var accessReviewScheduleDefinitionId = (string) parameters[0];
                 var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("accessReviewScheduleDefinition_id", accessReviewScheduleDefinitionId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(accessReviewScheduleDefinitionIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -50,7 +49,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
         public StopRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition_id}/microsoft.graph.stop";
+            UrlTemplate = "{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/microsoft.graph.stop";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

@@ -1,6 +1,6 @@
 using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAttribute;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -37,22 +37,27 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
             };
             identityUserFlowAttributeAssignmentIdOption.IsRequired = true;
             command.AddOption(identityUserFlowAttributeAssignmentIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var b2xIdentityUserFlowId = (string) parameters[0];
                 var identityUserFlowAttributeAssignmentId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
-                PathParameters.Add("identityUserFlowAttributeAssignment_id", identityUserFlowAttributeAssignmentId);
+                var ifMatch = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
+                requestInfo.PathParameters.Add("identityUserFlowAttributeAssignment%2Did", identityUserFlowAttributeAssignmentId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, identityUserFlowAttributeAssignmentIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(b2xIdentityUserFlowIdOption, identityUserFlowAttributeAssignmentIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -104,13 +109,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
-                PathParameters.Add("identityUserFlowAttributeAssignment_id", identityUserFlowAttributeAssignmentId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
+                requestInfo.PathParameters.Add("identityUserFlowAttributeAssignment%2Did", identityUserFlowAttributeAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -147,14 +151,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
                 var identityUserFlowAttributeAssignmentId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
-                PathParameters.Add("identityUserFlowAttributeAssignment_id", identityUserFlowAttributeAssignmentId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<IdentityUserFlowAttributeAssignment>(IdentityUserFlowAttributeAssignment.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
+                requestInfo.PathParameters.Add("identityUserFlowAttributeAssignment%2Did", identityUserFlowAttributeAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -178,7 +181,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         public IdentityUserFlowAttributeAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow_id}/userAttributeAssignments/{identityUserFlowAttributeAssignment_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/{identityUserFlowAttributeAssignment%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -240,8 +243,10 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         /// <summary>The user attribute assignments included in the user flow.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

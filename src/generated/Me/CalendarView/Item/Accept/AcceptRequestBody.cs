@@ -8,7 +8,9 @@ namespace ApiSdk.Me.CalendarView.Item.Accept {
     public class AcceptRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The Comment property</summary>
         public string Comment { get; set; }
+        /// <summary>The SendResponse property</summary>
         public bool? SendResponse { get; set; }
         /// <summary>
         /// Instantiates a new acceptRequestBody and sets the default values.
@@ -20,17 +22,17 @@ namespace ApiSdk.Me.CalendarView.Item.Accept {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Me.CalendarView.Item.Accept.AcceptRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static AcceptRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AcceptRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"comment", (o,n) => { (o as AcceptRequestBody).Comment = n.GetStringValue(); } },
-                {"sendResponse", (o,n) => { (o as AcceptRequestBody).SendResponse = n.GetBoolValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"comment", n => { Comment = n.GetStringValue(); } },
+                {"sendResponse", n => { SendResponse = n.GetBoolValue(); } },
             };
         }
         /// <summary>

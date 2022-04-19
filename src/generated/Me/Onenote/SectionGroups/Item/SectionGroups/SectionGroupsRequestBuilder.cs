@@ -1,7 +1,7 @@
 using ApiSdk.Me.Onenote.SectionGroups.Item.SectionGroups.Count;
 using ApiSdk.Me.Onenote.SectionGroups.Item.SectionGroups.Item;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -110,8 +110,6 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.SectionGroups {
                 var outputFilter = (IOutputFilter) parameters[12];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
                 var cancellationToken = (CancellationToken) parameters[14];
-                PathParameters.Clear();
-                PathParameters.Add("sectionGroup_id", sectionGroupId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -122,6 +120,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.SectionGroups {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("sectionGroup%2Did", sectionGroupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -142,7 +141,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.SectionGroups {
         public SectionGroupsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/onenote/sectionGroups/{sectionGroup_id}/sectionGroups{?top,skip,search,filter,count,orderby,select,expand}";
+            UrlTemplate = "{+baseurl}/me/onenote/sectionGroups/{sectionGroup%2Did}/sectionGroups{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -171,20 +170,28 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.SectionGroups {
         /// <summary>The section groups in the section. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
+            [QueryParameter("%24count")]
             public bool? Count { get; set; }
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Filter items by property values</summary>
+            [QueryParameter("%24filter")]
             public string Filter { get; set; }
             /// <summary>Order items by property values</summary>
+            [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
             /// <summary>Search items by search phrases</summary>
+            [QueryParameter("%24search")]
             public string Search { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
             /// <summary>Skip the first n items</summary>
+            [QueryParameter("%24skip")]
             public int? Skip { get; set; }
             /// <summary>Show only the first n items</summary>
+            [QueryParameter("%24top")]
             public int? Top { get; set; }
         }
     }

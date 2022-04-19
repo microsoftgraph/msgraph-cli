@@ -51,10 +51,9 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Delta {
                 var outputFilter = (IOutputFilter) parameters[4];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("team_id", teamId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("team%2Did", teamId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -71,7 +70,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Delta {
         public DeltaRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/teams/{team_id}/primaryChannel/messages/microsoft.graph.delta()";
+            UrlTemplate = "{+baseurl}/teams/{team%2Did}/primaryChannel/messages/microsoft.graph.delta()";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

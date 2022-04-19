@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -40,11 +40,10 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 var userConsentRequestId = (string) parameters[1];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("appConsentRequest_id", appConsentRequestId);
-                PathParameters.Add("userConsentRequest_id", userConsentRequestId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("appConsentRequest%2Did", appConsentRequestId);
+                requestInfo.PathParameters.Add("userConsentRequest%2Did", userConsentRequestId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -63,7 +62,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         public CountRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identityGovernance/appConsent/appConsentRequests/{appConsentRequest_id}/userConsentRequests/{userConsentRequest_id}/approval/stages/$count";
+            UrlTemplate = "{+baseurl}/identityGovernance/appConsent/appConsentRequests/{appConsentRequest%2Did}/userConsentRequests/{userConsentRequest%2Did}/approval/stages/$count";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

@@ -38,13 +38,12 @@ namespace ApiSdk.Communications.Presences.Item.ClearPresence {
                 var presenceId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("presence_id", presenceId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Communications.Presences.Item.ClearPresence.ClearPresenceRequestBody>(ApiSdk.Communications.Presences.Item.ClearPresence.ClearPresenceRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ClearPresenceRequestBody>(ClearPresenceRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("presence%2Did", presenceId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(presenceIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -58,7 +57,7 @@ namespace ApiSdk.Communications.Presences.Item.ClearPresence {
         public ClearPresenceRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/communications/presences/{presence_id}/microsoft.graph.clearPresence";
+            UrlTemplate = "{+baseurl}/communications/presences/{presence%2Did}/microsoft.graph.clearPresence";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -69,7 +68,7 @@ namespace ApiSdk.Communications.Presences.Item.ClearPresence {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Communications.Presences.Item.ClearPresence.ClearPresenceRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(ClearPresenceRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -48,28 +48,33 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             };
             attachmentIdOption.IsRequired = true;
             command.AddOption(attachmentIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var conversationId = (string) parameters[1];
                 var conversationThreadId = (string) parameters[2];
                 var postId = (string) parameters[3];
                 var attachmentId = (string) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("conversation_id", conversationId);
-                PathParameters.Add("conversationThread_id", conversationThreadId);
-                PathParameters.Add("post_id", postId);
-                PathParameters.Add("attachment_id", attachmentId);
+                var ifMatch = (string) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("conversation%2Did", conversationId);
+                requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
+                requestInfo.PathParameters.Add("post%2Did", postId);
+                requestInfo.PathParameters.Add("attachment%2Did", attachmentId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, attachmentIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, attachmentIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -136,16 +141,15 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
                 var outputFilter = (IOutputFilter) parameters[10];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
                 var cancellationToken = (CancellationToken) parameters[12];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("conversation_id", conversationId);
-                PathParameters.Add("conversationThread_id", conversationThreadId);
-                PathParameters.Add("post_id", postId);
-                PathParameters.Add("attachment_id", attachmentId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("conversation%2Did", conversationId);
+                requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
+                requestInfo.PathParameters.Add("post%2Did", postId);
+                requestInfo.PathParameters.Add("attachment%2Did", attachmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -197,17 +201,16 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
                 var attachmentId = (string) parameters[4];
                 var body = (string) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("conversation_id", conversationId);
-                PathParameters.Add("conversationThread_id", conversationThreadId);
-                PathParameters.Add("post_id", postId);
-                PathParameters.Add("attachment_id", attachmentId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Attachment>(Attachment.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("conversation%2Did", conversationId);
+                requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
+                requestInfo.PathParameters.Add("post%2Did", postId);
+                requestInfo.PathParameters.Add("attachment%2Did", attachmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -225,7 +228,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
         public AttachmentItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/conversations/{conversation_id}/threads/{conversationThread_id}/posts/{post_id}/inReplyTo/attachments/{attachment_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}/inReplyTo/attachments/{attachment%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -287,8 +290,10 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
         /// <summary>Read-only. Nullable. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -32,20 +32,25 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             };
             namedLocationIdOption.IsRequired = true;
             command.AddOption(namedLocationIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var namedLocationId = (string) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("namedLocation_id", namedLocationId);
+                var ifMatch = (string) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("namedLocation%2Did", namedLocationId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(namedLocationIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(namedLocationIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -92,12 +97,11 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("namedLocation_id", namedLocationId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("namedLocation%2Did", namedLocationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -129,13 +133,12 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
                 var namedLocationId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("namedLocation_id", namedLocationId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<NamedLocation>(NamedLocation.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("namedLocation%2Did", namedLocationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -153,7 +156,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
         public NamedLocationItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identity/conditionalAccess/namedLocations/{namedLocation_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/identity/conditionalAccess/namedLocations/{namedLocation%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -215,8 +218,10 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
         /// <summary>Read-only. Nullable. Returns a collection of the specified named locations.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -45,12 +45,11 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.Extensions.Count {
                 var eventId1 = (string) parameters[2];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("event_id", eventId);
-                PathParameters.Add("event_id1", eventId1);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("event%2Did", eventId);
+                requestInfo.PathParameters.Add("event%2Did1", eventId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -69,7 +68,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.Extensions.Count {
         public CountRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/calendarView/{event_id}/instances/{event_id1}/extensions/$count";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/calendarView/{event%2Did}/instances/{event%2Did1}/extensions/$count";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

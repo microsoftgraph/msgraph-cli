@@ -1,7 +1,7 @@
 using ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.Children.Item.Children.Item.Relations;
 using ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.Children.Item.Children.Item.Set;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
-using ApiSdk.Models.Microsoft.Graph.TermStore;
+using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models.TermStore;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -50,28 +50,33 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.Children.Item.Childr
             };
             termId1Option.IsRequired = true;
             command.AddOption(termId1Option);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var siteId = (string) parameters[1];
                 var setId = (string) parameters[2];
                 var termId = (string) parameters[3];
                 var termId1 = (string) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("set_id", setId);
-                PathParameters.Add("term_id", termId);
-                PathParameters.Add("term_id1", termId1);
+                var ifMatch = (string) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("set%2Did", setId);
+                requestInfo.PathParameters.Add("term%2Did", termId);
+                requestInfo.PathParameters.Add("term%2Did1", termId1);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, siteIdOption, setIdOption, termIdOption, termId1Option, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, siteIdOption, setIdOption, termIdOption, termId1Option, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -138,16 +143,15 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.Children.Item.Childr
                 var outputFilter = (IOutputFilter) parameters[10];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
                 var cancellationToken = (CancellationToken) parameters[12];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("set_id", setId);
-                PathParameters.Add("term_id", termId);
-                PathParameters.Add("term_id1", termId1);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("set%2Did", setId);
+                requestInfo.PathParameters.Add("term%2Did", termId);
+                requestInfo.PathParameters.Add("term%2Did1", termId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -199,17 +203,16 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.Children.Item.Childr
                 var termId1 = (string) parameters[4];
                 var body = (string) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("set_id", setId);
-                PathParameters.Add("term_id", termId);
-                PathParameters.Add("term_id1", termId1);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Term>(Term.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("set%2Did", setId);
+                requestInfo.PathParameters.Add("term%2Did", termId);
+                requestInfo.PathParameters.Add("term%2Did1", termId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -244,7 +247,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.Children.Item.Childr
         public TermItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/sites/{site_id}/termStore/sets/{set_id}/children/{term_id}/children/{term_id1}{?select,expand}";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStore/sets/{set%2Did}/children/{term%2Did}/children/{term%2Did1}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -306,8 +309,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.Children.Item.Childr
         /// <summary>Children of current term.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

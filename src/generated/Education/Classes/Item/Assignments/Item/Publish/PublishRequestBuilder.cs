@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -57,11 +57,10 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Publish {
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("educationClass_id", educationClassId);
-                PathParameters.Add("educationAssignment_id", educationAssignmentId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -78,7 +77,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Publish {
         public PublishRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/education/classes/{educationClass_id}/assignments/{educationAssignment_id}/microsoft.graph.publish";
+            UrlTemplate = "{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/microsoft.graph.publish";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

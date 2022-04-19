@@ -43,12 +43,11 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.Publish {
                 var driveId = (string) parameters[1];
                 var contentTypeId = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("contentType_id", contentTypeId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(userIdOption, driveIdOption, contentTypeIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -62,7 +61,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.Publish {
         public PublishRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/drives/{drive_id}/list/contentTypes/{contentType_id}/microsoft.graph.publish";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/microsoft.graph.publish";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

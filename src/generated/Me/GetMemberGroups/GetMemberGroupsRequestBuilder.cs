@@ -53,7 +53,7 @@ namespace ApiSdk.Me.GetMemberGroups {
                 var cancellationToken = (CancellationToken) parameters[6];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Me.GetMemberGroups.GetMemberGroupsRequestBody>(ApiSdk.Me.GetMemberGroups.GetMemberGroupsRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<GetMemberGroupsRequestBody>(GetMemberGroupsRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -83,7 +83,7 @@ namespace ApiSdk.Me.GetMemberGroups {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Me.GetMemberGroups.GetMemberGroupsRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(GetMemberGroupsRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

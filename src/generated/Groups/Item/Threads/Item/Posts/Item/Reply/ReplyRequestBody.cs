@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,8 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Reply {
     public class ReplyRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        public ApiSdk.Models.Microsoft.Graph.Post Post { get; set; }
+        /// <summary>The Post property</summary>
+        public ApiSdk.Models.Post Post { get; set; }
         /// <summary>
         /// Instantiates a new replyRequestBody and sets the default values.
         /// </summary>
@@ -20,16 +21,16 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Reply {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Groups.Item.Threads.Item.Posts.Item.Reply.ReplyRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ReplyRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ReplyRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"post", (o,n) => { (o as ReplyRequestBody).Post = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Post>(ApiSdk.Models.Microsoft.Graph.Post.CreateFromDiscriminatorValue); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"post", n => { Post = n.GetObjectValue<ApiSdk.Models.Post>(ApiSdk.Models.Post.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -38,7 +39,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Reply {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Post>("post", Post);
+            writer.WriteObjectValue<ApiSdk.Models.Post>("post", Post);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

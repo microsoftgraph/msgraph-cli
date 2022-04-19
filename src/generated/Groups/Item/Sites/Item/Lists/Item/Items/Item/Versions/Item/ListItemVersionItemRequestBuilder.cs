@@ -1,7 +1,7 @@
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields;
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item.RestoreVersion;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -50,28 +50,33 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item {
             };
             listItemVersionIdOption.IsRequired = true;
             command.AddOption(listItemVersionIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var siteId = (string) parameters[1];
                 var listId = (string) parameters[2];
                 var listItemId = (string) parameters[3];
                 var listItemVersionId = (string) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("list_id", listId);
-                PathParameters.Add("listItem_id", listItemId);
-                PathParameters.Add("listItemVersion_id", listItemVersionId);
+                var ifMatch = (string) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("list%2Did", listId);
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, siteIdOption, listIdOption, listItemIdOption, listItemVersionIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, siteIdOption, listIdOption, listItemIdOption, listItemVersionIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildFieldsCommand() {
@@ -146,16 +151,15 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item {
                 var outputFilter = (IOutputFilter) parameters[10];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
                 var cancellationToken = (CancellationToken) parameters[12];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("list_id", listId);
-                PathParameters.Add("listItem_id", listItemId);
-                PathParameters.Add("listItemVersion_id", listItemVersionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("list%2Did", listId);
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -207,17 +211,16 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item {
                 var listItemVersionId = (string) parameters[4];
                 var body = (string) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("list_id", listId);
-                PathParameters.Add("listItem_id", listItemId);
-                PathParameters.Add("listItemVersion_id", listItemVersionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ListItemVersion>(ListItemVersion.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("list%2Did", listId);
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -241,7 +244,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item {
         public ListItemVersionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/sites/{site_id}/lists/{list_id}/items/{listItem_id}/versions/{listItemVersion_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/versions/{listItemVersion%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -303,8 +306,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item {
         /// <summary>The list of previous versions of the list item.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

@@ -51,10 +51,9 @@ namespace ApiSdk.Drive.List.Items.Item.GetActivitiesByInterval {
                 var outputFilter = (IOutputFilter) parameters[4];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("listItem_id", listItemId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -71,7 +70,7 @@ namespace ApiSdk.Drive.List.Items.Item.GetActivitiesByInterval {
         public GetActivitiesByIntervalRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/drive/list/items/{listItem_id}/microsoft.graph.getActivitiesByInterval()";
+            UrlTemplate = "{+baseurl}/drive/list/items/{listItem%2Did}/microsoft.graph.getActivitiesByInterval()";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

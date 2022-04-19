@@ -38,11 +38,10 @@ namespace ApiSdk.Workbooks.Item.Versions.Item.RestoreVersion {
                 var driveItemId = (string) parameters[0];
                 var driveItemVersionId = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("driveItem_id", driveItemId);
-                PathParameters.Add("driveItemVersion_id", driveItemVersionId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                requestInfo.PathParameters.Add("driveItemVersion%2Did", driveItemVersionId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(driveItemIdOption, driveItemVersionIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -56,7 +55,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item.RestoreVersion {
         public RestoreVersionRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/workbooks/{driveItem_id}/versions/{driveItemVersion_id}/microsoft.graph.restoreVersion";
+            UrlTemplate = "{+baseurl}/workbooks/{driveItem%2Did}/versions/{driveItemVersion%2Did}/microsoft.graph.restoreVersion";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

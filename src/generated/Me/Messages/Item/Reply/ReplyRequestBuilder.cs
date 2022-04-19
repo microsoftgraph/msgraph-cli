@@ -38,13 +38,12 @@ namespace ApiSdk.Me.Messages.Item.Reply {
                 var messageId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("message_id", messageId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Me.Messages.Item.Reply.ReplyRequestBody>(ApiSdk.Me.Messages.Item.Reply.ReplyRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ReplyRequestBody>(ReplyRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("message%2Did", messageId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(messageIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -58,7 +57,7 @@ namespace ApiSdk.Me.Messages.Item.Reply {
         public ReplyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/messages/{message_id}/microsoft.graph.reply";
+            UrlTemplate = "{+baseurl}/me/messages/{message%2Did}/microsoft.graph.reply";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -69,7 +68,7 @@ namespace ApiSdk.Me.Messages.Item.Reply {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Me.Messages.Item.Reply.ReplyRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(ReplyRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

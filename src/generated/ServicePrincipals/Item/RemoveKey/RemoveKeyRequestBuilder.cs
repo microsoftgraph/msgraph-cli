@@ -38,13 +38,12 @@ namespace ApiSdk.ServicePrincipals.Item.RemoveKey {
                 var servicePrincipalId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("servicePrincipal_id", servicePrincipalId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.ServicePrincipals.Item.RemoveKey.RemoveKeyRequestBody>(ApiSdk.ServicePrincipals.Item.RemoveKey.RemoveKeyRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<RemoveKeyRequestBody>(RemoveKeyRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(servicePrincipalIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -58,7 +57,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemoveKey {
         public RemoveKeyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/servicePrincipals/{servicePrincipal_id}/microsoft.graph.removeKey";
+            UrlTemplate = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/microsoft.graph.removeKey";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -69,7 +68,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemoveKey {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.ServicePrincipals.Item.RemoveKey.RemoveKeyRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(RemoveKeyRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

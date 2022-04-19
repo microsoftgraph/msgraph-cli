@@ -56,13 +56,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign {
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("deviceCompliancePolicy_id", deviceCompliancePolicyId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign.AssignRequestBody>(ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign.AssignRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<AssignRequestBody>(AssignRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("deviceCompliancePolicy%2Did", deviceCompliancePolicyId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -79,7 +78,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign {
         public AssignRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy_id}/microsoft.graph.assign";
+            UrlTemplate = "{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/microsoft.graph.assign";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -90,7 +89,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign.AssignRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(AssignRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

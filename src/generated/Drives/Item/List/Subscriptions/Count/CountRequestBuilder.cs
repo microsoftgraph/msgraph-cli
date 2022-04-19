@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -35,10 +35,9 @@ namespace ApiSdk.Drives.Item.List.Subscriptions.Count {
                 var driveId = (string) parameters[0];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("drive_id", driveId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -57,7 +56,7 @@ namespace ApiSdk.Drives.Item.List.Subscriptions.Count {
         public CountRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/drives/{drive_id}/list/subscriptions/$count";
+            UrlTemplate = "{+baseurl}/drives/{drive%2Did}/list/subscriptions/$count";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

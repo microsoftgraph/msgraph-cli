@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -52,13 +52,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DriveItem.Content 
                 var listItemId = (string) parameters[3];
                 var file = (FileInfo) parameters[4];
                 var cancellationToken = (CancellationToken) parameters[5];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("list_id", listId);
-                PathParameters.Add("listItem_id", listItemId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("list%2Did", listId);
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,14 +110,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DriveItem.Content 
                 var listItemId = (string) parameters[3];
                 var file = (FileInfo) parameters[4];
                 var cancellationToken = (CancellationToken) parameters[5];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("list_id", listId);
-                PathParameters.Add("listItem_id", listItemId);
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("list%2Did", listId);
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -136,7 +134,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DriveItem.Content 
         public ContentRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/sites/{site_id}/lists/{list_id}/items/{listItem_id}/driveItem/content";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/driveItem/content";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

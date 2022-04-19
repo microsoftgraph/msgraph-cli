@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies.Item.HostedContents;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -49,28 +49,33 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
             };
             chatMessageId1Option.IsRequired = true;
             command.AddOption(chatMessageId1Option);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var teamId = (string) parameters[1];
                 var channelId = (string) parameters[2];
                 var chatMessageId = (string) parameters[3];
                 var chatMessageId1 = (string) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("team_id", teamId);
-                PathParameters.Add("channel_id", channelId);
-                PathParameters.Add("chatMessage_id", chatMessageId);
-                PathParameters.Add("chatMessage_id1", chatMessageId1);
+                var ifMatch = (string) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.PathParameters.Add("channel%2Did", channelId);
+                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, teamIdOption, channelIdOption, chatMessageIdOption, chatMessageId1Option, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, teamIdOption, channelIdOption, chatMessageIdOption, chatMessageId1Option, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -137,16 +142,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
                 var outputFilter = (IOutputFilter) parameters[10];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
                 var cancellationToken = (CancellationToken) parameters[12];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("team_id", teamId);
-                PathParameters.Add("channel_id", channelId);
-                PathParameters.Add("chatMessage_id", chatMessageId);
-                PathParameters.Add("chatMessage_id1", chatMessageId1);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.PathParameters.Add("channel%2Did", channelId);
+                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -209,17 +213,16 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
                 var chatMessageId1 = (string) parameters[4];
                 var body = (string) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("team_id", teamId);
-                PathParameters.Add("channel_id", channelId);
-                PathParameters.Add("chatMessage_id", chatMessageId);
-                PathParameters.Add("chatMessage_id1", chatMessageId1);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.PathParameters.Add("channel%2Did", channelId);
+                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -237,7 +240,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         public ChatMessageItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/joinedTeams/{team_id}/channels/{channel_id}/messages/{chatMessage_id}/replies/{chatMessage_id1}{?select,expand}";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -299,8 +302,10 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         /// <summary>Replies for a specified message.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

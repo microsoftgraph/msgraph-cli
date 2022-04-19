@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
-using ApiSdk.Models.Microsoft.Graph.TermStore;
+using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models.TermStore;
 using ApiSdk.Sites.Item.TermStore.Groups;
 using ApiSdk.Sites.Item.TermStore.Sets;
 using Microsoft.Kiota.Abstractions;
@@ -34,20 +34,25 @@ namespace ApiSdk.Sites.Item.TermStore {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var siteId = (string) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
+                var ifMatch = (string) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(siteIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -94,12 +99,11 @@ namespace ApiSdk.Sites.Item.TermStore {
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -142,13 +146,12 @@ namespace ApiSdk.Sites.Item.TermStore {
                 var siteId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Store>(Store.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -177,7 +180,7 @@ namespace ApiSdk.Sites.Item.TermStore {
         public TermStoreRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/sites/{site_id}/termStore{?select,expand}";
+            UrlTemplate = "{+baseurl}/sites/{site%2Did}/termStore{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -239,8 +242,10 @@ namespace ApiSdk.Sites.Item.TermStore {
         /// <summary>The default termStore under this site.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

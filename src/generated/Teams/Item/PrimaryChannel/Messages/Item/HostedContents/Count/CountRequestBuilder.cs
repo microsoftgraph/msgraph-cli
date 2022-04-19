@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -40,11 +40,10 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents.Count {
                 var chatMessageId = (string) parameters[1];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("team_id", teamId);
-                PathParameters.Add("chatMessage_id", chatMessageId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -63,7 +62,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents.Count {
         public CountRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/teams/{team_id}/primaryChannel/messages/{chatMessage_id}/hostedContents/$count";
+            UrlTemplate = "{+baseurl}/teams/{team%2Did}/primaryChannel/messages/{chatMessage%2Did}/hostedContents/$count";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

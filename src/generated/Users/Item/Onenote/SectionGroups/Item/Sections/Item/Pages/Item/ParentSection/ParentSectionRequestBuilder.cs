@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -80,15 +80,14 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.
                 var outputFilter = (IOutputFilter) parameters[9];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
                 var cancellationToken = (CancellationToken) parameters[11];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("sectionGroup_id", sectionGroupId);
-                PathParameters.Add("onenoteSection_id", onenoteSectionId);
-                PathParameters.Add("onenotePage_id", onenotePageId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("sectionGroup%2Did", sectionGroupId);
+                requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
+                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -109,7 +108,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.
         public ParentSectionRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/onenote/sectionGroups/{sectionGroup_id}/sections/{onenoteSection_id}/pages/{onenotePage_id}/parentSection{?select,expand}";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}/parentSection{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -138,8 +137,10 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.
         /// <summary>The section that contains the page. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

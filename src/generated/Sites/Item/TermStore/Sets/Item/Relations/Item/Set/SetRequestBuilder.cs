@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
-using ApiSdk.Models.Microsoft.Graph.TermStore;
+using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models.TermStore;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -75,14 +75,13 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item.Set {
                 var outputFilter = (IOutputFilter) parameters[8];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
                 var cancellationToken = (CancellationToken) parameters[10];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("set_id", setId);
-                PathParameters.Add("relation_id", relationId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("set%2Did", setId);
+                requestInfo.PathParameters.Add("relation%2Did", relationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -103,7 +102,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item.Set {
         public SetRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/sites/{site_id}/termStore/sets/{set_id}/relations/{relation_id}/set{?select,expand}";
+            UrlTemplate = "{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/relations/{relation%2Did}/set{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -132,8 +131,10 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item.Set {
         /// <summary>The [set] in which the relation is relevant.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

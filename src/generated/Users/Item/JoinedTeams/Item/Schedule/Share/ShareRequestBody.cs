@@ -8,8 +8,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Share {
     public class ShareRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The endDateTime property</summary>
         public DateTimeOffset? EndDateTime { get; set; }
+        /// <summary>The notifyTeam property</summary>
         public bool? NotifyTeam { get; set; }
+        /// <summary>The startDateTime property</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>
         /// Instantiates a new shareRequestBody and sets the default values.
@@ -21,18 +24,18 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Share {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Share.ShareRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ShareRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ShareRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"endDateTime", (o,n) => { (o as ShareRequestBody).EndDateTime = n.GetDateTimeOffsetValue(); } },
-                {"notifyTeam", (o,n) => { (o as ShareRequestBody).NotifyTeam = n.GetBoolValue(); } },
-                {"startDateTime", (o,n) => { (o as ShareRequestBody).StartDateTime = n.GetDateTimeOffsetValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
+                {"notifyTeam", n => { NotifyTeam = n.GetBoolValue(); } },
+                {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>

@@ -38,13 +38,12 @@ namespace ApiSdk.Groups.Item.ValidateProperties {
                 var groupId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.ValidateProperties.ValidatePropertiesRequestBody>(ApiSdk.Groups.Item.ValidateProperties.ValidatePropertiesRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ValidatePropertiesRequestBody>(ValidatePropertiesRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(groupIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -58,7 +57,7 @@ namespace ApiSdk.Groups.Item.ValidateProperties {
         public ValidatePropertiesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/microsoft.graph.validateProperties";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/microsoft.graph.validateProperties";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -69,7 +68,7 @@ namespace ApiSdk.Groups.Item.ValidateProperties {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Groups.Item.ValidateProperties.ValidatePropertiesRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(ValidatePropertiesRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

@@ -43,14 +43,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel {
                 var bookingAppointmentId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("bookingBusiness_id", bookingBusinessId);
-                PathParameters.Add("bookingAppointment_id", bookingAppointmentId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel.CancelRequestBody>(ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel.CancelRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<CancelRequestBody>(CancelRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
+                requestInfo.PathParameters.Add("bookingAppointment%2Did", bookingAppointmentId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(bookingBusinessIdOption, bookingAppointmentIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -64,7 +63,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel {
         public CancelRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/solutions/bookingBusinesses/{bookingBusiness_id}/appointments/{bookingAppointment_id}/microsoft.graph.cancel";
+            UrlTemplate = "{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/appointments/{bookingAppointment%2Did}/microsoft.graph.cancel";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -75,7 +74,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel.CancelRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(CancelRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.ServicePrincipals.Item.AddKey;
 using ApiSdk.ServicePrincipals.Item.AddPassword;
 using ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate;
@@ -139,20 +139,25 @@ namespace ApiSdk.ServicePrincipals.Item {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var servicePrincipalId = (string) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("servicePrincipal_id", servicePrincipalId);
+                var ifMatch = (string) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(servicePrincipalIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(servicePrincipalIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildEndpointsCommand() {
@@ -177,6 +182,10 @@ namespace ApiSdk.ServicePrincipals.Item {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
+            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://developer.microsoft.com/en-us/office/blogs/microsoft-graph-advanced-queries-for-directory-objects-are-now-generally-available/") {
+            };
+            consistencyLevelOption.IsRequired = false;
+            command.AddOption(consistencyLevelOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -202,20 +211,21 @@ namespace ApiSdk.ServicePrincipals.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var servicePrincipalId = (string) parameters[0];
-                var select = (string[]) parameters[1];
-                var expand = (string[]) parameters[2];
-                var output = (FormatterType) parameters[3];
-                var query = (string) parameters[4];
-                var jsonNoIndent = (bool) parameters[5];
-                var outputFilter = (IOutputFilter) parameters[6];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("servicePrincipal_id", servicePrincipalId);
+                var consistencyLevel = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var expand = (string[]) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var query = (string) parameters[5];
+                var jsonNoIndent = (bool) parameters[6];
+                var outputFilter = (IOutputFilter) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -225,7 +235,7 @@ namespace ApiSdk.ServicePrincipals.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(servicePrincipalIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(servicePrincipalIdOption, consistencyLevelOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -309,13 +319,12 @@ namespace ApiSdk.ServicePrincipals.Item {
                 var servicePrincipalId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("servicePrincipal_id", servicePrincipalId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ServicePrincipal>(ServicePrincipal.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -381,7 +390,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         public ServicePrincipalItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/servicePrincipals/{servicePrincipal_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -443,8 +452,10 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>Get entity from servicePrincipals by key</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

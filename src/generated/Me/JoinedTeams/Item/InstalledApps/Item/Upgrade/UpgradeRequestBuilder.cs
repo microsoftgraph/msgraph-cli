@@ -38,11 +38,10 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item.Upgrade {
                 var teamId = (string) parameters[0];
                 var teamsAppInstallationId = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("team_id", teamId);
-                PathParameters.Add("teamsAppInstallation_id", teamsAppInstallationId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(teamIdOption, teamsAppInstallationIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -56,7 +55,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item.Upgrade {
         public UpgradeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/joinedTeams/{team_id}/installedApps/{teamsAppInstallation_id}/microsoft.graph.upgrade";
+            UrlTemplate = "{+baseurl}/me/joinedTeams/{team%2Did}/installedApps/{teamsAppInstallation%2Did}/microsoft.graph.upgrade";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

@@ -43,14 +43,13 @@ namespace ApiSdk.Groups.Item.Threads.Item.Reply {
                 var conversationThreadId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("conversationThread_id", conversationThreadId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.Threads.Item.Reply.ReplyRequestBody>(ApiSdk.Groups.Item.Threads.Item.Reply.ReplyRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ReplyRequestBody>(ReplyRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(groupIdOption, conversationThreadIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -64,7 +63,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Reply {
         public ReplyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/threads/{conversationThread_id}/microsoft.graph.reply";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/microsoft.graph.reply";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -75,7 +74,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Reply {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Groups.Item.Threads.Item.Reply.ReplyRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(ReplyRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

@@ -31,8 +31,8 @@ using ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomainName
 using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities;
 using ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummaries;
 using ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSummaries;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -318,7 +318,7 @@ namespace ApiSdk.DeviceManagement {
                 var cancellationToken = (CancellationToken) parameters[1];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DeviceManagement>(ApiSdk.Models.Microsoft.Graph.DeviceManagement.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.DeviceManagement>(ApiSdk.Models.DeviceManagement.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -479,7 +479,7 @@ namespace ApiSdk.DeviceManagement {
         public DeviceManagementRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/deviceManagement{?select,expand}";
+            UrlTemplate = "{+baseurl}/deviceManagement{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -511,7 +511,7 @@ namespace ApiSdk.DeviceManagement {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.DeviceManagement body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.DeviceManagement body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -525,7 +525,7 @@ namespace ApiSdk.DeviceManagement {
         }
         /// <summary>
         /// Provides operations to call the getEffectivePermissions method.
-        /// <param name="scope">Usage: scope='{scope}'</param>
+        /// <param name="scope">Usage: scope=&apos;{scope}&apos;</param>
         /// </summary>
         public GetEffectivePermissionsWithScopeRequestBuilder GetEffectivePermissionsWithScope(string scope) {
             if(string.IsNullOrEmpty(scope)) throw new ArgumentNullException(nameof(scope));
@@ -533,7 +533,7 @@ namespace ApiSdk.DeviceManagement {
         }
         /// <summary>
         /// Provides operations to call the verifyWindowsEnrollmentAutoDiscovery method.
-        /// <param name="domainName">Usage: domainName='{domainName}'</param>
+        /// <param name="domainName">Usage: domainName=&apos;{domainName}&apos;</param>
         /// </summary>
         public VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder VerifyWindowsEnrollmentAutoDiscoveryWithDomainName(string domainName) {
             if(string.IsNullOrEmpty(domainName)) throw new ArgumentNullException(nameof(domainName));
@@ -542,8 +542,10 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>Get deviceManagement</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

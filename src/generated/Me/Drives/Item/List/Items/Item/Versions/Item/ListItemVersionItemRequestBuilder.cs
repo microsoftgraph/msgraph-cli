@@ -1,7 +1,7 @@
 using ApiSdk.Me.Drives.Item.List.Items.Item.Versions.Item.Fields;
 using ApiSdk.Me.Drives.Item.List.Items.Item.Versions.Item.RestoreVersion;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -42,24 +42,29 @@ namespace ApiSdk.Me.Drives.Item.List.Items.Item.Versions.Item {
             };
             listItemVersionIdOption.IsRequired = true;
             command.AddOption(listItemVersionIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var driveId = (string) parameters[0];
                 var listItemId = (string) parameters[1];
                 var listItemVersionId = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("listItem_id", listItemId);
-                PathParameters.Add("listItemVersion_id", listItemVersionId);
+                var ifMatch = (string) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveIdOption, listItemIdOption, listItemVersionIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(driveIdOption, listItemIdOption, listItemVersionIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildFieldsCommand() {
@@ -124,14 +129,13 @@ namespace ApiSdk.Me.Drives.Item.List.Items.Item.Versions.Item {
                 var outputFilter = (IOutputFilter) parameters[8];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
                 var cancellationToken = (CancellationToken) parameters[10];
-                PathParameters.Clear();
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("listItem_id", listItemId);
-                PathParameters.Add("listItemVersion_id", listItemVersionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -173,15 +177,14 @@ namespace ApiSdk.Me.Drives.Item.List.Items.Item.Versions.Item {
                 var listItemVersionId = (string) parameters[2];
                 var body = (string) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("listItem_id", listItemId);
-                PathParameters.Add("listItemVersion_id", listItemVersionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ListItemVersion>(ListItemVersion.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -205,7 +208,7 @@ namespace ApiSdk.Me.Drives.Item.List.Items.Item.Versions.Item {
         public ListItemVersionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/drives/{drive_id}/list/items/{listItem_id}/versions/{listItemVersion_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/me/drives/{drive%2Did}/list/items/{listItem%2Did}/versions/{listItemVersion%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -267,8 +270,10 @@ namespace ApiSdk.Me.Drives.Item.List.Items.Item.Versions.Item {
         /// <summary>The list of previous versions of the list item.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

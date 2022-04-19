@@ -56,13 +56,12 @@ namespace ApiSdk.ServicePrincipals.Item.GetMemberGroups {
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("servicePrincipal_id", servicePrincipalId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.ServicePrincipals.Item.GetMemberGroups.GetMemberGroupsRequestBody>(ApiSdk.ServicePrincipals.Item.GetMemberGroups.GetMemberGroupsRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<GetMemberGroupsRequestBody>(GetMemberGroupsRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -79,7 +78,7 @@ namespace ApiSdk.ServicePrincipals.Item.GetMemberGroups {
         public GetMemberGroupsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/servicePrincipals/{servicePrincipal_id}/microsoft.graph.getMemberGroups";
+            UrlTemplate = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/microsoft.graph.getMemberGroups";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -90,7 +89,7 @@ namespace ApiSdk.ServicePrincipals.Item.GetMemberGroups {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.ServicePrincipals.Item.GetMemberGroups.GetMemberGroupsRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(GetMemberGroupsRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

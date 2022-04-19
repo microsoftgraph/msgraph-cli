@@ -38,13 +38,12 @@ namespace ApiSdk.Communications.Calls.Item.Transfer {
                 var callId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("call_id", callId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Communications.Calls.Item.Transfer.TransferRequestBody>(ApiSdk.Communications.Calls.Item.Transfer.TransferRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<TransferRequestBody>(TransferRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("call%2Did", callId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(callIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -58,7 +57,7 @@ namespace ApiSdk.Communications.Calls.Item.Transfer {
         public TransferRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/communications/calls/{call_id}/microsoft.graph.transfer";
+            UrlTemplate = "{+baseurl}/communications/calls/{call%2Did}/microsoft.graph.transfer";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -69,7 +68,7 @@ namespace ApiSdk.Communications.Calls.Item.Transfer {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Communications.Calls.Item.Transfer.TransferRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(TransferRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

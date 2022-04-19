@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports;
 using ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport;
 using Microsoft.Kiota.Abstractions;
@@ -56,22 +56,27 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var onlineMeetingId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("onlineMeeting_id", onlineMeetingId);
+                var ifMatch = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("onlineMeeting%2Did", onlineMeetingId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, onlineMeetingIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, onlineMeetingIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -123,13 +128,12 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("onlineMeeting_id", onlineMeetingId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("onlineMeeting%2Did", onlineMeetingId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -166,14 +170,13 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
                 var onlineMeetingId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("onlineMeeting_id", onlineMeetingId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OnlineMeeting>(OnlineMeeting.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("onlineMeeting%2Did", onlineMeetingId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -191,7 +194,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         public OnlineMeetingItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/onlineMeetings/{onlineMeeting_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -253,8 +256,10 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         /// <summary>Get onlineMeetings from users</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

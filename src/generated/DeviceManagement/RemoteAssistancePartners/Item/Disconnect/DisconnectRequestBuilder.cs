@@ -33,10 +33,9 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
             command.SetHandler(async (object[] parameters) => {
                 var remoteAssistancePartnerId = (string) parameters[0];
                 var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("remoteAssistancePartner_id", remoteAssistancePartnerId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("remoteAssistancePartner%2Did", remoteAssistancePartnerId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(remoteAssistancePartnerIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -50,7 +49,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
         public DisconnectRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/deviceManagement/remoteAssistancePartners/{remoteAssistancePartner_id}/microsoft.graph.disconnect";
+            UrlTemplate = "{+baseurl}/deviceManagement/remoteAssistancePartners/{remoteAssistancePartner%2Did}/microsoft.graph.disconnect";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

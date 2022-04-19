@@ -33,10 +33,9 @@ namespace ApiSdk.Communications.Calls.Item.KeepAlive {
             command.SetHandler(async (object[] parameters) => {
                 var callId = (string) parameters[0];
                 var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("call_id", callId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("call%2Did", callId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(callIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -50,7 +49,7 @@ namespace ApiSdk.Communications.Calls.Item.KeepAlive {
         public KeepAliveRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/communications/calls/{call_id}/microsoft.graph.keepAlive";
+            UrlTemplate = "{+baseurl}/communications/calls/{call%2Did}/microsoft.graph.keepAlive";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

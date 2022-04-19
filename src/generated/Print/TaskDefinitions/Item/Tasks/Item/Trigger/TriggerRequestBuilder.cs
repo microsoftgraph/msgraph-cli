@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -22,7 +22,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The printTaskTrigger that triggered this task's execution. Read-only.
+        /// The printTaskTrigger that triggered this task&apos;s execution. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -70,13 +70,12 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger {
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
-                PathParameters.Add("printTask_id", printTaskId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("printTaskDefinition%2Did", printTaskDefinitionId);
+                requestInfo.PathParameters.Add("printTask%2Did", printTaskId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -97,13 +96,13 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger {
         public TriggerRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/print/taskDefinitions/{printTaskDefinition_id}/tasks/{printTask_id}/trigger{?select,expand}";
+            UrlTemplate = "{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}/trigger{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The printTaskTrigger that triggered this task's execution. Read-only.
+        /// The printTaskTrigger that triggered this task&apos;s execution. Read-only.
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// <param name="queryParameters">Request query parameters</param>
@@ -123,11 +122,13 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger {
             requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
-        /// <summary>The printTaskTrigger that triggered this task's execution. Read-only.</summary>
+        /// <summary>The printTaskTrigger that triggered this task&apos;s execution. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

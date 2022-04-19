@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -40,11 +40,10 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Count {
                 var listId = (string) parameters[1];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("list_id", listId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("list%2Did", listId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -63,7 +62,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Count {
         public CountRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/sites/{site_id}/lists/{list_id}/contentTypes/$count";
+            UrlTemplate = "{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/$count";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

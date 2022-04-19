@@ -33,10 +33,9 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.Unassign
             command.SetHandler(async (object[] parameters) => {
                 var windowsAutopilotDeviceIdentityId = (string) parameters[0];
                 var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("windowsAutopilotDeviceIdentity_id", windowsAutopilotDeviceIdentityId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("windowsAutopilotDeviceIdentity%2Did", windowsAutopilotDeviceIdentityId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(windowsAutopilotDeviceIdentityIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -50,7 +49,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.Unassign
         public UnassignUserFromDeviceRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity_id}/microsoft.graph.unassignUserFromDevice";
+            UrlTemplate = "{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}/microsoft.graph.unassignUserFromDevice";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

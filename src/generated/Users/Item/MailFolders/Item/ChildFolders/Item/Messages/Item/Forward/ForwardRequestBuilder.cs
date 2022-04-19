@@ -53,16 +53,15 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.For
                 var messageId = (string) parameters[3];
                 var body = (string) parameters[4];
                 var cancellationToken = (CancellationToken) parameters[5];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("mailFolder_id", mailFolderId);
-                PathParameters.Add("mailFolder_id1", mailFolderId1);
-                PathParameters.Add("message_id", messageId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Forward.ForwardRequestBody>(ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Forward.ForwardRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ForwardRequestBody>(ForwardRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
+                requestInfo.PathParameters.Add("message%2Did", messageId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(userIdOption, mailFolderIdOption, mailFolderId1Option, messageIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -76,7 +75,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.For
         public ForwardRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/mailFolders/{mailFolder_id}/childFolders/{mailFolder_id1}/messages/{message_id}/microsoft.graph.forward";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}/messages/{message%2Did}/microsoft.graph.forward";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -87,7 +86,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.For
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Forward.ForwardRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(ForwardRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

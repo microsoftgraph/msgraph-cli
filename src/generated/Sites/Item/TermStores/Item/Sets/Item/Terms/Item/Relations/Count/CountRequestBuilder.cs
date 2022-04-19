@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -50,13 +50,12 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Count
                 var termId = (string) parameters[3];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
                 var cancellationToken = (CancellationToken) parameters[5];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("store_id", storeId);
-                PathParameters.Add("set_id", setId);
-                PathParameters.Add("term_id", termId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("store%2Did", storeId);
+                requestInfo.PathParameters.Add("set%2Did", setId);
+                requestInfo.PathParameters.Add("term%2Did", termId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -75,7 +74,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Count
         public CountRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/sites/{site_id}/termStores/{store_id}/sets/{set_id}/terms/{term_id}/relations/$count";
+            UrlTemplate = "{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/terms/{term%2Did}/relations/$count";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

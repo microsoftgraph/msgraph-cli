@@ -8,7 +8,9 @@ namespace ApiSdk.Me.ChangePassword {
     public class ChangePasswordRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The currentPassword property</summary>
         public string CurrentPassword { get; set; }
+        /// <summary>The newPassword property</summary>
         public string NewPassword { get; set; }
         /// <summary>
         /// Instantiates a new changePasswordRequestBody and sets the default values.
@@ -20,17 +22,17 @@ namespace ApiSdk.Me.ChangePassword {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Me.ChangePassword.ChangePasswordRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ChangePasswordRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ChangePasswordRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"currentPassword", (o,n) => { (o as ChangePasswordRequestBody).CurrentPassword = n.GetStringValue(); } },
-                {"newPassword", (o,n) => { (o as ChangePasswordRequestBody).NewPassword = n.GetStringValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"currentPassword", n => { CurrentPassword = n.GetStringValue(); } },
+                {"newPassword", n => { NewPassword = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -33,10 +33,9 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.RemoveEmail {
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(groupIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -50,7 +49,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.RemoveEmail {
         public RemoveEmailRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/team/primaryChannel/microsoft.graph.removeEmail";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/team/primaryChannel/microsoft.graph.removeEmail";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

@@ -43,12 +43,11 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.Unpublish {
                 var driveId = (string) parameters[1];
                 var contentTypeId = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("contentType_id", contentTypeId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(groupIdOption, driveIdOption, contentTypeIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -62,7 +61,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.Unpublish {
         public UnpublishRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/drives/{drive_id}/list/contentTypes/{contentType_id}/microsoft.graph.unpublish";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/microsoft.graph.unpublish";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

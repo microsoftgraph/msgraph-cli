@@ -35,7 +35,7 @@ namespace ApiSdk.Print.Printers.Create {
                 var cancellationToken = (CancellationToken) parameters[1];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Print.Printers.Create.CreateRequestBody>(ApiSdk.Print.Printers.Create.CreateRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<CreateRequestBody>(CreateRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -62,7 +62,7 @@ namespace ApiSdk.Print.Printers.Create {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Print.Printers.Create.CreateRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(CreateRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

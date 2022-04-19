@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -57,13 +57,12 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("call_id", callId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Communications.Calls.Item.PlayPrompt.PlayPromptRequestBody>(ApiSdk.Communications.Calls.Item.PlayPrompt.PlayPromptRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<PlayPromptRequestBody>(PlayPromptRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("call%2Did", callId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -80,7 +79,7 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
         public PlayPromptRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/communications/calls/{call_id}/microsoft.graph.playPrompt";
+            UrlTemplate = "{+baseurl}/communications/calls/{call%2Did}/microsoft.graph.playPrompt";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -91,7 +90,7 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Communications.Calls.Item.PlayPrompt.PlayPromptRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(PlayPromptRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

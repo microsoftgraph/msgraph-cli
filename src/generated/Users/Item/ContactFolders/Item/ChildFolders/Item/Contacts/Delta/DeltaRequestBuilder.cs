@@ -61,12 +61,11 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Delta
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("contactFolder_id", contactFolderId);
-                PathParameters.Add("contactFolder_id1", contactFolderId1);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
+                requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -83,7 +82,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Delta
         public DeltaRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/contactFolders/{contactFolder_id}/childFolders/{contactFolder_id1}/contacts/microsoft.graph.delta()";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}/contacts/microsoft.graph.delta()";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

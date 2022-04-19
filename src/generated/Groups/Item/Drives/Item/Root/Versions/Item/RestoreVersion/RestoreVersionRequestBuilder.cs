@@ -43,12 +43,11 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.Versions.Item.RestoreVersion {
                 var driveId = (string) parameters[1];
                 var driveItemVersionId = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("driveItemVersion_id", driveItemVersionId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("driveItemVersion%2Did", driveItemVersionId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(groupIdOption, driveIdOption, driveItemVersionIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -62,7 +61,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.Versions.Item.RestoreVersion {
         public RestoreVersionRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/drives/{drive_id}/root/versions/{driveItemVersion_id}/microsoft.graph.restoreVersion";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/drives/{drive%2Did}/root/versions/{driveItemVersion%2Did}/microsoft.graph.restoreVersion";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

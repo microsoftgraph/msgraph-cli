@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.Reports.DailyPrintUsageByPrinter;
 using ApiSdk.Reports.DailyPrintUsageByUser;
 using ApiSdk.Reports.DeviceConfigurationDeviceActivity;
@@ -252,7 +252,7 @@ namespace ApiSdk.Reports {
         public ReportsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/reports{?select,expand}";
+            UrlTemplate = "{+baseurl}/reports{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -310,7 +310,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getEmailActivityCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetEmailActivityCountsWithPeriodRequestBuilder GetEmailActivityCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -318,7 +318,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getEmailActivityUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetEmailActivityUserCountsWithPeriodRequestBuilder GetEmailActivityUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -334,7 +334,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getEmailActivityUserDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetEmailActivityUserDetailWithPeriodRequestBuilder GetEmailActivityUserDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -342,7 +342,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getEmailAppUsageAppsUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetEmailAppUsageAppsUserCountsWithPeriodRequestBuilder GetEmailAppUsageAppsUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -350,7 +350,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getEmailAppUsageUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetEmailAppUsageUserCountsWithPeriodRequestBuilder GetEmailAppUsageUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -366,7 +366,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getEmailAppUsageUserDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetEmailAppUsageUserDetailWithPeriodRequestBuilder GetEmailAppUsageUserDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -374,7 +374,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getEmailAppUsageVersionsUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetEmailAppUsageVersionsUserCountsWithPeriodRequestBuilder GetEmailAppUsageVersionsUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -382,9 +382,9 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getGroupArchivedPrintJobs method.
-        /// <param name="endDateTime">Usage: endDateTime='{endDateTime}'</param>
-        /// <param name="groupId">Usage: groupId='{groupId}'</param>
-        /// <param name="startDateTime">Usage: startDateTime='{startDateTime}'</param>
+        /// <param name="endDateTime">Usage: endDateTime=&apos;{endDateTime}&apos;</param>
+        /// <param name="groupId">Usage: groupId=&apos;{groupId}&apos;</param>
+        /// <param name="startDateTime">Usage: startDateTime=&apos;{startDateTime}&apos;</param>
         /// </summary>
         public GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRequestBuilder GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTime(DateTimeOffset? endDateTime, string groupId, DateTimeOffset? startDateTime) {
             _ = endDateTime ?? throw new ArgumentNullException(nameof(endDateTime));
@@ -394,7 +394,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getMailboxUsageDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetMailboxUsageDetailWithPeriodRequestBuilder GetMailboxUsageDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -402,7 +402,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getMailboxUsageMailboxCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetMailboxUsageMailboxCountsWithPeriodRequestBuilder GetMailboxUsageMailboxCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -410,7 +410,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getMailboxUsageQuotaStatusMailboxCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder GetMailboxUsageQuotaStatusMailboxCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -418,7 +418,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getMailboxUsageStorage method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetMailboxUsageStorageWithPeriodRequestBuilder GetMailboxUsageStorageWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -444,7 +444,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOffice365ActiveUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOffice365ActiveUserCountsWithPeriodRequestBuilder GetOffice365ActiveUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -460,7 +460,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOffice365ActiveUserDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOffice365ActiveUserDetailWithPeriodRequestBuilder GetOffice365ActiveUserDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -468,7 +468,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOffice365GroupsActivityCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOffice365GroupsActivityCountsWithPeriodRequestBuilder GetOffice365GroupsActivityCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -484,7 +484,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOffice365GroupsActivityDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOffice365GroupsActivityDetailWithPeriodRequestBuilder GetOffice365GroupsActivityDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -492,7 +492,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOffice365GroupsActivityFileCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOffice365GroupsActivityFileCountsWithPeriodRequestBuilder GetOffice365GroupsActivityFileCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -500,7 +500,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOffice365GroupsActivityGroupCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder GetOffice365GroupsActivityGroupCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -508,7 +508,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOffice365GroupsActivityStorage method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOffice365GroupsActivityStorageWithPeriodRequestBuilder GetOffice365GroupsActivityStorageWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -516,7 +516,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOffice365ServicesUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOffice365ServicesUserCountsWithPeriodRequestBuilder GetOffice365ServicesUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -524,7 +524,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOneDriveActivityFileCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOneDriveActivityFileCountsWithPeriodRequestBuilder GetOneDriveActivityFileCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -532,7 +532,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOneDriveActivityUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOneDriveActivityUserCountsWithPeriodRequestBuilder GetOneDriveActivityUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -548,7 +548,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOneDriveActivityUserDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOneDriveActivityUserDetailWithPeriodRequestBuilder GetOneDriveActivityUserDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -556,7 +556,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOneDriveUsageAccountCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOneDriveUsageAccountCountsWithPeriodRequestBuilder GetOneDriveUsageAccountCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -572,7 +572,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOneDriveUsageAccountDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOneDriveUsageAccountDetailWithPeriodRequestBuilder GetOneDriveUsageAccountDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -580,7 +580,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOneDriveUsageFileCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOneDriveUsageFileCountsWithPeriodRequestBuilder GetOneDriveUsageFileCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -588,7 +588,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getOneDriveUsageStorage method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetOneDriveUsageStorageWithPeriodRequestBuilder GetOneDriveUsageStorageWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -596,9 +596,9 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getPrinterArchivedPrintJobs method.
-        /// <param name="endDateTime">Usage: endDateTime='{endDateTime}'</param>
-        /// <param name="printerId">Usage: printerId='{printerId}'</param>
-        /// <param name="startDateTime">Usage: startDateTime='{startDateTime}'</param>
+        /// <param name="endDateTime">Usage: endDateTime=&apos;{endDateTime}&apos;</param>
+        /// <param name="printerId">Usage: printerId=&apos;{printerId}&apos;</param>
+        /// <param name="startDateTime">Usage: startDateTime=&apos;{startDateTime}&apos;</param>
         /// </summary>
         public GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRequestBuilder GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime(DateTimeOffset? endDateTime, string printerId, DateTimeOffset? startDateTime) {
             _ = endDateTime ?? throw new ArgumentNullException(nameof(endDateTime));
@@ -608,7 +608,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSharePointActivityFileCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSharePointActivityFileCountsWithPeriodRequestBuilder GetSharePointActivityFileCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -616,7 +616,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSharePointActivityPages method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSharePointActivityPagesWithPeriodRequestBuilder GetSharePointActivityPagesWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -624,7 +624,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSharePointActivityUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSharePointActivityUserCountsWithPeriodRequestBuilder GetSharePointActivityUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -640,7 +640,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSharePointActivityUserDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSharePointActivityUserDetailWithPeriodRequestBuilder GetSharePointActivityUserDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -656,7 +656,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSharePointSiteUsageDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSharePointSiteUsageDetailWithPeriodRequestBuilder GetSharePointSiteUsageDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -664,7 +664,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSharePointSiteUsageFileCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSharePointSiteUsageFileCountsWithPeriodRequestBuilder GetSharePointSiteUsageFileCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -672,7 +672,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSharePointSiteUsagePages method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSharePointSiteUsagePagesWithPeriodRequestBuilder GetSharePointSiteUsagePagesWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -680,7 +680,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSharePointSiteUsageSiteCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSharePointSiteUsageSiteCountsWithPeriodRequestBuilder GetSharePointSiteUsageSiteCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -688,7 +688,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSharePointSiteUsageStorage method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSharePointSiteUsageStorageWithPeriodRequestBuilder GetSharePointSiteUsageStorageWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -696,7 +696,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessActivityCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessActivityCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -704,7 +704,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessActivityUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessActivityUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -720,7 +720,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessActivityUserDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessActivityUserDetailWithPeriodRequestBuilder GetSkypeForBusinessActivityUserDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -728,7 +728,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessDeviceUsageDistributionUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -736,7 +736,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessDeviceUsageUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessDeviceUsageUserCountsWithPeriodRequestBuilder GetSkypeForBusinessDeviceUsageUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -752,7 +752,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessDeviceUsageUserDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder GetSkypeForBusinessDeviceUsageUserDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -760,7 +760,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessOrganizerActivityCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessOrganizerActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessOrganizerActivityCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -768,7 +768,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessOrganizerActivityMinuteCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessOrganizerActivityMinuteCountsWithPeriodRequestBuilder GetSkypeForBusinessOrganizerActivityMinuteCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -776,7 +776,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessOrganizerActivityUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessOrganizerActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessOrganizerActivityUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -784,7 +784,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessParticipantActivityCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessParticipantActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessParticipantActivityCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -792,7 +792,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessParticipantActivityMinuteCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -800,7 +800,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessParticipantActivityUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessParticipantActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessParticipantActivityUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -808,7 +808,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessPeerToPeerActivityCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessPeerToPeerActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessPeerToPeerActivityCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -816,7 +816,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessPeerToPeerActivityMinuteCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessPeerToPeerActivityMinuteCountsWithPeriodRequestBuilder GetSkypeForBusinessPeerToPeerActivityMinuteCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -824,7 +824,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessPeerToPeerActivityUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetSkypeForBusinessPeerToPeerActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessPeerToPeerActivityUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -832,7 +832,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getTeamsDeviceUsageDistributionUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder GetTeamsDeviceUsageDistributionUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -840,7 +840,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getTeamsDeviceUsageUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder GetTeamsDeviceUsageUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -856,7 +856,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getTeamsDeviceUsageUserDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetTeamsDeviceUsageUserDetailWithPeriodRequestBuilder GetTeamsDeviceUsageUserDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -864,7 +864,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getTeamsUserActivityCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetTeamsUserActivityCountsWithPeriodRequestBuilder GetTeamsUserActivityCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -872,7 +872,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getTeamsUserActivityUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetTeamsUserActivityUserCountsWithPeriodRequestBuilder GetTeamsUserActivityUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -888,7 +888,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getTeamsUserActivityUserDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetTeamsUserActivityUserDetailWithPeriodRequestBuilder GetTeamsUserActivityUserDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -896,9 +896,9 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getUserArchivedPrintJobs method.
-        /// <param name="endDateTime">Usage: endDateTime='{endDateTime}'</param>
-        /// <param name="startDateTime">Usage: startDateTime='{startDateTime}'</param>
-        /// <param name="userId">Usage: userId='{userId}'</param>
+        /// <param name="endDateTime">Usage: endDateTime=&apos;{endDateTime}&apos;</param>
+        /// <param name="startDateTime">Usage: startDateTime=&apos;{startDateTime}&apos;</param>
+        /// <param name="userId">Usage: userId=&apos;{userId}&apos;</param>
         /// </summary>
         public GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTimeRequestBuilder GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTime(DateTimeOffset? endDateTime, DateTimeOffset? startDateTime, string userId) {
             _ = endDateTime ?? throw new ArgumentNullException(nameof(endDateTime));
@@ -908,7 +908,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getYammerActivityCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetYammerActivityCountsWithPeriodRequestBuilder GetYammerActivityCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -916,7 +916,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getYammerActivityUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetYammerActivityUserCountsWithPeriodRequestBuilder GetYammerActivityUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -932,7 +932,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getYammerActivityUserDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetYammerActivityUserDetailWithPeriodRequestBuilder GetYammerActivityUserDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -940,7 +940,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getYammerDeviceUsageDistributionUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetYammerDeviceUsageDistributionUserCountsWithPeriodRequestBuilder GetYammerDeviceUsageDistributionUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -948,7 +948,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getYammerDeviceUsageUserCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetYammerDeviceUsageUserCountsWithPeriodRequestBuilder GetYammerDeviceUsageUserCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -964,7 +964,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getYammerDeviceUsageUserDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetYammerDeviceUsageUserDetailWithPeriodRequestBuilder GetYammerDeviceUsageUserDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -972,7 +972,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getYammerGroupsActivityCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetYammerGroupsActivityCountsWithPeriodRequestBuilder GetYammerGroupsActivityCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -988,7 +988,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getYammerGroupsActivityDetail method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetYammerGroupsActivityDetailWithPeriodRequestBuilder GetYammerGroupsActivityDetailWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -996,7 +996,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the getYammerGroupsActivityGroupCounts method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public GetYammerGroupsActivityGroupCountsWithPeriodRequestBuilder GetYammerGroupsActivityGroupCountsWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -1010,9 +1010,9 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the managedDeviceEnrollmentFailureDetails method.
-        /// <param name="filter">Usage: filter='{filter}'</param>
+        /// <param name="filter">Usage: filter=&apos;{filter}&apos;</param>
         /// <param name="skip">Usage: skip={skip}</param>
-        /// <param name="skipToken">Usage: skipToken='{skipToken}'</param>
+        /// <param name="skipToken">Usage: skipToken=&apos;{skipToken}&apos;</param>
         /// <param name="top">Usage: top={top}</param>
         /// </summary>
         public ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipToken(string filter, int? skip, string skipToken, int? top) {
@@ -1030,7 +1030,7 @@ namespace ApiSdk.Reports {
         }
         /// <summary>
         /// Provides operations to call the managedDeviceEnrollmentTopFailures method.
-        /// <param name="period">Usage: period='{period}'</param>
+        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// </summary>
         public ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder ManagedDeviceEnrollmentTopFailuresWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
@@ -1039,8 +1039,10 @@ namespace ApiSdk.Reports {
         /// <summary>Get reports</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

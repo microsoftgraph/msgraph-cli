@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole {
     public class ChangeScreenSharingRoleRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The role property</summary>
         public ScreenSharingRole? Role { get; set; }
         /// <summary>
         /// Instantiates a new changeScreenSharingRoleRequestBody and sets the default values.
@@ -20,16 +21,16 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole.ChangeScreenSharingRoleRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ChangeScreenSharingRoleRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ChangeScreenSharingRoleRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"role", (o,n) => { (o as ChangeScreenSharingRoleRequestBody).Role = n.GetEnumValue<ScreenSharingRole>(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"role", n => { Role = n.GetEnumValue<ScreenSharingRole>(); } },
             };
         }
         /// <summary>

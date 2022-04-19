@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetReportFilters {
                 var cancellationToken = (CancellationToken) parameters[6];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.Reports.GetReportFilters.GetReportFiltersRequestBody>(ApiSdk.DeviceManagement.Reports.GetReportFilters.GetReportFiltersRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<GetReportFiltersRequestBody>(GetReportFiltersRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -83,7 +83,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetReportFilters {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.DeviceManagement.Reports.GetReportFilters.GetReportFiltersRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(GetReportFiltersRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

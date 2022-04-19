@@ -43,12 +43,11 @@ namespace ApiSdk.Me.Drives.Item.List.Items.Item.Versions.Item.RestoreVersion {
                 var listItemId = (string) parameters[1];
                 var listItemVersionId = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("listItem_id", listItemId);
-                PathParameters.Add("listItemVersion_id", listItemVersionId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(driveIdOption, listItemIdOption, listItemVersionIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -62,7 +61,7 @@ namespace ApiSdk.Me.Drives.Item.List.Items.Item.Versions.Item.RestoreVersion {
         public RestoreVersionRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/drives/{drive_id}/list/items/{listItem_id}/versions/{listItemVersion_id}/microsoft.graph.restoreVersion";
+            UrlTemplate = "{+baseurl}/me/drives/{drive%2Did}/list/items/{listItem%2Did}/versions/{listItemVersion%2Did}/microsoft.graph.restoreVersion";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

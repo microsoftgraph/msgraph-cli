@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,8 +9,11 @@ namespace ApiSdk.Communications.Calls.Item.Redirect {
     public class RedirectRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The callbackUri property</summary>
         public string CallbackUri { get; set; }
+        /// <summary>The targets property</summary>
         public List<InvitationParticipantInfo> Targets { get; set; }
+        /// <summary>The timeout property</summary>
         public int? Timeout { get; set; }
         /// <summary>
         /// Instantiates a new redirectRequestBody and sets the default values.
@@ -22,18 +25,18 @@ namespace ApiSdk.Communications.Calls.Item.Redirect {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Communications.Calls.Item.Redirect.RedirectRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static RedirectRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RedirectRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"callbackUri", (o,n) => { (o as RedirectRequestBody).CallbackUri = n.GetStringValue(); } },
-                {"targets", (o,n) => { (o as RedirectRequestBody).Targets = n.GetCollectionOfObjectValues<InvitationParticipantInfo>(InvitationParticipantInfo.CreateFromDiscriminatorValue).ToList(); } },
-                {"timeout", (o,n) => { (o as RedirectRequestBody).Timeout = n.GetIntValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"callbackUri", n => { CallbackUri = n.GetStringValue(); } },
+                {"targets", n => { Targets = n.GetCollectionOfObjectValues<InvitationParticipantInfo>(InvitationParticipantInfo.CreateFromDiscriminatorValue).ToList(); } },
+                {"timeout", n => { Timeout = n.GetIntValue(); } },
             };
         }
         /// <summary>

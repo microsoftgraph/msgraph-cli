@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -40,24 +40,29 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item {
             };
             educationCategoryIdOption.IsRequired = true;
             command.AddOption(educationCategoryIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var educationUserId = (string) parameters[0];
                 var educationAssignmentId = (string) parameters[1];
                 var educationCategoryId = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("educationUser_id", educationUserId);
-                PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                PathParameters.Add("educationCategory_id", educationCategoryId);
+                var ifMatch = (string) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
+                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.PathParameters.Add("educationCategory%2Did", educationCategoryId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, educationCategoryIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, educationCategoryIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -114,14 +119,13 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item {
                 var outputFilter = (IOutputFilter) parameters[8];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
                 var cancellationToken = (CancellationToken) parameters[10];
-                PathParameters.Clear();
-                PathParameters.Add("educationUser_id", educationUserId);
-                PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                PathParameters.Add("educationCategory_id", educationCategoryId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
+                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.PathParameters.Add("educationCategory%2Did", educationCategoryId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -163,15 +167,14 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item {
                 var educationCategoryId = (string) parameters[2];
                 var body = (string) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("educationUser_id", educationUserId);
-                PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                PathParameters.Add("educationCategory_id", educationCategoryId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationCategory>(EducationCategory.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
+                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.PathParameters.Add("educationCategory%2Did", educationCategoryId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -189,7 +192,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item {
         public EducationCategoryItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/education/users/{educationUser_id}/assignments/{educationAssignment_id}/categories/{educationCategory_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/categories/{educationCategory%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -251,8 +254,10 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item {
         /// <summary>When set, enables users to easily find assignments of a given type.  Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

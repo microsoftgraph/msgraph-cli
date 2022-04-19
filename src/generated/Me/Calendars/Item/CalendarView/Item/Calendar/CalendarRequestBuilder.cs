@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -64,12 +64,11 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Calendar {
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("calendar_id", calendarId);
-                PathParameters.Add("event_id", eventId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
+                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                requestInfo.PathParameters.Add("event%2Did", eventId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -90,7 +89,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Calendar {
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/calendars/{calendar_id}/calendarView/{event_id}/calendar{?select}";
+            UrlTemplate = "{+baseurl}/me/calendars/{calendar%2Did}/calendarView/{event%2Did}/calendar{?%24select}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -119,6 +118,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Calendar {
         /// <summary>The calendar that contains the event. Navigation property. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

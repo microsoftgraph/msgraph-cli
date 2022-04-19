@@ -48,13 +48,12 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.Items.Item.Versions.Item.RestoreVe
                 var listItemId = (string) parameters[2];
                 var listItemVersionId = (string) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("listItem_id", listItemId);
-                PathParameters.Add("listItemVersion_id", listItemVersionId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(groupIdOption, driveIdOption, listItemIdOption, listItemVersionIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -68,7 +67,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.Items.Item.Versions.Item.RestoreVe
         public RestoreVersionRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/drives/{drive_id}/list/items/{listItem_id}/versions/{listItemVersion_id}/microsoft.graph.restoreVersion";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/drives/{drive%2Did}/list/items/{listItem%2Did}/versions/{listItemVersion%2Did}/microsoft.graph.restoreVersion";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

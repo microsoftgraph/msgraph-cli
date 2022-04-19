@@ -56,11 +56,10 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("appConsentRequest_id", appConsentRequestId);
-                PathParameters.Add("on", on);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("appConsentRequest%2Did", appConsentRequestId);
+                requestInfo.PathParameters.Add("on", on);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -71,16 +70,16 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         }
         /// <summary>
         /// Instantiates a new FilterByCurrentUserWithOnRequestBuilder and sets the default values.
-        /// <param name="on">Usage: on='{on}'</param>
+        /// <param name="on">Usage: on=&apos;{on}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         /// </summary>
         public FilterByCurrentUserWithOnRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string on = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identityGovernance/appConsent/appConsentRequests/{appConsentRequest_id}/userConsentRequests/microsoft.graph.filterByCurrentUser(on='{on}')";
+            UrlTemplate = "{+baseurl}/identityGovernance/appConsent/appConsentRequests/{appConsentRequest%2Did}/userConsentRequests/microsoft.graph.filterByCurrentUser(on='{on}')";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("on", on);
+            urlTplParams.Add("", on);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

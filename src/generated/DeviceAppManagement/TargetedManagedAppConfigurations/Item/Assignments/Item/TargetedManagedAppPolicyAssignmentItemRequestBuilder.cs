@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -36,22 +36,27 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
             };
             targetedManagedAppPolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppPolicyAssignmentIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var targetedManagedAppConfigurationId = (string) parameters[0];
                 var targetedManagedAppPolicyAssignmentId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
-                PathParameters.Add("targetedManagedAppPolicyAssignment_id", targetedManagedAppPolicyAssignmentId);
+                var ifMatch = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("targetedManagedAppConfiguration%2Did", targetedManagedAppConfigurationId);
+                requestInfo.PathParameters.Add("targetedManagedAppPolicyAssignment%2Did", targetedManagedAppPolicyAssignmentId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(targetedManagedAppConfigurationIdOption, targetedManagedAppPolicyAssignmentIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(targetedManagedAppConfigurationIdOption, targetedManagedAppPolicyAssignmentIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -103,13 +108,12 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
-                PathParameters.Add("targetedManagedAppPolicyAssignment_id", targetedManagedAppPolicyAssignmentId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("targetedManagedAppConfiguration%2Did", targetedManagedAppConfigurationId);
+                requestInfo.PathParameters.Add("targetedManagedAppPolicyAssignment%2Did", targetedManagedAppPolicyAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -146,14 +150,13 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
                 var targetedManagedAppPolicyAssignmentId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
-                PathParameters.Add("targetedManagedAppPolicyAssignment_id", targetedManagedAppPolicyAssignmentId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TargetedManagedAppPolicyAssignment>(TargetedManagedAppPolicyAssignment.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("targetedManagedAppConfiguration%2Did", targetedManagedAppConfigurationId);
+                requestInfo.PathParameters.Add("targetedManagedAppPolicyAssignment%2Did", targetedManagedAppPolicyAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -171,7 +174,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
         public TargetedManagedAppPolicyAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations/{targetedManagedAppConfiguration_id}/assignments/{targetedManagedAppPolicyAssignment_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations/{targetedManagedAppConfiguration%2Did}/assignments/{targetedManagedAppPolicyAssignment%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -233,8 +236,10 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
         /// <summary>Navigation property to list of inclusion and exclusion groups to which the policy is deployed.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

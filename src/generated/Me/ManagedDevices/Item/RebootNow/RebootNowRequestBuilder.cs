@@ -33,10 +33,9 @@ namespace ApiSdk.Me.ManagedDevices.Item.RebootNow {
             command.SetHandler(async (object[] parameters) => {
                 var managedDeviceId = (string) parameters[0];
                 var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("managedDevice_id", managedDeviceId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("managedDevice%2Did", managedDeviceId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(managedDeviceIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -50,7 +49,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.RebootNow {
         public RebootNowRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/managedDevices/{managedDevice_id}/microsoft.graph.rebootNow";
+            UrlTemplate = "{+baseurl}/me/managedDevices/{managedDevice%2Did}/microsoft.graph.rebootNow";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

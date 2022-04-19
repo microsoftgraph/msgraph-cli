@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -48,28 +48,33 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Ext
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var mailFolderId = (string) parameters[1];
                 var mailFolderId1 = (string) parameters[2];
                 var messageId = (string) parameters[3];
                 var extensionId = (string) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("mailFolder_id", mailFolderId);
-                PathParameters.Add("mailFolder_id1", mailFolderId1);
-                PathParameters.Add("message_id", messageId);
-                PathParameters.Add("extension_id", extensionId);
+                var ifMatch = (string) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
+                requestInfo.PathParameters.Add("message%2Did", messageId);
+                requestInfo.PathParameters.Add("extension%2Did", extensionId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, mailFolderIdOption, mailFolderId1Option, messageIdOption, extensionIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, mailFolderIdOption, mailFolderId1Option, messageIdOption, extensionIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -136,16 +141,15 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Ext
                 var outputFilter = (IOutputFilter) parameters[10];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
                 var cancellationToken = (CancellationToken) parameters[12];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("mailFolder_id", mailFolderId);
-                PathParameters.Add("mailFolder_id1", mailFolderId1);
-                PathParameters.Add("message_id", messageId);
-                PathParameters.Add("extension_id", extensionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
+                requestInfo.PathParameters.Add("message%2Did", messageId);
+                requestInfo.PathParameters.Add("extension%2Did", extensionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -197,17 +201,16 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Ext
                 var extensionId = (string) parameters[4];
                 var body = (string) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("mailFolder_id", mailFolderId);
-                PathParameters.Add("mailFolder_id1", mailFolderId1);
-                PathParameters.Add("message_id", messageId);
-                PathParameters.Add("extension_id", extensionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Extension>(Extension.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
+                requestInfo.PathParameters.Add("message%2Did", messageId);
+                requestInfo.PathParameters.Add("extension%2Did", extensionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -225,7 +228,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Ext
         public ExtensionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/mailFolders/{mailFolder_id}/childFolders/{mailFolder_id1}/messages/{message_id}/extensions/{extension_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}/messages/{message%2Did}/extensions/{extension%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -287,8 +290,10 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Ext
         /// <summary>The collection of open extensions defined for the message. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

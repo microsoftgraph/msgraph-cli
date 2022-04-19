@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -45,12 +45,11 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.Host
                 var chatMessageId1 = (string) parameters[2];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("chatMessage_id", chatMessageId);
-                PathParameters.Add("chatMessage_id1", chatMessageId1);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -69,7 +68,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.Host
         public CountRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/team/primaryChannel/messages/{chatMessage_id}/replies/{chatMessage_id1}/hostedContents/$count";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/team/primaryChannel/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents/$count";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

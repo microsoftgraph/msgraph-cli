@@ -3,8 +3,8 @@ using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes;
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.Drive;
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items;
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.Subscriptions;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -68,24 +68,29 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var siteId = (string) parameters[1];
                 var listId = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("list_id", listId);
+                var ifMatch = (string) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("list%2Did", listId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, siteIdOption, listIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, siteIdOption, listIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildDriveCommand() {
@@ -148,14 +153,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
                 var outputFilter = (IOutputFilter) parameters[8];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
                 var cancellationToken = (CancellationToken) parameters[10];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("list_id", listId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("list%2Did", listId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -208,15 +212,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
                 var listId = (string) parameters[2];
                 var body = (string) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("list_id", listId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.List>(ApiSdk.Models.Microsoft.Graph.List.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.List>(ApiSdk.Models.List.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("list%2Did", listId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -245,7 +248,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         public ListItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/sites/{site_id}/lists/{list_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -292,7 +295,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.List body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.List body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -307,8 +310,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>The collection of lists under this site.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

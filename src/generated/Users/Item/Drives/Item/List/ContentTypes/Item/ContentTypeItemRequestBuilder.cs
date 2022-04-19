@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.AssociateWithHubSites;
 using ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.Base;
 using ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.BaseTypes;
@@ -110,24 +110,29 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var driveId = (string) parameters[1];
                 var contentTypeId = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("contentType_id", contentTypeId);
+                var ifMatch = (string) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, driveIdOption, contentTypeIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, driveIdOption, contentTypeIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -184,14 +189,13 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
                 var outputFilter = (IOutputFilter) parameters[8];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
                 var cancellationToken = (CancellationToken) parameters[10];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("contentType_id", contentTypeId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -233,15 +237,14 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
                 var contentTypeId = (string) parameters[2];
                 var body = (string) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("contentType_id", contentTypeId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ContentType>(ContentType.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -271,7 +274,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
         public ContentTypeItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/drives/{drive_id}/list/contentTypes/{contentType_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -339,8 +342,10 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
         /// <summary>The collection of content types present in this list.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

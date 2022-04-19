@@ -1,6 +1,6 @@
 using ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -40,17 +40,23 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
             var command = new Command("delete");
             command.Description = "Delete navigation property appConsent for identityGovernance";
             // Create options for all the parameters
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
-                var cancellationToken = (CancellationToken) parameters[0];
+                var ifMatch = (string) parameters[0];
+                var cancellationToken = (CancellationToken) parameters[1];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -144,7 +150,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         public AppConsentRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identityGovernance/appConsent{?select,expand}";
+            UrlTemplate = "{+baseurl}/identityGovernance/appConsent{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -206,8 +212,10 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>Get appConsent from identityGovernance</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

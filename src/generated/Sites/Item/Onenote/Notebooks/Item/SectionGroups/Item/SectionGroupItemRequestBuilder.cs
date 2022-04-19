@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.ParentNotebook;
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.ParentSectionGroup;
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGroups;
@@ -44,24 +44,29 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var siteId = (string) parameters[0];
                 var notebookId = (string) parameters[1];
                 var sectionGroupId = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("notebook_id", notebookId);
-                PathParameters.Add("sectionGroup_id", sectionGroupId);
+                var ifMatch = (string) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("notebook%2Did", notebookId);
+                requestInfo.PathParameters.Add("sectionGroup%2Did", sectionGroupId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(siteIdOption, notebookIdOption, sectionGroupIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, notebookIdOption, sectionGroupIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -118,14 +123,13 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item {
                 var outputFilter = (IOutputFilter) parameters[8];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
                 var cancellationToken = (CancellationToken) parameters[10];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("notebook_id", notebookId);
-                PathParameters.Add("sectionGroup_id", sectionGroupId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("notebook%2Did", notebookId);
+                requestInfo.PathParameters.Add("sectionGroup%2Did", sectionGroupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -179,15 +183,14 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item {
                 var sectionGroupId = (string) parameters[2];
                 var body = (string) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("notebook_id", notebookId);
-                PathParameters.Add("sectionGroup_id", sectionGroupId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SectionGroup>(SectionGroup.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("notebook%2Did", notebookId);
+                requestInfo.PathParameters.Add("sectionGroup%2Did", sectionGroupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -226,7 +229,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item {
         public SectionGroupItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/sites/{site_id}/onenote/notebooks/{notebook_id}/sectionGroups/{sectionGroup_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -288,8 +291,10 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item {
         /// <summary>The section groups in the notebook. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

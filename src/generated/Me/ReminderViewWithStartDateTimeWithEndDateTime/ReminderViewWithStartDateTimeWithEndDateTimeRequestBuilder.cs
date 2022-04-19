@@ -26,14 +26,14 @@ namespace ApiSdk.Me.ReminderViewWithStartDateTimeWithEndDateTime {
             var command = new Command("get");
             command.Description = "Invoke function reminderView";
             // Create options for all the parameters
-            var StartDateTimeOption = new Option<string>("--start-date-time", description: "Usage: StartDateTime='{StartDateTime}'") {
+            var startDateTimeOption = new Option<string>("--start-date-time", description: "Usage: StartDateTime='{StartDateTime}'") {
             };
-            StartDateTimeOption.IsRequired = true;
-            command.AddOption(StartDateTimeOption);
-            var EndDateTimeOption = new Option<string>("--end-date-time", description: "Usage: EndDateTime='{EndDateTime}'") {
+            startDateTimeOption.IsRequired = true;
+            command.AddOption(startDateTimeOption);
+            var endDateTimeOption = new Option<string>("--end-date-time", description: "Usage: EndDateTime='{EndDateTime}'") {
             };
-            EndDateTimeOption.IsRequired = true;
-            command.AddOption(EndDateTimeOption);
+            endDateTimeOption.IsRequired = true;
+            command.AddOption(endDateTimeOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true
             };
@@ -48,41 +48,40 @@ namespace ApiSdk.Me.ReminderViewWithStartDateTimeWithEndDateTime {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
-                var StartDateTime = (string) parameters[0];
-                var EndDateTime = (string) parameters[1];
+                var startDateTime = (string) parameters[0];
+                var endDateTime = (string) parameters[1];
                 var output = (FormatterType) parameters[2];
                 var query = (string) parameters[3];
                 var jsonNoIndent = (bool) parameters[4];
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("StartDateTime", StartDateTime);
-                PathParameters.Add("EndDateTime", EndDateTime);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("StartDateTime", startDateTime);
+                requestInfo.PathParameters.Add("EndDateTime", endDateTime);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(StartDateTimeOption, EndDateTimeOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(startDateTimeOption, endDateTimeOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
         /// Instantiates a new ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder and sets the default values.
-        /// <param name="EndDateTime">Usage: EndDateTime='{EndDateTime}'</param>
+        /// <param name="endDateTime">Usage: EndDateTime=&apos;{EndDateTime}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// <param name="StartDateTime">Usage: StartDateTime='{StartDateTime}'</param>
+        /// <param name="startDateTime">Usage: StartDateTime=&apos;{StartDateTime}&apos;</param>
         /// </summary>
         public ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string endDateTime = default, string startDateTime = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/me/microsoft.graph.reminderView(StartDateTime='{StartDateTime}',EndDateTime='{EndDateTime}')";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("EndDateTime", endDateTime);
-            urlTplParams.Add("StartDateTime", startDateTime);
+            urlTplParams.Add("", endDateTime);
+            urlTplParams.Add("", startDateTime);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

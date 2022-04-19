@@ -38,11 +38,10 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.RestoreVersion {
                 var sharedDriveItemId = (string) parameters[0];
                 var listItemVersionId = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
-                PathParameters.Add("listItemVersion_id", listItemVersionId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
+                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(sharedDriveItemIdOption, listItemVersionIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -56,7 +55,7 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.RestoreVersion {
         public RestoreVersionRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/shares/{sharedDriveItem_id}/listItem/versions/{listItemVersion_id}/microsoft.graph.restoreVersion";
+            UrlTemplate = "{+baseurl}/shares/{sharedDriveItem%2Did}/listItem/versions/{listItemVersion%2Did}/microsoft.graph.restoreVersion";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

@@ -56,11 +56,10 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("listId", listId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("listId", listId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -71,16 +70,16 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
         }
         /// <summary>
         /// Instantiates a new GetApplicableContentTypesForListWithListIdRequestBuilder and sets the default values.
-        /// <param name="listId">Usage: listId='{listId}'</param>
+        /// <param name="listId">Usage: listId=&apos;{listId}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         /// </summary>
         public GetApplicableContentTypesForListWithListIdRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string listId = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/sites/{site_id}/microsoft.graph.getApplicableContentTypesForList(listId='{listId}')";
+            UrlTemplate = "{+baseurl}/sites/{site%2Did}/microsoft.graph.getApplicableContentTypesForList(listId='{listId}')";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("listId", listId);
+            urlTplParams.Add("", listId);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

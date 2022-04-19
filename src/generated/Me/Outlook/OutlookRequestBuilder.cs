@@ -2,8 +2,8 @@ using ApiSdk.Me.Outlook.MasterCategories;
 using ApiSdk.Me.Outlook.SupportedLanguages;
 using ApiSdk.Me.Outlook.SupportedTimeZones;
 using ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -32,17 +32,23 @@ namespace ApiSdk.Me.Outlook {
             var command = new Command("delete");
             command.Description = "Delete navigation property outlook for me";
             // Create options for all the parameters
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
-                var cancellationToken = (CancellationToken) parameters[0];
+                var ifMatch = (string) parameters[0];
+                var cancellationToken = (CancellationToken) parameters[1];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -140,7 +146,7 @@ namespace ApiSdk.Me.Outlook {
         public OutlookRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/outlook{?select}";
+            UrlTemplate = "{+baseurl}/me/outlook{?%24select}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -213,7 +219,7 @@ namespace ApiSdk.Me.Outlook {
         }
         /// <summary>
         /// Provides operations to call the supportedTimeZones method.
-        /// <param name="TimeZoneStandard">Usage: TimeZoneStandard='{TimeZoneStandard}'</param>
+        /// <param name="timeZoneStandard">Usage: TimeZoneStandard=&apos;{TimeZoneStandard}&apos;</param>
         /// </summary>
         public SupportedTimeZonesWithTimeZoneStandardRequestBuilder SupportedTimeZonesWithTimeZoneStandard(string timeZoneStandard) {
             if(string.IsNullOrEmpty(timeZoneStandard)) throw new ArgumentNullException(nameof(timeZoneStandard));
@@ -222,6 +228,7 @@ namespace ApiSdk.Me.Outlook {
         /// <summary>Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

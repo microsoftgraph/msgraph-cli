@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -50,13 +50,12 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Ite
                 var eventId1 = (string) parameters[3];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
                 var cancellationToken = (CancellationToken) parameters[5];
-                PathParameters.Clear();
-                PathParameters.Add("calendarGroup_id", calendarGroupId);
-                PathParameters.Add("calendar_id", calendarId);
-                PathParameters.Add("event_id", eventId);
-                PathParameters.Add("event_id1", eventId1);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
+                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                requestInfo.PathParameters.Add("event%2Did", eventId);
+                requestInfo.PathParameters.Add("event%2Did1", eventId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -75,7 +74,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Ite
         public CountRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/calendarGroups/{calendarGroup_id}/calendars/{calendar_id}/events/{event_id}/instances/{event_id1}/multiValueExtendedProperties/$count";
+            UrlTemplate = "{+baseurl}/me/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/events/{event%2Did}/instances/{event%2Did1}/multiValueExtendedProperties/$count";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

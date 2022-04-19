@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -22,11 +22,11 @@ namespace ApiSdk.Education.Users.Item.User {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The directory user corresponding to this user.
+        /// The directory user that corresponds to this user.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The directory user corresponding to this user.";
+            command.Description = "The directory user that corresponds to this user.";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
@@ -65,12 +65,11 @@ namespace ApiSdk.Education.Users.Item.User {
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("educationUser_id", educationUserId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -91,13 +90,13 @@ namespace ApiSdk.Education.Users.Item.User {
         public UserRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/education/users/{educationUser_id}/user{?select,expand}";
+            UrlTemplate = "{+baseurl}/education/users/{educationUser%2Did}/user{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The directory user corresponding to this user.
+        /// The directory user that corresponds to this user.
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// <param name="queryParameters">Request query parameters</param>
@@ -117,11 +116,13 @@ namespace ApiSdk.Education.Users.Item.User {
             requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
-        /// <summary>The directory user corresponding to this user.</summary>
+        /// <summary>The directory user that corresponds to this user.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

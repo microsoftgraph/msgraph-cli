@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.LicenseDetails.Count;
 using ApiSdk.Users.Item.LicenseDetails.Item;
 using Microsoft.Kiota.Abstractions;
@@ -74,13 +74,12 @@ namespace ApiSdk.Users.Item.LicenseDetails {
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.LicenseDetails>(ApiSdk.Models.Microsoft.Graph.LicenseDetails.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.LicenseDetails>(ApiSdk.Models.LicenseDetails.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -94,7 +93,7 @@ namespace ApiSdk.Users.Item.LicenseDetails {
             return command;
         }
         /// <summary>
-        /// A collection of this user's license details. Read-only.
+        /// A collection of this user&apos;s license details. Read-only.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
@@ -168,8 +167,6 @@ namespace ApiSdk.Users.Item.LicenseDetails {
                 var outputFilter = (IOutputFilter) parameters[12];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
                 var cancellationToken = (CancellationToken) parameters[14];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -180,6 +177,7 @@ namespace ApiSdk.Users.Item.LicenseDetails {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -200,13 +198,13 @@ namespace ApiSdk.Users.Item.LicenseDetails {
         public LicenseDetailsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/licenseDetails{?top,skip,search,filter,count,orderby,select,expand}";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/licenseDetails{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of this user's license details. Read-only.
+        /// A collection of this user&apos;s license details. Read-only.
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// <param name="queryParameters">Request query parameters</param>
@@ -232,7 +230,7 @@ namespace ApiSdk.Users.Item.LicenseDetails {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Models.Microsoft.Graph.LicenseDetails body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(ApiSdk.Models.LicenseDetails body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -244,23 +242,31 @@ namespace ApiSdk.Users.Item.LicenseDetails {
             requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
-        /// <summary>A collection of this user's license details. Read-only.</summary>
+        /// <summary>A collection of this user&apos;s license details. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
+            [QueryParameter("%24count")]
             public bool? Count { get; set; }
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Filter items by property values</summary>
+            [QueryParameter("%24filter")]
             public string Filter { get; set; }
             /// <summary>Order items by property values</summary>
+            [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
             /// <summary>Search items by search phrases</summary>
+            [QueryParameter("%24search")]
             public string Search { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
             /// <summary>Skip the first n items</summary>
+            [QueryParameter("%24skip")]
             public int? Skip { get; set; }
             /// <summary>Show only the first n items</summary>
+            [QueryParameter("%24top")]
             public int? Top { get; set; }
         }
     }

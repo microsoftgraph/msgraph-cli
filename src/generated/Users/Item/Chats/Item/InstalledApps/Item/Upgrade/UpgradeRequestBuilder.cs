@@ -43,12 +43,11 @@ namespace ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.Upgrade {
                 var chatId = (string) parameters[1];
                 var teamsAppInstallationId = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("chat_id", chatId);
-                PathParameters.Add("teamsAppInstallation_id", teamsAppInstallationId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("chat%2Did", chatId);
+                requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(userIdOption, chatIdOption, teamsAppInstallationIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -62,7 +61,7 @@ namespace ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.Upgrade {
         public UpgradeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/chats/{chat_id}/installedApps/{teamsAppInstallation_id}/microsoft.graph.upgrade";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/installedApps/{teamsAppInstallation%2Did}/microsoft.graph.upgrade";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

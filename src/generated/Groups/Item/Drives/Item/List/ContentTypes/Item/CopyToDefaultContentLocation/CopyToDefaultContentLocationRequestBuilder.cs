@@ -48,15 +48,14 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.CopyToDefaultCon
                 var contentTypeId = (string) parameters[2];
                 var body = (string) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("contentType_id", contentTypeId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.CopyToDefaultContentLocation.CopyToDefaultContentLocationRequestBody>(ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.CopyToDefaultContentLocation.CopyToDefaultContentLocationRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<CopyToDefaultContentLocationRequestBody>(CopyToDefaultContentLocationRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(groupIdOption, driveIdOption, contentTypeIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -70,7 +69,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.CopyToDefaultCon
         public CopyToDefaultContentLocationRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/drives/{drive_id}/list/contentTypes/{contentType_id}/microsoft.graph.copyToDefaultContentLocation";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/microsoft.graph.copyToDefaultContentLocation";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -81,7 +80,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.CopyToDefaultCon
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.CopyToDefaultContentLocation.CopyToDefaultContentLocationRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(CopyToDefaultContentLocationRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

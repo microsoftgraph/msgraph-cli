@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -62,14 +62,13 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Instances.Item.Attachments.Create
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("event_id", eventId);
-                PathParameters.Add("event_id1", eventId1);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Me.Calendar.CalendarView.Item.Instances.Item.Attachments.CreateUploadSession.CreateUploadSessionRequestBody>(ApiSdk.Me.Calendar.CalendarView.Item.Instances.Item.Attachments.CreateUploadSession.CreateUploadSessionRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<CreateUploadSessionRequestBody>(CreateUploadSessionRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("event%2Did", eventId);
+                requestInfo.PathParameters.Add("event%2Did1", eventId1);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -86,7 +85,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Instances.Item.Attachments.Create
         public CreateUploadSessionRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/calendar/calendarView/{event_id}/instances/{event_id1}/attachments/microsoft.graph.createUploadSession";
+            UrlTemplate = "{+baseurl}/me/calendar/calendarView/{event%2Did}/instances/{event%2Did1}/attachments/microsoft.graph.createUploadSession";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -97,7 +96,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Instances.Item.Attachments.Create
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Me.Calendar.CalendarView.Item.Instances.Item.Attachments.CreateUploadSession.CreateUploadSessionRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(CreateUploadSessionRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

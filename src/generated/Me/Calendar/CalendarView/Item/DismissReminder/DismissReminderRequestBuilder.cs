@@ -33,10 +33,9 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.DismissReminder {
             command.SetHandler(async (object[] parameters) => {
                 var eventId = (string) parameters[0];
                 var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("event_id", eventId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("event%2Did", eventId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(eventIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -50,7 +49,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.DismissReminder {
         public DismissReminderRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/calendar/calendarView/{event_id}/microsoft.graph.dismissReminder";
+            UrlTemplate = "{+baseurl}/me/calendar/calendarView/{event%2Did}/microsoft.graph.dismissReminder";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

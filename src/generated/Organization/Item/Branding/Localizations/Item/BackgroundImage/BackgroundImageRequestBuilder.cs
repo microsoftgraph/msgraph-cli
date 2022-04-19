@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -42,11 +42,10 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.BackgroundImage {
                 var organizationalBrandingLocalizationId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("organization_id", organizationId);
-                PathParameters.Add("organizationalBrandingLocalization_id", organizationalBrandingLocalizationId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                requestInfo.PathParameters.Add("organizationalBrandingLocalization%2Did", organizationalBrandingLocalizationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -89,12 +88,11 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.BackgroundImage {
                 var organizationalBrandingLocalizationId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("organization_id", organizationId);
-                PathParameters.Add("organizationalBrandingLocalization_id", organizationalBrandingLocalizationId);
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
+                requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                requestInfo.PathParameters.Add("organizationalBrandingLocalization%2Did", organizationalBrandingLocalizationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +110,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.BackgroundImage {
         public BackgroundImageRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/organization/{organization_id}/branding/localizations/{organizationalBrandingLocalization_id}/backgroundImage";
+            UrlTemplate = "{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/backgroundImage";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

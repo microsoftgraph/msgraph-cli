@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -36,22 +36,27 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.Ex
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var windowsHelloForBusinessAuthenticationMethodId = (string) parameters[0];
                 var extensionId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("windowsHelloForBusinessAuthenticationMethod_id", windowsHelloForBusinessAuthenticationMethodId);
-                PathParameters.Add("extension_id", extensionId);
+                var ifMatch = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("windowsHelloForBusinessAuthenticationMethod%2Did", windowsHelloForBusinessAuthenticationMethodId);
+                requestInfo.PathParameters.Add("extension%2Did", extensionId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(windowsHelloForBusinessAuthenticationMethodIdOption, extensionIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(windowsHelloForBusinessAuthenticationMethodIdOption, extensionIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -103,13 +108,12 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.Ex
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("windowsHelloForBusinessAuthenticationMethod_id", windowsHelloForBusinessAuthenticationMethodId);
-                PathParameters.Add("extension_id", extensionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("windowsHelloForBusinessAuthenticationMethod%2Did", windowsHelloForBusinessAuthenticationMethodId);
+                requestInfo.PathParameters.Add("extension%2Did", extensionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -146,14 +150,13 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.Ex
                 var extensionId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("windowsHelloForBusinessAuthenticationMethod_id", windowsHelloForBusinessAuthenticationMethodId);
-                PathParameters.Add("extension_id", extensionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Extension>(Extension.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("windowsHelloForBusinessAuthenticationMethod%2Did", windowsHelloForBusinessAuthenticationMethodId);
+                requestInfo.PathParameters.Add("extension%2Did", extensionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -171,7 +174,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.Ex
         public ExtensionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/authentication/windowsHelloForBusinessMethods/{windowsHelloForBusinessAuthenticationMethod_id}/device/extensions/{extension_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/me/authentication/windowsHelloForBusinessMethods/{windowsHelloForBusinessAuthenticationMethod%2Did}/device/extensions/{extension%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -233,8 +236,10 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.Ex
         /// <summary>The collection of open extensions defined for the device. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

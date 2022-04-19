@@ -48,15 +48,14 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.Decline {
                 var eventId1 = (string) parameters[2];
                 var body = (string) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("event_id", eventId);
-                PathParameters.Add("event_id1", eventId1);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.Events.Item.Instances.Item.Decline.DeclineRequestBody>(ApiSdk.Groups.Item.Events.Item.Instances.Item.Decline.DeclineRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<DeclineRequestBody>(DeclineRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("event%2Did", eventId);
+                requestInfo.PathParameters.Add("event%2Did1", eventId1);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(groupIdOption, eventIdOption, eventId1Option, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -70,7 +69,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.Decline {
         public DeclineRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/events/{event_id}/instances/{event_id1}/microsoft.graph.decline";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/events/{event%2Did}/instances/{event%2Did1}/microsoft.graph.decline";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -81,7 +80,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.Decline {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Groups.Item.Events.Item.Instances.Item.Decline.DeclineRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(DeclineRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

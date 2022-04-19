@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -43,22 +43,27 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             };
             bookingAppointmentIdOption.IsRequired = true;
             command.AddOption(bookingAppointmentIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var bookingBusinessId = (string) parameters[0];
                 var bookingAppointmentId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("bookingBusiness_id", bookingBusinessId);
-                PathParameters.Add("bookingAppointment_id", bookingAppointmentId);
+                var ifMatch = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
+                requestInfo.PathParameters.Add("bookingAppointment%2Did", bookingAppointmentId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(bookingBusinessIdOption, bookingAppointmentIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(bookingBusinessIdOption, bookingAppointmentIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -110,13 +115,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("bookingBusiness_id", bookingBusinessId);
-                PathParameters.Add("bookingAppointment_id", bookingAppointmentId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
+                requestInfo.PathParameters.Add("bookingAppointment%2Did", bookingAppointmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -153,14 +157,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
                 var bookingAppointmentId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("bookingBusiness_id", bookingBusinessId);
-                PathParameters.Add("bookingAppointment_id", bookingAppointmentId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<BookingAppointment>(BookingAppointment.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
+                requestInfo.PathParameters.Add("bookingAppointment%2Did", bookingAppointmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -178,7 +181,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
         public BookingAppointmentItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/solutions/bookingBusinesses/{bookingBusiness_id}/appointments/{bookingAppointment_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/appointments/{bookingAppointment%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -240,8 +243,10 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
         /// <summary>All the appointments of this business. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

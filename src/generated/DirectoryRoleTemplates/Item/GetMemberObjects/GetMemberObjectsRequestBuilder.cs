@@ -56,13 +56,12 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.GetMemberObjects {
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("directoryRoleTemplate_id", directoryRoleTemplateId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.DirectoryRoleTemplates.Item.GetMemberObjects.GetMemberObjectsRequestBody>(ApiSdk.DirectoryRoleTemplates.Item.GetMemberObjects.GetMemberObjectsRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<GetMemberObjectsRequestBody>(GetMemberObjectsRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("directoryRoleTemplate%2Did", directoryRoleTemplateId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -79,7 +78,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.GetMemberObjects {
         public GetMemberObjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/directoryRoleTemplates/{directoryRoleTemplate_id}/microsoft.graph.getMemberObjects";
+            UrlTemplate = "{+baseurl}/directoryRoleTemplates/{directoryRoleTemplate%2Did}/microsoft.graph.getMemberObjects";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -90,7 +89,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.GetMemberObjects {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.DirectoryRoleTemplates.Item.GetMemberObjects.GetMemberObjectsRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(GetMemberObjectsRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

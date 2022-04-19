@@ -8,10 +8,15 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGr
     public class CopyToSectionGroupRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The groupId property</summary>
         public string GroupId { get; set; }
+        /// <summary>The id property</summary>
         public string Id { get; set; }
+        /// <summary>The renameAs property</summary>
         public string RenameAs { get; set; }
+        /// <summary>The siteCollectionId property</summary>
         public string SiteCollectionId { get; set; }
+        /// <summary>The siteId property</summary>
         public string SiteId { get; set; }
         /// <summary>
         /// Instantiates a new copyToSectionGroupRequestBody and sets the default values.
@@ -23,20 +28,20 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGr
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGroup.CopyToSectionGroupRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static CopyToSectionGroupRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CopyToSectionGroupRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"groupId", (o,n) => { (o as CopyToSectionGroupRequestBody).GroupId = n.GetStringValue(); } },
-                {"id", (o,n) => { (o as CopyToSectionGroupRequestBody).Id = n.GetStringValue(); } },
-                {"renameAs", (o,n) => { (o as CopyToSectionGroupRequestBody).RenameAs = n.GetStringValue(); } },
-                {"siteCollectionId", (o,n) => { (o as CopyToSectionGroupRequestBody).SiteCollectionId = n.GetStringValue(); } },
-                {"siteId", (o,n) => { (o as CopyToSectionGroupRequestBody).SiteId = n.GetStringValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"groupId", n => { GroupId = n.GetStringValue(); } },
+                {"id", n => { Id = n.GetStringValue(); } },
+                {"renameAs", n => { RenameAs = n.GetStringValue(); } },
+                {"siteCollectionId", n => { SiteCollectionId = n.GetStringValue(); } },
+                {"siteId", n => { SiteId = n.GetStringValue(); } },
             };
         }
         /// <summary>

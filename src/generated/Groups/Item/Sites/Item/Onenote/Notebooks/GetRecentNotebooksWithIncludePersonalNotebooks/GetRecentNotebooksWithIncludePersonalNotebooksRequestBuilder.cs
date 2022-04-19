@@ -61,12 +61,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetRecentNotebooksWith
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("includePersonalNotebooks", includePersonalNotebooks);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("includePersonalNotebooks", includePersonalNotebooks);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -84,9 +83,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetRecentNotebooksWith
         public GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, bool? includePersonalNotebooks = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/sites/{site_id}/onenote/notebooks/microsoft.graph.getRecentNotebooks(includePersonalNotebooks={includePersonalNotebooks})";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/microsoft.graph.getRecentNotebooks(includePersonalNotebooks={includePersonalNotebooks})";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("includePersonalNotebooks", includePersonalNotebooks);
+            urlTplParams.Add("", includePersonalNotebooks);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

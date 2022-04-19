@@ -7,8 +7,8 @@ using ApiSdk.Drive.Root;
 using ApiSdk.Drive.SearchWithQ;
 using ApiSdk.Drive.SharedWithMe;
 using ApiSdk.Drive.Special;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -145,7 +145,7 @@ namespace ApiSdk.Drive {
                 var cancellationToken = (CancellationToken) parameters[1];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Drive>(ApiSdk.Models.Microsoft.Graph.Drive.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -191,7 +191,7 @@ namespace ApiSdk.Drive {
         public DriveRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/drive{?select,expand}";
+            UrlTemplate = "{+baseurl}/drive{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -223,7 +223,7 @@ namespace ApiSdk.Drive {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.Drive body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Drive body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -243,7 +243,7 @@ namespace ApiSdk.Drive {
         }
         /// <summary>
         /// Provides operations to call the search method.
-        /// <param name="q">Usage: q='{q}'</param>
+        /// <param name="q">Usage: q=&apos;{q}&apos;</param>
         /// </summary>
         public SearchWithQRequestBuilder SearchWithQ(string q) {
             if(string.IsNullOrEmpty(q)) throw new ArgumentNullException(nameof(q));
@@ -258,8 +258,10 @@ namespace ApiSdk.Drive {
         /// <summary>Get drive</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

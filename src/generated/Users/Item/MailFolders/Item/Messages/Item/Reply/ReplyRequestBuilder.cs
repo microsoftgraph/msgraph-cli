@@ -48,15 +48,14 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Reply {
                 var messageId = (string) parameters[2];
                 var body = (string) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("mailFolder_id", mailFolderId);
-                PathParameters.Add("message_id", messageId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Reply.ReplyRequestBody>(ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Reply.ReplyRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ReplyRequestBody>(ReplyRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                requestInfo.PathParameters.Add("message%2Did", messageId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(userIdOption, mailFolderIdOption, messageIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -70,7 +69,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Reply {
         public ReplyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/mailFolders/{mailFolder_id}/messages/{message_id}/microsoft.graph.reply";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messages/{message%2Did}/microsoft.graph.reply";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -81,7 +80,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Reply {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Reply.ReplyRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(ReplyRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

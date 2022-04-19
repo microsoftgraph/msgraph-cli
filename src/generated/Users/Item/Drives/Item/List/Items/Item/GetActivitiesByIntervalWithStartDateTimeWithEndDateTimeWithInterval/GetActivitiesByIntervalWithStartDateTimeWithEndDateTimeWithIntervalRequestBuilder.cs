@@ -76,15 +76,14 @@ namespace ApiSdk.Users.Item.Drives.Item.List.Items.Item.GetActivitiesByIntervalW
                 var outputFilter = (IOutputFilter) parameters[9];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
                 var cancellationToken = (CancellationToken) parameters[11];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("listItem_id", listItemId);
-                PathParameters.Add("startDateTime", startDateTime);
-                PathParameters.Add("endDateTime", endDateTime);
-                PathParameters.Add("interval", interval);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.PathParameters.Add("startDateTime", startDateTime);
+                requestInfo.PathParameters.Add("endDateTime", endDateTime);
+                requestInfo.PathParameters.Add("interval", interval);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -95,20 +94,20 @@ namespace ApiSdk.Users.Item.Drives.Item.List.Items.Item.GetActivitiesByIntervalW
         }
         /// <summary>
         /// Instantiates a new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder and sets the default values.
-        /// <param name="endDateTime">Usage: endDateTime='{endDateTime}'</param>
-        /// <param name="interval">Usage: interval='{interval}'</param>
+        /// <param name="endDateTime">Usage: endDateTime=&apos;{endDateTime}&apos;</param>
+        /// <param name="interval">Usage: interval=&apos;{interval}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// <param name="startDateTime">Usage: startDateTime='{startDateTime}'</param>
+        /// <param name="startDateTime">Usage: startDateTime=&apos;{startDateTime}&apos;</param>
         /// </summary>
         public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string endDateTime = default, string interval = default, string startDateTime = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/drives/{drive_id}/list/items/{listItem_id}/microsoft.graph.getActivitiesByInterval(startDateTime='{startDateTime}',endDateTime='{endDateTime}',interval='{interval}')";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/drives/{drive%2Did}/list/items/{listItem%2Did}/microsoft.graph.getActivitiesByInterval(startDateTime='{startDateTime}',endDateTime='{endDateTime}',interval='{interval}')";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("endDateTime", endDateTime);
-            urlTplParams.Add("interval", interval);
-            urlTplParams.Add("startDateTime", startDateTime);
+            urlTplParams.Add("", endDateTime);
+            urlTplParams.Add("", interval);
+            urlTplParams.Add("", startDateTime);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

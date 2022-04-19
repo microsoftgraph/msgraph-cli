@@ -38,13 +38,12 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
                 var applicationId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("application_id", applicationId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Applications.Item.SetVerifiedPublisher.SetVerifiedPublisherRequestBody>(ApiSdk.Applications.Item.SetVerifiedPublisher.SetVerifiedPublisherRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<SetVerifiedPublisherRequestBody>(SetVerifiedPublisherRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("application%2Did", applicationId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(applicationIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -58,7 +57,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
         public SetVerifiedPublisherRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/applications/{application_id}/microsoft.graph.setVerifiedPublisher";
+            UrlTemplate = "{+baseurl}/applications/{application%2Did}/microsoft.graph.setVerifiedPublisher";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -69,7 +68,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Applications.Item.SetVerifiedPublisher.SetVerifiedPublisherRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(SetVerifiedPublisherRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

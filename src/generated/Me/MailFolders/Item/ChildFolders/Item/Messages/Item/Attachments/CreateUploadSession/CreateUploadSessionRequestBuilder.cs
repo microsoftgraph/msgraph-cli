@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -67,15 +67,14 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Attachments
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("mailFolder_id", mailFolderId);
-                PathParameters.Add("mailFolder_id1", mailFolderId1);
-                PathParameters.Add("message_id", messageId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Attachments.CreateUploadSession.CreateUploadSessionRequestBody>(ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Attachments.CreateUploadSession.CreateUploadSessionRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<CreateUploadSessionRequestBody>(CreateUploadSessionRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
+                requestInfo.PathParameters.Add("message%2Did", messageId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -92,7 +91,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Attachments
         public CreateUploadSessionRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/mailFolders/{mailFolder_id}/childFolders/{mailFolder_id1}/messages/{message_id}/attachments/microsoft.graph.createUploadSession";
+            UrlTemplate = "{+baseurl}/me/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}/messages/{message%2Did}/attachments/microsoft.graph.createUploadSession";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -103,7 +102,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Attachments
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Attachments.CreateUploadSession.CreateUploadSessionRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(CreateUploadSessionRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

@@ -4,8 +4,8 @@ using ApiSdk.Education.Me.Rubrics;
 using ApiSdk.Education.Me.Schools;
 using ApiSdk.Education.Me.TaughtClasses;
 using ApiSdk.Education.Me.User;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -55,17 +55,23 @@ namespace ApiSdk.Education.Me {
             var command = new Command("delete");
             command.Description = "Delete navigation property me for education";
             // Create options for all the parameters
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
-                var cancellationToken = (CancellationToken) parameters[0];
+                var ifMatch = (string) parameters[0];
+                var cancellationToken = (CancellationToken) parameters[1];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -196,7 +202,7 @@ namespace ApiSdk.Education.Me {
         public MeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/education/me{?select,expand}";
+            UrlTemplate = "{+baseurl}/education/me{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -258,8 +264,10 @@ namespace ApiSdk.Education.Me {
         /// <summary>Get me from education</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

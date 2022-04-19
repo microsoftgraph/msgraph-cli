@@ -1,8 +1,9 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AccessPackage;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AssignmentPolicy;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Reprocess;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Target;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -47,20 +48,25 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             };
             accessPackageAssignmentIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var accessPackageAssignmentId = (string) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("accessPackageAssignment_id", accessPackageAssignmentId);
+                var ifMatch = (string) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("accessPackageAssignment%2Did", accessPackageAssignmentId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(accessPackageAssignmentIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(accessPackageAssignmentIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -107,12 +113,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("accessPackageAssignment_id", accessPackageAssignmentId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("accessPackageAssignment%2Did", accessPackageAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -144,13 +149,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
                 var accessPackageAssignmentId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("accessPackageAssignment_id", accessPackageAssignmentId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AccessPackageAssignment>(AccessPackageAssignment.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("accessPackageAssignment%2Did", accessPackageAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -158,6 +162,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(accessPackageAssignmentIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            return command;
+        }
+        public Command BuildReprocessCommand() {
+            var command = new Command("reprocess");
+            var builder = new ReprocessRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildTargetCommand() {
@@ -174,7 +184,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         public AccessPackageAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -236,8 +246,10 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>Represents the grant of an access package to a subject (user or group).</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

@@ -4,8 +4,8 @@ using ApiSdk.Me.Drives.Item.Items.Item.ListItem.Fields;
 using ApiSdk.Me.Drives.Item.Items.Item.ListItem.GetActivitiesByInterval;
 using ApiSdk.Me.Drives.Item.Items.Item.ListItem.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
 using ApiSdk.Me.Drives.Item.Items.Item.ListItem.Versions;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -48,22 +48,27 @@ namespace ApiSdk.Me.Drives.Item.Items.Item.ListItem {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var driveId = (string) parameters[0];
                 var driveItemId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("driveItem_id", driveItemId);
+                var ifMatch = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveIdOption, driveItemIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(driveIdOption, driveItemIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildDriveItemCommand() {
@@ -130,13 +135,12 @@ namespace ApiSdk.Me.Drives.Item.Items.Item.ListItem {
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("driveItem_id", driveItemId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -173,14 +177,13 @@ namespace ApiSdk.Me.Drives.Item.Items.Item.ListItem {
                 var driveItemId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("driveItem_id", driveItemId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ListItem>(ApiSdk.Models.Microsoft.Graph.ListItem.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ListItem>(ApiSdk.Models.ListItem.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -209,7 +212,7 @@ namespace ApiSdk.Me.Drives.Item.Items.Item.ListItem {
         public ListItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/drives/{drive_id}/items/{driveItem_id}/listItem{?select,expand}";
+            UrlTemplate = "{+baseurl}/me/drives/{drive%2Did}/items/{driveItem%2Did}/listItem{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -256,7 +259,7 @@ namespace ApiSdk.Me.Drives.Item.Items.Item.ListItem {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.ListItem body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.ListItem body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -276,9 +279,9 @@ namespace ApiSdk.Me.Drives.Item.Items.Item.ListItem {
         }
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
-        /// <param name="endDateTime">Usage: endDateTime='{endDateTime}'</param>
-        /// <param name="interval">Usage: interval='{interval}'</param>
-        /// <param name="startDateTime">Usage: startDateTime='{startDateTime}'</param>
+        /// <param name="endDateTime">Usage: endDateTime=&apos;{endDateTime}&apos;</param>
+        /// <param name="interval">Usage: interval=&apos;{interval}&apos;</param>
+        /// <param name="startDateTime">Usage: startDateTime=&apos;{startDateTime}&apos;</param>
         /// </summary>
         public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval(string endDateTime, string interval, string startDateTime) {
             if(string.IsNullOrEmpty(endDateTime)) throw new ArgumentNullException(nameof(endDateTime));
@@ -289,8 +292,10 @@ namespace ApiSdk.Me.Drives.Item.Items.Item.ListItem {
         /// <summary>For drives in SharePoint, the associated document library list item. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

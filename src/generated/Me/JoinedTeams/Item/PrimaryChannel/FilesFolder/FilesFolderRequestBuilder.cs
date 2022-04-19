@@ -1,6 +1,6 @@
 using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.FilesFolder.Content;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -30,7 +30,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.FilesFolder {
             return command;
         }
         /// <summary>
-        /// Metadata for the location where the channel's files are stored.
+        /// Metadata for the location where the channel&apos;s files are stored.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -73,12 +73,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.FilesFolder {
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("team_id", teamId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("team%2Did", teamId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -99,13 +98,13 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.FilesFolder {
         public FilesFolderRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/joinedTeams/{team_id}/primaryChannel/filesFolder{?select,expand}";
+            UrlTemplate = "{+baseurl}/me/joinedTeams/{team%2Did}/primaryChannel/filesFolder{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Metadata for the location where the channel's files are stored.
+        /// Metadata for the location where the channel&apos;s files are stored.
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// <param name="queryParameters">Request query parameters</param>
@@ -125,11 +124,13 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.FilesFolder {
             requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
-        /// <summary>Metadata for the location where the channel's files are stored.</summary>
+        /// <summary>Metadata for the location where the channel&apos;s files are stored.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

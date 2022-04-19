@@ -26,10 +26,10 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
             var command = new Command("get");
             command.Description = "Invoke function supportedTimeZones";
             // Create options for all the parameters
-            var TimeZoneStandardOption = new Option<object>("--time-zone-standard", description: "Usage: TimeZoneStandard='{TimeZoneStandard}'") {
+            var timeZoneStandardOption = new Option<object>("--time-zone-standard", description: "Usage: TimeZoneStandard='{TimeZoneStandard}'") {
             };
-            TimeZoneStandardOption.IsRequired = true;
-            command.AddOption(TimeZoneStandardOption);
+            timeZoneStandardOption.IsRequired = true;
+            command.AddOption(timeZoneStandardOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true
             };
@@ -44,37 +44,36 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
-                var TimeZoneStandard = (object) parameters[0];
+                var timeZoneStandard = (object) parameters[0];
                 var output = (FormatterType) parameters[1];
                 var query = (string) parameters[2];
                 var jsonNoIndent = (bool) parameters[3];
                 var outputFilter = (IOutputFilter) parameters[4];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("TimeZoneStandard", TimeZoneStandard);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("TimeZoneStandard", timeZoneStandard);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(TimeZoneStandardOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(timeZoneStandardOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
         /// Instantiates a new SupportedTimeZonesWithTimeZoneStandardRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// <param name="TimeZoneStandard">Usage: TimeZoneStandard='{TimeZoneStandard}'</param>
+        /// <param name="timeZoneStandard">Usage: TimeZoneStandard=&apos;{TimeZoneStandard}&apos;</param>
         /// </summary>
         public SupportedTimeZonesWithTimeZoneStandardRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string timeZoneStandard = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/me/outlook/microsoft.graph.supportedTimeZones(TimeZoneStandard='{TimeZoneStandard}')";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("TimeZoneStandard", timeZoneStandard);
+            urlTplParams.Add("", timeZoneStandard);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

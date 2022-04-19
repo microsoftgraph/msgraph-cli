@@ -8,6 +8,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsDefenderScan {
     public class WindowsDefenderScanRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The quickScan property</summary>
         public bool? QuickScan { get; set; }
         /// <summary>
         /// Instantiates a new windowsDefenderScanRequestBody and sets the default values.
@@ -19,16 +20,16 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsDefenderScan {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsDefenderScan.WindowsDefenderScanRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static WindowsDefenderScanRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WindowsDefenderScanRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"quickScan", (o,n) => { (o as WindowsDefenderScanRequestBody).QuickScan = n.GetBoolValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"quickScan", n => { QuickScan = n.GetBoolValue(); } },
             };
         }
         /// <summary>

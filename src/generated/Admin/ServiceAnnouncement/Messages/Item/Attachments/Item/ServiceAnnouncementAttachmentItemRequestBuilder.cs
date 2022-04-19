@@ -1,6 +1,6 @@
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Content;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -44,22 +44,27 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
             };
             serviceAnnouncementAttachmentIdOption.IsRequired = true;
             command.AddOption(serviceAnnouncementAttachmentIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var serviceUpdateMessageId = (string) parameters[0];
                 var serviceAnnouncementAttachmentId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("serviceUpdateMessage_id", serviceUpdateMessageId);
-                PathParameters.Add("serviceAnnouncementAttachment_id", serviceAnnouncementAttachmentId);
+                var ifMatch = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
+                requestInfo.PathParameters.Add("serviceAnnouncementAttachment%2Did", serviceAnnouncementAttachmentId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -111,13 +116,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("serviceUpdateMessage_id", serviceUpdateMessageId);
-                PathParameters.Add("serviceAnnouncementAttachment_id", serviceAnnouncementAttachmentId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
+                requestInfo.PathParameters.Add("serviceAnnouncementAttachment%2Did", serviceAnnouncementAttachmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -154,14 +158,13 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
                 var serviceAnnouncementAttachmentId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("serviceUpdateMessage_id", serviceUpdateMessageId);
-                PathParameters.Add("serviceAnnouncementAttachment_id", serviceAnnouncementAttachmentId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ServiceAnnouncementAttachment>(ServiceAnnouncementAttachment.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
+                requestInfo.PathParameters.Add("serviceAnnouncementAttachment%2Did", serviceAnnouncementAttachmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -179,7 +182,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
         public ServiceAnnouncementAttachmentItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/admin/serviceAnnouncement/messages/{serviceUpdateMessage_id}/attachments/{serviceAnnouncementAttachment_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/admin/serviceAnnouncement/messages/{serviceUpdateMessage%2Did}/attachments/{serviceAnnouncementAttachment%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -241,8 +244,10 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
         /// <summary>A collection of serviceAnnouncementAttachments.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

@@ -56,11 +56,10 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTe
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("deviceConfiguration_id", deviceConfigurationId);
-                PathParameters.Add("secretReferenceValueId", secretReferenceValueId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("deviceConfiguration%2Did", deviceConfigurationId);
+                requestInfo.PathParameters.Add("secretReferenceValueId", secretReferenceValueId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -73,14 +72,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTe
         /// Instantiates a new GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// <param name="secretReferenceValueId">Usage: secretReferenceValueId='{secretReferenceValueId}'</param>
+        /// <param name="secretReferenceValueId">Usage: secretReferenceValueId=&apos;{secretReferenceValueId}&apos;</param>
         /// </summary>
         public GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string secretReferenceValueId = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration_id}/microsoft.graph.getOmaSettingPlainTextValue(secretReferenceValueId='{secretReferenceValueId}')";
+            UrlTemplate = "{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/microsoft.graph.getOmaSettingPlainTextValue(secretReferenceValueId='{secretReferenceValueId}')";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("secretReferenceValueId", secretReferenceValueId);
+            urlTplParams.Add("", secretReferenceValueId);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

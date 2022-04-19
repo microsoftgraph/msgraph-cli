@@ -8,6 +8,7 @@ namespace ApiSdk.Communications.GetPresencesByUserId {
     public class GetPresencesByUserIdRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The ids property</summary>
         public List<string> Ids { get; set; }
         /// <summary>
         /// Instantiates a new getPresencesByUserIdRequestBody and sets the default values.
@@ -19,16 +20,16 @@ namespace ApiSdk.Communications.GetPresencesByUserId {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Communications.GetPresencesByUserId.GetPresencesByUserIdRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static GetPresencesByUserIdRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new GetPresencesByUserIdRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"ids", (o,n) => { (o as GetPresencesByUserIdRequestBody).Ids = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"ids", n => { Ids = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };
         }
         /// <summary>

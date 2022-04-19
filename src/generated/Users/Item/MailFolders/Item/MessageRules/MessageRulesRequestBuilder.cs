@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.MailFolders.Item.MessageRules.Count;
 using ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item;
 using Microsoft.Kiota.Abstractions;
@@ -79,14 +79,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("mailFolder_id", mailFolderId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MessageRule>(MessageRule.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -100,7 +99,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
             return command;
         }
         /// <summary>
-        /// The collection of rules that apply to the user's Inbox folder.
+        /// The collection of rules that apply to the user&apos;s Inbox folder.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
@@ -168,9 +167,6 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
                 var outputFilter = (IOutputFilter) parameters[11];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[12];
                 var cancellationToken = (CancellationToken) parameters[13];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("mailFolder_id", mailFolderId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -179,6 +175,8 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
                     q.Orderby = orderby;
                     q.Select = select;
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -199,13 +197,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
         public MessageRulesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/mailFolders/{mailFolder_id}/messageRules{?top,skip,filter,count,orderby,select}";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messageRules{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of rules that apply to the user's Inbox folder.
+        /// The collection of rules that apply to the user&apos;s Inbox folder.
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// <param name="queryParameters">Request query parameters</param>
@@ -243,19 +241,25 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
             requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
-        /// <summary>The collection of rules that apply to the user's Inbox folder.</summary>
+        /// <summary>The collection of rules that apply to the user&apos;s Inbox folder.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
+            [QueryParameter("%24count")]
             public bool? Count { get; set; }
             /// <summary>Filter items by property values</summary>
+            [QueryParameter("%24filter")]
             public string Filter { get; set; }
             /// <summary>Order items by property values</summary>
+            [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
             /// <summary>Skip the first n items</summary>
+            [QueryParameter("%24skip")]
             public int? Skip { get; set; }
             /// <summary>Show only the first n items</summary>
+            [QueryParameter("%24top")]
             public int? Top { get; set; }
         }
     }

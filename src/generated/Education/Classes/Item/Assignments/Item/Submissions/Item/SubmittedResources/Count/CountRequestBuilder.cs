@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -45,12 +45,11 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Submit
                 var educationSubmissionId = (string) parameters[2];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("educationClass_id", educationClassId);
-                PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                PathParameters.Add("educationSubmission_id", educationSubmissionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -69,7 +68,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Submit
         public CountRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/education/classes/{educationClass_id}/assignments/{educationAssignment_id}/submissions/{educationSubmission_id}/submittedResources/$count";
+            UrlTemplate = "{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/submittedResources/$count";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

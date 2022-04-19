@@ -33,10 +33,9 @@ namespace ApiSdk.Me.ManagedDevices.Item.WindowsDefenderUpdateSignatures {
             command.SetHandler(async (object[] parameters) => {
                 var managedDeviceId = (string) parameters[0];
                 var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("managedDevice_id", managedDeviceId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("managedDevice%2Did", managedDeviceId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(managedDeviceIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -50,7 +49,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.WindowsDefenderUpdateSignatures {
         public WindowsDefenderUpdateSignaturesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/managedDevices/{managedDevice_id}/microsoft.graph.windowsDefenderUpdateSignatures";
+            UrlTemplate = "{+baseurl}/me/managedDevices/{managedDevice%2Did}/microsoft.graph.windowsDefenderUpdateSignatures";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

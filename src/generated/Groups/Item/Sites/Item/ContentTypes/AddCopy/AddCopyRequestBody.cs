@@ -8,6 +8,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopy {
     public class AddCopyRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The contentType property</summary>
         public string ContentType { get; set; }
         /// <summary>
         /// Instantiates a new addCopyRequestBody and sets the default values.
@@ -19,16 +20,16 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopy {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopy.AddCopyRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static AddCopyRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AddCopyRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"contentType", (o,n) => { (o as AddCopyRequestBody).ContentType = n.GetStringValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"contentType", n => { ContentType = n.GetStringValue(); } },
             };
         }
         /// <summary>

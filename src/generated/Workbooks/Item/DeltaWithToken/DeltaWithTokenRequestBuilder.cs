@@ -56,11 +56,10 @@ namespace ApiSdk.Workbooks.Item.DeltaWithToken {
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("driveItem_id", driveItemId);
-                PathParameters.Add("token", token);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                requestInfo.PathParameters.Add("token", token);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -73,14 +72,14 @@ namespace ApiSdk.Workbooks.Item.DeltaWithToken {
         /// Instantiates a new DeltaWithTokenRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// <param name="token">Usage: token='{token}'</param>
+        /// <param name="token">Usage: token=&apos;{token}&apos;</param>
         /// </summary>
         public DeltaWithTokenRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string token = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/workbooks/{driveItem_id}/microsoft.graph.delta(token='{token}')";
+            UrlTemplate = "{+baseurl}/workbooks/{driveItem%2Did}/microsoft.graph.delta(token='{token}')";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("token", token);
+            urlTplParams.Add("", token);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

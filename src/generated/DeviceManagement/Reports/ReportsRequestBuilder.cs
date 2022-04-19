@@ -15,8 +15,8 @@ using ApiSdk.DeviceManagement.Reports.GetPolicyNonComplianceReport;
 using ApiSdk.DeviceManagement.Reports.GetPolicyNonComplianceSummaryReport;
 using ApiSdk.DeviceManagement.Reports.GetReportFilters;
 using ApiSdk.DeviceManagement.Reports.GetSettingNonComplianceReport;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -45,17 +45,23 @@ namespace ApiSdk.DeviceManagement.Reports {
             var command = new Command("delete");
             command.Description = "Delete navigation property reports for deviceManagement";
             // Create options for all the parameters
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
-                var cancellationToken = (CancellationToken) parameters[0];
+                var ifMatch = (string) parameters[0];
+                var cancellationToken = (CancellationToken) parameters[1];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildExportJobsCommand() {
@@ -256,7 +262,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         public ReportsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/deviceManagement/reports{?select,expand}";
+            UrlTemplate = "{+baseurl}/deviceManagement/reports{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -318,8 +324,10 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>Reports singleton</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

@@ -8,6 +8,7 @@ namespace ApiSdk.Me.ExportPersonalData {
     public class ExportPersonalDataRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The storageLocation property</summary>
         public string StorageLocation { get; set; }
         /// <summary>
         /// Instantiates a new exportPersonalDataRequestBody and sets the default values.
@@ -19,16 +20,16 @@ namespace ApiSdk.Me.ExportPersonalData {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Me.ExportPersonalData.ExportPersonalDataRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ExportPersonalDataRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ExportPersonalDataRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"storageLocation", (o,n) => { (o as ExportPersonalDataRequestBody).StorageLocation = n.GetStringValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"storageLocation", n => { StorageLocation = n.GetStringValue(); } },
             };
         }
         /// <summary>

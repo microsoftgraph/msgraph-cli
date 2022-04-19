@@ -5,8 +5,8 @@ using ApiSdk.Groups.Item.Calendar.Events;
 using ApiSdk.Groups.Item.Calendar.GetSchedule;
 using ApiSdk.Groups.Item.Calendar.MultiValueExtendedProperties;
 using ApiSdk.Groups.Item.Calendar.SingleValueExtendedProperties;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -30,7 +30,7 @@ namespace ApiSdk.Groups.Item.Calendar {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Provides operations to call the allowedCalendarSharingRoles method.
-        /// <param name="User">Usage: User='{User}'</param>
+        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
         /// </summary>
         public AllowedCalendarSharingRolesWithUserRequestBuilder AllowedCalendarSharingRolesWithUser(string user) {
             if(string.IsNullOrEmpty(user)) throw new ArgumentNullException(nameof(user));
@@ -69,20 +69,25 @@ namespace ApiSdk.Groups.Item.Calendar {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
+                var ifMatch = (string) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildEventsCommand() {
@@ -97,7 +102,7 @@ namespace ApiSdk.Groups.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// The group's calendar. Read-only.
+        /// The group&apos;s calendar. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -134,11 +139,10 @@ namespace ApiSdk.Groups.Item.Calendar {
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -187,13 +191,12 @@ namespace ApiSdk.Groups.Item.Calendar {
                 var groupId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Calendar>(ApiSdk.Models.Microsoft.Graph.Calendar.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Calendar>(ApiSdk.Models.Calendar.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -222,7 +225,7 @@ namespace ApiSdk.Groups.Item.Calendar {
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/calendar{?select}";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/calendar{?%24select}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -243,7 +246,7 @@ namespace ApiSdk.Groups.Item.Calendar {
             return requestInfo;
         }
         /// <summary>
-        /// The group's calendar. Read-only.
+        /// The group&apos;s calendar. Read-only.
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// <param name="queryParameters">Request query parameters</param>
@@ -269,7 +272,7 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.Calendar body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Calendar body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -281,9 +284,10 @@ namespace ApiSdk.Groups.Item.Calendar {
             requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
-        /// <summary>The group's calendar. Read-only.</summary>
+        /// <summary>The group&apos;s calendar. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

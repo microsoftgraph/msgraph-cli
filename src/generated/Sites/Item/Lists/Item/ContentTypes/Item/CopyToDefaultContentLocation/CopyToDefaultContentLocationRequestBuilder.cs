@@ -48,15 +48,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
                 var contentTypeId = (string) parameters[2];
                 var body = (string) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("list_id", listId);
-                PathParameters.Add("contentType_id", contentTypeId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocation.CopyToDefaultContentLocationRequestBody>(ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocation.CopyToDefaultContentLocationRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<CopyToDefaultContentLocationRequestBody>(CopyToDefaultContentLocationRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("list%2Did", listId);
+                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(siteIdOption, listIdOption, contentTypeIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -70,7 +69,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
         public CopyToDefaultContentLocationRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/sites/{site_id}/lists/{list_id}/contentTypes/{contentType_id}/microsoft.graph.copyToDefaultContentLocation";
+            UrlTemplate = "{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/microsoft.graph.copyToDefaultContentLocation";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -81,7 +80,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocation.CopyToDefaultContentLocationRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(CopyToDefaultContentLocationRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

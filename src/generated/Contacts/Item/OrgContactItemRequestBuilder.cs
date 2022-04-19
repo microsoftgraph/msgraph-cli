@@ -7,8 +7,8 @@ using ApiSdk.Contacts.Item.Manager;
 using ApiSdk.Contacts.Item.MemberOf;
 using ApiSdk.Contacts.Item.Restore;
 using ApiSdk.Contacts.Item.TransitiveMemberOf;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -53,20 +53,25 @@ namespace ApiSdk.Contacts.Item {
             };
             orgContactIdOption.IsRequired = true;
             command.AddOption(orgContactIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var orgContactId = (string) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("orgContact_id", orgContactId);
+                var ifMatch = (string) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("orgContact%2Did", orgContactId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(orgContactIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(orgContactIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildDirectReportsCommand() {
@@ -90,6 +95,10 @@ namespace ApiSdk.Contacts.Item {
             };
             orgContactIdOption.IsRequired = true;
             command.AddOption(orgContactIdOption);
+            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://developer.microsoft.com/en-us/office/blogs/microsoft-graph-advanced-queries-for-directory-objects-are-now-generally-available/") {
+            };
+            consistencyLevelOption.IsRequired = false;
+            command.AddOption(consistencyLevelOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -115,20 +124,21 @@ namespace ApiSdk.Contacts.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var orgContactId = (string) parameters[0];
-                var select = (string[]) parameters[1];
-                var expand = (string[]) parameters[2];
-                var output = (FormatterType) parameters[3];
-                var query = (string) parameters[4];
-                var jsonNoIndent = (bool) parameters[5];
-                var outputFilter = (IOutputFilter) parameters[6];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("orgContact_id", orgContactId);
+                var consistencyLevel = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var expand = (string[]) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var query = (string) parameters[5];
+                var jsonNoIndent = (bool) parameters[6];
+                var outputFilter = (IOutputFilter) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("orgContact%2Did", orgContactId);
+                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -138,7 +148,7 @@ namespace ApiSdk.Contacts.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(orgContactIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(orgContactIdOption, consistencyLevelOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -188,13 +198,12 @@ namespace ApiSdk.Contacts.Item {
                 var orgContactId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("orgContact_id", orgContactId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OrgContact>(OrgContact.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("orgContact%2Did", orgContactId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -228,7 +237,7 @@ namespace ApiSdk.Contacts.Item {
         public OrgContactItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/contacts/{orgContact_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/contacts/{orgContact%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -290,8 +299,10 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>Get entity from contacts by key</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

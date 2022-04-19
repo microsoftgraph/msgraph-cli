@@ -32,7 +32,7 @@ namespace ApiSdk.Me.Messages.Item.CalendarSharingMessage {
         public CalendarSharingMessageRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/messages/{message_id}/microsoft.graph.calendarSharingMessage";
+            UrlTemplate = "{+baseurl}/me/messages/{message%2Did}/microsoft.graph.calendarSharingMessage";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

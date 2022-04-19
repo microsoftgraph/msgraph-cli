@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -40,24 +40,29 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources.Item {
             };
             educationSubmissionResourceIdOption.IsRequired = true;
             command.AddOption(educationSubmissionResourceIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var educationAssignmentId = (string) parameters[0];
                 var educationSubmissionId = (string) parameters[1];
                 var educationSubmissionResourceId = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                PathParameters.Add("educationSubmission_id", educationSubmissionId);
-                PathParameters.Add("educationSubmissionResource_id", educationSubmissionResourceId);
+                var ifMatch = (string) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
+                requestInfo.PathParameters.Add("educationSubmissionResource%2Did", educationSubmissionResourceId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(educationAssignmentIdOption, educationSubmissionIdOption, educationSubmissionResourceIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(educationAssignmentIdOption, educationSubmissionIdOption, educationSubmissionResourceIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -114,14 +119,13 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources.Item {
                 var outputFilter = (IOutputFilter) parameters[8];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
                 var cancellationToken = (CancellationToken) parameters[10];
-                PathParameters.Clear();
-                PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                PathParameters.Add("educationSubmission_id", educationSubmissionId);
-                PathParameters.Add("educationSubmissionResource_id", educationSubmissionResourceId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
+                requestInfo.PathParameters.Add("educationSubmissionResource%2Did", educationSubmissionResourceId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -163,15 +167,14 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources.Item {
                 var educationSubmissionResourceId = (string) parameters[2];
                 var body = (string) parameters[3];
                 var cancellationToken = (CancellationToken) parameters[4];
-                PathParameters.Clear();
-                PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                PathParameters.Add("educationSubmission_id", educationSubmissionId);
-                PathParameters.Add("educationSubmissionResource_id", educationSubmissionResourceId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationSubmissionResource>(EducationSubmissionResource.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
+                requestInfo.PathParameters.Add("educationSubmissionResource%2Did", educationSubmissionResourceId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -189,7 +192,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources.Item {
         public EducationSubmissionResourceItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/education/me/assignments/{educationAssignment_id}/submissions/{educationSubmission_id}/resources/{educationSubmissionResource_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/education/me/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/resources/{educationSubmissionResource%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -251,8 +254,10 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources.Item {
         /// <summary>Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

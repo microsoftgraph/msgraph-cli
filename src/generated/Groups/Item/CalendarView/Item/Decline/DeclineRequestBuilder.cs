@@ -43,14 +43,13 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Decline {
                 var eventId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("event_id", eventId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.CalendarView.Item.Decline.DeclineRequestBody>(ApiSdk.Groups.Item.CalendarView.Item.Decline.DeclineRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<DeclineRequestBody>(DeclineRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("event%2Did", eventId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(groupIdOption, eventIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -64,7 +63,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Decline {
         public DeclineRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/calendarView/{event_id}/microsoft.graph.decline";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/calendarView/{event%2Did}/microsoft.graph.decline";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -75,7 +74,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Decline {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Groups.Item.CalendarView.Item.Decline.DeclineRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(DeclineRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

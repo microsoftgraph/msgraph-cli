@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,11 +9,17 @@ namespace ApiSdk.Teams.Item.Clone {
     public class CloneRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The classification property</summary>
         public string Classification { get; set; }
+        /// <summary>The description property</summary>
         public string Description { get; set; }
+        /// <summary>The displayName property</summary>
         public string DisplayName { get; set; }
+        /// <summary>The mailNickname property</summary>
         public string MailNickname { get; set; }
+        /// <summary>The partsToClone property</summary>
         public ClonableTeamParts? PartsToClone { get; set; }
+        /// <summary>The visibility property</summary>
         public TeamVisibilityType? Visibility { get; set; }
         /// <summary>
         /// Instantiates a new cloneRequestBody and sets the default values.
@@ -25,21 +31,21 @@ namespace ApiSdk.Teams.Item.Clone {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Teams.Item.Clone.CloneRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static CloneRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CloneRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"classification", (o,n) => { (o as CloneRequestBody).Classification = n.GetStringValue(); } },
-                {"description", (o,n) => { (o as CloneRequestBody).Description = n.GetStringValue(); } },
-                {"displayName", (o,n) => { (o as CloneRequestBody).DisplayName = n.GetStringValue(); } },
-                {"mailNickname", (o,n) => { (o as CloneRequestBody).MailNickname = n.GetStringValue(); } },
-                {"partsToClone", (o,n) => { (o as CloneRequestBody).PartsToClone = n.GetEnumValue<ClonableTeamParts>(); } },
-                {"visibility", (o,n) => { (o as CloneRequestBody).Visibility = n.GetEnumValue<TeamVisibilityType>(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"classification", n => { Classification = n.GetStringValue(); } },
+                {"description", n => { Description = n.GetStringValue(); } },
+                {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"mailNickname", n => { MailNickname = n.GetStringValue(); } },
+                {"partsToClone", n => { PartsToClone = n.GetEnumValue<ClonableTeamParts>(); } },
+                {"visibility", n => { Visibility = n.GetEnumValue<TeamVisibilityType>(); } },
             };
         }
         /// <summary>

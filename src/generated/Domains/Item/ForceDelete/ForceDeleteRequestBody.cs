@@ -8,6 +8,7 @@ namespace ApiSdk.Domains.Item.ForceDelete {
     public class ForceDeleteRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The disableUserAccounts property</summary>
         public bool? DisableUserAccounts { get; set; }
         /// <summary>
         /// Instantiates a new forceDeleteRequestBody and sets the default values.
@@ -19,16 +20,16 @@ namespace ApiSdk.Domains.Item.ForceDelete {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Domains.Item.ForceDelete.ForceDeleteRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ForceDeleteRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ForceDeleteRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"disableUserAccounts", (o,n) => { (o as ForceDeleteRequestBody).DisableUserAccounts = n.GetBoolValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"disableUserAccounts", n => { DisableUserAccounts = n.GetBoolValue(); } },
             };
         }
         /// <summary>

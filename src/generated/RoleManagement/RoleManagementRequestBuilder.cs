@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.RoleManagement.Directory;
 using ApiSdk.RoleManagement.EntitlementManagement;
 using Microsoft.Kiota.Abstractions;
@@ -29,8 +29,14 @@ namespace ApiSdk.RoleManagement {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRoleAssignmentScheduleInstancesCommand());
+            command.AddCommand(builder.BuildRoleAssignmentScheduleRequestsCommand());
+            command.AddCommand(builder.BuildRoleAssignmentSchedulesCommand());
             command.AddCommand(builder.BuildRoleAssignmentsCommand());
             command.AddCommand(builder.BuildRoleDefinitionsCommand());
+            command.AddCommand(builder.BuildRoleEligibilityScheduleInstancesCommand());
+            command.AddCommand(builder.BuildRoleEligibilityScheduleRequestsCommand());
+            command.AddCommand(builder.BuildRoleEligibilitySchedulesCommand());
             return command;
         }
         public Command BuildEntitlementManagementCommand() {
@@ -39,8 +45,14 @@ namespace ApiSdk.RoleManagement {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRoleAssignmentScheduleInstancesCommand());
+            command.AddCommand(builder.BuildRoleAssignmentScheduleRequestsCommand());
+            command.AddCommand(builder.BuildRoleAssignmentSchedulesCommand());
             command.AddCommand(builder.BuildRoleAssignmentsCommand());
             command.AddCommand(builder.BuildRoleDefinitionsCommand());
+            command.AddCommand(builder.BuildRoleEligibilityScheduleInstancesCommand());
+            command.AddCommand(builder.BuildRoleEligibilityScheduleRequestsCommand());
+            command.AddCommand(builder.BuildRoleEligibilitySchedulesCommand());
             return command;
         }
         /// <summary>
@@ -114,7 +126,7 @@ namespace ApiSdk.RoleManagement {
                 var cancellationToken = (CancellationToken) parameters[1];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.RoleManagement>(ApiSdk.Models.Microsoft.Graph.RoleManagement.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.RoleManagement>(ApiSdk.Models.RoleManagement.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -134,7 +146,7 @@ namespace ApiSdk.RoleManagement {
         public RoleManagementRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/roleManagement{?select,expand}";
+            UrlTemplate = "{+baseurl}/roleManagement{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -166,7 +178,7 @@ namespace ApiSdk.RoleManagement {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.RoleManagement body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.RoleManagement body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -181,8 +193,10 @@ namespace ApiSdk.RoleManagement {
         /// <summary>Get roleManagement</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
-using ApiSdk.Models.Microsoft.Graph.TermStore;
+using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models.TermStore;
 using ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Children.Item.Relations.Count;
 using ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Children.Item.Relations.Item;
 using Microsoft.Kiota.Abstractions;
@@ -97,17 +97,16 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Children.Ite
                 var outputFilter = (IOutputFilter) parameters[9];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
                 var cancellationToken = (CancellationToken) parameters[11];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("store_id", storeId);
-                PathParameters.Add("set_id", setId);
-                PathParameters.Add("term_id", termId);
-                PathParameters.Add("term_id1", termId1);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Relation>(Relation.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("store%2Did", storeId);
+                requestInfo.PathParameters.Add("set%2Did", setId);
+                requestInfo.PathParameters.Add("term%2Did", termId);
+                requestInfo.PathParameters.Add("term%2Did1", termId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -215,12 +214,6 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Children.Ite
                 var outputFilter = (IOutputFilter) parameters[16];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[17];
                 var cancellationToken = (CancellationToken) parameters[18];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("store_id", storeId);
-                PathParameters.Add("set_id", setId);
-                PathParameters.Add("term_id", termId);
-                PathParameters.Add("term_id1", termId1);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -231,6 +224,11 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Children.Ite
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("store%2Did", storeId);
+                requestInfo.PathParameters.Add("set%2Did", setId);
+                requestInfo.PathParameters.Add("term%2Did", termId);
+                requestInfo.PathParameters.Add("term%2Did1", termId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -251,7 +249,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Children.Ite
         public RelationsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/sites/{site_id}/termStores/{store_id}/sets/{set_id}/children/{term_id}/children/{term_id1}/relations{?top,skip,search,filter,count,orderby,select,expand}";
+            UrlTemplate = "{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/children/{term%2Did}/children/{term%2Did1}/relations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -298,20 +296,28 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Children.Ite
         /// <summary>To indicate which terms are related to the current term as either pinned or reused.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
+            [QueryParameter("%24count")]
             public bool? Count { get; set; }
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Filter items by property values</summary>
+            [QueryParameter("%24filter")]
             public string Filter { get; set; }
             /// <summary>Order items by property values</summary>
+            [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
             /// <summary>Search items by search phrases</summary>
+            [QueryParameter("%24search")]
             public string Search { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
             /// <summary>Skip the first n items</summary>
+            [QueryParameter("%24skip")]
             public int? Skip { get; set; }
             /// <summary>Show only the first n items</summary>
+            [QueryParameter("%24top")]
             public int? Top { get; set; }
         }
     }

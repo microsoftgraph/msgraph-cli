@@ -56,11 +56,10 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("q", q);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("q", q);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -72,15 +71,15 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
         /// <summary>
         /// Instantiates a new SearchWithQRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="q">Usage: q='{q}'</param>
+        /// <param name="q">Usage: q=&apos;{q}&apos;</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         /// </summary>
         public SearchWithQRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string q = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/drives/{drive_id}/microsoft.graph.search(q='{q}')";
+            UrlTemplate = "{+baseurl}/drives/{drive%2Did}/microsoft.graph.search(q='{q}')";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("q", q);
+            urlTplParams.Add("", q);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

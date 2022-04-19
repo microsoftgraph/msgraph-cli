@@ -35,7 +35,7 @@ namespace ApiSdk.Me.Presence.ClearPresence {
                 var cancellationToken = (CancellationToken) parameters[1];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Me.Presence.ClearPresence.ClearPresenceRequestBody>(ApiSdk.Me.Presence.ClearPresence.ClearPresenceRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ClearPresenceRequestBody>(ClearPresenceRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -62,7 +62,7 @@ namespace ApiSdk.Me.Presence.ClearPresence {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Me.Presence.ClearPresence.ClearPresenceRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(ClearPresenceRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -42,11 +42,10 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
                 var serviceAnnouncementAttachmentId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("serviceUpdateMessage_id", serviceUpdateMessageId);
-                PathParameters.Add("serviceAnnouncementAttachment_id", serviceAnnouncementAttachmentId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
+                requestInfo.PathParameters.Add("serviceAnnouncementAttachment%2Did", serviceAnnouncementAttachmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -89,12 +88,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
                 var serviceAnnouncementAttachmentId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("serviceUpdateMessage_id", serviceUpdateMessageId);
-                PathParameters.Add("serviceAnnouncementAttachment_id", serviceAnnouncementAttachmentId);
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
+                requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
+                requestInfo.PathParameters.Add("serviceAnnouncementAttachment%2Did", serviceAnnouncementAttachmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +110,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
         public ContentRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/admin/serviceAnnouncement/messages/{serviceUpdateMessage_id}/attachments/{serviceAnnouncementAttachment_id}/content";
+            UrlTemplate = "{+baseurl}/admin/serviceAnnouncement/messages/{serviceUpdateMessage%2Did}/attachments/{serviceAnnouncementAttachment%2Did}/content";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

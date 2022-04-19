@@ -53,16 +53,15 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 var eventId = (string) parameters[3];
                 var body = (string) parameters[4];
                 var cancellationToken = (CancellationToken) parameters[5];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("calendarGroup_id", calendarGroupId);
-                PathParameters.Add("calendar_id", calendarId);
-                PathParameters.Add("event_id", eventId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.TentativelyAccept.TentativelyAcceptRequestBody>(ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.TentativelyAccept.TentativelyAcceptRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<TentativelyAcceptRequestBody>(TentativelyAcceptRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
+                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                requestInfo.PathParameters.Add("event%2Did", eventId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -76,7 +75,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         public TentativelyAcceptRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/calendarGroups/{calendarGroup_id}/calendars/{calendar_id}/calendarView/{event_id}/microsoft.graph.tentativelyAccept";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarView/{event%2Did}/microsoft.graph.tentativelyAccept";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -87,7 +86,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.TentativelyAccept.TentativelyAcceptRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(TentativelyAcceptRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

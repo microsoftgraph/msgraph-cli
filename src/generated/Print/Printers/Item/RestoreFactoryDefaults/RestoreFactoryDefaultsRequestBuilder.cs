@@ -33,10 +33,9 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
             command.SetHandler(async (object[] parameters) => {
                 var printerId = (string) parameters[0];
                 var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("printer_id", printerId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("printer%2Did", printerId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(printerIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -50,7 +49,7 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
         public RestoreFactoryDefaultsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/print/printers/{printer_id}/microsoft.graph.restoreFactoryDefaults";
+            UrlTemplate = "{+baseurl}/print/printers/{printer%2Did}/microsoft.graph.restoreFactoryDefaults";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

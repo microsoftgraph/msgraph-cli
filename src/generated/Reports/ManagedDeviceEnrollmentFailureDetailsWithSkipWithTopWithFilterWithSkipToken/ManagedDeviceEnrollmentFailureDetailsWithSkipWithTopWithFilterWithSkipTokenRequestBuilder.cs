@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -67,13 +67,12 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWit
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("skip", skip);
-                PathParameters.Add("top", top);
-                PathParameters.Add("filter", filter);
-                PathParameters.Add("skipToken", skipToken);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("skip", skip);
+                requestInfo.PathParameters.Add("top", top);
+                requestInfo.PathParameters.Add("filter", filter);
+                requestInfo.PathParameters.Add("skipToken", skipToken);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -84,11 +83,11 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWit
         }
         /// <summary>
         /// Instantiates a new ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder and sets the default values.
-        /// <param name="filter">Usage: filter='{filter}'</param>
+        /// <param name="filter">Usage: filter=&apos;{filter}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         /// <param name="skip">Usage: skip={skip}</param>
-        /// <param name="skipToken">Usage: skipToken='{skipToken}'</param>
+        /// <param name="skipToken">Usage: skipToken=&apos;{skipToken}&apos;</param>
         /// <param name="top">Usage: top={top}</param>
         /// </summary>
         public ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string filter = default, int? skip = default, string skipToken = default, int? top = default) {
@@ -96,10 +95,10 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWit
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/reports/microsoft.graph.managedDeviceEnrollmentFailureDetails(skip={skip},top={top},filter='{filter}',skipToken='{skipToken}')";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("filter", filter);
-            urlTplParams.Add("skip", skip);
-            urlTplParams.Add("skipToken", skipToken);
-            urlTplParams.Add("top", top);
+            urlTplParams.Add("", filter);
+            urlTplParams.Add("", skip);
+            urlTplParams.Add("", skipToken);
+            urlTplParams.Add("", top);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

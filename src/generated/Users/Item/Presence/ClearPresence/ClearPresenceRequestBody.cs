@@ -8,6 +8,7 @@ namespace ApiSdk.Users.Item.Presence.ClearPresence {
     public class ClearPresenceRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The sessionId property</summary>
         public string SessionId { get; set; }
         /// <summary>
         /// Instantiates a new clearPresenceRequestBody and sets the default values.
@@ -19,16 +20,16 @@ namespace ApiSdk.Users.Item.Presence.ClearPresence {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Users.Item.Presence.ClearPresence.ClearPresenceRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ClearPresenceRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ClearPresenceRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"sessionId", (o,n) => { (o as ClearPresenceRequestBody).SessionId = n.GetStringValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"sessionId", n => { SessionId = n.GetStringValue(); } },
             };
         }
         /// <summary>

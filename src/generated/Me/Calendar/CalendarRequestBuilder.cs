@@ -5,8 +5,8 @@ using ApiSdk.Me.Calendar.Events;
 using ApiSdk.Me.Calendar.GetSchedule;
 using ApiSdk.Me.Calendar.MultiValueExtendedProperties;
 using ApiSdk.Me.Calendar.SingleValueExtendedProperties;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Calendar {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Provides operations to call the allowedCalendarSharingRoles method.
-        /// <param name="User">Usage: User='{User}'</param>
+        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
         /// </summary>
         public AllowedCalendarSharingRolesWithUserRequestBuilder AllowedCalendarSharingRolesWithUser(string user) {
             if(string.IsNullOrEmpty(user)) throw new ArgumentNullException(nameof(user));
@@ -65,17 +65,23 @@ namespace ApiSdk.Me.Calendar {
             var command = new Command("delete");
             command.Description = "Delete navigation property calendar for me";
             // Create options for all the parameters
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
-                var cancellationToken = (CancellationToken) parameters[0];
+                var ifMatch = (string) parameters[0];
+                var cancellationToken = (CancellationToken) parameters[1];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildEventsCommand() {
@@ -90,7 +96,7 @@ namespace ApiSdk.Me.Calendar {
             return command;
         }
         /// <summary>
-        /// The user's primary calendar. Read-only.
+        /// The user&apos;s primary calendar. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -170,7 +176,7 @@ namespace ApiSdk.Me.Calendar {
                 var cancellationToken = (CancellationToken) parameters[1];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Calendar>(ApiSdk.Models.Microsoft.Graph.Calendar.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Calendar>(ApiSdk.Models.Calendar.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -201,7 +207,7 @@ namespace ApiSdk.Me.Calendar {
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/calendar{?select}";
+            UrlTemplate = "{+baseurl}/me/calendar{?%24select}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -222,7 +228,7 @@ namespace ApiSdk.Me.Calendar {
             return requestInfo;
         }
         /// <summary>
-        /// The user's primary calendar. Read-only.
+        /// The user&apos;s primary calendar. Read-only.
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// <param name="queryParameters">Request query parameters</param>
@@ -248,7 +254,7 @@ namespace ApiSdk.Me.Calendar {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.Calendar body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Calendar body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -260,9 +266,10 @@ namespace ApiSdk.Me.Calendar {
             requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
-        /// <summary>The user's primary calendar. Read-only.</summary>
+        /// <summary>The user&apos;s primary calendar. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

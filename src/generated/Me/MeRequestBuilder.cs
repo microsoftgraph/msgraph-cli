@@ -63,8 +63,8 @@ using ApiSdk.Me.Todo;
 using ApiSdk.Me.TransitiveMemberOf;
 using ApiSdk.Me.TranslateExchangeIds;
 using ApiSdk.Me.WipeManagedAppRegistrationsByDeviceTag;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -333,6 +333,10 @@ namespace ApiSdk.Me {
             var command = new Command("get");
             command.Description = "Get me";
             // Create options for all the parameters
+            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://developer.microsoft.com/en-us/office/blogs/microsoft-graph-advanced-queries-for-directory-objects-are-now-generally-available/") {
+            };
+            consistencyLevelOption.IsRequired = false;
+            command.AddOption(consistencyLevelOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -357,18 +361,20 @@ namespace ApiSdk.Me {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
-                var select = (string[]) parameters[0];
-                var expand = (string[]) parameters[1];
-                var output = (FormatterType) parameters[2];
-                var query = (string) parameters[3];
-                var jsonNoIndent = (bool) parameters[4];
-                var outputFilter = (IOutputFilter) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var consistencyLevel = (string) parameters[0];
+                var select = (string[]) parameters[1];
+                var expand = (string[]) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var query = (string) parameters[4];
+                var jsonNoIndent = (bool) parameters[5];
+                var outputFilter = (IOutputFilter) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -378,7 +384,7 @@ namespace ApiSdk.Me {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(consistencyLevelOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildGetMailTipsCommand() {
@@ -581,7 +587,7 @@ namespace ApiSdk.Me {
                 var cancellationToken = (CancellationToken) parameters[1];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.User>(ApiSdk.Models.Microsoft.Graph.User.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -753,7 +759,7 @@ namespace ApiSdk.Me {
         public MeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me{?select,expand}";
+            UrlTemplate = "{+baseurl}/me{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -785,7 +791,7 @@ namespace ApiSdk.Me {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.User body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.User body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -811,8 +817,8 @@ namespace ApiSdk.Me {
         }
         /// <summary>
         /// Provides operations to call the reminderView method.
-        /// <param name="EndDateTime">Usage: EndDateTime='{EndDateTime}'</param>
-        /// <param name="StartDateTime">Usage: StartDateTime='{StartDateTime}'</param>
+        /// <param name="endDateTime">Usage: EndDateTime=&apos;{EndDateTime}&apos;</param>
+        /// <param name="startDateTime">Usage: StartDateTime=&apos;{StartDateTime}&apos;</param>
         /// </summary>
         public ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder ReminderViewWithStartDateTimeWithEndDateTime(string endDateTime, string startDateTime) {
             if(string.IsNullOrEmpty(endDateTime)) throw new ArgumentNullException(nameof(endDateTime));
@@ -822,8 +828,10 @@ namespace ApiSdk.Me {
         /// <summary>Get me</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

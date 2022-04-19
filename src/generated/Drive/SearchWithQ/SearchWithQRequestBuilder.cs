@@ -51,10 +51,9 @@ namespace ApiSdk.Drive.SearchWithQ {
                 var outputFilter = (IOutputFilter) parameters[4];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("q", q);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("q", q);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -66,7 +65,7 @@ namespace ApiSdk.Drive.SearchWithQ {
         /// <summary>
         /// Instantiates a new SearchWithQRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="q">Usage: q='{q}'</param>
+        /// <param name="q">Usage: q=&apos;{q}&apos;</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         /// </summary>
         public SearchWithQRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string q = default) {
@@ -74,7 +73,7 @@ namespace ApiSdk.Drive.SearchWithQ {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/drive/microsoft.graph.search(q='{q}')";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("q", q);
+            urlTplParams.Add("", q);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

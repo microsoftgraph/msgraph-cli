@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition;
 using ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger;
 using Microsoft.Kiota.Abstractions;
@@ -44,22 +44,27 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
             };
             printTaskIdOption.IsRequired = true;
             command.AddOption(printTaskIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var printTaskDefinitionId = (string) parameters[0];
                 var printTaskId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
-                PathParameters.Add("printTask_id", printTaskId);
+                var ifMatch = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("printTaskDefinition%2Did", printTaskDefinitionId);
+                requestInfo.PathParameters.Add("printTask%2Did", printTaskId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(printTaskDefinitionIdOption, printTaskIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(printTaskDefinitionIdOption, printTaskIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -111,13 +116,12 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
-                PathParameters.Add("printTask_id", printTaskId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("printTaskDefinition%2Did", printTaskDefinitionId);
+                requestInfo.PathParameters.Add("printTask%2Did", printTaskId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -154,14 +158,13 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
                 var printTaskId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
-                PathParameters.Add("printTask_id", printTaskId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PrintTask>(PrintTask.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("printTaskDefinition%2Did", printTaskDefinitionId);
+                requestInfo.PathParameters.Add("printTask%2Did", printTaskId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -185,7 +188,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
         public PrintTaskItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/print/taskDefinitions/{printTaskDefinition_id}/tasks/{printTask_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -247,8 +250,10 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
         /// <summary>A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

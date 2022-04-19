@@ -1,7 +1,7 @@
 using ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Extensions.Count;
 using ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Extensions.Item;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -84,15 +84,14 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Extensio
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("contactFolder_id", contactFolderId);
-                PathParameters.Add("contactFolder_id1", contactFolderId1);
-                PathParameters.Add("contact_id", contactId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Extension>(Extension.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
+                requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
+                requestInfo.PathParameters.Add("contact%2Did", contactId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -185,10 +184,6 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Extensio
                 var outputFilter = (IOutputFilter) parameters[13];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[14];
                 var cancellationToken = (CancellationToken) parameters[15];
-                PathParameters.Clear();
-                PathParameters.Add("contactFolder_id", contactFolderId);
-                PathParameters.Add("contactFolder_id1", contactFolderId1);
-                PathParameters.Add("contact_id", contactId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -198,6 +193,9 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Extensio
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
+                requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
+                requestInfo.PathParameters.Add("contact%2Did", contactId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -218,7 +216,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Extensio
         public ExtensionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/contactFolders/{contactFolder_id}/childFolders/{contactFolder_id1}/contacts/{contact_id}/extensions{?top,skip,filter,count,orderby,select,expand}";
+            UrlTemplate = "{+baseurl}/me/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}/contacts/{contact%2Did}/extensions{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -265,18 +263,25 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Extensio
         /// <summary>The collection of open extensions defined for the contact. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
+            [QueryParameter("%24count")]
             public bool? Count { get; set; }
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Filter items by property values</summary>
+            [QueryParameter("%24filter")]
             public string Filter { get; set; }
             /// <summary>Order items by property values</summary>
+            [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
             /// <summary>Skip the first n items</summary>
+            [QueryParameter("%24skip")]
             public int? Skip { get; set; }
             /// <summary>Show only the first n items</summary>
+            [QueryParameter("%24top")]
             public int? Top { get; set; }
         }
     }

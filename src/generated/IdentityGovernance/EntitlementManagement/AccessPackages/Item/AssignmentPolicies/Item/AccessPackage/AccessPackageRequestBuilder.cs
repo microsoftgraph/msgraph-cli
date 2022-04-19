@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -22,11 +22,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The access package with this policy. Read-only. Nullable. Supports $expand.
+        /// Access package containing this policy. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The access package with this policy. Read-only. Nullable. Supports $expand.";
+            command.Description = "Access package containing this policy. Read-only.";
             // Create options for all the parameters
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "key: id of accessPackage") {
             };
@@ -70,13 +70,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("accessPackage_id", accessPackageId);
-                PathParameters.Add("accessPackageAssignmentPolicy_id", accessPackageAssignmentPolicyId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("accessPackage%2Did", accessPackageId);
+                requestInfo.PathParameters.Add("accessPackageAssignmentPolicy%2Did", accessPackageAssignmentPolicyId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -97,13 +96,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
         public AccessPackageRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage_id}/assignmentPolicies/{accessPackageAssignmentPolicy_id}/accessPackage{?select,expand}";
+            UrlTemplate = "{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/assignmentPolicies/{accessPackageAssignmentPolicy%2Did}/accessPackage{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The access package with this policy. Read-only. Nullable. Supports $expand.
+        /// Access package containing this policy. Read-only.
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// <param name="queryParameters">Request query parameters</param>
@@ -123,11 +122,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
             requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
-        /// <summary>The access package with this policy. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Access package containing this policy. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

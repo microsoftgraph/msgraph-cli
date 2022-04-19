@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -52,6 +52,10 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
             };
             chatMessageHostedContentIdOption.IsRequired = true;
             command.AddOption(chatMessageHostedContentIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var teamId = (string) parameters[1];
@@ -59,23 +63,24 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
                 var chatMessageId = (string) parameters[3];
                 var chatMessageId1 = (string) parameters[4];
                 var chatMessageHostedContentId = (string) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("team_id", teamId);
-                PathParameters.Add("channel_id", channelId);
-                PathParameters.Add("chatMessage_id", chatMessageId);
-                PathParameters.Add("chatMessage_id1", chatMessageId1);
-                PathParameters.Add("chatMessageHostedContent_id", chatMessageHostedContentId);
+                var ifMatch = (string) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.PathParameters.Add("channel%2Did", channelId);
+                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                requestInfo.PathParameters.Add("chatMessageHostedContent%2Did", chatMessageHostedContentId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, teamIdOption, channelIdOption, chatMessageIdOption, chatMessageId1Option, chatMessageHostedContentIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, teamIdOption, channelIdOption, chatMessageIdOption, chatMessageId1Option, chatMessageHostedContentIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -147,17 +152,16 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
                 var outputFilter = (IOutputFilter) parameters[11];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[12];
                 var cancellationToken = (CancellationToken) parameters[13];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("team_id", teamId);
-                PathParameters.Add("channel_id", channelId);
-                PathParameters.Add("chatMessage_id", chatMessageId);
-                PathParameters.Add("chatMessage_id1", chatMessageId1);
-                PathParameters.Add("chatMessageHostedContent_id", chatMessageHostedContentId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.PathParameters.Add("channel%2Did", channelId);
+                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                requestInfo.PathParameters.Add("chatMessageHostedContent%2Did", chatMessageHostedContentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -214,18 +218,17 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
                 var chatMessageHostedContentId = (string) parameters[5];
                 var body = (string) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("team_id", teamId);
-                PathParameters.Add("channel_id", channelId);
-                PathParameters.Add("chatMessage_id", chatMessageId);
-                PathParameters.Add("chatMessage_id1", chatMessageId1);
-                PathParameters.Add("chatMessageHostedContent_id", chatMessageHostedContentId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ChatMessageHostedContent>(ChatMessageHostedContent.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.PathParameters.Add("channel%2Did", channelId);
+                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                requestInfo.PathParameters.Add("chatMessageHostedContent%2Did", chatMessageHostedContentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -243,7 +246,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         public ChatMessageHostedContentItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/joinedTeams/{team_id}/channels/{channel_id}/messages/{chatMessage_id}/replies/{chatMessage_id1}/hostedContents/{chatMessageHostedContent_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents/{chatMessageHostedContent%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -305,8 +308,10 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         /// <summary>Content in a message hosted by Microsoft Teams - for example, images or code snippets.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

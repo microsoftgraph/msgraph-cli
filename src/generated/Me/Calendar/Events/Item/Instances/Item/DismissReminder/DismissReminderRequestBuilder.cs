@@ -38,11 +38,10 @@ namespace ApiSdk.Me.Calendar.Events.Item.Instances.Item.DismissReminder {
                 var eventId = (string) parameters[0];
                 var eventId1 = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("event_id", eventId);
-                PathParameters.Add("event_id1", eventId1);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("event%2Did", eventId);
+                requestInfo.PathParameters.Add("event%2Did1", eventId1);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(eventIdOption, eventId1Option, new TypeBinding(typeof(CancellationToken))));
@@ -56,7 +55,7 @@ namespace ApiSdk.Me.Calendar.Events.Item.Instances.Item.DismissReminder {
         public DismissReminderRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/calendar/events/{event_id}/instances/{event_id1}/microsoft.graph.dismissReminder";
+            UrlTemplate = "{+baseurl}/me/calendar/events/{event%2Did}/instances/{event%2Did1}/microsoft.graph.dismissReminder";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
