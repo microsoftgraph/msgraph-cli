@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -42,11 +42,10 @@ namespace ApiSdk.Drive.Items.Item.Children.Item.Content {
                 var driveItemId1 = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("driveItem_id", driveItemId);
-                PathParameters.Add("driveItem_id1", driveItemId1);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                requestInfo.PathParameters.Add("driveItem%2Did1", driveItemId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -89,12 +88,11 @@ namespace ApiSdk.Drive.Items.Item.Children.Item.Content {
                 var driveItemId1 = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("driveItem_id", driveItemId);
-                PathParameters.Add("driveItem_id1", driveItemId1);
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
+                requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                requestInfo.PathParameters.Add("driveItem%2Did1", driveItemId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +110,7 @@ namespace ApiSdk.Drive.Items.Item.Children.Item.Content {
         public ContentRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/drive/items/{driveItem_id}/children/{driveItem_id1}/content";
+            UrlTemplate = "{+baseurl}/drive/items/{driveItem%2Did}/children/{driveItem%2Did1}/content";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

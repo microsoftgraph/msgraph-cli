@@ -8,7 +8,9 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
     public class AssociateWithHubSitesRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The hubSiteUrls property</summary>
         public List<string> HubSiteUrls { get; set; }
+        /// <summary>The propagateToExistingLists property</summary>
         public bool? PropagateToExistingLists { get; set; }
         /// <summary>
         /// Instantiates a new associateWithHubSitesRequestBody and sets the default values.
@@ -20,17 +22,17 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites.AssociateWithHubSitesRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static AssociateWithHubSitesRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AssociateWithHubSitesRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"hubSiteUrls", (o,n) => { (o as AssociateWithHubSitesRequestBody).HubSiteUrls = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"propagateToExistingLists", (o,n) => { (o as AssociateWithHubSitesRequestBody).PropagateToExistingLists = n.GetBoolValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"hubSiteUrls", n => { HubSiteUrls = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"propagateToExistingLists", n => { PropagateToExistingLists = n.GetBoolValue(); } },
             };
         }
         /// <summary>

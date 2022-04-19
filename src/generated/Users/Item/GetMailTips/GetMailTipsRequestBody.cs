@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,9 @@ namespace ApiSdk.Users.Item.GetMailTips {
     public class GetMailTipsRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The EmailAddresses property</summary>
         public List<string> EmailAddresses { get; set; }
+        /// <summary>The MailTipsOptions property</summary>
         public MailTipsType? MailTipsOptions { get; set; }
         /// <summary>
         /// Instantiates a new getMailTipsRequestBody and sets the default values.
@@ -21,17 +23,17 @@ namespace ApiSdk.Users.Item.GetMailTips {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Users.Item.GetMailTips.GetMailTipsRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static GetMailTipsRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new GetMailTipsRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"emailAddresses", (o,n) => { (o as GetMailTipsRequestBody).EmailAddresses = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"mailTipsOptions", (o,n) => { (o as GetMailTipsRequestBody).MailTipsOptions = n.GetEnumValue<MailTipsType>(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"emailAddresses", n => { EmailAddresses = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"mailTipsOptions", n => { MailTipsOptions = n.GetEnumValue<MailTipsType>(); } },
             };
         }
         /// <summary>

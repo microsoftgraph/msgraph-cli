@@ -1,5 +1,5 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.Policies.ActivityBasedTimeoutPolicies;
 using ApiSdk.Policies.AdminConsentRequestPolicy;
 using ApiSdk.Policies.AuthenticationFlowsPolicy;
@@ -11,6 +11,8 @@ using ApiSdk.Policies.FeatureRolloutPolicies;
 using ApiSdk.Policies.HomeRealmDiscoveryPolicies;
 using ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy;
 using ApiSdk.Policies.PermissionGrantPolicies;
+using ApiSdk.Policies.RoleManagementPolicies;
+using ApiSdk.Policies.RoleManagementPolicyAssignments;
 using ApiSdk.Policies.TokenIssuancePolicies;
 using ApiSdk.Policies.TokenLifetimePolicies;
 using Microsoft.Kiota.Abstractions;
@@ -224,6 +226,28 @@ namespace ApiSdk.Policies {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        public Command BuildRoleManagementPoliciesCommand() {
+            var command = new Command("role-management-policies");
+            var builder = new RoleManagementPoliciesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildRoleManagementPolicyAssignmentsCommand() {
+            var command = new Command("role-management-policy-assignments");
+            var builder = new RoleManagementPolicyAssignmentsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildTokenIssuancePoliciesCommand() {
             var command = new Command("token-issuance-policies");
             var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters, RequestAdapter);
@@ -254,7 +278,7 @@ namespace ApiSdk.Policies {
         public PoliciesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/policies{?select,expand}";
+            UrlTemplate = "{+baseurl}/policies{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -301,8 +325,10 @@ namespace ApiSdk.Policies {
         /// <summary>Get policies</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

@@ -53,7 +53,7 @@ namespace ApiSdk.Contracts.GetAvailableExtensionProperties {
                 var cancellationToken = (CancellationToken) parameters[6];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Contracts.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesRequestBody>(ApiSdk.Contracts.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<GetAvailableExtensionPropertiesRequestBody>(GetAvailableExtensionPropertiesRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -83,7 +83,7 @@ namespace ApiSdk.Contracts.GetAvailableExtensionProperties {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Contracts.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(GetAvailableExtensionPropertiesRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

@@ -53,7 +53,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead {
                 var cancellationToken = (CancellationToken) parameters[6];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead.MarkReadRequestBody>(ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead.MarkReadRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<MarkReadRequestBody>(MarkReadRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -83,7 +83,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead.MarkReadRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(MarkReadRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

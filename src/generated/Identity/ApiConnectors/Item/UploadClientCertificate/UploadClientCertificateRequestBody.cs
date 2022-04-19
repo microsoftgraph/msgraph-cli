@@ -8,7 +8,9 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
     public class UploadClientCertificateRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The password property</summary>
         public string Password { get; set; }
+        /// <summary>The pkcs12Value property</summary>
         public string Pkcs12Value { get; set; }
         /// <summary>
         /// Instantiates a new uploadClientCertificateRequestBody and sets the default values.
@@ -20,17 +22,17 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate.UploadClientCertificateRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static UploadClientCertificateRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UploadClientCertificateRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"password", (o,n) => { (o as UploadClientCertificateRequestBody).Password = n.GetStringValue(); } },
-                {"pkcs12Value", (o,n) => { (o as UploadClientCertificateRequestBody).Pkcs12Value = n.GetStringValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"password", n => { Password = n.GetStringValue(); } },
+                {"pkcs12Value", n => { Pkcs12Value = n.GetStringValue(); } },
             };
         }
         /// <summary>

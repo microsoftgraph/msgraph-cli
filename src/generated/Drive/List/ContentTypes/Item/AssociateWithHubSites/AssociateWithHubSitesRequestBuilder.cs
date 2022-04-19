@@ -38,13 +38,12 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
                 var contentTypeId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("contentType_id", contentTypeId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites.AssociateWithHubSitesRequestBody>(ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites.AssociateWithHubSitesRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<AssociateWithHubSitesRequestBody>(AssociateWithHubSitesRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(contentTypeIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -58,7 +57,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
         public AssociateWithHubSitesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/drive/list/contentTypes/{contentType_id}/microsoft.graph.associateWithHubSites";
+            UrlTemplate = "{+baseurl}/drive/list/contentTypes/{contentType%2Did}/microsoft.graph.associateWithHubSites";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -69,7 +68,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites.AssociateWithHubSitesRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(AssociateWithHubSitesRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

@@ -1,6 +1,6 @@
 using ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.File.Localizations.Item.Versions;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -37,22 +37,27 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.File.Localization
             };
             agreementFileLocalizationIdOption.IsRequired = true;
             command.AddOption(agreementFileLocalizationIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var agreementId = (string) parameters[0];
                 var agreementFileLocalizationId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("agreement_id", agreementId);
-                PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
+                var ifMatch = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("agreement%2Did", agreementId);
+                requestInfo.PathParameters.Add("agreementFileLocalization%2Did", agreementFileLocalizationId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(agreementIdOption, agreementFileLocalizationIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(agreementIdOption, agreementFileLocalizationIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -104,13 +109,12 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.File.Localization
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("agreement_id", agreementId);
-                PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("agreement%2Did", agreementId);
+                requestInfo.PathParameters.Add("agreementFileLocalization%2Did", agreementFileLocalizationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -147,14 +151,13 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.File.Localization
                 var agreementFileLocalizationId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("agreement_id", agreementId);
-                PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AgreementFileLocalization>(AgreementFileLocalization.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("agreement%2Did", agreementId);
+                requestInfo.PathParameters.Add("agreementFileLocalization%2Did", agreementFileLocalizationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -183,7 +186,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.File.Localization
         public AgreementFileLocalizationItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement_id}/file/localizations/{agreementFileLocalization_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}/file/localizations/{agreementFileLocalization%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -245,8 +248,10 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.File.Localization
         /// <summary>The localized version of the terms of use agreement files attached to the agreement.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

@@ -51,10 +51,9 @@ namespace ApiSdk.Me.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNoteb
                 var outputFilter = (IOutputFilter) parameters[4];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
-                PathParameters.Clear();
-                PathParameters.Add("includePersonalNotebooks", includePersonalNotebooks);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("includePersonalNotebooks", includePersonalNotebooks);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -74,7 +73,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNoteb
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/me/onenote/notebooks/microsoft.graph.getRecentNotebooks(includePersonalNotebooks={includePersonalNotebooks})";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("includePersonalNotebooks", includePersonalNotebooks);
+            urlTplParams.Add("", includePersonalNotebooks);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

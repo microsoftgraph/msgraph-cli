@@ -1,6 +1,6 @@
 using ApiSdk.Me.Planner.Plans.Item.Buckets.Item.Tasks;
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -37,22 +37,27 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
                 var plannerPlanId = (string) parameters[0];
                 var plannerBucketId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
-                PathParameters.Clear();
-                PathParameters.Add("plannerPlan_id", plannerPlanId);
-                PathParameters.Add("plannerBucket_id", plannerBucketId);
+                var ifMatch = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
+                requestInfo.PathParameters.Add("plannerBucket%2Did", plannerBucketId);
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(plannerPlanIdOption, plannerBucketIdOption, new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(plannerPlanIdOption, plannerBucketIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -104,13 +109,12 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item {
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("plannerPlan_id", plannerPlanId);
-                PathParameters.Add("plannerBucket_id", plannerBucketId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
+                requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
+                requestInfo.PathParameters.Add("plannerBucket%2Did", plannerBucketId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -147,14 +151,13 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item {
                 var plannerBucketId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("plannerPlan_id", plannerPlanId);
-                PathParameters.Add("plannerBucket_id", plannerBucketId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PlannerBucket>(PlannerBucket.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
+                requestInfo.PathParameters.Add("plannerBucket%2Did", plannerBucketId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -183,7 +186,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item {
         public PlannerBucketItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/planner/plans/{plannerPlan_id}/buckets/{plannerBucket_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/me/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -245,8 +248,10 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item {
         /// <summary>Read-only. Nullable. Collection of buckets in the plan.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

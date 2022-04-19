@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,9 +9,13 @@ namespace ApiSdk.Users.Item.Calendar.GetSchedule {
     public class GetScheduleRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The AvailabilityViewInterval property</summary>
         public int? AvailabilityViewInterval { get; set; }
+        /// <summary>The EndTime property</summary>
         public DateTimeTimeZone EndTime { get; set; }
+        /// <summary>The Schedules property</summary>
         public List<string> Schedules { get; set; }
+        /// <summary>The StartTime property</summary>
         public DateTimeTimeZone StartTime { get; set; }
         /// <summary>
         /// Instantiates a new getScheduleRequestBody and sets the default values.
@@ -23,19 +27,19 @@ namespace ApiSdk.Users.Item.Calendar.GetSchedule {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Users.Item.Calendar.GetSchedule.GetScheduleRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static GetScheduleRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new GetScheduleRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"availabilityViewInterval", (o,n) => { (o as GetScheduleRequestBody).AvailabilityViewInterval = n.GetIntValue(); } },
-                {"endTime", (o,n) => { (o as GetScheduleRequestBody).EndTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                {"schedules", (o,n) => { (o as GetScheduleRequestBody).Schedules = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"startTime", (o,n) => { (o as GetScheduleRequestBody).StartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"availabilityViewInterval", n => { AvailabilityViewInterval = n.GetIntValue(); } },
+                {"endTime", n => { EndTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                {"schedules", n => { Schedules = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"startTime", n => { StartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

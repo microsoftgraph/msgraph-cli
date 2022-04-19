@@ -8,9 +8,13 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
     public class BatchRecordDecisionsRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The decision property</summary>
         public string Decision { get; set; }
+        /// <summary>The justification property</summary>
         public string Justification { get; set; }
+        /// <summary>The principalId property</summary>
         public string PrincipalId { get; set; }
+        /// <summary>The resourceId property</summary>
         public string ResourceId { get; set; }
         /// <summary>
         /// Instantiates a new batchRecordDecisionsRequestBody and sets the default values.
@@ -22,19 +26,19 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.BatchRecordDecisions.BatchRecordDecisionsRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static BatchRecordDecisionsRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new BatchRecordDecisionsRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"decision", (o,n) => { (o as BatchRecordDecisionsRequestBody).Decision = n.GetStringValue(); } },
-                {"justification", (o,n) => { (o as BatchRecordDecisionsRequestBody).Justification = n.GetStringValue(); } },
-                {"principalId", (o,n) => { (o as BatchRecordDecisionsRequestBody).PrincipalId = n.GetStringValue(); } },
-                {"resourceId", (o,n) => { (o as BatchRecordDecisionsRequestBody).ResourceId = n.GetStringValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"decision", n => { Decision = n.GetStringValue(); } },
+                {"justification", n => { Justification = n.GetStringValue(); } },
+                {"principalId", n => { PrincipalId = n.GetStringValue(); } },
+                {"resourceId", n => { ResourceId = n.GetStringValue(); } },
             };
         }
         /// <summary>

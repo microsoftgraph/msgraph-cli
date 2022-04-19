@@ -8,9 +8,13 @@ namespace ApiSdk.Me.ManagedDevices.Item.Wipe {
     public class WipeRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The keepEnrollmentData property</summary>
         public bool? KeepEnrollmentData { get; set; }
+        /// <summary>The keepUserData property</summary>
         public bool? KeepUserData { get; set; }
+        /// <summary>The macOsUnlockCode property</summary>
         public string MacOsUnlockCode { get; set; }
+        /// <summary>The persistEsimDataPlan property</summary>
         public bool? PersistEsimDataPlan { get; set; }
         /// <summary>
         /// Instantiates a new wipeRequestBody and sets the default values.
@@ -22,19 +26,19 @@ namespace ApiSdk.Me.ManagedDevices.Item.Wipe {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Me.ManagedDevices.Item.Wipe.WipeRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static WipeRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WipeRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"keepEnrollmentData", (o,n) => { (o as WipeRequestBody).KeepEnrollmentData = n.GetBoolValue(); } },
-                {"keepUserData", (o,n) => { (o as WipeRequestBody).KeepUserData = n.GetBoolValue(); } },
-                {"macOsUnlockCode", (o,n) => { (o as WipeRequestBody).MacOsUnlockCode = n.GetStringValue(); } },
-                {"persistEsimDataPlan", (o,n) => { (o as WipeRequestBody).PersistEsimDataPlan = n.GetBoolValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"keepEnrollmentData", n => { KeepEnrollmentData = n.GetBoolValue(); } },
+                {"keepUserData", n => { KeepUserData = n.GetBoolValue(); } },
+                {"macOsUnlockCode", n => { MacOsUnlockCode = n.GetStringValue(); } },
+                {"persistEsimDataPlan", n => { PersistEsimDataPlan = n.GetBoolValue(); } },
             };
         }
         /// <summary>

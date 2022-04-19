@@ -61,14 +61,13 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Members.Add {
                 var outputFilter = (IOutputFilter) parameters[6];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
                 var cancellationToken = (CancellationToken) parameters[8];
-                PathParameters.Clear();
-                PathParameters.Add("team_id", teamId);
-                PathParameters.Add("channel_id", channelId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Me.JoinedTeams.Item.Channels.Item.Members.Add.AddRequestBody>(ApiSdk.Me.JoinedTeams.Item.Channels.Item.Members.Add.AddRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<AddRequestBody>(AddRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.PathParameters.Add("channel%2Did", channelId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -85,7 +84,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Members.Add {
         public AddRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/joinedTeams/{team_id}/channels/{channel_id}/members/microsoft.graph.add";
+            UrlTemplate = "{+baseurl}/me/joinedTeams/{team%2Did}/channels/{channel%2Did}/members/microsoft.graph.add";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -96,7 +95,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Members.Add {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Me.JoinedTeams.Item.Channels.Item.Members.Add.AddRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(AddRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

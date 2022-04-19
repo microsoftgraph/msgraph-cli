@@ -35,7 +35,7 @@ namespace ApiSdk.Me.Teamwork.SendActivityNotification {
                 var cancellationToken = (CancellationToken) parameters[1];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Me.Teamwork.SendActivityNotification.SendActivityNotificationRequestBody>(ApiSdk.Me.Teamwork.SendActivityNotification.SendActivityNotificationRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<SendActivityNotificationRequestBody>(SendActivityNotificationRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -62,7 +62,7 @@ namespace ApiSdk.Me.Teamwork.SendActivityNotification {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Me.Teamwork.SendActivityNotification.SendActivityNotificationRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(SendActivityNotificationRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

@@ -6,11 +6,15 @@ using System.Linq;
 namespace ApiSdk.Users.Item.Presence.SetPresence {
     /// <summary>Provides operations to call the setPresence method.</summary>
     public class SetPresenceRequestBody : IAdditionalDataHolder, IParsable {
+        /// <summary>The activity property</summary>
         public string Activity { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The availability property</summary>
         public string Availability { get; set; }
+        /// <summary>The expirationDuration property</summary>
         public TimeSpan? ExpirationDuration { get; set; }
+        /// <summary>The sessionId property</summary>
         public string SessionId { get; set; }
         /// <summary>
         /// Instantiates a new setPresenceRequestBody and sets the default values.
@@ -22,19 +26,19 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Users.Item.Presence.SetPresence.SetPresenceRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static SetPresenceRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SetPresenceRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"activity", (o,n) => { (o as SetPresenceRequestBody).Activity = n.GetStringValue(); } },
-                {"availability", (o,n) => { (o as SetPresenceRequestBody).Availability = n.GetStringValue(); } },
-                {"expirationDuration", (o,n) => { (o as SetPresenceRequestBody).ExpirationDuration = n.GetTimeSpanValue(); } },
-                {"sessionId", (o,n) => { (o as SetPresenceRequestBody).SessionId = n.GetStringValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"activity", n => { Activity = n.GetStringValue(); } },
+                {"availability", n => { Availability = n.GetStringValue(); } },
+                {"expirationDuration", n => { ExpirationDuration = n.GetTimeSpanValue(); } },
+                {"sessionId", n => { SessionId = n.GetStringValue(); } },
             };
         }
         /// <summary>

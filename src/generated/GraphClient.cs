@@ -67,7 +67,6 @@ using ApiSdk.Teamwork;
 using ApiSdk.Users;
 using ApiSdk.Workbooks;
 using Microsoft.Kiota.Abstractions;
-using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using Microsoft.Kiota.Serialization.Json;
@@ -78,7 +77,6 @@ using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk {
     /// <summary>The main entry point of the SDK, exposes the configuration and the fluent API.</summary>
@@ -472,18 +470,6 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
-        public Command BuildGetCommand() {
-            var command = new Command("get");
-            // Create options for all the parameters
-            command.SetHandler(async (object[] parameters) => {
-                var cancellationToken = (CancellationToken) parameters[0];
-                var requestInfo = CreateGetRequestInformation(q => {
-                });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            }, new CollectionBinding(new TypeBinding(typeof(CancellationToken))));
-            return command;
-        }
         public Command BuildGroupLifecyclePoliciesCommand() {
             var command = new Command("group-lifecycle-policies");
             var builder = new GroupLifecyclePoliciesRequestBuilder(PathParameters, RequestAdapter);
@@ -752,6 +738,8 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildIdentitySecurityDefaultsEnforcementPolicyCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPermissionGrantPoliciesCommand());
+            command.AddCommand(builder.BuildRoleManagementPoliciesCommand());
+            command.AddCommand(builder.BuildRoleManagementPolicyAssignmentsCommand());
             command.AddCommand(builder.BuildTokenIssuancePoliciesCommand());
             command.AddCommand(builder.BuildTokenLifetimePoliciesCommand());
             return command;
@@ -834,7 +822,6 @@ namespace ApiSdk {
             command.AddCommand(BuildDrivesCommand());
             command.AddCommand(BuildEducationCommand());
             command.AddCommand(BuildExternalCommand());
-            command.AddCommand(BuildGetCommand());
             command.AddCommand(BuildGroupLifecyclePoliciesCommand());
             command.AddCommand(BuildGroupsCommand());
             command.AddCommand(BuildGroupSettingsCommand());
@@ -1049,17 +1036,9 @@ namespace ApiSdk {
             ApiClientBuilder.RegisterDefaultSerializer<TextSerializationWriterFactory>();
             ApiClientBuilder.RegisterDefaultDeserializer<JsonParseNodeFactory>();
             ApiClientBuilder.RegisterDefaultDeserializer<TextParseNodeFactory>();
-            RequestAdapter.BaseUrl = "https://graph.microsoft.com/v1.0";
-        }
-        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
-            return requestInfo;
+            if (string.IsNullOrEmpty(RequestAdapter.BaseUrl)) {
+                RequestAdapter.BaseUrl = "https://graph.microsoft.com/v1.0";
+            }
         }
     }
 }

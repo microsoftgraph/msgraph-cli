@@ -8,9 +8,13 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDe
     public class UpdateDevicePropertiesRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The addressableUserName property</summary>
         public string AddressableUserName { get; set; }
+        /// <summary>The displayName property</summary>
         public string DisplayName { get; set; }
+        /// <summary>The groupTag property</summary>
         public string GroupTag { get; set; }
+        /// <summary>The userPrincipalName property</summary>
         public string UserPrincipalName { get; set; }
         /// <summary>
         /// Instantiates a new updateDevicePropertiesRequestBody and sets the default values.
@@ -22,19 +26,19 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDe
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDeviceProperties.UpdateDevicePropertiesRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static UpdateDevicePropertiesRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UpdateDevicePropertiesRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"addressableUserName", (o,n) => { (o as UpdateDevicePropertiesRequestBody).AddressableUserName = n.GetStringValue(); } },
-                {"displayName", (o,n) => { (o as UpdateDevicePropertiesRequestBody).DisplayName = n.GetStringValue(); } },
-                {"groupTag", (o,n) => { (o as UpdateDevicePropertiesRequestBody).GroupTag = n.GetStringValue(); } },
-                {"userPrincipalName", (o,n) => { (o as UpdateDevicePropertiesRequestBody).UserPrincipalName = n.GetStringValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"addressableUserName", n => { AddressableUserName = n.GetStringValue(); } },
+                {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"groupTag", n => { GroupTag = n.GetStringValue(); } },
+                {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
         }
         /// <summary>

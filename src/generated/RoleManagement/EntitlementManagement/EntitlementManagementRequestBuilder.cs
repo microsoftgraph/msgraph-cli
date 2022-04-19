@@ -1,7 +1,13 @@
-using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Models.ODataErrors;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments;
+using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInstances;
+using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests;
+using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions;
+using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleInstances;
+using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests;
+using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -30,17 +36,23 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             var command = new Command("delete");
             command.Description = "Delete navigation property entitlementManagement for roleManagement";
             // Create options for all the parameters
+            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
             command.SetHandler(async (object[] parameters) => {
-                var cancellationToken = (CancellationToken) parameters[0];
+                var ifMatch = (string) parameters[0];
+                var cancellationToken = (CancellationToken) parameters[1];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
+                requestInfo.Headers["If-Match"] = ifMatch;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(ifMatchOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -126,6 +138,39 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             }, new CollectionBinding(bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
+        public Command BuildRoleAssignmentScheduleInstancesCommand() {
+            var command = new Command("role-assignment-schedule-instances");
+            var builder = new RoleAssignmentScheduleInstancesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildRoleAssignmentScheduleRequestsCommand() {
+            var command = new Command("role-assignment-schedule-requests");
+            var builder = new RoleAssignmentScheduleRequestsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildRoleAssignmentSchedulesCommand() {
+            var command = new Command("role-assignment-schedules");
+            var builder = new RoleAssignmentSchedulesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildRoleAssignmentsCommand() {
             var command = new Command("role-assignments");
             var builder = new RoleAssignmentsRequestBuilder(PathParameters, RequestAdapter);
@@ -148,6 +193,39 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        public Command BuildRoleEligibilityScheduleInstancesCommand() {
+            var command = new Command("role-eligibility-schedule-instances");
+            var builder = new RoleEligibilityScheduleInstancesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildRoleEligibilityScheduleRequestsCommand() {
+            var command = new Command("role-eligibility-schedule-requests");
+            var builder = new RoleEligibilityScheduleRequestsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildRoleEligibilitySchedulesCommand() {
+            var command = new Command("role-eligibility-schedules");
+            var builder = new RoleEligibilitySchedulesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         /// <summary>
         /// Instantiates a new EntitlementManagementRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
@@ -156,7 +234,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
         public EntitlementManagementRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/roleManagement/entitlementManagement{?select,expand}";
+            UrlTemplate = "{+baseurl}/roleManagement/entitlementManagement{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -218,8 +296,10 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
         /// <summary>Container for roles and assignments for entitlement management resources.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
+            [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
             /// <summary>Select properties to be returned</summary>
+            [QueryParameter("%24select")]
             public string[] Select { get; set; }
         }
     }

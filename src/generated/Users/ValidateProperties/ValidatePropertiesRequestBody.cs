@@ -8,9 +8,13 @@ namespace ApiSdk.Users.ValidateProperties {
     public class ValidatePropertiesRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The displayName property</summary>
         public string DisplayName { get; set; }
+        /// <summary>The entityType property</summary>
         public string EntityType { get; set; }
+        /// <summary>The mailNickname property</summary>
         public string MailNickname { get; set; }
+        /// <summary>The onBehalfOfUserId property</summary>
         public string OnBehalfOfUserId { get; set; }
         /// <summary>
         /// Instantiates a new validatePropertiesRequestBody and sets the default values.
@@ -22,19 +26,19 @@ namespace ApiSdk.Users.ValidateProperties {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Users.ValidateProperties.ValidatePropertiesRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ValidatePropertiesRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ValidatePropertiesRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"displayName", (o,n) => { (o as ValidatePropertiesRequestBody).DisplayName = n.GetStringValue(); } },
-                {"entityType", (o,n) => { (o as ValidatePropertiesRequestBody).EntityType = n.GetStringValue(); } },
-                {"mailNickname", (o,n) => { (o as ValidatePropertiesRequestBody).MailNickname = n.GetStringValue(); } },
-                {"onBehalfOfUserId", (o,n) => { (o as ValidatePropertiesRequestBody).OnBehalfOfUserId = n.GetStringValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"entityType", n => { EntityType = n.GetStringValue(); } },
+                {"mailNickname", n => { MailNickname = n.GetStringValue(); } },
+                {"onBehalfOfUserId", n => { OnBehalfOfUserId = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -43,14 +43,13 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.OnenotePatchContent {
                 var onenotePageId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("group_id", groupId);
-                PathParameters.Add("onenotePage_id", onenotePageId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.Onenote.Pages.Item.OnenotePatchContent.OnenotePatchContentRequestBody>(ApiSdk.Groups.Item.Onenote.Pages.Item.OnenotePatchContent.OnenotePatchContentRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<OnenotePatchContentRequestBody>(OnenotePatchContentRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(groupIdOption, onenotePageIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
@@ -64,7 +63,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.OnenotePatchContent {
         public OnenotePatchContentRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/onenote/pages/{onenotePage_id}/microsoft.graph.onenotePatchContent";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/onenote/pages/{onenotePage%2Did}/microsoft.graph.onenotePatchContent";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -75,7 +74,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.OnenotePatchContent {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Groups.Item.Onenote.Pages.Item.OnenotePatchContent.OnenotePatchContentRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(OnenotePatchContentRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

@@ -33,10 +33,9 @@ namespace ApiSdk.Subscriptions.Item.Reauthorize {
             command.SetHandler(async (object[] parameters) => {
                 var subscriptionId = (string) parameters[0];
                 var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("subscription_id", subscriptionId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("subscription%2Did", subscriptionId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(subscriptionIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -50,7 +49,7 @@ namespace ApiSdk.Subscriptions.Item.Reauthorize {
         public ReauthorizeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/subscriptions/{subscription_id}/microsoft.graph.reauthorize";
+            UrlTemplate = "{+baseurl}/subscriptions/{subscription%2Did}/microsoft.graph.reauthorize";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

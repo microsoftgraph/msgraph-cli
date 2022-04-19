@@ -33,10 +33,9 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
             command.SetHandler(async (object[] parameters) => {
                 var applicationId = (string) parameters[0];
                 var cancellationToken = (CancellationToken) parameters[1];
-                PathParameters.Clear();
-                PathParameters.Add("application_id", applicationId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("application%2Did", applicationId);
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(applicationIdOption, new TypeBinding(typeof(CancellationToken))));
@@ -50,7 +49,7 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
         public UnsetVerifiedPublisherRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/applications/{application_id}/microsoft.graph.unsetVerifiedPublisher";
+            UrlTemplate = "{+baseurl}/applications/{application%2Did}/microsoft.graph.unsetVerifiedPublisher";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

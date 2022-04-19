@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,9 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetedManagedAppP
     public class TargetAppsRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The appGroupType property</summary>
         public TargetedManagedAppGroupType? AppGroupType { get; set; }
+        /// <summary>The apps property</summary>
         public List<ManagedMobileApp> Apps { get; set; }
         /// <summary>
         /// Instantiates a new targetAppsRequestBody and sets the default values.
@@ -21,17 +23,17 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetedManagedAppP
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetedManagedAppProtection.TargetApps.TargetAppsRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static TargetAppsRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TargetAppsRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"appGroupType", (o,n) => { (o as TargetAppsRequestBody).AppGroupType = n.GetEnumValue<TargetedManagedAppGroupType>(); } },
-                {"apps", (o,n) => { (o as TargetAppsRequestBody).Apps = n.GetCollectionOfObjectValues<ManagedMobileApp>(ManagedMobileApp.CreateFromDiscriminatorValue).ToList(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"appGroupType", n => { AppGroupType = n.GetEnumValue<TargetedManagedAppGroupType>(); } },
+                {"apps", n => { Apps = n.GetCollectionOfObjectValues<ManagedMobileApp>(ManagedMobileApp.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

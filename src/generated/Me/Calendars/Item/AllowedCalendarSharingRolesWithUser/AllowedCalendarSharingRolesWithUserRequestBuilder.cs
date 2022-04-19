@@ -30,10 +30,10 @@ namespace ApiSdk.Me.Calendars.Item.AllowedCalendarSharingRolesWithUser {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var UserOption = new Option<string>("--user", description: "Usage: User='{User}'") {
+            var userOption = new Option<string>("--user", description: "Usage: User='{User}'") {
             };
-            UserOption.IsRequired = true;
-            command.AddOption(UserOption);
+            userOption.IsRequired = true;
+            command.AddOption(userOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true
             };
@@ -49,38 +49,37 @@ namespace ApiSdk.Me.Calendars.Item.AllowedCalendarSharingRolesWithUser {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var calendarId = (string) parameters[0];
-                var User = (string) parameters[1];
+                var user = (string) parameters[1];
                 var output = (FormatterType) parameters[2];
                 var query = (string) parameters[3];
                 var jsonNoIndent = (bool) parameters[4];
                 var outputFilter = (IOutputFilter) parameters[5];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
-                PathParameters.Clear();
-                PathParameters.Add("calendar_id", calendarId);
-                PathParameters.Add("User", User);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                requestInfo.PathParameters.Add("User", user);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(calendarIdOption, UserOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(calendarIdOption, userOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
         /// Instantiates a new AllowedCalendarSharingRolesWithUserRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// <param name="User">Usage: User='{User}'</param>
+        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
         /// </summary>
         public AllowedCalendarSharingRolesWithUserRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string user = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/calendars/{calendar_id}/microsoft.graph.allowedCalendarSharingRoles(User='{User}')";
+            UrlTemplate = "{+baseurl}/me/calendars/{calendar%2Did}/microsoft.graph.allowedCalendarSharingRoles(User='{User}')";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("User", user);
+            urlTplParams.Add("", user);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

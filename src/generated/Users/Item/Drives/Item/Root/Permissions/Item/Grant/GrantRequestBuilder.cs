@@ -66,15 +66,14 @@ namespace ApiSdk.Users.Item.Drives.Item.Root.Permissions.Item.Grant {
                 var outputFilter = (IOutputFilter) parameters[7];
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
                 var cancellationToken = (CancellationToken) parameters[9];
-                PathParameters.Clear();
-                PathParameters.Add("user_id", userId);
-                PathParameters.Add("drive_id", driveId);
-                PathParameters.Add("permission_id", permissionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Users.Item.Drives.Item.Root.Permissions.Item.Grant.GrantRequestBody>(ApiSdk.Users.Item.Drives.Item.Root.Permissions.Item.Grant.GrantRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<GrantRequestBody>(GrantRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
+                requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.PathParameters.Add("permission%2Did", permissionId);
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
@@ -91,7 +90,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Root.Permissions.Item.Grant {
         public GrantRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/drives/{drive_id}/root/permissions/{permission_id}/microsoft.graph.grant";
+            UrlTemplate = "{+baseurl}/users/{user%2Did}/drives/{drive%2Did}/root/permissions/{permission%2Did}/microsoft.graph.grant";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -102,7 +101,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Root.Permissions.Item.Grant {
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Users.Item.Drives.Item.Root.Permissions.Item.Grant.GrantRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(GrantRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

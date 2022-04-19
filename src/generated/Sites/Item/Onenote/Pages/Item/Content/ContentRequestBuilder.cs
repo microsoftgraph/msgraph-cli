@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph.ODataErrors;
+using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -21,7 +21,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.Content {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The page's HTML content.
+        /// The page&apos;s HTML content.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -42,11 +42,10 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.Content {
                 var onenotePageId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("onenotePage_id", onenotePageId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -66,7 +65,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.Content {
             return command;
         }
         /// <summary>
-        /// The page's HTML content.
+        /// The page&apos;s HTML content.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
@@ -89,12 +88,11 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.Content {
                 var onenotePageId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
                 var cancellationToken = (CancellationToken) parameters[3];
-                PathParameters.Clear();
-                PathParameters.Add("site_id", siteId);
-                PathParameters.Add("onenotePage_id", onenotePageId);
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
+                requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,13 +110,13 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.Content {
         public ContentRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/sites/{site_id}/onenote/pages/{onenotePage_id}/content";
+            UrlTemplate = "{+baseurl}/sites/{site%2Did}/onenote/pages/{onenotePage%2Did}/content";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The page's HTML content.
+        /// The page&apos;s HTML content.
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>
         /// </summary>
@@ -133,7 +131,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.Content {
             return requestInfo;
         }
         /// <summary>
-        /// The page's HTML content.
+        /// The page&apos;s HTML content.
         /// <param name="body">Binary request body</param>
         /// <param name="headers">Request headers</param>
         /// <param name="options">Request options</param>

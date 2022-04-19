@@ -1,4 +1,4 @@
-using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,9 @@ namespace ApiSdk.Me.SendMail {
     public class SendMailRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        public ApiSdk.Models.Microsoft.Graph.Message Message { get; set; }
+        /// <summary>The Message property</summary>
+        public ApiSdk.Models.Message Message { get; set; }
+        /// <summary>The SaveToSentItems property</summary>
         public bool? SaveToSentItems { get; set; }
         /// <summary>
         /// Instantiates a new sendMailRequestBody and sets the default values.
@@ -21,17 +23,17 @@ namespace ApiSdk.Me.SendMail {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.Me.SendMail.SendMailRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static SendMailRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SendMailRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"message", (o,n) => { (o as SendMailRequestBody).Message = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Message>(ApiSdk.Models.Microsoft.Graph.Message.CreateFromDiscriminatorValue); } },
-                {"saveToSentItems", (o,n) => { (o as SendMailRequestBody).SaveToSentItems = n.GetBoolValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
+                {"saveToSentItems", n => { SaveToSentItems = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -40,7 +42,7 @@ namespace ApiSdk.Me.SendMail {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Message>("message", Message);
+            writer.WriteObjectValue<ApiSdk.Models.Message>("message", Message);
             writer.WriteBoolValue("saveToSentItems", SaveToSentItems);
             writer.WriteAdditionalData(AdditionalData);
         }

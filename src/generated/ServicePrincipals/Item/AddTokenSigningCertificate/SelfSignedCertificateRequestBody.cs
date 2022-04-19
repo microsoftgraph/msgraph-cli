@@ -8,7 +8,9 @@ namespace ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate {
     public class SelfSignedCertificateRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The displayName property</summary>
         public string DisplayName { get; set; }
+        /// <summary>The endDateTime property</summary>
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>
         /// Instantiates a new SelfSignedCertificateRequestBody and sets the default values.
@@ -20,17 +22,17 @@ namespace ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate.SelfSignedCertificateRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static SelfSignedCertificateRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SelfSignedCertificateRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-            return new Dictionary<string, Action<T, IParseNode>> {
-                {"displayName", (o,n) => { (o as SelfSignedCertificateRequestBody).DisplayName = n.GetStringValue(); } },
-                {"endDateTime", (o,n) => { (o as SelfSignedCertificateRequestBody).EndDateTime = n.GetDateTimeOffsetValue(); } },
+        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>> {
+                {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>
