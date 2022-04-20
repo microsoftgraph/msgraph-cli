@@ -115,7 +115,7 @@ namespace Microsoft.Graph.Cli
         
         static void ConfigureAppConfiguration(IConfigurationBuilder builder) {
             builder.Sources.Clear();
-            builder.AddJsonFile(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "app-settings.json"), optional: true);
+            builder.AddJsonFile(Path.Combine(System.AppContext.BaseDirectory, "app-settings.json"), optional: true);
             var pathUtil = new PathUtility();
             var authCache = new AuthenticationCacheUtility(pathUtil);
             var dataDir = pathUtil.GetApplicationDataDirectory();
