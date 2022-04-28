@@ -47,7 +47,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget
       - name: Build
-        run: dotnet publish --runtime ${{matrix.rid}} --self-contained true --configuration Release --output ${{env.OUTPUT_DIR}}
+        run: |
+          dotnet publish --runtime ${{matrix.rid}} --self-contained true --configuration Release -p:PublishReadyToRun=true \
+          -p:PublishReadyToRunShowWarnings=true -p:PublishTrimmed=false -p:PublishReadyToRunComposite=true --output ${{env.OUTPUT_DIR}}
       - name: Package
         run: |
           cd ${{env.OUTPUT_DIR}}
