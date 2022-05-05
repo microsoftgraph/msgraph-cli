@@ -12,7 +12,7 @@ $ mgc users list --select "id, displayName, OfficeLocation, BusinessPhones" --qu
 
 ### Update the location of the user
 ```sh
-$ mgc users patch --user-id <UserId> --body '{"officeLocation": "NewLocation"}'
+$ mgc users item patch --user-id <UserId> --body '{"officeLocation": "NewLocation"}'
 ```
 
 ### Get all Groups
@@ -27,12 +27,12 @@ $ mgc groups list --filter "groupTypes/any(c:c eq 'Unified')"
 
 ### Get-Details of a single Group
 ```sh
-$ mgc groups get --group-id <GroupId>
+$ mgc groups item get --group-id <GroupId>
 ```
 
 ### Get Owners of a Group
 ```sh
-$ mgc groups owners list --group-id <GroupId>
+$ mgc groups item owners list --group-id <GroupId>
 ```
 
 ### Get Members of a Group
@@ -42,7 +42,7 @@ $ mgc groups members list --group-id <GroupId>
 
 ### Get your mail
 ```sh
-$ mgc users messages list --user-id <UserId> --filter "contains(subject,'Marketing')" --select "sentDateTime, subject"
+$ mgc users item messages list --user-id <UserId> --filter "contains(subject,'Marketing')" --select "sentDateTime, subject"
 ```
 
 ### New Group
@@ -52,7 +52,7 @@ $ mgc groups create --body '{"displayName": "PowerFam", "mailEnabled": false, "m
 
 ### Remove Group
 ```sh
-$ mgc groups delete --group-id <GroupId>
+$ mgc groups item delete --group-id <GroupId>
 ```
 
 ### Create a new User

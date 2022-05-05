@@ -14,7 +14,7 @@ $ mgc groups list --filter "StartsWith(DisplayName, '$TeamName')" --query "value
 ### Add team owner.
 ```sh
 $ mgc users get --user-id "{TEAM_OWNER_UPN}"
-$ mgc teams members create --team-id <TeamId> --body '{"additionalProperties": {\
+$ mgc teams item members create --team-id <TeamId> --body '{"additionalProperties": {\
         "@odata.type": "#microsoft.graph.aadUserConversationMember",\
         "user@odata.bind": "https://graph.microsoft.com/v1.0/users/" + $teamOwner.id\
     }, "roles": ["owner"]}'
@@ -22,8 +22,8 @@ $ mgc teams members create --team-id <TeamId> --body '{"additionalProperties": {
 
 ### Send a welcome message to the channel.
 ```sh
-$ mgc teams primary-channel get --team-id <TeamId>
-$ mgc teams channels messages create --team-id <TeamId> --channel-id <ChannelId> --body '{"body": {"content": "Welcome to Teams!"}}'
+$ mgc teams item primary-channel get --team-id <TeamId>
+$ mgc teams item channels item messages create --team-id <TeamId> --channel-id <ChannelId> --body '{"body": {"content": "Welcome to Teams!"}}'
 ```
 
 ### Delete team.
@@ -40,17 +40,17 @@ $ mgc chats list
 
 #### Get Messages from Chat
 ```sh
-$ mgc chats messages list --chat-id <ChatId>
+$ mgc chats item messages list --chat-id <ChatId>
 ```
 
 #### Send a message in that 1:1 chat
 ```sh
-$ mgc chats messages create --chat-id <ChatId> --body '{"body": {"content": "Hi from CLI!"}}'
+$ mgc chats item messages create --chat-id <ChatId> --body '{"body": {"content": "Hi from CLI!"}}'
 ```
 
 #### Mention a user in a channel message.
 ```sh
-$ mgc users get --user-id <UserId> --select "id, displayName, userIdentityType"
-$ mgc teams channels messages create --team-id <TeamId> --channel-id <ChannelId> \
+$ mgc users item get --user-id <UserId> --select "id, displayName, userIdentityType"
+$ mgc teams item channels item messages create --team-id <TeamId> --channel-id <ChannelId> \
     --body $'{"body": {"contentType": "html", "content": "Welcome to the channel <at id=\'0\'>[DisplayName]</at>!"}, "mentions": [{"id": 0, "mentionText": "[DisplayName]", "mentioned": {"user": {"id": "[id]", "displayName": "[DisplayName]", "userIdentityType": "aadUser"}}}]}'
 ```
