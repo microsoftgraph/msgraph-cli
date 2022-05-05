@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class IdentityContainer : Entity, IParsable {
         /// <summary>Represents entry point for API connectors.</summary>
         public List<IdentityApiConnector> ApiConnectors { get; set; }
-        /// <summary>Represents entry point for B2X/self-service sign-up identity userflows.</summary>
+        /// <summary>Represents entry point for B2X and self-service sign-up identity userflows.</summary>
         public List<B2xIdentityUserFlow> B2xUserFlows { get; set; }
         /// <summary>the entry point for the Conditional Access (CA) object model.</summary>
         public ConditionalAccessRoot ConditionalAccess { get; set; }

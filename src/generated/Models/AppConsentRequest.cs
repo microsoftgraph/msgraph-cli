@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public string AppDisplayName { get; set; }
         /// <summary>The identifier of the application. Required. Supports $filter (eq only) and $orderby.</summary>
         public string AppId { get; set; }
-        /// <summary>A list of pending scopes waiting for approval. Required.</summary>
+        /// <summary>A list of pending scopes waiting for approval. This is empty if the consentType is Static. Required.</summary>
         public List<AppConsentRequestScope> PendingScopes { get; set; }
         /// <summary>A list of pending user consent requests.</summary>
         public List<UserConsentRequest> UserConsentRequests { get; set; }

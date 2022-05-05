@@ -7,11 +7,11 @@ namespace ApiSdk.Models {
     public class ModifiedProperty : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Indicates the property name of the target attribute that was changed.</summary>
+        /// <summary>Name of property that was modified.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Indicates the updated value for the propery.</summary>
+        /// <summary>New property value.</summary>
         public string NewValue { get; set; }
-        /// <summary>Indicates the previous value (before the update) for the property.</summary>
+        /// <summary>Old property value.</summary>
         public string OldValue { get; set; }
         /// <summary>
         /// Instantiates a new modifiedProperty and sets the default values.

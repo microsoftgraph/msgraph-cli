@@ -29,7 +29,7 @@ namespace ApiSdk.Models {
         public bool? ShowTotals { get; set; }
         /// <summary>Represents the sorting for the table. Read-only.</summary>
         public WorkbookTableSort Sort { get; set; }
-        /// <summary>Constant value that represents the Table style. The possible values are: TableStyleLight1 thru TableStyleLight21, TableStyleMedium1 thru TableStyleMedium28, TableStyleStyleDark1 thru TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.</summary>
+        /// <summary>Constant value that represents the Table style. Possible values are: TableStyleLight1 thru TableStyleLight21, TableStyleMedium1 thru TableStyleMedium28, TableStyleStyleDark1 thru TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.</summary>
         public string Style { get; set; }
         /// <summary>The worksheet containing the current table. Read-only.</summary>
         public WorkbookWorksheet Worksheet { get; set; }

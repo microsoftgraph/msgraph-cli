@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models {
     /// <summary>Provides operations to manage the security singleton.</summary>
     public class Security : Entity, IParsable {
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>Notifications for suspicious or potential security issues in a customer’s tenant.</summary>
         public List<Alert> Alerts { get; set; }
         /// <summary>The secureScoreControlProfiles property</summary>
         public List<SecureScoreControlProfile> SecureScoreControlProfiles { get; set; }

@@ -11,13 +11,13 @@ namespace ApiSdk.Models {
         public bool? Ascending { get; set; }
         /// <summary>Represents the color that is the target of the condition if the sorting is on font or cell color.</summary>
         public string Color { get; set; }
-        /// <summary>Represents additional sorting options for this field. The possible values are: Normal, TextAsNumber.</summary>
+        /// <summary>Represents additional sorting options for this field. Possible values are: Normal, TextAsNumber.</summary>
         public string DataOption { get; set; }
         /// <summary>Represents the icon that is the target of the condition if the sorting is on the cell&apos;s icon.</summary>
         public WorkbookIcon Icon { get; set; }
         /// <summary>Represents the column (or row, depending on the sort orientation) that the condition is on. Represented as an offset from the first column (or row).</summary>
         public int? Key { get; set; }
-        /// <summary>Represents the type of sorting of this condition. The possible values are: Value, CellColor, FontColor, Icon.</summary>
+        /// <summary>Represents the type of sorting of this condition. Possible values are: Value, CellColor, FontColor, Icon.</summary>
         public string SortOn { get; set; }
         /// <summary>
         /// Instantiates a new workbookSortField and sets the default values.

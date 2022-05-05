@@ -17,6 +17,8 @@ namespace ApiSdk.Models {
         public List<ListItem> Items { get; set; }
         /// <summary>Provides additional details about the list.</summary>
         public ListInfo List_prop { get; set; }
+        /// <summary>The collection of long running operations for the list.</summary>
+        public List<RichLongRunningOperation> Operations { get; set; }
         /// <summary>Returns identifiers useful for SharePoint REST compatibility. Read-only.</summary>
         public ApiSdk.Models.SharepointIds SharepointIds { get; set; }
         /// <summary>The set of subscriptions on the list.</summary>
@@ -42,6 +44,7 @@ namespace ApiSdk.Models {
                 {"drive", n => { Drive = n.GetObjectValue<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue); } },
                 {"items", n => { Items = n.GetCollectionOfObjectValues<ListItem>(ListItem.CreateFromDiscriminatorValue).ToList(); } },
                 {"list", n => { List_prop = n.GetObjectValue<ListInfo>(ListInfo.CreateFromDiscriminatorValue); } },
+                {"operations", n => { Operations = n.GetCollectionOfObjectValues<RichLongRunningOperation>(RichLongRunningOperation.CreateFromDiscriminatorValue).ToList(); } },
                 {"sharepointIds", n => { SharepointIds = n.GetObjectValue<ApiSdk.Models.SharepointIds>(ApiSdk.Models.SharepointIds.CreateFromDiscriminatorValue); } },
                 {"subscriptions", n => { Subscriptions = n.GetCollectionOfObjectValues<Subscription>(Subscription.CreateFromDiscriminatorValue).ToList(); } },
                 {"system", n => { System = n.GetObjectValue<SystemFacet>(SystemFacet.CreateFromDiscriminatorValue); } },
@@ -60,6 +63,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<ApiSdk.Models.Drive>("drive", Drive);
             writer.WriteCollectionOfObjectValues<ListItem>("items", Items);
             writer.WriteObjectValue<ListInfo>("list", List_prop);
+            writer.WriteCollectionOfObjectValues<RichLongRunningOperation>("operations", Operations);
             writer.WriteObjectValue<ApiSdk.Models.SharepointIds>("sharepointIds", SharepointIds);
             writer.WriteCollectionOfObjectValues<Subscription>("subscriptions", Subscriptions);
             writer.WriteObjectValue<SystemFacet>("system", System);

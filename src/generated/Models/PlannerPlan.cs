@@ -5,17 +5,19 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class PlannerPlan : Entity, IParsable {
-        /// <summary>Read-only. Nullable. Collection of buckets in the plan.</summary>
+        /// <summary>Collection of buckets in the plan. Read-only. Nullable.</summary>
         public List<PlannerBucket> Buckets { get; set; }
+        /// <summary>Identifies the container of the plan. After it is set, this property can’t be updated. Required.</summary>
+        public PlannerPlanContainer Container { get; set; }
         /// <summary>Read-only. The user who created the plan.</summary>
         public IdentitySet CreatedBy { get; set; }
         /// <summary>Read-only. Date and time at which the plan is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Read-only. Nullable. Additional details about the plan.</summary>
+        /// <summary>Additional details about the plan. Read-only. Nullable.</summary>
         public PlannerPlanDetails Details { get; set; }
         /// <summary>ID of the Group that owns the plan. A valid group must exist before this field can be set. After it is set, this property can’t be updated.</summary>
         public string Owner { get; set; }
-        /// <summary>Read-only. Nullable. Collection of tasks in the plan.</summary>
+        /// <summary>Collection of tasks in the plan. Read-only. Nullable.</summary>
         public List<PlannerTask> Tasks { get; set; }
         /// <summary>Required. Title of the plan.</summary>
         public string Title { get; set; }
@@ -33,6 +35,7 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"buckets", n => { Buckets = n.GetCollectionOfObjectValues<PlannerBucket>(PlannerBucket.CreateFromDiscriminatorValue).ToList(); } },
+                {"container", n => { Container = n.GetObjectValue<PlannerPlanContainer>(PlannerPlanContainer.CreateFromDiscriminatorValue); } },
                 {"createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"details", n => { Details = n.GetObjectValue<PlannerPlanDetails>(PlannerPlanDetails.CreateFromDiscriminatorValue); } },
@@ -49,6 +52,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<PlannerBucket>("buckets", Buckets);
+            writer.WriteObjectValue<PlannerPlanContainer>("container", Container);
             writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<PlannerPlanDetails>("details", Details);

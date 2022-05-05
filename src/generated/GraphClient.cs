@@ -98,9 +98,7 @@ namespace ApiSdk {
         public Command BuildAgreementAcceptancesCommand() {
             var command = new Command("agreement-acceptances");
             var builder = new AgreementAcceptancesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -108,9 +106,7 @@ namespace ApiSdk {
         public Command BuildAgreementsCommand() {
             var command = new Command("agreements");
             var builder = new AgreementsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -126,9 +122,7 @@ namespace ApiSdk {
         public Command BuildApplicationsCommand() {
             var command = new Command("applications");
             var builder = new ApplicationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -140,9 +134,7 @@ namespace ApiSdk {
         public Command BuildApplicationTemplatesCommand() {
             var command = new Command("application-templates");
             var builder = new ApplicationTemplatesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -162,9 +154,7 @@ namespace ApiSdk {
         public Command BuildAuthenticationMethodConfigurationsCommand() {
             var command = new Command("authentication-method-configurations");
             var builder = new AuthenticationMethodConfigurationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -192,9 +182,7 @@ namespace ApiSdk {
         public Command BuildCertificateBasedAuthConfigurationCommand() {
             var command = new Command("certificate-based-auth-configuration");
             var builder = new CertificateBasedAuthConfigurationRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -203,9 +191,7 @@ namespace ApiSdk {
         public Command BuildChatsCommand() {
             var command = new Command("chats");
             var builder = new ChatsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -233,9 +219,7 @@ namespace ApiSdk {
         public Command BuildConnectionsCommand() {
             var command = new Command("connections");
             var builder = new ConnectionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -244,9 +228,7 @@ namespace ApiSdk {
         public Command BuildContactsCommand() {
             var command = new Command("contacts");
             var builder = new ContactsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -258,9 +240,7 @@ namespace ApiSdk {
         public Command BuildContractsCommand() {
             var command = new Command("contracts");
             var builder = new ContractsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -272,9 +252,7 @@ namespace ApiSdk {
         public Command BuildDataPolicyOperationsCommand() {
             var command = new Command("data-policy-operations");
             var builder = new DataPolicyOperationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -343,9 +321,7 @@ namespace ApiSdk {
         public Command BuildDevicesCommand() {
             var command = new Command("devices");
             var builder = new DevicesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -366,9 +342,7 @@ namespace ApiSdk {
         public Command BuildDirectoryObjectsCommand() {
             var command = new Command("directory-objects");
             var builder = new DirectoryObjectsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -380,9 +354,7 @@ namespace ApiSdk {
         public Command BuildDirectoryRolesCommand() {
             var command = new Command("directory-roles");
             var builder = new DirectoryRolesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -394,9 +366,7 @@ namespace ApiSdk {
         public Command BuildDirectoryRoleTemplatesCommand() {
             var command = new Command("directory-role-templates");
             var builder = new DirectoryRoleTemplatesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -408,9 +378,7 @@ namespace ApiSdk {
         public Command BuildDomainDnsRecordsCommand() {
             var command = new Command("domain-dns-records");
             var builder = new DomainDnsRecordsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -419,9 +387,7 @@ namespace ApiSdk {
         public Command BuildDomainsCommand() {
             var command = new Command("domains");
             var builder = new DomainsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -443,9 +409,7 @@ namespace ApiSdk {
         public Command BuildDrivesCommand() {
             var command = new Command("drives");
             var builder = new DrivesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -473,9 +437,7 @@ namespace ApiSdk {
         public Command BuildGroupLifecyclePoliciesCommand() {
             var command = new Command("group-lifecycle-policies");
             var builder = new GroupLifecyclePoliciesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -484,9 +446,7 @@ namespace ApiSdk {
         public Command BuildGroupsCommand() {
             var command = new Command("groups");
             var builder = new GroupsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -498,9 +458,7 @@ namespace ApiSdk {
         public Command BuildGroupSettingsCommand() {
             var command = new Command("group-settings");
             var builder = new GroupSettingsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -509,9 +467,7 @@ namespace ApiSdk {
         public Command BuildGroupSettingTemplatesCommand() {
             var command = new Command("group-setting-templates");
             var builder = new GroupSettingTemplatesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -555,9 +511,7 @@ namespace ApiSdk {
         public Command BuildIdentityProvidersCommand() {
             var command = new Command("identity-providers");
             var builder = new IdentityProvidersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -575,9 +529,7 @@ namespace ApiSdk {
         public Command BuildInvitationsCommand() {
             var command = new Command("invitations");
             var builder = new InvitationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -586,9 +538,7 @@ namespace ApiSdk {
         public Command BuildLocalizationsCommand() {
             var command = new Command("localizations");
             var builder = new LocalizationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -666,9 +616,7 @@ namespace ApiSdk {
         public Command BuildOauth2PermissionGrantsCommand() {
             var command = new Command("oauth2-permission-grants");
             var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -677,9 +625,7 @@ namespace ApiSdk {
         public Command BuildOrganizationCommand() {
             var command = new Command("organization");
             var builder = new OrganizationRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -691,9 +637,7 @@ namespace ApiSdk {
         public Command BuildPermissionGrantsCommand() {
             var command = new Command("permission-grants");
             var builder = new PermissionGrantsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
             command.AddCommand(builder.BuildGetByIdsCommand());
@@ -704,9 +648,7 @@ namespace ApiSdk {
         public Command BuildPlacesCommand() {
             var command = new Command("places");
             var builder = new PlacesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -864,9 +806,7 @@ namespace ApiSdk {
         public Command BuildSchemaExtensionsCommand() {
             var command = new Command("schema-extensions");
             var builder = new SchemaExtensionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -875,9 +815,7 @@ namespace ApiSdk {
         public Command BuildScopedRoleMembershipsCommand() {
             var command = new Command("scoped-role-memberships");
             var builder = new ScopedRoleMembershipsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -904,9 +842,7 @@ namespace ApiSdk {
         public Command BuildServicePrincipalsCommand() {
             var command = new Command("service-principals");
             var builder = new ServicePrincipalsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -918,9 +854,7 @@ namespace ApiSdk {
         public Command BuildSharesCommand() {
             var command = new Command("shares");
             var builder = new SharesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -930,11 +864,8 @@ namespace ApiSdk {
             var command = new Command("sites");
             var builder = new SitesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             command.AddCommand(builder.BuildRemoveCommand());
             return command;
@@ -951,9 +882,7 @@ namespace ApiSdk {
         public Command BuildSubscribedSkusCommand() {
             var command = new Command("subscribed-skus");
             var builder = new SubscribedSkusRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -961,9 +890,7 @@ namespace ApiSdk {
         public Command BuildSubscriptionsCommand() {
             var command = new Command("subscriptions");
             var builder = new SubscriptionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -971,9 +898,7 @@ namespace ApiSdk {
         public Command BuildTeamsCommand() {
             var command = new Command("teams");
             var builder = new TeamsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -982,9 +907,7 @@ namespace ApiSdk {
         public Command BuildTeamsTemplatesCommand() {
             var command = new Command("teams-templates");
             var builder = new TeamsTemplatesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -1001,9 +924,7 @@ namespace ApiSdk {
         public Command BuildUsersCommand() {
             var command = new Command("users");
             var builder = new UsersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
@@ -1015,9 +936,7 @@ namespace ApiSdk {
         public Command BuildWorkbooksCommand() {
             var command = new Command("workbooks");
             var builder = new WorkbooksRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
+            command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());

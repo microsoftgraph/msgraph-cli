@@ -7,9 +7,9 @@ namespace ApiSdk.Models {
     public class AndroidManagedAppProtection : TargetedManagedAppProtection, IParsable {
         /// <summary>List of apps to which the policy is deployed.</summary>
         public List<ManagedMobileApp> Apps { get; set; }
-        /// <summary>Friendly name of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.</summary>
+        /// <summary>Friendly name of the preferred custom browser to open weblink on Android.</summary>
         public string CustomBrowserDisplayName { get; set; }
-        /// <summary>Unique identifier of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.</summary>
+        /// <summary>Unique identifier of a custom browser to open weblink on Android.</summary>
         public string CustomBrowserPackageId { get; set; }
         /// <summary>Count of apps to which the current policy is deployed.</summary>
         public int? DeployedAppCount { get; set; }

@@ -7,19 +7,19 @@ namespace ApiSdk.Models {
     public class RbacApplication : Entity, IParsable {
         /// <summary>Resource to grant access to users or groups.</summary>
         public List<UnifiedRoleAssignment> RoleAssignments { get; set; }
-        /// <summary>The roleAssignmentScheduleInstances property</summary>
+        /// <summary>Instances for active role assignments.</summary>
         public List<UnifiedRoleAssignmentScheduleInstance> RoleAssignmentScheduleInstances { get; set; }
-        /// <summary>The roleAssignmentScheduleRequests property</summary>
+        /// <summary>Requests for active role assignments to principals through PIM.</summary>
         public List<UnifiedRoleAssignmentScheduleRequest> RoleAssignmentScheduleRequests { get; set; }
-        /// <summary>The roleAssignmentSchedules property</summary>
+        /// <summary>Schedules for active role assignment operations.</summary>
         public List<UnifiedRoleAssignmentSchedule> RoleAssignmentSchedules { get; set; }
         /// <summary>Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.</summary>
         public List<UnifiedRoleDefinition> RoleDefinitions { get; set; }
-        /// <summary>The roleEligibilityScheduleInstances property</summary>
+        /// <summary>Instances for role eligibility requests.</summary>
         public List<UnifiedRoleEligibilityScheduleInstance> RoleEligibilityScheduleInstances { get; set; }
-        /// <summary>The roleEligibilityScheduleRequests property</summary>
+        /// <summary>Requests for role eligibilities for principals through PIM.</summary>
         public List<UnifiedRoleEligibilityScheduleRequest> RoleEligibilityScheduleRequests { get; set; }
-        /// <summary>The roleEligibilitySchedules property</summary>
+        /// <summary>Schedules for role eligibility operations.</summary>
         public List<UnifiedRoleEligibilitySchedule> RoleEligibilitySchedules { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

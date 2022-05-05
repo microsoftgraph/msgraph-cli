@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class DirectoryAudit : Entity, IParsable {
         /// <summary>Indicates the date and time the activity was performed. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? ActivityDateTime { get; set; }
-        /// <summary>Indicates the activity name or the operation name (examples: &apos;Create User&apos; and &apos;Add member to group&apos;). For full list, see Azure AD activity list.</summary>
+        /// <summary>Indicates the activity name or the operation name (E.g. &apos;Create User&apos;, &apos;Add member to group&apos;). For a list of activities logged, refer to Azure Ad activity list.</summary>
         public string ActivityDisplayName { get; set; }
         /// <summary>Indicates additional details on the activity.</summary>
         public List<KeyValue> AdditionalDetails { get; set; }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
         public OperationResult? Result { get; set; }
         /// <summary>Indicates the reason for failure if the result is failure or timeout.</summary>
         public string ResultReason { get; set; }
-        /// <summary>Indicates information on which resource was changed due to the activity. Target Resource Type can be User, Device, Directory, App, Role, Group, Policy or Other.</summary>
+        /// <summary>Information about the resource that changed due to the activity.</summary>
         public List<TargetResource> TargetResources { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

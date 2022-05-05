@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class RegistrationEnforcement : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Run campaigns to remind users to set up targeted authentication methods.</summary>
+        /// <summary>Run campaigns to remind users to setup targeted authentication methods.</summary>
         public ApiSdk.Models.AuthenticationMethodsRegistrationCampaign AuthenticationMethodsRegistrationCampaign { get; set; }
         /// <summary>
         /// Instantiates a new registrationEnforcement and sets the default values.

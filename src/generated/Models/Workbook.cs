@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
         public WorkbookFunctions Functions { get; set; }
         /// <summary>Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.</summary>
         public List<WorkbookNamedItem> Names { get; set; }
-        /// <summary>The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.</summary>
+        /// <summary>The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.</summary>
         public List<WorkbookOperation> Operations { get; set; }
         /// <summary>Represents a collection of tables associated with the workbook. Read-only.</summary>
         public List<WorkbookTable> Tables { get; set; }

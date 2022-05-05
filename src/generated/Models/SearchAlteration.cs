@@ -7,11 +7,11 @@ namespace ApiSdk.Models {
     public class SearchAlteration : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Defines the altered highlighted query string with spelling correction. The annotation around the corrected segment is: /ue000, /ue001.</summary>
+        /// <summary>Defines the altered highlighted query string with spelling correction. The annotation around the corrected segment is (/ue000, /ue001)</summary>
         public string AlteredHighlightedQueryString { get; set; }
         /// <summary>Defines the altered query string with spelling correction.</summary>
         public string AlteredQueryString { get; set; }
-        /// <summary>Represents changed segments related to an original user query.</summary>
+        /// <summary>Represents changed segments with respect to original query.</summary>
         public List<AlteredQueryToken> AlteredQueryTokens { get; set; }
         /// <summary>
         /// Instantiates a new searchAlteration and sets the default values.

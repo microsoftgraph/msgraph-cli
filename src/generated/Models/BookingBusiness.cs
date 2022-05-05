@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class BookingBusiness : Entity, IParsable {
-        /// <summary>The street address of the business. The address property, together with phone and webSiteUrl, appear in the footer of a business scheduling page. The attribute type of physicalAddress is not supported in v1.0. Internally we map the addresses to the type others.</summary>
+        /// <summary>The street address of the business. The address property, together with phone and webSiteUrl, appear in the footer of a business scheduling page.</summary>
         public PhysicalAddress Address { get; set; }
         /// <summary>All the appointments of this business. Read-only. Nullable.</summary>
         public List<BookingAppointment> Appointments { get; set; }

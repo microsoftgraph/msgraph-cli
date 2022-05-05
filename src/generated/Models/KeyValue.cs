@@ -7,9 +7,9 @@ namespace ApiSdk.Models {
     public class KeyValue : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Key for the key-value pair.</summary>
+        /// <summary>Key.</summary>
         public string Key { get; set; }
-        /// <summary>Value for the key-value pair.</summary>
+        /// <summary>Value.</summary>
         public string Value { get; set; }
         /// <summary>
         /// Instantiates a new keyValue and sets the default values.

@@ -9,5 +9,6 @@ namespace ApiSdk.Models {
         SkypeUser,
         PhoneUser,
         UnknownFutureValue,
+        EmailUser,
     }
 }

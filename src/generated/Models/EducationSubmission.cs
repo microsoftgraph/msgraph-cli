@@ -21,7 +21,7 @@ namespace ApiSdk.Models {
         public IdentitySet ReturnedBy { get; set; }
         /// <summary>Moment in time when the submission was returned. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? ReturnedDateTime { get; set; }
-        /// <summary>Read-only. Possible values are: working, submitted, released, returned, and reassigned. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: reassigned.</summary>
+        /// <summary>Read-only. Possible values are: working, submitted, released, returned, unknownFutureValue and reassigned. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: reassigned.</summary>
         public EducationSubmissionStatus? Status { get; set; }
         /// <summary>User who moved the resource into the submitted state.</summary>
         public IdentitySet SubmittedBy { get; set; }

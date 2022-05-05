@@ -5,15 +5,15 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class AccessPackageCatalog : Entity, IParsable {
-        /// <summary>The access packages in this catalog. Read-only. Nullable.</summary>
+        /// <summary>The access packages in this catalog. Read-only. Nullable. Supports $expand.</summary>
         public List<AccessPackage> AccessPackages { get; set; }
-        /// <summary>Whether the catalog is created by a user or entitlement management. The possible values are: userManaged, serviceDefault, serviceManaged, unknownFutureValue.</summary>
+        /// <summary>One of UserManaged or ServiceDefault.</summary>
         public AccessPackageCatalogType? CatalogType { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The description of the access package catalog.</summary>
         public string Description { get; set; }
-        /// <summary>The display name of the access package catalog.</summary>
+        /// <summary>The display name of the access package catalog. Supports $filter (eq, contains).</summary>
         public string DisplayName { get; set; }
         /// <summary>Whether the access packages in this catalog can be requested by users outside of the tenant.</summary>
         public bool? IsExternallyVisible { get; set; }

@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class AgreementFileData : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Data that represents the terms of use PDF document. Read-only.</summary>
+        /// <summary>Data that represents the terms of use PDF document. Read-only. Note: You can use the .NET Convert.ToBase64String method to convert your file to binary data for uploading using the Create agreements API. A sample syntax using this method in PowerShell is [convert]::ToBase64String((Get-Content -path &apos;your_file_path&apos; -Encoding byte)).</summary>
         public byte[] Data { get; set; }
         /// <summary>
         /// Instantiates a new agreementFileData and sets the default values.

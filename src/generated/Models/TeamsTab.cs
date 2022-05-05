@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public TeamsTabConfiguration Configuration { get; set; }
         /// <summary>Name of the tab.</summary>
         public string DisplayName { get; set; }
-        /// <summary>The application that is linked to the tab. This cannot be changed after tab creation.</summary>
+        /// <summary>The application that is linked to the tab.</summary>
         public ApiSdk.Models.TeamsApp TeamsApp { get; set; }
         /// <summary>Deep link URL of the tab instance. Read only.</summary>
         public string WebUrl { get; set; }

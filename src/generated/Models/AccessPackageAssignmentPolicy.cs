@@ -5,25 +5,25 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class AccessPackageAssignmentPolicy : Entity, IParsable {
-        /// <summary>Access package containing this policy. Read-only.</summary>
+        /// <summary>The access package with this policy. Read-only. Nullable. Supports $expand.</summary>
         public ApiSdk.Models.AccessPackage AccessPackage { get; set; }
         /// <summary>Principals that can be assigned the access package through this policy. The possible values are: notSpecified, specificDirectoryUsers, specificConnectedOrganizationUsers, specificDirectoryServicePrincipals, allMemberUsers, allDirectoryUsers, allDirectoryServicePrincipals, allConfiguredConnectedOrganizationUsers, allExternalUsers, unknownFutureValue.</summary>
         public ApiSdk.Models.AllowedTargetScope? AllowedTargetScope { get; set; }
         /// <summary>Catalog of the access package containing this policy. Read-only.</summary>
         public AccessPackageCatalog Catalog { get; set; }
-        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
+        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The description of the policy.</summary>
         public string Description { get; set; }
-        /// <summary>The display name of the policy.</summary>
+        /// <summary>The display name of the policy. Supports $filter (eq).</summary>
         public string DisplayName { get; set; }
         /// <summary>The expiration date for assignments created in this policy.</summary>
         public ExpirationPattern Expiration { get; set; }
-        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
+        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? ModifiedDateTime { get; set; }
-        /// <summary>Specifies the settings for approval of requests for an access package assignment through this policy. For example, if approval is required for new requests.</summary>
+        /// <summary>Who must approve requests for access package in this policy.</summary>
         public AccessPackageAssignmentApprovalSettings RequestApprovalSettings { get; set; }
-        /// <summary>Provides additional settings to select who can create a request for an access package assignment through this policy, and what they can include in their request.</summary>
+        /// <summary>Who can request this access package from this policy.</summary>
         public AccessPackageAssignmentRequestorSettings RequestorSettings { get; set; }
         /// <summary>Settings for access reviews of assignments through this policy.</summary>
         public AccessPackageAssignmentReviewSettings ReviewSettings { get; set; }

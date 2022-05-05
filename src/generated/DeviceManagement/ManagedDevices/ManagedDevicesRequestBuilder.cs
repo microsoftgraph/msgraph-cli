@@ -23,34 +23,34 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public List<Command> BuildCommand() {
+        public Command BuildCommand() {
+            var command = new Command("item");
             var builder = new ManagedDeviceItemRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command>();
-            commands.Add(builder.BuildBypassActivationLockCommand());
-            commands.Add(builder.BuildCleanWindowsDeviceCommand());
-            commands.Add(builder.BuildDeleteCommand());
-            commands.Add(builder.BuildDeleteUserFromSharedAppleDeviceCommand());
-            commands.Add(builder.BuildDeviceCategoryCommand());
-            commands.Add(builder.BuildDeviceCompliancePolicyStatesCommand());
-            commands.Add(builder.BuildDeviceConfigurationStatesCommand());
-            commands.Add(builder.BuildDisableLostModeCommand());
-            commands.Add(builder.BuildGetCommand());
-            commands.Add(builder.BuildLocateDeviceCommand());
-            commands.Add(builder.BuildLogoutSharedAppleDeviceActiveUserCommand());
-            commands.Add(builder.BuildPatchCommand());
-            commands.Add(builder.BuildRebootNowCommand());
-            commands.Add(builder.BuildRecoverPasscodeCommand());
-            commands.Add(builder.BuildRemoteLockCommand());
-            commands.Add(builder.BuildRequestRemoteAssistanceCommand());
-            commands.Add(builder.BuildResetPasscodeCommand());
-            commands.Add(builder.BuildRetireCommand());
-            commands.Add(builder.BuildShutDownCommand());
-            commands.Add(builder.BuildSyncDeviceCommand());
-            commands.Add(builder.BuildUpdateWindowsDeviceAccountCommand());
-            commands.Add(builder.BuildWindowsDefenderScanCommand());
-            commands.Add(builder.BuildWindowsDefenderUpdateSignaturesCommand());
-            commands.Add(builder.BuildWipeCommand());
-            return commands;
+            command.AddCommand(builder.BuildBypassActivationLockCommand());
+            command.AddCommand(builder.BuildCleanWindowsDeviceCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDeleteUserFromSharedAppleDeviceCommand());
+            command.AddCommand(builder.BuildDeviceCategoryCommand());
+            command.AddCommand(builder.BuildDeviceCompliancePolicyStatesCommand());
+            command.AddCommand(builder.BuildDeviceConfigurationStatesCommand());
+            command.AddCommand(builder.BuildDisableLostModeCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildLocateDeviceCommand());
+            command.AddCommand(builder.BuildLogoutSharedAppleDeviceActiveUserCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRebootNowCommand());
+            command.AddCommand(builder.BuildRecoverPasscodeCommand());
+            command.AddCommand(builder.BuildRemoteLockCommand());
+            command.AddCommand(builder.BuildRequestRemoteAssistanceCommand());
+            command.AddCommand(builder.BuildResetPasscodeCommand());
+            command.AddCommand(builder.BuildRetireCommand());
+            command.AddCommand(builder.BuildShutDownCommand());
+            command.AddCommand(builder.BuildSyncDeviceCommand());
+            command.AddCommand(builder.BuildUpdateWindowsDeviceAccountCommand());
+            command.AddCommand(builder.BuildWindowsDefenderScanCommand());
+            command.AddCommand(builder.BuildWindowsDefenderUpdateSignaturesCommand());
+            command.AddCommand(builder.BuildWipeCommand());
+            return command;
         }
         public Command BuildCountCommand() {
             var command = new Command("count");
@@ -178,14 +178,14 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[12];
                 var cancellationToken = (CancellationToken) parameters[13];
                 var requestInfo = CreateGetRequestInformation(q => {
-                    q.Top = top;
-                    q.Skip = skip;
-                    if (!String.IsNullOrEmpty(search)) q.Search = search;
-                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
-                    q.Count = count;
-                    q.Orderby = orderby;
-                    q.Select = select;
-                    q.Expand = expand;
+                    q.QueryParameters.Top = top;
+                    q.QueryParameters.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    q.QueryParameters.Count = count;
+                    q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -214,32 +214,29 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
         }
         /// <summary>
         /// The list of managed devices.
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
-        /// <param name="queryParameters">Request query parameters</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreateGetRequestInformation(Action<ManagedDevicesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (queryParameters != null) {
-                var qParams = new GetQueryParameters();
-                queryParameters.Invoke(qParams);
-                qParams.AddQueryParameters(requestInfo.QueryParameters);
+            if (requestConfiguration != null) {
+                var requestConfig = new ManagedDevicesRequestBuilderGetRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
             }
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// Create new navigation property to managedDevices for deviceManagement
         /// <param name="body"></param>
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ManagedDevice body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(ManagedDevice body, Action<ManagedDevicesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -247,12 +244,16 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
+            if (requestConfiguration != null) {
+                var requestConfig = new ManagedDevicesRequestBuilderPostRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
             return requestInfo;
         }
         /// <summary>The list of managed devices.</summary>
-        public class GetQueryParameters : QueryParametersBase {
+        public class ManagedDevicesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
@@ -277,6 +278,36 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class ManagedDevicesRequestBuilderGetRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>Request query parameters</summary>
+            public ManagedDevicesRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ManagedDevicesRequestBuilderGetQueryParameters();
+            /// <summary>
+            /// Instantiates a new managedDevicesRequestBuilderGetRequestConfiguration and sets the default values.
+            /// </summary>
+            public ManagedDevicesRequestBuilderGetRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class ManagedDevicesRequestBuilderPostRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>
+            /// Instantiates a new managedDevicesRequestBuilderPostRequestConfiguration and sets the default values.
+            /// </summary>
+            public ManagedDevicesRequestBuilderPostRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
         }
     }
 }

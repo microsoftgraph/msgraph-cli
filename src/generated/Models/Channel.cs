@@ -19,7 +19,7 @@ namespace ApiSdk.Models {
         public bool? IsFavoriteByDefault { get; set; }
         /// <summary>A collection of membership records associated with the channel.</summary>
         public List<ConversationMember> Members { get; set; }
-        /// <summary>The type of the channel. Can be set during creation and can&apos;t be changed. Possible values are: standard - Channel inherits the list of members of the parent team; private - Channel can have members that are a subset of all the members on the parent team.</summary>
+        /// <summary>The type of the channel. Can be set during creation and can&apos;t be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.</summary>
         public ChannelMembershipType? MembershipType { get; set; }
         /// <summary>A collection of all the messages in the channel. A navigation property. Nullable.</summary>
         public List<ChatMessage> Messages { get; set; }

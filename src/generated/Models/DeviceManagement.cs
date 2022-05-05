@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         public List<DeviceManagementExchangeConnector> ExchangeConnectors { get; set; }
         /// <summary>Collection of imported Windows autopilot devices.</summary>
         public List<ImportedWindowsAutopilotDeviceIdentity> ImportedWindowsAutopilotDeviceIdentities { get; set; }
-        /// <summary>Intune Account Id for given tenant</summary>
+        /// <summary>Intune Account ID for given tenant</summary>
         public string IntuneAccountId { get; set; }
         /// <summary>intuneBrand contains data which is used in customizing the appearance of the Company Portal applications as well as the end user web portal.</summary>
         public ApiSdk.Models.IntuneBrand IntuneBrand { get; set; }

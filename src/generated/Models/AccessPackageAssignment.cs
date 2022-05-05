@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.AccessPackage AccessPackage { get; set; }
         /// <summary>Read-only. Supports $filter (eq) on the id property and $expand query parameters.</summary>
         public AccessPackageAssignmentPolicy AssignmentPolicy { get; set; }
-        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
+        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? ExpiredDateTime { get; set; }
         /// <summary>When the access assignment is to be in place. Read-only.</summary>
         public EntitlementManagementSchedule Schedule { get; set; }

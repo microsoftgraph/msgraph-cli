@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The time of the last action of the operation.</summary>
         public DateTimeOffset? LastActionDateTime { get; set; }
-        /// <summary>The current status of the operation: notStarted, running, completed, failed</summary>
+        /// <summary>Possible values are: notStarted, running, completed, failed. Read-only.</summary>
         public OperationStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

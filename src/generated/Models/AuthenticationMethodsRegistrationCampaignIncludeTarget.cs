@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class AuthenticationMethodsRegistrationCampaignIncludeTarget : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The object identifier of an Azure Active Directory user or group.</summary>
+        /// <summary>The object identifier of an Azure AD user or group.</summary>
         public string Id { get; set; }
         /// <summary>The authentication method that the user is prompted to register. The value must be microsoftAuthenticator.</summary>
         public string TargetedAuthenticationMethod { get; set; }

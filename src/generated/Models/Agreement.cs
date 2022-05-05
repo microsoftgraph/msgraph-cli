@@ -11,15 +11,15 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>Default PDF linked to this agreement.</summary>
         public AgreementFile File { get; set; }
-        /// <summary>PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.</summary>
+        /// <summary>PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.</summary>
         public List<AgreementFileLocalization> Files { get; set; }
-        /// <summary>Indicates whether end users are required to accept this agreement on every device that they access it from. The end user is required to register their device in Azure AD, if they haven&apos;t already done so. Supports $filter (eq).</summary>
+        /// <summary>This setting enables you to require end users to accept this agreement on every device that they are accessing it from. The end user will be required to register their device in Azure AD, if they haven&apos;t already done so. Supports $filter (eq).</summary>
         public bool? IsPerDeviceAcceptanceRequired { get; set; }
         /// <summary>Indicates whether the user has to expand the agreement before accepting. Supports $filter (eq).</summary>
         public bool? IsViewingBeforeAcceptanceRequired { get; set; }
-        /// <summary>Expiration schedule and frequency of agreement for all users. Supports $filter (eq).</summary>
+        /// <summary>Expiration schedule and frequency of agreement for all users.  Supports $filter (eq).</summary>
         public ApiSdk.Models.TermsExpiration TermsExpiration { get; set; }
-        /// <summary>The duration after which the user must re-accept the terms of use. The value is represented in ISO 8601 format for durations. Supports $filter (eq).</summary>
+        /// <summary>The duration after which the user must re-accept the terms of use. The value is represented in ISO 8601 format for durations.</summary>
         public TimeSpan? UserReacceptRequiredFrequency { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
