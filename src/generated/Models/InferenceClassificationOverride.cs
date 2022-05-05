@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class InferenceClassificationOverride : Entity, IParsable {
-        /// <summary>Specifies how incoming messages from a specific sender should always be classified as. The possible values are: focused, other.</summary>
+        /// <summary>Specifies how incoming messages from a specific sender should always be classified as. Possible values are: focused, other.</summary>
         public InferenceClassificationType? ClassifyAs { get; set; }
         /// <summary>The email address information of the sender for whom the override is created.</summary>
         public EmailAddress SenderEmailAddress { get; set; }

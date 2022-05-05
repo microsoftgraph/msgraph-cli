@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
         public List<ExtensionSchemaProperty> Properties { get; set; }
         /// <summary>The lifecycle state of the schema extension. Possible states are InDevelopment, Available, and Deprecated. Automatically set to InDevelopment on creation. Schema extensions provides more information on the possible state transitions and behaviors. Supports $filter (eq).</summary>
         public string Status { get; set; }
-        /// <summary>Set of Microsoft Graph types (that can support extensions) that the schema extension can be applied to. Select from contact, device, event, group, message, organization, post, or user.</summary>
+        /// <summary>Set of Microsoft Graph types (that can support extensions) that the schema extension can be applied to. Select from administrativeUnit, contact, device, event, group, message, organization, post, or user.</summary>
         public List<string> TargetTypes { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

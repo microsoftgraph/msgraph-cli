@@ -21,7 +21,7 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>DateTime the object was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.</summary>
+        /// <summary>The list of scheduled action for this rule</summary>
         public List<DeviceComplianceScheduledActionForRule> ScheduledActionsForRule { get; set; }
         /// <summary>List of DeviceComplianceUserStatus.</summary>
         public List<DeviceComplianceUserStatus> UserStatuses { get; set; }

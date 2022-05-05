@@ -5,13 +5,13 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.ExternalConnectors {
     public class Acl : IAdditionalDataHolder, IParsable {
-        /// <summary>The access granted to the identity. Possible values are: grant, deny, unknownFutureValue.</summary>
+        /// <summary>The access granted to the identity. Possible values are: grant, deny.</summary>
         public ApiSdk.Models.ExternalConnectors.AccessType? AccessType { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The type of identity. Possible values are: user, group, everyone, everyoneExceptGuests, externalGroup, unknownFutureValue.</summary>
+        /// <summary>The type of identity. Possible values are: user, group, everyone, everyoneExceptGuests if the identitySource is azureActiveDirectory and just group if the identitySource is external.</summary>
         public AclType? Type { get; set; }
-        /// <summary>The unique identifer of the identity. In case of Azure Active Directory identities, value is set to the object identifier of the user, group or tenant for types user, group and everyone (and everyoneExceptGuests) respectively. In case of external groups value is set to the ID of the externalGroup</summary>
+        /// <summary>The unique identifer of the identity. In case of Azure Active Directory identities, value is set to the object identifier of the user, group or tenant for types user, group and everyone (and everyoneExceptGuests) respectively. In case of external groups value is set to the ID of the externalGroup.</summary>
         public string Value { get; set; }
         /// <summary>
         /// Instantiates a new acl and sets the default values.

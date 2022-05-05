@@ -11,7 +11,7 @@ namespace ApiSdk.Models {
         public string Address { get; set; }
         /// <summary>The display name of the web site.</summary>
         public string DisplayName { get; set; }
-        /// <summary>The possible values are: other, home, work, blog, profile.</summary>
+        /// <summary>Possible values are: other, home, work, blog, profile.</summary>
         public WebsiteType? Type { get; set; }
         /// <summary>
         /// Instantiates a new website and sets the default values.

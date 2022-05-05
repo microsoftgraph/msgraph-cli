@@ -11,7 +11,7 @@ namespace ApiSdk.Models {
         public bool? HasAttachments { get; set; }
         /// <summary>Indicates if the thread is locked. Returned by default.</summary>
         public bool? IsLocked { get; set; }
-        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.Returned by default.</summary>
+        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default.</summary>
         public DateTimeOffset? LastDeliveredDateTime { get; set; }
         /// <summary>Read-only. Nullable.</summary>
         public List<Post> Posts { get; set; }

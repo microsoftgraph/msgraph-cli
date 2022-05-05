@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
         public string ClassCode { get; set; }
         /// <summary>Course information for the class.</summary>
         public EducationCourse Course { get; set; }
-        /// <summary>Entity who created the class</summary>
+        /// <summary>Entity who created the class.</summary>
         public IdentitySet CreatedBy { get; set; }
         /// <summary>Description of the class.</summary>
         public string Description { get; set; }
@@ -27,7 +27,7 @@ namespace ApiSdk.Models {
         public string ExternalId { get; set; }
         /// <summary>Name of the class in the syncing system.</summary>
         public string ExternalName { get; set; }
-        /// <summary>How this class was created. Possible values are: sis, manual.</summary>
+        /// <summary>The type of external source this resource was generated from (automatically determined from externalSourceDetail). Possible values are: sis, lms, or manual.</summary>
         public EducationExternalSource? ExternalSource { get; set; }
         /// <summary>The name of the external source this resources was generated from.</summary>
         public string ExternalSourceDetail { get; set; }
@@ -43,7 +43,7 @@ namespace ApiSdk.Models {
         public List<EducationSchool> Schools { get; set; }
         /// <summary>All teachers in the class. Nullable.</summary>
         public List<EducationUser> Teachers { get; set; }
-        /// <summary>Term for this class.</summary>
+        /// <summary>Term for the class.</summary>
         public EducationTerm Term { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

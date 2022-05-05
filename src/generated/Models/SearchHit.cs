@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
         public int? Rank { get; set; }
         /// <summary>The resource property</summary>
         public Entity Resource { get; set; }
-        /// <summary>ID of the result template used to render the search result. This ID must map to a display layout in the resultTemplates dictionary that is also included in the searchResponse.</summary>
+        /// <summary>ID of the result template for rendering the search result. This ID must map to a display layout in the resultTemplates dictionary, included in the searchresponse as well.</summary>
         public string ResultTemplateId { get; set; }
         /// <summary>A summary of the result, if a summary is available.</summary>
         public string Summary { get; set; }

@@ -7,9 +7,9 @@ namespace ApiSdk.Models {
     public class DateTimeTimeZone : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>A single point of time in a combined date and time representation ({date}T{time}; for example, 2017-08-29T04:00:00.0000000).</summary>
+        /// <summary>A single point of time in a combined date and time representation ({date}T{time}). For example, &apos;2019-04-16T09:00:00&apos;.</summary>
         public string DateTime { get; set; }
-        /// <summary>Represents a time zone, for example, &apos;Pacific Standard Time&apos;. See below for more possible values.</summary>
+        /// <summary>Represents a time zone, for example, &apos;Pacific Standard Time&apos;. See below for possible values.</summary>
         public string TimeZone { get; set; }
         /// <summary>
         /// Instantiates a new dateTimeTimeZone and sets the default values.

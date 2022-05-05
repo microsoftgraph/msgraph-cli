@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         public string Message { get; set; }
         /// <summary>The amount of time before the start of an appointment that the reminder should be sent. It&apos;s denoted in ISO 8601 format.</summary>
         public TimeSpan? Offset { get; set; }
-        /// <summary>The persons who should receive the reminder. Possible values are: allAttendees, staff, customer, unknownFutureValue.</summary>
+        /// <summary>The persons who should receive the reminder. Possible values are: allAttendees, staff, customer and unknownFutureValue.</summary>
         public BookingReminderRecipients? Recipients { get; set; }
         /// <summary>
         /// Instantiates a new bookingReminder and sets the default values.

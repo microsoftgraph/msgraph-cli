@@ -7,11 +7,11 @@ namespace ApiSdk.Models {
     public class IncomingContext : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The ID of the participant that is under observation. Read-only.</summary>
+        /// <summary>The id of the participant that is under observation. Read-only.</summary>
         public string ObservedParticipantId { get; set; }
         /// <summary>The identity that the call is happening on behalf of.</summary>
         public IdentitySet OnBehalfOf { get; set; }
-        /// <summary>The ID of the participant that triggered the incoming call. Read-only.</summary>
+        /// <summary>The id of the participant that triggered the incoming call. Read-only.</summary>
         public string SourceParticipantId { get; set; }
         /// <summary>The identity that transferred the call.</summary>
         public IdentitySet Transferor { get; set; }

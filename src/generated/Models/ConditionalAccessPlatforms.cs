@@ -7,9 +7,9 @@ namespace ApiSdk.Models {
     public class ConditionalAccessPlatforms : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.</summary>
+        /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, all, unknownFutureValue, linux.</summary>
         public List<ConditionalAccessDevicePlatform?> ExcludePlatforms { get; set; }
-        /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.</summary>
+        /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, all, unknownFutureValue,linux``.</summary>
         public List<ConditionalAccessDevicePlatform?> IncludePlatforms { get; set; }
         /// <summary>
         /// Instantiates a new conditionalAccessPlatforms and sets the default values.

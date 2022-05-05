@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
         public TimeSlot MeetingTimeSlot { get; set; }
         /// <summary>Order of meeting time suggestions sorted by their computed confidence value from high to low, then by chronology if there are suggestions with the same confidence.</summary>
         public int? Order { get; set; }
-        /// <summary>Availability of the meeting organizer for this meeting suggestion. The possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
+        /// <summary>Availability of the meeting organizer for this meeting suggestion. Possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
         public FreeBusyStatus? OrganizerAvailability { get; set; }
         /// <summary>Reason for suggesting the meeting time.</summary>
         public string SuggestionReason { get; set; }

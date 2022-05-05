@@ -11,7 +11,7 @@ namespace ApiSdk.Models {
         public string Name { get; set; }
         /// <summary>Indicates whether the name is scoped to the workbook or to a specific worksheet. Read-only.</summary>
         public string Scope { get; set; }
-        /// <summary>Indicates what type of reference is associated with the name. The possible values are: String, Integer, Double, Boolean, Range. Read-only.</summary>
+        /// <summary>Indicates what type of reference is associated with the name. Possible values are: String, Integer, Double, Boolean, Range. Read-only.</summary>
         public string Type { get; set; }
         /// <summary>Represents the formula that the name is defined to refer to. E.g. =Sheet14!$B$2:$H$12, =4.75, etc. Read-only.</summary>
         public Json Value { get; set; }

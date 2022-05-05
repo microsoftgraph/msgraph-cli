@@ -9,9 +9,9 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Defines the original user query string.</summary>
         public string OriginalQueryString { get; set; }
-        /// <summary>Defines the details of the alteration information for the spelling correction.</summary>
+        /// <summary>Defines the details of alteration information for the spelling correction.</summary>
         public SearchAlteration QueryAlteration { get; set; }
-        /// <summary>Defines the type of the spelling correction. Possible values are: suggestion, modification.</summary>
+        /// <summary>Defines the type of the spelling correction. Possible values are suggestion, modification.</summary>
         public SearchAlterationType? QueryAlterationType { get; set; }
         /// <summary>
         /// Instantiates a new alterationResponse and sets the default values.

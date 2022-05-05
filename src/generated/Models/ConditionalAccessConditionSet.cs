@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
         public List<RiskLevel?> SignInRiskLevels { get; set; }
         /// <summary>User risk levels included in the policy. Possible values are: low, medium, high, hidden, none, unknownFutureValue. Required.</summary>
         public List<RiskLevel?> UserRiskLevels { get; set; }
-        /// <summary>Users, groups, and roles included in and excluded from the policy. Required.</summary>
+        /// <summary>Users, groups, and roles included in and excluded from the policy. Either users or clientApplications is required.</summary>
         public ConditionalAccessUsers Users { get; set; }
         /// <summary>
         /// Instantiates a new conditionalAccessConditionSet and sets the default values.

@@ -22,12 +22,14 @@ namespace ApiSdk.Models {
         public PublicError Error { get; set; }
         /// <summary>The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.</summary>
         public List<ColumnDefinition> ExternalColumns { get; set; }
-        /// <summary>Used to address any item contained in this site. This collection can&apos;t be enumerated.</summary>
+        /// <summary>Used to address any item contained in this site. This collection cannot be enumerated.</summary>
         public List<BaseItem> Items { get; set; }
         /// <summary>The collection of lists under this site.</summary>
         public List<List> Lists { get; set; }
         /// <summary>Calls the OneNote service for notebook related operations.</summary>
         public ApiSdk.Models.Onenote Onenote { get; set; }
+        /// <summary>The collection of long running operations for the site.</summary>
+        public List<RichLongRunningOperation> Operations { get; set; }
         /// <summary>The permissions associated with the site. Nullable.</summary>
         public List<Permission> Permissions { get; set; }
         /// <summary>If present, indicates that this is the root site in the site collection. Read-only.</summary>
@@ -38,7 +40,7 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.SiteCollection SiteCollection { get; set; }
         /// <summary>The collection of the sub-sites under this site.</summary>
         public List<Site> Sites { get; set; }
-        /// <summary>The default termStore under this site.</summary>
+        /// <summary>The termStore under this site.</summary>
         public Store TermStore { get; set; }
         /// <summary>The collection of termStores under this site.</summary>
         public List<Store> TermStores { get; set; }
@@ -66,6 +68,7 @@ namespace ApiSdk.Models {
                 {"items", n => { Items = n.GetCollectionOfObjectValues<BaseItem>(BaseItem.CreateFromDiscriminatorValue).ToList(); } },
                 {"lists", n => { Lists = n.GetCollectionOfObjectValues<List>(List.CreateFromDiscriminatorValue).ToList(); } },
                 {"onenote", n => { Onenote = n.GetObjectValue<ApiSdk.Models.Onenote>(ApiSdk.Models.Onenote.CreateFromDiscriminatorValue); } },
+                {"operations", n => { Operations = n.GetCollectionOfObjectValues<RichLongRunningOperation>(RichLongRunningOperation.CreateFromDiscriminatorValue).ToList(); } },
                 {"permissions", n => { Permissions = n.GetCollectionOfObjectValues<Permission>(Permission.CreateFromDiscriminatorValue).ToList(); } },
                 {"root", n => { Root = n.GetObjectValue<ApiSdk.Models.Root>(ApiSdk.Models.Root.CreateFromDiscriminatorValue); } },
                 {"sharepointIds", n => { SharepointIds = n.GetObjectValue<ApiSdk.Models.SharepointIds>(ApiSdk.Models.SharepointIds.CreateFromDiscriminatorValue); } },
@@ -93,6 +96,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<BaseItem>("items", Items);
             writer.WriteCollectionOfObjectValues<List>("lists", Lists);
             writer.WriteObjectValue<ApiSdk.Models.Onenote>("onenote", Onenote);
+            writer.WriteCollectionOfObjectValues<RichLongRunningOperation>("operations", Operations);
             writer.WriteCollectionOfObjectValues<Permission>("permissions", Permissions);
             writer.WriteObjectValue<ApiSdk.Models.Root>("root", Root);
             writer.WriteObjectValue<ApiSdk.Models.SharepointIds>("sharepointIds", SharepointIds);

@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Content type information of the file.</summary>
         public ContentTypeInfo ContentType { get; set; }
-        /// <summary>Name of the file in resource folder that should be added as a default content or a template in the document set.</summary>
+        /// <summary>Name of the file in resource folder that should be added as a default content or a template in the document set</summary>
         public string FileName { get; set; }
         /// <summary>Folder name in which the file will be placed when a new document set is created in the library.</summary>
         public string FolderName { get; set; }

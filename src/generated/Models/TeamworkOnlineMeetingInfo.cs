@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The identifier of the calendar event associated with the meeting.</summary>
         public string CalendarEventId { get; set; }
-        /// <summary>The URL that users click to join or uniquely identify the meeting.</summary>
+        /// <summary>The URL which can be clicked on to join or uniquely identify the meeting.</summary>
         public string JoinWebUrl { get; set; }
         /// <summary>The organizer of the meeting.</summary>
         public TeamworkUserIdentity Organizer { get; set; }

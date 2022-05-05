@@ -11,19 +11,19 @@ namespace ApiSdk.Models {
         public List<AccessReviewApplyAction> ApplyActions { get; set; }
         /// <summary>Indicates whether decisions are automatically applied. When set to false, an admin must apply the decisions manually once the reviewer completes the access review. When set to true, decisions are applied automatically after the access review instance duration ends, whether or not the reviewers have responded. Default value is false.</summary>
         public bool? AutoApplyDecisionsEnabled { get; set; }
-        /// <summary>Decision chosen if defaultDecisionEnabled is true. Can be one of Approve, Deny, or Recommendation.</summary>
+        /// <summary>Decision chosen if defaultDecisionEnabled is enabled. Can be one of Approve, Deny, or Recommendation.</summary>
         public string DefaultDecision { get; set; }
         /// <summary>Indicates whether the default decision is enabled or disabled when reviewers do not respond. Default value is false.</summary>
         public bool? DefaultDecisionEnabled { get; set; }
-        /// <summary>Duration of each recurrence of review (accessReviewInstance) in number of days.</summary>
+        /// <summary>Duration of each recurrence of review (accessReviewInstance) in number of days. NOTE: If the stageSettings of the accessReviewScheduleDefinition object is defined, its durationInDays setting will be used instead of the value of this property.</summary>
         public int? InstanceDurationInDays { get; set; }
         /// <summary>Indicates whether reviewers are required to provide justification with their decision. Default value is false.</summary>
         public bool? JustificationRequiredOnApproval { get; set; }
         /// <summary>Indicates whether emails are enabled or disabled. Default value is false.</summary>
         public bool? MailNotificationsEnabled { get; set; }
-        /// <summary>Indicates whether decision recommendations are enabled or disabled.</summary>
+        /// <summary>Indicates whether decision recommendations are enabled or disabled. NOTE: If the stageSettings of the accessReviewScheduleDefinition object is defined, its recommendationsEnabled setting will be used instead of the value of this property.</summary>
         public bool? RecommendationsEnabled { get; set; }
-        /// <summary>Detailed settings for recurrence using the standard Outlook recurrence object.  Note: Only dayOfMonth, interval, and type (weekly, absoluteMonthly) properties are supported. Use the property startDate on recurrenceRange to determine the day the review starts.</summary>
+        /// <summary>Detailed settings for recurrence using the standard Outlook recurrence object. Note: Only dayOfMonth, interval, and type (weekly, absoluteMonthly) properties are supported. Use the property startDate on recurrenceRange to determine the day the review starts.</summary>
         public PatternedRecurrence Recurrence { get; set; }
         /// <summary>Indicates whether reminders are enabled or disabled. Default value is false.</summary>
         public bool? ReminderNotificationsEnabled { get; set; }

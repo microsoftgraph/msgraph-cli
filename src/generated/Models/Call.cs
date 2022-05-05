@@ -15,17 +15,17 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.CallOptions CallOptions { get; set; }
         /// <summary>The routing information on how the call was retargeted. Read-only.</summary>
         public List<CallRoute> CallRoutes { get; set; }
-        /// <summary>The chat information. Required information for joining a meeting.</summary>
+        /// <summary>The chat information. Required information for meeting scenarios.</summary>
         public ApiSdk.Models.ChatInfo ChatInfo { get; set; }
         /// <summary>The direction of the call. The possible value are incoming or outgoing. Read-only.</summary>
         public CallDirection? Direction { get; set; }
         /// <summary>The context associated with an incoming call. Read-only. Server generated.</summary>
         public ApiSdk.Models.IncomingContext IncomingContext { get; set; }
-        /// <summary>The media configuration. Required.</summary>
+        /// <summary>The media configuration. Required information for creating peer to peer calls or joining meetings.</summary>
         public ApiSdk.Models.MediaConfig MediaConfig { get; set; }
         /// <summary>Read-only. The call media state.</summary>
         public CallMediaState MediaState { get; set; }
-        /// <summary>The meeting information that&apos;s required for joining a meeting.</summary>
+        /// <summary>The meeting information. Required information for meeting scenarios.</summary>
         public ApiSdk.Models.MeetingInfo MeetingInfo { get; set; }
         /// <summary>The myParticipantId property</summary>
         public string MyParticipantId { get; set; }

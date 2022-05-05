@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A collection of search results.</summary>
         public List<SearchHitsContainer> HitsContainers { get; set; }
-        /// <summary>Provides information related to spelling corrections in the alteration response.</summary>
+        /// <summary>Provides details of query alteration response for spelling correction.</summary>
         public AlterationResponse QueryAlterationResponse { get; set; }
         /// <summary>A dictionary of resultTemplateIds and associated values, which include the name and JSON schema of the result templates.</summary>
         public ResultTemplateDictionary ResultTemplates { get; set; }

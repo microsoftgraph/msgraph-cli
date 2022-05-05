@@ -11,7 +11,7 @@ namespace ApiSdk.Models {
         public TimeSpan? Duration { get; set; }
         /// <summary>Timestamp of date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
-        /// <summary>The requestor&apos;s desired expiration pattern type. The possible values are: notSpecified, noExpiration, afterDateTime, afterDuration.</summary>
+        /// <summary>The requestor&apos;s desired expiration pattern type.</summary>
         public ExpirationPatternType? Type { get; set; }
         /// <summary>
         /// Instantiates a new expirationPattern and sets the default values.

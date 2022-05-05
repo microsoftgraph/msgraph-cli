@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         public Date? BirthDate { get; set; }
         /// <summary>ID of the student in the source system.</summary>
         public string ExternalId { get; set; }
-        /// <summary>The possible values are: female, male, other, unknownFutureValue.</summary>
+        /// <summary>Possible values are: female, male, other.</summary>
         public EducationGender? Gender { get; set; }
         /// <summary>Current grade level of the student.</summary>
         public string Grade { get; set; }

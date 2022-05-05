@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class SwapShiftsChangeRequest : OfferShiftRequest, IParsable {
-        /// <summary>ShiftId for the recipient user with whom the request is to swap.</summary>
+        /// <summary>Shift ID for the recipient user with whom the request is to swap.</summary>
         public string RecipientShiftId { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

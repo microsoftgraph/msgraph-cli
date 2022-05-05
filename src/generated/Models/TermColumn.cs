@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class TermColumn : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Specifies whether the column will allow more than one value.</summary>
+        /// <summary>Specifies whether the column will allow more than one value</summary>
         public bool? AllowMultipleValues { get; set; }
         /// <summary>The parentTerm property</summary>
         public Term ParentTerm { get; set; }

@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public WorkbookOperationError Error { get; set; }
         /// <summary>The resource URI for the result.</summary>
         public string ResourceLocation { get; set; }
-        /// <summary>The current status of the operation. Possible values are: NotStarted, Running, Completed, Failed.</summary>
+        /// <summary>The current status of the operation. Possible values are: notStarted, running, succeeded, failed.</summary>
         public WorkbookOperationStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class Approval : Entity, IParsable {
-        /// <summary>A collection of stages in the approval decision.</summary>
+        /// <summary>Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.</summary>
         public List<ApprovalStage> Stages { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

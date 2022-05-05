@@ -19,7 +19,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         public List<ConnectionOperation> Operations { get; set; }
         /// <summary>Read-only. Nullable.</summary>
         public ApiSdk.Models.ExternalConnectors.Schema Schema { get; set; }
-        /// <summary>Indicates the current state of the connection. Possible values are: draft, ready, obsolete, limitExceeded, unknownFutureValue.</summary>
+        /// <summary>Indicates the current state of the connection. Possible values are draft, ready, obsolete, and limitExceeded. Required.</summary>
         public ConnectionState? State { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
