@@ -5,6 +5,11 @@
 $ mgc users list --select "id, displayName, OfficeLocation, BusinessPhones"
 ```
 
+### List users with count
+```sh
+$ mgc users list --top 5 --count --consistency-level eventual
+```
+
 ### List of users with no Office Location
 ```sh
 $ mgc users list --select "id, displayName, OfficeLocation, BusinessPhones" --query "value[?!officeLocation]"
