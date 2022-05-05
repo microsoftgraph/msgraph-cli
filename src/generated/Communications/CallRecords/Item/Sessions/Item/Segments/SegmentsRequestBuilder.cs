@@ -23,13 +23,13 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public List<Command> BuildCommand() {
+        public Command BuildCommand() {
+            var command = new Command("item");
             var builder = new SegmentItemRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command>();
-            commands.Add(builder.BuildDeleteCommand());
-            commands.Add(builder.BuildGetCommand());
-            commands.Add(builder.BuildPatchCommand());
-            return commands;
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            return command;
         }
         public Command BuildCountCommand() {
             var command = new Command("count");
@@ -179,14 +179,14 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[14];
                 var cancellationToken = (CancellationToken) parameters[15];
                 var requestInfo = CreateGetRequestInformation(q => {
-                    q.Top = top;
-                    q.Skip = skip;
-                    if (!String.IsNullOrEmpty(search)) q.Search = search;
-                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
-                    q.Count = count;
-                    q.Orderby = orderby;
-                    q.Select = select;
-                    q.Expand = expand;
+                    q.QueryParameters.Top = top;
+                    q.QueryParameters.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    q.QueryParameters.Count = count;
+                    q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 requestInfo.PathParameters.Add("callRecord%2Did", callRecordId);
                 requestInfo.PathParameters.Add("session%2Did", sessionId);
@@ -217,32 +217,29 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
         }
         /// <summary>
         /// The list of segments involved in the session. Read-only. Nullable.
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
-        /// <param name="queryParameters">Request query parameters</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreateGetRequestInformation(Action<SegmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (queryParameters != null) {
-                var qParams = new GetQueryParameters();
-                queryParameters.Invoke(qParams);
-                qParams.AddQueryParameters(requestInfo.QueryParameters);
+            if (requestConfiguration != null) {
+                var requestConfig = new SegmentsRequestBuilderGetRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
             }
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// Create new navigation property to segments for communications
         /// <param name="body"></param>
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Segment body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(Segment body, Action<SegmentsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -250,12 +247,16 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
+            if (requestConfiguration != null) {
+                var requestConfig = new SegmentsRequestBuilderPostRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
             return requestInfo;
         }
         /// <summary>The list of segments involved in the session. Read-only. Nullable.</summary>
-        public class GetQueryParameters : QueryParametersBase {
+        public class SegmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
@@ -280,6 +281,36 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class SegmentsRequestBuilderGetRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>Request query parameters</summary>
+            public SegmentsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SegmentsRequestBuilderGetQueryParameters();
+            /// <summary>
+            /// Instantiates a new segmentsRequestBuilderGetRequestConfiguration and sets the default values.
+            /// </summary>
+            public SegmentsRequestBuilderGetRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class SegmentsRequestBuilderPostRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>
+            /// Instantiates a new segmentsRequestBuilderPostRequestConfiguration and sets the default values.
+            /// </summary>
+            public SegmentsRequestBuilderPostRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
         }
     }
 }

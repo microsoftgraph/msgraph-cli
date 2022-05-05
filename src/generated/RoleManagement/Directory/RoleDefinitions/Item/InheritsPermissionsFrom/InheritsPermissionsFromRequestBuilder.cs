@@ -23,13 +23,13 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public List<Command> BuildCommand() {
+        public Command BuildCommand() {
+            var command = new Command("item");
             var builder = new ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissionsFrom.Item.UnifiedRoleDefinitionItemRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command>();
-            commands.Add(builder.BuildDeleteCommand());
-            commands.Add(builder.BuildGetCommand());
-            commands.Add(builder.BuildPatchCommand());
-            return commands;
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            return command;
         }
         public Command BuildCountCommand() {
             var command = new Command("count");
@@ -93,11 +93,11 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
             return command;
         }
         /// <summary>
-        /// Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.
+        /// Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.";
+            command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.";
             // Create options for all the parameters
             var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
             };
@@ -168,14 +168,14 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
                 var cancellationToken = (CancellationToken) parameters[14];
                 var requestInfo = CreateGetRequestInformation(q => {
-                    q.Top = top;
-                    q.Skip = skip;
-                    if (!String.IsNullOrEmpty(search)) q.Search = search;
-                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
-                    q.Count = count;
-                    q.Orderby = orderby;
-                    q.Select = select;
-                    q.Expand = expand;
+                    q.QueryParameters.Top = top;
+                    q.QueryParameters.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    q.QueryParameters.Count = count;
+                    q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 requestInfo.PathParameters.Add("unifiedRoleDefinition%2Did", unifiedRoleDefinitionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -204,33 +204,30 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
-        /// <param name="queryParameters">Request query parameters</param>
+        /// Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreateGetRequestInformation(Action<InheritsPermissionsFromRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (queryParameters != null) {
-                var qParams = new GetQueryParameters();
-                queryParameters.Invoke(qParams);
-                qParams.AddQueryParameters(requestInfo.QueryParameters);
+            if (requestConfiguration != null) {
+                var requestConfig = new InheritsPermissionsFromRequestBuilderGetRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
             }
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// Create new navigation property to inheritsPermissionsFrom for roleManagement
         /// <param name="body"></param>
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(UnifiedRoleDefinition body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(UnifiedRoleDefinition body, Action<InheritsPermissionsFromRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -238,12 +235,16 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
+            if (requestConfiguration != null) {
+                var requestConfig = new InheritsPermissionsFromRequestBuilderPostRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
             return requestInfo;
         }
-        /// <summary>Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.</summary>
-        public class GetQueryParameters : QueryParametersBase {
+        /// <summary>Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.</summary>
+        public class InheritsPermissionsFromRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
@@ -268,6 +269,36 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class InheritsPermissionsFromRequestBuilderGetRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>Request query parameters</summary>
+            public InheritsPermissionsFromRequestBuilderGetQueryParameters QueryParameters { get; set; } = new InheritsPermissionsFromRequestBuilderGetQueryParameters();
+            /// <summary>
+            /// Instantiates a new inheritsPermissionsFromRequestBuilderGetRequestConfiguration and sets the default values.
+            /// </summary>
+            public InheritsPermissionsFromRequestBuilderGetRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class InheritsPermissionsFromRequestBuilderPostRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>
+            /// Instantiates a new inheritsPermissionsFromRequestBuilderPostRequestConfiguration and sets the default values.
+            /// </summary>
+            public InheritsPermissionsFromRequestBuilderPostRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
         }
     }
 }

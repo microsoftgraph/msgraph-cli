@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public ManagedAppDataEncryptionType? AppDataEncryptionType { get; set; }
         /// <summary>List of apps to which the policy is deployed.</summary>
         public List<ManagedMobileApp> Apps { get; set; }
-        /// <summary>A custom browser protocol to open weblink on iOS. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.</summary>
+        /// <summary>A custom browser protocol to open weblink on iOS.</summary>
         public string CustomBrowserProtocol { get; set; }
         /// <summary>Count of apps to which the current policy is deployed.</summary>
         public int? DeployedAppCount { get; set; }

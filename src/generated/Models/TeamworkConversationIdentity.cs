@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class TeamworkConversationIdentity : Identity, IParsable {
-        /// <summary>Type of conversation. Possible values are: team, channel, chat, and unknownFutureValue.</summary>
+        /// <summary>Type of conversation. Possible values are: team, channel, and chat.</summary>
         public TeamworkConversationIdentityType? ConversationIdentityType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

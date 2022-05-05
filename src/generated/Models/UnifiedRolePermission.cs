@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class UnifiedRolePermission : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Set of tasks that can be performed on a resource. Required.</summary>
+        /// <summary>Set of tasks that can be performed on a resource.</summary>
         public List<string> AllowedResourceActions { get; set; }
         /// <summary>Optional constraints that must be met for the permission to be effective.</summary>
         public string Condition { get; set; }

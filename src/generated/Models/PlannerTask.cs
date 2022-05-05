@@ -43,8 +43,10 @@ namespace ApiSdk.Models {
         public int? PercentComplete { get; set; }
         /// <summary>Plan ID to which the task belongs.</summary>
         public string PlanId { get; set; }
-        /// <summary>This sets the type of preview that shows up on the task. The possible values are: automatic, noPreview, checklist, description, reference.</summary>
+        /// <summary>This sets the type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference.</summary>
         public PlannerPreviewType? PreviewType { get; set; }
+        /// <summary>Priority of the task. Valid range of values is between 0 and 10 (inclusive), with increasing value being lower priority (0 has the highest priority and 10 has the lowest priority).  Currently, Planner interprets values 0 and 1 as &apos;urgent&apos;, 2 and 3 and 4 as &apos;important&apos;, 5, 6, and 7 as &apos;medium&apos;, and 8, 9, and 10 as &apos;low&apos;.  Currently, Planner sets the value 1 for &apos;urgent&apos;, 3 for &apos;important&apos;, 5 for &apos;medium&apos;, and 9 for &apos;low&apos;.</summary>
+        public int? Priority { get; set; }
         /// <summary>Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.</summary>
         public PlannerProgressTaskBoardTaskFormat ProgressTaskBoardFormat { get; set; }
         /// <summary>Number of external references that exist on the task.</summary>
@@ -86,6 +88,7 @@ namespace ApiSdk.Models {
                 {"percentComplete", n => { PercentComplete = n.GetIntValue(); } },
                 {"planId", n => { PlanId = n.GetStringValue(); } },
                 {"previewType", n => { PreviewType = n.GetEnumValue<PlannerPreviewType>(); } },
+                {"priority", n => { Priority = n.GetIntValue(); } },
                 {"progressTaskBoardFormat", n => { ProgressTaskBoardFormat = n.GetObjectValue<PlannerProgressTaskBoardTaskFormat>(PlannerProgressTaskBoardTaskFormat.CreateFromDiscriminatorValue); } },
                 {"referenceCount", n => { ReferenceCount = n.GetIntValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
@@ -119,6 +122,7 @@ namespace ApiSdk.Models {
             writer.WriteIntValue("percentComplete", PercentComplete);
             writer.WriteStringValue("planId", PlanId);
             writer.WriteEnumValue<PlannerPreviewType>("previewType", PreviewType);
+            writer.WriteIntValue("priority", Priority);
             writer.WriteObjectValue<PlannerProgressTaskBoardTaskFormat>("progressTaskBoardFormat", ProgressTaskBoardFormat);
             writer.WriteIntValue("referenceCount", ReferenceCount);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);

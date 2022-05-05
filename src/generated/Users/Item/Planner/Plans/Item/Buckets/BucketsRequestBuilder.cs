@@ -23,14 +23,14 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public List<Command> BuildCommand() {
+        public Command BuildCommand() {
+            var command = new Command("item");
             var builder = new PlannerBucketItemRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command>();
-            commands.Add(builder.BuildDeleteCommand());
-            commands.Add(builder.BuildGetCommand());
-            commands.Add(builder.BuildPatchCommand());
-            commands.Add(builder.BuildTasksCommand());
-            return commands;
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildTasksCommand());
+            return command;
         }
         public Command BuildCountCommand() {
             var command = new Command("count");
@@ -100,11 +100,11 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Collection of buckets in the plan.";
+            command.Description = "Collection of buckets in the plan. Read-only. Nullable.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -180,14 +180,14 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets {
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[14];
                 var cancellationToken = (CancellationToken) parameters[15];
                 var requestInfo = CreateGetRequestInformation(q => {
-                    q.Top = top;
-                    q.Skip = skip;
-                    if (!String.IsNullOrEmpty(search)) q.Search = search;
-                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
-                    q.Count = count;
-                    q.Orderby = orderby;
-                    q.Select = select;
-                    q.Expand = expand;
+                    q.QueryParameters.Top = top;
+                    q.QueryParameters.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    q.QueryParameters.Count = count;
+                    q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
@@ -217,33 +217,30 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
-        /// <param name="queryParameters">Request query parameters</param>
+        /// Collection of buckets in the plan. Read-only. Nullable.
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreateGetRequestInformation(Action<BucketsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (queryParameters != null) {
-                var qParams = new GetQueryParameters();
-                queryParameters.Invoke(qParams);
-                qParams.AddQueryParameters(requestInfo.QueryParameters);
+            if (requestConfiguration != null) {
+                var requestConfig = new BucketsRequestBuilderGetRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
             }
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// Create new navigation property to buckets for users
         /// <param name="body"></param>
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(PlannerBucket body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(PlannerBucket body, Action<BucketsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -251,12 +248,16 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
+            if (requestConfiguration != null) {
+                var requestConfig = new BucketsRequestBuilderPostRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Collection of buckets in the plan.</summary>
-        public class GetQueryParameters : QueryParametersBase {
+        /// <summary>Collection of buckets in the plan. Read-only. Nullable.</summary>
+        public class BucketsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
@@ -281,6 +282,36 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class BucketsRequestBuilderGetRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>Request query parameters</summary>
+            public BucketsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new BucketsRequestBuilderGetQueryParameters();
+            /// <summary>
+            /// Instantiates a new bucketsRequestBuilderGetRequestConfiguration and sets the default values.
+            /// </summary>
+            public BucketsRequestBuilderGetRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class BucketsRequestBuilderPostRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>
+            /// Instantiates a new bucketsRequestBuilderPostRequestConfiguration and sets the default values.
+            /// </summary>
+            public BucketsRequestBuilderPostRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
         }
     }
 }

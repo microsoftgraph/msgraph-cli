@@ -24,21 +24,21 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public List<Command> BuildCommand() {
+        public Command BuildCommand() {
+            var command = new Command("item");
             var builder = new AccessReviewInstanceItemRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command>();
-            commands.Add(builder.BuildAcceptRecommendationsCommand());
-            commands.Add(builder.BuildApplyDecisionsCommand());
-            commands.Add(builder.BuildBatchRecordDecisionsCommand());
-            commands.Add(builder.BuildContactedReviewersCommand());
-            commands.Add(builder.BuildDecisionsCommand());
-            commands.Add(builder.BuildDeleteCommand());
-            commands.Add(builder.BuildGetCommand());
-            commands.Add(builder.BuildPatchCommand());
-            commands.Add(builder.BuildResetDecisionsCommand());
-            commands.Add(builder.BuildSendReminderCommand());
-            commands.Add(builder.BuildStopCommand());
-            return commands;
+            command.AddCommand(builder.BuildAcceptRecommendationsCommand());
+            command.AddCommand(builder.BuildApplyDecisionsCommand());
+            command.AddCommand(builder.BuildBatchRecordDecisionsCommand());
+            command.AddCommand(builder.BuildContactedReviewersCommand());
+            command.AddCommand(builder.BuildDecisionsCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildResetDecisionsCommand());
+            command.AddCommand(builder.BuildSendReminderCommand());
+            command.AddCommand(builder.BuildStopCommand());
+            return command;
         }
         public Command BuildCountCommand() {
             var command = new Command("count");
@@ -102,11 +102,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
             return command;
         }
         /// <summary>
-        /// If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.
+        /// Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.";
+            command.Description = "Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.";
             // Create options for all the parameters
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
             };
@@ -177,14 +177,14 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
                 var cancellationToken = (CancellationToken) parameters[14];
                 var requestInfo = CreateGetRequestInformation(q => {
-                    q.Top = top;
-                    q.Skip = skip;
-                    if (!String.IsNullOrEmpty(search)) q.Search = search;
-                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
-                    q.Count = count;
-                    q.Orderby = orderby;
-                    q.Select = select;
-                    q.Expand = expand;
+                    q.QueryParameters.Top = top;
+                    q.QueryParameters.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    q.QueryParameters.Count = count;
+                    q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -213,33 +213,30 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
-        /// <param name="queryParameters">Request query parameters</param>
+        /// Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreateGetRequestInformation(Action<InstancesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (queryParameters != null) {
-                var qParams = new GetQueryParameters();
-                queryParameters.Invoke(qParams);
-                qParams.AddQueryParameters(requestInfo.QueryParameters);
+            if (requestConfiguration != null) {
+                var requestConfig = new InstancesRequestBuilderGetRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
             }
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// Create new navigation property to instances for identityGovernance
         /// <param name="body"></param>
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(AccessReviewInstance body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(AccessReviewInstance body, Action<InstancesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -247,8 +244,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
+            if (requestConfiguration != null) {
+                var requestConfig = new InstancesRequestBuilderPostRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
             return requestInfo;
         }
         /// <summary>
@@ -259,8 +260,8 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.</summary>
-        public class GetQueryParameters : QueryParametersBase {
+        /// <summary>Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.</summary>
+        public class InstancesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
@@ -285,6 +286,36 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class InstancesRequestBuilderGetRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>Request query parameters</summary>
+            public InstancesRequestBuilderGetQueryParameters QueryParameters { get; set; } = new InstancesRequestBuilderGetQueryParameters();
+            /// <summary>
+            /// Instantiates a new instancesRequestBuilderGetRequestConfiguration and sets the default values.
+            /// </summary>
+            public InstancesRequestBuilderGetRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class InstancesRequestBuilderPostRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>
+            /// Instantiates a new instancesRequestBuilderPostRequestConfiguration and sets the default values.
+            /// </summary>
+            public InstancesRequestBuilderPostRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
         }
     }
 }

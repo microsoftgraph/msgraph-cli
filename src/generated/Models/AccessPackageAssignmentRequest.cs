@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class AccessPackageAssignmentRequest : Entity, IParsable {
-        /// <summary>The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable.  Supports $expand.</summary>
+        /// <summary>The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable. Supports $expand.</summary>
         public ApiSdk.Models.AccessPackage AccessPackage { get; set; }
         /// <summary>For a requestType of UserAdd or AdminAdd, this is an access package assignment requested to be created.  For a requestType of UserRemove, AdminRemove or SystemRemove, this has the id property of an existing assignment to be removed.   Supports $expand.</summary>
         public AccessPackageAssignment Assignment { get; set; }
@@ -15,9 +15,9 @@ namespace ApiSdk.Models {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.</summary>
         public AccessPackageSubject Requestor { get; set; }
-        /// <summary>The type of the request. The possible values are: notSpecified, userAdd, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd, unknownFutureValue. A request from the user themselves would have requestType of UserAdd or UserRemove. This property cannot be changed once set.</summary>
+        /// <summary>One of UserAdd, UserRemove, AdminAdd, AdminRemove or SystemRemove. A request from the user themselves would have requestType of UserAdd or UserRemove. Read-only.</summary>
         public AccessPackageRequestType? RequestType { get; set; }
-        /// <summary>The range of dates that access is to be assigned to the requestor. This property cannot be changed once set.</summary>
+        /// <summary>The range of dates that access is to be assigned to the requestor. Read-only.</summary>
         public EntitlementManagementSchedule Schedule { get; set; }
         /// <summary>The state of the request. The possible values are: submitted, pendingApproval, delivering, delivered, deliveryFailed, denied, scheduled, canceled, partiallyDelivered, unknownFutureValue. Read-only.</summary>
         public AccessPackageRequestState? State { get; set; }

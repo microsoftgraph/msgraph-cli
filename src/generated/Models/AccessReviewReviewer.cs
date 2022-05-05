@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Name of reviewer.</summary>
         public string DisplayName { get; set; }
-        /// <summary>User principal name of the reviewer.</summary>
+        /// <summary>User principal name of the user.</summary>
         public string UserPrincipalName { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

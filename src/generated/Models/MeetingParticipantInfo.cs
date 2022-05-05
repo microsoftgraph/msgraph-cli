@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Identity information of the participant.</summary>
         public IdentitySet Identity { get; set; }
-        /// <summary>Specifies the participant&apos;s role in the meeting.  Possible values are attendee, presenter, producer, and unknownFutureValue.</summary>
+        /// <summary>Specifies the participant&apos;s role in the meeting.</summary>
         public OnlineMeetingRole? Role { get; set; }
         /// <summary>User principal name of the participant.</summary>
         public string Upn { get; set; }

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class CloudAppSecuritySessionControl : ConditionalAccessSessionControl, IParsable {
-        /// <summary>Possible values are: mcasConfigured, monitorOnly, blockDownloads, unknownFutureValue. For more information, see Deploy Conditional Access App Control for featured apps.</summary>
+        /// <summary>Possible values are: mcasConfigured, monitorOnly, blockDownloads. To learn more about these values, Deploy Conditional Access App Control for featured apps.</summary>
         public CloudAppSecuritySessionControlType? CloudAppSecurityType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

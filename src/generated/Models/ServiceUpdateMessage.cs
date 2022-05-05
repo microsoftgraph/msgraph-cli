@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public DateTimeOffset? ActionRequiredByDateTime { get; set; }
         /// <summary>A collection of serviceAnnouncementAttachments.</summary>
         public List<ServiceAnnouncementAttachment> Attachments { get; set; }
-        /// <summary>The zip file that contains all attachments for a message.</summary>
+        /// <summary>The zip file of all attachments for a message.</summary>
         public byte[] AttachmentsArchive { get; set; }
         /// <summary>The body property</summary>
         public ItemBody Body { get; set; }

@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class PlannerUser : Entity, IParsable {
         /// <summary>Read-only. Nullable. Returns the plannerTasks assigned to the user.</summary>
         public List<PlannerPlan> Plans { get; set; }
-        /// <summary>Read-only. Nullable. Returns the plannerPlans shared with the user.</summary>
+        /// <summary>Read-only. Nullable. Returns the plannerTasks assigned to the user.</summary>
         public List<PlannerTask> Tasks { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

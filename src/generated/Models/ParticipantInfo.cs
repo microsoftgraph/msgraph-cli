@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
         public string LanguageId { get; set; }
         /// <summary>The participant ID of the participant. Read-only.</summary>
         public string ParticipantId { get; set; }
-        /// <summary>The home region of the participant. This can be a country, a continent, or a larger geographic region. This does not change based on the participant&apos;s current physical location. Read-only.</summary>
+        /// <summary>The home region of the participant. This can be a country, a continent, or a larger geographic region. This does not change based on the participant&apos;s current physical location, unlike countryCode. Read-only.</summary>
         public string Region { get; set; }
         /// <summary>
         /// Instantiates a new participantInfo and sets the default values.

@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
         public string Number { get; set; }
         /// <summary>The region property</summary>
         public string Region { get; set; }
-        /// <summary>The type of phone number. The possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.</summary>
+        /// <summary>The type of phone number. Possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.</summary>
         public PhoneType? Type { get; set; }
         /// <summary>
         /// Instantiates a new phone and sets the default values.

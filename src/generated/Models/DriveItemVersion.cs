@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class DriveItemVersion : BaseItemVersion, IParsable {
-        /// <summary>The content stream for this version of the item.</summary>
+        /// <summary>The content property</summary>
         public byte[] Content { get; set; }
         /// <summary>Indicates the size of the content stream for this version of the item.</summary>
         public long? Size { get; set; }

@@ -11,11 +11,11 @@ namespace ApiSdk.Models {
         public List<ContentTypeInfo> AllowedContentTypes { get; set; }
         /// <summary>Default contents of document set.</summary>
         public List<DocumentSetContent> DefaultContents { get; set; }
-        /// <summary>Specifies whether to push welcome page changes to inherited content types.</summary>
+        /// <summary>Indicates whether to add the name of the document set to each file name.</summary>
         public bool? PropagateWelcomePageChanges { get; set; }
         /// <summary>The sharedColumns property</summary>
         public List<ColumnDefinition> SharedColumns { get; set; }
-        /// <summary>Indicates whether to add the name of the document set to each file name.</summary>
+        /// <summary>Add the name of the Document Set to each file name.</summary>
         public bool? ShouldPrefixNameToFile { get; set; }
         /// <summary>The welcomePageColumns property</summary>
         public List<ColumnDefinition> WelcomePageColumns { get; set; }

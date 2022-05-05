@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class TeamworkHostedContent : Entity, IParsable {
         /// <summary>Write only. Bytes for the hosted content (such as images).</summary>
         public byte[] ContentBytes { get; set; }
-        /// <summary>Write only. Content type. sicj as image/png, image/jpg.</summary>
+        /// <summary>Write only. Content type, such as image/png, image/jpg.</summary>
         public string ContentType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

@@ -31,80 +31,31 @@ namespace ApiSdk.Sites {
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
-        public List<Command> BuildCommand() {
+        public Command BuildCommand() {
+            var command = new Command("item");
             var builder = new SiteItemRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command>();
-            commands.Add(builder.BuildAnalyticsCommand());
-            commands.Add(builder.BuildColumnsCommand());
-            commands.Add(builder.BuildContentTypesCommand());
-            commands.Add(builder.BuildDeleteCommand());
-            commands.Add(builder.BuildDriveCommand());
-            commands.Add(builder.BuildDrivesCommand());
-            commands.Add(builder.BuildExternalColumnsCommand());
-            commands.Add(builder.BuildGetCommand());
-            commands.Add(builder.BuildItemsCommand());
-            commands.Add(builder.BuildListsCommand());
-            commands.Add(builder.BuildOnenoteCommand());
-            commands.Add(builder.BuildPatchCommand());
-            commands.Add(builder.BuildPermissionsCommand());
-            commands.Add(builder.BuildSitesCommand());
-            commands.Add(builder.BuildTermStoreCommand());
-            commands.Add(builder.BuildTermStoresCommand());
-            return commands;
+            command.AddCommand(builder.BuildAnalyticsCommand());
+            command.AddCommand(builder.BuildColumnsCommand());
+            command.AddCommand(builder.BuildContentTypesCommand());
+            command.AddCommand(builder.BuildDriveCommand());
+            command.AddCommand(builder.BuildDrivesCommand());
+            command.AddCommand(builder.BuildExternalColumnsCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildItemsCommand());
+            command.AddCommand(builder.BuildListsCommand());
+            command.AddCommand(builder.BuildOnenoteCommand());
+            command.AddCommand(builder.BuildOperationsCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPermissionsCommand());
+            command.AddCommand(builder.BuildSitesCommand());
+            command.AddCommand(builder.BuildTermStoreCommand());
+            command.AddCommand(builder.BuildTermStoresCommand());
+            return command;
         }
         public Command BuildCountCommand() {
             var command = new Command("count");
             var builder = new CountRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Add new entity to sites
-        /// </summary>
-        public Command BuildCreateCommand() {
-            var command = new Command("create");
-            command.Description = "Add new entity to sites";
-            // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var body = (string) parameters[0];
-                var output = (FormatterType) parameters[1];
-                var query = (string) parameters[2];
-                var jsonNoIndent = (bool) parameters[3];
-                var outputFilter = (IOutputFilter) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Site>(ApiSdk.Models.Site.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
-                });
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -178,14 +129,14 @@ namespace ApiSdk.Sites {
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[12];
                 var cancellationToken = (CancellationToken) parameters[13];
                 var requestInfo = CreateGetRequestInformation(q => {
-                    q.Top = top;
-                    q.Skip = skip;
-                    if (!String.IsNullOrEmpty(search)) q.Search = search;
-                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
-                    q.Count = count;
-                    q.Orderby = orderby;
-                    q.Select = select;
-                    q.Expand = expand;
+                    q.QueryParameters.Top = top;
+                    q.QueryParameters.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    q.QueryParameters.Count = count;
+                    q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -220,45 +171,25 @@ namespace ApiSdk.Sites {
         }
         /// <summary>
         /// Get entities from sites
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
-        /// <param name="queryParameters">Request query parameters</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreateGetRequestInformation(Action<SitesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (queryParameters != null) {
-                var qParams = new GetQueryParameters();
-                queryParameters.Invoke(qParams);
-                qParams.AddQueryParameters(requestInfo.QueryParameters);
+            if (requestConfiguration != null) {
+                var requestConfig = new SitesRequestBuilderGetRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
             }
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
-            return requestInfo;
-        }
-        /// <summary>
-        /// Add new entity to sites
-        /// <param name="body"></param>
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
-        /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Models.Site body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>Get entities from sites</summary>
-        public class GetQueryParameters : QueryParametersBase {
+        public class SitesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
@@ -283,6 +214,22 @@ namespace ApiSdk.Sites {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class SitesRequestBuilderGetRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>Request query parameters</summary>
+            public SitesRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SitesRequestBuilderGetQueryParameters();
+            /// <summary>
+            /// Instantiates a new sitesRequestBuilderGetRequestConfiguration and sets the default values.
+            /// </summary>
+            public SitesRequestBuilderGetRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
         }
     }
 }

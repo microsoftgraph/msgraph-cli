@@ -7,11 +7,11 @@ namespace ApiSdk.Models {
     public class AppIdentity : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Refers to the Unique GUID representing Application Id in the Azure Active Directory.</summary>
+        /// <summary>Refers to the unique identifier representing Application Id in the Azure Active Directory.</summary>
         public string AppId { get; set; }
         /// <summary>Refers to the Application Name displayed in the Azure Portal.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Refers to the Unique GUID indicating Service Principal Id in Azure Active Directory for the corresponding App.</summary>
+        /// <summary>Refers to the unique identifier indicating Service Principal Id in Azure Active Directory for the corresponding App.</summary>
         public string ServicePrincipalId { get; set; }
         /// <summary>Refers to the Service Principal Name is the Application name in the tenant.</summary>
         public string ServicePrincipalName { get; set; }

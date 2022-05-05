@@ -27,7 +27,7 @@ namespace ApiSdk.Models {
         public bool? IsHiddenFromCustomers { get; set; }
         /// <summary>True indicates that the appointments for the service will be held online. Default value is false.</summary>
         public bool? IsLocationOnline { get; set; }
-        /// <summary>The maximum number of customers allowed in a service. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment. To create a customer, use the Create bookingCustomer operation.</summary>
+        /// <summary>The maximum number of customers allowed in a service. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment.  To create a customer, use the Create bookingCustomer operation.</summary>
         public int? MaximumAttendeesCount { get; set; }
         /// <summary>Additional information about this service.</summary>
         public string Notes { get; set; }

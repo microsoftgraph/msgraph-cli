@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class PrintTask : Entity, IParsable {
         /// <summary>The definition property</summary>
         public PrintTaskDefinition Definition { get; set; }
-        /// <summary>The URL for the print entity that triggered this task. For example, https://graph.microsoft.com/v1.0/print/printers/{printerId}/jobs/{jobId}. Read-only.</summary>
+        /// <summary>The URL for the print entity that triggered this task. For example, https://graph.microsoft.com/beta/print/printers/{printerId}/jobs/{jobId}. Read-only.</summary>
         public string ParentUrl { get; set; }
         /// <summary>The status property</summary>
         public PrintTaskStatus Status { get; set; }

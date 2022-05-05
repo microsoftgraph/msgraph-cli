@@ -9,9 +9,9 @@ namespace ApiSdk.Models {
         public DateTimeOffset? RecipientActionDateTime { get; set; }
         /// <summary>Custom message sent by recipient of the offer shift request.</summary>
         public string RecipientActionMessage { get; set; }
-        /// <summary>User ID of the recipient of the offer shift request.</summary>
+        /// <summary>User id of the recipient of the offer shift request.</summary>
         public string RecipientUserId { get; set; }
-        /// <summary>User ID of the sender of the offer shift request.</summary>
+        /// <summary>User id of the sender of the offer shift request.</summary>
         public string SenderShiftId { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

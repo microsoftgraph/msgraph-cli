@@ -9,9 +9,9 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Optional. The altitude (height), in feet,  above sea level for the item. Read-only.</summary>
         public double? Altitude { get; set; }
-        /// <summary>Optional. The latitude, in decimal, for the item. Read-only.</summary>
+        /// <summary>Optional. The latitude, in decimal, for the item. Writable on OneDrive Personal.</summary>
         public double? Latitude { get; set; }
-        /// <summary>Optional. The longitude, in decimal, for the item. Read-only.</summary>
+        /// <summary>Optional. The longitude, in decimal, for the item. Writable on OneDrive Personal.</summary>
         public double? Longitude { get; set; }
         /// <summary>
         /// Instantiates a new geoCoordinates and sets the default values.

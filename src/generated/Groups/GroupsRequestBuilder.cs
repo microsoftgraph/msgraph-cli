@@ -27,54 +27,54 @@ namespace ApiSdk.Groups {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public List<Command> BuildCommand() {
+        public Command BuildCommand() {
+            var command = new Command("item");
             var builder = new GroupItemRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command>();
-            commands.Add(builder.BuildAcceptedSendersCommand());
-            commands.Add(builder.BuildAddFavoriteCommand());
-            commands.Add(builder.BuildAppRoleAssignmentsCommand());
-            commands.Add(builder.BuildAssignLicenseCommand());
-            commands.Add(builder.BuildCalendarCommand());
-            commands.Add(builder.BuildCalendarViewCommand());
-            commands.Add(builder.BuildCheckGrantedPermissionsForAppCommand());
-            commands.Add(builder.BuildCheckMemberGroupsCommand());
-            commands.Add(builder.BuildCheckMemberObjectsCommand());
-            commands.Add(builder.BuildConversationsCommand());
-            commands.Add(builder.BuildCreatedOnBehalfOfCommand());
-            commands.Add(builder.BuildDeleteCommand());
-            commands.Add(builder.BuildDriveCommand());
-            commands.Add(builder.BuildDrivesCommand());
-            commands.Add(builder.BuildEventsCommand());
-            commands.Add(builder.BuildExtensionsCommand());
-            commands.Add(builder.BuildGetCommand());
-            commands.Add(builder.BuildGetMemberGroupsCommand());
-            commands.Add(builder.BuildGetMemberObjectsCommand());
-            commands.Add(builder.BuildGroupLifecyclePoliciesCommand());
-            commands.Add(builder.BuildMemberOfCommand());
-            commands.Add(builder.BuildMembersCommand());
-            commands.Add(builder.BuildMembersWithLicenseErrorsCommand());
-            commands.Add(builder.BuildOnenoteCommand());
-            commands.Add(builder.BuildOwnersCommand());
-            commands.Add(builder.BuildPatchCommand());
-            commands.Add(builder.BuildPermissionGrantsCommand());
-            commands.Add(builder.BuildPhotoCommand());
-            commands.Add(builder.BuildPhotosCommand());
-            commands.Add(builder.BuildPlannerCommand());
-            commands.Add(builder.BuildRejectedSendersCommand());
-            commands.Add(builder.BuildRemoveFavoriteCommand());
-            commands.Add(builder.BuildRenewCommand());
-            commands.Add(builder.BuildResetUnseenCountCommand());
-            commands.Add(builder.BuildRestoreCommand());
-            commands.Add(builder.BuildSettingsCommand());
-            commands.Add(builder.BuildSitesCommand());
-            commands.Add(builder.BuildSubscribeByMailCommand());
-            commands.Add(builder.BuildTeamCommand());
-            commands.Add(builder.BuildThreadsCommand());
-            commands.Add(builder.BuildTransitiveMemberOfCommand());
-            commands.Add(builder.BuildTransitiveMembersCommand());
-            commands.Add(builder.BuildUnsubscribeByMailCommand());
-            commands.Add(builder.BuildValidatePropertiesCommand());
-            return commands;
+            command.AddCommand(builder.BuildAcceptedSendersCommand());
+            command.AddCommand(builder.BuildAddFavoriteCommand());
+            command.AddCommand(builder.BuildAppRoleAssignmentsCommand());
+            command.AddCommand(builder.BuildAssignLicenseCommand());
+            command.AddCommand(builder.BuildCalendarCommand());
+            command.AddCommand(builder.BuildCalendarViewCommand());
+            command.AddCommand(builder.BuildCheckGrantedPermissionsForAppCommand());
+            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
+            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
+            command.AddCommand(builder.BuildConversationsCommand());
+            command.AddCommand(builder.BuildCreatedOnBehalfOfCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDriveCommand());
+            command.AddCommand(builder.BuildDrivesCommand());
+            command.AddCommand(builder.BuildEventsCommand());
+            command.AddCommand(builder.BuildExtensionsCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildGetMemberGroupsCommand());
+            command.AddCommand(builder.BuildGetMemberObjectsCommand());
+            command.AddCommand(builder.BuildGroupLifecyclePoliciesCommand());
+            command.AddCommand(builder.BuildMemberOfCommand());
+            command.AddCommand(builder.BuildMembersCommand());
+            command.AddCommand(builder.BuildMembersWithLicenseErrorsCommand());
+            command.AddCommand(builder.BuildOnenoteCommand());
+            command.AddCommand(builder.BuildOwnersCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPermissionGrantsCommand());
+            command.AddCommand(builder.BuildPhotoCommand());
+            command.AddCommand(builder.BuildPhotosCommand());
+            command.AddCommand(builder.BuildPlannerCommand());
+            command.AddCommand(builder.BuildRejectedSendersCommand());
+            command.AddCommand(builder.BuildRemoveFavoriteCommand());
+            command.AddCommand(builder.BuildRenewCommand());
+            command.AddCommand(builder.BuildResetUnseenCountCommand());
+            command.AddCommand(builder.BuildRestoreCommand());
+            command.AddCommand(builder.BuildSettingsCommand());
+            command.AddCommand(builder.BuildSitesCommand());
+            command.AddCommand(builder.BuildSubscribeByMailCommand());
+            command.AddCommand(builder.BuildTeamCommand());
+            command.AddCommand(builder.BuildThreadsCommand());
+            command.AddCommand(builder.BuildTransitiveMemberOfCommand());
+            command.AddCommand(builder.BuildTransitiveMembersCommand());
+            command.AddCommand(builder.BuildUnsubscribeByMailCommand());
+            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            return command;
         }
         public Command BuildCountCommand() {
             var command = new Command("count");
@@ -219,14 +219,14 @@ namespace ApiSdk.Groups {
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
                 var cancellationToken = (CancellationToken) parameters[14];
                 var requestInfo = CreateGetRequestInformation(q => {
-                    q.Top = top;
-                    q.Skip = skip;
-                    if (!String.IsNullOrEmpty(search)) q.Search = search;
-                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
-                    q.Count = count;
-                    q.Orderby = orderby;
-                    q.Select = select;
-                    q.Expand = expand;
+                    q.QueryParameters.Top = top;
+                    q.QueryParameters.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    q.QueryParameters.Count = count;
+                    q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -262,32 +262,29 @@ namespace ApiSdk.Groups {
         }
         /// <summary>
         /// Get entities from groups
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
-        /// <param name="queryParameters">Request query parameters</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreateGetRequestInformation(Action<GroupsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (queryParameters != null) {
-                var qParams = new GetQueryParameters();
-                queryParameters.Invoke(qParams);
-                qParams.AddQueryParameters(requestInfo.QueryParameters);
+            if (requestConfiguration != null) {
+                var requestConfig = new GroupsRequestBuilderGetRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
             }
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// Add new entity to groups
         /// <param name="body"></param>
-        /// <param name="headers">Request headers</param>
-        /// <param name="options">Request options</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ApiSdk.Models.Group body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
+        public RequestInformation CreatePostRequestInformation(ApiSdk.Models.Group body, Action<GroupsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -295,8 +292,12 @@ namespace ApiSdk.Groups {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            headers?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(options?.ToArray());
+            if (requestConfiguration != null) {
+                var requestConfig = new GroupsRequestBuilderPostRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
             return requestInfo;
         }
         /// <summary>
@@ -306,7 +307,7 @@ namespace ApiSdk.Groups {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Get entities from groups</summary>
-        public class GetQueryParameters : QueryParametersBase {
+        public class GroupsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
@@ -331,6 +332,36 @@ namespace ApiSdk.Groups {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class GroupsRequestBuilderGetRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>Request query parameters</summary>
+            public GroupsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new GroupsRequestBuilderGetQueryParameters();
+            /// <summary>
+            /// Instantiates a new groupsRequestBuilderGetRequestConfiguration and sets the default values.
+            /// </summary>
+            public GroupsRequestBuilderGetRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
+        }
+        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        public class GroupsRequestBuilderPostRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public IDictionary<string, string> Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>
+            /// Instantiates a new groupsRequestBuilderPostRequestConfiguration and sets the default values.
+            /// </summary>
+            public GroupsRequestBuilderPostRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new Dictionary<string, string>();
+            }
         }
     }
 }
