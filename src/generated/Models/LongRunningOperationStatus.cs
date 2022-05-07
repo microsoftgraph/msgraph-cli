@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of group entities.</summary>
+    /// <summary>Provides operations to manage the drive singleton.</summary>
     public enum LongRunningOperationStatus {
         NotStarted,
         Running,
