@@ -13,11 +13,11 @@ mgc organization list --select "DisplayName, City, State, Country, PostalCode, B
 ### List application registrations in the tenant
 
 ```sh
-mgc organization list --select "DisplayName, id, SignInAudience"
+mgc applications list --select "DisplayName, id, SignInAudience"
 ```
 
 ### List service principals in the tenant
 
 ```sh
-mgc organization list --select "id, AppDisplayName" --query "value[?contains(appDisplayName, 'powershell')]"
+mgc service-principals list --select "id, AppDisplayName" --query "value[?contains(appDisplayName, 'powershell')]"
 ```
