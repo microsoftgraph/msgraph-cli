@@ -28,8 +28,8 @@ RUN apk add --no-cache libsecret dbus gnome-keyring libcap &&\
     dbus-uuidgen > /var/lib/dbus/machine-id &&\
     setcap cap_ipc_lock=+ep $(which gnome-keyring-daemon)
 
-RUN addgroup mgc &&\
-    adduser -D -G mgc -h /app mgc
+# TODO: Find work-around for running image as a non-root user.
+# Docker doesn't support adding capabilities to non-root users. See https://training.play-with-docker.com/security-capabilities/
 
 WORKDIR /app
 
@@ -37,9 +37,7 @@ COPY --from=build-env /app/output ./dist
 
 RUN ln -s /app/dist/mgc /usr/bin/mgc
 
-USER mgc
-
-COPY --chown=mgc:mgc ./docker/* ./dist/
+COPY ./docker/* ./dist/
 
 RUN mkdir -p /app/.mgc /app/.local/share/.IdentityService /app/.local/share/keyrings &&\
     chmod +x /app/dist/init.sh
