@@ -39,10 +39,10 @@ RUN ln -s /app/dist/mgc /usr/bin/mgc
 
 COPY ./docker/* ./dist/
 
-RUN mkdir -p /app/.mgc /app/.local/share/.IdentityService /app/.local/share/keyrings &&\
+RUN mkdir -p /root/.mgc /root/.local/share/.IdentityService /root/.local/share/keyrings &&\
     chmod +x /app/dist/init.sh
 
-VOLUME [ "/app/.mgc", "/app/.local/share/.IdentityService", "/app/.local/share/keyrings" ]
+VOLUME [ "/root/.mgc", "/root/.local/share/.IdentityService", "/root/.local/share/keyrings" ]
 
 ENTRYPOINT ["./dist/init.sh"]
 
