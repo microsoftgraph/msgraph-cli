@@ -9,6 +9,6 @@ services:
     environment:
       - KEYRING_PASSWORD=changeit
     volumes:
-      - ./tmp/.mgc:/app/.mgc
-      - ./tmp/.IdentityService:/app/.local/share/.IdentityService
-      - ./tmp/keyrings:/app/.local/share/keyrings
+      - ./tmp/.mgc:/root/.mgc
+      - ./tmp/.IdentityService:/root/.local/share/.IdentityService
+      - ./tmp/keyrings:/root/.local/share/keyrings
