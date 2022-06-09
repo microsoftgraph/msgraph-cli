@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AccessReviewScheduleDefinition : Entity, IParsable {
         /// <summary>Defines the list of additional users or group members to be notified of the access review progress.</summary>
         public List<AccessReviewNotificationRecipientItem> AdditionalNotificationRecipients { get; set; }
@@ -31,6 +32,8 @@ namespace ApiSdk.Models {
         public AccessReviewScope Scope { get; set; }
         /// <summary>The settings for an access review series, see type definition below. Supports $select. Required on create.</summary>
         public AccessReviewScheduleSettings Settings { get; set; }
+        /// <summary>Required only for a multi-stage access review to define the stages and their settings. You can break down each review instance into up to three sequential stages, where each stage can have a different set of reviewers, fallback reviewers, and settings. Stages will be created sequentially based on the dependsOn property. Optional.  When this property is defined, its settings are used instead of the corresponding settings in the accessReviewScheduleDefinition object and its settings, reviewers, and fallbackReviewers properties.</summary>
+        public List<AccessReviewStageSettings> StageSettings { get; set; }
         /// <summary>This read-only field specifies the status of an access review. The typical states include Initializing, NotStarted, Starting, InProgress, Completing, Completed, AutoReviewing, and AutoReviewed.  Supports $select, $orderby, and $filter (eq only). Read-only.</summary>
         public string Status { get; set; }
         /// <summary>
@@ -59,6 +62,7 @@ namespace ApiSdk.Models {
                 {"reviewers", n => { Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue).ToList(); } },
                 {"scope", n => { Scope = n.GetObjectValue<AccessReviewScope>(AccessReviewScope.CreateFromDiscriminatorValue); } },
                 {"settings", n => { Settings = n.GetObjectValue<AccessReviewScheduleSettings>(AccessReviewScheduleSettings.CreateFromDiscriminatorValue); } },
+                {"stageSettings", n => { StageSettings = n.GetCollectionOfObjectValues<AccessReviewStageSettings>(AccessReviewStageSettings.CreateFromDiscriminatorValue).ToList(); } },
                 {"status", n => { Status = n.GetStringValue(); } },
             };
         }
@@ -82,6 +86,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<AccessReviewReviewerScope>("reviewers", Reviewers);
             writer.WriteObjectValue<AccessReviewScope>("scope", Scope);
             writer.WriteObjectValue<AccessReviewScheduleSettings>("settings", Settings);
+            writer.WriteCollectionOfObjectValues<AccessReviewStageSettings>("stageSettings", StageSettings);
             writer.WriteStringValue("status", Status);
         }
     }

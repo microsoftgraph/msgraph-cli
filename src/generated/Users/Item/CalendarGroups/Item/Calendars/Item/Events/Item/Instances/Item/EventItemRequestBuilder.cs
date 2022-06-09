@@ -12,9 +12,10 @@ using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Instances
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Item.TentativelyAccept;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -98,14 +99,14 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var calendarGroupId = (string) parameters[1];
-                var calendarId = (string) parameters[2];
-                var eventId = (string) parameters[3];
-                var eventId1 = (string) parameters[4];
-                var ifMatch = (string) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var calendarGroupId = invocationContext.ParseResult.GetValueForOption(calendarGroupIdOption);
+                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
+                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
+                var eventId1 = invocationContext.ParseResult.GetValueForOption(eventId1Option);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
@@ -120,7 +121,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -189,19 +190,19 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var calendarGroupId = (string) parameters[1];
-                var calendarId = (string) parameters[2];
-                var eventId = (string) parameters[3];
-                var eventId1 = (string) parameters[4];
-                var select = (string[]) parameters[5];
-                var output = (FormatterType) parameters[6];
-                var query = (string) parameters[7];
-                var jsonNoIndent = (bool) parameters[8];
-                var outputFilter = (IOutputFilter) parameters[9];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
-                var cancellationToken = (CancellationToken) parameters[11];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var calendarGroupId = invocationContext.ParseResult.GetValueForOption(calendarGroupIdOption);
+                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
+                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
+                var eventId1 = invocationContext.ParseResult.GetValueForOption(eventId1Option);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
@@ -219,7 +220,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, selectOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildMultiValueExtendedPropertiesCommand() {
@@ -262,14 +263,14 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var calendarGroupId = (string) parameters[1];
-                var calendarId = (string) parameters[2];
-                var eventId = (string) parameters[3];
-                var eventId1 = (string) parameters[4];
-                var body = (string) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var calendarGroupId = invocationContext.ParseResult.GetValueForOption(calendarGroupIdOption);
+                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
+                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
+                var eventId1 = invocationContext.ParseResult.GetValueForOption(eventId1Option);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Event>(Event.CreateFromDiscriminatorValue);
@@ -286,7 +287,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {
@@ -351,6 +352,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new EventItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

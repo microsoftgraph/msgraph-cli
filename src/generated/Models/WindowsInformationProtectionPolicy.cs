@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Policy for Windows information protection without MDM</summary>
     public class WindowsInformationProtectionPolicy : WindowsInformationProtection, IParsable {
         /// <summary>Offline interval before app data is wiped (days)</summary>
         public int? DaysWithoutContactBeforeUnenroll { get; set; }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the informationProtection singleton.</summary>
     public class BitlockerRecoveryKey : Entity, IParsable {
         /// <summary>The date and time when the key was originally backed up to Azure Active Directory.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }

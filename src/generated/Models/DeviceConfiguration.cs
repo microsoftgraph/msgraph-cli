@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Device Configuration.</summary>
     public class DeviceConfiguration : Entity, IParsable {
         /// <summary>The list of assignments for the device configuration profile.</summary>
         public List<DeviceConfigurationAssignment> Assignments { get; set; }
@@ -33,7 +34,35 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new DeviceConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceConfiguration();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.androidCustomConfiguration" => new AndroidCustomConfiguration(),
+                "#microsoft.graph.androidGeneralDeviceConfiguration" => new AndroidGeneralDeviceConfiguration(),
+                "#microsoft.graph.androidWorkProfileCustomConfiguration" => new AndroidWorkProfileCustomConfiguration(),
+                "#microsoft.graph.androidWorkProfileGeneralDeviceConfiguration" => new AndroidWorkProfileGeneralDeviceConfiguration(),
+                "#microsoft.graph.appleDeviceFeaturesConfigurationBase" => new AppleDeviceFeaturesConfigurationBase(),
+                "#microsoft.graph.editionUpgradeConfiguration" => new EditionUpgradeConfiguration(),
+                "#microsoft.graph.iosCertificateProfile" => new IosCertificateProfile(),
+                "#microsoft.graph.iosCustomConfiguration" => new IosCustomConfiguration(),
+                "#microsoft.graph.iosGeneralDeviceConfiguration" => new IosGeneralDeviceConfiguration(),
+                "#microsoft.graph.iosUpdateConfiguration" => new IosUpdateConfiguration(),
+                "#microsoft.graph.macOSCustomConfiguration" => new MacOSCustomConfiguration(),
+                "#microsoft.graph.macOSGeneralDeviceConfiguration" => new MacOSGeneralDeviceConfiguration(),
+                "#microsoft.graph.sharedPCConfiguration" => new SharedPCConfiguration(),
+                "#microsoft.graph.windows10CustomConfiguration" => new Windows10CustomConfiguration(),
+                "#microsoft.graph.windows10EndpointProtectionConfiguration" => new Windows10EndpointProtectionConfiguration(),
+                "#microsoft.graph.windows10EnterpriseModernAppManagementConfiguration" => new Windows10EnterpriseModernAppManagementConfiguration(),
+                "#microsoft.graph.windows10GeneralConfiguration" => new Windows10GeneralConfiguration(),
+                "#microsoft.graph.windows10SecureAssessmentConfiguration" => new Windows10SecureAssessmentConfiguration(),
+                "#microsoft.graph.windows10TeamGeneralConfiguration" => new Windows10TeamGeneralConfiguration(),
+                "#microsoft.graph.windows81GeneralConfiguration" => new Windows81GeneralConfiguration(),
+                "#microsoft.graph.windowsDefenderAdvancedThreatProtectionConfiguration" => new WindowsDefenderAdvancedThreatProtectionConfiguration(),
+                "#microsoft.graph.windowsPhone81CustomConfiguration" => new WindowsPhone81CustomConfiguration(),
+                "#microsoft.graph.windowsPhone81GeneralConfiguration" => new WindowsPhone81GeneralConfiguration(),
+                "#microsoft.graph.windowsUpdateForBusinessConfiguration" => new WindowsUpdateForBusinessConfiguration(),
+                _ => new DeviceConfiguration(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

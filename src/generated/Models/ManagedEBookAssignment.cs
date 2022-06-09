@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Contains properties used to assign a eBook to a group.</summary>
     public class ManagedEBookAssignment : Entity, IParsable {
         /// <summary>The install intent for eBook. Possible values are: available, required, uninstall, availableWithoutEnrollment.</summary>
         public ApiSdk.Models.InstallIntent? InstallIntent { get; set; }
@@ -15,7 +16,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ManagedEBookAssignment CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedEBookAssignment();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.iosVppEBookAssignment" => new IosVppEBookAssignment(),
+                _ => new ManagedEBookAssignment(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

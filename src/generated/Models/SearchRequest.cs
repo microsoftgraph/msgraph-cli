@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         /// <summary>This triggers hybrid sort for messages: the first 3 messages are the most relevant. This property is only applicable to entityType=message. Optional.</summary>
         public bool? EnableTopResults { get; set; }
         /// <summary>One or more types of resources expected in the response. Possible values are: list, site, listItem, message, event, drive, driveItem, person, externalItem. See known limitations for those combinations of two or more entity types that are supported in the same search request. Required.</summary>
-        public List<EntityType?> EntityTypes { get; set; }
+        public List<string> EntityTypes { get; set; }
         /// <summary>Contains the fields to be returned for each resource object specified in entityTypes, allowing customization of the fields returned by default otherwise, including additional fields such as custom managed properties from SharePoint and OneDrive, or custom fields in externalItem from content that Microsoft Graph connectors bring in. The fields property can be using the semantic labels applied to properties. For example, if a property is label as title, you can retrieve it using the following syntax : label_title.Optional.</summary>
         public List<string> Fields { get; set; }
         /// <summary>Specifies the offset for the search results. Offset 0 returns the very first result. Optional.</summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Models {
                 {"aggregations", n => { Aggregations = n.GetCollectionOfObjectValues<AggregationOption>(AggregationOption.CreateFromDiscriminatorValue).ToList(); } },
                 {"contentSources", n => { ContentSources = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"enableTopResults", n => { EnableTopResults = n.GetBoolValue(); } },
-                {"entityTypes", n => { EntityTypes = n.GetCollectionOfEnumValues<EntityType>().ToList(); } },
+                {"entityTypes", n => { EntityTypes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"fields", n => { Fields = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"from", n => { From = n.GetIntValue(); } },
                 {"query", n => { Query = n.GetObjectValue<SearchQuery>(SearchQuery.CreateFromDiscriminatorValue); } },
@@ -74,7 +74,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<AggregationOption>("aggregations", Aggregations);
             writer.WriteCollectionOfPrimitiveValues<string>("contentSources", ContentSources);
             writer.WriteBoolValue("enableTopResults", EnableTopResults);
-            writer.WriteCollectionOfEnumValues<EntityType>("entityTypes", EntityTypes);
+            writer.WriteCollectionOfPrimitiveValues<string>("entityTypes", EntityTypes);
             writer.WriteCollectionOfPrimitiveValues<string>("fields", Fields);
             writer.WriteIntValue("from", From);
             writer.WriteObjectValue<SearchQuery>("query", Query);

@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the print singleton.</summary>
     public class PrintJob : Entity, IParsable {
         /// <summary>The configuration property</summary>
         public PrintJobConfiguration Configuration { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The createdBy property</summary>
         public UserIdentity CreatedBy { get; set; }
         /// <summary>The DateTimeOffset when the job was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Read-only.</summary>
+        /// <summary>The documents property</summary>
         public List<PrintDocument> Documents { get; set; }
         /// <summary>If true, document can be fetched by printer.</summary>
         public bool? IsFetchable { get; set; }

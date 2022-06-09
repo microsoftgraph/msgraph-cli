@@ -1,9 +1,10 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Subscriptions.Item.Reauthorize;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,11 @@ namespace ApiSdk.Subscriptions.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from subscriptions
+        /// Delete a subscription. For the list of resources that support subscribing to change notifications, see the table in the Permissions section.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from subscriptions";
+            command.Description = "Delete a subscription. For the list of resources that support subscribing to change notifications, see the table in the Permissions section.";
             // Create options for all the parameters
             var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
             };
@@ -37,10 +38,10 @@ namespace ApiSdk.Subscriptions.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var subscriptionId = (string) parameters[0];
-                var ifMatch = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var subscriptionId = invocationContext.ParseResult.GetValueForOption(subscriptionIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("subscription%2Did", subscriptionId);
@@ -51,15 +52,15 @@ namespace ApiSdk.Subscriptions.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(subscriptionIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
-        /// Get entity from subscriptions by key
+        /// Retrieve the properties and relationships of a subscription. See the table in the Permissions section for the list of resources that support subscribing to change notifications.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from subscriptions by key";
+            command.Description = "Retrieve the properties and relationships of a subscription. See the table in the Permissions section for the list of resources that support subscribing to change notifications.";
             // Create options for all the parameters
             var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
             };
@@ -83,15 +84,15 @@ namespace ApiSdk.Subscriptions.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var subscriptionId = (string) parameters[0];
-                var select = (string[]) parameters[1];
-                var output = (FormatterType) parameters[2];
-                var query = (string) parameters[3];
-                var jsonNoIndent = (bool) parameters[4];
-                var outputFilter = (IOutputFilter) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+            command.SetHandler(async (invocationContext) => {
+                var subscriptionId = invocationContext.ParseResult.GetValueForOption(subscriptionIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
@@ -105,15 +106,15 @@ namespace ApiSdk.Subscriptions.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(subscriptionIdOption, selectOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
-        /// Update entity in subscriptions
+        /// Renew a subscription by extending its expiry time. The table in the Permissions section lists the resources that support subscribing to change notifications. Subscriptions expire after a length of time that varies by resource type. In order to avoid missing change notifications, an app should renew its subscriptions well in advance of their expiry date. See subscription for maximum length of a subscription for each resource type.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in subscriptions";
+            command.Description = "Renew a subscription by extending its expiry time. The table in the Permissions section lists the resources that support subscribing to change notifications. Subscriptions expire after a length of time that varies by resource type. In order to avoid missing change notifications, an app should renew its subscriptions well in advance of their expiry date. See subscription for maximum length of a subscription for each resource type.";
             // Create options for all the parameters
             var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
             };
@@ -123,10 +124,10 @@ namespace ApiSdk.Subscriptions.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var subscriptionId = (string) parameters[0];
-                var body = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var subscriptionId = invocationContext.ParseResult.GetValueForOption(subscriptionIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Subscription>(Subscription.CreateFromDiscriminatorValue);
@@ -139,7 +140,7 @@ namespace ApiSdk.Subscriptions.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(subscriptionIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildReauthorizeCommand() {
@@ -162,7 +163,7 @@ namespace ApiSdk.Subscriptions.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from subscriptions
+        /// Delete a subscription. For the list of resources that support subscribing to change notifications, see the table in the Permissions section.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<SubscriptionItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
@@ -180,7 +181,7 @@ namespace ApiSdk.Subscriptions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from subscriptions by key
+        /// Retrieve the properties and relationships of a subscription. See the table in the Permissions section for the list of resources that support subscribing to change notifications.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SubscriptionItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -189,6 +190,7 @@ namespace ApiSdk.Subscriptions.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new SubscriptionItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -199,7 +201,7 @@ namespace ApiSdk.Subscriptions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in subscriptions
+        /// Renew a subscription by extending its expiry time. The table in the Permissions section lists the resources that support subscribing to change notifications. Subscriptions expire after a length of time that varies by resource type. In order to avoid missing change notifications, an app should renew its subscriptions well in advance of their expiry date. See subscription for maximum length of a subscription for each resource type.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -233,7 +235,7 @@ namespace ApiSdk.Subscriptions.Item {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get entity from subscriptions by key</summary>
+        /// <summary>Retrieve the properties and relationships of a subscription. See the table in the Permissions section for the list of resources that support subscribing to change notifications.</summary>
         public class SubscriptionItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
             [QueryParameter("%24select")]

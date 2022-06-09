@@ -11,11 +11,11 @@ namespace ApiSdk.Models {
         public bool? Hidden { get; set; }
         /// <summary>The identity property</summary>
         public IdentitySet Identity { get; set; }
-        /// <summary>The participantId property</summary>
+        /// <summary>Optional. The ID of the target participant.</summary>
         public string ParticipantId { get; set; }
         /// <summary>The removeFromDefaultAudioRoutingGroup property</summary>
         public bool? RemoveFromDefaultAudioRoutingGroup { get; set; }
-        /// <summary>Optional. The call which the target idenity is currently a part of. This call will be dropped once the participant is added.</summary>
+        /// <summary>Optional. The call which the target identity is currently a part of. For peer-to-peer case, the call will be dropped once the participant is added successfully.</summary>
         public string ReplacesCallId { get; set; }
         /// <summary>
         /// Instantiates a new invitationParticipantInfo and sets the default values.

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Casts the previous resource to group.</summary>
     public class GroupSetting : Entity, IParsable {
         /// <summary>Display name of this group of settings, which comes from the associated template.</summary>
         public string DisplayName { get; set; }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartPoint : Entity, IParsable {
         /// <summary>Encapsulates the format properties chart point. Read-only.</summary>
         public WorkbookChartPointFormat Format { get; set; }

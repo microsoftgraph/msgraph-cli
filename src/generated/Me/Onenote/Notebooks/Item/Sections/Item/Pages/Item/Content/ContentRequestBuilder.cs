@@ -1,7 +1,8 @@
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -41,12 +42,12 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Content {
             command.AddOption(onenotePageIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            command.SetHandler(async (object[] parameters) => {
-                var notebookId = (string) parameters[0];
-                var onenoteSectionId = (string) parameters[1];
-                var onenotePageId = (string) parameters[2];
-                var file = (FileInfo) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+            command.SetHandler(async (invocationContext) => {
+                var notebookId = invocationContext.ParseResult.GetValueForOption(notebookIdOption);
+                var onenoteSectionId = invocationContext.ParseResult.GetValueForOption(onenoteSectionIdOption);
+                var onenotePageId = invocationContext.ParseResult.GetValueForOption(onenotePageIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("notebook%2Did", notebookId);
@@ -67,7 +68,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Content {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(notebookIdOption, onenoteSectionIdOption, onenotePageIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -89,16 +90,16 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Content {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            var fileOption = new Option<FileInfo>("--file", description: "Binary request body") {
             };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var notebookId = (string) parameters[0];
-                var onenoteSectionId = (string) parameters[1];
-                var onenotePageId = (string) parameters[2];
-                var file = (FileInfo) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
+            command.SetHandler(async (invocationContext) => {
+                var notebookId = invocationContext.ParseResult.GetValueForOption(notebookIdOption);
+                var onenoteSectionId = invocationContext.ParseResult.GetValueForOption(onenoteSectionIdOption);
+                var onenotePageId = invocationContext.ParseResult.GetValueForOption(onenotePageIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
@@ -111,7 +112,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Content {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(notebookIdOption, onenoteSectionIdOption, onenotePageIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>

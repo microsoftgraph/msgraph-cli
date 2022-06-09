@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of certificateBasedAuthConfiguration entities.</summary>
     public class CertificateBasedAuthConfiguration : Entity, IParsable {
         /// <summary>Collection of certificate authorities which creates a trusted certificate chain.</summary>
         public List<CertificateAuthority> CertificateAuthorities { get; set; }

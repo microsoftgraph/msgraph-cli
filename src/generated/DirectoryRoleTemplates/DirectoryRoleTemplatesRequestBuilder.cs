@@ -5,9 +5,10 @@ using ApiSdk.DirectoryRoleTemplates.Item;
 using ApiSdk.DirectoryRoleTemplates.ValidateProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -69,14 +70,14 @@ namespace ApiSdk.DirectoryRoleTemplates {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var body = (string) parameters[0];
-                var output = (FormatterType) parameters[1];
-                var query = (string) parameters[2];
-                var jsonNoIndent = (bool) parameters[3];
-                var outputFilter = (IOutputFilter) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+            command.SetHandler(async (invocationContext) => {
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DirectoryRoleTemplate>(DirectoryRoleTemplate.CreateFromDiscriminatorValue);
@@ -91,7 +92,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildGetAvailableExtensionPropertiesCommand() {
@@ -107,11 +108,11 @@ namespace ApiSdk.DirectoryRoleTemplates {
             return command;
         }
         /// <summary>
-        /// Get entities from directoryRoleTemplates
+        /// Retrieve a list of directoryroletemplate objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get entities from directoryRoleTemplates";
+            command.Description = "Retrieve a list of directoryroletemplate objects.";
             // Create options for all the parameters
             var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
             };
@@ -157,20 +158,24 @@ namespace ApiSdk.DirectoryRoleTemplates {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var skip = (int?) parameters[0];
-                var search = (string) parameters[1];
-                var filter = (string) parameters[2];
-                var count = (bool?) parameters[3];
-                var orderby = (string[]) parameters[4];
-                var select = (string[]) parameters[5];
-                var expand = (string[]) parameters[6];
-                var output = (FormatterType) parameters[7];
-                var query = (string) parameters[8];
-                var jsonNoIndent = (bool) parameters[9];
-                var outputFilter = (IOutputFilter) parameters[10];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
-                var cancellationToken = (CancellationToken) parameters[12];
+            var allOption = new Option<bool>("--all");
+            command.AddOption(allOption);
+            command.SetHandler(async (invocationContext) => {
+                var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
+                var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
+                var count = invocationContext.ParseResult.GetValueForOption(countOption);
+                var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var all = invocationContext.ParseResult.GetValueForOption(allOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Skip = skip;
                     if (!String.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
@@ -184,12 +189,20 @@ namespace ApiSdk.DirectoryRoleTemplates {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
+                var pageResponse = await pagingService.GetPagedDataAsync((info, handler, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token, responseHandler: handler), pagingData, all, cancellationToken);
+                var response = pageResponse?.Response;
+                IOutputFormatterOptions? formatterOptions = null;
+                IOutputFormatter? formatter = null;
+                if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
+                    formatter = outputFormatterFactory.GetFormatter(output);
+                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                } else {
+                    formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
+                }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(skipOption, searchOption, filterOption, new NullableBooleanBinding(countOption), orderbyOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildValidatePropertiesCommand() {
@@ -212,7 +225,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get entities from directoryRoleTemplates
+        /// Retrieve a list of directoryroletemplate objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectoryRoleTemplatesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -221,6 +234,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new DirectoryRoleTemplatesRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -242,6 +256,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new DirectoryRoleTemplatesRequestBuilderPostRequestConfiguration();
@@ -251,7 +266,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
             }
             return requestInfo;
         }
-        /// <summary>Get entities from directoryRoleTemplates</summary>
+        /// <summary>Retrieve a list of directoryroletemplate objects.</summary>
         public class DirectoryRoleTemplatesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

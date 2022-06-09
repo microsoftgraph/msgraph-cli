@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class Request : Entity, IParsable {
         /// <summary>The identifier of the approval of the request.</summary>
         public string ApprovalId { get; set; }
         /// <summary>The request completion date time.</summary>
         public DateTimeOffset? CompletedDateTime { get; set; }
-        /// <summary>The user who created this request.</summary>
+        /// <summary>The principal that created the request.</summary>
         public IdentitySet CreatedBy { get; set; }
         /// <summary>The request creation date time.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -23,7 +24,14 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new Request CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Request();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.unifiedRoleAssignmentScheduleRequest" => new UnifiedRoleAssignmentScheduleRequest(),
+                "#microsoft.graph.unifiedRoleEligibilityScheduleRequest" => new UnifiedRoleEligibilityScheduleRequest(),
+                "#microsoft.graph.userConsentRequest" => new UserConsentRequest(),
+                _ => new Request(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

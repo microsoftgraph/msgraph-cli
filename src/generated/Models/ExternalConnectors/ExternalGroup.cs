@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.ExternalConnectors {
+    /// <summary>Provides operations to manage the collection of externalConnection entities.</summary>
     public class ExternalGroup : Entity, IParsable {
         /// <summary>The description of the external group. Optional.</summary>
         public string Description { get; set; }

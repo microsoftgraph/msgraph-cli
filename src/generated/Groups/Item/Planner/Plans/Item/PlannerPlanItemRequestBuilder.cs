@@ -3,9 +3,10 @@ using ApiSdk.Groups.Item.Planner.Plans.Item.Details;
 using ApiSdk.Groups.Item.Planner.Plans.Item.Tasks;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -52,11 +53,11 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var plannerPlanId = (string) parameters[1];
-                var ifMatch = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var plannerPlanId = invocationContext.ParseResult.GetValueForOption(plannerPlanIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -68,7 +69,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, plannerPlanIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildDetailsCommand() {
@@ -117,17 +118,17 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var plannerPlanId = (string) parameters[1];
-                var select = (string[]) parameters[2];
-                var expand = (string[]) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var query = (string) parameters[5];
-                var jsonNoIndent = (bool) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var plannerPlanId = invocationContext.ParseResult.GetValueForOption(plannerPlanIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -143,7 +144,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(groupIdOption, plannerPlanIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -165,11 +166,11 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var plannerPlanId = (string) parameters[1];
-                var body = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var plannerPlanId = invocationContext.ParseResult.GetValueForOption(plannerPlanIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PlannerPlan>(PlannerPlan.CreateFromDiscriminatorValue);
@@ -183,7 +184,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, plannerPlanIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildTasksCommand() {
@@ -236,6 +237,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new PlannerPlanItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

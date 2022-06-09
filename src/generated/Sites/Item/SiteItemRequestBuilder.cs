@@ -18,9 +18,10 @@ using ApiSdk.Sites.Item.Permissions;
 using ApiSdk.Sites.Item.Sites;
 using ApiSdk.Sites.Item.TermStore;
 using ApiSdk.Sites.Item.TermStores;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -88,11 +89,11 @@ namespace ApiSdk.Sites.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from sites by key
+        /// Retrieve properties and relationships for a [site][] resource.A **site** resource represents a team site in SharePoint.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from sites by key";
+            command.Description = "Retrieve properties and relationships for a [site][] resource.A **site** resource represents a team site in SharePoint.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -121,16 +122,16 @@ namespace ApiSdk.Sites.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var siteId = (string) parameters[0];
-                var select = (string[]) parameters[1];
-                var expand = (string[]) parameters[2];
-                var output = (FormatterType) parameters[3];
-                var query = (string) parameters[4];
-                var jsonNoIndent = (bool) parameters[5];
-                var outputFilter = (IOutputFilter) parameters[6];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
+            command.SetHandler(async (invocationContext) => {
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -145,7 +146,7 @@ namespace ApiSdk.Sites.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(siteIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildItemsCommand() {
@@ -203,10 +204,10 @@ namespace ApiSdk.Sites.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var siteId = (string) parameters[0];
-                var body = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Site>(ApiSdk.Models.Site.CreateFromDiscriminatorValue);
@@ -219,7 +220,7 @@ namespace ApiSdk.Sites.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(siteIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildPermissionsCommand() {
@@ -272,7 +273,7 @@ namespace ApiSdk.Sites.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get entity from sites by key
+        /// Retrieve properties and relationships for a [site][] resource.A **site** resource represents a team site in SharePoint.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SiteItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -281,6 +282,7 @@ namespace ApiSdk.Sites.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new SiteItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -345,7 +347,7 @@ namespace ApiSdk.Sites.Item {
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException(nameof(path));
             return new GetByPathWithPathRequestBuilder(PathParameters, RequestAdapter, path);
         }
-        /// <summary>Get entity from sites by key</summary>
+        /// <summary>Retrieve properties and relationships for a [site][] resource.A **site** resource represents a team site in SharePoint.</summary>
         public class SiteItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

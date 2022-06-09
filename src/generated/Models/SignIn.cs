@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class SignIn : Entity, IParsable {
         /// <summary>The application name displayed in the Azure Portal. Supports $filter (eq and startsWith operators only).</summary>
         public string AppDisplayName { get; set; }
@@ -34,7 +35,7 @@ namespace ApiSdk.Models {
         /// <summary>The reason behind a specific state of a risky user, sign-in, or a risk event. Possible values: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, or unknownFutureValue. The value none means that no action has been performed on the user or sign-in so far. Supports $filter (eq operator only). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.</summary>
         public ApiSdk.Models.RiskDetail? RiskDetail { get; set; }
         /// <summary>Risk event types associated with the sign-in. The possible values are: unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence,  generic, and unknownFutureValue. Supports $filter (eq operator only).</summary>
-        public List<RiskEventType?> RiskEventTypes { get; set; }
+        public List<string> RiskEventTypes { get; set; }
         /// <summary>The list of risk event types associated with the sign-in. Possible values: unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence,  generic, or unknownFutureValue. Supports $filter (eq and startsWith operators only).</summary>
         public List<string> RiskEventTypes_v2 { get; set; }
         /// <summary>The aggregated risk level. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in was not enabled for Azure AD Identity Protection. Supports $filter (eq operator only). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.</summary>
@@ -57,7 +58,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new SignIn CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SignIn();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.restrictedSignIn" => new RestrictedSignIn(),
+                _ => new SignIn(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,7 +84,7 @@ namespace ApiSdk.Models {
                 {"resourceDisplayName", n => { ResourceDisplayName = n.GetStringValue(); } },
                 {"resourceId", n => { ResourceId = n.GetStringValue(); } },
                 {"riskDetail", n => { RiskDetail = n.GetEnumValue<RiskDetail>(); } },
-                {"riskEventTypes", n => { RiskEventTypes = n.GetCollectionOfEnumValues<RiskEventType>().ToList(); } },
+                {"riskEventTypes", n => { RiskEventTypes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"riskEventTypes_v2", n => { RiskEventTypes_v2 = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"riskLevelAggregated", n => { RiskLevelAggregated = n.GetEnumValue<RiskLevel>(); } },
                 {"riskLevelDuringSignIn", n => { RiskLevelDuringSignIn = n.GetEnumValue<RiskLevel>(); } },
@@ -110,7 +116,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("resourceDisplayName", ResourceDisplayName);
             writer.WriteStringValue("resourceId", ResourceId);
             writer.WriteEnumValue<RiskDetail>("riskDetail", RiskDetail);
-            writer.WriteCollectionOfEnumValues<RiskEventType>("riskEventTypes", RiskEventTypes);
+            writer.WriteCollectionOfPrimitiveValues<string>("riskEventTypes", RiskEventTypes);
             writer.WriteCollectionOfPrimitiveValues<string>("riskEventTypes_v2", RiskEventTypes_v2);
             writer.WriteEnumValue<RiskLevel>("riskLevelAggregated", RiskLevelAggregated);
             writer.WriteEnumValue<RiskLevel>("riskLevelDuringSignIn", RiskLevelDuringSignIn);

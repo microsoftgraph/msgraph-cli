@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to call the instantiate method.</summary>
     public class PolicyBase : DirectoryObject, IParsable {
         /// <summary>Description for this policy. Required.</summary>
         public string Description { get; set; }
@@ -15,7 +16,15 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new PolicyBase CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PolicyBase();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.authorizationPolicy" => new AuthorizationPolicy(),
+                "#microsoft.graph.identitySecurityDefaultsEnforcementPolicy" => new IdentitySecurityDefaultsEnforcementPolicy(),
+                "#microsoft.graph.permissionGrantPolicy" => new PermissionGrantPolicy(),
+                "#microsoft.graph.stsPolicy" => new StsPolicy(),
+                _ => new PolicyBase(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

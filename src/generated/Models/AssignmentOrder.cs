@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         /// <summary>A list of identityUserFlowAttribute IDs provided to determine the order in which attributes should be collected within a user flow.</summary>
         public List<string> Order { get; set; }
         /// <summary>
-        /// Instantiates a new assignmentOrder and sets the default values.
+        /// Instantiates a new AssignmentOrder and sets the default values.
         /// </summary>
         public AssignmentOrder() {
             AdditionalData = new Dictionary<string, object>();

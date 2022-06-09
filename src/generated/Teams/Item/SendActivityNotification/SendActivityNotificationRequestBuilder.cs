@@ -1,6 +1,8 @@
+using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -34,19 +36,23 @@ namespace ApiSdk.Teams.Item.SendActivityNotification {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var teamId = (string) parameters[0];
-                var body = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SendActivityNotificationRequestBody>(SendActivityNotificationRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<SendActivityNotificationPostRequestBody>(SendActivityNotificationPostRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("team%2Did", teamId);
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(teamIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -67,7 +73,7 @@ namespace ApiSdk.Teams.Item.SendActivityNotification {
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(SendActivityNotificationRequestBody body, Action<SendActivityNotificationRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation CreatePostRequestInformation(SendActivityNotificationPostRequestBody body, Action<SendActivityNotificationRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

@@ -3,9 +3,10 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.MailFolders.Count;
 using ApiSdk.Users.Item.MailFolders.Delta;
 using ApiSdk.Users.Item.MailFolders.Item;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -73,15 +74,15 @@ namespace ApiSdk.Users.Item.MailFolders {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var body = (string) parameters[1];
-                var output = (FormatterType) parameters[2];
-                var query = (string) parameters[3];
-                var jsonNoIndent = (bool) parameters[4];
-                var outputFilter = (IOutputFilter) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MailFolder>(MailFolder.CreateFromDiscriminatorValue);
@@ -97,7 +98,7 @@ namespace ApiSdk.Users.Item.MailFolders {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(userIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -150,20 +151,24 @@ namespace ApiSdk.Users.Item.MailFolders {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var top = (int?) parameters[1];
-                var skip = (int?) parameters[2];
-                var filter = (string) parameters[3];
-                var count = (bool?) parameters[4];
-                var orderby = (string[]) parameters[5];
-                var select = (string[]) parameters[6];
-                var output = (FormatterType) parameters[7];
-                var query = (string) parameters[8];
-                var jsonNoIndent = (bool) parameters[9];
-                var outputFilter = (IOutputFilter) parameters[10];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
-                var cancellationToken = (CancellationToken) parameters[12];
+            var allOption = new Option<bool>("--all");
+            command.AddOption(allOption);
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var top = invocationContext.ParseResult.GetValueForOption(topOption);
+                var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
+                var count = invocationContext.ParseResult.GetValueForOption(countOption);
+                var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var all = invocationContext.ParseResult.GetValueForOption(allOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
@@ -177,12 +182,20 @@ namespace ApiSdk.Users.Item.MailFolders {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
+                var pageResponse = await pagingService.GetPagedDataAsync((info, handler, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token, responseHandler: handler), pagingData, all, cancellationToken);
+                var response = pageResponse?.Response;
+                IOutputFormatterOptions? formatterOptions = null;
+                IOutputFormatter? formatter = null;
+                if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
+                    formatter = outputFormatterFactory.GetFormatter(output);
+                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                } else {
+                    formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
+                }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(userIdOption, topOption, skipOption, filterOption, new NullableBooleanBinding(countOption), orderbyOption, selectOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -208,6 +221,7 @@ namespace ApiSdk.Users.Item.MailFolders {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new MailFoldersRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -229,6 +243,7 @@ namespace ApiSdk.Users.Item.MailFolders {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new MailFoldersRequestBuilderPostRequestConfiguration();

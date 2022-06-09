@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the drive singleton.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public enum WorkbookOperationStatus {
         NotStarted,
         Running,

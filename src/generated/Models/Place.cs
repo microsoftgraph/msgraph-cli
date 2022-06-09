@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of place entities.</summary>
     public class Place : Entity, IParsable {
         /// <summary>The street address of the place.</summary>
         public PhysicalAddress Address { get; set; }
@@ -19,7 +20,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new Place CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Place();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.room" => new Room(),
+                "#microsoft.graph.roomList" => new RoomList(),
+                _ => new Place(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -1,7 +1,8 @@
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -45,13 +46,13 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
             command.AddOption(onenotePageIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var sectionGroupId = (string) parameters[1];
-                var onenoteSectionId = (string) parameters[2];
-                var onenotePageId = (string) parameters[3];
-                var file = (FileInfo) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var sectionGroupId = invocationContext.ParseResult.GetValueForOption(sectionGroupIdOption);
+                var onenoteSectionId = invocationContext.ParseResult.GetValueForOption(onenoteSectionIdOption);
+                var onenotePageId = invocationContext.ParseResult.GetValueForOption(onenotePageIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -73,7 +74,7 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(groupIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -99,17 +100,17 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            var fileOption = new Option<FileInfo>("--file", description: "Binary request body") {
             };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var sectionGroupId = (string) parameters[1];
-                var onenoteSectionId = (string) parameters[2];
-                var onenotePageId = (string) parameters[3];
-                var file = (FileInfo) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var sectionGroupId = invocationContext.ParseResult.GetValueForOption(sectionGroupIdOption);
+                var onenoteSectionId = invocationContext.ParseResult.GetValueForOption(onenoteSectionIdOption);
+                var onenotePageId = invocationContext.ParseResult.GetValueForOption(onenotePageIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
@@ -123,7 +124,7 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>

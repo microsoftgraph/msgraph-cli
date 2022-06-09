@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class ConditionalAccessRoot : Entity, IParsable {
         /// <summary>Read-only. Nullable. Returns a collection of the specified named locations.</summary>
         public List<NamedLocation> NamedLocations { get; set; }

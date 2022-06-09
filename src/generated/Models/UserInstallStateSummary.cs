@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Contains properties for the installation state summary for a user.</summary>
     public class UserInstallStateSummary : Entity, IParsable {
         /// <summary>The install state of the eBook.</summary>
         public List<DeviceInstallState> DeviceStates { get; set; }

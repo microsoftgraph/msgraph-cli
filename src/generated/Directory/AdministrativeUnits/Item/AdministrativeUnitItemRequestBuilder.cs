@@ -3,9 +3,10 @@ using ApiSdk.Directory.AdministrativeUnits.Item.Members;
 using ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -39,10 +40,10 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var administrativeUnitId = (string) parameters[0];
-                var ifMatch = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var administrativeUnitId = invocationContext.ParseResult.GetValueForOption(administrativeUnitIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("administrativeUnit%2Did", administrativeUnitId);
@@ -53,7 +54,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(administrativeUnitIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -99,16 +100,16 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var administrativeUnitId = (string) parameters[0];
-                var select = (string[]) parameters[1];
-                var expand = (string[]) parameters[2];
-                var output = (FormatterType) parameters[3];
-                var query = (string) parameters[4];
-                var jsonNoIndent = (bool) parameters[5];
-                var outputFilter = (IOutputFilter) parameters[6];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
+            command.SetHandler(async (invocationContext) => {
+                var administrativeUnitId = invocationContext.ParseResult.GetValueForOption(administrativeUnitIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -123,15 +124,22 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(administrativeUnitIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildMembersCommand() {
             var command = new Command("members");
             var builder = new MembersRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildApplicationCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeviceCommand());
+            command.AddCommand(builder.BuildGroupCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildOrgContactCommand());
+            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildServicePrincipalCommand());
+            command.AddCommand(builder.BuildUserCommand());
             return command;
         }
         /// <summary>
@@ -149,10 +157,10 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var administrativeUnitId = (string) parameters[0];
-                var body = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var administrativeUnitId = invocationContext.ParseResult.GetValueForOption(administrativeUnitIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.AdministrativeUnit>(ApiSdk.Models.AdministrativeUnit.CreateFromDiscriminatorValue);
@@ -165,7 +173,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(administrativeUnitIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildScopedRoleMembersCommand() {
@@ -218,6 +226,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new AdministrativeUnitItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

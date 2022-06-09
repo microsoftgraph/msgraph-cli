@@ -9,9 +9,10 @@ using ApiSdk.Drives.Item.SharedWithMe;
 using ApiSdk.Drives.Item.Special;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -53,10 +54,10 @@ namespace ApiSdk.Drives.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var driveId = (string) parameters[0];
-                var ifMatch = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("drive%2Did", driveId);
@@ -67,7 +68,7 @@ namespace ApiSdk.Drives.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildFollowingCommand() {
@@ -79,11 +80,11 @@ namespace ApiSdk.Drives.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from drives by key
+        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from drives by key";
+            command.Description = "Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -112,16 +113,16 @@ namespace ApiSdk.Drives.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var driveId = (string) parameters[0];
-                var select = (string[]) parameters[1];
-                var expand = (string[]) parameters[2];
-                var output = (FormatterType) parameters[3];
-                var query = (string) parameters[4];
-                var jsonNoIndent = (bool) parameters[5];
-                var outputFilter = (IOutputFilter) parameters[6];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
+            command.SetHandler(async (invocationContext) => {
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -136,7 +137,7 @@ namespace ApiSdk.Drives.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(driveIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildItemsCommand() {
@@ -177,10 +178,10 @@ namespace ApiSdk.Drives.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var driveId = (string) parameters[0];
-                var body = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue);
@@ -193,22 +194,33 @@ namespace ApiSdk.Drives.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildRootCommand() {
             var command = new Command("root");
             var builder = new RootRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAnalyticsCommand());
+            command.AddCommand(builder.BuildCheckinCommand());
+            command.AddCommand(builder.BuildCheckoutCommand());
             command.AddCommand(builder.BuildChildrenCommand());
             command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildCopyCommand());
+            command.AddCommand(builder.BuildCreateLinkCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildFollowCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildInviteCommand());
             command.AddCommand(builder.BuildListItemCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPermissionsCommand());
+            command.AddCommand(builder.BuildPreviewCommand());
+            command.AddCommand(builder.BuildRestoreCommand());
             command.AddCommand(builder.BuildSubscriptionsCommand());
             command.AddCommand(builder.BuildThumbnailsCommand());
+            command.AddCommand(builder.BuildUnfollowCommand());
+            command.AddCommand(builder.BuildValidatePermissionCommand());
             command.AddCommand(builder.BuildVersionsCommand());
             return command;
         }
@@ -252,7 +264,7 @@ namespace ApiSdk.Drives.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from drives by key
+        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DriveItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -261,6 +273,7 @@ namespace ApiSdk.Drives.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new DriveItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -325,7 +338,7 @@ namespace ApiSdk.Drives.Item {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get entity from drives by key</summary>
+        /// <summary>Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.</summary>
         public class DriveItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of domainDnsRecord entities.</summary>
     public class DomainDnsRecord : Entity, IParsable {
         /// <summary>If false, this record must be configured by the customer at the DNS host for Microsoft Online Services to operate correctly with the domain.</summary>
         public bool? IsOptional { get; set; }
         /// <summary>Value used when configuring the name of the DNS record at the DNS host.</summary>
         public string Label { get; set; }
-        /// <summary>Indicates what type of DNS record this entity represents.The value can be one of the following: CName, Mx, Srv, TxtKey</summary>
+        /// <summary>Indicates what type of DNS record this entity represents.The value can be one of the following: CName, Mx, Srv, Txt.</summary>
         public string RecordType { get; set; }
-        /// <summary>Microsoft Online Service or feature that has a dependency on this DNS record.Can be one of the following values: null, Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune</summary>
+        /// <summary>Microsoft Online Service or feature that has a dependency on this DNS record.Can be one of the following values: null, Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune.</summary>
         public string SupportedService { get; set; }
-        /// <summary>Value to use when configuring the time-to-live (ttl) property of the DNS record at the DNS host. Not nullable</summary>
+        /// <summary>Value to use when configuring the time-to-live (ttl) property of the DNS record at the DNS host. Not nullable.</summary>
         public int? Ttl { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -21,7 +22,16 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new DomainDnsRecord CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DomainDnsRecord();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.domainDnsCnameRecord" => new DomainDnsCnameRecord(),
+                "#microsoft.graph.domainDnsMxRecord" => new DomainDnsMxRecord(),
+                "#microsoft.graph.domainDnsSrvRecord" => new DomainDnsSrvRecord(),
+                "#microsoft.graph.domainDnsTxtRecord" => new DomainDnsTxtRecord(),
+                "#microsoft.graph.domainDnsUnavailableRecord" => new DomainDnsUnavailableRecord(),
+                _ => new DomainDnsRecord(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

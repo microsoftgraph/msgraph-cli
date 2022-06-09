@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class SignInFrequencySessionControl : ConditionalAccessSessionControl, IParsable {
-        /// <summary>Possible values are: days, hours.</summary>
+        /// <summary>Possible values are: days, hours, or null if frequencyInterval is everyTime .</summary>
         public SigninFrequencyType? Type { get; set; }
         /// <summary>The number of days or hours.</summary>
         public int? Value { get; set; }

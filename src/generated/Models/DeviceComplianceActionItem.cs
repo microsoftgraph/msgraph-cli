@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Scheduled Action Configuration</summary>
     public class DeviceComplianceActionItem : Entity, IParsable {
         /// <summary>What action to take. Possible values are: noAction, notification, block, retire, wipe, removeResourceAccessProfiles, pushNotification, remoteLock.</summary>
         public DeviceComplianceActionType? ActionType { get; set; }

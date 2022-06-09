@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         /// <summary>An array of meeting suggestions.</summary>
         public List<MeetingTimeSuggestion> MeetingTimeSuggestions { get; set; }
         /// <summary>
-        /// Instantiates a new meetingTimeSuggestionsResult and sets the default values.
+        /// Instantiates a new MeetingTimeSuggestionsResult and sets the default values.
         /// </summary>
         public MeetingTimeSuggestionsResult() {
             AdditionalData = new Dictionary<string, object>();

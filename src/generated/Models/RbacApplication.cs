@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the roleManagement singleton.</summary>
     public class RbacApplication : Entity, IParsable {
         /// <summary>Resource to grant access to users or groups.</summary>
         public List<UnifiedRoleAssignment> RoleAssignments { get; set; }

@@ -2,9 +2,10 @@ using ApiSdk.Groups.Item.Drives.Item.Items.Item.Thumbnails.Count;
 using ApiSdk.Groups.Item.Drives.Item.Items.Item.Thumbnails.Item;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -73,17 +74,17 @@ namespace ApiSdk.Groups.Item.Drives.Item.Items.Item.Thumbnails {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var driveId = (string) parameters[1];
-                var driveItemId = (string) parameters[2];
-                var body = (string) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var query = (string) parameters[5];
-                var jsonNoIndent = (bool) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ThumbnailSet>(ThumbnailSet.CreateFromDiscriminatorValue);
@@ -101,7 +102,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.Items.Item.Thumbnails {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(groupIdOption, driveIdOption, driveItemIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -171,24 +172,28 @@ namespace ApiSdk.Groups.Item.Drives.Item.Items.Item.Thumbnails {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var driveId = (string) parameters[1];
-                var driveItemId = (string) parameters[2];
-                var top = (int?) parameters[3];
-                var skip = (int?) parameters[4];
-                var search = (string) parameters[5];
-                var filter = (string) parameters[6];
-                var count = (bool?) parameters[7];
-                var orderby = (string[]) parameters[8];
-                var select = (string[]) parameters[9];
-                var expand = (string[]) parameters[10];
-                var output = (FormatterType) parameters[11];
-                var query = (string) parameters[12];
-                var jsonNoIndent = (bool) parameters[13];
-                var outputFilter = (IOutputFilter) parameters[14];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[15];
-                var cancellationToken = (CancellationToken) parameters[16];
+            var allOption = new Option<bool>("--all");
+            command.AddOption(allOption);
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var top = invocationContext.ParseResult.GetValueForOption(topOption);
+                var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
+                var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
+                var count = invocationContext.ParseResult.GetValueForOption(countOption);
+                var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var all = invocationContext.ParseResult.GetValueForOption(allOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
@@ -206,12 +211,20 @@ namespace ApiSdk.Groups.Item.Drives.Item.Items.Item.Thumbnails {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
+                var pageResponse = await pagingService.GetPagedDataAsync((info, handler, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token, responseHandler: handler), pagingData, all, cancellationToken);
+                var response = pageResponse?.Response;
+                IOutputFormatterOptions? formatterOptions = null;
+                IOutputFormatter? formatter = null;
+                if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
+                    formatter = outputFormatterFactory.GetFormatter(output);
+                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                } else {
+                    formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
+                }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(groupIdOption, driveIdOption, driveItemIdOption, topOption, skipOption, searchOption, filterOption, new NullableBooleanBinding(countOption), orderbyOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -237,6 +250,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.Items.Item.Thumbnails {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new ThumbnailsRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -258,6 +272,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.Items.Item.Thumbnails {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new ThumbnailsRequestBuilderPostRequestConfiguration();

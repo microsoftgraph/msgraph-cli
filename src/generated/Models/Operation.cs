@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Operation : Entity, IParsable {
         /// <summary>The start time of the operation.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -17,7 +18,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new Operation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Operation();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.onenoteOperation" => new OnenoteOperation(),
+                _ => new Operation(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

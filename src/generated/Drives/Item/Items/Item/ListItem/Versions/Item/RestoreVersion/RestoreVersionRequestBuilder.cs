@@ -1,6 +1,8 @@
+using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -38,19 +40,23 @@ namespace ApiSdk.Drives.Item.Items.Item.ListItem.Versions.Item.RestoreVersion {
             };
             listItemVersionIdOption.IsRequired = true;
             command.AddOption(listItemVersionIdOption);
-            command.SetHandler(async (object[] parameters) => {
-                var driveId = (string) parameters[0];
-                var driveItemId = (string) parameters[1];
-                var listItemVersionId = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var listItemVersionId = invocationContext.ParseResult.GetValueForOption(listItemVersionIdOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("drive%2Did", driveId);
                 requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveIdOption, driveItemIdOption, listItemVersionIdOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>

@@ -1,6 +1,8 @@
+using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -34,17 +36,21 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Unpublish {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            command.SetHandler(async (object[] parameters) => {
-                var siteId = (string) parameters[0];
-                var contentTypeId = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var contentTypeId = invocationContext.ParseResult.GetValueForOption(contentTypeIdOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("site%2Did", siteId);
                 requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(siteIdOption, contentTypeIdOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Casts the previous resource to group.</summary>
     public class Group : DirectoryObject, IParsable {
         /// <summary>The list of users or groups that are allowed to create post&apos;s or calendar events in this group. If this list is non-empty then only users or groups listed here are allowed to post.</summary>
         public List<DirectoryObject> AcceptedSenders { get; set; }
@@ -77,7 +78,7 @@ namespace ApiSdk.Models {
         public string MembershipRuleProcessingState { get; set; }
         /// <summary>A list of group members with license errors from this group-based license assignment. Read-only.</summary>
         public List<DirectoryObject> MembersWithLicenseErrors { get; set; }
-        /// <summary>Read-only.</summary>
+        /// <summary>The onenote property</summary>
         public ApiSdk.Models.Onenote Onenote { get; set; }
         /// <summary>Contains the on-premises domain FQDN, also called dnsDomainName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect.Returned by default. Read-only.</summary>
         public string OnPremisesDomainName { get; set; }
@@ -107,7 +108,7 @@ namespace ApiSdk.Models {
         public string PreferredDataLocation { get; set; }
         /// <summary>The preferred language for a Microsoft 365 group. Should follow ISO 639-1 Code; for example en-US. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).</summary>
         public string PreferredLanguage { get; set; }
-        /// <summary>Email addresses for the group that direct to the same group mailbox. For example: [&apos;SMTP: bob@contoso.com&apos;, &apos;smtp: bob@sales.contoso.com&apos;]. The any operator is required for filter expressions on multi-valued properties. Returned by default. Read-only. Not nullable. Supports $filter (eq, not, ge, le, startsWith).</summary>
+        /// <summary>Email addresses for the group that direct to the same group mailbox. For example: [&apos;SMTP: bob@contoso.com&apos;, &apos;smtp: bob@sales.contoso.com&apos;]. The any operator is required for filter expressions on multi-valued properties. Returned by default. Read-only. Not nullable. Supports $filter (eq, not, ge, le, startsWith, endsWith, and counting empty collections).</summary>
         public List<string> ProxyAddresses { get; set; }
         /// <summary>The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable</summary>
         public List<DirectoryObject> RejectedSenders { get; set; }

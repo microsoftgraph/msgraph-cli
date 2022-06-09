@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Casts the previous resource to group.</summary>
     public class GroupLifecyclePolicy : Entity, IParsable {
         /// <summary>List of email address to send notifications for groups without owners. Multiple email address can be defined by separating email address with a semicolon.</summary>
         public string AlternateNotificationEmails { get; set; }

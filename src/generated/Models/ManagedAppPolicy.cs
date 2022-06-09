@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>The ManagedAppPolicy resource represents a base type for platform specific policies.</summary>
     public class ManagedAppPolicy : Entity, IParsable {
         /// <summary>The date and time the policy was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -21,7 +22,14 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ManagedAppPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedAppPolicy();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.managedAppConfiguration" => new ManagedAppConfiguration(),
+                "#microsoft.graph.managedAppProtection" => new ManagedAppProtection(),
+                "#microsoft.graph.windowsInformationProtection" => new WindowsInformationProtection(),
+                _ => new ManagedAppPolicy(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

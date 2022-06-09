@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the security singleton.</summary>
     public class Alert : Entity, IParsable {
         /// <summary>Name or alias of the activity group (attacker) this alert is attributed to.</summary>
         public string ActivityGroupName { get; set; }

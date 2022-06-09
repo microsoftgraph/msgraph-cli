@@ -1,8 +1,9 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -62,18 +63,18 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Ite
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var calendarGroupId = (string) parameters[0];
-                var calendarId = (string) parameters[1];
-                var eventId = (string) parameters[2];
-                var eventId1 = (string) parameters[3];
-                var select = (string[]) parameters[4];
-                var output = (FormatterType) parameters[5];
-                var query = (string) parameters[6];
-                var jsonNoIndent = (bool) parameters[7];
-                var outputFilter = (IOutputFilter) parameters[8];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
-                var cancellationToken = (CancellationToken) parameters[10];
+            command.SetHandler(async (invocationContext) => {
+                var calendarGroupId = invocationContext.ParseResult.GetValueForOption(calendarGroupIdOption);
+                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
+                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
+                var eventId1 = invocationContext.ParseResult.GetValueForOption(eventId1Option);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
@@ -90,7 +91,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Ite
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, selectOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -116,6 +117,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Ite
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new CalendarRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

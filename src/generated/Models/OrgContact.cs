@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of orgContact entities.</summary>
     public class OrgContact : DirectoryObject, IParsable {
         /// <summary>Postal addresses for this organizational contact. For now a contact can only have one physical address.</summary>
         public List<PhysicalOfficeAddress> Addresses { get; set; }
@@ -35,7 +36,7 @@ namespace ApiSdk.Models {
         public bool? OnPremisesSyncEnabled { get; set; }
         /// <summary>List of phones for this organizational contact. Phone types can be mobile, business, and businessFax. Only one of each type can ever be present in the collection. Supports $filter (eq, ne, not, in).</summary>
         public List<Phone> Phones { get; set; }
-        /// <summary>For example: &apos;SMTP: bob@contoso.com&apos;, &apos;smtp: bob@sales.contoso.com&apos;. The any operator is required for filter expressions on multi-valued properties. Supports $filter (eq, not, ge, le, startsWith).</summary>
+        /// <summary>For example: &apos;SMTP: bob@contoso.com&apos;, &apos;smtp: bob@sales.contoso.com&apos;. The any operator is required for filter expressions on multi-valued properties. Supports $filter (eq, not, ge, le, startsWith, and counting empty collections).</summary>
         public List<string> ProxyAddresses { get; set; }
         /// <summary>Last name for this organizational contact. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values)</summary>
         public string Surname { get; set; }

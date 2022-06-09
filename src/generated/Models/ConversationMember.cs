@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of chat entities.</summary>
     public class ConversationMember : Entity, IParsable {
         /// <summary>The display name of the user.</summary>
         public string DisplayName { get; set; }
@@ -17,7 +18,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ConversationMember CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConversationMember();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.aadUserConversationMember" => new AadUserConversationMember(),
+                _ => new ConversationMember(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

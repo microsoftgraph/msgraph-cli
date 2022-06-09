@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the identityProtectionRoot singleton.</summary>
     public class RiskyUser : Entity, IParsable {
         /// <summary>The activity related to user risk level change</summary>
         public List<RiskyUserHistoryItem> History { get; set; }
@@ -29,7 +30,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new RiskyUser CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RiskyUser();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.riskyUserHistoryItem" => new RiskyUserHistoryItem(),
+                _ => new RiskyUser(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

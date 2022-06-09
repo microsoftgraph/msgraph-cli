@@ -1,7 +1,8 @@
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -37,11 +38,11 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
             command.AddOption(channelIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            command.SetHandler(async (object[] parameters) => {
-                var teamId = (string) parameters[0];
-                var channelId = (string) parameters[1];
-                var file = (FileInfo) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
+                var channelId = invocationContext.ParseResult.GetValueForOption(channelIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("team%2Did", teamId);
@@ -61,7 +62,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(teamIdOption, channelIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -79,15 +80,15 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            var fileOption = new Option<FileInfo>("--file", description: "Binary request body") {
             };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var teamId = (string) parameters[0];
-                var channelId = (string) parameters[1];
-                var file = (FileInfo) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
+            command.SetHandler(async (invocationContext) => {
+                var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
+                var channelId = invocationContext.ParseResult.GetValueForOption(channelIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
@@ -99,7 +100,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(teamIdOption, channelIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>

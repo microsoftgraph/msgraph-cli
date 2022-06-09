@@ -7,6 +7,8 @@ namespace ApiSdk.Models.CallRecords {
     public class MediaStream : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Codec name used to encode audio for transmission on the network. Possible values are: unknown, invalid, cn, pcma, pcmu, amrWide, g722, g7221, g7221c, g729, multiChannelAudio, muchv2, opus, satin, satinFullband, rtAudio8, rtAudio16, silk, silkNarrow, silkWide, siren, xmsRTA, unknownFutureValue.</summary>
+        public ApiSdk.Models.CallRecords.AudioCodec? AudioCodec { get; set; }
         /// <summary>Average Network Mean Opinion Score degradation for stream. Represents how much the network loss and jitter has impacted the quality of received audio.</summary>
         public float? AverageAudioDegradation { get; set; }
         /// <summary>Average jitter for the stream computed as specified in [RFC 3550][], denoted in [ISO 8601][] format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
@@ -55,6 +57,8 @@ namespace ApiSdk.Models.CallRecords {
         public MediaStreamDirection? StreamDirection { get; set; }
         /// <summary>Unique identifier for the stream.</summary>
         public string StreamId { get; set; }
+        /// <summary>Codec name used to encode video for transmission on the network. Possible values are: unknown, invalid, av1, h263, h264, h264s, h264uc, h265, rtvc1, rtVideo, xrtvc1, unknownFutureValue.</summary>
+        public ApiSdk.Models.CallRecords.VideoCodec? VideoCodec { get; set; }
         /// <summary>True if the media stream bypassed the Mediation Server and went straight between client and PSTN Gateway/PBX, false otherwise.</summary>
         public bool? WasMediaBypassed { get; set; }
         /// <summary>
@@ -76,6 +80,7 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"audioCodec", n => { AudioCodec = n.GetEnumValue<AudioCodec>(); } },
                 {"averageAudioDegradation", n => { AverageAudioDegradation = n.GetFloatValue(); } },
                 {"averageAudioNetworkJitter", n => { AverageAudioNetworkJitter = n.GetTimeSpanValue(); } },
                 {"averageBandwidthEstimate", n => { AverageBandwidthEstimate = n.GetLongValue(); } },
@@ -100,6 +105,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"streamDirection", n => { StreamDirection = n.GetEnumValue<MediaStreamDirection>(); } },
                 {"streamId", n => { StreamId = n.GetStringValue(); } },
+                {"videoCodec", n => { VideoCodec = n.GetEnumValue<VideoCodec>(); } },
                 {"wasMediaBypassed", n => { WasMediaBypassed = n.GetBoolValue(); } },
             };
         }
@@ -109,6 +115,7 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteEnumValue<AudioCodec>("audioCodec", AudioCodec);
             writer.WriteFloatValue("averageAudioDegradation", AverageAudioDegradation);
             writer.WriteTimeSpanValue("averageAudioNetworkJitter", AverageAudioNetworkJitter);
             writer.WriteLongValue("averageBandwidthEstimate", AverageBandwidthEstimate);
@@ -133,6 +140,7 @@ namespace ApiSdk.Models.CallRecords {
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteEnumValue<MediaStreamDirection>("streamDirection", StreamDirection);
             writer.WriteStringValue("streamId", StreamId);
+            writer.WriteEnumValue<VideoCodec>("videoCodec", VideoCodec);
             writer.WriteBoolValue("wasMediaBypassed", WasMediaBypassed);
             writer.WriteAdditionalData(AdditionalData);
         }

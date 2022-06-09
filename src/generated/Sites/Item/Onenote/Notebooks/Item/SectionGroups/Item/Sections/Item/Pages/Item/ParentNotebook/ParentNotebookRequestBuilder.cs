@@ -1,8 +1,9 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -71,20 +72,20 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var siteId = (string) parameters[0];
-                var notebookId = (string) parameters[1];
-                var sectionGroupId = (string) parameters[2];
-                var onenoteSectionId = (string) parameters[3];
-                var onenotePageId = (string) parameters[4];
-                var select = (string[]) parameters[5];
-                var expand = (string[]) parameters[6];
-                var output = (FormatterType) parameters[7];
-                var query = (string) parameters[8];
-                var jsonNoIndent = (bool) parameters[9];
-                var outputFilter = (IOutputFilter) parameters[10];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
-                var cancellationToken = (CancellationToken) parameters[12];
+            command.SetHandler(async (invocationContext) => {
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var notebookId = invocationContext.ParseResult.GetValueForOption(notebookIdOption);
+                var sectionGroupId = invocationContext.ParseResult.GetValueForOption(sectionGroupIdOption);
+                var onenoteSectionId = invocationContext.ParseResult.GetValueForOption(onenoteSectionIdOption);
+                var onenotePageId = invocationContext.ParseResult.GetValueForOption(onenotePageIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -103,7 +104,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(siteIdOption, notebookIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -129,6 +130,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new ParentNotebookRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

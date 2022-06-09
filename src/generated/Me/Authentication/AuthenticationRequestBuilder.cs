@@ -1,12 +1,14 @@
 using ApiSdk.Me.Authentication.Fido2Methods;
 using ApiSdk.Me.Authentication.Methods;
 using ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods;
+using ApiSdk.Me.Authentication.TemporaryAccessPassMethods;
 using ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -36,9 +38,9 @@ namespace ApiSdk.Me.Authentication {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var ifMatch = (string) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
+            command.SetHandler(async (invocationContext) => {
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.Headers["If-Match"] = ifMatch;
@@ -48,7 +50,7 @@ namespace ApiSdk.Me.Authentication {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildFido2MethodsCommand() {
@@ -61,11 +63,11 @@ namespace ApiSdk.Me.Authentication {
             return command;
         }
         /// <summary>
-        /// TODO: Add Description
+        /// The authentication methods that are supported for the user.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "TODO: Add Description";
+            command.Description = "The authentication methods that are supported for the user.";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -90,15 +92,15 @@ namespace ApiSdk.Me.Authentication {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var select = (string[]) parameters[0];
-                var expand = (string[]) parameters[1];
-                var output = (FormatterType) parameters[2];
-                var query = (string) parameters[3];
-                var jsonNoIndent = (bool) parameters[4];
-                var outputFilter = (IOutputFilter) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+            command.SetHandler(async (invocationContext) => {
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -112,7 +114,7 @@ namespace ApiSdk.Me.Authentication {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildMethodsCommand() {
@@ -144,9 +146,9 @@ namespace ApiSdk.Me.Authentication {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var body = (string) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
+            command.SetHandler(async (invocationContext) => {
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Authentication>(ApiSdk.Models.Authentication.CreateFromDiscriminatorValue);
@@ -158,7 +160,16 @@ namespace ApiSdk.Me.Authentication {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
+            return command;
+        }
+        public Command BuildTemporaryAccessPassMethodsCommand() {
+            var command = new Command("temporary-access-pass-methods");
+            var builder = new TemporaryAccessPassMethodsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildWindowsHelloForBusinessMethodsCommand() {
@@ -202,7 +213,7 @@ namespace ApiSdk.Me.Authentication {
             return requestInfo;
         }
         /// <summary>
-        /// TODO: Add Description
+        /// The authentication methods that are supported for the user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AuthenticationRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -211,6 +222,7 @@ namespace ApiSdk.Me.Authentication {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new AuthenticationRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -255,7 +267,7 @@ namespace ApiSdk.Me.Authentication {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>TODO: Add Description</summary>
+        /// <summary>The authentication methods that are supported for the user.</summary>
         public class AuthenticationRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

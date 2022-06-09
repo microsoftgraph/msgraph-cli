@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationSubmission : Entity, IParsable {
-        /// <summary>Read-Write. Nullable.</summary>
+        /// <summary>The outcomes property</summary>
         public List<EducationOutcome> Outcomes { get; set; }
         /// <summary>User who moved the status of this submission to reassigned.</summary>
         public IdentitySet ReassignedBy { get; set; }
@@ -13,7 +14,7 @@ namespace ApiSdk.Models {
         public DateTimeOffset? ReassignedDateTime { get; set; }
         /// <summary>Who this submission is assigned to.</summary>
         public EducationSubmissionRecipient Recipient { get; set; }
-        /// <summary>Nullable.</summary>
+        /// <summary>The resources property</summary>
         public List<EducationSubmissionResource> Resources { get; set; }
         /// <summary>Folder where all file resources for this submission need to be stored.</summary>
         public string ResourcesFolderUrl { get; set; }
@@ -27,7 +28,7 @@ namespace ApiSdk.Models {
         public IdentitySet SubmittedBy { get; set; }
         /// <summary>Moment in time when the submission was moved into the submitted state. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? SubmittedDateTime { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The submittedResources property</summary>
         public List<EducationSubmissionResource> SubmittedResources { get; set; }
         /// <summary>User who moved the resource from submitted into the working state.</summary>
         public IdentitySet UnsubmittedBy { get; set; }

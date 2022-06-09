@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>An abstract class containing the base properties for Intune mobile apps.</summary>
     public class MobileApp : Entity, IParsable {
         /// <summary>The list of group assignments for this mobile app.</summary>
         public List<MobileAppAssignment> Assignments { get; set; }
@@ -41,7 +42,19 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new MobileApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MobileApp();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.androidStoreApp" => new AndroidStoreApp(),
+                "#microsoft.graph.iosStoreApp" => new IosStoreApp(),
+                "#microsoft.graph.iosVppApp" => new IosVppApp(),
+                "#microsoft.graph.macOSOfficeSuiteApp" => new MacOSOfficeSuiteApp(),
+                "#microsoft.graph.managedApp" => new ManagedApp(),
+                "#microsoft.graph.microsoftStoreForBusinessApp" => new MicrosoftStoreForBusinessApp(),
+                "#microsoft.graph.mobileLobApp" => new MobileLobApp(),
+                "#microsoft.graph.webApp" => new WebApp(),
+                _ => new MobileApp(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

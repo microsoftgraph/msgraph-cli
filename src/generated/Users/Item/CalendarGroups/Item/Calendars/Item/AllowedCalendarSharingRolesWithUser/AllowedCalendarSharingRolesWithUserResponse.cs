@@ -1,4 +1,3 @@
-using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.AllowedCalendarSh
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The value property</summary>
-        public List<CalendarRoleType?> Value { get; set; }
+        public List<string> Value { get; set; }
         /// <summary>
         /// Instantiates a new allowedCalendarSharingRolesWithUserResponse and sets the default values.
         /// </summary>
@@ -30,7 +29,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.AllowedCalendarSh
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"value", n => { Value = n.GetCollectionOfEnumValues<CalendarRoleType>().ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };
         }
         /// <summary>
@@ -39,7 +38,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.AllowedCalendarSh
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfEnumValues<CalendarRoleType>("value", Value);
+            writer.WriteCollectionOfPrimitiveValues<string>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

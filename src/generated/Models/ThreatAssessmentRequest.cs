@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the informationProtection singleton.</summary>
     public class ThreatAssessmentRequest : Entity, IParsable {
         /// <summary>The threat category. Possible values are: spam, phishing, malware.</summary>
         public ThreatCategory? Category { get; set; }
@@ -27,7 +28,15 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ThreatAssessmentRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ThreatAssessmentRequest();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.emailFileAssessmentRequest" => new EmailFileAssessmentRequest(),
+                "#microsoft.graph.fileAssessmentRequest" => new FileAssessmentRequest(),
+                "#microsoft.graph.mailAssessmentRequest" => new MailAssessmentRequest(),
+                "#microsoft.graph.urlAssessmentRequest" => new UrlAssessmentRequest(),
+                _ => new ThreatAssessmentRequest(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

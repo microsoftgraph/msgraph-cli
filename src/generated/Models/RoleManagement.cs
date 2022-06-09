@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class RoleManagement : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The directory property</summary>
         public RbacApplication Directory { get; set; }
         /// <summary>Container for roles and assignments for entitlement management resources.</summary>
         public RbacApplication EntitlementManagement { get; set; }

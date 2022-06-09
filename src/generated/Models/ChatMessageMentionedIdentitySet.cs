@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of chat entities.</summary>
     public class ChatMessageMentionedIdentitySet : IdentitySet, IParsable {
         /// <summary>If present, represents a conversation (for example, team or channel) @mentioned in a message.</summary>
         public TeamworkConversationIdentity Conversation { get; set; }

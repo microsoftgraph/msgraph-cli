@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the policyRoot singleton.</summary>
     public class UnifiedRoleManagementPolicyRule : Entity, IParsable {
-        /// <summary>The target for the policy rule.</summary>
+        /// <summary>Not implemented. Defines details of scope that&apos;s targeted by role management policy rule. The details can include the principal type, the role assignment type, and actions affecting a role. Supports $filter (eq, ne).</summary>
         public UnifiedRoleManagementPolicyRuleTarget Target { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -13,7 +14,16 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new UnifiedRoleManagementPolicyRule CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedRoleManagementPolicyRule();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule" => new UnifiedRoleManagementPolicyApprovalRule(),
+                "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule" => new UnifiedRoleManagementPolicyAuthenticationContextRule(),
+                "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule" => new UnifiedRoleManagementPolicyEnablementRule(),
+                "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule" => new UnifiedRoleManagementPolicyExpirationRule(),
+                "#microsoft.graph.unifiedRoleManagementPolicyNotificationRule" => new UnifiedRoleManagementPolicyNotificationRule(),
+                _ => new UnifiedRoleManagementPolicyRule(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

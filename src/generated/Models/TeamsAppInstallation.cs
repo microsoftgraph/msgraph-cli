@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of chat entities.</summary>
     public class TeamsAppInstallation : Entity, IParsable {
         /// <summary>The app that is installed.</summary>
         public ApiSdk.Models.TeamsApp TeamsApp { get; set; }
@@ -15,7 +16,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new TeamsAppInstallation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamsAppInstallation();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.userScopeTeamsAppInstallation" => new UserScopeTeamsAppInstallation(),
+                _ => new TeamsAppInstallation(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

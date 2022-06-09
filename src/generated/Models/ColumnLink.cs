@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class ColumnLink : Entity, IParsable {
         /// <summary>The name of the column  in this content type.</summary>
         public string Name { get; set; }

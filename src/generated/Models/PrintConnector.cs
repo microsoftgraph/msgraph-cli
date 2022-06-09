@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the print singleton.</summary>
     public class PrintConnector : Entity, IParsable {
         /// <summary>The connector&apos;s version.</summary>
         public string AppVersion { get; set; }

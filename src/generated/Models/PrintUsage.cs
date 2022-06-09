@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the reportRoot singleton.</summary>
     public class PrintUsage : Entity, IParsable {
         /// <summary>The completedBlackAndWhiteJobCount property</summary>
         public long? CompletedBlackAndWhiteJobCount { get; set; }
@@ -20,7 +21,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new PrintUsage CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrintUsage();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.printUsageByPrinter" => new PrintUsageByPrinter(),
+                "#microsoft.graph.printUsageByUser" => new PrintUsageByUser(),
+                _ => new PrintUsage(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

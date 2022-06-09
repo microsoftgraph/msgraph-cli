@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of device entities.</summary>
     public class Device : DirectoryObject, IParsable {
         /// <summary>true if the account is enabled; otherwise, false. Default is true.  Supports $filter (eq, ne, not, in). Only callers in Global Administrator and Cloud Device Administrator roles can set this property.</summary>
         public bool? AccountEnabled { get; set; }
@@ -39,7 +40,7 @@ namespace ApiSdk.Models {
         public string OperatingSystem { get; set; }
         /// <summary>Operating system version of the device. Required. Supports $filter (eq, ne, not, ge, le, startsWith, and eq on null values).</summary>
         public string OperatingSystemVersion { get; set; }
-        /// <summary>For internal use only. Not nullable. Supports $filter (eq, not, ge, le, startsWith).</summary>
+        /// <summary>For internal use only. Not nullable. Supports $filter (eq, not, ge, le, startsWith, and counting empty collections).</summary>
         public List<string> PhysicalIds { get; set; }
         /// <summary>The profile type of the device. Possible values: RegisteredDevice (default), SecureVM, Printer, Shared, IoT.</summary>
         public string ProfileType { get; set; }
@@ -47,7 +48,7 @@ namespace ApiSdk.Models {
         public List<DirectoryObject> RegisteredOwners { get; set; }
         /// <summary>Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.</summary>
         public List<DirectoryObject> RegisteredUsers { get; set; }
-        /// <summary>List of labels applied to the device by the system.</summary>
+        /// <summary>List of labels applied to the device by the system. Supports $filter (eq when counting empty collections).</summary>
         public List<string> SystemLabels { get; set; }
         /// <summary>Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.</summary>
         public List<DirectoryObject> TransitiveMemberOf { get; set; }

@@ -32,7 +32,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new OrganizationalBrandingProperties CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OrganizationalBrandingProperties();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.organizationalBranding" => new OrganizationalBranding(),
+                "#microsoft.graph.organizationalBrandingLocalization" => new OrganizationalBrandingLocalization(),
+                _ => new OrganizationalBrandingProperties(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

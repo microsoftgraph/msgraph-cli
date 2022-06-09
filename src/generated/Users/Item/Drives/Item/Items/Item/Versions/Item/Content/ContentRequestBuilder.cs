@@ -1,7 +1,8 @@
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -45,13 +46,13 @@ namespace ApiSdk.Users.Item.Drives.Item.Items.Item.Versions.Item.Content {
             command.AddOption(driveItemVersionIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var driveId = (string) parameters[1];
-                var driveItemId = (string) parameters[2];
-                var driveItemVersionId = (string) parameters[3];
-                var file = (FileInfo) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var driveItemVersionId = invocationContext.ParseResult.GetValueForOption(driveItemVersionIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
@@ -73,7 +74,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Items.Item.Versions.Item.Content {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(userIdOption, driveIdOption, driveItemIdOption, driveItemVersionIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -99,17 +100,17 @@ namespace ApiSdk.Users.Item.Drives.Item.Items.Item.Versions.Item.Content {
             };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
-            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            var fileOption = new Option<FileInfo>("--file", description: "Binary request body") {
             };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var driveId = (string) parameters[1];
-                var driveItemId = (string) parameters[2];
-                var driveItemVersionId = (string) parameters[3];
-                var file = (FileInfo) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var driveItemVersionId = invocationContext.ParseResult.GetValueForOption(driveItemVersionIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
@@ -123,7 +124,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Items.Item.Versions.Item.Content {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, driveIdOption, driveItemIdOption, driveItemVersionIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>

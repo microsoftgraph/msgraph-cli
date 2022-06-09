@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         /// <summary>Represents the provisioned email address.</summary>
         public string Email { get; set; }
         /// <summary>
-        /// Instantiates a new provisionChannelEmailResult and sets the default values.
+        /// Instantiates a new ProvisionChannelEmailResult and sets the default values.
         /// </summary>
         public ProvisionChannelEmailResult() {
             AdditionalData = new Dictionary<string, object>();

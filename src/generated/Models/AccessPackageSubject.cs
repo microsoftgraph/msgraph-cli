@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AccessPackageSubject : Entity, IParsable {
         /// <summary>The connected organization of the subject. Read-only. Nullable.</summary>
         public ApiSdk.Models.ConnectedOrganization ConnectedOrganization { get; set; }

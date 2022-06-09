@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the directory singleton.</summary>
     public class IdentityProviderBase : Entity, IParsable {
         /// <summary>The display name of the identity provider.</summary>
         public string DisplayName { get; set; }
@@ -13,7 +14,15 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new IdentityProviderBase CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IdentityProviderBase();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.appleManagedIdentityProvider" => new AppleManagedIdentityProvider(),
+                "#microsoft.graph.builtInIdentityProvider" => new BuiltInIdentityProvider(),
+                "#microsoft.graph.samlOrWsFedProvider" => new SamlOrWsFedProvider(),
+                "#microsoft.graph.socialIdentityProvider" => new SocialIdentityProvider(),
+                _ => new IdentityProviderBase(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

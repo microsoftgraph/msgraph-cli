@@ -1,6 +1,8 @@
+using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -46,25 +48,29 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWi
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var siteId = (string) parameters[1];
-                var listId = (string) parameters[2];
-                var contentTypeId = (string) parameters[3];
-                var body = (string) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var listId = invocationContext.ParseResult.GetValueForOption(listIdOption);
+                var contentTypeId = invocationContext.ParseResult.GetValueForOption(contentTypeIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AssociateWithHubSitesRequestBody>(AssociateWithHubSitesRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<AssociateWithHubSitesPostRequestBody>(AssociateWithHubSitesPostRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
                 requestInfo.PathParameters.Add("site%2Did", siteId);
                 requestInfo.PathParameters.Add("list%2Did", listId);
                 requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, siteIdOption, listIdOption, contentTypeIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -85,7 +91,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWi
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(AssociateWithHubSitesRequestBody body, Action<AssociateWithHubSitesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation CreatePostRequestInformation(AssociateWithHubSitesPostRequestBody body, Action<AssociateWithHubSitesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

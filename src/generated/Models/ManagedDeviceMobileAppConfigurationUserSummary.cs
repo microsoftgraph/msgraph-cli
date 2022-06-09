@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Contains properties, inherited properties and actions for an MDM mobile app configuration user status summary.</summary>
     public class ManagedDeviceMobileAppConfigurationUserSummary : Entity, IParsable {
         /// <summary>Version of the policy for that overview</summary>
         public int? ConfigurationVersion { get; set; }

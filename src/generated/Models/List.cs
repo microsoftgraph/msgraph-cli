@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class List : BaseItem, IParsable {
         /// <summary>The collection of field definitions for this list.</summary>
         public List<ColumnDefinition> Columns { get; set; }

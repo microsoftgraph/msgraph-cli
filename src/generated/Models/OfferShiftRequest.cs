@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Casts the previous resource to group.</summary>
     public class OfferShiftRequest : ScheduleChangeRequest, IParsable {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? RecipientActionDateTime { get; set; }
@@ -19,7 +20,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new OfferShiftRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OfferShiftRequest();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.swapShiftsChangeRequest" => new SwapShiftsChangeRequest(),
+                _ => new OfferShiftRequest(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

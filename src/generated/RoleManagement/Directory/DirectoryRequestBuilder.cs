@@ -8,9 +8,10 @@ using ApiSdk.RoleManagement.Directory.RoleDefinitions;
 using ApiSdk.RoleManagement.Directory.RoleEligibilityScheduleInstances;
 using ApiSdk.RoleManagement.Directory.RoleEligibilityScheduleRequests;
 using ApiSdk.RoleManagement.Directory.RoleEligibilitySchedules;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -40,9 +41,9 @@ namespace ApiSdk.RoleManagement.Directory {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var ifMatch = (string) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
+            command.SetHandler(async (invocationContext) => {
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.Headers["If-Match"] = ifMatch;
@@ -52,15 +53,15 @@ namespace ApiSdk.RoleManagement.Directory {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Get directory from roleManagement
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable.";
+            command.Description = "Get directory from roleManagement";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -85,15 +86,15 @@ namespace ApiSdk.RoleManagement.Directory {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var select = (string[]) parameters[0];
-                var expand = (string[]) parameters[1];
-                var output = (FormatterType) parameters[2];
-                var query = (string) parameters[3];
-                var jsonNoIndent = (bool) parameters[4];
-                var outputFilter = (IOutputFilter) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+            command.SetHandler(async (invocationContext) => {
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -107,7 +108,7 @@ namespace ApiSdk.RoleManagement.Directory {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -121,9 +122,9 @@ namespace ApiSdk.RoleManagement.Directory {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var body = (string) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
+            command.SetHandler(async (invocationContext) => {
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RbacApplication>(RbacApplication.CreateFromDiscriminatorValue);
@@ -135,7 +136,7 @@ namespace ApiSdk.RoleManagement.Directory {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildRoleAssignmentScheduleInstancesCommand() {
@@ -242,7 +243,7 @@ namespace ApiSdk.RoleManagement.Directory {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Get directory from roleManagement
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectoryRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -251,6 +252,7 @@ namespace ApiSdk.RoleManagement.Directory {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new DirectoryRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -295,7 +297,7 @@ namespace ApiSdk.RoleManagement.Directory {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>Get directory from roleManagement</summary>
         public class DirectoryRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

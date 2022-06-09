@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookTableColumn : Entity, IParsable {
         /// <summary>Retrieve the filter applied to the column. Read-only.</summary>
         public WorkbookFilter Filter { get; set; }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>The identifier for the deployment an app.</summary>
     public class ManagedMobileApp : Entity, IParsable {
         /// <summary>The identifier for an app with it&apos;s operating system type.</summary>
         public ApiSdk.Models.MobileAppIdentifier MobileAppIdentifier { get; set; }

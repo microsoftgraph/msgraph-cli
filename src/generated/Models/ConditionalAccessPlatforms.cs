@@ -8,9 +8,9 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, all, unknownFutureValue, linux.</summary>
-        public List<ConditionalAccessDevicePlatform?> ExcludePlatforms { get; set; }
+        public List<string> ExcludePlatforms { get; set; }
         /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, all, unknownFutureValue,linux``.</summary>
-        public List<ConditionalAccessDevicePlatform?> IncludePlatforms { get; set; }
+        public List<string> IncludePlatforms { get; set; }
         /// <summary>
         /// Instantiates a new conditionalAccessPlatforms and sets the default values.
         /// </summary>
@@ -30,8 +30,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"excludePlatforms", n => { ExcludePlatforms = n.GetCollectionOfEnumValues<ConditionalAccessDevicePlatform>().ToList(); } },
-                {"includePlatforms", n => { IncludePlatforms = n.GetCollectionOfEnumValues<ConditionalAccessDevicePlatform>().ToList(); } },
+                {"excludePlatforms", n => { ExcludePlatforms = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"includePlatforms", n => { IncludePlatforms = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };
         }
         /// <summary>
@@ -40,8 +40,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfEnumValues<ConditionalAccessDevicePlatform>("excludePlatforms", ExcludePlatforms);
-            writer.WriteCollectionOfEnumValues<ConditionalAccessDevicePlatform>("includePlatforms", IncludePlatforms);
+            writer.WriteCollectionOfPrimitiveValues<string>("excludePlatforms", ExcludePlatforms);
+            writer.WriteCollectionOfPrimitiveValues<string>("includePlatforms", IncludePlatforms);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

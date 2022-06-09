@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartTitle : Entity, IParsable {
         /// <summary>Represents the formatting of a chart title, which includes fill and font formatting. Read-only.</summary>
         public WorkbookChartTitleFormat Format { get; set; }

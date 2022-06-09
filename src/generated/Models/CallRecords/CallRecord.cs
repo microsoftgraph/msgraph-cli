@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.CallRecords {
+    /// <summary>Provides operations to manage the cloudCommunications singleton.</summary>
     public class CallRecord : Entity, IParsable {
         /// <summary>UTC time when the last user left the call. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? EndDateTime { get; set; }
@@ -12,7 +13,7 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>UTC time when the call record was created. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>List of all the modalities used in the call. Possible values are: unknown, audio, video, videoBasedScreenSharing, data, screenSharing, unknownFutureValue.</summary>
-        public List<Modality?> Modalities { get; set; }
+        public List<string> Modalities { get; set; }
         /// <summary>The organizing party&apos;s identity.</summary>
         public ApiSdk.Models.IdentitySet Organizer { get; set; }
         /// <summary>List of distinct identities involved in the call.</summary>
@@ -41,7 +42,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 {"joinWebUrl", n => { JoinWebUrl = n.GetStringValue(); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"modalities", n => { Modalities = n.GetCollectionOfEnumValues<Modality>().ToList(); } },
+                {"modalities", n => { Modalities = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"organizer", n => { Organizer = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"participants", n => { Participants = n.GetCollectionOfObjectValues<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue).ToList(); } },
                 {"sessions", n => { Sessions = n.GetCollectionOfObjectValues<Session>(Session.CreateFromDiscriminatorValue).ToList(); } },
@@ -60,7 +61,7 @@ namespace ApiSdk.Models.CallRecords {
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteStringValue("joinWebUrl", JoinWebUrl);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteCollectionOfEnumValues<Modality>("modalities", Modalities);
+            writer.WriteCollectionOfPrimitiveValues<string>("modalities", Modalities);
             writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("organizer", Organizer);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.IdentitySet>("participants", Participants);
             writer.WriteCollectionOfObjectValues<Session>("sessions", Sessions);

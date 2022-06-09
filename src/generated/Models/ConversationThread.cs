@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Casts the previous resource to group.</summary>
     public class ConversationThread : Entity, IParsable {
         /// <summary>The Cc: recipients for the thread. Returned only on $select.</summary>
         public List<Recipient> CcRecipients { get; set; }
@@ -13,7 +14,7 @@ namespace ApiSdk.Models {
         public bool? IsLocked { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default.</summary>
         public DateTimeOffset? LastDeliveredDateTime { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The posts property</summary>
         public List<Post> Posts { get; set; }
         /// <summary>A short summary from the body of the latest post in this conversation. Returned by default.</summary>
         public string Preview { get; set; }

@@ -1,7 +1,8 @@
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -39,12 +40,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks.Count {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            command.SetHandler(async (object[] parameters) => {
-                var siteId = (string) parameters[0];
-                var listId = (string) parameters[1];
-                var contentTypeId = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+            command.SetHandler(async (invocationContext) => {
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var listId = invocationContext.ParseResult.GetValueForOption(listIdOption);
+                var contentTypeId = invocationContext.ParseResult.GetValueForOption(contentTypeIdOption);
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("site%2Did", siteId);
@@ -57,7 +58,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks.Count {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 await formatter.WriteOutputAsync(response, null, cancellationToken);
-            }, new CollectionBinding(siteIdOption, listIdOption, contentTypeIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -83,6 +84,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks.Count {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "text/plain");
             if (requestConfiguration != null) {
                 var requestConfig = new CountRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

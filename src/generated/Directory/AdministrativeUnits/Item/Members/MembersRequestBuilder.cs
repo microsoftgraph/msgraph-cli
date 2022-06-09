@@ -1,10 +1,18 @@
+using ApiSdk.Directory.AdministrativeUnits.Item.Members.Application;
 using ApiSdk.Directory.AdministrativeUnits.Item.Members.Count;
+using ApiSdk.Directory.AdministrativeUnits.Item.Members.Device;
+using ApiSdk.Directory.AdministrativeUnits.Item.Members.Group;
 using ApiSdk.Directory.AdministrativeUnits.Item.Members.Item;
+using ApiSdk.Directory.AdministrativeUnits.Item.Members.OrgContact;
+using ApiSdk.Directory.AdministrativeUnits.Item.Members.Ref;
+using ApiSdk.Directory.AdministrativeUnits.Item.Members.ServicePrincipal;
+using ApiSdk.Directory.AdministrativeUnits.Item.Members.User;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -23,15 +31,42 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildApplicationCommand() {
+            var command = new Command("application");
+            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildApplicationCommand());
+            command.AddCommand(builder.BuildDeviceCommand());
+            command.AddCommand(builder.BuildGroupCommand());
+            command.AddCommand(builder.BuildOrgContactCommand());
+            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildServicePrincipalCommand());
+            command.AddCommand(builder.BuildUserCommand());
             return command;
         }
         public Command BuildCountCommand() {
             var command = new Command("count");
             var builder = new CountRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        public Command BuildDeviceCommand() {
+            var command = new Command("device");
+            var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        public Command BuildGroupCommand() {
+            var command = new Command("group");
+            var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -94,22 +129,26 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var administrativeUnitId = (string) parameters[0];
-                var top = (int?) parameters[1];
-                var skip = (int?) parameters[2];
-                var search = (string) parameters[3];
-                var filter = (string) parameters[4];
-                var count = (bool?) parameters[5];
-                var orderby = (string[]) parameters[6];
-                var select = (string[]) parameters[7];
-                var expand = (string[]) parameters[8];
-                var output = (FormatterType) parameters[9];
-                var query = (string) parameters[10];
-                var jsonNoIndent = (bool) parameters[11];
-                var outputFilter = (IOutputFilter) parameters[12];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
-                var cancellationToken = (CancellationToken) parameters[14];
+            var allOption = new Option<bool>("--all");
+            command.AddOption(allOption);
+            command.SetHandler(async (invocationContext) => {
+                var administrativeUnitId = invocationContext.ParseResult.GetValueForOption(administrativeUnitIdOption);
+                var top = invocationContext.ParseResult.GetValueForOption(topOption);
+                var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
+                var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
+                var count = invocationContext.ParseResult.GetValueForOption(countOption);
+                var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var all = invocationContext.ParseResult.GetValueForOption(allOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
@@ -125,12 +164,48 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
+                var pageResponse = await pagingService.GetPagedDataAsync((info, handler, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token, responseHandler: handler), pagingData, all, cancellationToken);
+                var response = pageResponse?.Response;
+                IOutputFormatterOptions? formatterOptions = null;
+                IOutputFormatter? formatter = null;
+                if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
+                    formatter = outputFormatterFactory.GetFormatter(output);
+                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                } else {
+                    formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
+                }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(administrativeUnitIdOption, topOption, skipOption, searchOption, filterOption, new NullableBooleanBinding(countOption), orderbyOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
+            return command;
+        }
+        public Command BuildOrgContactCommand() {
+            var command = new Command("org-contact");
+            var builder = new OrgContactRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        public Command BuildRefCommand() {
+            var command = new Command("ref");
+            var builder = new RefRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        public Command BuildServicePrincipalCommand() {
+            var command = new Command("service-principal");
+            var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        public Command BuildUserCommand() {
+            var command = new Command("user");
+            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -156,6 +231,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new MembersRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

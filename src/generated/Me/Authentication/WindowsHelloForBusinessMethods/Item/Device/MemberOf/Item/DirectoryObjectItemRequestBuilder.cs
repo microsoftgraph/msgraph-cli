@@ -1,8 +1,15 @@
+using ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.MemberOf.Item.Application;
+using ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.MemberOf.Item.Device;
+using ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.MemberOf.Item.Group;
+using ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.MemberOf.Item.OrgContact;
+using ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.MemberOf.Item.ServicePrincipal;
+using ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.MemberOf.Item.User;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -21,6 +28,18 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.Me
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildApplicationCommand() {
+            var command = new Command("application");
+            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        public Command BuildDeviceCommand() {
+            var command = new Command("device");
+            var builder = new ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.MemberOf.Item.Device.DeviceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
         /// <summary>
         /// Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.
         /// </summary>
@@ -59,17 +78,17 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.Me
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var windowsHelloForBusinessAuthenticationMethodId = (string) parameters[0];
-                var directoryObjectId = (string) parameters[1];
-                var select = (string[]) parameters[2];
-                var expand = (string[]) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var query = (string) parameters[5];
-                var jsonNoIndent = (bool) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+            command.SetHandler(async (invocationContext) => {
+                var windowsHelloForBusinessAuthenticationMethodId = invocationContext.ParseResult.GetValueForOption(windowsHelloForBusinessAuthenticationMethodIdOption);
+                var directoryObjectId = invocationContext.ParseResult.GetValueForOption(directoryObjectIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -85,7 +104,31 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.Me
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(windowsHelloForBusinessAuthenticationMethodIdOption, directoryObjectIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
+            return command;
+        }
+        public Command BuildGroupCommand() {
+            var command = new Command("group");
+            var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        public Command BuildOrgContactCommand() {
+            var command = new Command("org-contact");
+            var builder = new OrgContactRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        public Command BuildServicePrincipalCommand() {
+            var command = new Command("service-principal");
+            var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        public Command BuildUserCommand() {
+            var command = new Command("user");
+            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -111,6 +154,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.Me
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new DirectoryObjectItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

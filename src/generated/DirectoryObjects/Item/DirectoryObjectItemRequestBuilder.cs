@@ -5,9 +5,10 @@ using ApiSdk.DirectoryObjects.Item.GetMemberObjects;
 using ApiSdk.DirectoryObjects.Item.Restore;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -39,11 +40,11 @@ namespace ApiSdk.DirectoryObjects.Item {
             return command;
         }
         /// <summary>
-        /// Delete entity from directoryObjects
+        /// Delete a directory object, for example, a group, user, application, or service principal.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from directoryObjects";
+            command.Description = "Delete a directory object, for example, a group, user, application, or service principal.";
             // Create options for all the parameters
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
             };
@@ -53,10 +54,10 @@ namespace ApiSdk.DirectoryObjects.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var directoryObjectId = (string) parameters[0];
-                var ifMatch = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var directoryObjectId = invocationContext.ParseResult.GetValueForOption(directoryObjectIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
@@ -67,24 +68,20 @@ namespace ApiSdk.DirectoryObjects.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(directoryObjectIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
-        /// Get entity from directoryObjects by key
+        /// Retrieve the properties and relationships of a directoryObject object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from directoryObjects by key";
+            command.Description = "Retrieve the properties and relationships of a directoryObject object.";
             // Create options for all the parameters
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
-            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://developer.microsoft.com/en-us/office/blogs/microsoft-graph-advanced-queries-for-directory-objects-are-now-generally-available/") {
-            };
-            consistencyLevelOption.IsRequired = false;
-            command.AddOption(consistencyLevelOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -108,23 +105,21 @@ namespace ApiSdk.DirectoryObjects.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var directoryObjectId = (string) parameters[0];
-                var consistencyLevel = (string) parameters[1];
-                var select = (string[]) parameters[2];
-                var expand = (string[]) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var query = (string) parameters[5];
-                var jsonNoIndent = (bool) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+            command.SetHandler(async (invocationContext) => {
+                var directoryObjectId = invocationContext.ParseResult.GetValueForOption(directoryObjectIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
                 requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
-                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -134,7 +129,7 @@ namespace ApiSdk.DirectoryObjects.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(directoryObjectIdOption, consistencyLevelOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -164,10 +159,10 @@ namespace ApiSdk.DirectoryObjects.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var directoryObjectId = (string) parameters[0];
-                var body = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var directoryObjectId = invocationContext.ParseResult.GetValueForOption(directoryObjectIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue);
@@ -180,7 +175,7 @@ namespace ApiSdk.DirectoryObjects.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(directoryObjectIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildRestoreCommand() {
@@ -203,7 +198,7 @@ namespace ApiSdk.DirectoryObjects.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from directoryObjects
+        /// Delete a directory object, for example, a group, user, application, or service principal.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<DirectoryObjectItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
@@ -221,7 +216,7 @@ namespace ApiSdk.DirectoryObjects.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from directoryObjects by key
+        /// Retrieve the properties and relationships of a directoryObject object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectoryObjectItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -230,6 +225,7 @@ namespace ApiSdk.DirectoryObjects.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new DirectoryObjectItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -274,7 +270,7 @@ namespace ApiSdk.DirectoryObjects.Item {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get entity from directoryObjects by key</summary>
+        /// <summary>Retrieve the properties and relationships of a directoryObject object.</summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

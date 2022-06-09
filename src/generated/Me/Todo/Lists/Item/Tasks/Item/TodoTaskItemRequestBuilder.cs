@@ -1,10 +1,12 @@
+using ApiSdk.Me.Todo.Lists.Item.Tasks.Item.ChecklistItems;
 using ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Extensions;
 using ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -23,6 +25,15 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildChecklistItemsCommand() {
+            var command = new Command("checklist-items");
+            var builder = new ChecklistItemsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         /// <summary>
         /// Delete navigation property tasks for me
         /// </summary>
@@ -42,11 +53,11 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var todoTaskListId = (string) parameters[0];
-                var todoTaskId = (string) parameters[1];
-                var ifMatch = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var todoTaskListId = invocationContext.ParseResult.GetValueForOption(todoTaskListIdOption);
+                var todoTaskId = invocationContext.ParseResult.GetValueForOption(todoTaskIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
@@ -58,7 +69,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(todoTaskListIdOption, todoTaskIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -108,17 +119,17 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var todoTaskListId = (string) parameters[0];
-                var todoTaskId = (string) parameters[1];
-                var select = (string[]) parameters[2];
-                var expand = (string[]) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var query = (string) parameters[5];
-                var jsonNoIndent = (bool) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+            command.SetHandler(async (invocationContext) => {
+                var todoTaskListId = invocationContext.ParseResult.GetValueForOption(todoTaskListIdOption);
+                var todoTaskId = invocationContext.ParseResult.GetValueForOption(todoTaskIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -134,7 +145,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(todoTaskListIdOption, todoTaskIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildLinkedResourcesCommand() {
@@ -165,11 +176,11 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var todoTaskListId = (string) parameters[0];
-                var todoTaskId = (string) parameters[1];
-                var body = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var todoTaskListId = invocationContext.ParseResult.GetValueForOption(todoTaskListIdOption);
+                var todoTaskId = invocationContext.ParseResult.GetValueForOption(todoTaskIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TodoTask>(TodoTask.CreateFromDiscriminatorValue);
@@ -183,7 +194,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(todoTaskListIdOption, todoTaskIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -227,6 +238,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new TodoTaskItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

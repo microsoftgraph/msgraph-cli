@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the print singleton.</summary>
     public class PrintTaskDefinition : Entity, IParsable {
         /// <summary>The createdBy property</summary>
         public AppIdentity CreatedBy { get; set; }

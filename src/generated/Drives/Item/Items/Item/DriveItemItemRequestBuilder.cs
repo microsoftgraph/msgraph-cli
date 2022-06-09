@@ -1,16 +1,33 @@
 using ApiSdk.Drives.Item.Items.Item.Analytics;
+using ApiSdk.Drives.Item.Items.Item.Checkin;
+using ApiSdk.Drives.Item.Items.Item.Checkout;
 using ApiSdk.Drives.Item.Items.Item.Children;
 using ApiSdk.Drives.Item.Items.Item.Content;
+using ApiSdk.Drives.Item.Items.Item.Copy;
+using ApiSdk.Drives.Item.Items.Item.CreateLink;
+using ApiSdk.Drives.Item.Items.Item.CreateUploadSession;
+using ApiSdk.Drives.Item.Items.Item.Delta;
+using ApiSdk.Drives.Item.Items.Item.DeltaWithToken;
+using ApiSdk.Drives.Item.Items.Item.Follow;
+using ApiSdk.Drives.Item.Items.Item.GetActivitiesByInterval;
+using ApiSdk.Drives.Item.Items.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
+using ApiSdk.Drives.Item.Items.Item.Invite;
 using ApiSdk.Drives.Item.Items.Item.ListItem;
 using ApiSdk.Drives.Item.Items.Item.Permissions;
+using ApiSdk.Drives.Item.Items.Item.Preview;
+using ApiSdk.Drives.Item.Items.Item.Restore;
+using ApiSdk.Drives.Item.Items.Item.SearchWithQ;
 using ApiSdk.Drives.Item.Items.Item.Subscriptions;
 using ApiSdk.Drives.Item.Items.Item.Thumbnails;
+using ApiSdk.Drives.Item.Items.Item.Unfollow;
+using ApiSdk.Drives.Item.Items.Item.ValidatePermission;
 using ApiSdk.Drives.Item.Items.Item.Versions;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -35,6 +52,18 @@ namespace ApiSdk.Drives.Item.Items.Item {
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        public Command BuildCheckinCommand() {
+            var command = new Command("checkin");
+            var builder = new CheckinRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        public Command BuildCheckoutCommand() {
+            var command = new Command("checkout");
+            var builder = new CheckoutRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
         public Command BuildChildrenCommand() {
             var command = new Command("children");
             var builder = new ChildrenRequestBuilder(PathParameters, RequestAdapter);
@@ -48,6 +77,24 @@ namespace ApiSdk.Drives.Item.Items.Item {
             var builder = new ContentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPutCommand());
+            return command;
+        }
+        public Command BuildCopyCommand() {
+            var command = new Command("copy");
+            var builder = new CopyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        public Command BuildCreateLinkCommand() {
+            var command = new Command("create-link");
+            var builder = new CreateLinkRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        public Command BuildCreateUploadSessionCommand() {
+            var command = new Command("create-upload-session");
+            var builder = new CreateUploadSessionRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -69,11 +116,11 @@ namespace ApiSdk.Drives.Item.Items.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var driveId = (string) parameters[0];
-                var driveItemId = (string) parameters[1];
-                var ifMatch = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("drive%2Did", driveId);
@@ -85,7 +132,13 @@ namespace ApiSdk.Drives.Item.Items.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveIdOption, driveItemIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
+            return command;
+        }
+        public Command BuildFollowCommand() {
+            var command = new Command("follow");
+            var builder = new FollowRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -126,17 +179,17 @@ namespace ApiSdk.Drives.Item.Items.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var driveId = (string) parameters[0];
-                var driveItemId = (string) parameters[1];
-                var select = (string[]) parameters[2];
-                var expand = (string[]) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var query = (string) parameters[5];
-                var jsonNoIndent = (bool) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+            command.SetHandler(async (invocationContext) => {
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -152,7 +205,13 @@ namespace ApiSdk.Drives.Item.Items.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(driveIdOption, driveItemIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
+            return command;
+        }
+        public Command BuildInviteCommand() {
+            var command = new Command("invite");
+            var builder = new InviteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildListItemCommand() {
@@ -186,11 +245,11 @@ namespace ApiSdk.Drives.Item.Items.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var driveId = (string) parameters[0];
-                var driveItemId = (string) parameters[1];
-                var body = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.DriveItem>(ApiSdk.Models.DriveItem.CreateFromDiscriminatorValue);
@@ -204,7 +263,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveIdOption, driveItemIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildPermissionsCommand() {
@@ -214,6 +273,18 @@ namespace ApiSdk.Drives.Item.Items.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildPreviewCommand() {
+            var command = new Command("preview");
+            var builder = new PreviewRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildSubscriptionsCommand() {
@@ -232,6 +303,18 @@ namespace ApiSdk.Drives.Item.Items.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildUnfollowCommand() {
+            var command = new Command("unfollow");
+            var builder = new UnfollowRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        public Command BuildValidatePermissionCommand() {
+            var command = new Command("validate-permission");
+            var builder = new ValidatePermissionRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildVersionsCommand() {
@@ -284,6 +367,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new DriveItemItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -313,6 +397,46 @@ namespace ApiSdk.Drives.Item.Items.Item {
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public DeltaRequestBuilder Delta() {
+            return new DeltaRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// <param name="token">Usage: token=&apos;{token}&apos;</param>
+        /// </summary>
+        public DeltaWithTokenRequestBuilder DeltaWithToken(string token) {
+            if(string.IsNullOrEmpty(token)) throw new ArgumentNullException(nameof(token));
+            return new DeltaWithTokenRequestBuilder(PathParameters, RequestAdapter, token);
+        }
+        /// <summary>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// </summary>
+        public GetActivitiesByIntervalRequestBuilder GetActivitiesByInterval() {
+            return new GetActivitiesByIntervalRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// <param name="endDateTime">Usage: endDateTime=&apos;{endDateTime}&apos;</param>
+        /// <param name="interval">Usage: interval=&apos;{interval}&apos;</param>
+        /// <param name="startDateTime">Usage: startDateTime=&apos;{startDateTime}&apos;</param>
+        /// </summary>
+        public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval(string endDateTime, string interval, string startDateTime) {
+            if(string.IsNullOrEmpty(endDateTime)) throw new ArgumentNullException(nameof(endDateTime));
+            if(string.IsNullOrEmpty(interval)) throw new ArgumentNullException(nameof(interval));
+            if(string.IsNullOrEmpty(startDateTime)) throw new ArgumentNullException(nameof(startDateTime));
+            return new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters, RequestAdapter, endDateTime, interval, startDateTime);
+        }
+        /// <summary>
+        /// Provides operations to call the search method.
+        /// <param name="q">Usage: q=&apos;{q}&apos;</param>
+        /// </summary>
+        public SearchWithQRequestBuilder SearchWithQ(string q) {
+            if(string.IsNullOrEmpty(q)) throw new ArgumentNullException(nameof(q));
+            return new SearchWithQRequestBuilder(PathParameters, RequestAdapter, q);
         }
         /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class DriveItemItemRequestBuilderDeleteRequestConfiguration {

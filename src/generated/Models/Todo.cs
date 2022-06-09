@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Todo : Entity, IParsable {
         /// <summary>The task lists in the users mailbox.</summary>
         public List<TodoTaskList> Lists { get; set; }

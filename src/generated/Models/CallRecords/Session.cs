@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.CallRecords {
+    /// <summary>Provides operations to manage the cloudCommunications singleton.</summary>
     public class Session : Entity, IParsable {
         /// <summary>Endpoint that answered the session.</summary>
         public Endpoint Callee { get; set; }
@@ -14,7 +15,7 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>Failure information associated with the session if the session failed.</summary>
         public ApiSdk.Models.CallRecords.FailureInfo FailureInfo { get; set; }
         /// <summary>List of modalities present in the session. Possible values are: unknown, audio, video, videoBasedScreenSharing, data, screenSharing, unknownFutureValue.</summary>
-        public List<Modality?> Modalities { get; set; }
+        public List<string> Modalities { get; set; }
         /// <summary>The list of segments involved in the session. Read-only. Nullable.</summary>
         public List<Segment> Segments { get; set; }
         /// <summary>UTC fime when the first user joined the session. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
@@ -36,7 +37,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"caller", n => { Caller = n.GetObjectValue<Endpoint>(Endpoint.CreateFromDiscriminatorValue); } },
                 {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 {"failureInfo", n => { FailureInfo = n.GetObjectValue<ApiSdk.Models.CallRecords.FailureInfo>(ApiSdk.Models.CallRecords.FailureInfo.CreateFromDiscriminatorValue); } },
-                {"modalities", n => { Modalities = n.GetCollectionOfEnumValues<Modality>().ToList(); } },
+                {"modalities", n => { Modalities = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"segments", n => { Segments = n.GetCollectionOfObjectValues<Segment>(Segment.CreateFromDiscriminatorValue).ToList(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
             };
@@ -52,7 +53,7 @@ namespace ApiSdk.Models.CallRecords {
             writer.WriteObjectValue<Endpoint>("caller", Caller);
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteObjectValue<ApiSdk.Models.CallRecords.FailureInfo>("failureInfo", FailureInfo);
-            writer.WriteCollectionOfEnumValues<Modality>("modalities", Modalities);
+            writer.WriteCollectionOfPrimitiveValues<string>("modalities", Modalities);
             writer.WriteCollectionOfObjectValues<Segment>("segments", Segments);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
         }

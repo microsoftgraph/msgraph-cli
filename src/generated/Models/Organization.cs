@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class Organization : DirectoryObject, IParsable {
         /// <summary>The collection of service plans associated with the tenant. Not nullable.</summary>
         public List<AssignedPlan> AssignedPlans { get; set; }
-        /// <summary>The branding property</summary>
+        /// <summary>Resource to manage the default branding for the organization. Nullable.</summary>
         public OrganizationalBranding Branding { get; set; }
         /// <summary>Telephone number for the organization. Although this is a string collection, only one number can be set for this property.</summary>
         public List<string> BusinessPhones { get; set; }

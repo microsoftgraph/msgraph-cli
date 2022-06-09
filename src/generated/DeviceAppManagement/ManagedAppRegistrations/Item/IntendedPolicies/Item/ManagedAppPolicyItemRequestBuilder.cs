@@ -1,12 +1,10 @@
-using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolicies.Item.ManagedAppProtection;
 using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolicies.Item.TargetApps;
-using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolicies.Item.TargetedManagedAppProtection;
-using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolicies.Item.WindowsInformationProtection;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -44,11 +42,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var managedAppRegistrationId = (string) parameters[0];
-                var managedAppPolicyId = (string) parameters[1];
-                var ifMatch = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var managedAppRegistrationId = invocationContext.ParseResult.GetValueForOption(managedAppRegistrationIdOption);
+                var managedAppPolicyId = invocationContext.ParseResult.GetValueForOption(managedAppPolicyIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("managedAppRegistration%2Did", managedAppRegistrationId);
@@ -60,7 +58,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(managedAppRegistrationIdOption, managedAppPolicyIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -101,17 +99,17 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var managedAppRegistrationId = (string) parameters[0];
-                var managedAppPolicyId = (string) parameters[1];
-                var select = (string[]) parameters[2];
-                var expand = (string[]) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var query = (string) parameters[5];
-                var jsonNoIndent = (bool) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+            command.SetHandler(async (invocationContext) => {
+                var managedAppRegistrationId = invocationContext.ParseResult.GetValueForOption(managedAppRegistrationIdOption);
+                var managedAppPolicyId = invocationContext.ParseResult.GetValueForOption(managedAppPolicyIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -127,13 +125,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(managedAppRegistrationIdOption, managedAppPolicyIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
-            return command;
-        }
-        public Command BuildManagedAppProtectionCommand() {
-            var command = new Command("managed-app-protection");
-            var builder = new ManagedAppProtectionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildTargetAppsCommand());
+            });
             return command;
         }
         /// <summary>
@@ -155,11 +147,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var managedAppRegistrationId = (string) parameters[0];
-                var managedAppPolicyId = (string) parameters[1];
-                var body = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var managedAppRegistrationId = invocationContext.ParseResult.GetValueForOption(managedAppRegistrationIdOption);
+                var managedAppPolicyId = invocationContext.ParseResult.GetValueForOption(managedAppPolicyIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue);
@@ -173,26 +165,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(managedAppRegistrationIdOption, managedAppPolicyIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildTargetAppsCommand() {
             var command = new Command("target-apps");
             var builder = new TargetAppsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        public Command BuildTargetedManagedAppProtectionCommand() {
-            var command = new Command("targeted-managed-app-protection");
-            var builder = new TargetedManagedAppProtectionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAssignCommand());
-            command.AddCommand(builder.BuildTargetAppsCommand());
-            return command;
-        }
-        public Command BuildWindowsInformationProtectionCommand() {
-            var command = new Command("windows-information-protection");
-            var builder = new WindowsInformationProtectionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAssignCommand());
             return command;
         }
         /// <summary>
@@ -236,6 +215,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new ManagedAppPolicyItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

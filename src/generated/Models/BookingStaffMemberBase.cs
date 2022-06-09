@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Booking entities that provide a display name.</summary>
     public class BookingStaffMemberBase : Entity, IParsable {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -11,7 +12,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new BookingStaffMemberBase CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BookingStaffMemberBase();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.bookingStaffMember" => new BookingStaffMember(),
+                _ => new BookingStaffMemberBase(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

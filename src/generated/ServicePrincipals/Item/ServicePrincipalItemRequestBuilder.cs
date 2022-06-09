@@ -24,9 +24,10 @@ using ApiSdk.ServicePrincipals.Item.Restore;
 using ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies;
 using ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies;
 using ApiSdk.ServicePrincipals.Item.TransitiveMemberOf;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -99,6 +100,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildRefCommand());
             return command;
         }
         public Command BuildCreatedObjectsCommand() {
@@ -107,6 +109,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildServicePrincipalCommand());
             return command;
         }
         public Command BuildDelegatedPermissionClassificationsCommand() {
@@ -119,11 +122,11 @@ namespace ApiSdk.ServicePrincipals.Item {
             return command;
         }
         /// <summary>
-        /// Delete entity from servicePrincipals
+        /// Delete a servicePrincipal object.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from servicePrincipals";
+            command.Description = "Delete a servicePrincipal object.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -133,10 +136,10 @@ namespace ApiSdk.ServicePrincipals.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var servicePrincipalId = (string) parameters[0];
-                var ifMatch = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var servicePrincipalId = invocationContext.ParseResult.GetValueForOption(servicePrincipalIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
@@ -147,7 +150,7 @@ namespace ApiSdk.ServicePrincipals.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(servicePrincipalIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildEndpointsCommand() {
@@ -160,20 +163,16 @@ namespace ApiSdk.ServicePrincipals.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from servicePrincipals by key
+        /// Retrieve the properties and relationships of a servicePrincipal object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from servicePrincipals by key";
+            command.Description = "Retrieve the properties and relationships of a servicePrincipal object.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://developer.microsoft.com/en-us/office/blogs/microsoft-graph-advanced-queries-for-directory-objects-are-now-generally-available/") {
-            };
-            consistencyLevelOption.IsRequired = false;
-            command.AddOption(consistencyLevelOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -197,23 +196,21 @@ namespace ApiSdk.ServicePrincipals.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var servicePrincipalId = (string) parameters[0];
-                var consistencyLevel = (string) parameters[1];
-                var select = (string[]) parameters[2];
-                var expand = (string[]) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var query = (string) parameters[5];
-                var jsonNoIndent = (bool) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+            command.SetHandler(async (invocationContext) => {
+                var servicePrincipalId = invocationContext.ParseResult.GetValueForOption(servicePrincipalIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
                 requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
-                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -223,7 +220,7 @@ namespace ApiSdk.ServicePrincipals.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(servicePrincipalIdOption, consistencyLevelOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -244,14 +241,21 @@ namespace ApiSdk.ServicePrincipals.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildRefCommand());
             return command;
         }
         public Command BuildMemberOfCommand() {
             var command = new Command("member-of");
             var builder = new MemberOfRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildApplicationCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeviceCommand());
+            command.AddCommand(builder.BuildGroupCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildOrgContactCommand());
+            command.AddCommand(builder.BuildServicePrincipalCommand());
+            command.AddCommand(builder.BuildUserCommand());
             return command;
         }
         public Command BuildOauth2PermissionGrantsCommand() {
@@ -265,25 +269,35 @@ namespace ApiSdk.ServicePrincipals.Item {
         public Command BuildOwnedObjectsCommand() {
             var command = new Command("owned-objects");
             var builder = new OwnedObjectsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildApplicationCommand());
+            command.AddCommand(builder.BuildAppRoleAssignmentCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildEndpointCommand());
+            command.AddCommand(builder.BuildGroupCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildServicePrincipalCommand());
             return command;
         }
         public Command BuildOwnersCommand() {
             var command = new Command("owners");
             var builder = new OwnersRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAppRoleAssignmentCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildEndpointCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildServicePrincipalCommand());
+            command.AddCommand(builder.BuildUserCommand());
             return command;
         }
         /// <summary>
-        /// Update entity in servicePrincipals
+        /// Update the properties of servicePrincipal object.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in servicePrincipals";
+            command.Description = "Update the properties of servicePrincipal object.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -293,13 +307,13 @@ namespace ApiSdk.ServicePrincipals.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var servicePrincipalId = (string) parameters[0];
-                var body = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var servicePrincipalId = invocationContext.ParseResult.GetValueForOption(servicePrincipalIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ServicePrincipal>(ServicePrincipal.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ServicePrincipal>(ApiSdk.Models.ServicePrincipal.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
@@ -309,7 +323,7 @@ namespace ApiSdk.ServicePrincipals.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(servicePrincipalIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildRemoveKeyCommand() {
@@ -349,9 +363,15 @@ namespace ApiSdk.ServicePrincipals.Item {
         public Command BuildTransitiveMemberOfCommand() {
             var command = new Command("transitive-member-of");
             var builder = new TransitiveMemberOfRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildApplicationCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeviceCommand());
+            command.AddCommand(builder.BuildGroupCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildOrgContactCommand());
+            command.AddCommand(builder.BuildServicePrincipalCommand());
+            command.AddCommand(builder.BuildUserCommand());
             return command;
         }
         /// <summary>
@@ -368,7 +388,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from servicePrincipals
+        /// Delete a servicePrincipal object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<ServicePrincipalItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
@@ -386,7 +406,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from servicePrincipals by key
+        /// Retrieve the properties and relationships of a servicePrincipal object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ServicePrincipalItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -395,6 +415,7 @@ namespace ApiSdk.ServicePrincipals.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new ServicePrincipalItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -405,11 +426,11 @@ namespace ApiSdk.ServicePrincipals.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in servicePrincipals
+        /// Update the properties of servicePrincipal object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ServicePrincipal body, Action<ServicePrincipalItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.ServicePrincipal body, Action<ServicePrincipalItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -439,7 +460,7 @@ namespace ApiSdk.ServicePrincipals.Item {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get entity from servicePrincipals by key</summary>
+        /// <summary>Retrieve the properties and relationships of a servicePrincipal object.</summary>
         public class ServicePrincipalItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

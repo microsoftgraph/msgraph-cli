@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Represents app protection and configuration status for the organization.</summary>
     public class ManagedAppStatus : Entity, IParsable {
         /// <summary>Friendly name of the status report.</summary>
         public string DisplayName { get; set; }
@@ -15,7 +16,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ManagedAppStatus CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedAppStatus();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.managedAppStatusRaw" => new ManagedAppStatusRaw(),
+                _ => new ManagedAppStatus(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

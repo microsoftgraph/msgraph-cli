@@ -1,7 +1,8 @@
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -33,10 +34,10 @@ namespace ApiSdk.Organization.Item.Branding.BannerLogo {
             command.AddOption(organizationIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            command.SetHandler(async (object[] parameters) => {
-                var organizationId = (string) parameters[0];
-                var file = (FileInfo) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var organizationId = invocationContext.ParseResult.GetValueForOption(organizationIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("organization%2Did", organizationId);
@@ -55,7 +56,7 @@ namespace ApiSdk.Organization.Item.Branding.BannerLogo {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(organizationIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -69,14 +70,14 @@ namespace ApiSdk.Organization.Item.Branding.BannerLogo {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);
-            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            var fileOption = new Option<FileInfo>("--file", description: "Binary request body") {
             };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var organizationId = (string) parameters[0];
-                var file = (FileInfo) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
+            command.SetHandler(async (invocationContext) => {
+                var organizationId = invocationContext.ParseResult.GetValueForOption(organizationIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
@@ -87,7 +88,7 @@ namespace ApiSdk.Organization.Item.Branding.BannerLogo {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(organizationIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>

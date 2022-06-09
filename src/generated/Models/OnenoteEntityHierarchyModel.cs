@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class OnenoteEntityHierarchyModel : OnenoteEntitySchemaObjectModel, IParsable {
         /// <summary>Identity of the user, device, and application which created the item. Read-only.</summary>
         public IdentitySet CreatedBy { get; set; }
@@ -19,7 +20,14 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new OnenoteEntityHierarchyModel CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnenoteEntityHierarchyModel();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.notebook" => new Notebook(),
+                "#microsoft.graph.onenoteSection" => new OnenoteSection(),
+                "#microsoft.graph.sectionGroup" => new SectionGroup(),
+                _ => new OnenoteEntityHierarchyModel(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class DirectoryObject : Entity, IParsable {
         /// <summary>Date and time when this object was deleted. Always null when the object hasn&apos;t been deleted.</summary>
         public DateTimeOffset? DeletedDateTime { get; set; }
@@ -13,7 +14,29 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new DirectoryObject CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DirectoryObject();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.administrativeUnit" => new AdministrativeUnit(),
+                "#microsoft.graph.application" => new Application(),
+                "#microsoft.graph.appRoleAssignment" => new AppRoleAssignment(),
+                "#microsoft.graph.contract" => new Contract(),
+                "#microsoft.graph.device" => new Device(),
+                "#microsoft.graph.directoryObjectPartnerReference" => new DirectoryObjectPartnerReference(),
+                "#microsoft.graph.directoryRole" => new DirectoryRole(),
+                "#microsoft.graph.directoryRoleTemplate" => new DirectoryRoleTemplate(),
+                "#microsoft.graph.endpoint" => new Endpoint(),
+                "#microsoft.graph.extensionProperty" => new ExtensionProperty(),
+                "#microsoft.graph.group" => new Group(),
+                "#microsoft.graph.groupSettingTemplate" => new GroupSettingTemplate(),
+                "#microsoft.graph.organization" => new Organization(),
+                "#microsoft.graph.orgContact" => new OrgContact(),
+                "#microsoft.graph.policyBase" => new PolicyBase(),
+                "#microsoft.graph.resourceSpecificPermissionGrant" => new ResourceSpecificPermissionGrant(),
+                "#microsoft.graph.servicePrincipal" => new ServicePrincipal(),
+                "#microsoft.graph.user" => new User(),
+                _ => new DirectoryObject(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

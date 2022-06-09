@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the admin singleton.</summary>
     public class ServiceAnnouncement : Entity, IParsable {
         /// <summary>A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.</summary>
         public List<ServiceHealth> HealthOverviews { get; set; }

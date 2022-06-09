@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class ThumbnailSet : Entity, IParsable {
         /// <summary>A 1920x1920 scaled thumbnail.</summary>
         public Thumbnail Large { get; set; }

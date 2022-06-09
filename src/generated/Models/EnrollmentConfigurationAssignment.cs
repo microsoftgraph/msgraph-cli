@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Enrollment Configuration Assignment</summary>
     public class EnrollmentConfigurationAssignment : Entity, IParsable {
         /// <summary>Represents an assignment to managed devices in the tenant</summary>
         public DeviceAndAppManagementAssignmentTarget Target { get; set; }

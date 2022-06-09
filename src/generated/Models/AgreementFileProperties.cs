@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of agreement entities.</summary>
     public class AgreementFileProperties : Entity, IParsable {
         /// <summary>The date time representing when the file was created.The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -25,7 +26,14 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new AgreementFileProperties CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AgreementFileProperties();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.agreementFile" => new AgreementFile(),
+                "#microsoft.graph.agreementFileLocalization" => new AgreementFileLocalization(),
+                "#microsoft.graph.agreementFileVersion" => new AgreementFileVersion(),
+                _ => new AgreementFileProperties(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

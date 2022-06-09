@@ -1,8 +1,7 @@
-using ApiSdk.Models;
-using ApiSdk.Models.ODataErrors;
+using ApiSdk.Applications.Item.TokenLifetimePolicies.Item.Ref;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
-using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -10,10 +9,9 @@ using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Item {
-    /// <summary>Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.application entity.</summary>
+    /// <summary>Builds and executes requests for operations under \applications\{application-id}\tokenLifetimePolicies\{tokenLifetimePolicy-id}</summary>
     public class TokenLifetimePolicyItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -21,71 +19,10 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// The tokenLifetimePolicies assigned to this application. Supports $expand.
-        /// </summary>
-        public Command BuildGetCommand() {
-            var command = new Command("get");
-            command.Description = "The tokenLifetimePolicies assigned to this application. Supports $expand.";
-            // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
-            };
-            applicationIdOption.IsRequired = true;
-            command.AddOption(applicationIdOption);
-            var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "key: id of tokenLifetimePolicy") {
-            };
-            tokenLifetimePolicyIdOption.IsRequired = true;
-            command.AddOption(tokenLifetimePolicyIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
-                Arity = ArgumentArity.ZeroOrMore
-            };
-            selectOption.IsRequired = false;
-            command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
-                Arity = ArgumentArity.ZeroOrMore
-            };
-            expandOption.IsRequired = false;
-            command.AddOption(expandOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var applicationId = (string) parameters[0];
-                var tokenLifetimePolicyId = (string) parameters[1];
-                var select = (string[]) parameters[2];
-                var expand = (string[]) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var query = (string) parameters[5];
-                var jsonNoIndent = (bool) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
-                var requestInfo = CreateGetRequestInformation(q => {
-                    q.QueryParameters.Select = select;
-                    q.QueryParameters.Expand = expand;
-                });
-                requestInfo.PathParameters.Add("application%2Did", applicationId);
-                requestInfo.PathParameters.Add("tokenLifetimePolicy%2Did", tokenLifetimePolicyId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(applicationIdOption, tokenLifetimePolicyIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+        public Command BuildRefCommand() {
+            var command = new Command("ref");
+            var builder = new RefRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildDeleteCommand());
             return command;
         }
         /// <summary>
@@ -96,54 +33,10 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Item {
         public TokenLifetimePolicyItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/applications/{application%2Did}/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}{?%24select,%24expand}";
+            UrlTemplate = "{+baseurl}/applications/{application%2Did}/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// The tokenLifetimePolicies assigned to this application. Supports $expand.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<TokenLifetimePolicyItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new TokenLifetimePolicyItemRequestBuilderGetRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>The tokenLifetimePolicies assigned to this application. Supports $expand.</summary>
-        public class TokenLifetimePolicyItemRequestBuilderGetQueryParameters {
-            /// <summary>Expand related entities</summary>
-            [QueryParameter("%24expand")]
-            public string[] Expand { get; set; }
-            /// <summary>Select properties to be returned</summary>
-            [QueryParameter("%24select")]
-            public string[] Select { get; set; }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class TokenLifetimePolicyItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public TokenLifetimePolicyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TokenLifetimePolicyItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new tokenLifetimePolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public TokenLifetimePolicyItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
         }
     }
 }

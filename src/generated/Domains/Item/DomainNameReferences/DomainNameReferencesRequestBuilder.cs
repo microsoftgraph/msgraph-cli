@@ -2,9 +2,10 @@ using ApiSdk.Domains.Item.DomainNameReferences.Count;
 using ApiSdk.Domains.Item.DomainNameReferences.Item;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -36,11 +37,11 @@ namespace ApiSdk.Domains.Item.DomainNameReferences {
             return command;
         }
         /// <summary>
-        /// Read-only, Nullable
+        /// The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only, Nullable";
+            command.Description = "The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };
@@ -94,22 +95,26 @@ namespace ApiSdk.Domains.Item.DomainNameReferences {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var domainId = (string) parameters[0];
-                var top = (int?) parameters[1];
-                var skip = (int?) parameters[2];
-                var search = (string) parameters[3];
-                var filter = (string) parameters[4];
-                var count = (bool?) parameters[5];
-                var orderby = (string[]) parameters[6];
-                var select = (string[]) parameters[7];
-                var expand = (string[]) parameters[8];
-                var output = (FormatterType) parameters[9];
-                var query = (string) parameters[10];
-                var jsonNoIndent = (bool) parameters[11];
-                var outputFilter = (IOutputFilter) parameters[12];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
-                var cancellationToken = (CancellationToken) parameters[14];
+            var allOption = new Option<bool>("--all");
+            command.AddOption(allOption);
+            command.SetHandler(async (invocationContext) => {
+                var domainId = invocationContext.ParseResult.GetValueForOption(domainIdOption);
+                var top = invocationContext.ParseResult.GetValueForOption(topOption);
+                var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
+                var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
+                var count = invocationContext.ParseResult.GetValueForOption(countOption);
+                var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var all = invocationContext.ParseResult.GetValueForOption(allOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
@@ -125,12 +130,20 @@ namespace ApiSdk.Domains.Item.DomainNameReferences {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
+                var pageResponse = await pagingService.GetPagedDataAsync((info, handler, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token, responseHandler: handler), pagingData, all, cancellationToken);
+                var response = pageResponse?.Response;
+                IOutputFormatterOptions? formatterOptions = null;
+                IOutputFormatter? formatter = null;
+                if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
+                    formatter = outputFormatterFactory.GetFormatter(output);
+                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                } else {
+                    formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
+                }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(domainIdOption, topOption, skipOption, searchOption, filterOption, new NullableBooleanBinding(countOption), orderbyOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -147,7 +160,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only, Nullable
+        /// The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DomainNameReferencesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -156,6 +169,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new DomainNameReferencesRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -165,7 +179,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences {
             }
             return requestInfo;
         }
-        /// <summary>Read-only, Nullable</summary>
+        /// <summary>The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.</summary>
         public class DomainNameReferencesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

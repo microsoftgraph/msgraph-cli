@@ -4,20 +4,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.ExternalConnectors {
+    /// <summary>Provides operations to manage the collection of externalConnection entities.</summary>
     public class ExternalConnection : Entity, IParsable {
         /// <summary>Specifies additional application IDs that are allowed to manage the connection and to index content in the connection. Optional.</summary>
         public ApiSdk.Models.ExternalConnectors.Configuration Configuration { get; set; }
         /// <summary>Description of the connection displayed in the Microsoft 365 admin center. Optional.</summary>
         public string Description { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The groups property</summary>
         public List<ExternalGroup> Groups { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The items property</summary>
         public List<ExternalItem> Items { get; set; }
         /// <summary>The display name of the connection to be displayed in the Microsoft 365 admin center. Maximum length of 128 characters. Required.</summary>
         public string Name { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The operations property</summary>
         public List<ConnectionOperation> Operations { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The schema property</summary>
         public ApiSdk.Models.ExternalConnectors.Schema Schema { get; set; }
         /// <summary>Indicates the current state of the connection. Possible values are draft, ready, obsolete, and limitExceeded. Required.</summary>
         public ConnectionState? State { get; set; }

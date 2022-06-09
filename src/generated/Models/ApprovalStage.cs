@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class ApprovalStage : Entity, IParsable {
         /// <summary>Indicates whether the stage is assigned to the calling user to review. Read-only.</summary>
         public bool? AssignedToMe { get; set; }

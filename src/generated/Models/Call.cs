@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the cloudCommunications singleton.</summary>
     public class Call : Entity, IParsable {
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The audioRoutingGroups property</summary>
         public List<AudioRoutingGroup> AudioRoutingGroups { get; set; }
         /// <summary>The callback URL on which callbacks will be delivered. Must be https.</summary>
         public string CallbackUri { get; set; }
@@ -29,12 +30,12 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.MeetingInfo MeetingInfo { get; set; }
         /// <summary>The myParticipantId property</summary>
         public string MyParticipantId { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The operations property</summary>
         public List<CommsOperation> Operations { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The participants property</summary>
         public List<Participant> Participants { get; set; }
         /// <summary>The requestedModalities property</summary>
-        public List<Modality?> RequestedModalities { get; set; }
+        public List<string> RequestedModalities { get; set; }
         /// <summary>The resultInfo property</summary>
         public ApiSdk.Models.ResultInfo ResultInfo { get; set; }
         /// <summary>The source property</summary>
@@ -78,7 +79,7 @@ namespace ApiSdk.Models {
                 {"myParticipantId", n => { MyParticipantId = n.GetStringValue(); } },
                 {"operations", n => { Operations = n.GetCollectionOfObjectValues<CommsOperation>(CommsOperation.CreateFromDiscriminatorValue).ToList(); } },
                 {"participants", n => { Participants = n.GetCollectionOfObjectValues<Participant>(Participant.CreateFromDiscriminatorValue).ToList(); } },
-                {"requestedModalities", n => { RequestedModalities = n.GetCollectionOfEnumValues<Modality>().ToList(); } },
+                {"requestedModalities", n => { RequestedModalities = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"resultInfo", n => { ResultInfo = n.GetObjectValue<ApiSdk.Models.ResultInfo>(ApiSdk.Models.ResultInfo.CreateFromDiscriminatorValue); } },
                 {"source", n => { Source = n.GetObjectValue<ParticipantInfo>(ParticipantInfo.CreateFromDiscriminatorValue); } },
                 {"state", n => { State = n.GetEnumValue<CallState>(); } },
@@ -110,7 +111,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("myParticipantId", MyParticipantId);
             writer.WriteCollectionOfObjectValues<CommsOperation>("operations", Operations);
             writer.WriteCollectionOfObjectValues<Participant>("participants", Participants);
-            writer.WriteCollectionOfEnumValues<Modality>("requestedModalities", RequestedModalities);
+            writer.WriteCollectionOfPrimitiveValues<string>("requestedModalities", RequestedModalities);
             writer.WriteObjectValue<ApiSdk.Models.ResultInfo>("resultInfo", ResultInfo);
             writer.WriteObjectValue<ParticipantInfo>("source", Source);
             writer.WriteEnumValue<CallState>("state", State);

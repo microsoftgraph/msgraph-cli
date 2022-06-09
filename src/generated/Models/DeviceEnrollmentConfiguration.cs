@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>The Base Class of Device Enrollment Configuration</summary>
     public class DeviceEnrollmentConfiguration : Entity, IParsable {
         /// <summary>The list of group assignments for the device configuration profile</summary>
         public List<EnrollmentConfigurationAssignment> Assignments { get; set; }
@@ -25,7 +26,14 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new DeviceEnrollmentConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceEnrollmentConfiguration();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.deviceEnrollmentLimitConfiguration" => new DeviceEnrollmentLimitConfiguration(),
+                "#microsoft.graph.deviceEnrollmentPlatformRestrictionsConfiguration" => new DeviceEnrollmentPlatformRestrictionsConfiguration(),
+                "#microsoft.graph.deviceEnrollmentWindowsHelloForBusinessConfiguration" => new DeviceEnrollmentWindowsHelloForBusinessConfiguration(),
+                _ => new DeviceEnrollmentConfiguration(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

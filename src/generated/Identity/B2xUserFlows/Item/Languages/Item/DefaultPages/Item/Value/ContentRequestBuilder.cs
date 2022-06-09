@@ -1,7 +1,8 @@
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -41,12 +42,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
             command.AddOption(userFlowLanguagePageIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            command.SetHandler(async (object[] parameters) => {
-                var b2xIdentityUserFlowId = (string) parameters[0];
-                var userFlowLanguageConfigurationId = (string) parameters[1];
-                var userFlowLanguagePageId = (string) parameters[2];
-                var file = (FileInfo) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+            command.SetHandler(async (invocationContext) => {
+                var b2xIdentityUserFlowId = invocationContext.ParseResult.GetValueForOption(b2xIdentityUserFlowIdOption);
+                var userFlowLanguageConfigurationId = invocationContext.ParseResult.GetValueForOption(userFlowLanguageConfigurationIdOption);
+                var userFlowLanguagePageId = invocationContext.ParseResult.GetValueForOption(userFlowLanguagePageIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
@@ -67,7 +68,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -89,16 +90,16 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
             };
             userFlowLanguagePageIdOption.IsRequired = true;
             command.AddOption(userFlowLanguagePageIdOption);
-            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            var fileOption = new Option<FileInfo>("--file", description: "Binary request body") {
             };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var b2xIdentityUserFlowId = (string) parameters[0];
-                var userFlowLanguageConfigurationId = (string) parameters[1];
-                var userFlowLanguagePageId = (string) parameters[2];
-                var file = (FileInfo) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
+            command.SetHandler(async (invocationContext) => {
+                var b2xIdentityUserFlowId = invocationContext.ParseResult.GetValueForOption(b2xIdentityUserFlowIdOption);
+                var userFlowLanguageConfigurationId = invocationContext.ParseResult.GetValueForOption(userFlowLanguageConfigurationIdOption);
+                var userFlowLanguagePageId = invocationContext.ParseResult.GetValueForOption(userFlowLanguagePageIdOption);
+                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
@@ -111,7 +112,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>

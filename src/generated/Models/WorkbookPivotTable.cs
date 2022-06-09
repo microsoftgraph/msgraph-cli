@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookPivotTable : Entity, IParsable {
         /// <summary>Name of the PivotTable.</summary>
         public string Name { get; set; }

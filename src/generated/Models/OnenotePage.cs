@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class OnenotePage : OnenoteEntitySchemaObjectModel, IParsable {
         /// <summary>The page&apos;s HTML content.</summary>
         public byte[] Content { get; set; }

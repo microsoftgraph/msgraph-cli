@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookComment : Entity, IParsable {
         /// <summary>The content of the comment.</summary>
         public string Content { get; set; }
         /// <summary>Indicates the type for the comment.</summary>
         public string ContentType { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The replies property</summary>
         public List<WorkbookCommentReply> Replies { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

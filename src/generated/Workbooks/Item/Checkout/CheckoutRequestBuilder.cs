@@ -1,6 +1,8 @@
+using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -30,15 +32,19 @@ namespace ApiSdk.Workbooks.Item.Checkout {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            command.SetHandler(async (object[] parameters) => {
-                var driveItemId = (string) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
+            command.SetHandler(async (invocationContext) => {
+                var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveItemIdOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>

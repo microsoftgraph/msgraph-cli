@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookCommentReply : Entity, IParsable {
         /// <summary>The content of replied comment.</summary>
         public string Content { get; set; }

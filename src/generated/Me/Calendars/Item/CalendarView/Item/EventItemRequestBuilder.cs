@@ -13,9 +13,10 @@ using ApiSdk.Me.Calendars.Item.CalendarView.Item.SnoozeReminder;
 using ApiSdk.Me.Calendars.Item.CalendarView.Item.TentativelyAccept;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -87,11 +88,11 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var calendarId = (string) parameters[0];
-                var eventId = (string) parameters[1];
-                var ifMatch = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
+                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("calendar%2Did", calendarId);
@@ -103,7 +104,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(calendarIdOption, eventIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -168,18 +169,18 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var calendarId = (string) parameters[0];
-                var eventId = (string) parameters[1];
-                var startDateTime = (string) parameters[2];
-                var endDateTime = (string) parameters[3];
-                var select = (string[]) parameters[4];
-                var output = (FormatterType) parameters[5];
-                var query = (string) parameters[6];
-                var jsonNoIndent = (bool) parameters[7];
-                var outputFilter = (IOutputFilter) parameters[8];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
-                var cancellationToken = (CancellationToken) parameters[10];
+            command.SetHandler(async (invocationContext) => {
+                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
+                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
+                var startDateTime = invocationContext.ParseResult.GetValueForOption(startDateTimeOption);
+                var endDateTime = invocationContext.ParseResult.GetValueForOption(endDateTimeOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     if (!String.IsNullOrEmpty(startDateTime)) q.QueryParameters.StartDateTime = startDateTime;
                     if (!String.IsNullOrEmpty(endDateTime)) q.QueryParameters.EndDateTime = endDateTime;
@@ -196,7 +197,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(calendarIdOption, eventIdOption, startDateTimeOption, endDateTimeOption, selectOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildInstancesCommand() {
@@ -236,11 +237,11 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var calendarId = (string) parameters[0];
-                var eventId = (string) parameters[1];
-                var body = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
+                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Event>(Event.CreateFromDiscriminatorValue);
@@ -254,7 +255,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(calendarIdOption, eventIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {
@@ -319,6 +320,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new EventItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

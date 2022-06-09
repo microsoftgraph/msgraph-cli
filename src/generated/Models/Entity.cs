@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class Entity : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Read-only.</summary>
+        /// <summary>The id property</summary>
         public string Id { get; set; }
         /// <summary>
         /// Instantiates a new entity and sets the default values.

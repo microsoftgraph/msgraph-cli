@@ -1,6 +1,8 @@
+using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -42,21 +44,25 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var calendarGroupId = (string) parameters[1];
-                var calendarId = (string) parameters[2];
-                var eventId = (string) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var calendarGroupId = invocationContext.ParseResult.GetValueForOption(calendarGroupIdOption);
+                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
+                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
                 requestInfo.PathParameters.Add("calendar%2Did", calendarId);
                 requestInfo.PathParameters.Add("event%2Did", eventId);
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>

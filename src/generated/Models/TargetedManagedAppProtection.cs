@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Policy used to configure detailed management settings targeted to specific security groups</summary>
     public class TargetedManagedAppProtection : ManagedAppProtection, IParsable {
         /// <summary>Navigation property to list of inclusion and exclusion groups to which the policy is deployed.</summary>
         public List<TargetedManagedAppPolicyAssignment> Assignments { get; set; }
@@ -15,7 +16,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new TargetedManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TargetedManagedAppProtection();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.androidManagedAppProtection" => new AndroidManagedAppProtection(),
+                "#microsoft.graph.iosManagedAppProtection" => new IosManagedAppProtection(),
+                _ => new TargetedManagedAppProtection(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

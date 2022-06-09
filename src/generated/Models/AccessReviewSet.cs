@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AccessReviewSet : Entity, IParsable {
         /// <summary>Represents the template and scheduling for an access review.</summary>
         public List<AccessReviewScheduleDefinition> Definitions { get; set; }

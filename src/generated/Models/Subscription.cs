@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Subscription : Entity, IParsable {
         /// <summary>Optional. Identifier of the application used to create the subscription. Read-only.</summary>
         public string ApplicationId { get; set; }

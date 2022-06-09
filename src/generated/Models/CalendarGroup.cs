@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class CalendarGroup : Entity, IParsable {
         /// <summary>The calendars in the calendar group. Navigation property. Read-only. Nullable.</summary>
         public List<Calendar> Calendars { get; set; }

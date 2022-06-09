@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class LongRunningOperation : Entity, IParsable {
         /// <summary>The createdDateTime property</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -21,7 +22,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new LongRunningOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LongRunningOperation();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.richLongRunningOperation" => new RichLongRunningOperation(),
+                _ => new LongRunningOperation(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

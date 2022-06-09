@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartAxisTitle : Entity, IParsable {
         /// <summary>Represents the formatting of chart axis title. Read-only.</summary>
         public WorkbookChartAxisTitleFormat Format { get; set; }

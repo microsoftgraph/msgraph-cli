@@ -10,9 +10,10 @@ using ApiSdk.Devices.Item.Restore;
 using ApiSdk.Devices.Item.TransitiveMemberOf;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -44,11 +45,11 @@ namespace ApiSdk.Devices.Item {
             return command;
         }
         /// <summary>
-        /// Delete entity from devices
+        /// Delete a registered device.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from devices";
+            command.Description = "Delete a registered device.";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };
@@ -58,10 +59,10 @@ namespace ApiSdk.Devices.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var deviceId = (string) parameters[0];
-                var ifMatch = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var deviceId = invocationContext.ParseResult.GetValueForOption(deviceIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("device%2Did", deviceId);
@@ -72,7 +73,7 @@ namespace ApiSdk.Devices.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(deviceIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -85,20 +86,16 @@ namespace ApiSdk.Devices.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from devices by key
+        /// Get the properties and relationships of a device object. Since the **device** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **device** instance.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from devices by key";
+            command.Description = "Get the properties and relationships of a device object. Since the **device** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **device** instance.";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };
             deviceIdOption.IsRequired = true;
             command.AddOption(deviceIdOption);
-            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://developer.microsoft.com/en-us/office/blogs/microsoft-graph-advanced-queries-for-directory-objects-are-now-generally-available/") {
-            };
-            consistencyLevelOption.IsRequired = false;
-            command.AddOption(consistencyLevelOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -122,23 +119,21 @@ namespace ApiSdk.Devices.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var deviceId = (string) parameters[0];
-                var consistencyLevel = (string) parameters[1];
-                var select = (string[]) parameters[2];
-                var expand = (string[]) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var query = (string) parameters[5];
-                var jsonNoIndent = (bool) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+            command.SetHandler(async (invocationContext) => {
+                var deviceId = invocationContext.ParseResult.GetValueForOption(deviceIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
                 requestInfo.PathParameters.Add("device%2Did", deviceId);
-                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -148,7 +143,7 @@ namespace ApiSdk.Devices.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(deviceIdOption, consistencyLevelOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -166,17 +161,23 @@ namespace ApiSdk.Devices.Item {
         public Command BuildMemberOfCommand() {
             var command = new Command("member-of");
             var builder = new MemberOfRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildApplicationCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeviceCommand());
+            command.AddCommand(builder.BuildGroupCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildOrgContactCommand());
+            command.AddCommand(builder.BuildServicePrincipalCommand());
+            command.AddCommand(builder.BuildUserCommand());
             return command;
         }
         /// <summary>
-        /// Update entity in devices
+        /// Update the properties of a device. Only certain properties of a device can be updated through approved Mobile Device Management (MDM) apps.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in devices";
+            command.Description = "Update the properties of a device. Only certain properties of a device can be updated through approved Mobile Device Management (MDM) apps.";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };
@@ -186,10 +187,10 @@ namespace ApiSdk.Devices.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var deviceId = (string) parameters[0];
-                var body = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var deviceId = invocationContext.ParseResult.GetValueForOption(deviceIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Device>(ApiSdk.Models.Device.CreateFromDiscriminatorValue);
@@ -202,23 +203,32 @@ namespace ApiSdk.Devices.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(deviceIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildRegisteredOwnersCommand() {
             var command = new Command("registered-owners");
             var builder = new RegisteredOwnersRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAppRoleAssignmentCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildEndpointCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildServicePrincipalCommand());
+            command.AddCommand(builder.BuildUserCommand());
             return command;
         }
         public Command BuildRegisteredUsersCommand() {
             var command = new Command("registered-users");
             var builder = new RegisteredUsersRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAppRoleAssignmentCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildEndpointCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildServicePrincipalCommand());
+            command.AddCommand(builder.BuildUserCommand());
             return command;
         }
         public Command BuildRestoreCommand() {
@@ -230,9 +240,15 @@ namespace ApiSdk.Devices.Item {
         public Command BuildTransitiveMemberOfCommand() {
             var command = new Command("transitive-member-of");
             var builder = new TransitiveMemberOfRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildApplicationCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeviceCommand());
+            command.AddCommand(builder.BuildGroupCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildOrgContactCommand());
+            command.AddCommand(builder.BuildServicePrincipalCommand());
+            command.AddCommand(builder.BuildUserCommand());
             return command;
         }
         /// <summary>
@@ -249,7 +265,7 @@ namespace ApiSdk.Devices.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from devices
+        /// Delete a registered device.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<DeviceItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
@@ -267,7 +283,7 @@ namespace ApiSdk.Devices.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from devices by key
+        /// Get the properties and relationships of a device object. Since the **device** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **device** instance.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DeviceItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -276,6 +292,7 @@ namespace ApiSdk.Devices.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new DeviceItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -286,7 +303,7 @@ namespace ApiSdk.Devices.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in devices
+        /// Update the properties of a device. Only certain properties of a device can be updated through approved Mobile Device Management (MDM) apps.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -320,7 +337,7 @@ namespace ApiSdk.Devices.Item {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get entity from devices by key</summary>
+        /// <summary>Get the properties and relationships of a device object. Since the **device** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **device** instance.</summary>
         public class DeviceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

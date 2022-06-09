@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>A class containing the properties used for Group Assignment of a Mobile App.</summary>
     public class MobileAppAssignment : Entity, IParsable {
         /// <summary>The install intent defined by the admin. Possible values are: available, required, uninstall, availableWithoutEnrollment.</summary>
         public InstallIntent? Intent { get; set; }

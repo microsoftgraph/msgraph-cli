@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class ItemActivityStat : Entity, IParsable {
         /// <summary>Statistics about the access actions in this interval. Read-only.</summary>
         public ItemActionStat Access { get; set; }

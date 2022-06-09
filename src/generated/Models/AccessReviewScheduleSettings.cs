@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public List<AccessReviewApplyAction> ApplyActions { get; set; }
         /// <summary>Indicates whether decisions are automatically applied. When set to false, an admin must apply the decisions manually once the reviewer completes the access review. When set to true, decisions are applied automatically after the access review instance duration ends, whether or not the reviewers have responded. Default value is false.</summary>
         public bool? AutoApplyDecisionsEnabled { get; set; }
+        /// <summary>Indicates whether decisions on previous access review stages are available for reviewers on an accessReviewInstance with multiple subsequent stages. If not provided, the default is disabled (false).</summary>
+        public bool? DecisionHistoriesForReviewersEnabled { get; set; }
         /// <summary>Decision chosen if defaultDecisionEnabled is enabled. Can be one of Approve, Deny, or Recommendation.</summary>
         public string DefaultDecision { get; set; }
         /// <summary>Indicates whether the default decision is enabled or disabled when reviewers do not respond. Default value is false.</summary>
@@ -48,6 +50,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"applyActions", n => { ApplyActions = n.GetCollectionOfObjectValues<AccessReviewApplyAction>(AccessReviewApplyAction.CreateFromDiscriminatorValue).ToList(); } },
                 {"autoApplyDecisionsEnabled", n => { AutoApplyDecisionsEnabled = n.GetBoolValue(); } },
+                {"decisionHistoriesForReviewersEnabled", n => { DecisionHistoriesForReviewersEnabled = n.GetBoolValue(); } },
                 {"defaultDecision", n => { DefaultDecision = n.GetStringValue(); } },
                 {"defaultDecisionEnabled", n => { DefaultDecisionEnabled = n.GetBoolValue(); } },
                 {"instanceDurationInDays", n => { InstanceDurationInDays = n.GetIntValue(); } },
@@ -66,6 +69,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<AccessReviewApplyAction>("applyActions", ApplyActions);
             writer.WriteBoolValue("autoApplyDecisionsEnabled", AutoApplyDecisionsEnabled);
+            writer.WriteBoolValue("decisionHistoriesForReviewersEnabled", DecisionHistoriesForReviewersEnabled);
             writer.WriteStringValue("defaultDecision", DefaultDecision);
             writer.WriteBoolValue("defaultDecisionEnabled", DefaultDecisionEnabled);
             writer.WriteIntValue("instanceDurationInDays", InstanceDurationInDays);

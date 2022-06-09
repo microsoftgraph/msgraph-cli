@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the print singleton.</summary>
     public class PrintOperation : Entity, IParsable {
         /// <summary>The DateTimeOffset when the operation was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -15,7 +16,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new PrintOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrintOperation();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.printerCreateOperation" => new PrinterCreateOperation(),
+                _ => new PrintOperation(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
