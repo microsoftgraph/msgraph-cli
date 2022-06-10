@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         /// <summary>The previewText property</summary>
         public string PreviewText { get; set; }
         /// <summary>
-        /// Instantiates a new onenotePagePreview and sets the default values.
+        /// Instantiates a new OnenotePagePreview and sets the default values.
         /// </summary>
         public OnenotePagePreview() {
             AdditionalData = new Dictionary<string, object>();

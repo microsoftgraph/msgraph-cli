@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Windows Information Protection AppLocker File</summary>
     public class WindowsInformationProtectionAppLockerFile : Entity, IParsable {
         /// <summary>The friendly name</summary>
         public string DisplayName { get; set; }

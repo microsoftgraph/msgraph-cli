@@ -3,9 +3,10 @@ using ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.
 using ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.Item.Relations.Item.ToTerm;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.TermStore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -63,16 +64,16 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Te
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var siteId = (string) parameters[1];
-                var storeId = (string) parameters[2];
-                var groupId1 = (string) parameters[3];
-                var setId = (string) parameters[4];
-                var termId = (string) parameters[5];
-                var relationId = (string) parameters[6];
-                var ifMatch = (string) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var storeId = invocationContext.ParseResult.GetValueForOption(storeIdOption);
+                var groupId1 = invocationContext.ParseResult.GetValueForOption(groupId1Option);
+                var setId = invocationContext.ParseResult.GetValueForOption(setIdOption);
+                var termId = invocationContext.ParseResult.GetValueForOption(termIdOption);
+                var relationId = invocationContext.ParseResult.GetValueForOption(relationIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -89,7 +90,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Te
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, siteIdOption, storeIdOption, groupId1Option, setIdOption, termIdOption, relationIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildFromTermCommand() {
@@ -156,22 +157,22 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Te
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var siteId = (string) parameters[1];
-                var storeId = (string) parameters[2];
-                var groupId1 = (string) parameters[3];
-                var setId = (string) parameters[4];
-                var termId = (string) parameters[5];
-                var relationId = (string) parameters[6];
-                var select = (string[]) parameters[7];
-                var expand = (string[]) parameters[8];
-                var output = (FormatterType) parameters[9];
-                var query = (string) parameters[10];
-                var jsonNoIndent = (bool) parameters[11];
-                var outputFilter = (IOutputFilter) parameters[12];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
-                var cancellationToken = (CancellationToken) parameters[14];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var storeId = invocationContext.ParseResult.GetValueForOption(storeIdOption);
+                var groupId1 = invocationContext.ParseResult.GetValueForOption(groupId1Option);
+                var setId = invocationContext.ParseResult.GetValueForOption(setIdOption);
+                var termId = invocationContext.ParseResult.GetValueForOption(termIdOption);
+                var relationId = invocationContext.ParseResult.GetValueForOption(relationIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -192,7 +193,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Te
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(groupIdOption, siteIdOption, storeIdOption, groupId1Option, setIdOption, termIdOption, relationIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -234,16 +235,16 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Te
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var siteId = (string) parameters[1];
-                var storeId = (string) parameters[2];
-                var groupId1 = (string) parameters[3];
-                var setId = (string) parameters[4];
-                var termId = (string) parameters[5];
-                var relationId = (string) parameters[6];
-                var body = (string) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var storeId = invocationContext.ParseResult.GetValueForOption(storeIdOption);
+                var groupId1 = invocationContext.ParseResult.GetValueForOption(groupId1Option);
+                var setId = invocationContext.ParseResult.GetValueForOption(setIdOption);
+                var termId = invocationContext.ParseResult.GetValueForOption(termIdOption);
+                var relationId = invocationContext.ParseResult.GetValueForOption(relationIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Relation>(Relation.CreateFromDiscriminatorValue);
@@ -262,7 +263,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Te
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, siteIdOption, storeIdOption, groupId1Option, setIdOption, termIdOption, relationIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildSetCommand() {
@@ -318,6 +319,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Te
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new RelationItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

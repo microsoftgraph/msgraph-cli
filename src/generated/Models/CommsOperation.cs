@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the cloudCommunications singleton.</summary>
     public class CommsOperation : Entity, IParsable {
         /// <summary>Unique Client Context string. Max limit is 256 chars.</summary>
         public string ClientContext { get; set; }
@@ -17,7 +18,21 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new CommsOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CommsOperation();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.cancelMediaProcessingOperation" => new CancelMediaProcessingOperation(),
+                "#microsoft.graph.inviteParticipantsOperation" => new InviteParticipantsOperation(),
+                "#microsoft.graph.muteParticipantOperation" => new MuteParticipantOperation(),
+                "#microsoft.graph.playPromptOperation" => new PlayPromptOperation(),
+                "#microsoft.graph.recordOperation" => new RecordOperation(),
+                "#microsoft.graph.startHoldMusicOperation" => new StartHoldMusicOperation(),
+                "#microsoft.graph.stopHoldMusicOperation" => new StopHoldMusicOperation(),
+                "#microsoft.graph.subscribeToToneOperation" => new SubscribeToToneOperation(),
+                "#microsoft.graph.unmuteParticipantOperation" => new UnmuteParticipantOperation(),
+                "#microsoft.graph.updateRecordingStatusOperation" => new UpdateRecordingStatusOperation(),
+                _ => new CommsOperation(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

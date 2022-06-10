@@ -7,15 +7,15 @@ namespace ApiSdk.Models {
     public class VerifiedDomain : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>For example, &apos;Email&apos;, &apos;OfficeCommunicationsOnline&apos;.</summary>
+        /// <summary>For example, Email, OfficeCommunicationsOnline.</summary>
         public string Capabilities { get; set; }
         /// <summary>true if this is the default domain associated with the tenant; otherwise, false.</summary>
         public bool? IsDefault { get; set; }
-        /// <summary>true if this is the initial domain associated with the tenant; otherwise, false</summary>
+        /// <summary>true if this is the initial domain associated with the tenant; otherwise, false.</summary>
         public bool? IsInitial { get; set; }
-        /// <summary>The domain name; for example, &apos;contoso.onmicrosoft.com&apos;</summary>
+        /// <summary>The domain name; for example, contoso.onmicrosoft.com.</summary>
         public string Name { get; set; }
-        /// <summary>For example, &apos;Managed&apos;.</summary>
+        /// <summary>For example, Managed.</summary>
         public string Type { get; set; }
         /// <summary>
         /// Instantiates a new verifiedDomain and sets the default values.

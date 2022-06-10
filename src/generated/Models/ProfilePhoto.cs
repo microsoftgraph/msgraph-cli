@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class ProfilePhoto : Entity, IParsable {
         /// <summary>The height of the photo. Read-only.</summary>
         public int? Height { get; set; }

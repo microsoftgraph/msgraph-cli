@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class OutlookItem : Entity, IParsable {
         /// <summary>The categories associated with the item</summary>
         public List<string> Categories { get; set; }
@@ -19,7 +20,15 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new OutlookItem CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OutlookItem();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.contact" => new Contact(),
+                "#microsoft.graph.event" => new Event(),
+                "#microsoft.graph.message" => new Message(),
+                "#microsoft.graph.post" => new Post(),
+                _ => new OutlookItem(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Contains properties for the installation state for a device.</summary>
     public class DeviceInstallState : Entity, IParsable {
         /// <summary>Device Id.</summary>
         public string DeviceId { get; set; }

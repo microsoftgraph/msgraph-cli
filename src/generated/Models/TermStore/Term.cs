@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.TermStore {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Term : Entity, IParsable {
         /// <summary>Children of current term.</summary>
         public List<Term> Children { get; set; }

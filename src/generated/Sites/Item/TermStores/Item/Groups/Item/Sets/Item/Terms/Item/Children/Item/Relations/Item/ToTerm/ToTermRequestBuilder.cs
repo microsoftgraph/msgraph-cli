@@ -1,8 +1,9 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.TermStore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -79,22 +80,22 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.Item.Chi
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var siteId = (string) parameters[0];
-                var storeId = (string) parameters[1];
-                var groupId = (string) parameters[2];
-                var setId = (string) parameters[3];
-                var termId = (string) parameters[4];
-                var termId1 = (string) parameters[5];
-                var relationId = (string) parameters[6];
-                var select = (string[]) parameters[7];
-                var expand = (string[]) parameters[8];
-                var output = (FormatterType) parameters[9];
-                var query = (string) parameters[10];
-                var jsonNoIndent = (bool) parameters[11];
-                var outputFilter = (IOutputFilter) parameters[12];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
-                var cancellationToken = (CancellationToken) parameters[14];
+            command.SetHandler(async (invocationContext) => {
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var storeId = invocationContext.ParseResult.GetValueForOption(storeIdOption);
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var setId = invocationContext.ParseResult.GetValueForOption(setIdOption);
+                var termId = invocationContext.ParseResult.GetValueForOption(termIdOption);
+                var termId1 = invocationContext.ParseResult.GetValueForOption(termId1Option);
+                var relationId = invocationContext.ParseResult.GetValueForOption(relationIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -115,7 +116,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.Item.Chi
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(siteIdOption, storeIdOption, groupIdOption, setIdOption, termIdOption, termId1Option, relationIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -141,6 +142,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.Item.Chi
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new ToTermRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

@@ -2,9 +2,10 @@ using ApiSdk.GroupLifecyclePolicies.Item.AddGroup;
 using ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,11 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete entity from groupLifecyclePolicies
+        /// Delete a groupLifecyclePolicy.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from groupLifecyclePolicies";
+            command.Description = "Delete a groupLifecyclePolicy.";
             // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };
@@ -44,10 +45,10 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupLifecyclePolicyId = (string) parameters[0];
-                var ifMatch = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var groupLifecyclePolicyId = invocationContext.ParseResult.GetValueForOption(groupLifecyclePolicyIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("groupLifecyclePolicy%2Did", groupLifecyclePolicyId);
@@ -58,15 +59,15 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupLifecyclePolicyIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
-        /// Get entity from groupLifecyclePolicies by key
+        /// Retrieve the properties and relationships of a groupLifecyclePolicies object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from groupLifecyclePolicies by key";
+            command.Description = "Retrieve the properties and relationships of a groupLifecyclePolicies object.";
             // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };
@@ -95,16 +96,16 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupLifecyclePolicyId = (string) parameters[0];
-                var select = (string[]) parameters[1];
-                var expand = (string[]) parameters[2];
-                var output = (FormatterType) parameters[3];
-                var query = (string) parameters[4];
-                var jsonNoIndent = (bool) parameters[5];
-                var outputFilter = (IOutputFilter) parameters[6];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
+            command.SetHandler(async (invocationContext) => {
+                var groupLifecyclePolicyId = invocationContext.ParseResult.GetValueForOption(groupLifecyclePolicyIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -119,15 +120,15 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(groupLifecyclePolicyIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
-        /// Update entity in groupLifecyclePolicies
+        /// Update the properties of a groupLifecyclePolicygroupLifecyclePolicy resource type object.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in groupLifecyclePolicies";
+            command.Description = "Update the properties of a groupLifecyclePolicygroupLifecyclePolicy resource type object.";
             // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };
@@ -137,10 +138,10 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupLifecyclePolicyId = (string) parameters[0];
-                var body = (string) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+            command.SetHandler(async (invocationContext) => {
+                var groupLifecyclePolicyId = invocationContext.ParseResult.GetValueForOption(groupLifecyclePolicyIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GroupLifecyclePolicy>(GroupLifecyclePolicy.CreateFromDiscriminatorValue);
@@ -153,7 +154,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupLifecyclePolicyIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildRemoveGroupCommand() {
@@ -176,7 +177,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from groupLifecyclePolicies
+        /// Delete a groupLifecyclePolicy.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<GroupLifecyclePolicyItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
@@ -194,7 +195,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from groupLifecyclePolicies by key
+        /// Retrieve the properties and relationships of a groupLifecyclePolicies object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GroupLifecyclePolicyItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -203,6 +204,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new GroupLifecyclePolicyItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -213,7 +215,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in groupLifecyclePolicies
+        /// Update the properties of a groupLifecyclePolicygroupLifecyclePolicy resource type object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +249,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get entity from groupLifecyclePolicies by key</summary>
+        /// <summary>Retrieve the properties and relationships of a groupLifecyclePolicies object.</summary>
         public class GroupLifecyclePolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

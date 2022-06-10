@@ -1,16 +1,22 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Users.Item.JoinedTeams.Item.Archive;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels;
+using ApiSdk.Users.Item.JoinedTeams.Item.Clone;
+using ApiSdk.Users.Item.JoinedTeams.Item.CompleteMigration;
 using ApiSdk.Users.Item.JoinedTeams.Item.Group;
 using ApiSdk.Users.Item.JoinedTeams.Item.InstalledApps;
 using ApiSdk.Users.Item.JoinedTeams.Item.Members;
 using ApiSdk.Users.Item.JoinedTeams.Item.Operations;
 using ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule;
+using ApiSdk.Users.Item.JoinedTeams.Item.SendActivityNotification;
 using ApiSdk.Users.Item.JoinedTeams.Item.Template;
+using ApiSdk.Users.Item.JoinedTeams.Item.Unarchive;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -29,6 +35,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildArchiveCommand() {
+            var command = new Command("archive");
+            var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
         public Command BuildChannelsCommand() {
             var command = new Command("channels");
             var builder = new ChannelsRequestBuilder(PathParameters, RequestAdapter);
@@ -36,6 +48,18 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildCloneCommand() {
+            var command = new Command("clone");
+            var builder = new CloneRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        public Command BuildCompleteMigrationCommand() {
+            var command = new Command("complete-migration");
+            var builder = new CompleteMigrationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -57,11 +81,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var teamId = (string) parameters[1];
-                var ifMatch = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
@@ -73,7 +97,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, teamIdOption, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -114,17 +138,17 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var teamId = (string) parameters[1];
-                var select = (string[]) parameters[2];
-                var expand = (string[]) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var query = (string) parameters[5];
-                var jsonNoIndent = (bool) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -140,7 +164,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(userIdOption, teamIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildGroupCommand() {
@@ -196,11 +220,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var teamId = (string) parameters[1];
-                var body = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Team>(ApiSdk.Models.Team.CreateFromDiscriminatorValue);
@@ -214,7 +238,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, teamIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildPrimaryChannelCommand() {
@@ -250,10 +274,22 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             command.AddCommand(builder.BuildTimesOffCommand());
             return command;
         }
+        public Command BuildSendActivityNotificationCommand() {
+            var command = new Command("send-activity-notification");
+            var builder = new SendActivityNotificationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
         public Command BuildTemplateCommand() {
             var command = new Command("template");
             var builder = new TemplateRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        public Command BuildUnarchiveCommand() {
+            var command = new Command("unarchive");
+            var builder = new UnarchiveRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -297,6 +333,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new TeamItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Calendar : Entity, IParsable {
         /// <summary>Represent the online meeting service providers that can be used to create online meetings in this calendar. Possible values are: unknown, skypeForBusiness, skypeForConsumer, teamsForBusiness.</summary>
-        public List<OnlineMeetingProviderType?> AllowedOnlineMeetingProviders { get; set; }
+        public List<string> AllowedOnlineMeetingProviders { get; set; }
         /// <summary>The permissions of the users with whom the calendar is shared.</summary>
         public List<CalendarPermission> CalendarPermissions { get; set; }
         /// <summary>The calendar view for the calendar. Navigation property. Read-only.</summary>
@@ -54,7 +55,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"allowedOnlineMeetingProviders", n => { AllowedOnlineMeetingProviders = n.GetCollectionOfEnumValues<OnlineMeetingProviderType>().ToList(); } },
+                {"allowedOnlineMeetingProviders", n => { AllowedOnlineMeetingProviders = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"calendarPermissions", n => { CalendarPermissions = n.GetCollectionOfObjectValues<CalendarPermission>(CalendarPermission.CreateFromDiscriminatorValue).ToList(); } },
                 {"calendarView", n => { CalendarView = n.GetCollectionOfObjectValues<Event>(Event.CreateFromDiscriminatorValue).ToList(); } },
                 {"canEdit", n => { CanEdit = n.GetBoolValue(); } },
@@ -81,7 +82,7 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfEnumValues<OnlineMeetingProviderType>("allowedOnlineMeetingProviders", AllowedOnlineMeetingProviders);
+            writer.WriteCollectionOfPrimitiveValues<string>("allowedOnlineMeetingProviders", AllowedOnlineMeetingProviders);
             writer.WriteCollectionOfObjectValues<CalendarPermission>("calendarPermissions", CalendarPermissions);
             writer.WriteCollectionOfObjectValues<Event>("calendarView", CalendarView);
             writer.WriteBoolValue("canEdit", CanEdit);

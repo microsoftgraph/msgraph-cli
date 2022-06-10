@@ -20,7 +20,7 @@ namespace ApiSdk.Models {
         /// <summary>The orientation to use when feeding media into the printer. Valid values are described in the following table. Read-only.</summary>
         public PrinterFeedOrientation? FeedOrientation { get; set; }
         /// <summary>Finishing processes to use when printing.</summary>
-        public List<PrintFinishing?> Finishings { get; set; }
+        public List<string> Finishings { get; set; }
         /// <summary>The fitPdfToPage property</summary>
         public bool? FitPdfToPage { get; set; }
         /// <summary>The input bin (tray) to use when printing. See the printer&apos;s capabilities for a list of supported input bins.</summary>
@@ -70,7 +70,7 @@ namespace ApiSdk.Models {
                 {"dpi", n => { Dpi = n.GetIntValue(); } },
                 {"duplexMode", n => { DuplexMode = n.GetEnumValue<PrintDuplexMode>(); } },
                 {"feedOrientation", n => { FeedOrientation = n.GetEnumValue<PrinterFeedOrientation>(); } },
-                {"finishings", n => { Finishings = n.GetCollectionOfEnumValues<PrintFinishing>().ToList(); } },
+                {"finishings", n => { Finishings = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"fitPdfToPage", n => { FitPdfToPage = n.GetBoolValue(); } },
                 {"inputBin", n => { InputBin = n.GetStringValue(); } },
                 {"margin", n => { Margin = n.GetObjectValue<PrintMargin>(PrintMargin.CreateFromDiscriminatorValue); } },
@@ -97,7 +97,7 @@ namespace ApiSdk.Models {
             writer.WriteIntValue("dpi", Dpi);
             writer.WriteEnumValue<PrintDuplexMode>("duplexMode", DuplexMode);
             writer.WriteEnumValue<PrinterFeedOrientation>("feedOrientation", FeedOrientation);
-            writer.WriteCollectionOfEnumValues<PrintFinishing>("finishings", Finishings);
+            writer.WriteCollectionOfPrimitiveValues<string>("finishings", Finishings);
             writer.WriteBoolValue("fitPdfToPage", FitPdfToPage);
             writer.WriteStringValue("inputBin", InputBin);
             writer.WriteObjectValue<PrintMargin>("margin", Margin);

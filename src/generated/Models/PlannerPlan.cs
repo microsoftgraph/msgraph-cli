@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class PlannerPlan : Entity, IParsable {
         /// <summary>Collection of buckets in the plan. Read-only. Nullable.</summary>
         public List<PlannerBucket> Buckets { get; set; }
@@ -15,7 +16,7 @@ namespace ApiSdk.Models {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Additional details about the plan. Read-only. Nullable.</summary>
         public PlannerPlanDetails Details { get; set; }
-        /// <summary>ID of the Group that owns the plan. A valid group must exist before this field can be set. After it is set, this property can’t be updated.</summary>
+        /// <summary>The owner property</summary>
         public string Owner { get; set; }
         /// <summary>Collection of tasks in the plan. Read-only. Nullable.</summary>
         public List<PlannerTask> Tasks { get; set; }

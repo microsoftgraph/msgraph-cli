@@ -11,7 +11,7 @@ namespace ApiSdk.Models {
         /// <summary>Report content; details vary by report type.</summary>
         public byte[] Content { get; set; }
         /// <summary>
-        /// Instantiates a new report and sets the default values.
+        /// Instantiates a new Report and sets the default values.
         /// </summary>
         public Report() {
             AdditionalData = new Dictionary<string, object>();

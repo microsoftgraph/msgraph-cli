@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class EntitlementManagement : Entity, IParsable {
-        /// <summary>Approval stages for assignment requests.</summary>
+        /// <summary>Approval stages for decisions associated with access package assignment requests.</summary>
         public List<Approval> AccessPackageAssignmentApprovals { get; set; }
         /// <summary>Represents access package objects.</summary>
         public List<AccessPackage> AccessPackages { get; set; }
-        /// <summary>Access package assignment policies.</summary>
+        /// <summary>Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.</summary>
         public List<AccessPackageAssignmentPolicy> AssignmentPolicies { get; set; }
-        /// <summary>Represents access package assignment requests created by or on behalf of a user.</summary>
+        /// <summary>Access package assignment requests created by or on behalf of a subject.</summary>
         public List<AccessPackageAssignmentRequest> AssignmentRequests { get; set; }
-        /// <summary>Represents the grant of an access package to a subject (user or group).</summary>
+        /// <summary>The assignment of an access package to a subject for a period of time.</summary>
         public List<AccessPackageAssignment> Assignments { get; set; }
-        /// <summary>Represents a collection of access packages.</summary>
+        /// <summary>A container for access packages.</summary>
         public List<AccessPackageCatalog> Catalogs { get; set; }
         /// <summary>Represents references to a directory or domain of another organization whose users can request access.</summary>
         public List<ConnectedOrganization> ConnectedOrganizations { get; set; }

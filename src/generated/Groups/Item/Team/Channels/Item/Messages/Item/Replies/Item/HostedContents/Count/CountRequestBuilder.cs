@@ -1,7 +1,8 @@
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -43,13 +44,13 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item.Hoste
             };
             chatMessageId1Option.IsRequired = true;
             command.AddOption(chatMessageId1Option);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var channelId = (string) parameters[1];
-                var chatMessageId = (string) parameters[2];
-                var chatMessageId1 = (string) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var channelId = invocationContext.ParseResult.GetValueForOption(channelIdOption);
+                var chatMessageId = invocationContext.ParseResult.GetValueForOption(chatMessageIdOption);
+                var chatMessageId1 = invocationContext.ParseResult.GetValueForOption(chatMessageId1Option);
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -63,7 +64,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item.Hoste
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 await formatter.WriteOutputAsync(response, null, cancellationToken);
-            }, new CollectionBinding(groupIdOption, channelIdOption, chatMessageIdOption, chatMessageId1Option, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -89,6 +90,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item.Hoste
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "text/plain");
             if (requestConfiguration != null) {
                 var requestConfig = new CountRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of chat entities.</summary>
     public class ChatMessage : Entity, IParsable {
         /// <summary>References to attached objects like files, tabs, meetings etc.</summary>
         public List<ChatMessageAttachment> Attachments { get; set; }
@@ -41,7 +42,7 @@ namespace ApiSdk.Models {
         public ChatMessagePolicyViolation PolicyViolation { get; set; }
         /// <summary>Reactions for this chat message (for example, Like).</summary>
         public List<ChatMessageReaction> Reactions { get; set; }
-        /// <summary>Replies for a specified message.</summary>
+        /// <summary>Replies for a specified message. Supports $expand for channel messages.</summary>
         public List<ChatMessage> Replies { get; set; }
         /// <summary>Read-only. ID of the parent chat message or root chat message of the thread. (Only applies to chat messages in channels, not chats.)</summary>
         public string ReplyToId { get; set; }

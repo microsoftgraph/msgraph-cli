@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the policyRoot singleton.</summary>
+    /// <summary>Provides operations to call the instantiate method.</summary>
     public enum AllowInvitesFrom {
         None,
         AdminsAndGuestInviters,

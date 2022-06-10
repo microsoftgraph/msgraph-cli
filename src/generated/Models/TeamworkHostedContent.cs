@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of chat entities.</summary>
     public class TeamworkHostedContent : Entity, IParsable {
         /// <summary>Write only. Bytes for the hosted content (such as images).</summary>
         public byte[] ContentBytes { get; set; }
@@ -15,7 +16,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new TeamworkHostedContent CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamworkHostedContent();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.chatMessageHostedContent" => new ChatMessageHostedContent(),
+                _ => new TeamworkHostedContent(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

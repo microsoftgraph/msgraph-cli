@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to call the answer method.</summary>
     public class IncomingCallOptions : CallOptions, IParsable {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

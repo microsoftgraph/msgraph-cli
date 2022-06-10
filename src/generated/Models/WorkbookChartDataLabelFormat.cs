@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartDataLabelFormat : Entity, IParsable {
         /// <summary>Represents the fill format of the current chart data label. Read-only.</summary>
         public WorkbookChartFill Fill { get; set; }

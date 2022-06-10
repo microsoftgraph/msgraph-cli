@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>The ManagedAppEntity is the base entity type for all other entity types under app management workflow.</summary>
     public class ManagedAppRegistration : Entity, IParsable {
         /// <summary>The app package Identifier</summary>
         public MobileAppIdentifier AppIdentifier { get; set; }
@@ -20,7 +21,7 @@ namespace ApiSdk.Models {
         /// <summary>Host device type</summary>
         public string DeviceType { get; set; }
         /// <summary>Zero or more reasons an app registration is flagged. E.g. app running on rooted device</summary>
-        public List<ManagedAppFlaggedReason?> FlaggedReasons { get; set; }
+        public List<string> FlaggedReasons { get; set; }
         /// <summary>Zero or more policies admin intended for the app as of now.</summary>
         public List<ManagedAppPolicy> IntendedPolicies { get; set; }
         /// <summary>Date and time of last the app synced with management service.</summary>
@@ -41,7 +42,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ManagedAppRegistration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedAppRegistration();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.androidManagedAppRegistration" => new AndroidManagedAppRegistration(),
+                "#microsoft.graph.iosManagedAppRegistration" => new IosManagedAppRegistration(),
+                _ => new ManagedAppRegistration(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +62,7 @@ namespace ApiSdk.Models {
                 {"deviceName", n => { DeviceName = n.GetStringValue(); } },
                 {"deviceTag", n => { DeviceTag = n.GetStringValue(); } },
                 {"deviceType", n => { DeviceType = n.GetStringValue(); } },
-                {"flaggedReasons", n => { FlaggedReasons = n.GetCollectionOfEnumValues<ManagedAppFlaggedReason>().ToList(); } },
+                {"flaggedReasons", n => { FlaggedReasons = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"intendedPolicies", n => { IntendedPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue).ToList(); } },
                 {"lastSyncDateTime", n => { LastSyncDateTime = n.GetDateTimeOffsetValue(); } },
                 {"managementSdkVersion", n => { ManagementSdkVersion = n.GetStringValue(); } },
@@ -79,7 +86,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("deviceName", DeviceName);
             writer.WriteStringValue("deviceTag", DeviceTag);
             writer.WriteStringValue("deviceType", DeviceType);
-            writer.WriteCollectionOfEnumValues<ManagedAppFlaggedReason>("flaggedReasons", FlaggedReasons);
+            writer.WriteCollectionOfPrimitiveValues<string>("flaggedReasons", FlaggedReasons);
             writer.WriteCollectionOfObjectValues<ManagedAppPolicy>("intendedPolicies", IntendedPolicies);
             writer.WriteDateTimeOffsetValue("lastSyncDateTime", LastSyncDateTime);
             writer.WriteStringValue("managementSdkVersion", ManagementSdkVersion);

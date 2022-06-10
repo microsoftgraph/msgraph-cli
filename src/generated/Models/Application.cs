@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to call the instantiate method.</summary>
     public class Application : DirectoryObject, IParsable {
         /// <summary>Defines custom behavior that a consuming service can use to call an app in specific contexts. For example, applications that can render file streams may set the addIns property for its &apos;FileHandler&apos; functionality. This will let services like Office 365 call the application in the context of a document the user is working on.</summary>
         public List<AddIn> AddIns { get; set; }
@@ -17,7 +18,7 @@ namespace ApiSdk.Models {
         public List<AppRole> AppRoles { get; set; }
         /// <summary>The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderBy.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Read-only.</summary>
+        /// <summary>The createdOnBehalfOf property</summary>
         public DirectoryObject CreatedOnBehalfOf { get; set; }
         /// <summary>Free text field to provide a description of the application object to end users. The maximum allowed size is 1024 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, startsWith) and $search.</summary>
         public string Description { get; set; }
@@ -25,7 +26,7 @@ namespace ApiSdk.Models {
         public string DisabledByMicrosoftStatus { get; set; }
         /// <summary>The display name for the application. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).</summary>
         public List<ExtensionProperty> ExtensionProperties { get; set; }
         /// <summary>Configures the groups claim issued in a user or OAuth 2.0 access token that the application expects. To set this attribute, use one of the following string values: None, SecurityGroup (for security groups and Azure AD roles), All (this gets all security groups, distribution groups, and Azure AD directory roles that the signed-in user is a member of).</summary>
         public string GroupMembershipClaims { get; set; }
@@ -61,7 +62,7 @@ namespace ApiSdk.Models {
         public string PublisherDomain { get; set; }
         /// <summary>Specifies the resources that the application needs to access. This property also specifies the set of delegated permissions and application roles that it needs for each of those resources. This configuration of access to the required resources drives the consent experience. No more than 50 resource services (APIs) can be configured. Beginning mid-October 2021, the total number of required permissions must not exceed 400. Not nullable. Supports $filter (eq, not, ge, le).</summary>
         public List<ApiSdk.Models.RequiredResourceAccess> RequiredResourceAccess { get; set; }
-        /// <summary>The serviceManagementReference property</summary>
+        /// <summary>References application or service contact information from a Service or Asset Management database. Nullable.</summary>
         public string ServiceManagementReference { get; set; }
         /// <summary>Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table below. Supports $filter (eq, ne, not).</summary>
         public string SignInAudience { get; set; }

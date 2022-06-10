@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class OnenoteEntityBaseModel : Entity, IParsable {
         /// <summary>The endpoint where you can get details about the page. Read-only.</summary>
         public string Self { get; set; }
@@ -13,7 +14,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new OnenoteEntityBaseModel CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnenoteEntityBaseModel();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.onenoteEntitySchemaObjectModel" => new OnenoteEntitySchemaObjectModel(),
+                "#microsoft.graph.onenoteResource" => new OnenoteResource(),
+                _ => new OnenoteEntityBaseModel(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

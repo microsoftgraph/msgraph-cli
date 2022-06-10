@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>An abstract class for Mobile app configuration for enrolled devices.</summary>
     public class ManagedDeviceMobileAppConfiguration : Entity, IParsable {
         /// <summary>The list of group assignemenets for app configration.</summary>
         public List<ManagedDeviceMobileAppConfigurationAssignment> Assignments { get; set; }
@@ -33,7 +34,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ManagedDeviceMobileAppConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedDeviceMobileAppConfiguration();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.iosMobileAppConfiguration" => new IosMobileAppConfiguration(),
+                _ => new ManagedDeviceMobileAppConfiguration(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

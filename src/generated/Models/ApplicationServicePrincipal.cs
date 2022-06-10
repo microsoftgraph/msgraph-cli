@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         /// <summary>The servicePrincipal property</summary>
         public ApiSdk.Models.ServicePrincipal ServicePrincipal { get; set; }
         /// <summary>
-        /// Instantiates a new applicationServicePrincipal and sets the default values.
+        /// Instantiates a new ApplicationServicePrincipal and sets the default values.
         /// </summary>
         public ApplicationServicePrincipal() {
             AdditionalData = new Dictionary<string, object>();

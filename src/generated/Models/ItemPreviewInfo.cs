@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         /// <summary>The postUrl property</summary>
         public string PostUrl { get; set; }
         /// <summary>
-        /// Instantiates a new itemPreviewInfo and sets the default values.
+        /// Instantiates a new ItemPreviewInfo and sets the default values.
         /// </summary>
         public ItemPreviewInfo() {
             AdditionalData = new Dictionary<string, object>();

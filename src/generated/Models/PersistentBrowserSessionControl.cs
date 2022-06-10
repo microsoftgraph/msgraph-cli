@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class PersistentBrowserSessionControl : ConditionalAccessSessionControl, IParsable {
         /// <summary>Possible values are: always, never.</summary>
         public PersistentBrowserSessionMode? Mode { get; set; }

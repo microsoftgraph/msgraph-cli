@@ -6,13 +6,13 @@ using System.Linq;
 namespace ApiSdk.Models {
     /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class AuditLogRoot : Entity, IParsable {
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The directoryAudits property</summary>
         public List<DirectoryAudit> DirectoryAudits { get; set; }
         /// <summary>The provisioning property</summary>
         public List<ProvisioningObjectSummary> Provisioning { get; set; }
         /// <summary>The restrictedSignIns property</summary>
         public List<RestrictedSignIn> RestrictedSignIns { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The signIns property</summary>
         public List<SignIn> SignIns { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

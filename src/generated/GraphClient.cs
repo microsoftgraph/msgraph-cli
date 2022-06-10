@@ -66,8 +66,9 @@ using ApiSdk.TeamsTemplates;
 using ApiSdk.Teamwork;
 using ApiSdk.Users;
 using ApiSdk.Workbooks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using Microsoft.Kiota.Serialization.Json;
 using Microsoft.Kiota.Serialization.Text;
@@ -335,6 +336,7 @@ namespace ApiSdk {
             var builder = new DirectoryRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAdministrativeUnitsCommand());
             command.AddCommand(builder.BuildDeletedItemsCommand());
+            command.AddCommand(builder.BuildFederationConfigurationsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -652,6 +654,7 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildRoomCommand());
             return command;
         }
         public Command BuildPlannerCommand() {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the print singleton.</summary>
     public class PrinterBase : Entity, IParsable {
         /// <summary>The capabilities of the printer/printerShare.</summary>
         public PrinterCapabilities Capabilities { get; set; }
@@ -29,7 +30,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new PrinterBase CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrinterBase();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.printer" => new Printer(),
+                "#microsoft.graph.printerShare" => new PrinterShare(),
+                _ => new PrinterBase(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

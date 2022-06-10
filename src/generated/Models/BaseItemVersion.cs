@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class BaseItemVersion : Entity, IParsable {
         /// <summary>Identity of the user which last modified the version. Read-only.</summary>
         public IdentitySet LastModifiedBy { get; set; }
@@ -17,7 +18,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new BaseItemVersion CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BaseItemVersion();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.driveItemVersion" => new DriveItemVersion(),
+                "#microsoft.graph.listItemVersion" => new ListItemVersion(),
+                _ => new BaseItemVersion(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

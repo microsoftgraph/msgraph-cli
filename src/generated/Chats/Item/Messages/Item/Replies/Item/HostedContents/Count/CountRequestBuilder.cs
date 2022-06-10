@@ -1,7 +1,8 @@
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -39,12 +40,12 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Item.HostedContents.Count {
             };
             chatMessageId1Option.IsRequired = true;
             command.AddOption(chatMessageId1Option);
-            command.SetHandler(async (object[] parameters) => {
-                var chatId = (string) parameters[0];
-                var chatMessageId = (string) parameters[1];
-                var chatMessageId1 = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+            command.SetHandler(async (invocationContext) => {
+                var chatId = invocationContext.ParseResult.GetValueForOption(chatIdOption);
+                var chatMessageId = invocationContext.ParseResult.GetValueForOption(chatMessageIdOption);
+                var chatMessageId1 = invocationContext.ParseResult.GetValueForOption(chatMessageId1Option);
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("chat%2Did", chatId);
@@ -57,7 +58,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Item.HostedContents.Count {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 await formatter.WriteOutputAsync(response, null, cancellationToken);
-            }, new CollectionBinding(chatIdOption, chatMessageIdOption, chatMessageId1Option, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -83,6 +84,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Item.HostedContents.Count {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "text/plain");
             if (requestConfiguration != null) {
                 var requestConfig = new CountRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

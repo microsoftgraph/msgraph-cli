@@ -17,11 +17,11 @@ namespace ApiSdk.Models {
         public List<AgreementAcceptance> AgreementAcceptances { get; set; }
         /// <summary>Represents the app roles a user has been granted for an application. Supports $expand.</summary>
         public List<AppRoleAssignment> AppRoleAssignments { get; set; }
-        /// <summary>The licenses that are assigned to the user, including inherited (group-based) licenses. Not nullable. Supports $filter (eq and not).</summary>
+        /// <summary>The licenses that are assigned to the user, including inherited (group-based) licenses. Not nullable. Supports $filter (eq, not, and counting empty collections).</summary>
         public List<AssignedLicense> AssignedLicenses { get; set; }
         /// <summary>The plans that are assigned to the user. Read-only. Not nullable.Supports $filter (eq and not).</summary>
         public List<AssignedPlan> AssignedPlans { get; set; }
-        /// <summary>TODO: Add Description</summary>
+        /// <summary>The authentication methods that are supported for the user.</summary>
         public ApiSdk.Models.Authentication Authentication { get; set; }
         /// <summary>The birthday of the user. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z Returned only on $select.</summary>
         public DateTimeOffset? Birthday { get; set; }
@@ -99,7 +99,7 @@ namespace ApiSdk.Models {
         public List<string> ImAddresses { get; set; }
         /// <summary>Relevance classification of the user&apos;s messages based on explicit designations which override inferred relevance or importance.</summary>
         public ApiSdk.Models.InferenceClassification InferenceClassification { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The insights property</summary>
         public OfficeGraphInsights Insights { get; set; }
         /// <summary>A list for the user to describe their interests. Returned only on $select.</summary>
         public List<string> Interests { get; set; }
@@ -143,7 +143,7 @@ namespace ApiSdk.Models {
         public List<OAuth2PermissionGrant> Oauth2PermissionGrants { get; set; }
         /// <summary>The office location in the user&apos;s place of business. Maximum length is 128 characters. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).</summary>
         public string OfficeLocation { get; set; }
-        /// <summary>Read-only.</summary>
+        /// <summary>The onenote property</summary>
         public ApiSdk.Models.Onenote Onenote { get; set; }
         /// <summary>The onlineMeetings property</summary>
         public List<OnlineMeeting> OnlineMeetings { get; set; }
@@ -167,7 +167,7 @@ namespace ApiSdk.Models {
         public bool? OnPremisesSyncEnabled { get; set; }
         /// <summary>Contains the on-premises userPrincipalName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect. Read-only. Supports $filter (eq, ne, not, ge, le, in, startsWith).</summary>
         public string OnPremisesUserPrincipalName { get; set; }
-        /// <summary>A list of additional email addresses for the user; for example: [&apos;bob@contoso.com&apos;, &apos;Robert@fabrikam.com&apos;].NOTE: This property cannot contain accent characters.Supports $filter (eq, not, ge, le, in, startsWith).</summary>
+        /// <summary>A list of additional email addresses for the user; for example: [&apos;bob@contoso.com&apos;, &apos;Robert@fabrikam.com&apos;].NOTE: This property cannot contain accent characters.Supports $filter (eq, not, ge, le, in, startsWith, and counting empty collections).</summary>
         public List<string> OtherMails { get; set; }
         /// <summary>Selective Outlook services available to the user. Read-only. Nullable.</summary>
         public OutlookUser Outlook { get; set; }
@@ -185,7 +185,7 @@ namespace ApiSdk.Models {
         public List<Person> People { get; set; }
         /// <summary>The user&apos;s profile photo. Read-only.</summary>
         public ProfilePhoto Photo { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The photos property</summary>
         public List<ProfilePhoto> Photos { get; set; }
         /// <summary>Selective Planner services available to the user. Read-only. Nullable.</summary>
         public PlannerUser Planner { get; set; }
@@ -201,7 +201,7 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.Presence Presence { get; set; }
         /// <summary>The plans that are provisioned for the user. Read-only. Not nullable. Supports $filter (eq, not, ge, le).</summary>
         public List<ProvisionedPlan> ProvisionedPlans { get; set; }
-        /// <summary>For example: [&apos;SMTP: bob@contoso.com&apos;, &apos;smtp: bob@sales.contoso.com&apos;]. Changes to the mail property will also update this collection to include the value as an SMTP address. For more information, see mail and proxyAddresses properties. The proxy address prefixed with SMTP (capitalized) is the primary proxy address while those prefixed with smtp are the secondary proxy addresses. For Azure AD B2C accounts, this property has a limit of ten unique addresses. Read-only in Microsoft Graph; you can update this property only through the Microsoft 365 admin center. Not nullable. Supports $filter (eq, not, ge, le, startsWith).</summary>
+        /// <summary>For example: [&apos;SMTP: bob@contoso.com&apos;, &apos;smtp: bob@sales.contoso.com&apos;]. Changes to the mail property will also update this collection to include the value as an SMTP address. For more information, see mail and proxyAddresses properties. The proxy address prefixed with SMTP (capitalized) is the primary proxy address while those prefixed with smtp are the secondary proxy addresses. For Azure AD B2C accounts, this property has a limit of ten unique addresses. Read-only in Microsoft Graph; you can update this property only through the Microsoft 365 admin center. Not nullable. Supports $filter (eq, not, ge, le, startsWith, endsWith, and counting empty collections).</summary>
         public List<string> ProxyAddresses { get; set; }
         /// <summary>Devices that are registered for the user. Read-only. Nullable. Supports $expand.</summary>
         public List<DirectoryObject> RegisteredDevices { get; set; }
@@ -211,9 +211,9 @@ namespace ApiSdk.Models {
         public List<string> Schools { get; set; }
         /// <summary>The scoped-role administrative unit memberships for this user. Read-only. Nullable.</summary>
         public List<ScopedRoleMembership> ScopedRoleMemberOf { get; set; }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>The settings property</summary>
         public UserSettings Settings { get; set; }
-        /// <summary>true if the Outlook global address list should contain this user, otherwise false. If not set, this will be treated as true. For users invited through the invitation manager, this property will be set to false. Supports $filter (eq, ne, not, in).</summary>
+        /// <summary>Do not use in Microsoft Graph. Manage this property through the Microsoft 365 admin center instead. Represents whether the user should be included in the Outlook global address list. See Known issue.</summary>
         public bool? ShowInAddressList { get; set; }
         /// <summary>Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications will get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph).  If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint. Read-only. Use revokeSignInSessions to reset.</summary>
         public DateTimeOffset? SignInSessionsValidFromDateTime { get; set; }

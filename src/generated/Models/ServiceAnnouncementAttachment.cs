@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the admin singleton.</summary>
     public class ServiceAnnouncementAttachment : Entity, IParsable {
         /// <summary>The attachment content.</summary>
         public byte[] Content { get; set; }

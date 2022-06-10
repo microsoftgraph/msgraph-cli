@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class ChangeTrackedEntity : Entity, IParsable {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -17,7 +18,19 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ChangeTrackedEntity CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChangeTrackedEntity();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.openShift" => new OpenShift(),
+                "#microsoft.graph.scheduleChangeRequest" => new ScheduleChangeRequest(),
+                "#microsoft.graph.schedulingGroup" => new SchedulingGroup(),
+                "#microsoft.graph.shift" => new Shift(),
+                "#microsoft.graph.shiftPreferences" => new ShiftPreferences(),
+                "#microsoft.graph.timeOff" => new TimeOff(),
+                "#microsoft.graph.timeOffReason" => new TimeOffReason(),
+                "#microsoft.graph.workforceIntegration" => new WorkforceIntegration(),
+                _ => new ChangeTrackedEntity(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

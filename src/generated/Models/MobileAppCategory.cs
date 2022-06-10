@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Contains properties for a single Intune app category.</summary>
     public class MobileAppCategory : Entity, IParsable {
         /// <summary>The name of the app category.</summary>
         public string DisplayName { get; set; }

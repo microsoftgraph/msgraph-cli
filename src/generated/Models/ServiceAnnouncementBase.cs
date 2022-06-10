@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the admin singleton.</summary>
     public class ServiceAnnouncementBase : Entity, IParsable {
         /// <summary>Additional details about service event. This property doesn&apos;t support filters.</summary>
         public List<KeyValuePair> Details { get; set; }
@@ -21,7 +22,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ServiceAnnouncementBase CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ServiceAnnouncementBase();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.serviceHealthIssue" => new ServiceHealthIssue(),
+                "#microsoft.graph.serviceUpdateMessage" => new ServiceUpdateMessage(),
+                _ => new ServiceAnnouncementBase(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

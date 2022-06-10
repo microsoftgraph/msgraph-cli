@@ -3,9 +3,10 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts;
 using ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.SingleValueExtendedProperties;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -56,12 +57,12 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var contactFolderId = (string) parameters[1];
-                var contactFolderId1 = (string) parameters[2];
-                var ifMatch = (string) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var contactFolderId = invocationContext.ParseResult.GetValueForOption(contactFolderIdOption);
+                var contactFolderId1 = invocationContext.ParseResult.GetValueForOption(contactFolderId1Option);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
@@ -74,7 +75,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, contactFolderIdOption, contactFolderId1Option, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -119,18 +120,18 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var contactFolderId = (string) parameters[1];
-                var contactFolderId1 = (string) parameters[2];
-                var select = (string[]) parameters[3];
-                var expand = (string[]) parameters[4];
-                var output = (FormatterType) parameters[5];
-                var query = (string) parameters[6];
-                var jsonNoIndent = (bool) parameters[7];
-                var outputFilter = (IOutputFilter) parameters[8];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
-                var cancellationToken = (CancellationToken) parameters[10];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var contactFolderId = invocationContext.ParseResult.GetValueForOption(contactFolderIdOption);
+                var contactFolderId1 = invocationContext.ParseResult.GetValueForOption(contactFolderId1Option);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -147,7 +148,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(userIdOption, contactFolderIdOption, contactFolderId1Option, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildMultiValueExtendedPropertiesCommand() {
@@ -182,12 +183,12 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var userId = (string) parameters[0];
-                var contactFolderId = (string) parameters[1];
-                var contactFolderId1 = (string) parameters[2];
-                var body = (string) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var contactFolderId = invocationContext.ParseResult.GetValueForOption(contactFolderIdOption);
+                var contactFolderId1 = invocationContext.ParseResult.GetValueForOption(contactFolderId1Option);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ContactFolder>(ContactFolder.CreateFromDiscriminatorValue);
@@ -202,7 +203,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, contactFolderIdOption, contactFolderId1Option, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {
@@ -255,6 +256,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new ContactFolderItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

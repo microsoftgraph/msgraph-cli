@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         /// <summary>The URL endpoint that accepts PUT requests for byte ranges of the file.</summary>
         public string UploadUrl { get; set; }
         /// <summary>
-        /// Instantiates a new uploadSession and sets the default values.
+        /// Instantiates a new UploadSession and sets the default values.
         /// </summary>
         public UploadSession() {
             AdditionalData = new Dictionary<string, object>();

@@ -1,6 +1,8 @@
+using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -38,19 +40,23 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item.DismissRemin
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            command.SetHandler(async (object[] parameters) => {
-                var calendarId = (string) parameters[0];
-                var eventId = (string) parameters[1];
-                var eventId1 = (string) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+            command.SetHandler(async (invocationContext) => {
+                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
+                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
+                var eventId1 = invocationContext.ParseResult.GetValueForOption(eventId1Option);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("calendar%2Did", calendarId);
                 requestInfo.PathParameters.Add("event%2Did", eventId);
                 requestInfo.PathParameters.Add("event%2Did1", eventId1);
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(calendarIdOption, eventIdOption, eventId1Option, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>

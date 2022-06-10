@@ -1,9 +1,10 @@
 using ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item.HostedContents;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -49,13 +50,13 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var channelId = (string) parameters[1];
-                var chatMessageId = (string) parameters[2];
-                var chatMessageId1 = (string) parameters[3];
-                var ifMatch = (string) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var channelId = invocationContext.ParseResult.GetValueForOption(channelIdOption);
+                var chatMessageId = invocationContext.ParseResult.GetValueForOption(chatMessageIdOption);
+                var chatMessageId1 = invocationContext.ParseResult.GetValueForOption(chatMessageId1Option);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -69,15 +70,15 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, channelIdOption, chatMessageIdOption, chatMessageId1Option, ifMatchOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
-        /// Replies for a specified message.
+        /// Replies for a specified message. Supports $expand for channel messages.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Replies for a specified message.";
+            command.Description = "Replies for a specified message. Supports $expand for channel messages.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -118,19 +119,19 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item {
                 return true;
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var channelId = (string) parameters[1];
-                var chatMessageId = (string) parameters[2];
-                var chatMessageId1 = (string) parameters[3];
-                var select = (string[]) parameters[4];
-                var expand = (string[]) parameters[5];
-                var output = (FormatterType) parameters[6];
-                var query = (string) parameters[7];
-                var jsonNoIndent = (bool) parameters[8];
-                var outputFilter = (IOutputFilter) parameters[9];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
-                var cancellationToken = (CancellationToken) parameters[11];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var channelId = invocationContext.ParseResult.GetValueForOption(channelIdOption);
+                var chatMessageId = invocationContext.ParseResult.GetValueForOption(chatMessageIdOption);
+                var chatMessageId1 = invocationContext.ParseResult.GetValueForOption(chatMessageId1Option);
+                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -148,7 +149,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item {
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(groupIdOption, channelIdOption, chatMessageIdOption, chatMessageId1Option, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         public Command BuildHostedContentsCommand() {
@@ -187,13 +188,13 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (object[] parameters) => {
-                var groupId = (string) parameters[0];
-                var channelId = (string) parameters[1];
-                var chatMessageId = (string) parameters[2];
-                var chatMessageId1 = (string) parameters[3];
-                var body = (string) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var channelId = invocationContext.ParseResult.GetValueForOption(channelIdOption);
+                var chatMessageId = invocationContext.ParseResult.GetValueForOption(chatMessageIdOption);
+                var chatMessageId1 = invocationContext.ParseResult.GetValueForOption(chatMessageId1Option);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue);
@@ -209,7 +210,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item {
                 };
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, channelIdOption, chatMessageIdOption, chatMessageId1Option, bodyOption, new TypeBinding(typeof(CancellationToken))));
+            });
             return command;
         }
         /// <summary>
@@ -244,7 +245,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Replies for a specified message.
+        /// Replies for a specified message. Supports $expand for channel messages.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChatMessageItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -253,6 +254,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new ChatMessageItemRequestBuilderGetRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -297,7 +299,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Replies for a specified message.</summary>
+        /// <summary>Replies for a specified message. Supports $expand for channel messages.</summary>
         public class ChatMessageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

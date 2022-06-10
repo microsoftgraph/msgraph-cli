@@ -7,16 +7,16 @@ namespace ApiSdk.Models {
     public class UnifiedRoleManagementPolicyRuleTarget : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The caller for the policy rule target. Allowed values are: None, Admin, EndUser.</summary>
+        /// <summary>The type of caller that&apos;s the target of the policy rule. Allowed values are: None, Admin, EndUser.</summary>
         public string Caller { get; set; }
-        /// <summary>The list of settings which are enforced and cannot be overridden by child scopes. Use All for all settings.</summary>
+        /// <summary>The list of role settings that are enforced and cannot be overridden by child scopes. Use All for all settings.</summary>
         public List<string> EnforcedSettings { get; set; }
-        /// <summary>The list of settings which can be inherited by child scopes. Use All for all settings.</summary>
+        /// <summary>The list of role settings that can be inherited by child scopes. Use All for all settings.</summary>
         public List<string> InheritableSettings { get; set; }
-        /// <summary>The level for the policy rule target. Allowed values are: Eligibility, Assignment.</summary>
+        /// <summary>The role assignment type that&apos;s the target of policy rule. Allowed values are: Eligibility, Assignment.</summary>
         public string Level { get; set; }
-        /// <summary>The operations for policy rule target. Allowed values are: All, Activate, Deactivate, Assign, Update, Remove, Extend, Renew.</summary>
-        public List<UnifiedRoleManagementPolicyRuleTargetOperations?> Operations { get; set; }
+        /// <summary>The role management operations that are the target of the policy rule. Allowed values are: All, Activate, Deactivate, Assign, Update, Remove, Extend, Renew.</summary>
+        public List<string> Operations { get; set; }
         /// <summary>The targetObjects property</summary>
         public List<DirectoryObject> TargetObjects { get; set; }
         /// <summary>
@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
                 {"enforcedSettings", n => { EnforcedSettings = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"inheritableSettings", n => { InheritableSettings = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"level", n => { Level = n.GetStringValue(); } },
-                {"operations", n => { Operations = n.GetCollectionOfEnumValues<UnifiedRoleManagementPolicyRuleTargetOperations>().ToList(); } },
+                {"operations", n => { Operations = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"targetObjects", n => { TargetObjects = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
@@ -56,7 +56,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfPrimitiveValues<string>("enforcedSettings", EnforcedSettings);
             writer.WriteCollectionOfPrimitiveValues<string>("inheritableSettings", InheritableSettings);
             writer.WriteStringValue("level", Level);
-            writer.WriteCollectionOfEnumValues<UnifiedRoleManagementPolicyRuleTargetOperations>("operations", Operations);
+            writer.WriteCollectionOfPrimitiveValues<string>("operations", Operations);
             writer.WriteCollectionOfObjectValues<DirectoryObject>("targetObjects", TargetObjects);
             writer.WriteAdditionalData(AdditionalData);
         }

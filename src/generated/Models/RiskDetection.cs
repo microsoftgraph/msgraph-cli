@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the identityProtectionRoot singleton.</summary>
     public class RiskDetection : Entity, IParsable {
         /// <summary>Indicates the activity type the detected risk is linked to. The possible values are signin, user, unknownFutureValue.</summary>
         public ActivityType? Activity { get; set; }

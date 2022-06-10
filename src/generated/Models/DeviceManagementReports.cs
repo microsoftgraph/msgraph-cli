@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Singleton entity that acts as a container for all reports functionality.</summary>
     public class DeviceManagementReports : Entity, IParsable {
         /// <summary>Entity representing a job to export a report</summary>
         public List<DeviceManagementExportJob> ExportJobs { get; set; }

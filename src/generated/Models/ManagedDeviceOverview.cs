@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Summary data for managed devices</summary>
     public class ManagedDeviceOverview : Entity, IParsable {
         /// <summary>Distribution of Exchange Access State in Intune</summary>
         public ApiSdk.Models.DeviceExchangeAccessStateSummary DeviceExchangeAccessStateSummary { get; set; }

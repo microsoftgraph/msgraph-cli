@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class BaseItem : Entity, IParsable {
         /// <summary>Identity of the user, device, or application which created the item. Read-only.</summary>
         public IdentitySet CreatedBy { get; set; }
@@ -33,7 +34,17 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new BaseItem CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BaseItem();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.drive" => new Drive(),
+                "#microsoft.graph.driveItem" => new DriveItem(),
+                "#microsoft.graph.list" => new List(),
+                "#microsoft.graph.listItem" => new ListItem(),
+                "#microsoft.graph.sharedDriveItem" => new SharedDriveItem(),
+                "#microsoft.graph.site" => new Site(),
+                _ => new BaseItem(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

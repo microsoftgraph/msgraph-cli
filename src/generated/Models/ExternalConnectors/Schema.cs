@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.ExternalConnectors {
+    /// <summary>Provides operations to manage the collection of externalConnection entities.</summary>
     public class Schema : Entity, IParsable {
         /// <summary>Must be set to microsoft.graph.externalItem. Required.</summary>
         public string BaseType { get; set; }

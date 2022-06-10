@@ -7,9 +7,9 @@ namespace ApiSdk.Models {
     public class TicketInfo : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Ticket number meta data</summary>
+        /// <summary>The ticket number.</summary>
         public string TicketNumber { get; set; }
-        /// <summary>Ticket system meta data</summary>
+        /// <summary>The description of the ticket system.</summary>
         public string TicketSystem { get; set; }
         /// <summary>
         /// Instantiates a new ticketInfo and sets the default values.

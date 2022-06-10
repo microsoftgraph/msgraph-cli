@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Policy for Windows information protection with MDM</summary>
     public class MdmWindowsInformationProtectionPolicy : WindowsInformationProtection, IParsable {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

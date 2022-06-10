@@ -5,13 +5,13 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class UnifiedRoleAssignmentSchedule : UnifiedRoleScheduleBase, IParsable {
-        /// <summary>If the roleAssignmentSchedule is activated by a roleEligibilitySchedule, this is the link to that schedule.</summary>
+        /// <summary>If the request is from an eligible administrator to activate a role, this parameter will show the related eligible assignment for that activation. Otherwise, it is null. Supports $expand.</summary>
         public UnifiedRoleEligibilitySchedule ActivatedUsing { get; set; }
-        /// <summary>Type of the assignment. It can either be Assigned or Activated.</summary>
+        /// <summary>Type of the assignment which can either be Assigned or Activated. Supports $filter (eq, ne).</summary>
         public string AssignmentType { get; set; }
-        /// <summary>Membership type of the assignment. It can either be Inherited, Direct, or Group.</summary>
+        /// <summary>How the assignments is inherited. It can either be Inherited, Direct, or Group. It can further imply whether the unifiedRoleAssignmentSchedule can be managed by the caller. Supports $filter (eq, ne).</summary>
         public string MemberType { get; set; }
-        /// <summary>The schedule object of the role assignment request.</summary>
+        /// <summary>The period of the role assignment. It can represent a single occurrence or multiple recurrences.</summary>
         public RequestSchedule ScheduleInfo { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

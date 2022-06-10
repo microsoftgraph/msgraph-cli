@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>This is the base class for Compliance policy. Compliance policies are platform specific and individual per-platform compliance policies inherit from here. </summary>
     public class DeviceCompliancePolicy : Entity, IParsable {
         /// <summary>The collection of assignments for this compliance policy.</summary>
         public List<DeviceCompliancePolicyAssignment> Assignments { get; set; }
@@ -35,7 +36,19 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new DeviceCompliancePolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceCompliancePolicy();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.androidCompliancePolicy" => new AndroidCompliancePolicy(),
+                "#microsoft.graph.androidWorkProfileCompliancePolicy" => new AndroidWorkProfileCompliancePolicy(),
+                "#microsoft.graph.iosCompliancePolicy" => new IosCompliancePolicy(),
+                "#microsoft.graph.macOSCompliancePolicy" => new MacOSCompliancePolicy(),
+                "#microsoft.graph.windows10CompliancePolicy" => new Windows10CompliancePolicy(),
+                "#microsoft.graph.windows10MobileCompliancePolicy" => new Windows10MobileCompliancePolicy(),
+                "#microsoft.graph.windows81CompliancePolicy" => new Windows81CompliancePolicy(),
+                "#microsoft.graph.windowsPhone81CompliancePolicy" => new WindowsPhone81CompliancePolicy(),
+                _ => new DeviceCompliancePolicy(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

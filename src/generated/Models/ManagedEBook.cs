@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>An abstract class containing the base properties for Managed eBook.</summary>
     public class ManagedEBook : Entity, IParsable {
         /// <summary>The list of assignments for this eBook.</summary>
         public List<ManagedEBookAssignment> Assignments { get; set; }
@@ -37,7 +38,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ManagedEBook CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedEBook();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.iosVppEBook" => new IosVppEBook(),
+                _ => new ManagedEBook(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

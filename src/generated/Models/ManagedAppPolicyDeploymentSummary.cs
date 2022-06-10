@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>The ManagedAppEntity is the base entity type for all other entity types under app management workflow.</summary>
     public class ManagedAppPolicyDeploymentSummary : Entity, IParsable {
         /// <summary>Not yet documented</summary>
         public int? ConfigurationDeployedUserCount { get; set; }

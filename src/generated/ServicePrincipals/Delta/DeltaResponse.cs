@@ -10,7 +10,7 @@ namespace ApiSdk.ServicePrincipals.Delta {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The value property</summary>
-        public List<ServicePrincipal> Value { get; set; }
+        public List<ApiSdk.Models.ServicePrincipal> Value { get; set; }
         /// <summary>
         /// Instantiates a new deltaResponse and sets the default values.
         /// </summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.ServicePrincipals.Delta {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<ServicePrincipal>(ServicePrincipal.CreateFromDiscriminatorValue).ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.ServicePrincipal>(ApiSdk.Models.ServicePrincipal.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -39,7 +39,7 @@ namespace ApiSdk.ServicePrincipals.Delta {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<ServicePrincipal>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ServicePrincipal>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -39,10 +39,11 @@ namespace Microsoft.Graph.Cli
             var authStrategy = AuthenticationStrategy.DeviceCode;
 
             var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy, authSettings?.TenantId, authSettings?.ClientId);
-            var authProvider = new AzureIdentityAuthenticationProvider(credential, new string[] {"graph.microsoft.com"});
+            var authProvider = new AzureIdentityAuthenticationProvider(credential, new string[] { "graph.microsoft.com" });
 
             var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
-            var options = new GraphClientOptions {
+            var options = new GraphClientOptions
+            {
                 GraphProductPrefix = "graph-cli",
                 GraphServiceLibraryClientVersion = $"{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}",
                 GraphServiceTargetVersion = "1.0"
@@ -59,20 +60,27 @@ namespace Microsoft.Graph.Cli
             commands.Add(logoutCommand.Build());
 
             var builder = BuildCommandLine(client, commands).UseDefaults().UseHost(CreateHostBuilder);
-            builder.AddMiddleware((invocation) => {
+            builder.AddMiddleware((invocation) =>
+            {
                 var host = invocation.GetHost();
                 var outputFilter = host.Services.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = host.Services.GetRequiredService<IOutputFormatterFactory>();
-                invocation.BindingContext.AddService<IOutputFilter>(_ => outputFilter);
-                invocation.BindingContext.AddService<IOutputFormatterFactory>(_ => outputFormatterFactory);
+                var pagingService = host.Services.GetRequiredService<IPagingService>();
+                invocation.BindingContext.AddService(_ => outputFilter);
+                invocation.BindingContext.AddService(_ => outputFormatterFactory);
+                invocation.BindingContext.AddService(_ => pagingService);
             });
-            builder.UseExceptionHandler((ex, context) => {
-                if (ex is AuthenticationRequiredException) {
+            builder.UseExceptionHandler((ex, context) =>
+            {
+                if (ex is AuthenticationRequiredException)
+                {
                     Console.ResetColor();
                     Console.ForegroundColor = ConsoleColor.Red;
                     context.Console.Error.WriteLine("Token acquisition failed. Run mgc login command first to get an access token.");
                     Console.ResetColor();
-                } else {
+                }
+                else
+                {
                     Console.ResetColor();
                     Console.ForegroundColor = ConsoleColor.Red;
                     context.Console.Error.WriteLine(ex.Message);
@@ -91,7 +99,8 @@ namespace Microsoft.Graph.Cli
             var rootCommand = client.BuildRootCommand();
             rootCommand.Description = "Microsoft Graph CLI";
 
-            foreach (var command in commands) {
+            foreach (var command in commands)
+            {
                 rootCommand.AddCommand(command);
             }
 
@@ -99,11 +108,14 @@ namespace Microsoft.Graph.Cli
         }
 
         static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder().ConfigureHostConfiguration((configHost) => {
+            Host.CreateDefaultBuilder().ConfigureHostConfiguration((configHost) =>
+            {
                 configHost.SetBasePath(Directory.GetCurrentDirectory());
-            }).ConfigureAppConfiguration((ctx, config) => {
+            }).ConfigureAppConfiguration((ctx, config) =>
+            {
                 ConfigureAppConfiguration(config);
-            }).ConfigureServices((ctx, services) => {
+            }).ConfigureServices((ctx, services) =>
+            {
                 var authSection = ctx.Configuration.GetSection(nameof(AuthenticationOptions));
                 services.Configure<AuthenticationOptions>(authSection);
                 services.AddSingleton<IPathUtility, PathUtility>();
@@ -111,9 +123,11 @@ namespace Microsoft.Graph.Cli
                 services.AddSingleton<IOutputFilter, JmesPathOutputFilter>();
                 services.AddSingleton<JmesPath>();
                 services.AddSingleton<IOutputFormatterFactory, OutputFormatterFactory>();
+                services.AddSingleton<IPagingService, GraphODataPagingService>();
             });
-        
-        static void ConfigureAppConfiguration(IConfigurationBuilder builder) {
+
+        static void ConfigureAppConfiguration(IConfigurationBuilder builder)
+        {
             builder.Sources.Clear();
             builder.AddJsonFile(Path.Combine(System.AppContext.BaseDirectory, "app-settings.json"), optional: true);
             var pathUtil = new PathUtility();

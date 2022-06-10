@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         /// <summary>A human-readable description of the printer&apos;s current processing state. Read-only.</summary>
         public string Description { get; set; }
         /// <summary>The list of details describing why the printer is in the current state. Valid values are described in the following table. Read-only.</summary>
-        public List<PrinterProcessingStateDetail?> Details { get; set; }
+        public List<string> Details { get; set; }
         /// <summary>The current processing state. Valid values are described in the following table. Read-only.</summary>
         public PrinterProcessingState? State { get; set; }
         /// <summary>
@@ -33,7 +33,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"description", n => { Description = n.GetStringValue(); } },
-                {"details", n => { Details = n.GetCollectionOfEnumValues<PrinterProcessingStateDetail>().ToList(); } },
+                {"details", n => { Details = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"state", n => { State = n.GetEnumValue<PrinterProcessingState>(); } },
             };
         }
@@ -44,7 +44,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfEnumValues<PrinterProcessingStateDetail>("details", Details);
+            writer.WriteCollectionOfPrimitiveValues<string>("details", Details);
             writer.WriteEnumValue<PrinterProcessingState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }

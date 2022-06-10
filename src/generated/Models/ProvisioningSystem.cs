@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class ProvisioningSystem : Identity, IParsable {
         /// <summary>Details of the system.</summary>
         public DetailsInfo Details { get; set; }

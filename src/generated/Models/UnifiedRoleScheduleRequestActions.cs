@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the roleManagement singleton.</summary>
+    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public enum UnifiedRoleScheduleRequestActions {
         AdminAssign,
         AdminUpdate,
