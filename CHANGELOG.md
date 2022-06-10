@@ -6,12 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
 ### Added
-- Add item sub-command for indexer paths (paths with id). `GET /users/{user-id}` changes from `mgc users get --user-id` to `mgc users item get --user-id`
 
 ### Changed
-- Login command scopes are now optional
-- Fix issue with nullable boolean options
+
+## [0.1.0-preview.5] - 2022-06-10
+### Added
+- Add item sub-command for indexer paths (paths with id). `GET /users/{user-id}` changes from `mgc users get --user-id` to `mgc users item get --user-id`
+- Add command samples.
+- Add automatic page iteration via the `--all` command option.
+
+### Changed
+- Login command scopes are now optional.
+- Fix issue with nullable boolean options.
+- Fix issue with incorrect OData parameter names.
+- Fix issue with docker container missing capabilities when running as a non-root user.
+- API requests now send an `Accept` header to the server. The value of the header is determined by the schema.
 
 ## [0.1.0-preview.4] - 2022-04-19
 

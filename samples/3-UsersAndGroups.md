@@ -1,9 +1,17 @@
 ## Microsoft Graph Users and Groups Snippets
 
-### List of Users
+### List of users (paged)
+
+Get first page of users. If the `--top` command option is not provided, the page size is determined by the server.
 
 ```sh
 mgc users list --select "id, displayName, OfficeLocation, BusinessPhones"
+```
+
+### List of all users
+
+```sh
+mgc users list --select "id, displayName, OfficeLocation, BusinessPhones" --all
 ```
 
 ### List users with count
