@@ -1,0 +1,126 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+  tags:
+    include:
+      - v*
+
+pool:
+  name: Azure Pipelines
+  vmImage: windows-latest
+
+variables:
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  ProductBinPath: '$(Build.SourcesDirectory)\src\bin\$(BuildConfiguration)'
+  sourceRepository: 'microsoftgraph/msgraph-cli'
+  repositoryConnection: 'GitHub - calebkiage'
+
+
+## 1. Download binary
+## 2. Sign downloaded binary
+## 3. Upload signed binary to release page
+
+
+stages:
+
+- stage: build
+  jobs:
+    - job: build
+      steps:
+      # Download GitHub Release
+      # Downloads a GitHub Release from a repository
+      - task: DownloadGitHubRelease@0
+        inputs:
+          connection: $(repositoryConnection)
+          userRepository: $(sourceRepository)
+          #defaultVersionType: 'latest' # Options: latest, specificVersion, specificTag
+          #version: # Required when defaultVersionType != Latest
+          itemPattern: '*-win-x64-*' # Optional
+          downloadPath: '$(ProductBinPath)'
+
+      - task: AntiMalware@3
+        displayName: 'Run MpCmdRun.exe - ProductBinPath'
+        inputs:
+          FileDirPath: '$(ProductBinPath)'
+        enabled: false
+
+      - task: BinSkim@3
+        displayName: 'Run BinSkim - Product Binaries'
+        inputs:
+          InputType: Basic
+          AnalyzeTarget: '$(ProductBinPath)\**\mgc.dll'
+          AnalyzeSymPath: '$(ProductBinPath)'
+          AnalyzeVerbose: true
+          AnalyzeHashes: true
+          AnalyzeEnvironment: true
+
+      - task: PublishSecurityAnalysisLogs@2
+        displayName: 'Publish Security Analysis Logs'
+        inputs:
+          ArtifactName: SecurityLogs
+
+      - task: PostAnalysis@1
+        displayName: 'Post Analysis'
+        inputs:
+          BinSkim: true
+          CredScan: true
+          PoliCheck: true
+
+      - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+        displayName: 'ESRP CodeSigning'
+        inputs:
+          ConnectedServiceName: 'microsoftgraph ESRP CodeSign DLL and NuGet (AKV)'
+          FolderPath: src
+          signConfigType: inlineSignParams
+          inlineOperation: |
+            [
+                {
+                    "keyCode": "CP-230012",
+                    "operationSetCode": "SigntoolSign",
+                    "parameters": [
+                    {
+                        "parameterName": "OpusName",
+                        "parameterValue": "Microsoft"
+                    },
+                    {
+                        "parameterName": "OpusInfo",
+                        "parameterValue": "http://www.microsoft.com"
+                    },
+                    {
+                        "parameterName": "FileDigest",
+                        "parameterValue": "/fd \"SHA256\""
+                    },
+                    {
+                        "parameterName": "PageHash",
+                        "parameterValue": "/NPH"
+                    },
+                    {
+                        "parameterName": "TimeStamp",
+                        "parameterValue": "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    }
+                    ],
+                    "toolName": "sign",
+                    "toolVersion": "1.0"
+                },
+                {
+                    "keyCode": "CP-230012",
+                    "operationSetCode": "SigntoolVerify",
+                    "parameters": [ ],
+                    "toolName": "sign",
+                    "toolVersion": "1.0"
+                }
+            ]
+          SessionTimeout: 20
+      
+      - task: GithubRelease@1
+        displayName: 'Edit GitHub Release'
+        inputs:
+          gitHubConnection: $(repositoryConnection)
+          repositoryName: $(sourceRepository)
+          action: edit
+          isDraft: false
+          assets: 
