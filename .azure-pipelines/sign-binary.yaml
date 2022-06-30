@@ -18,6 +18,7 @@ variables:
   ProductBinPath: '$(Build.SourcesDirectory)\src\bin\$(BuildConfiguration)'
   sourceRepository: 'microsoftgraph/msgraph-cli'
   repositoryConnection: 'GitHub - calebkiage'
+  tag: ''
 
 
 ## 1. Download binary
@@ -37,8 +38,8 @@ stages:
         inputs:
           connection: $(repositoryConnection)
           userRepository: $(sourceRepository)
-          #defaultVersionType: 'latest' # Options: latest, specificVersion, specificTag
-          #version: # Required when defaultVersionType != Latest
+          defaultVersionType: 'specificTag' # Options: latest, specificVersion, specificTag
+          version: $(tag) # Required when defaultVersionType != Latest
           itemPattern: '*-win-x64-*' # Optional
           downloadPath: '$(ProductBinPath)'
 
@@ -123,4 +124,6 @@ stages:
           repositoryName: $(sourceRepository)
           action: edit
           isDraft: false
+          tag: $(tag)
+          tagSource: 'manual'
           assets: 
