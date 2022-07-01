@@ -80,7 +80,7 @@ stages:
           AnalyzeHashes: true
           AnalyzeEnvironment: true
 
-    - job: post-analysis
+    - job: postAnalysis
       dependsOn: [malware, bin-skim]
       steps:
       - task: PublishSecurityAnalysisLogs@2
@@ -98,7 +98,7 @@ stages:
 - stage: sign
   dependsOn: download
   jobs:
-    - job: esrp-sign
+    - job: esrpSign
       steps:
       - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
         displayName: 'ESRP CodeSigning'
