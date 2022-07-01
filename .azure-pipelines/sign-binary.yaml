@@ -34,6 +34,7 @@ stages:
   jobs:
     - job: download
       steps:
+      - checkout: none
       # Download GitHub Release
       # Downloads a GitHub Release from a repository
       - task: DownloadGitHubRelease@0
@@ -49,13 +50,14 @@ stages:
       pool:
         vmImage: ubuntu-latest
       steps:
-        - ${{ if startsWith(parameters.tag, 'v') }}:
-          - script: echo "##vso[task.setvariable variable=cliVersion]$(echo ${{ parameters.tag }} | cut -c 1-)"
-        - ${{ else }}:
-          - script: echo "##vso[task.setvariable variable=cliVersion]${{ parameters.tag }}"
-        - task: ExtractFiles@1
-          inputs:
-            destinationFolder: $(ProductBinPath)/msgraph-cli
+      - checkout: none
+      - ${{ if startsWith(parameters.tag, 'v') }}:
+        - script: echo "##vso[task.setvariable variable=cliVersion]$(echo ${{ parameters.tag }} | cut -c 1-)"
+      - ${{ else }}:
+        - script: echo "##vso[task.setvariable variable=cliVersion]${{ parameters.tag }}"
+      - task: ExtractFiles@1
+        inputs:
+          destinationFolder: $(ProductBinPath)/msgraph-cli
 
 
 - stage: scan
@@ -63,19 +65,21 @@ stages:
   jobs:
     - job: malware
       steps:
+      - checkout: none
       - task: AntiMalware@3
         displayName: 'Run MpCmdRun.exe - ProductBinPath'
         inputs:
-          FileDirPath: '$(ProductBinPath)'
+          FileDirPath: '$(ProductBinPath)\msgraph-cli'
         enabled: false
     
     - job: binSkim
       steps:
+      - checkout: none
       - task: BinSkim@3
         displayName: 'Run BinSkim - Product Binaries'
         inputs:
           InputType: Basic
-          AnalyzeTarget: '$(ProductBinPath)\**\mgc.exe'
+          AnalyzeTarget: '$(ProductBinPath)\msgraph-cli\mgc.exe'
           AnalyzeSymPath: '$(ProductBinPath)'
           AnalyzeVerbose: true
           AnalyzeHashes: true
@@ -84,6 +88,7 @@ stages:
     - job: postAnalysis
       dependsOn: [malware, binSkim]
       steps:
+      - checkout: none
       - task: PublishSecurityAnalysisLogs@2
         displayName: 'Publish Security Analysis Logs'
         inputs:
@@ -101,11 +106,12 @@ stages:
   jobs:
     - job: esrpSign
       steps:
+      - checkout: none
       - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
         displayName: 'ESRP CodeSigning'
         inputs:
           ConnectedServiceName: 'microsoftgraph ESRP CodeSign DLL and NuGet (AKV)'
-          FolderPath: src
+          FolderPath: $(ProductBinPath)\msgraph-cli
           signConfigType: inlineSignParams
           inlineOperation: |
             [
@@ -154,14 +160,16 @@ stages:
       pool:
         vmImage: ubuntu-latest
       steps:
-        - bash: |
-            ls -a $(ProductBinPath)/msgraph-cli | zip $[format(variables['zipTemplate'], variables['cliVersion'])]
+      - checkout: none
+      - bash: |
+          ls -a $(ProductBinPath)/msgraph-cli | zip $[format(variables['zipTemplate'], variables['cliVersion'])]
 
 - stage: upload
   dependsOn: zip
   jobs:
     - job: upload
       steps:
+      - checkout: none
       - task: GithubRelease@1
         displayName: 'Edit GitHub Release'
         inputs:
