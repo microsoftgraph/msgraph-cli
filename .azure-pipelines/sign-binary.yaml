@@ -13,12 +13,14 @@ pool:
   vmImage: windows-latest
 
 variables:
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-  ProductBinPath: '$(Build.SourcesDirectory)\src\bin\$(BuildConfiguration)'
-  sourceRepository: 'microsoftgraph/msgraph-cli'
-  repositoryConnection: 'GitHub - calebkiage'
-  tag: ''
+  - name: ProductBinPath
+    value: '$(Build.SourcesDirectory)\src\bin\$(BuildConfiguration)'
+  - name: sourceRepository
+    value: 'microsoftgraph/msgraph-cli'
+  - name: repositoryConnection
+    value: 'GitHub - calebkiage'
+  - name: tag
+    value: ''
 
 
 ## 1. Download binary
