@@ -61,9 +61,10 @@ stages:
         - script: echo "##vso[task.setvariable variable=cliVersion]${{ parameters.tag }}"
       - task: ExtractFiles@1
         inputs:
-          destinationFolder: $(Pipeline.Workspace)/assets
-      - script: echo $(ls -a)
-      - publish: $(Pipeline.Workspace)/assets
+          archiveFilePatterns: $(Pipeline.Workspace)/assets/*.zip
+          destinationFolder: $(Pipeline.Workspace)/assets/unzipped
+      - script: ls -a $(Pipeline.Workspace)/assets/*
+      - publish: $(Pipeline.Workspace)/assets/unzipped
         artifact: unzipped
 
 
