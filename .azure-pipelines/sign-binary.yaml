@@ -62,7 +62,7 @@ stages:
       - task: ExtractFiles@1
         inputs:
           destinationFolder: $(Pipeline.Workspace)/assets
-      - script: ls -a
+      - script: echo $(ls -a)
       - publish: $(Pipeline.Workspace)/assets
         artifact: unzipped
 
