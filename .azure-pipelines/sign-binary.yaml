@@ -3,10 +3,7 @@
 
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
-trigger:
-  tags:
-    include:
-      - v*
+trigger: none
 
 pool:
   name: Azure Pipelines
@@ -19,8 +16,11 @@ variables:
     value: 'microsoftgraph/msgraph-cli'
   - name: repositoryConnection
     value: 'GitHub - calebkiage'
+parameters:
   - name: tag
-    value: ''
+    displayName: Tag
+    type: string
+    default: latest
 
 
 ## 1. Download binary
@@ -41,7 +41,7 @@ stages:
           connection: $(repositoryConnection)
           userRepository: $(sourceRepository)
           defaultVersionType: 'specificTag' # Options: latest, specificVersion, specificTag
-          version: $(tag) # Required when defaultVersionType != Latest
+          version: ${{ parameters.tag }} # Required when defaultVersionType != Latest
           itemPattern: '*-win-x64-*' # Optional
           downloadPath: '$(ProductBinPath)'
 
@@ -126,6 +126,6 @@ stages:
           repositoryName: $(sourceRepository)
           action: edit
           isDraft: false
-          tag: $(tag)
+          tag: ${{ parameters.tag }}
           tagSource: 'manual'
           assets: 
