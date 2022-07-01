@@ -68,7 +68,7 @@ stages:
           FileDirPath: '$(ProductBinPath)'
         enabled: false
     
-    - job: bin-skim
+    - job: binSkim
       steps:
       - task: BinSkim@3
         displayName: 'Run BinSkim - Product Binaries'
