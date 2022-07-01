@@ -45,12 +45,16 @@ stages:
           version: ${{ parameters.tag }} # Required when defaultVersionType != Latest
           itemPattern: '*-win-x64-*' # Optional
           downloadPath: '$(ProductBinPath)'
+      - publish: $(ProductBinPath)
+        artifact: assets
     - job: unzip
       dependsOn: download
       pool:
         vmImage: ubuntu-latest
       steps:
       - checkout: none
+      - download: current
+        artifact: assets
       - ${{ if startsWith(parameters.tag, 'v') }}:
         - script: echo "##vso[task.setvariable variable=cliVersion]$(echo ${{ parameters.tag }} | cut -c 1-)"
       - ${{ else }}:
@@ -58,8 +62,8 @@ stages:
       - task: ExtractFiles@1
         inputs:
           destinationFolder: $(ProductBinPath)/msgraph-cli
-      - publish: $(ProductBinPath)
-        artifact: assets
+      - publish: $(ProductBinPath)/msgraph-cli
+        artifact: unzipped
 
 
 - stage: scan
@@ -69,24 +73,24 @@ stages:
       steps:
       - checkout: none
       - download: current
-        artifact: assets
+        artifact: unzipped
       - task: AntiMalware@3
         displayName: 'Run MpCmdRun.exe - ProductBinPath'
         inputs:
-          FileDirPath: '$(Pipeline.Workspace)/assets'
+          FileDirPath: '$(Pipeline.Workspace)/unzipped'
         enabled: false
     
     - job: binSkim
       steps:
       - checkout: none
       - download: current
-        artifact: assets
+        artifact: unzipped
       - task: BinSkim@3
         displayName: 'Run BinSkim - Product Binaries'
         inputs:
           InputType: Basic
-          AnalyzeTarget: '$(Pipeline.Workspace)\assets\msgraph-cli\mgc.exe'
-          AnalyzeSymPath: '$(Pipeline.Workspace)\assets'
+          AnalyzeTarget: '$(Pipeline.Workspace)\unzipped\mgc.exe'
+          AnalyzeSymPath: '$(Pipeline.Workspace)\unzipped'
           AnalyzeVerbose: true
           AnalyzeHashes: true
           AnalyzeEnvironment: true
@@ -114,12 +118,12 @@ stages:
       steps:
       - checkout: none
       - download: current
-        artifact: assets
+        artifact: unzipped
       - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
         displayName: 'ESRP CodeSigning'
         inputs:
           ConnectedServiceName: 'microsoftgraph ESRP CodeSign DLL and NuGet (AKV)'
-          FolderPath: '$(Pipeline.Workspace)\assets\msgraph-cli'
+          FolderPath: '$(Pipeline.Workspace)\unzipped'
           signConfigType: inlineSignParams
           inlineOperation: |
             [
@@ -160,7 +164,7 @@ stages:
                 }
             ]
           SessionTimeout: 20
-      - publish: $(Pipeline.Workspace)\assets\msgraph-cli
+      - publish: $(Pipeline.Workspace)\unzipped
         artifact: msgraph-cli
 
 - stage: zip
