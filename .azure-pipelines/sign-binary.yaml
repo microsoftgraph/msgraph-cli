@@ -56,13 +56,10 @@ stages:
       - download: current
         artifact: assets
       - ${{ if startsWith(parameters.tag, 'v') }}:
-        - script: echo "##vso[task.setvariable variable=cliVersion]$(echo ${{ parameters.tag }} | cut -c 1-)"
+        - script: echo "##vso[task.setvariable variable=cliVersion]$(echo ${{ parameters.tag }} | cut -c 2-)"
       - ${{ else }}:
         - script: echo "##vso[task.setvariable variable=cliVersion]${{ parameters.tag }}"
-      - task: ExtractFiles@1
-        inputs:
-          archiveFilePatterns: $(Pipeline.Workspace)/assets/*.zip
-          destinationFolder: $(Pipeline.Workspace)/assets/unzipped
+      - script: unzip $(Pipeline.Workspace)/assets/$[format(variables['zipTemplate'], variables['cliVersion'])] -d $(Pipeline.Workspace)/assets/unzipped
       - script: ls -a $(Pipeline.Workspace)/assets/*
       - publish: $(Pipeline.Workspace)/assets/unzipped
         artifact: unzipped
