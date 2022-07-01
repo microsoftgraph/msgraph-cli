@@ -45,6 +45,7 @@ stages:
           itemPattern: '*-win-x64-*' # Optional
           downloadPath: '$(ProductBinPath)'
     - job: unzip
+      dependsOn: download
       pool:
         vmImage: ubuntu-latest
       steps:
