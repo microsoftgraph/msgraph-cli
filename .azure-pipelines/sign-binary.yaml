@@ -81,7 +81,7 @@ stages:
           AnalyzeEnvironment: true
 
     - job: postAnalysis
-      dependsOn: [malware, bin-skim]
+      dependsOn: [malware, binSkim]
       steps:
       - task: PublishSecurityAnalysisLogs@2
         displayName: 'Publish Security Analysis Logs'
