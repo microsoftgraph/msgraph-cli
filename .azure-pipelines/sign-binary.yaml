@@ -154,7 +154,7 @@ stages:
         vmImage: ubuntu-latest
       steps:
         - bash: |
-            ls -a $(ProductBinPath)/msgraph-cli | zip ${{ format(zipTemplate, cliVersion) }}
+            ls -a $(ProductBinPath)/msgraph-cli | zip $[format(variables['zipTemplate'], variables['cliVersion'])]
 
 - stage: upload
   dependsOn: zip
