@@ -97,6 +97,7 @@ stages:
       - checkout: none
       - download: current
         artifact: unzipped
+      - script: ls -a $(Pipeline.Workspace)\unzipped
       - task: BinSkim@4
         displayName: 'Run BinSkim - Product Binaries'
         inputs:
@@ -104,7 +105,7 @@ stages:
           AnalyzeTargetGlob: '$(Pipeline.Workspace)\unzipped\*.exe'
           AnalyzeVerbose: true
           AnalyzeHashes: true
-          AnalyzeEnvironment: true
+          AnalyzeEnvironment: false
 
     - job: postAnalysis
       dependsOn: [malware, binSkim]
