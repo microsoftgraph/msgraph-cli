@@ -59,7 +59,8 @@ stages:
         - script: echo "##vso[task.setvariable variable=cliVersion]$(echo ${{ parameters.tag }} | cut -c 2-)"
       - ${{ else }}:
         - script: echo "##vso[task.setvariable variable=cliVersion]${{ parameters.tag }}"
-      - script: unzip "$(Pipeline.Workspace)/assets/$[format(variables['zipTemplate'], variables['cliVersion'])]" -d $(Pipeline.Workspace)/assets/unzipped
+      - script: echo "##vso[task.setvariable variable=cliArchiveName]$[format(variables['zipTemplate'], variables['cliVersion'])]"
+      - script: unzip "$(Pipeline.Workspace)/assets/$(cliArchiveName)" -d $(Pipeline.Workspace)/assets/unzipped
       - script: ls -a $(Pipeline.Workspace)/assets/*
       - publish: $(Pipeline.Workspace)/assets/unzipped
         artifact: unzipped
@@ -177,8 +178,8 @@ stages:
       - download: current
         artifact: msgraph-cli
       - bash: |
-          ls -a $(Pipeline.Workspace)/msgraph-cli | zip $[format(variables['zipTemplate'], variables['cliVersion'])]
-      - publish: $(Pipeline.Workspace)/msgraph-cli/$[format(variables['zipTemplate'], variables['cliVersion'])]
+          ls -a $(Pipeline.Workspace)/msgraph-cli | zip $(cliArchiveName)
+      - publish: $(Pipeline.Workspace)/msgraph-cli/$(cliArchiveName)
         artifact: zipped
 
 - stage: upload
@@ -198,4 +199,4 @@ stages:
           isDraft: false
           tag: ${{ parameters.tag }}
           tagSource: 'manual'
-          assets: $(Pipeline.Workspace)/zipped/**/$[format(variables['zipTemplate'], variables['cliVersion'])]
+          assets: $(Pipeline.Workspace)/zipped/**/$(cliArchiveName)
