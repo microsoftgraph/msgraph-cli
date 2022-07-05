@@ -72,7 +72,7 @@ stages:
         artifact: assets
       - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
         name: setArchiveNameStep
-      - script: unzip "$(Pipeline.Workspace)/assets/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/assets/unzipped
+      - script: unzip -j "$(Pipeline.Workspace)/assets/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/assets/unzipped
       - script: ls -a $(Pipeline.Workspace)/assets/*
       - publish: $(Pipeline.Workspace)/assets/unzipped
         artifact: unzipped
