@@ -59,11 +59,15 @@ stages:
       - ${{ else }}:
         - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]${{ parameters.tag }}"
           name: setCliVersionStep
+      - script: |
+          echo $(variables['zipTemplate'])
+          echo $(variables.zipTemplate)
+          echo $(zipTemplate)
     - job: unzip
       dependsOn: [download, version]
       variables:
         cliVersion: $[ dependencies.version.outputs['setCliVersionStep.cliVersion'] ]
-        cliArchiveNameVar: $[format(zipTemplate, cliVersion)]
+        cliArchiveNameVar: $[format(variables.zipTemplate, cliVersion)]
       pool:
         vmImage: ubuntu-latest
       steps:
