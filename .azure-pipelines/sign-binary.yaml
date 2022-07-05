@@ -81,23 +81,15 @@ stages:
 - stage: scan
   dependsOn: download
   jobs:
-    - job: malware
+    - job: scan
       steps:
       - checkout: none
       - download: current
         artifact: unzipped
-      - task: AntiMalware@3
-        displayName: 'Run MpCmdRun.exe - ProductBinPath'
+      - task: AntiMalware@4
+        displayName: 'Run MpCmdRun.exe - CLI Executable'
         inputs:
           FileDirPath: '$(Pipeline.Workspace)/unzipped'
-        enabled: false
-    
-    - job: binSkim
-      steps:
-      - checkout: none
-      - download: current
-        artifact: unzipped
-      - script: ls -a $(Pipeline.Workspace)\unzipped
       - task: BinSkim@4
         displayName: 'Run BinSkim - Product Binaries'
         inputs:
@@ -106,12 +98,7 @@ stages:
           AnalyzeVerbose: true
           AnalyzeHashes: true
           AnalyzeEnvironment: false
-
-    - job: postAnalysis
-      dependsOn: [malware, binSkim]
-      steps:
-      - checkout: none
-      - task: PublishSecurityAnalysisLogs@2
+      - task: PublishSecurityAnalysisLogs@3
         displayName: 'Publish Security Analysis Logs'
         inputs:
           ArtifactName: SecurityLogs
@@ -120,8 +107,6 @@ stages:
         displayName: 'Post Analysis'
         inputs:
           BinSkim: true
-          CredScan: true
-          PoliCheck: true
 
 - stage: sign
   dependsOn: download
