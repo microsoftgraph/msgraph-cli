@@ -97,12 +97,12 @@ stages:
       - checkout: none
       - download: current
         artifact: unzipped
-      - task: BinSkim@3
+      - task: BinSkim@4
         displayName: 'Run BinSkim - Product Binaries'
         inputs:
           InputType: Basic
           AnalyzeTarget: '$(Pipeline.Workspace)\unzipped\mgc.exe'
-          AnalyzeSymPath: '$(Pipeline.Workspace)\unzipped\mgc.pdb'
+          AnalyzeSymPath: '$(Pipeline.Workspace)\unzipped'
           AnalyzeVerbose: true
           AnalyzeHashes: true
           AnalyzeEnvironment: true
