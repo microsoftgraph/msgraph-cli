@@ -101,8 +101,7 @@ stages:
         displayName: 'Run BinSkim - Product Binaries'
         inputs:
           InputType: Basic
-          AnalyzeTarget: '$(Pipeline.Workspace)\unzipped\mgc.exe'
-          AnalyzeSymPath: '$(Pipeline.Workspace)\unzipped'
+          AnalyzeTarget: '$(Pipeline.Workspace)\unzipped\*.exe'
           AnalyzeVerbose: true
           AnalyzeHashes: true
           AnalyzeEnvironment: true
