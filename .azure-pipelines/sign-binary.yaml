@@ -47,19 +47,30 @@ stages:
           downloadPath: '$(ProductBinPath)'
       - publish: $(ProductBinPath)
         artifact: assets
+    - job: version
+      dependsOn: []
+      pool:
+        vmImage: ubuntu-latest
+      steps:
+      - checkout: none
+      - ${{ if startsWith(parameters.tag, 'v') }}:
+        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$(echo ${{ parameters.tag }} | cut -c 2-)"
+          name: setCliVersionStep
+      - ${{ else }}:
+        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]${{ parameters.tag }}"
+          name: setCliVersionStep
     - job: unzip
-      dependsOn: download
+      dependsOn: [download, version]
+      variables:
+        cliVersion: $[ dependencies.version.outputs['setCliVersionStep.cliVersion'] ]
+        cliArchiveNameVar: $[format(zipTemplate, cliVersion)]
       pool:
         vmImage: ubuntu-latest
       steps:
       - checkout: none
       - download: current
         artifact: assets
-      - ${{ if startsWith(parameters.tag, 'v') }}:
-        - script: echo "##vso[task.setvariable variable=cliVersion]$(echo ${{ parameters.tag }} | cut -c 2-)"
-      - ${{ else }}:
-        - script: echo "##vso[task.setvariable variable=cliVersion]${{ parameters.tag }}"
-      - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$[format(variables['zipTemplate'], variables['cliVersion'])]"
+      - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
         name: setArchiveNameStep
       - script: unzip "$(Pipeline.Workspace)/assets/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/assets/unzipped
       - script: ls -a $(Pipeline.Workspace)/assets/*
