@@ -120,7 +120,6 @@ stages:
       - download: current
         artifact: unzipped
       - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-        enabled: false
         displayName: 'ESRP CodeSigning'
         inputs:
           ConnectedServiceName: 'microsoftgraph ESRP CodeSign DLL and NuGet (AKV)'
@@ -165,14 +164,20 @@ stages:
                 }
             ]
           SessionTimeout: 20
+      - publish: $(Pipeline.Workspace)\unzipped\*.md
+        artifact: code-sign-summary
+      - task: DeleteFiles@1
+        inputs:
+          SourceFolder: $(Pipeline.Workspace)\unzipped
+          Contents: '*.md'
+          RemoveSourceFolder: false
       - publish: $(Pipeline.Workspace)\unzipped
         artifact: msgraph-cli
 
 - stage: zip
   dependsOn: [scan, sign]
   variables:
-    cliArchiveNameVar: $[ dependencies.scan.outputs['scan.setArchiveNameStep.cliArchiveName'] ]
-    dependencyObject: $[ convertToJson(stageDependencies) ]
+    cliArchiveNameVar: $[ stageDependencies.scan.scan.outputs['setArchiveNameStep.cliArchiveName'] ]
   jobs:
     - job: zip
       pool:
@@ -199,7 +204,7 @@ stages:
 - stage: upload
   dependsOn: zip
   variables:
-    cliArchiveName: $[ dependencies.zip.outputs['zip.setArchiveNameStep.cliArchiveName'] ]
+    cliArchiveName: $[ stageDependencies.zip.zip.outputs['setArchiveNameStep.cliArchiveName'] ]
   jobs:
     - job: upload
       steps:
@@ -208,7 +213,6 @@ stages:
         artifact: zipped
       - task: GithubRelease@1
         displayName: 'Edit GitHub Release'
-        enabled: false
         inputs:
           gitHubConnection: $(repositoryConnection)
           repositoryName: $(sourceRepository)
