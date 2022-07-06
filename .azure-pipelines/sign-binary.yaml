@@ -81,7 +81,7 @@ stages:
   dependsOn: download
   variables:
     cliArchiveNameVar: $[ dependencies.download.outputs['unzip.setArchiveNameStep.cliArchiveName'] ]
-    dependencyObject: $[ convertToJson(dependencies) ]
+    dependencyObject: $[ convertToJson(dependencies.download) ]
   jobs:
     - job: scan
       steps:
