@@ -81,10 +81,12 @@ stages:
   dependsOn: download
   variables:
     cliArchiveNameVar: $[ dependencies.download.outputs['unzip.setArchiveNameStep.cliArchiveName'] ]
+    dependencyObject: $[ convertToJson(dependencies) ]
   jobs:
     - job: scan
       steps:
       - checkout: none
+      - script: echo $(dependencyObject)
       - download: current
         artifact: unzipped
       - task: AntiMalware@4
