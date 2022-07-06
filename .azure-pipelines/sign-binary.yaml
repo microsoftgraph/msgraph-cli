@@ -80,14 +80,11 @@ stages:
 - stage: scan
   dependsOn: download
   variables:
-    cliArchiveNameVar: $[ dependencies.download.outputs['unzip.setArchiveNameStep.cliArchiveName'] ]
-    dependencyObject: $[ convertToJson(dependencies.download) ]
-    dependencyObject2: $[ convertToJson(stageDependencies) ]
+    cliArchiveNameVar: $[ stageDependencies.download.unzip.outputs['setArchiveNameStep.cliArchiveName'] ]
   jobs:
     - job: scan
       steps:
       - checkout: none
-      - script: echo $(dependencyObject)
       - download: current
         artifact: unzipped
       - task: AntiMalware@4
@@ -175,6 +172,7 @@ stages:
   dependsOn: [scan, sign]
   variables:
     cliArchiveNameVar: $[ dependencies.scan.outputs['scan.setArchiveNameStep.cliArchiveName'] ]
+    dependencyObject: $[ convertToJson(stageDependencies) ]
   jobs:
     - job: zip
       pool:
