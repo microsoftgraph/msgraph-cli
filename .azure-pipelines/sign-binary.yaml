@@ -80,6 +80,8 @@ stages:
 
 - stage: scan
   dependsOn: download
+  variables:
+    cliArchiveNameVar: $[ dependencies.download.unzip.outputs['setArchiveNameStep.cliArchiveName'] ]
   jobs:
     - job: scan
       steps:
@@ -107,6 +109,8 @@ stages:
         displayName: 'Post Analysis'
         inputs:
           BinSkim: true
+      - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
+        name: setArchiveNameStep
 
 - stage: sign
   dependsOn: download
@@ -167,7 +171,7 @@ stages:
 - stage: zip
   dependsOn: [scan, sign]
   variables:
-    cliArchiveName: $[ dependencies.scan.download.outputs['setArchiveNameStep.cliArchiveName'] ]
+    cliArchiveNameVar: $[ dependencies.scan.scan.outputs['setArchiveNameStep.cliArchiveName'] ]
   jobs:
     - job: zip
       pool:
@@ -176,15 +180,25 @@ stages:
       - checkout: none
       - download: current
         artifact: msgraph-cli
-      - bash: |
-          ls -a $(Pipeline.Workspace)/msgraph-cli | zip $(cliArchiveName)
-      - publish: $(Pipeline.Workspace)/msgraph-cli/$(cliArchiveName)
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: '$(Pipeline.Workspace)/msgraph-cli'
+          includeRootFolder: false
+          archiveType: 'zip' # Options: zip, 7z, tar, wim
+          #tarCompression: 'gz' # Optional. Options: gz, bz2, xz, none
+          archiveFile: '$(Pipeline.Workspace)/msgraph-cli/$(cliArchiveNameVar)'
+          replaceExistingArchive: true
+          verbose: true
+          quiet: false
+      - publish: $(Pipeline.Workspace)/msgraph-cli/$(cliArchiveNameVar)
         artifact: zipped
+      - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
+        name: setArchiveNameStep
 
 - stage: upload
   dependsOn: zip
   variables:
-    cliArchiveName: $[ dependencies.zip.scan.download.outputs['setArchiveNameStep.cliArchiveName'] ]
+    cliArchiveNameVar: $[ dependencies.zip.zip.outputs['setArchiveNameStep.cliArchiveName'] ]
   jobs:
     - job: upload
       steps:
@@ -193,11 +207,14 @@ stages:
         artifact: zipped
       - task: GithubRelease@1
         displayName: 'Edit GitHub Release'
+        enabled: false
         inputs:
           gitHubConnection: $(repositoryConnection)
           repositoryName: $(sourceRepository)
           action: edit
           isDraft: false
-          tag: ${{ parameters.tag }}
-          tagSource: 'manual'
+          addChangeLog: false
+          assetUploadMode: replace
+          releaseNotesSource: inline
           assets: $(Pipeline.Workspace)/zipped/**/$(cliArchiveName)
+          isPreRelease: ${{ contains(parameters.tag, 'preview') }}
