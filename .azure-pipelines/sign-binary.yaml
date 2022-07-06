@@ -73,7 +73,6 @@ stages:
       - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
         name: setArchiveNameStep
       - script: unzip -j "$(Pipeline.Workspace)/assets/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/assets/unzipped
-      - script: ls -a $(Pipeline.Workspace)/assets/*
       - publish: $(Pipeline.Workspace)/assets/unzipped
         artifact: unzipped
 
@@ -121,6 +120,7 @@ stages:
       - download: current
         artifact: unzipped
       - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+        enabled: false
         displayName: 'ESRP CodeSigning'
         inputs:
           ConnectedServiceName: 'microsoftgraph ESRP CodeSign DLL and NuGet (AKV)'
@@ -198,7 +198,7 @@ stages:
 - stage: upload
   dependsOn: zip
   variables:
-    cliArchiveNameVar: $[ dependencies.zip.outputs['zip.setArchiveNameStep.cliArchiveName'] ]
+    cliArchiveName: $[ dependencies.zip.outputs['zip.setArchiveNameStep.cliArchiveName'] ]
   jobs:
     - job: upload
       steps:
