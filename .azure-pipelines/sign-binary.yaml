@@ -46,7 +46,7 @@ stages:
           itemPattern: '*-win-x64-*' # Optional
           downloadPath: '$(ProductBinPath)'
       - publish: $(ProductBinPath)
-        artifact: assets
+        artifact: download-zip
     - job: version
       dependsOn: []
       pool:
@@ -69,11 +69,11 @@ stages:
       steps:
       - checkout: none
       - download: current
-        artifact: assets
+        artifact: download-zip
       - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
         name: setArchiveNameStep
-      - script: unzip -j "$(Pipeline.Workspace)/assets/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/assets/unzipped
-      - publish: $(Pipeline.Workspace)/assets/unzipped
+      - script: unzip -j "$(Pipeline.Workspace)/download-zip/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/download-zip/unzipped
+      - publish: $(Pipeline.Workspace)/download-zip/unzipped
         artifact: unzipped
 
 
@@ -171,7 +171,7 @@ stages:
       - publish: $(Pipeline.Workspace)\sign-summary
         artifact: sign-summary
       - publish: $(Pipeline.Workspace)\unzipped
-        artifact: msgraph-cli
+        artifact: signed-executable
 
 - stage: zip
   dependsOn: [scan, sign]
@@ -184,18 +184,18 @@ stages:
       steps:
       - checkout: none
       - download: current
-        artifact: msgraph-cli
+        artifact: signed-executable
       - task: ArchiveFiles@2
         inputs:
-          rootFolderOrFile: '$(Pipeline.Workspace)/msgraph-cli'
+          rootFolderOrFile: '$(Pipeline.Workspace)/signed-executable'
           includeRootFolder: false
           archiveType: 'zip' # Options: zip, 7z, tar, wim
           #tarCompression: 'gz' # Optional. Options: gz, bz2, xz, none
-          archiveFile: '$(Pipeline.Workspace)/msgraph-cli/$(cliArchiveNameVar)'
+          archiveFile: '$(Pipeline.Workspace)/signed-executable/$(cliArchiveNameVar)'
           replaceExistingArchive: true
           verbose: true
           quiet: false
-      - publish: $(Pipeline.Workspace)/msgraph-cli/$(cliArchiveNameVar)
+      - publish: $(Pipeline.Workspace)/signed-executable/$(cliArchiveNameVar)
         artifact: zipped
       - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
         name: setArchiveNameStep
