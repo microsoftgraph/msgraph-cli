@@ -108,7 +108,7 @@ stages:
         displayName: 'Post Analysis'
         inputs:
           BinSkim: true
-      - script: echo ##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)
+      - powershell: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
         name: setArchiveNameStep
 
 - stage: sign
@@ -164,7 +164,7 @@ stages:
                 }
             ]
           SessionTimeout: 20
-      - powershell: |
+      - pwsh: |
           $env:NewDir = '$(Pipeline.Workspace)\sign-summary'
           New-Item -Path $env:NewDir -ItemType Directory -Force
           Get-ChildItem *.md | Foreach-Object { Move-Item -Path $_.FullName -Destination $env:NewDir\$_.Name }
