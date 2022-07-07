@@ -222,3 +222,4 @@ stages:
           releaseNotesSource: inline
           assets: $(Pipeline.Workspace)/zipped/**/$(cliArchiveName)
           isPreRelease: ${{ contains(parameters.tag, 'preview') }}
+          tag: ${{ parameters.tag }}
