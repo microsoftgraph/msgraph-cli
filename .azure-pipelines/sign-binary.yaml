@@ -164,13 +164,11 @@ stages:
                 }
             ]
           SessionTimeout: 20
-      - powershell: |
-          $env:ReplaceRegex = '^(?<fileName>[\w]+)(-.+)(?<extension>.md)$'
-          $env:NewDir = $(Pipeline.Workspace)\sign-summary
-          New-Item -Path $env:NewDir -ItemType Directory -Force
-          Get-ChildItem *.md | Foreach-Object { Move-Item -Path $_.FullName -Destination $env:NewDir\$($_.Name -replace $env:ReplaceRegex,'${fileName}${extension}') }
-      - publish: $(Pipeline.Workspace)\sign-summary
-        artifact: sign-summary
+      - task: DeleteFiles@1
+        inputs:
+          SourceFolder: $(Pipeline.Workspace)\unzipped
+          Contents: '*.md'
+          RemoveSourceFolder: false
       - publish: $(Pipeline.Workspace)\unzipped
         artifact: msgraph-cli
 
@@ -191,6 +189,7 @@ stages:
           rootFolderOrFile: '$(Pipeline.Workspace)/msgraph-cli'
           includeRootFolder: false
           archiveType: 'zip' # Options: zip, 7z, tar, wim
+          #tarCompression: 'gz' # Optional. Options: gz, bz2, xz, none
           archiveFile: '$(Pipeline.Workspace)/msgraph-cli/$(cliArchiveNameVar)'
           replaceExistingArchive: true
           verbose: true
