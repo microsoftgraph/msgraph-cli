@@ -53,7 +53,9 @@ stages:
       - ${{ else }}:
         - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]${{ parameters.tag }}"
           name: setCliVersionStep
-      - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$[format(variables.zipTemplate, variables.cliVersion)]"
+      - script: |
+          ARCHIVE_NAME=$[format(variables.zipTemplate, variables.cliVersion)]
+          echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$ARCHIVE_NAME"
         name: setArchiveNameStep
       - script: unzip -j "$(Pipeline.Workspace)/download-zip/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/download-zip/unzipped
       - publish: $(Pipeline.Workspace)/download-zip/unzipped
