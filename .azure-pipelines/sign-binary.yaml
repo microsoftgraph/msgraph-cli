@@ -33,6 +33,8 @@ stages:
 - stage: download
   jobs:
     - job: download
+      pool:
+        vmImage: ubuntu-latest
       steps:
       - checkout: none
       # Download GitHub Release
@@ -45,32 +47,13 @@ stages:
           version: ${{ parameters.tag }} # Required when defaultVersionType != Latest
           itemPattern: '*-win-x64-*' # Optional
           downloadPath: '$(ProductBinPath)'
-      - publish: $(ProductBinPath)
-        artifact: download-zip
-    - job: version
-      dependsOn: []
-      pool:
-        vmImage: ubuntu-latest
-      steps:
-      - checkout: none
       - ${{ if startsWith(parameters.tag, 'v') }}:
-        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$(echo ${{ parameters.tag }} | cut -c 2-)"
+        - script: echo "##vso[task.setvariable variable=cliVersion]$(echo ${{ parameters.tag }} | cut -c 2-)"
           name: setCliVersionStep
       - ${{ else }}:
         - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]${{ parameters.tag }}"
           name: setCliVersionStep
-    - job: unzip
-      dependsOn: [download, version]
-      variables:
-        cliVersion: $[ dependencies.version.outputs['setCliVersionStep.cliVersion'] ]
-        cliArchiveNameVar: $[format(variables.zipTemplate, variables.cliVersion)]
-      pool:
-        vmImage: ubuntu-latest
-      steps:
-      - checkout: none
-      - download: current
-        artifact: download-zip
-      - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
+      - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$[format(variables.zipTemplate, variables.cliVersion)]"
         name: setArchiveNameStep
       - script: unzip -j "$(Pipeline.Workspace)/download-zip/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/download-zip/unzipped
       - publish: $(Pipeline.Workspace)/download-zip/unzipped
@@ -80,7 +63,7 @@ stages:
 - stage: scan
   dependsOn: download
   variables:
-    cliArchiveNameVar: $[ stageDependencies.download.unzip.outputs['setArchiveNameStep.cliArchiveName'] ]
+    cliArchiveNameVar: $[ stageDependencies.download.download.outputs['setArchiveNameStep.cliArchiveName'] ]
   jobs:
     - job: scan
       steps:
