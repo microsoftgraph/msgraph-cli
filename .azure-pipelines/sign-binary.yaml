@@ -41,10 +41,10 @@ stages:
       steps:
       - checkout: none
       - ${{ if startsWith(variables.currentTag, 'v') }}:
-        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$(echo ${{ variables.currentTag }} | cut -c 2-)"
+        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$(echo $(variables.currentTag) | cut -c 2-)"
           name: setCliVersionStep
       - ${{ else }}:
-        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]${{ variables.currentTag }}"
+        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$(variables.currentTag)"
           name: setCliVersionStep
     - job: download
       dependsOn: version
