@@ -10,8 +10,6 @@ pool:
   vmImage: windows-latest
 
 variables:
-  - name: ProductBinPath
-    value: '$(System.DefaultWorkingDirectory)\assets'
   - name: sourceRepository
     value: 'microsoftgraph/msgraph-cli'
   - name: repositoryConnection
