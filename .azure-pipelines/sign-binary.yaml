@@ -66,7 +66,7 @@ stages:
           connection: $(repositoryConnection)
           userRepository: $(sourceRepository)
           defaultVersionType: 'specificTag' # Options: latest, specificVersion, specificTag
-          version: ${{ variables.currentTag }} # Required when defaultVersionType != Latest
+          version: $(variables.currentTag) # Required when defaultVersionType != Latest
           itemPattern: '*-win-x64-*' # Optional
           downloadPath: '$(Pipeline.Workspace)'
       - script: unzip -j "$(Pipeline.Workspace)/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/unzipped
