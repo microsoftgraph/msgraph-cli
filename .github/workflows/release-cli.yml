@@ -57,3 +57,7 @@ jobs:
           gh release upload ${{env.PACKAGE_VERSION}} ${{env.OUTPUT_DIR}}/${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Sign binaries
+        uses: ${{github.repository}}/.github/workflows/sign-binary.yml@${{github.event.inputs.tag || github.ref_name || 'main'}}
+        with:
+          tag: ${{github.event.inputs.tag || github.ref_name}}
