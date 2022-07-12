@@ -40,14 +40,14 @@ stages:
         vmImage: ubuntu-latest
       steps:
       - checkout: none
-      - ${{ if startsWith(variables.currentTag, 'v') }}:
-        - script: |
-            VERSION_VAR=$(echo $CURRENTTAG | cut -c 2-)
-            echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$VERSION_VAR"
-          name: setCliVersionStep
-      - ${{ else }}:
-        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$CURRENTTAG"
-          name: setCliVersionStep
+      - script: |
+          VERSION_VAR=$(echo $CURRENTTAG | cut -c 2-)
+          echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$VERSION_VAR"
+        name: setCliVersionStep
+        condition: startsWith(variables.currentTag, 'v')
+      - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$CURRENTTAG"
+        name: setCliVersionStep
+        condition: not(startsWith(variables.currentTag, 'v'))
     - job: download
       dependsOn: version
       variables:
