@@ -32,7 +32,23 @@ parameters:
 stages:
 - stage: download
   jobs:
+    - job: version
+      dependsOn: []
+      pool:
+        vmImage: ubuntu-latest
+      steps:
+      - checkout: none
+      - ${{ if startsWith(parameters.tag, 'v') }}:
+        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$(echo ${{ parameters.tag }} | cut -c 2-)"
+          name: setCliVersionStep
+      - ${{ else }}:
+        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]${{ parameters.tag }}"
+          name: setCliVersionStep
     - job: download
+      dependsOn: version
+      variables:
+        cliVersionVar: $[ dependencies.version.outputs['setCliVersionStep.cliVersion'] ]
+        cliArchiveNameVar: $[format(variables.zipTemplate, variables.cliVersion)]
       pool:
         vmImage: ubuntu-latest
       steps:
@@ -47,16 +63,7 @@ stages:
           version: ${{ parameters.tag }} # Required when defaultVersionType != Latest
           itemPattern: '*-win-x64-*' # Optional
           downloadPath: '$(ProductBinPath)'
-      - ${{ if startsWith(parameters.tag, 'v') }}:
-        - script: echo "##vso[task.setvariable variable=cliVersion]$(echo ${{ parameters.tag }} | cut -c 2-)"
-          name: setCliVersionStep
-      - ${{ else }}:
-        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]${{ parameters.tag }}"
-          name: setCliVersionStep
-      - script: |
-          echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$ARCHIVE_NAME"
-        env:
-          ARCHIVE_NAME: $[format(variables.zipTemplate, variables.cliVersion)]
+      - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
         name: setArchiveNameStep
       - script: unzip -j "$(Pipeline.Workspace)/download-zip/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/download-zip/unzipped
       - publish: $(Pipeline.Workspace)/download-zip/unzipped
@@ -94,7 +101,7 @@ stages:
         displayName: 'Post Analysis'
         inputs:
           BinSkim: true
-      - powershell: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
+      - pwsh: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
         name: setArchiveNameStep
 
 - stage: sign
