@@ -56,7 +56,7 @@ stages:
       - script: |
           echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$ARCHIVE_NAME"
         env:
-          ARCHIVE_NAME: $(format(variables.zipTemplate, variables.cliVersion))
+          ARCHIVE_NAME: $[format(variables.zipTemplate, variables.cliVersion)]
         name: setArchiveNameStep
       - script: unzip -j "$(Pipeline.Workspace)/download-zip/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/download-zip/unzipped
       - publish: $(Pipeline.Workspace)/download-zip/unzipped
