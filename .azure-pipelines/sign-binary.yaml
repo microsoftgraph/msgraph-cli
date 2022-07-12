@@ -42,12 +42,12 @@ stages:
       - checkout: none
       - script: |
           VERSION_VAR=$(echo $CURRENTTAG | cut -c 2-)
-          echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$VERSION_VAR"
-        name: setCliVersionStep
+          echo "##vso[task.setvariable variable=cliVersionVar]$VERSION_VAR"
         condition: startsWith(variables.currentTag, 'v')
-      - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$CURRENTTAG"
-        name: setCliVersionStep
+      - script: echo "##vso[task.setvariable variable=cliVersionVar]$CURRENTTAG"
         condition: not(startsWith(variables.currentTag, 'v'))
+      - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$(cliVersionVar)"
+        name: setCliVersionStep
     - job: download
       dependsOn: version
       variables:
