@@ -43,9 +43,9 @@ stages:
       - script: |
           VERSION_VAR=$(echo $CURRENTTAG | cut -c 2-)
           echo "##vso[task.setvariable variable=cliVersionVar]$VERSION_VAR"
-        condition: startsWith(variables.currentTag, 'v')
+        condition: startsWith(currentTag, 'v')
       - script: echo "##vso[task.setvariable variable=cliVersionVar]$CURRENTTAG"
-        condition: not(startsWith(variables.currentTag, 'v'))
+        condition: not(startsWith(currentTag, 'v'))
       - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$(cliVersionVar)"
         name: setCliVersionStep
     - job: download
@@ -66,7 +66,7 @@ stages:
           connection: $(repositoryConnection)
           userRepository: $(sourceRepository)
           defaultVersionType: 'specificTag' # Options: latest, specificVersion, specificTag
-          version: $(variables.currentTag) # Required when defaultVersionType != Latest
+          version: $(currentTag) # Required when defaultVersionType != Latest
           itemPattern: '*-win-x64-*' # Optional
           downloadPath: '$(Pipeline.Workspace)'
       - script: unzip -j "$(Pipeline.Workspace)/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/unzipped
@@ -202,6 +202,7 @@ stages:
   variables:
     cliArchiveName: $[ stageDependencies.zip.zip.outputs['setArchiveNameStep.cliArchiveName'] ]
     currentTag: $[ coalesce(variables.tag, variables.defaultTag) ]
+    isPreRelease: $[ contains(variables.currentTag, 'preview') ]
   jobs:
     - job: upload
       steps:
@@ -219,5 +220,5 @@ stages:
           assetUploadMode: replace
           releaseNotesSource: inline
           assets: $(Pipeline.Workspace)/zipped/**/$(cliArchiveName)
-          isPreRelease: ${{ contains(variables.currentTag, 'preview') }}
-          tag: ${{ variables.currentTag }}
+          isPreRelease: $(isPreRelease)
+          tag: $(currentTag)
