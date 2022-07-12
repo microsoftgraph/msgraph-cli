@@ -30,7 +30,7 @@ parameters:
 stages:
 - stage: download
   variables:
-    tag: $[ coalesce(variables.tag, parameters.tag) ]
+    tag: $[ coalesce(variables.tag, ${{parameters.tag}}) ]
   jobs:
     - job: version
       dependsOn: []
@@ -197,7 +197,7 @@ stages:
   dependsOn: zip
   variables:
     cliArchiveName: $[ stageDependencies.zip.zip.outputs['setArchiveNameStep.cliArchiveName'] ]
-    tag: $[ coalesce(variables.tag, parameters.tag, 'latest') ]
+    tag: $[ coalesce(variables.tag, ${{parameters.tag}}) ]
   jobs:
     - job: upload
       steps:
