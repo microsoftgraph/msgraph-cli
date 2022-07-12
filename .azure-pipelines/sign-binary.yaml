@@ -55,6 +55,8 @@ stages:
       - checkout: none
       # Download GitHub Release
       # Downloads a GitHub Release from a repository
+      - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
+        name: setArchiveNameStep
       - task: DownloadGitHubRelease@0
         inputs:
           connection: $(repositoryConnection)
@@ -63,10 +65,8 @@ stages:
           version: ${{ parameters.tag }} # Required when defaultVersionType != Latest
           itemPattern: '*-win-x64-*' # Optional
           downloadPath: '$(ProductBinPath)'
-      - script: echo "##vso[task.setvariable variable=cliArchiveName;isOutput=true]$(cliArchiveNameVar)"
-        name: setArchiveNameStep
-      - script: unzip -j "$(Pipeline.Workspace)/download-zip/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/download-zip/unzipped
-      - publish: $(Pipeline.Workspace)/download-zip/unzipped
+      - script: unzip -j "$(ProductBinPath)/$(setArchiveNameStep.cliArchiveName)" -d $(ProductBinPath)/unzipped
+      - publish: $(ProductBinPath)/unzipped
         artifact: unzipped
 
 
