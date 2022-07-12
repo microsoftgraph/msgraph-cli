@@ -20,6 +20,7 @@ parameters:
   - name: tag
     displayName: Tag
     type: string
+    default: latest
 
 
 # download -> scan -> zip -> upload
@@ -29,7 +30,7 @@ parameters:
 stages:
 - stage: download
   variables:
-    tag: $[ coalesce(variables.tag, parameters.tag, 'latest') ]
+    tag: $[ coalesce(variables.tag, parameters.tag) ]
   jobs:
     - job: version
       dependsOn: []
