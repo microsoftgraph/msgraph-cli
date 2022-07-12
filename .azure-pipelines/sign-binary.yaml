@@ -20,7 +20,6 @@ parameters:
   - name: tag
     displayName: Tag
     type: string
-    default: latest
 
 
 # download -> scan -> zip -> upload
@@ -29,6 +28,8 @@ parameters:
 
 stages:
 - stage: download
+  variables:
+    tag: $[ coalesce(variables.tag, parameters.tag, 'latest') ]
   jobs:
     - job: version
       dependsOn: []
@@ -36,11 +37,11 @@ stages:
         vmImage: ubuntu-latest
       steps:
       - checkout: none
-      - ${{ if startsWith(parameters.tag, 'v') }}:
-        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$(echo ${{ parameters.tag }} | cut -c 2-)"
+      - ${{ if startsWith(variables.tag, 'v') }}:
+        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]$(echo ${{ variables.tag }} | cut -c 2-)"
           name: setCliVersionStep
       - ${{ else }}:
-        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]${{ parameters.tag }}"
+        - script: echo "##vso[task.setvariable variable=cliVersion;isOutput=true]${{ variables.tag }}"
           name: setCliVersionStep
     - job: download
       dependsOn: version
@@ -60,7 +61,7 @@ stages:
           connection: $(repositoryConnection)
           userRepository: $(sourceRepository)
           defaultVersionType: 'specificTag' # Options: latest, specificVersion, specificTag
-          version: ${{ parameters.tag }} # Required when defaultVersionType != Latest
+          version: ${{ variables.tag }} # Required when defaultVersionType != Latest
           itemPattern: '*-win-x64-*' # Optional
           downloadPath: '$(Pipeline.Workspace)'
       - script: unzip -j "$(Pipeline.Workspace)/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/unzipped
@@ -195,6 +196,7 @@ stages:
   dependsOn: zip
   variables:
     cliArchiveName: $[ stageDependencies.zip.zip.outputs['setArchiveNameStep.cliArchiveName'] ]
+    tag: $[ coalesce(variables.tag, parameters.tag, 'latest') ]
   jobs:
     - job: upload
       steps:
@@ -212,5 +214,5 @@ stages:
           assetUploadMode: replace
           releaseNotesSource: inline
           assets: $(Pipeline.Workspace)/zipped/**/$(cliArchiveName)
-          isPreRelease: ${{ contains(parameters.tag, 'preview') }}
-          tag: ${{ parameters.tag }}
+          isPreRelease: ${{ contains(variables.tag, 'preview') }}
+          tag: ${{ variables.tag }}
