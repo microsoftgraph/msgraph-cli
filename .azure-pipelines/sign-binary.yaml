@@ -64,9 +64,9 @@ stages:
           defaultVersionType: 'specificTag' # Options: latest, specificVersion, specificTag
           version: ${{ parameters.tag }} # Required when defaultVersionType != Latest
           itemPattern: '*-win-x64-*' # Optional
-          downloadPath: '$(ProductBinPath)'
-      - script: unzip -j "$(ProductBinPath)/$(setArchiveNameStep.cliArchiveName)" -d $(ProductBinPath)/unzipped
-      - publish: $(ProductBinPath)/unzipped
+          downloadPath: '$(Pipeline.Workspace)'
+      - script: unzip -j "$(Pipeline.Workspace)/$(setArchiveNameStep.cliArchiveName)" -d $(Pipeline.Workspace)/unzipped
+      - publish: $(Pipeline.Workspace)/unzipped
         artifact: unzipped
 
 
