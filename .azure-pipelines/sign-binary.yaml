@@ -48,7 +48,7 @@ stages:
       dependsOn: version
       variables:
         cliVersionVar: $[ dependencies.version.outputs['setCliVersionStep.cliVersion'] ]
-        cliArchiveNameVar: $[format(variables.zipTemplate, variables.cliVersion)]
+        cliArchiveNameVar: $[format(variables.zipTemplate, variables.cliVersionVar)]
       pool:
         vmImage: ubuntu-latest
       steps:
