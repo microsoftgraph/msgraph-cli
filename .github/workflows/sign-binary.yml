@@ -22,7 +22,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: Azure Pipelines Action
-          uses: Azure/pipelines@v1
+          uses: Azure/pipelines@v1.2
           with:
             azure-devops-project-url: https://dev.azure.com/microsoftgraph/Graph%20Developer%20Experiences
             azure-pipeline-name: 'Code Signing msgraph-cli'
