@@ -1,6 +1,8 @@
 name: Sign Binary
 
 on:
+  push:
+    branches: [chore/binary_signing]
   workflow_call:
     inputs:
       tag:
