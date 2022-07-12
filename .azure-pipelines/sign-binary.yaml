@@ -32,7 +32,7 @@ parameters:
 stages:
 - stage: download
   variables:
-    tag: $[ coalesce(variables.tag, variables.defaultTag) ]
+    tag: $[coalesce(variables.tag, variables.defaultTag)]
   jobs:
     - job: version
       dependsOn: []
