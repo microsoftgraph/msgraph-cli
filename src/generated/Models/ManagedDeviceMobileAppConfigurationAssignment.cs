@@ -9,6 +9,12 @@ namespace ApiSdk.Models {
         /// <summary>Assignment target that the T&amp;C policy is assigned to.</summary>
         public DeviceAndAppManagementAssignmentTarget Target { get; set; }
         /// <summary>
+        /// Instantiates a new managedDeviceMobileAppConfigurationAssignment and sets the default values.
+        /// </summary>
+        public ManagedDeviceMobileAppConfigurationAssignment() : base() {
+            OdataType = "#microsoft.graph.managedDeviceMobileAppConfigurationAssignment";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

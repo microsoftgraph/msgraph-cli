@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public int? Count { get; set; }
         /// <summary>The discrete value of the field that an aggregation was computed on.</summary>
         public string Key { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new searchBucket and sets the default values.
         /// </summary>
         public SearchBucket() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.searchBucket";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"aggregationFilterToken", n => { AggregationFilterToken = n.GetStringValue(); } },
                 {"count", n => { Count = n.GetIntValue(); } },
                 {"key", n => { Key = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("aggregationFilterToken", AggregationFilterToken);
             writer.WriteIntValue("count", Count);
             writer.WriteStringValue("key", Key);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

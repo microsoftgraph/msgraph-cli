@@ -98,11 +98,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return command;
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
+        /// The access packages in this catalog. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The access packages in this catalog. Read-only. Nullable. Supports $expand.";
+            command.Description = "The access packages in this catalog. Read-only. Nullable.";
             // Create options for all the parameters
             var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "key: id of accessPackageCatalog") {
             };
@@ -221,7 +221,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
+        /// The access packages in this catalog. Read-only. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AccessPackagesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -270,7 +270,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>The access packages in this catalog. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>The access packages in this catalog. Read-only. Nullable.</summary>
         public class AccessPackagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

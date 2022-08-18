@@ -140,7 +140,7 @@ namespace ApiSdk.Print.Printers.Item.Shares.Item {
             /// <summary>Request query parameters</summary>
             public PrinterShareItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PrinterShareItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new printerShareItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new PrinterShareItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public PrinterShareItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

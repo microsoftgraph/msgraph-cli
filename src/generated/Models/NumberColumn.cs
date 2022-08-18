@@ -15,11 +15,14 @@ namespace ApiSdk.Models {
         public double? Maximum { get; set; }
         /// <summary>The minimum permitted value.</summary>
         public double? Minimum { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new numberColumn and sets the default values.
         /// </summary>
         public NumberColumn() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.numberColumn";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
                 {"displayAs", n => { DisplayAs = n.GetStringValue(); } },
                 {"maximum", n => { Maximum = n.GetDoubleValue(); } },
                 {"minimum", n => { Minimum = n.GetDoubleValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -50,6 +54,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("displayAs", DisplayAs);
             writer.WriteDoubleValue("maximum", Maximum);
             writer.WriteDoubleValue("minimum", Minimum);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

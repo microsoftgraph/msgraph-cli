@@ -17,11 +17,14 @@ namespace ApiSdk.Models {
         public bool? AllowUserDeleteMessages { get; set; }
         /// <summary>If set to true, users can edit their messages.</summary>
         public bool? AllowUserEditMessages { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new teamMessagingSettings and sets the default values.
         /// </summary>
         public TeamMessagingSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.teamMessagingSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -41,6 +44,7 @@ namespace ApiSdk.Models {
                 {"allowTeamMentions", n => { AllowTeamMentions = n.GetBoolValue(); } },
                 {"allowUserDeleteMessages", n => { AllowUserDeleteMessages = n.GetBoolValue(); } },
                 {"allowUserEditMessages", n => { AllowUserEditMessages = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -54,6 +58,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("allowTeamMentions", AllowTeamMentions);
             writer.WriteBoolValue("allowUserDeleteMessages", AllowUserDeleteMessages);
             writer.WriteBoolValue("allowUserEditMessages", AllowUserEditMessages);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

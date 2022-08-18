@@ -85,11 +85,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return command;
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
+        /// The access packages in this catalog. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The access packages in this catalog. Read-only. Nullable. Supports $expand.";
+            command.Description = "The access packages in this catalog. Read-only. Nullable.";
             // Create options for all the parameters
             var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "key: id of accessPackageCatalog") {
             };
@@ -223,7 +223,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return requestInfo;
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
+        /// The access packages in this catalog. Read-only. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AccessPackageItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -270,14 +270,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessPackageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The access packages in this catalog. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>The access packages in this catalog. Read-only. Nullable.</summary>
         public class AccessPackageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -295,7 +295,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             /// <summary>Request query parameters</summary>
             public AccessPackageItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AccessPackageItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new accessPackageItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -309,7 +309,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessPackageItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

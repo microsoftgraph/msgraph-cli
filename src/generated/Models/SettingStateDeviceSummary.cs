@@ -25,6 +25,12 @@ namespace ApiSdk.Models {
         /// <summary>Device Unkown count for the setting</summary>
         public int? UnknownDeviceCount { get; set; }
         /// <summary>
+        /// Instantiates a new settingStateDeviceSummary and sets the default values.
+        /// </summary>
+        public SettingStateDeviceSummary() : base() {
+            OdataType = "#microsoft.graph.settingStateDeviceSummary";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

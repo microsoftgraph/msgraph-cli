@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Singleton entity that acts as a container for all device management functionality.</summary>
     public class DeviceManagement : Entity, IParsable {
         /// <summary>Apple push notification certificate.</summary>
         public ApiSdk.Models.ApplePushNotificationCertificate ApplePushNotificationCertificate { get; set; }
@@ -34,7 +33,7 @@ namespace ApiSdk.Models {
         public List<DeviceManagementExchangeConnector> ExchangeConnectors { get; set; }
         /// <summary>Collection of imported Windows autopilot devices.</summary>
         public List<ImportedWindowsAutopilotDeviceIdentity> ImportedWindowsAutopilotDeviceIdentities { get; set; }
-        /// <summary>Intune Account ID for given tenant</summary>
+        /// <summary>Intune Account Id for given tenant</summary>
         public string IntuneAccountId { get; set; }
         /// <summary>intuneBrand contains data which is used in customizing the appearance of the Company Portal applications as well as the end user web portal.</summary>
         public ApiSdk.Models.IntuneBrand IntuneBrand { get; set; }
@@ -62,7 +61,7 @@ namespace ApiSdk.Models {
         public DeviceManagementSettings Settings { get; set; }
         /// <summary>The software update status summary.</summary>
         public ApiSdk.Models.SoftwareUpdateStatusSummary SoftwareUpdateStatusSummary { get; set; }
-        /// <summary>Tenant mobile device management subscription state. Possible values are: pending, active, warning, disabled, deleted, blocked, lockedOut.</summary>
+        /// <summary>Tenant mobile device management subscription state.</summary>
         public DeviceManagementSubscriptionState? SubscriptionState { get; set; }
         /// <summary>The telecom expense management partners.</summary>
         public List<TelecomExpenseManagementPartner> TelecomExpenseManagementPartners { get; set; }
@@ -76,6 +75,12 @@ namespace ApiSdk.Models {
         public List<WindowsInformationProtectionAppLearningSummary> WindowsInformationProtectionAppLearningSummaries { get; set; }
         /// <summary>The windows information protection network learning summaries.</summary>
         public List<WindowsInformationProtectionNetworkLearningSummary> WindowsInformationProtectionNetworkLearningSummaries { get; set; }
+        /// <summary>
+        /// Instantiates a new DeviceManagement and sets the default values.
+        /// </summary>
+        public DeviceManagement() : base() {
+            OdataType = "#microsoft.graph.deviceManagement";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

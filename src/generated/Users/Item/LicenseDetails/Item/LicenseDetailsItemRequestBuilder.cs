@@ -246,7 +246,7 @@ namespace ApiSdk.Users.Item.LicenseDetails.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new licenseDetailsItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new LicenseDetailsItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public LicenseDetailsItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Users.Item.LicenseDetails.Item {
             /// <summary>Request query parameters</summary>
             public LicenseDetailsItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new LicenseDetailsItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new licenseDetailsItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new LicenseDetailsItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public LicenseDetailsItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Users.Item.LicenseDetails.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new licenseDetailsItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new LicenseDetailsItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public LicenseDetailsItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

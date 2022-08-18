@@ -23,11 +23,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Direc
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The directory object that is the scope of the assignment. Provided so that callers can get the directory object using $expand at the same time as getting the role assignment. Read-only. Supports $expand.
+        /// The directory object that is the scope of the assignment. Read-only. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The directory object that is the scope of the assignment. Provided so that callers can get the directory object using $expand at the same time as getting the role assignment. Read-only. Supports $expand.";
+            command.Description = "The directory object that is the scope of the assignment. Read-only. Supports $expand.";
             // Create options for all the parameters
             var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "key: id of unifiedRoleAssignment") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Direc
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The directory object that is the scope of the assignment. Provided so that callers can get the directory object using $expand at the same time as getting the role assignment. Read-only. Supports $expand.
+        /// The directory object that is the scope of the assignment. Read-only. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectoryScopeRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Direc
             }
             return requestInfo;
         }
-        /// <summary>The directory object that is the scope of the assignment. Provided so that callers can get the directory object using $expand at the same time as getting the role assignment. Read-only. Supports $expand.</summary>
+        /// <summary>The directory object that is the scope of the assignment. Read-only. Supports $expand.</summary>
         public class DirectoryScopeRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

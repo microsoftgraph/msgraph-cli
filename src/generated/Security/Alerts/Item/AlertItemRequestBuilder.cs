@@ -55,11 +55,11 @@ namespace ApiSdk.Security.Alerts.Item {
             return command;
         }
         /// <summary>
-        /// Notifications for suspicious or potential security issues in a customer’s tenant.
+        /// Get alerts from security
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Notifications for suspicious or potential security issues in a customer’s tenant.";
+            command.Description = "Get alerts from security";
             // Create options for all the parameters
             var alertIdOption = new Option<string>("--alert-id", description: "key: id of alert") {
             };
@@ -181,7 +181,7 @@ namespace ApiSdk.Security.Alerts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Notifications for suspicious or potential security issues in a customer’s tenant.
+        /// Get alerts from security
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AlertItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -228,14 +228,14 @@ namespace ApiSdk.Security.Alerts.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new alertItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AlertItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AlertItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Notifications for suspicious or potential security issues in a customer’s tenant.</summary>
+        /// <summary>Get alerts from security</summary>
         public class AlertItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -253,7 +253,7 @@ namespace ApiSdk.Security.Alerts.Item {
             /// <summary>Request query parameters</summary>
             public AlertItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AlertItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new alertItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AlertItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AlertItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Security.Alerts.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new alertItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AlertItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AlertItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

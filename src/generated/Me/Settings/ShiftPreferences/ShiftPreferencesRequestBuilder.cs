@@ -49,11 +49,11 @@ namespace ApiSdk.Me.Settings.ShiftPreferences {
             return command;
         }
         /// <summary>
-        /// The shift preferences for the user.
+        /// Get shiftPreferences from me
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The shift preferences for the user.";
+            command.Description = "Get shiftPreferences from me";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -163,7 +163,7 @@ namespace ApiSdk.Me.Settings.ShiftPreferences {
             return requestInfo;
         }
         /// <summary>
-        /// The shift preferences for the user.
+        /// Get shiftPreferences from me
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ShiftPreferencesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -217,7 +217,7 @@ namespace ApiSdk.Me.Settings.ShiftPreferences {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The shift preferences for the user.</summary>
+        /// <summary>Get shiftPreferences from me</summary>
         public class ShiftPreferencesRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public string Format { get; set; }
         /// <summary>The formula used to compute the value for this column.</summary>
         public string Formula { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The output type used to format values in this column. Must be one of boolean, currency, dateTime, number, or text.</summary>
         public string OutputType { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public CalculatedColumn() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.calculatedColumn";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"format", n => { Format = n.GetStringValue(); } },
                 {"formula", n => { Formula = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"outputType", n => { OutputType = n.GetStringValue(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("format", Format);
             writer.WriteStringValue("formula", Formula);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("outputType", OutputType);
             writer.WriteAdditionalData(AdditionalData);
         }

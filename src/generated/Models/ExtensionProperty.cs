@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to call the instantiate method.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class ExtensionProperty : DirectoryObject, IParsable {
         /// <summary>Display name of the application object on which this extension property is defined. Read-only.</summary>
         public string AppDisplayName { get; set; }
@@ -12,10 +12,16 @@ namespace ApiSdk.Models {
         public string DataType { get; set; }
         /// <summary>Indicates if this extension property was synced from on-premises active directory using Azure AD Connect. Read-only.</summary>
         public bool? IsSyncedFromOnPremises { get; set; }
-        /// <summary>Name of the extension property. Not nullable.</summary>
+        /// <summary>Name of the extension property. Not nullable. Supports $filter (eq).</summary>
         public string Name { get; set; }
-        /// <summary>Following values are supported. Not nullable. UserGroupOrganizationDeviceApplication</summary>
+        /// <summary>Following values are supported. Not nullable. UserGroupAdministrativeUnitApplicationDeviceOrganization</summary>
         public List<string> TargetObjects { get; set; }
+        /// <summary>
+        /// Instantiates a new extensionProperty and sets the default values.
+        /// </summary>
+        public ExtensionProperty() : base() {
+            OdataType = "#microsoft.graph.extensionProperty";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

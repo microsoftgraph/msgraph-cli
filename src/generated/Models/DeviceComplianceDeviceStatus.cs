@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class DeviceComplianceDeviceStatus : Entity, IParsable {
         /// <summary>The DateTime when device compliance grace period expires</summary>
         public DateTimeOffset? ComplianceGracePeriodExpirationDateTime { get; set; }
@@ -14,12 +14,18 @@ namespace ApiSdk.Models {
         public string DeviceModel { get; set; }
         /// <summary>Last modified date time of the policy report.</summary>
         public DateTimeOffset? LastReportedDateTime { get; set; }
-        /// <summary>Compliance status of the policy report. Possible values are: unknown, notApplicable, compliant, remediated, nonCompliant, error, conflict, notAssigned.</summary>
+        /// <summary>The status property</summary>
         public ComplianceStatus? Status { get; set; }
         /// <summary>The User Name that is being reported</summary>
         public string UserName { get; set; }
         /// <summary>UserPrincipalName.</summary>
         public string UserPrincipalName { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceComplianceDeviceStatus and sets the default values.
+        /// </summary>
+        public DeviceComplianceDeviceStatus() : base() {
+            OdataType = "#microsoft.graph.deviceComplianceDeviceStatus";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

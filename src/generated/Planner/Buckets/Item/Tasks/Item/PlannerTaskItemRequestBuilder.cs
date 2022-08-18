@@ -282,7 +282,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new plannerTaskItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new PlannerTaskItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public PlannerTaskItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -307,7 +307,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item {
             /// <summary>Request query parameters</summary>
             public PlannerTaskItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PlannerTaskItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new plannerTaskItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new PlannerTaskItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public PlannerTaskItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -321,7 +321,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new plannerTaskItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new PlannerTaskItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public PlannerTaskItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

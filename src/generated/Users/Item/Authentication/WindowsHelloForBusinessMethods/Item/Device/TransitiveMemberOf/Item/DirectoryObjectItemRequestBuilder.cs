@@ -41,11 +41,11 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item.D
             return command;
         }
         /// <summary>
-        /// Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.
+        /// Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.";
+            command.Description = "Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -151,7 +151,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item.D
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.
+        /// Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectoryObjectItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -170,7 +170,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item.D
             }
             return requestInfo;
         }
-        /// <summary>Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.</summary>
+        /// <summary>Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.</summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -188,7 +188,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item.D
             /// <summary>Request query parameters</summary>
             public DirectoryObjectItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DirectoryObjectItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new directoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryObjectItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

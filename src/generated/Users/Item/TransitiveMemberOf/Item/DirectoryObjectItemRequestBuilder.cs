@@ -41,11 +41,11 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf.Item {
             return command;
         }
         /// <summary>
-        /// Get transitiveMemberOf from users
+        /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get transitiveMemberOf from users";
+            command.Description = "The groups, including nested groups, and directory roles that a user is a member of. Nullable.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -145,7 +145,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get transitiveMemberOf from users
+        /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectoryObjectItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -164,7 +164,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf.Item {
             }
             return requestInfo;
         }
-        /// <summary>Get transitiveMemberOf from users</summary>
+        /// <summary>The groups, including nested groups, and directory roles that a user is a member of. Nullable.</summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -182,7 +182,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf.Item {
             /// <summary>Request query parameters</summary>
             public DirectoryObjectItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DirectoryObjectItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new directoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryObjectItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

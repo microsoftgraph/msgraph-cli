@@ -254,7 +254,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new serviceAnnouncementAttachmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ServiceAnnouncementAttachmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ServiceAnnouncementAttachmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -279,7 +279,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
             /// <summary>Request query parameters</summary>
             public ServiceAnnouncementAttachmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ServiceAnnouncementAttachmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new serviceAnnouncementAttachmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ServiceAnnouncementAttachmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ServiceAnnouncementAttachmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -293,7 +293,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new serviceAnnouncementAttachmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ServiceAnnouncementAttachmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ServiceAnnouncementAttachmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

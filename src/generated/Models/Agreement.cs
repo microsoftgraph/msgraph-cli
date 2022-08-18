@@ -11,17 +11,23 @@ namespace ApiSdk.Models {
         /// <summary>Display name of the agreement. The display name is used for internal tracking of the agreement but is not shown to end users who view the agreement. Supports $filter (eq).</summary>
         public string DisplayName { get; set; }
         /// <summary>Default PDF linked to this agreement.</summary>
-        public AgreementFile File { get; set; }
-        /// <summary>PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.</summary>
+        public AgreementFile FileObject { get; set; }
+        /// <summary>PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.</summary>
         public List<AgreementFileLocalization> Files { get; set; }
-        /// <summary>This setting enables you to require end users to accept this agreement on every device that they are accessing it from. The end user will be required to register their device in Azure AD, if they haven&apos;t already done so. Supports $filter (eq).</summary>
+        /// <summary>Indicates whether end users are required to accept this agreement on every device that they access it from. The end user is required to register their device in Azure AD, if they haven&apos;t already done so. Supports $filter (eq).</summary>
         public bool? IsPerDeviceAcceptanceRequired { get; set; }
         /// <summary>Indicates whether the user has to expand the agreement before accepting. Supports $filter (eq).</summary>
         public bool? IsViewingBeforeAcceptanceRequired { get; set; }
-        /// <summary>Expiration schedule and frequency of agreement for all users.  Supports $filter (eq).</summary>
+        /// <summary>Expiration schedule and frequency of agreement for all users. Supports $filter (eq).</summary>
         public ApiSdk.Models.TermsExpiration TermsExpiration { get; set; }
-        /// <summary>The duration after which the user must re-accept the terms of use. The value is represented in ISO 8601 format for durations.</summary>
+        /// <summary>The duration after which the user must re-accept the terms of use. The value is represented in ISO 8601 format for durations. Supports $filter (eq).</summary>
         public TimeSpan? UserReacceptRequiredFrequency { get; set; }
+        /// <summary>
+        /// Instantiates a new agreement and sets the default values.
+        /// </summary>
+        public Agreement() : base() {
+            OdataType = "#microsoft.graph.agreement";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
@@ -37,7 +43,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"acceptances", n => { Acceptances = n.GetCollectionOfObjectValues<AgreementAcceptance>(AgreementAcceptance.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"file", n => { File = n.GetObjectValue<AgreementFile>(AgreementFile.CreateFromDiscriminatorValue); } },
+                {"file", n => { FileObject = n.GetObjectValue<AgreementFile>(AgreementFile.CreateFromDiscriminatorValue); } },
                 {"files", n => { Files = n.GetCollectionOfObjectValues<AgreementFileLocalization>(AgreementFileLocalization.CreateFromDiscriminatorValue).ToList(); } },
                 {"isPerDeviceAcceptanceRequired", n => { IsPerDeviceAcceptanceRequired = n.GetBoolValue(); } },
                 {"isViewingBeforeAcceptanceRequired", n => { IsViewingBeforeAcceptanceRequired = n.GetBoolValue(); } },
@@ -54,7 +60,7 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<AgreementAcceptance>("acceptances", Acceptances);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<AgreementFile>("file", File);
+            writer.WriteObjectValue<AgreementFile>("file", FileObject);
             writer.WriteCollectionOfObjectValues<AgreementFileLocalization>("files", Files);
             writer.WriteBoolValue("isPerDeviceAcceptanceRequired", IsPerDeviceAcceptanceRequired);
             writer.WriteBoolValue("isViewingBeforeAcceptanceRequired", IsViewingBeforeAcceptanceRequired);

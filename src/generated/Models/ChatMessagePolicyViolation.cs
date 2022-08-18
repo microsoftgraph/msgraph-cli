@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public ChatMessagePolicyViolationDlpActionTypes? DlpAction { get; set; }
         /// <summary>Justification text provided by the sender of the message when overriding a policy violation.</summary>
         public string JustificationText { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Information to display to the message sender about why the message was flagged as a violation.</summary>
         public ChatMessagePolicyViolationPolicyTip PolicyTip { get; set; }
         /// <summary>Indicates the action taken by the user on a message blocked by the DLP provider. Supported values are: NoneOverrideReportFalsePositiveWhen the DLP provider is updating the message for blocking sensitive content, userAction is not required.</summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ChatMessagePolicyViolation() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.chatMessagePolicyViolation";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"dlpAction", n => { DlpAction = n.GetEnumValue<ChatMessagePolicyViolationDlpActionTypes>(); } },
                 {"justificationText", n => { JustificationText = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"policyTip", n => { PolicyTip = n.GetObjectValue<ChatMessagePolicyViolationPolicyTip>(ChatMessagePolicyViolationPolicyTip.CreateFromDiscriminatorValue); } },
                 {"userAction", n => { UserAction = n.GetEnumValue<ChatMessagePolicyViolationUserActionTypes>(); } },
                 {"verdictDetails", n => { VerdictDetails = n.GetEnumValue<ChatMessagePolicyViolationVerdictDetailsTypes>(); } },
@@ -51,6 +55,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<ChatMessagePolicyViolationDlpActionTypes>("dlpAction", DlpAction);
             writer.WriteStringValue("justificationText", JustificationText);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<ChatMessagePolicyViolationPolicyTip>("policyTip", PolicyTip);
             writer.WriteEnumValue<ChatMessagePolicyViolationUserActionTypes>("userAction", UserAction);
             writer.WriteEnumValue<ChatMessagePolicyViolationVerdictDetailsTypes>("verdictDetails", VerdictDetails);

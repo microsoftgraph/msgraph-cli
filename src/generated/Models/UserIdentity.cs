@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class UserIdentity : Identity, IParsable {
         /// <summary>Indicates the client IP address used by user performing the activity (audit log only).</summary>
         public string IpAddress { get; set; }
         /// <summary>The userPrincipalName attribute of the user.</summary>
         public string UserPrincipalName { get; set; }
+        /// <summary>
+        /// Instantiates a new UserIdentity and sets the default values.
+        /// </summary>
+        public UserIdentity() : base() {
+            OdataType = "#microsoft.graph.userIdentity";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

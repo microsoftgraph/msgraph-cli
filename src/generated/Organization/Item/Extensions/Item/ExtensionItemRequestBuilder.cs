@@ -61,11 +61,11 @@ namespace ApiSdk.Organization.Item.Extensions.Item {
             return command;
         }
         /// <summary>
-        /// The collection of open extensions defined for the organization resource. Nullable.
+        /// The collection of open extensions defined for the organization. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of open extensions defined for the organization resource. Nullable.";
+            command.Description = "The collection of open extensions defined for the organization. Read-only. Nullable.";
             // Create options for all the parameters
             var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
             };
@@ -199,7 +199,7 @@ namespace ApiSdk.Organization.Item.Extensions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of open extensions defined for the organization resource. Nullable.
+        /// The collection of open extensions defined for the organization. Read-only. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ExtensionItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,14 +246,14 @@ namespace ApiSdk.Organization.Item.Extensions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new extensionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ExtensionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ExtensionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The collection of open extensions defined for the organization resource. Nullable.</summary>
+        /// <summary>The collection of open extensions defined for the organization. Read-only. Nullable.</summary>
         public class ExtensionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -271,7 +271,7 @@ namespace ApiSdk.Organization.Item.Extensions.Item {
             /// <summary>Request query parameters</summary>
             public ExtensionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ExtensionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new extensionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ExtensionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ExtensionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Organization.Item.Extensions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new extensionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ExtensionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ExtensionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

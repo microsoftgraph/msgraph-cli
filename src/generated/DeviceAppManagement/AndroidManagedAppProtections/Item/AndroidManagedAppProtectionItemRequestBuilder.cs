@@ -247,7 +247,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new androidManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AndroidManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AndroidManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -272,7 +272,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             /// <summary>Request query parameters</summary>
             public AndroidManagedAppProtectionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AndroidManagedAppProtectionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new androidManagedAppProtectionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AndroidManagedAppProtectionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AndroidManagedAppProtectionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -286,7 +286,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new androidManagedAppProtectionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AndroidManagedAppProtectionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AndroidManagedAppProtectionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

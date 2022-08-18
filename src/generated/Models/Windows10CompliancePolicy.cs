@@ -35,7 +35,7 @@ namespace ApiSdk.Models {
         public bool? PasswordRequired { get; set; }
         /// <summary>Require a password to unlock an idle device.</summary>
         public bool? PasswordRequiredToUnlockFromIdle { get; set; }
-        /// <summary>The required password type. Possible values are: deviceDefault, alphanumeric, numeric.</summary>
+        /// <summary>Possible values of required passwords.</summary>
         public RequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Require devices to be reported as healthy by Windows Device Health Attestation.</summary>
         public bool? RequireHealthyDeviceReport { get; set; }
@@ -43,6 +43,12 @@ namespace ApiSdk.Models {
         public bool? SecureBootEnabled { get; set; }
         /// <summary>Require encryption on windows devices.</summary>
         public bool? StorageRequireEncryption { get; set; }
+        /// <summary>
+        /// Instantiates a new Windows10CompliancePolicy and sets the default values.
+        /// </summary>
+        public Windows10CompliancePolicy() : base() {
+            OdataType = "#microsoft.graph.windows10CompliancePolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -4,21 +4,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the cloudCommunications singleton.</summary>
     public class OnlineMeeting : Entity, IParsable {
         /// <summary>Indicates whether attendees can turn on their camera.</summary>
         public bool? AllowAttendeeToEnableCamera { get; set; }
         /// <summary>Indicates whether attendees can turn on their microphone.</summary>
         public bool? AllowAttendeeToEnableMic { get; set; }
-        /// <summary>Specifies who can be a presenter in a meeting.</summary>
+        /// <summary>Specifies who can be a presenter in a meeting. Possible values are listed in the following table.</summary>
         public OnlineMeetingPresenters? AllowedPresenters { get; set; }
         /// <summary>Specifies the mode of meeting chat.</summary>
         public MeetingChatMode? AllowMeetingChat { get; set; }
-        /// <summary>Indicates if Teams reactions are enabled for the meeting.</summary>
+        /// <summary>Indicates whether Teams reactions are enabled for the meeting.</summary>
         public bool? AllowTeamworkReactions { get; set; }
         /// <summary>The attendance reports of an online meeting. Read-only.</summary>
         public List<MeetingAttendanceReport> AttendanceReports { get; set; }
-        /// <summary>The content stream of the attendee report of a Teams live event. Read-only.</summary>
+        /// <summary>The content stream of the attendee report of a Microsoft Teams live event. Read-only.</summary>
         public byte[] AttendeeReport { get; set; }
         /// <summary>The phone access (dial-in) information for an online meeting. Read-only.</summary>
         public ApiSdk.Models.AudioConferencing AudioConferencing { get; set; }
@@ -30,19 +29,19 @@ namespace ApiSdk.Models {
         public DateTimeOffset? CreationDateTime { get; set; }
         /// <summary>The meeting end time in UTC.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
-        /// <summary>The external ID. A custom ID. Optional.</summary>
+        /// <summary>The externalId property</summary>
         public string ExternalId { get; set; }
-        /// <summary>Indicates whether this is a Teams live event.</summary>
+        /// <summary>Indicates if this is a Teams live event.</summary>
         public bool? IsBroadcast { get; set; }
         /// <summary>Indicates whether to announce when callers join or leave.</summary>
         public bool? IsEntryExitAnnounced { get; set; }
-        /// <summary>The join information in the language and locale variant specified in &apos;Accept-Language&apos; request HTTP header. Read-only.</summary>
+        /// <summary>The join information in the language and locale variant specified in the Accept-Language request HTTP header. Read-only.</summary>
         public ItemBody JoinInformation { get; set; }
         /// <summary>The join URL of the online meeting. Read-only.</summary>
         public string JoinWebUrl { get; set; }
-        /// <summary>Specifies which participants can bypass the meeting lobby.</summary>
+        /// <summary>Specifies which participants can bypass the meeting   lobby.</summary>
         public ApiSdk.Models.LobbyBypassSettings LobbyBypassSettings { get; set; }
-        /// <summary>The participants associated with the online meeting. This includes the organizer and the attendees.</summary>
+        /// <summary>The participants associated with the online meeting.  This includes the organizer and the attendees.</summary>
         public MeetingParticipants Participants { get; set; }
         /// <summary>Indicates whether to record the meeting automatically.</summary>
         public bool? RecordAutomatically { get; set; }
@@ -52,6 +51,12 @@ namespace ApiSdk.Models {
         public string Subject { get; set; }
         /// <summary>The video teleconferencing ID. Read-only.</summary>
         public string VideoTeleconferenceId { get; set; }
+        /// <summary>
+        /// Instantiates a new OnlineMeeting and sets the default values.
+        /// </summary>
+        public OnlineMeeting() : base() {
+            OdataType = "#microsoft.graph.onlineMeeting";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -8,8 +8,14 @@ namespace ApiSdk.Models.ExternalConnectors {
     public class ConnectionOperation : Entity, IParsable {
         /// <summary>If status is failed, provides more information about the error that caused the failure.</summary>
         public ApiSdk.Models.PublicError Error { get; set; }
-        /// <summary>Indicates the status of the asynchronous operation. Possible values are: unspecified, inprogress, completed, failed.</summary>
+        /// <summary>Indicates the status of the asynchronous operation. Possible values are: unspecified, inprogress, completed, failed, unknownFutureValue.</summary>
         public ConnectionOperationStatus? Status { get; set; }
+        /// <summary>
+        /// Instantiates a new connectionOperation and sets the default values.
+        /// </summary>
+        public ConnectionOperation() : base() {
+            OdataType = "#microsoft.graph.externalConnectors.connectionOperation";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

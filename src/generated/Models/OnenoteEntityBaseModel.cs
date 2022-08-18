@@ -1,13 +1,20 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class OnenoteEntityBaseModel : Entity, IParsable {
         /// <summary>The endpoint where you can get details about the page. Read-only.</summary>
         public string Self { get; set; }
+        /// <summary>
+        /// Instantiates a new onenoteEntityBaseModel and sets the default values.
+        /// </summary>
+        public OnenoteEntityBaseModel() : base() {
+            OdataType = "#microsoft.graph.onenoteEntityBaseModel";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
@@ -17,8 +24,13 @@ namespace ApiSdk.Models {
             var mappingValueNode = parseNode.GetChildNode("@odata.type");
             var mappingValue = mappingValueNode?.GetStringValue();
             return mappingValue switch {
+                "#microsoft.graph.notebook" => new Notebook(),
+                "#microsoft.graph.onenoteEntityHierarchyModel" => new OnenoteEntityHierarchyModel(),
                 "#microsoft.graph.onenoteEntitySchemaObjectModel" => new OnenoteEntitySchemaObjectModel(),
+                "#microsoft.graph.onenotePage" => new OnenotePage(),
                 "#microsoft.graph.onenoteResource" => new OnenoteResource(),
+                "#microsoft.graph.onenoteSection" => new OnenoteSection(),
+                "#microsoft.graph.sectionGroup" => new SectionGroup(),
                 _ => new OnenoteEntityBaseModel(),
             };
         }

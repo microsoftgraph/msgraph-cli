@@ -140,7 +140,7 @@ namespace ApiSdk.Education.Classes.Item.Schools.Item {
             /// <summary>Request query parameters</summary>
             public EducationSchoolItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EducationSchoolItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new educationSchoolItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationSchoolItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EducationSchoolItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

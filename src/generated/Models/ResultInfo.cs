@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public int? Code { get; set; }
         /// <summary>The message.</summary>
         public string Message { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The result sub-code.</summary>
         public int? Subcode { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ResultInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.resultInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"code", n => { Code = n.GetIntValue(); } },
                 {"message", n => { Message = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"subcode", n => { Subcode = n.GetIntValue(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("code", Code);
             writer.WriteStringValue("message", Message);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("subcode", Subcode);
             writer.WriteAdditionalData(AdditionalData);
         }

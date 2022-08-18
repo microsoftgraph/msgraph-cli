@@ -246,7 +246,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new offerShiftRequestItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new OfferShiftRequestItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public OfferShiftRequestItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             /// <summary>Request query parameters</summary>
             public OfferShiftRequestItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OfferShiftRequestItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new offerShiftRequestItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new OfferShiftRequestItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public OfferShiftRequestItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new offerShiftRequestItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new OfferShiftRequestItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public OfferShiftRequestItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

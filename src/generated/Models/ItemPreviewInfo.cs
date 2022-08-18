@@ -9,15 +9,18 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The getUrl property</summary>
         public string GetUrl { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The postParameters property</summary>
         public string PostParameters { get; set; }
         /// <summary>The postUrl property</summary>
         public string PostUrl { get; set; }
         /// <summary>
-        /// Instantiates a new ItemPreviewInfo and sets the default values.
+        /// Instantiates a new itemPreviewInfo and sets the default values.
         /// </summary>
         public ItemPreviewInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.itemPreviewInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"getUrl", n => { GetUrl = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"postParameters", n => { PostParameters = n.GetStringValue(); } },
                 {"postUrl", n => { PostUrl = n.GetStringValue(); } },
             };
@@ -44,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("getUrl", GetUrl);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("postParameters", PostParameters);
             writer.WriteStringValue("postUrl", PostUrl);
             writer.WriteAdditionalData(AdditionalData);

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class Channel : Entity, IParsable {
         /// <summary>Read only. Timestamp at which the channel was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -24,10 +24,20 @@ namespace ApiSdk.Models {
         public ChannelMembershipType? MembershipType { get; set; }
         /// <summary>A collection of all the messages in the channel. A navigation property. Nullable.</summary>
         public List<ChatMessage> Messages { get; set; }
+        /// <summary>A collection of teams with which a channel is shared.</summary>
+        public List<SharedWithChannelTeamInfo> SharedWithTeams { get; set; }
         /// <summary>A collection of all the tabs in the channel. A navigation property.</summary>
         public List<TeamsTab> Tabs { get; set; }
+        /// <summary>The ID of the Azure Active Directory tenant.</summary>
+        public string TenantId { get; set; }
         /// <summary>A hyperlink that will go to the channel in Microsoft Teams. This is the URL that you get when you right-click a channel in Microsoft Teams and select Get link to channel. This URL should be treated as an opaque blob, and not parsed. Read-only.</summary>
         public string WebUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new channel and sets the default values.
+        /// </summary>
+        public Channel() : base() {
+            OdataType = "#microsoft.graph.channel";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
@@ -50,7 +60,9 @@ namespace ApiSdk.Models {
                 {"members", n => { Members = n.GetCollectionOfObjectValues<ConversationMember>(ConversationMember.CreateFromDiscriminatorValue).ToList(); } },
                 {"membershipType", n => { MembershipType = n.GetEnumValue<ChannelMembershipType>(); } },
                 {"messages", n => { Messages = n.GetCollectionOfObjectValues<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue).ToList(); } },
+                {"sharedWithTeams", n => { SharedWithTeams = n.GetCollectionOfObjectValues<SharedWithChannelTeamInfo>(SharedWithChannelTeamInfo.CreateFromDiscriminatorValue).ToList(); } },
                 {"tabs", n => { Tabs = n.GetCollectionOfObjectValues<TeamsTab>(TeamsTab.CreateFromDiscriminatorValue).ToList(); } },
+                {"tenantId", n => { TenantId = n.GetStringValue(); } },
                 {"webUrl", n => { WebUrl = n.GetStringValue(); } },
             };
         }
@@ -70,7 +82,9 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<ConversationMember>("members", Members);
             writer.WriteEnumValue<ChannelMembershipType>("membershipType", MembershipType);
             writer.WriteCollectionOfObjectValues<ChatMessage>("messages", Messages);
+            writer.WriteCollectionOfObjectValues<SharedWithChannelTeamInfo>("sharedWithTeams", SharedWithTeams);
             writer.WriteCollectionOfObjectValues<TeamsTab>("tabs", Tabs);
+            writer.WriteStringValue("tenantId", TenantId);
             writer.WriteStringValue("webUrl", WebUrl);
         }
     }

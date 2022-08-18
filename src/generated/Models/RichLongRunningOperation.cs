@@ -5,14 +5,20 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class RichLongRunningOperation : LongRunningOperation, IParsable {
-        /// <summary>Error due to which the operation failed.</summary>
+        /// <summary>Error that caused the operation to fail.</summary>
         public PublicError Error { get; set; }
         /// <summary>A value between 0 and 100 that indicates the progress of the operation.</summary>
         public int? PercentageComplete { get; set; }
-        /// <summary>A unique identifier for the result.</summary>
+        /// <summary>The unique identifier for the result.</summary>
         public string ResourceId { get; set; }
-        /// <summary>Type of the operation.</summary>
+        /// <summary>The type of the operation.</summary>
         public string Type { get; set; }
+        /// <summary>
+        /// Instantiates a new RichLongRunningOperation and sets the default values.
+        /// </summary>
+        public RichLongRunningOperation() : base() {
+            OdataType = "#microsoft.graph.richLongRunningOperation";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

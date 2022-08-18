@@ -63,11 +63,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore {
             return command;
         }
         /// <summary>
-        /// The termStore under this site.
+        /// The default termStore under this site.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The termStore under this site.";
+            command.Description = "The default termStore under this site.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -219,7 +219,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// The termStore under this site.
+        /// The default termStore under this site.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TermStoreRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -273,7 +273,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The termStore under this site.</summary>
+        /// <summary>The default termStore under this site.</summary>
         public class TermStoreRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

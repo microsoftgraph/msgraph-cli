@@ -79,11 +79,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return command;
         }
         /// <summary>
-        /// Represents access package objects.
+        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents access package objects.";
+            command.Description = "Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.";
             // Create options for all the parameters
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "key: id of accessPackage") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents access package objects.
+        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AccessPackageItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -252,14 +252,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessPackageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Represents access package objects.</summary>
+        /// <summary>Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.</summary>
         public class AccessPackageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -277,7 +277,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             /// <summary>Request query parameters</summary>
             public AccessPackageItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AccessPackageItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new accessPackageItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -291,7 +291,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessPackageItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

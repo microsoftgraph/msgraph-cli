@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Singleton entity that acts as a container for all reports functionality.</summary>
     public class DeviceManagementReports : Entity, IParsable {
         /// <summary>Entity representing a job to export a report</summary>
         public List<DeviceManagementExportJob> ExportJobs { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceManagementReports and sets the default values.
+        /// </summary>
+        public DeviceManagementReports() : base() {
+            OdataType = "#microsoft.graph.deviceManagementReports";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

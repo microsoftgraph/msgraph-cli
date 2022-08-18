@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public List<EducationClass> Classes { get; set; }
         /// <summary>The me property</summary>
         public EducationUser Me { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The schools property</summary>
         public List<EducationSchool> Schools { get; set; }
         /// <summary>The users property</summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public EducationRoot() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.educationRoot";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -36,6 +39,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"classes", n => { Classes = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue).ToList(); } },
                 {"me", n => { Me = n.GetObjectValue<EducationUser>(EducationUser.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"schools", n => { Schools = n.GetCollectionOfObjectValues<EducationSchool>(EducationSchool.CreateFromDiscriminatorValue).ToList(); } },
                 {"users", n => { Users = n.GetCollectionOfObjectValues<EducationUser>(EducationUser.CreateFromDiscriminatorValue).ToList(); } },
             };
@@ -48,6 +52,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<EducationClass>("classes", Classes);
             writer.WriteObjectValue<EducationUser>("me", Me);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfObjectValues<EducationSchool>("schools", Schools);
             writer.WriteCollectionOfObjectValues<EducationUser>("users", Users);
             writer.WriteAdditionalData(AdditionalData);

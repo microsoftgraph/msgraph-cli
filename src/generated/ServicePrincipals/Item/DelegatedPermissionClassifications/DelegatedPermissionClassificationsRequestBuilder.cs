@@ -94,11 +94,11 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             return command;
         }
         /// <summary>
-        /// The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.
+        /// Get delegatedPermissionClassifications from servicePrincipals
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.";
+            command.Description = "Get delegatedPermissionClassifications from servicePrincipals";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.
+        /// Get delegatedPermissionClassifications from servicePrincipals
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DelegatedPermissionClassificationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             }
             return requestInfo;
         }
-        /// <summary>The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.</summary>
+        /// <summary>Get delegatedPermissionClassifications from servicePrincipals</summary>
         public class DelegatedPermissionClassificationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

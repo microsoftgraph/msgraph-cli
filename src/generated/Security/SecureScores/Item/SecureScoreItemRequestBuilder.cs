@@ -228,7 +228,7 @@ namespace ApiSdk.Security.SecureScores.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new secureScoreItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new SecureScoreItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public SecureScoreItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.Security.SecureScores.Item {
             /// <summary>Request query parameters</summary>
             public SecureScoreItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SecureScoreItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new secureScoreItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SecureScoreItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SecureScoreItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Security.SecureScores.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new secureScoreItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SecureScoreItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SecureScoreItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

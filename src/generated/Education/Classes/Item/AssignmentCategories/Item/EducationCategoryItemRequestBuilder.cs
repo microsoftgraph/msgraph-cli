@@ -246,7 +246,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationCategoryItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationCategoryItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public EducationCategoryItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             /// <summary>Request query parameters</summary>
             public EducationCategoryItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EducationCategoryItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new educationCategoryItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationCategoryItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EducationCategoryItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationCategoryItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationCategoryItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public EducationCategoryItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

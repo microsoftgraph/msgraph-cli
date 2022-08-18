@@ -67,11 +67,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return command;
         }
         /// <summary>
-        /// Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.
+        /// A collection of stages in the approval decision.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.";
+            command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
             var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.
+        /// A collection of stages in the approval decision.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ApprovalStageItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -264,14 +264,14 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new approvalStageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ApprovalStageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ApprovalStageItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.</summary>
+        /// <summary>A collection of stages in the approval decision.</summary>
         public class ApprovalStageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -289,7 +289,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             /// <summary>Request query parameters</summary>
             public ApprovalStageItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ApprovalStageItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new approvalStageItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ApprovalStageItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ApprovalStageItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -303,7 +303,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new approvalStageItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ApprovalStageItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ApprovalStageItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

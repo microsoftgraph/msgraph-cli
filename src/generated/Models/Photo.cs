@@ -21,15 +21,18 @@ namespace ApiSdk.Models {
         public double? FocalLength { get; set; }
         /// <summary>The ISO value from the camera. Read-only.</summary>
         public int? Iso { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The orientation value from the camera. Writable on OneDrive Personal.</summary>
         public int? Orientation { get; set; }
-        /// <summary>The date and time the photo was taken in UTC time. Read-only.</summary>
+        /// <summary>Represents the date and time the photo was taken. Read-only.</summary>
         public DateTimeOffset? TakenDateTime { get; set; }
         /// <summary>
         /// Instantiates a new photo and sets the default values.
         /// </summary>
         public Photo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.photo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -51,6 +54,7 @@ namespace ApiSdk.Models {
                 {"fNumber", n => { FNumber = n.GetDoubleValue(); } },
                 {"focalLength", n => { FocalLength = n.GetDoubleValue(); } },
                 {"iso", n => { Iso = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"orientation", n => { Orientation = n.GetIntValue(); } },
                 {"takenDateTime", n => { TakenDateTime = n.GetDateTimeOffsetValue(); } },
             };
@@ -68,6 +72,7 @@ namespace ApiSdk.Models {
             writer.WriteDoubleValue("fNumber", FNumber);
             writer.WriteDoubleValue("focalLength", FocalLength);
             writer.WriteIntValue("iso", Iso);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("orientation", Orientation);
             writer.WriteDateTimeOffsetValue("takenDateTime", TakenDateTime);
             writer.WriteAdditionalData(AdditionalData);

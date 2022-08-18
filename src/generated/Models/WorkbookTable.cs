@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class WorkbookTable : Entity, IParsable {
         /// <summary>Represents a collection of all the columns in the table. Read-only.</summary>
         public List<WorkbookTableColumn> Columns { get; set; }
@@ -30,10 +30,16 @@ namespace ApiSdk.Models {
         public bool? ShowTotals { get; set; }
         /// <summary>Represents the sorting for the table. Read-only.</summary>
         public WorkbookTableSort Sort { get; set; }
-        /// <summary>Constant value that represents the Table style. Possible values are: TableStyleLight1 thru TableStyleLight21, TableStyleMedium1 thru TableStyleMedium28, TableStyleStyleDark1 thru TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.</summary>
+        /// <summary>Constant value that represents the Table style. The possible values are: TableStyleLight1 thru TableStyleLight21, TableStyleMedium1 thru TableStyleMedium28, TableStyleStyleDark1 thru TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.</summary>
         public string Style { get; set; }
         /// <summary>The worksheet containing the current table. Read-only.</summary>
         public WorkbookWorksheet Worksheet { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookTable and sets the default values.
+        /// </summary>
+        public WorkbookTable() : base() {
+            OdataType = "#microsoft.graph.workbookTable";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the admin singleton.</summary>
     public class ServiceAnnouncement : Entity, IParsable {
         /// <summary>A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.</summary>
         public List<ServiceHealth> HealthOverviews { get; set; }
@@ -12,6 +11,12 @@ namespace ApiSdk.Models {
         public List<ServiceHealthIssue> Issues { get; set; }
         /// <summary>A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.</summary>
         public List<ServiceUpdateMessage> Messages { get; set; }
+        /// <summary>
+        /// Instantiates a new serviceAnnouncement and sets the default values.
+        /// </summary>
+        public ServiceAnnouncement() : base() {
+            OdataType = "#microsoft.graph.serviceAnnouncement";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

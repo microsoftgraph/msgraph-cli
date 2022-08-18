@@ -7,15 +7,17 @@ namespace ApiSdk.Models {
     public class SearchHit : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The name of the content source which the externalItem is part of .</summary>
+        /// <summary>The name of the content source that the externalItem is part of.</summary>
         public string ContentSource { get; set; }
-        /// <summary>The internal identifier for the item.</summary>
+        /// <summary>The internal identifier for the item. The format of the identifier varies based on the entity type. For details, see hitId format.</summary>
         public string HitId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The rank or the order of the result.</summary>
         public int? Rank { get; set; }
         /// <summary>The resource property</summary>
         public Entity Resource { get; set; }
-        /// <summary>ID of the result template for rendering the search result. This ID must map to a display layout in the resultTemplates dictionary, included in the searchresponse as well.</summary>
+        /// <summary>ID of the result template used to render the search result. This ID must map to a display layout in the resultTemplates dictionary that is also included in the searchResponse.</summary>
         public string ResultTemplateId { get; set; }
         /// <summary>A summary of the result, if a summary is available.</summary>
         public string Summary { get; set; }
@@ -24,6 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public SearchHit() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.searchHit";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -40,6 +43,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"contentSource", n => { ContentSource = n.GetStringValue(); } },
                 {"hitId", n => { HitId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"rank", n => { Rank = n.GetIntValue(); } },
                 {"resource", n => { Resource = n.GetObjectValue<Entity>(Entity.CreateFromDiscriminatorValue); } },
                 {"resultTemplateId", n => { ResultTemplateId = n.GetStringValue(); } },
@@ -54,6 +58,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("contentSource", ContentSource);
             writer.WriteStringValue("hitId", HitId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("rank", Rank);
             writer.WriteObjectValue<Entity>("resource", Resource);
             writer.WriteStringValue("resultTemplateId", ResultTemplateId);

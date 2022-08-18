@@ -246,7 +246,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new serviceUpdateMessageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ServiceUpdateMessageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ServiceUpdateMessageItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             /// <summary>Request query parameters</summary>
             public ServiceUpdateMessageItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ServiceUpdateMessageItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new serviceUpdateMessageItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ServiceUpdateMessageItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ServiceUpdateMessageItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new serviceUpdateMessageItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ServiceUpdateMessageItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ServiceUpdateMessageItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

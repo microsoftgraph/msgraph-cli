@@ -1,10 +1,10 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class BaseItem : Entity, IParsable {
         /// <summary>Identity of the user, device, or application which created the item. Read-only.</summary>
         public IdentitySet CreatedBy { get; set; }
@@ -28,6 +28,12 @@ namespace ApiSdk.Models {
         public ItemReference ParentReference { get; set; }
         /// <summary>URL that displays the resource in the browser. Read-only.</summary>
         public string WebUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new baseItem and sets the default values.
+        /// </summary>
+        public BaseItem() : base() {
+            OdataType = "#microsoft.graph.baseItem";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

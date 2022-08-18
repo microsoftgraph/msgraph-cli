@@ -7,8 +7,10 @@ namespace ApiSdk.Models {
     public class Hashes : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The CRC32 value of the file (if available). Read-only.</summary>
+        /// <summary>The CRC32 value of the file in little endian (if available). Read-only.</summary>
         public string Crc32Hash { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>A proprietary hash of the file that can be used to determine if the contents of the file have changed (if available). Read-only.</summary>
         public string QuickXorHash { get; set; }
         /// <summary>SHA1 hash for the contents of the file (if available). Read-only.</summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public Hashes() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.hashes";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"crc32Hash", n => { Crc32Hash = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"quickXorHash", n => { QuickXorHash = n.GetStringValue(); } },
                 {"sha1Hash", n => { Sha1Hash = n.GetStringValue(); } },
                 {"sha256Hash", n => { Sha256Hash = n.GetStringValue(); } },
@@ -47,6 +51,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("crc32Hash", Crc32Hash);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("quickXorHash", QuickXorHash);
             writer.WriteStringValue("sha1Hash", Sha1Hash);
             writer.WriteStringValue("sha256Hash", Sha256Hash);

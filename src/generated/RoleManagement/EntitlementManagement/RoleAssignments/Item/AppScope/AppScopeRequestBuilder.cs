@@ -55,11 +55,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppSc
             return command;
         }
         /// <summary>
-        /// Details of the app specific scope when the assignment scope is app specific. Containment entity.
+        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Details of the app specific scope when the assignment scope is app specific. Containment entity.";
+            command.Description = "Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.";
             // Create options for all the parameters
             var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "key: id of unifiedRoleAssignment") {
             };
@@ -181,7 +181,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppSc
             return requestInfo;
         }
         /// <summary>
-        /// Details of the app specific scope when the assignment scope is app specific. Containment entity.
+        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AppScopeRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -235,7 +235,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppSc
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Details of the app specific scope when the assignment scope is app specific. Containment entity.</summary>
+        /// <summary>Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.</summary>
         public class AppScopeRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

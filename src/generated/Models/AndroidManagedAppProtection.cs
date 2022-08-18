@@ -7,9 +7,9 @@ namespace ApiSdk.Models {
     public class AndroidManagedAppProtection : TargetedManagedAppProtection, IParsable {
         /// <summary>List of apps to which the policy is deployed.</summary>
         public List<ManagedMobileApp> Apps { get; set; }
-        /// <summary>Friendly name of the preferred custom browser to open weblink on Android.</summary>
+        /// <summary>Friendly name of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.</summary>
         public string CustomBrowserDisplayName { get; set; }
-        /// <summary>Unique identifier of a custom browser to open weblink on Android.</summary>
+        /// <summary>Unique identifier of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.</summary>
         public string CustomBrowserPackageId { get; set; }
         /// <summary>Count of apps to which the current policy is deployed.</summary>
         public int? DeployedAppCount { get; set; }
@@ -25,6 +25,12 @@ namespace ApiSdk.Models {
         public string MinimumWarningPatchVersion { get; set; }
         /// <summary>Indicates whether a managed user can take screen captures of managed apps</summary>
         public bool? ScreenCaptureBlocked { get; set; }
+        /// <summary>
+        /// Instantiates a new AndroidManagedAppProtection and sets the default values.
+        /// </summary>
+        public AndroidManagedAppProtection() : base() {
+            OdataType = "#microsoft.graph.androidManagedAppProtection";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

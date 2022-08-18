@@ -61,11 +61,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             return command;
         }
         /// <summary>
-        /// List of notes associated with the request.
+        /// List of notes associcated with the request.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "List of notes associated with the request.";
+            command.Description = "List of notes associcated with the request.";
             // Create options for all the parameters
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
             };
@@ -199,7 +199,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// List of notes associated with the request.
+        /// List of notes associcated with the request.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AuthoredNoteItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,14 +246,14 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new authoredNoteItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AuthoredNoteItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AuthoredNoteItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>List of notes associated with the request.</summary>
+        /// <summary>List of notes associcated with the request.</summary>
         public class AuthoredNoteItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -271,7 +271,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             /// <summary>Request query parameters</summary>
             public AuthoredNoteItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AuthoredNoteItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new authoredNoteItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AuthoredNoteItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AuthoredNoteItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new authoredNoteItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AuthoredNoteItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AuthoredNoteItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

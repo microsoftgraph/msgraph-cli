@@ -9,15 +9,18 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Optional. The altitude (height), in feet,  above sea level for the item. Read-only.</summary>
         public double? Altitude { get; set; }
-        /// <summary>Optional. The latitude, in decimal, for the item. Writable on OneDrive Personal.</summary>
+        /// <summary>Optional. The latitude, in decimal, for the item. Read-only.</summary>
         public double? Latitude { get; set; }
-        /// <summary>Optional. The longitude, in decimal, for the item. Writable on OneDrive Personal.</summary>
+        /// <summary>Optional. The longitude, in decimal, for the item. Read-only.</summary>
         public double? Longitude { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new geoCoordinates and sets the default values.
         /// </summary>
         public GeoCoordinates() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.geoCoordinates";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"altitude", n => { Altitude = n.GetDoubleValue(); } },
                 {"latitude", n => { Latitude = n.GetDoubleValue(); } },
                 {"longitude", n => { Longitude = n.GetDoubleValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteDoubleValue("altitude", Altitude);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

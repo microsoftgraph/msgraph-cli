@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public FileHashType? HashType { get; set; }
         /// <summary>Value of the file hash.</summary>
         public string HashValue { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new fileHash and sets the default values.
         /// </summary>
         public FileHash() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.fileHash";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"hashType", n => { HashType = n.GetEnumValue<FileHashType>(); } },
                 {"hashValue", n => { HashValue = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<FileHashType>("hashType", HashType);
             writer.WriteStringValue("hashValue", HashValue);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

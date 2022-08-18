@@ -23,11 +23,11 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item.Policy {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The policy for the assignment.
+        /// The policy that&apos;s associated with a policy assignment. Supports $expand and a nested $expand of the rules and effectiveRules relationships for the policy.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The policy for the assignment.";
+            command.Description = "The policy that's associated with a policy assignment. Supports $expand and a nested $expand of the rules and effectiveRules relationships for the policy.";
             // Create options for all the parameters
             var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "key: id of unifiedRoleManagementPolicyAssignment") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item.Policy {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The policy for the assignment.
+        /// The policy that&apos;s associated with a policy assignment. Supports $expand and a nested $expand of the rules and effectiveRules relationships for the policy.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PolicyRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item.Policy {
             }
             return requestInfo;
         }
-        /// <summary>The policy for the assignment.</summary>
+        /// <summary>The policy that&apos;s associated with a policy assignment. Supports $expand and a nested $expand of the rules and effectiveRules relationships for the policy.</summary>
         public class PolicyRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

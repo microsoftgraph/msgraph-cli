@@ -11,7 +11,7 @@ namespace ApiSdk.Models {
         public bool? AllowAddRemoveApps { get; set; }
         /// <summary>If set to true, members can add and update private channels.</summary>
         public bool? AllowCreatePrivateChannels { get; set; }
-        /// <summary>If set to true, members can add and update any channels.</summary>
+        /// <summary>If set to true, members can add and update channels.</summary>
         public bool? AllowCreateUpdateChannels { get; set; }
         /// <summary>If set to true, members can add, update, and remove connectors.</summary>
         public bool? AllowCreateUpdateRemoveConnectors { get; set; }
@@ -19,11 +19,14 @@ namespace ApiSdk.Models {
         public bool? AllowCreateUpdateRemoveTabs { get; set; }
         /// <summary>If set to true, members can delete channels.</summary>
         public bool? AllowDeleteChannels { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new teamMemberSettings and sets the default values.
         /// </summary>
         public TeamMemberSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.teamMemberSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -44,6 +47,7 @@ namespace ApiSdk.Models {
                 {"allowCreateUpdateRemoveConnectors", n => { AllowCreateUpdateRemoveConnectors = n.GetBoolValue(); } },
                 {"allowCreateUpdateRemoveTabs", n => { AllowCreateUpdateRemoveTabs = n.GetBoolValue(); } },
                 {"allowDeleteChannels", n => { AllowDeleteChannels = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -58,6 +62,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("allowCreateUpdateRemoveConnectors", AllowCreateUpdateRemoveConnectors);
             writer.WriteBoolValue("allowCreateUpdateRemoveTabs", AllowCreateUpdateRemoveTabs);
             writer.WriteBoolValue("allowDeleteChannels", AllowDeleteChannels);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

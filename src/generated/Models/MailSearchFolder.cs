@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         /// <summary>The mailbox folders that should be mined.</summary>
         public List<string> SourceFolderIds { get; set; }
         /// <summary>
+        /// Instantiates a new MailSearchFolder and sets the default values.
+        /// </summary>
+        public MailSearchFolder() : base() {
+            OdataType = "#microsoft.graph.mailSearchFolder";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

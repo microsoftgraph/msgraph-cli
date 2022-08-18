@@ -14,6 +14,8 @@ namespace ApiSdk.Models {
         public string AppStoreUrl { get; set; }
         /// <summary>The application name</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The publisher of the application</summary>
         public string Publisher { get; set; }
         /// <summary>
@@ -21,6 +23,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AppListItem() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.appListItem";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
                 {"appId", n => { AppId = n.GetStringValue(); } },
                 {"appStoreUrl", n => { AppStoreUrl = n.GetStringValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"publisher", n => { Publisher = n.GetStringValue(); } },
             };
         }
@@ -50,6 +54,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("appId", AppId);
             writer.WriteStringValue("appStoreUrl", AppStoreUrl);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("publisher", Publisher);
             writer.WriteAdditionalData(AdditionalData);
         }

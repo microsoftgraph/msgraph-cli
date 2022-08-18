@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public string ConferenceId { get; set; }
         /// <summary>A URL to the externally-accessible web page that contains dial-in information.</summary>
         public string DialinUrl { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The tollFreeNumber property</summary>
         public string TollFreeNumber { get; set; }
         /// <summary>List of toll-free numbers that are displayed in the meeting invite.</summary>
@@ -24,6 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AudioConferencing() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.audioConferencing";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -40,6 +43,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"conferenceId", n => { ConferenceId = n.GetStringValue(); } },
                 {"dialinUrl", n => { DialinUrl = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"tollFreeNumber", n => { TollFreeNumber = n.GetStringValue(); } },
                 {"tollFreeNumbers", n => { TollFreeNumbers = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"tollNumber", n => { TollNumber = n.GetStringValue(); } },
@@ -54,6 +58,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("conferenceId", ConferenceId);
             writer.WriteStringValue("dialinUrl", DialinUrl);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("tollFreeNumber", TollFreeNumber);
             writer.WriteCollectionOfPrimitiveValues<string>("tollFreeNumbers", TollFreeNumbers);
             writer.WriteStringValue("tollNumber", TollNumber);

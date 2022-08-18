@@ -228,7 +228,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new riskDetectionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new RiskDetectionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public RiskDetectionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             /// <summary>Request query parameters</summary>
             public RiskDetectionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new RiskDetectionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new riskDetectionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new RiskDetectionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public RiskDetectionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new riskDetectionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new RiskDetectionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public RiskDetectionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

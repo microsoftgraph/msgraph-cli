@@ -235,7 +235,7 @@ namespace ApiSdk.Drive.Root.Permissions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new permissionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new PermissionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public PermissionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -260,7 +260,7 @@ namespace ApiSdk.Drive.Root.Permissions.Item {
             /// <summary>Request query parameters</summary>
             public PermissionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PermissionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new permissionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new PermissionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public PermissionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -274,7 +274,7 @@ namespace ApiSdk.Drive.Root.Permissions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new permissionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new PermissionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public PermissionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

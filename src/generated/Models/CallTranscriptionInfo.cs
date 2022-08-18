@@ -9,13 +9,16 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The state modified time in UTC.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>Possible values are: notStarted, active, inactive.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The state property</summary>
         public CallTranscriptionState? State { get; set; }
         /// <summary>
         /// Instantiates a new callTranscriptionInfo and sets the default values.
         /// </summary>
         public CallTranscriptionInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.callTranscriptionInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"state", n => { State = n.GetEnumValue<CallTranscriptionState>(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<CallTranscriptionState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }

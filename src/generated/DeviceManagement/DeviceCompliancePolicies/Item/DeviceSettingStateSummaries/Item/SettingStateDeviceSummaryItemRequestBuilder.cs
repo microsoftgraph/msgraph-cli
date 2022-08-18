@@ -246,7 +246,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new settingStateDeviceSummaryItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new SettingStateDeviceSummaryItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public SettingStateDeviceSummaryItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
             /// <summary>Request query parameters</summary>
             public SettingStateDeviceSummaryItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SettingStateDeviceSummaryItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new settingStateDeviceSummaryItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SettingStateDeviceSummaryItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SettingStateDeviceSummaryItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new settingStateDeviceSummaryItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SettingStateDeviceSummaryItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SettingStateDeviceSummaryItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

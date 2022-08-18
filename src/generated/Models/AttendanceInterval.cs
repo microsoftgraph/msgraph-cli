@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public DateTimeOffset? JoinDateTime { get; set; }
         /// <summary>The time the attendee left in UTC.</summary>
         public DateTimeOffset? LeaveDateTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new attendanceInterval and sets the default values.
         /// </summary>
         public AttendanceInterval() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.attendanceInterval";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"durationInSeconds", n => { DurationInSeconds = n.GetIntValue(); } },
                 {"joinDateTime", n => { JoinDateTime = n.GetDateTimeOffsetValue(); } },
                 {"leaveDateTime", n => { LeaveDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteIntValue("durationInSeconds", DurationInSeconds);
             writer.WriteDateTimeOffsetValue("joinDateTime", JoinDateTime);
             writer.WriteDateTimeOffsetValue("leaveDateTime", LeaveDateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

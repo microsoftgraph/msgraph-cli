@@ -17,6 +17,8 @@ namespace ApiSdk.Models.CallRecords {
         public NetworkInfo CallerNetwork { get; set; }
         /// <summary>How the media was identified during media negotiation stage.</summary>
         public string Label { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Network streams associated with this media.</summary>
         public List<MediaStream> Streams { get; set; }
         /// <summary>
@@ -24,6 +26,7 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public Media() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.callRecords.media";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -43,6 +46,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"callerDevice", n => { CallerDevice = n.GetObjectValue<DeviceInfo>(DeviceInfo.CreateFromDiscriminatorValue); } },
                 {"callerNetwork", n => { CallerNetwork = n.GetObjectValue<NetworkInfo>(NetworkInfo.CreateFromDiscriminatorValue); } },
                 {"label", n => { Label = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"streams", n => { Streams = n.GetCollectionOfObjectValues<MediaStream>(MediaStream.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
@@ -57,6 +61,7 @@ namespace ApiSdk.Models.CallRecords {
             writer.WriteObjectValue<DeviceInfo>("callerDevice", CallerDevice);
             writer.WriteObjectValue<NetworkInfo>("callerNetwork", CallerNetwork);
             writer.WriteStringValue("label", Label);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfObjectValues<MediaStream>("streams", Streams);
             writer.WriteAdditionalData(AdditionalData);
         }

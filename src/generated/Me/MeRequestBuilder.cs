@@ -123,11 +123,16 @@ namespace ApiSdk.Me {
             var command = new Command("authentication");
             var builder = new AuthenticationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildEmailMethodsCommand());
             command.AddCommand(builder.BuildFido2MethodsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMethodsCommand());
             command.AddCommand(builder.BuildMicrosoftAuthenticatorMethodsCommand());
+            command.AddCommand(builder.BuildOperationsCommand());
+            command.AddCommand(builder.BuildPasswordMethodsCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPhoneMethodsCommand());
+            command.AddCommand(builder.BuildSoftwareOathMethodsCommand());
             command.AddCommand(builder.BuildTemporaryAccessPassMethodsCommand());
             command.AddCommand(builder.BuildWindowsHelloForBusinessMethodsCommand());
             return command;
@@ -300,11 +305,11 @@ namespace ApiSdk.Me {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
+        /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.";
+            command.Description = "Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node.";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
             };
@@ -672,6 +677,7 @@ namespace ApiSdk.Me {
         public Command BuildTeamworkCommand() {
             var command = new Command("teamwork");
             var builder = new TeamworkRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAssociatedTeamsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstalledAppsCommand());
@@ -728,7 +734,7 @@ namespace ApiSdk.Me {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
+        /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MeRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -790,7 +796,7 @@ namespace ApiSdk.Me {
             if(string.IsNullOrEmpty(startDateTime)) throw new ArgumentNullException(nameof(startDateTime));
             return new ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(PathParameters, RequestAdapter, endDateTime, startDateTime);
         }
-        /// <summary>Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.</summary>
+        /// <summary>Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.</summary>
         public class MeRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

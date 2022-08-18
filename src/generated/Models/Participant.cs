@@ -16,8 +16,14 @@ namespace ApiSdk.Models {
         public List<MediaStream> MediaStreams { get; set; }
         /// <summary>A blob of data provided by the participant in the roster.</summary>
         public string Metadata { get; set; }
-        /// <summary>Information on whether the participant has recording capability.</summary>
+        /// <summary>Information about whether the participant has recording capability.</summary>
         public ApiSdk.Models.RecordingInfo RecordingInfo { get; set; }
+        /// <summary>
+        /// Instantiates a new participant and sets the default values.
+        /// </summary>
+        public Participant() : base() {
+            OdataType = "#microsoft.graph.participant";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -1,9 +1,11 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class ScheduleChangeRequest : ChangeTrackedEntity, IParsable {
         /// <summary>The assignedTo property</summary>
         public ScheduleChangeRequestActor? AssignedTo { get; set; }
@@ -22,12 +24,26 @@ namespace ApiSdk.Models {
         /// <summary>The state property</summary>
         public ScheduleChangeState? State { get; set; }
         /// <summary>
+        /// Instantiates a new scheduleChangeRequest and sets the default values.
+        /// </summary>
+        public ScheduleChangeRequest() : base() {
+            OdataType = "#microsoft.graph.scheduleChangeRequest";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
         public static new ScheduleChangeRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ScheduleChangeRequest();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.offerShiftRequest" => new OfferShiftRequest(),
+                "#microsoft.graph.openShiftChangeRequest" => new OpenShiftChangeRequest(),
+                "#microsoft.graph.swapShiftsChangeRequest" => new SwapShiftsChangeRequest(),
+                "#microsoft.graph.timeOffRequest" => new TimeOffRequest(),
+                _ => new ScheduleChangeRequest(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

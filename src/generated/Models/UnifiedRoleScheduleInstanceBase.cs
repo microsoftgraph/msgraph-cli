@@ -1,10 +1,10 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the roleManagement singleton.</summary>
     public class UnifiedRoleScheduleInstanceBase : Entity, IParsable {
         /// <summary>Read-only property with details of the app-specific scope when the assignment or role eligibility is scoped to an app. Nullable.</summary>
         public ApiSdk.Models.AppScope AppScope { get; set; }
@@ -22,6 +22,12 @@ namespace ApiSdk.Models {
         public UnifiedRoleDefinition RoleDefinition { get; set; }
         /// <summary>Identifier of the unifiedRoleDefinition object that is being assigned to the principal or that the principal is eligible for.</summary>
         public string RoleDefinitionId { get; set; }
+        /// <summary>
+        /// Instantiates a new UnifiedRoleScheduleInstanceBase and sets the default values.
+        /// </summary>
+        public UnifiedRoleScheduleInstanceBase() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleScheduleInstanceBase";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

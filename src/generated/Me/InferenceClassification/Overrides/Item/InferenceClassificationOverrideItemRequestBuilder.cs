@@ -221,7 +221,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new inferenceClassificationOverrideItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new InferenceClassificationOverrideItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public InferenceClassificationOverrideItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -243,7 +243,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             /// <summary>Request query parameters</summary>
             public InferenceClassificationOverrideItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new InferenceClassificationOverrideItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new inferenceClassificationOverrideItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new InferenceClassificationOverrideItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public InferenceClassificationOverrideItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -257,7 +257,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new inferenceClassificationOverrideItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new InferenceClassificationOverrideItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public InferenceClassificationOverrideItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

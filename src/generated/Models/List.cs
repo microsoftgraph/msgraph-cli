@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class List : BaseItem, IParsable {
         /// <summary>The collection of field definitions for this list.</summary>
         public List<ColumnDefinition> Columns { get; set; }
@@ -18,7 +17,7 @@ namespace ApiSdk.Models {
         public List<ListItem> Items { get; set; }
         /// <summary>Provides additional details about the list.</summary>
         public ListInfo List_prop { get; set; }
-        /// <summary>The collection of long running operations for the list.</summary>
+        /// <summary>The collection of long-running operations on the list.</summary>
         public List<RichLongRunningOperation> Operations { get; set; }
         /// <summary>Returns identifiers useful for SharePoint REST compatibility. Read-only.</summary>
         public ApiSdk.Models.SharepointIds SharepointIds { get; set; }
@@ -26,6 +25,12 @@ namespace ApiSdk.Models {
         public List<Subscription> Subscriptions { get; set; }
         /// <summary>If present, indicates that this is a system-managed list. Read-only.</summary>
         public SystemFacet System { get; set; }
+        /// <summary>
+        /// Instantiates a new List and sets the default values.
+        /// </summary>
+        public List() : base() {
+            OdataType = "#microsoft.graph.list";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

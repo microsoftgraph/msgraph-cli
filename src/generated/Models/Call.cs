@@ -12,21 +12,21 @@ namespace ApiSdk.Models {
         public string CallbackUri { get; set; }
         /// <summary>A unique identifier for all the participant calls in a conference or a unique identifier for two participant calls in a P2P call.  This needs to be copied over from Microsoft.Graph.Call.CallChainId.</summary>
         public string CallChainId { get; set; }
-        /// <summary>Contains the optional features for the call.</summary>
+        /// <summary>The callOptions property</summary>
         public ApiSdk.Models.CallOptions CallOptions { get; set; }
         /// <summary>The routing information on how the call was retargeted. Read-only.</summary>
         public List<CallRoute> CallRoutes { get; set; }
-        /// <summary>The chat information. Required information for meeting scenarios.</summary>
+        /// <summary>The chat information. Required information for joining a meeting.</summary>
         public ApiSdk.Models.ChatInfo ChatInfo { get; set; }
         /// <summary>The direction of the call. The possible value are incoming or outgoing. Read-only.</summary>
         public CallDirection? Direction { get; set; }
-        /// <summary>The context associated with an incoming call. Read-only. Server generated.</summary>
+        /// <summary>The incomingContext property</summary>
         public ApiSdk.Models.IncomingContext IncomingContext { get; set; }
-        /// <summary>The media configuration. Required information for creating peer to peer calls or joining meetings.</summary>
+        /// <summary>The media configuration. Required.</summary>
         public ApiSdk.Models.MediaConfig MediaConfig { get; set; }
         /// <summary>Read-only. The call media state.</summary>
         public CallMediaState MediaState { get; set; }
-        /// <summary>The meeting information. Required information for meeting scenarios.</summary>
+        /// <summary>The meeting information that&apos;s required for joining a meeting.</summary>
         public ApiSdk.Models.MeetingInfo MeetingInfo { get; set; }
         /// <summary>The myParticipantId property</summary>
         public string MyParticipantId { get; set; }
@@ -50,8 +50,14 @@ namespace ApiSdk.Models {
         public string TenantId { get; set; }
         /// <summary>The toneInfo property</summary>
         public ApiSdk.Models.ToneInfo ToneInfo { get; set; }
-        /// <summary>The transcription information for the call. Read-only.</summary>
+        /// <summary>The transcription property</summary>
         public CallTranscriptionInfo Transcription { get; set; }
+        /// <summary>
+        /// Instantiates a new call and sets the default values.
+        /// </summary>
+        public Call() : base() {
+            OdataType = "#microsoft.graph.call";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

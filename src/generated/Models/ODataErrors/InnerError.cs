@@ -11,6 +11,8 @@ namespace ApiSdk.Models.ODataErrors {
         public string ClientRequestId { get; set; }
         /// <summary>Date when the error occured.</summary>
         public DateTimeOffset? Date { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Request Id as tracked internally by the service</summary>
         public string RequestId { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models.ODataErrors {
         /// </summary>
         public InnerError() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.InnerError";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models.ODataErrors {
             return new Dictionary<string, Action<IParseNode>> {
                 {"client-request-id", n => { ClientRequestId = n.GetStringValue(); } },
                 {"date", n => { Date = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"request-id", n => { RequestId = n.GetStringValue(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models.ODataErrors {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("client-request-id", ClientRequestId);
             writer.WriteDateTimeOffsetValue("date", Date);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("request-id", RequestId);
             writer.WriteAdditionalData(AdditionalData);
         }

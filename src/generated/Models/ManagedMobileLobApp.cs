@@ -1,10 +1,10 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>An abstract base class containing properties for all managed mobile line of business apps.</summary>
     public class ManagedMobileLobApp : ManagedApp, IParsable {
         /// <summary>The internal committed content version.</summary>
         public string CommittedContentVersion { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public string FileName { get; set; }
         /// <summary>The total size, including all uploaded files.</summary>
         public long? Size { get; set; }
+        /// <summary>
+        /// Instantiates a new ManagedMobileLobApp and sets the default values.
+        /// </summary>
+        public ManagedMobileLobApp() : base() {
+            OdataType = "#microsoft.graph.managedMobileLobApp";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -4,8 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class UserFlowLanguagePage : Entity, IParsable {
+        /// <summary>
+        /// Instantiates a new userFlowLanguagePage and sets the default values.
+        /// </summary>
+        public UserFlowLanguagePage() : base() {
+            OdataType = "#microsoft.graph.userFlowLanguagePage";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

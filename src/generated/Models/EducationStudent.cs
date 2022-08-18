@@ -12,12 +12,14 @@ namespace ApiSdk.Models {
         public Date? BirthDate { get; set; }
         /// <summary>ID of the student in the source system.</summary>
         public string ExternalId { get; set; }
-        /// <summary>Possible values are: female, male, other.</summary>
+        /// <summary>The possible values are: female, male, other, unknownFutureValue.</summary>
         public EducationGender? Gender { get; set; }
         /// <summary>Current grade level of the student.</summary>
         public string Grade { get; set; }
         /// <summary>Year the student is graduating from the school.</summary>
         public string GraduationYear { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Student Number.</summary>
         public string StudentNumber { get; set; }
         /// <summary>
@@ -25,6 +27,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public EducationStudent() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.educationStudent";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -44,6 +47,7 @@ namespace ApiSdk.Models {
                 {"gender", n => { Gender = n.GetEnumValue<EducationGender>(); } },
                 {"grade", n => { Grade = n.GetStringValue(); } },
                 {"graduationYear", n => { GraduationYear = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"studentNumber", n => { StudentNumber = n.GetStringValue(); } },
             };
         }
@@ -58,6 +62,7 @@ namespace ApiSdk.Models {
             writer.WriteEnumValue<EducationGender>("gender", Gender);
             writer.WriteStringValue("grade", Grade);
             writer.WriteStringValue("graduationYear", GraduationYear);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("studentNumber", StudentNumber);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public List<string> Choices { get; set; }
         /// <summary>How the choices are to be presented in the UX. Must be one of checkBoxes, dropDownMenu, or radioButtons</summary>
         public string DisplayAs { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new choiceColumn and sets the default values.
         /// </summary>
         public ChoiceColumn() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.choiceColumn";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"allowTextEntry", n => { AllowTextEntry = n.GetBoolValue(); } },
                 {"choices", n => { Choices = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"displayAs", n => { DisplayAs = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("allowTextEntry", AllowTextEntry);
             writer.WriteCollectionOfPrimitiveValues<string>("choices", Choices);
             writer.WriteStringValue("displayAs", DisplayAs);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

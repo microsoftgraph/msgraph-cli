@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public enum RatingIrelandTelevisionType {
         /// <summary>Default value, allow all TV shows content</summary>
         AllAllowed,

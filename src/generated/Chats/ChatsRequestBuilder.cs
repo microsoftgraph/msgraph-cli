@@ -94,11 +94,11 @@ namespace ApiSdk.Chats {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of chats that the user is part of.
+        /// Retrieve a single chat (without its messages).
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of chats that the user is part of.";
+            command.Description = "Retrieve a single chat (without its messages).";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -211,7 +211,7 @@ namespace ApiSdk.Chats {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Retrieve the list of chats that the user is part of.
+        /// Retrieve a single chat (without its messages).
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChatsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.Chats {
         public GetAllMessagesRequestBuilder GetAllMessages() {
             return new GetAllMessagesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>Retrieve the list of chats that the user is part of.</summary>
+        /// <summary>Retrieve a single chat (without its messages).</summary>
         public class ChatsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

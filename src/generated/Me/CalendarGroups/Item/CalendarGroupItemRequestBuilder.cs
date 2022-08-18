@@ -231,7 +231,7 @@ namespace ApiSdk.Me.CalendarGroups.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new calendarGroupItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new CalendarGroupItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public CalendarGroupItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.Me.CalendarGroups.Item {
             /// <summary>Request query parameters</summary>
             public CalendarGroupItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new CalendarGroupItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new calendarGroupItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new CalendarGroupItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public CalendarGroupItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Me.CalendarGroups.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new calendarGroupItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new CalendarGroupItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public CalendarGroupItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

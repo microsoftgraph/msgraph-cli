@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class SharedPCConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Specifies how accounts are managed on a shared PC. Only applies when disableAccountManager is false.</summary>
         public SharedPCAccountManagerPolicy AccountManagerPolicy { get; set; }
-        /// <summary>Indicates which type of accounts are allowed to use on a shared PC. Possible values are: notConfigured, guest, domain.</summary>
+        /// <summary>Type of accounts that are allowed to share the PC.</summary>
         public SharedPCAllowedAccountType? AllowedAccounts { get; set; }
         /// <summary>Specifies whether local storage is allowed on a shared PC.</summary>
         public bool? AllowLocalStorage { get; set; }
@@ -30,6 +30,12 @@ namespace ApiSdk.Models {
         public string KioskAppUserModelId { get; set; }
         /// <summary>Specifies the daily start time of maintenance hour.</summary>
         public Time? MaintenanceStartTime { get; set; }
+        /// <summary>
+        /// Instantiates a new SharedPCConfiguration and sets the default values.
+        /// </summary>
+        public SharedPCConfiguration() : base() {
+            OdataType = "#microsoft.graph.sharedPCConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

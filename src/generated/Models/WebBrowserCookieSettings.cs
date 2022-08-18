@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public enum WebBrowserCookieSettings {
         /// <summary>Browser default value, no intent.</summary>
         BrowserDefault,

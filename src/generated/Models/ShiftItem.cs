@@ -1,10 +1,10 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class ShiftItem : ScheduleEntity, IParsable {
         /// <summary>An incremental part of a shift which can cover details of when and where an employee is during their shift. For example, an assignment or a scheduled break or lunch. Required.</summary>
         public List<ShiftActivity> Activities { get; set; }
@@ -13,12 +13,23 @@ namespace ApiSdk.Models {
         /// <summary>The shift notes for the shiftItem.</summary>
         public string Notes { get; set; }
         /// <summary>
+        /// Instantiates a new ShiftItem and sets the default values.
+        /// </summary>
+        public ShiftItem() : base() {
+            OdataType = "#microsoft.graph.shiftItem";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
         public static new ShiftItem CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ShiftItem();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.openShiftItem" => new OpenShiftItem(),
+                _ => new ShiftItem(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

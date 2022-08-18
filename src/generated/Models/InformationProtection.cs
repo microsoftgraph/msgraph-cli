@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the informationProtection singleton.</summary>
     public class InformationProtection : Entity, IParsable {
         /// <summary>The bitlocker property</summary>
         public ApiSdk.Models.Bitlocker Bitlocker { get; set; }
         /// <summary>The threatAssessmentRequests property</summary>
         public List<ThreatAssessmentRequest> ThreatAssessmentRequests { get; set; }
+        /// <summary>
+        /// Instantiates a new InformationProtection and sets the default values.
+        /// </summary>
+        public InformationProtection() : base() {
+            OdataType = "#microsoft.graph.informationProtection";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

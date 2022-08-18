@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class ApplicationEnforcedRestrictionsSessionControl : ConditionalAccessSessionControl, IParsable {
+        /// <summary>
+        /// Instantiates a new ApplicationEnforcedRestrictionsSessionControl and sets the default values.
+        /// </summary>
+        public ApplicationEnforcedRestrictionsSessionControl() : base() {
+            OdataType = "#microsoft.graph.applicationEnforcedRestrictionsSessionControl";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

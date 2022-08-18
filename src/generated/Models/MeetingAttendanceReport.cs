@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the cloudCommunications singleton.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class MeetingAttendanceReport : Entity, IParsable {
         /// <summary>List of attendance records of an attendance report. Read-only.</summary>
         public List<AttendanceRecord> AttendanceRecords { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public DateTimeOffset? MeetingStartDateTime { get; set; }
         /// <summary>Total number of participants. Read-only.</summary>
         public int? TotalParticipantCount { get; set; }
+        /// <summary>
+        /// Instantiates a new meetingAttendanceReport and sets the default values.
+        /// </summary>
+        public MeetingAttendanceReport() : base() {
+            OdataType = "#microsoft.graph.meetingAttendanceReport";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

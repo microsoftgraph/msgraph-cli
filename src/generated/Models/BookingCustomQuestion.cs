@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Represents a custom question of the business.</summary>
     public class BookingCustomQuestion : Entity, IParsable {
         /// <summary>The expected answer type. The possible values are: text, radioButton, unknownFutureValue.</summary>
         public ApiSdk.Models.AnswerInputType? AnswerInputType { get; set; }
         /// <summary>List of possible answer values.</summary>
         public List<string> AnswerOptions { get; set; }
-        /// <summary>Display name of this entity.</summary>
+        /// <summary>The question.</summary>
         public string DisplayName { get; set; }
+        /// <summary>
+        /// Instantiates a new BookingCustomQuestion and sets the default values.
+        /// </summary>
+        public BookingCustomQuestion() : base() {
+            OdataType = "#microsoft.graph.bookingCustomQuestion";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

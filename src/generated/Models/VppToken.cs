@@ -18,16 +18,22 @@ namespace ApiSdk.Models {
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>The last time when an application sync was done with the Apple volume purchase program service using the the Apple Volume Purchase Program Token.</summary>
         public DateTimeOffset? LastSyncDateTime { get; set; }
-        /// <summary>Current sync status of the last application sync which was triggered using the Apple Volume Purchase Program Token. Possible values are: none, inProgress, completed, failed. Possible values are: none, inProgress, completed, failed.</summary>
+        /// <summary>Possible sync statuses associated with an Apple Volume Purchase Program token.</summary>
         public VppTokenSyncStatus? LastSyncStatus { get; set; }
         /// <summary>The organization associated with the Apple Volume Purchase Program Token</summary>
         public string OrganizationName { get; set; }
-        /// <summary>Current state of the Apple Volume Purchase Program Token. Possible values are: unknown, valid, expired, invalid, assignedToExternalMDM. Possible values are: unknown, valid, expired, invalid, assignedToExternalMDM, duplicateLocationId.</summary>
+        /// <summary>Possible states associated with an Apple Volume Purchase Program token.</summary>
         public VppTokenState? State { get; set; }
         /// <summary>The Apple Volume Purchase Program Token string downloaded from the Apple Volume Purchase Program.</summary>
         public string Token { get; set; }
-        /// <summary>The type of volume purchase program which the given Apple Volume Purchase Program Token is associated with. Possible values are: business, education. Possible values are: business, education.</summary>
+        /// <summary>Possible types of an Apple Volume Purchase Program token.</summary>
         public ApiSdk.Models.VppTokenAccountType? VppTokenAccountType { get; set; }
+        /// <summary>
+        /// Instantiates a new vppToken and sets the default values.
+        /// </summary>
+        public VppToken() : base() {
+            OdataType = "#microsoft.graph.vppToken";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

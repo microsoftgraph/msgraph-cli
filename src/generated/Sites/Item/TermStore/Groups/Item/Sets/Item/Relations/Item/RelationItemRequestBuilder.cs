@@ -303,7 +303,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new relationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new RelationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public RelationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -328,7 +328,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations.Item {
             /// <summary>Request query parameters</summary>
             public RelationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new RelationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new relationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new RelationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public RelationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -342,7 +342,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new relationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new RelationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public RelationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

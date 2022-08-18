@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class TodoTaskList : Entity, IParsable {
         /// <summary>The name of the task list.</summary>
         public string DisplayName { get; set; }
@@ -16,8 +16,14 @@ namespace ApiSdk.Models {
         public bool? IsShared { get; set; }
         /// <summary>The tasks in this task list. Read-only. Nullable.</summary>
         public List<TodoTask> Tasks { get; set; }
-        /// <summary>Property indicating the list name if the given list is a well-known list. Possible values are: none, defaultList, flaggedEmails, unknownFutureValue.</summary>
+        /// <summary>The wellknownListName property</summary>
         public ApiSdk.Models.WellknownListName? WellknownListName { get; set; }
+        /// <summary>
+        /// Instantiates a new todoTaskList and sets the default values.
+        /// </summary>
+        public TodoTaskList() : base() {
+            OdataType = "#microsoft.graph.todoTaskList";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

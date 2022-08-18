@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,11 @@ namespace ApiSdk.Models {
     public class ManagedAppProtection : ManagedAppPolicy, IParsable {
         /// <summary>Data storage locations where a user may store managed data.</summary>
         public List<string> AllowedDataStorageLocations { get; set; }
-        /// <summary>Sources from which data is allowed to be transferred. Possible values are: allApps, managedApps, none.</summary>
+        /// <summary>Data can be transferred from/to these classes of apps</summary>
         public ManagedAppDataTransferLevel? AllowedInboundDataTransferSources { get; set; }
-        /// <summary>The level to which the clipboard may be shared between apps on the managed device. Possible values are: allApps, managedAppsWithPasteIn, managedApps, blocked.</summary>
+        /// <summary>Represents the level to which the device&apos;s clipboard may be shared between apps</summary>
         public ManagedAppClipboardSharingLevel? AllowedOutboundClipboardSharingLevel { get; set; }
-        /// <summary>Destinations to which data is allowed to be transferred. Possible values are: allApps, managedApps, none.</summary>
+        /// <summary>Data can be transferred from/to these classes of apps</summary>
         public ManagedAppDataTransferLevel? AllowedOutboundDataTransferDestinations { get; set; }
         /// <summary>Indicates whether contacts can be synced to the user&apos;s device.</summary>
         public bool? ContactSyncBlocked { get; set; }
@@ -23,7 +24,7 @@ namespace ApiSdk.Models {
         public bool? DisableAppPinIfDevicePinIsSet { get; set; }
         /// <summary>Indicates whether use of the fingerprint reader is allowed in place of a pin if PinRequired is set to True.</summary>
         public bool? FingerprintBlocked { get; set; }
-        /// <summary>Indicates in which managed browser(s) that internet links should be opened. When this property is configured, ManagedBrowserToOpenLinksRequired should be true. Possible values are: notConfigured, microsoftEdge.</summary>
+        /// <summary>Type of managed browser</summary>
         public ManagedBrowserType? ManagedBrowser { get; set; }
         /// <summary>Indicates whether internet links should be opened in the managed browser app, or any custom browser specified by CustomBrowserProtocol (for iOS) or CustomBrowserPackageId/CustomBrowserDisplayName (for Android)</summary>
         public bool? ManagedBrowserToOpenLinksRequired { get; set; }
@@ -49,7 +50,7 @@ namespace ApiSdk.Models {
         public TimeSpan? PeriodOfflineBeforeWipeIsEnforced { get; set; }
         /// <summary>The period after which access is checked when the device is connected to the internet.</summary>
         public TimeSpan? PeriodOnlineBeforeAccessCheck { get; set; }
-        /// <summary>Character set which may be used for an app-level pin if PinRequired is set to True. Possible values are: numeric, alphanumericAndSymbol.</summary>
+        /// <summary>Character set which is to be used for a user&apos;s app PIN</summary>
         public ManagedAppPinCharacterSet? PinCharacterSet { get; set; }
         /// <summary>Indicates whether an app-level pin is required.</summary>
         public bool? PinRequired { get; set; }
@@ -60,12 +61,26 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether simplePin is blocked.</summary>
         public bool? SimplePinBlocked { get; set; }
         /// <summary>
+        /// Instantiates a new ManagedAppProtection and sets the default values.
+        /// </summary>
+        public ManagedAppProtection() : base() {
+            OdataType = "#microsoft.graph.managedAppProtection";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
         public static new ManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedAppProtection();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.androidManagedAppProtection" => new AndroidManagedAppProtection(),
+                "#microsoft.graph.defaultManagedAppProtection" => new DefaultManagedAppProtection(),
+                "#microsoft.graph.iosManagedAppProtection" => new IosManagedAppProtection(),
+                "#microsoft.graph.targetedManagedAppProtection" => new TargetedManagedAppProtection(),
+                _ => new ManagedAppProtection(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

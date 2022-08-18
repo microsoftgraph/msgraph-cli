@@ -88,11 +88,11 @@ namespace ApiSdk.Security.Alerts {
             return command;
         }
         /// <summary>
-        /// Notifications for suspicious or potential security issues in a customer’s tenant.
+        /// Get alerts from security
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Notifications for suspicious or potential security issues in a customer’s tenant.";
+            command.Description = "Get alerts from security";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Security.Alerts {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Notifications for suspicious or potential security issues in a customer’s tenant.
+        /// Get alerts from security
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AlertsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Security.Alerts {
             }
             return requestInfo;
         }
-        /// <summary>Notifications for suspicious or potential security issues in a customer’s tenant.</summary>
+        /// <summary>Get alerts from security</summary>
         public class AlertsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

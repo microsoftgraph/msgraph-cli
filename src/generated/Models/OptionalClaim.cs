@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public bool? Essential { get; set; }
         /// <summary>The name of the optional claim.</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The source (directory object) of the claim. There are predefined claims and user-defined claims from extension properties. If the source value is null, the claim is a predefined optional claim. If the source value is user, the value in the name property is the extension property from the user object.</summary>
         public string Source { get; set; }
         /// <summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public OptionalClaim() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.optionalClaim";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,6 +40,7 @@ namespace ApiSdk.Models {
                 {"additionalProperties", n => { AdditionalProperties = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"essential", n => { Essential = n.GetBoolValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"source", n => { Source = n.GetStringValue(); } },
             };
         }
@@ -49,6 +53,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfPrimitiveValues<string>("additionalProperties", AdditionalProperties);
             writer.WriteBoolValue("essential", Essential);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("source", Source);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -15,6 +15,8 @@ namespace ApiSdk.Models {
         public string ColumnName { get; set; }
         /// <summary>The unique identifier of the lookup source list.</summary>
         public string ListId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>If specified, this column is a secondary lookup, pulling an additional field from the list item looked up by the primary lookup. Use the list item looked up by the primary as the source for the column named here.</summary>
         public string PrimaryLookupColumnId { get; set; }
         /// <summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public LookupColumn() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.lookupColumn";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -40,6 +43,7 @@ namespace ApiSdk.Models {
                 {"allowUnlimitedLength", n => { AllowUnlimitedLength = n.GetBoolValue(); } },
                 {"columnName", n => { ColumnName = n.GetStringValue(); } },
                 {"listId", n => { ListId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"primaryLookupColumnId", n => { PrimaryLookupColumnId = n.GetStringValue(); } },
             };
         }
@@ -53,6 +57,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("allowUnlimitedLength", AllowUnlimitedLength);
             writer.WriteStringValue("columnName", ColumnName);
             writer.WriteStringValue("listId", ListId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("primaryLookupColumnId", PrimaryLookupColumnId);
             writer.WriteAdditionalData(AdditionalData);
         }

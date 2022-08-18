@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public string IdentityProvider { get; set; }
         /// <summary>For internal use only</summary>
         public byte[] Key { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>For internal use only</summary>
         public int? Type { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AlternativeSecurityId() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.alternativeSecurityId";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"identityProvider", n => { IdentityProvider = n.GetStringValue(); } },
                 {"key", n => { Key = n.GetByteArrayValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetIntValue(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("identityProvider", IdentityProvider);
             writer.WriteByteArrayValue("key", Key);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

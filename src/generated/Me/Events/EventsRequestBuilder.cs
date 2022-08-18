@@ -102,11 +102,11 @@ namespace ApiSdk.Me.Events {
             return command;
         }
         /// <summary>
-        /// The user&apos;s events. Default is to show events under the Default Calendar. Read-only. Nullable.
+        /// The user&apos;s events. Default is to show Events under the Default Calendar. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.";
+            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Me.Events {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user&apos;s events. Default is to show events under the Default Calendar. Read-only. Nullable.
+        /// The user&apos;s events. Default is to show Events under the Default Calendar. Read-only. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<EventsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -253,7 +253,7 @@ namespace ApiSdk.Me.Events {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The user&apos;s events. Default is to show events under the Default Calendar. Read-only. Nullable.</summary>
+        /// <summary>The user&apos;s events. Default is to show Events under the Default Calendar. Read-only. Nullable.</summary>
         public class EventsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

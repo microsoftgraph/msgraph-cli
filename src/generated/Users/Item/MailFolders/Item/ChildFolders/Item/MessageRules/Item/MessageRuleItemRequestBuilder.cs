@@ -275,7 +275,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MessageRules.Item
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new messageRuleItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new MessageRuleItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public MessageRuleItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -297,7 +297,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MessageRules.Item
             /// <summary>Request query parameters</summary>
             public MessageRuleItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new MessageRuleItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new messageRuleItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new MessageRuleItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public MessageRuleItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -311,7 +311,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MessageRules.Item
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new messageRuleItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new MessageRuleItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public MessageRuleItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

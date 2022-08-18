@@ -19,6 +19,8 @@ namespace ApiSdk.Models {
         public string FilterOn { get; set; }
         /// <summary>The icon property</summary>
         public WorkbookIcon Icon { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The operator property</summary>
         public string Operator { get; set; }
         /// <summary>The values property</summary>
@@ -28,6 +30,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public WorkbookFilterCriteria() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.workbookFilterCriteria";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -48,6 +51,7 @@ namespace ApiSdk.Models {
                 {"dynamicCriteria", n => { DynamicCriteria = n.GetStringValue(); } },
                 {"filterOn", n => { FilterOn = n.GetStringValue(); } },
                 {"icon", n => { Icon = n.GetObjectValue<WorkbookIcon>(WorkbookIcon.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operator", n => { Operator = n.GetStringValue(); } },
                 {"values", n => { Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
@@ -64,6 +68,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("dynamicCriteria", DynamicCriteria);
             writer.WriteStringValue("filterOn", FilterOn);
             writer.WriteObjectValue<WorkbookIcon>("icon", Icon);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("operator", Operator);
             writer.WriteObjectValue<Json>("values", Values);
             writer.WriteAdditionalData(AdditionalData);

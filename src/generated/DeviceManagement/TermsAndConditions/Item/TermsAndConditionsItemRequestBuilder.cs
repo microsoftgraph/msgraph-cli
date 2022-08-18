@@ -248,7 +248,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new termsAndConditionsItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new TermsAndConditionsItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public TermsAndConditionsItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -273,7 +273,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             /// <summary>Request query parameters</summary>
             public TermsAndConditionsItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TermsAndConditionsItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new termsAndConditionsItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TermsAndConditionsItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TermsAndConditionsItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -287,7 +287,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new termsAndConditionsItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new TermsAndConditionsItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public TermsAndConditionsItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class PersistentBrowserSessionControl : ConditionalAccessSessionControl, IParsable {
         /// <summary>Possible values are: always, never.</summary>
         public PersistentBrowserSessionMode? Mode { get; set; }
+        /// <summary>
+        /// Instantiates a new PersistentBrowserSessionControl and sets the default values.
+        /// </summary>
+        public PersistentBrowserSessionControl() : base() {
+            OdataType = "#microsoft.graph.persistentBrowserSessionControl";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

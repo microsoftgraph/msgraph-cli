@@ -10,6 +10,12 @@ namespace ApiSdk.Models {
         /// <summary>Condition sets which are included in this permission grant policy. Automatically expanded on GET.</summary>
         public List<PermissionGrantConditionSet> Includes { get; set; }
         /// <summary>
+        /// Instantiates a new PermissionGrantPolicy and sets the default values.
+        /// </summary>
+        public PermissionGrantPolicy() : base() {
+            OdataType = "#microsoft.graph.permissionGrantPolicy";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

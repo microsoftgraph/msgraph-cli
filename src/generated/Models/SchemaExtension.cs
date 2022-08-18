@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of schemaExtension entities.</summary>
     public class SchemaExtension : Entity, IParsable {
         /// <summary>Description for the schema extension. Supports $filter (eq).</summary>
         public string Description { get; set; }
@@ -12,10 +11,16 @@ namespace ApiSdk.Models {
         public string Owner { get; set; }
         /// <summary>The collection of property names and types that make up the schema extension definition.</summary>
         public List<ExtensionSchemaProperty> Properties { get; set; }
-        /// <summary>The lifecycle state of the schema extension. Possible states are InDevelopment, Available, and Deprecated. Automatically set to InDevelopment on creation. Schema extensions provides more information on the possible state transitions and behaviors. Supports $filter (eq).</summary>
+        /// <summary>The lifecycle state of the schema extension. Possible states are InDevelopment, Available, and Deprecated. Automatically set to InDevelopment on creation. For more information about the possible state transitions and behaviors, see Schema extensions lifecycle. Supports $filter (eq).</summary>
         public string Status { get; set; }
-        /// <summary>Set of Microsoft Graph types (that can support extensions) that the schema extension can be applied to. Select from administrativeUnit, contact, device, event, group, message, organization, post, or user.</summary>
+        /// <summary>Set of Microsoft Graph types (that can support extensions) that the schema extension can be applied to. Select from administrativeUnit, contact, device, event, group, message, organization, post, todoTask, todoTaskList, or user.</summary>
         public List<string> TargetTypes { get; set; }
+        /// <summary>
+        /// Instantiates a new SchemaExtension and sets the default values.
+        /// </summary>
+        public SchemaExtension() : base() {
+            OdataType = "#microsoft.graph.schemaExtension";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

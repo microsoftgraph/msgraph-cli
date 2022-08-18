@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.TermStore {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class Relation : Entity, IParsable {
         /// <summary>The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].</summary>
         public Term FromTerm { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models.TermStore {
         public ApiSdk.Models.TermStore.Set Set { get; set; }
         /// <summary>The to [term] of the relation. The term to which the relationship is defined.</summary>
         public Term ToTerm { get; set; }
+        /// <summary>
+        /// Instantiates a new relation and sets the default values.
+        /// </summary>
+        public Relation() : base() {
+            OdataType = "#microsoft.graph.termStore.relation";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

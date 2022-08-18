@@ -11,13 +11,16 @@ namespace ApiSdk.Models {
         public string DefaultLanguage { get; set; }
         /// <summary>Localized messages that explain what is needed for this column&apos;s value to be considered valid. User will be prompted with this message if validation fails.</summary>
         public List<DisplayNameLocalization> Descriptions { get; set; }
-        /// <summary>The formula to validate column value. For examples, see Examples of common formulas in lists</summary>
+        /// <summary>The formula to validate column value. For examples, see Examples of common formulas in lists.</summary>
         public string Formula { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new columnValidation and sets the default values.
         /// </summary>
         public ColumnValidation() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.columnValidation";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"defaultLanguage", n => { DefaultLanguage = n.GetStringValue(); } },
                 {"descriptions", n => { Descriptions = n.GetCollectionOfObjectValues<DisplayNameLocalization>(DisplayNameLocalization.CreateFromDiscriminatorValue).ToList(); } },
                 {"formula", n => { Formula = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("defaultLanguage", DefaultLanguage);
             writer.WriteCollectionOfObjectValues<DisplayNameLocalization>("descriptions", Descriptions);
             writer.WriteStringValue("formula", Formula);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -11,8 +11,14 @@ namespace ApiSdk.Models {
         public string TenantId { get; set; }
         /// <summary>The user property</summary>
         public ApiSdk.Models.User User { get; set; }
-        /// <summary>The GUID of the user.</summary>
+        /// <summary>The guid of the user.</summary>
         public string UserId { get; set; }
+        /// <summary>
+        /// Instantiates a new AadUserConversationMember and sets the default values.
+        /// </summary>
+        public AadUserConversationMember() : base() {
+            OdataType = "#microsoft.graph.aadUserConversationMember";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -1,9 +1,11 @@
 using ApiSdk.Groups.Item.Team.PrimaryChannel.CompleteMigration;
+using ApiSdk.Groups.Item.Team.PrimaryChannel.DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalName;
 using ApiSdk.Groups.Item.Team.PrimaryChannel.FilesFolder;
 using ApiSdk.Groups.Item.Team.PrimaryChannel.Members;
 using ApiSdk.Groups.Item.Team.PrimaryChannel.Messages;
 using ApiSdk.Groups.Item.Team.PrimaryChannel.ProvisionEmail;
 using ApiSdk.Groups.Item.Team.PrimaryChannel.RemoveEmail;
+using ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams;
 using ApiSdk.Groups.Item.Team.PrimaryChannel.Tabs;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -200,6 +202,15 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel {
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        public Command BuildSharedWithTeamsCommand() {
+            var command = new Command("shared-with-teams");
+            var builder = new SharedWithTeamsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildTabsCommand() {
             var command = new Command("tabs");
             var builder = new TabsRequestBuilder(PathParameters, RequestAdapter);
@@ -280,6 +291,12 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel {
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
+        }
+        /// <summary>
+        /// Provides operations to call the doesUserHaveAccess method.
+        /// </summary>
+        public DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalNameRequestBuilder DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalName() {
+            return new DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalNameRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class PrimaryChannelRequestBuilderDeleteRequestConfiguration {

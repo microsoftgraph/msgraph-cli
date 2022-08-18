@@ -22,8 +22,14 @@ namespace ApiSdk.Models {
         public long? Size { get; set; }
         /// <summary>The size of the file after encryption.</summary>
         public long? SizeEncrypted { get; set; }
-        /// <summary>The state of the current upload request. Possible values are: success, transientError, error, unknown, azureStorageUriRequestSuccess, azureStorageUriRequestPending, azureStorageUriRequestFailed, azureStorageUriRequestTimedOut, azureStorageUriRenewalSuccess, azureStorageUriRenewalPending, azureStorageUriRenewalFailed, azureStorageUriRenewalTimedOut, commitFileSuccess, commitFilePending, commitFileFailed, commitFileTimedOut.</summary>
+        /// <summary>Contains properties for upload request states.</summary>
         public MobileAppContentFileUploadState? UploadState { get; set; }
+        /// <summary>
+        /// Instantiates a new mobileAppContentFile and sets the default values.
+        /// </summary>
+        public MobileAppContentFile() : base() {
+            OdataType = "#microsoft.graph.mobileAppContentFile";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

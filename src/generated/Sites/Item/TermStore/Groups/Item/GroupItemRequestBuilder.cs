@@ -256,7 +256,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new groupItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new GroupItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public GroupItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -281,7 +281,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item {
             /// <summary>Request query parameters</summary>
             public GroupItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new GroupItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new groupItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new GroupItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public GroupItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -295,7 +295,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new groupItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new GroupItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public GroupItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

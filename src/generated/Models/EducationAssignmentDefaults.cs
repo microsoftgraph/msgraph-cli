@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationAssignmentDefaults : Entity, IParsable {
         /// <summary>Class-level default behavior for handling students who are added after the assignment is published. Possible values are: none, assignIfOpen.</summary>
         public EducationAddedStudentAction? AddedStudentAction { get; set; }
@@ -15,6 +14,12 @@ namespace ApiSdk.Models {
         public Time? DueTime { get; set; }
         /// <summary>Default Teams channel to which notifications will be sent. Default value is null.</summary>
         public string NotificationChannelUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new EducationAssignmentDefaults and sets the default values.
+        /// </summary>
+        public EducationAssignmentDefaults() : base() {
+            OdataType = "#microsoft.graph.educationAssignmentDefaults";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

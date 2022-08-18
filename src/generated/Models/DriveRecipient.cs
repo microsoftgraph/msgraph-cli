@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public string Email { get; set; }
         /// <summary>The unique identifier for the recipient in the directory.</summary>
         public string ObjectId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new driveRecipient and sets the default values.
         /// </summary>
         public DriveRecipient() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.driveRecipient";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"alias", n => { Alias = n.GetStringValue(); } },
                 {"email", n => { Email = n.GetStringValue(); } },
                 {"objectId", n => { ObjectId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("alias", Alias);
             writer.WriteStringValue("email", Email);
             writer.WriteStringValue("objectId", ObjectId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

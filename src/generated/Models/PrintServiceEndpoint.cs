@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the print singleton.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class PrintServiceEndpoint : Entity, IParsable {
         /// <summary>A human-readable display name for the endpoint.</summary>
         public string DisplayName { get; set; }
         /// <summary>The URI that can be used to access the service.</summary>
         public string Uri { get; set; }
+        /// <summary>
+        /// Instantiates a new printServiceEndpoint and sets the default values.
+        /// </summary>
+        public PrintServiceEndpoint() : base() {
+            OdataType = "#microsoft.graph.printServiceEndpoint";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

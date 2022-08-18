@@ -6,6 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class IosCertificateProfile : DeviceConfiguration, IParsable {
         /// <summary>
+        /// Instantiates a new IosCertificateProfile and sets the default values.
+        /// </summary>
+        public IosCertificateProfile() : base() {
+            OdataType = "#microsoft.graph.iosCertificateProfile";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

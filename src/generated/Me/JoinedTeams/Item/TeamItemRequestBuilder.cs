@@ -1,11 +1,14 @@
+using ApiSdk.Me.JoinedTeams.Item.AllChannels;
 using ApiSdk.Me.JoinedTeams.Item.Archive;
 using ApiSdk.Me.JoinedTeams.Item.Channels;
 using ApiSdk.Me.JoinedTeams.Item.Clone;
 using ApiSdk.Me.JoinedTeams.Item.CompleteMigration;
 using ApiSdk.Me.JoinedTeams.Item.Group;
+using ApiSdk.Me.JoinedTeams.Item.IncomingChannels;
 using ApiSdk.Me.JoinedTeams.Item.InstalledApps;
 using ApiSdk.Me.JoinedTeams.Item.Members;
 using ApiSdk.Me.JoinedTeams.Item.Operations;
+using ApiSdk.Me.JoinedTeams.Item.Photo;
 using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel;
 using ApiSdk.Me.JoinedTeams.Item.Schedule;
 using ApiSdk.Me.JoinedTeams.Item.SendActivityNotification;
@@ -35,6 +38,14 @@ namespace ApiSdk.Me.JoinedTeams.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildAllChannelsCommand() {
+            var command = new Command("all-channels");
+            var builder = new AllChannelsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildArchiveCommand() {
             var command = new Command("archive");
             var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
@@ -95,11 +106,11 @@ namespace ApiSdk.Me.JoinedTeams.Item {
             return command;
         }
         /// <summary>
-        /// The Microsoft Teams teams that the user is a member of. Read-only. Nullable.
+        /// Get joinedTeams from me
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The Microsoft Teams teams that the user is a member of. Read-only. Nullable.";
+            command.Description = "Get joinedTeams from me";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -159,6 +170,14 @@ namespace ApiSdk.Me.JoinedTeams.Item {
             var command = new Command("group");
             var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        public Command BuildIncomingChannelsCommand() {
+            var command = new Command("incoming-channels");
+            var builder = new IncomingChannelsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildInstalledAppsCommand() {
@@ -223,6 +242,15 @@ namespace ApiSdk.Me.JoinedTeams.Item {
             });
             return command;
         }
+        public Command BuildPhotoCommand() {
+            var command = new Command("photo");
+            var builder = new PhotoRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            return command;
+        }
         public Command BuildPrimaryChannelCommand() {
             var command = new Command("primary-channel");
             var builder = new PrimaryChannelRequestBuilder(PathParameters, RequestAdapter);
@@ -235,6 +263,7 @@ namespace ApiSdk.Me.JoinedTeams.Item {
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildProvisionEmailCommand());
             command.AddCommand(builder.BuildRemoveEmailCommand());
+            command.AddCommand(builder.BuildSharedWithTeamsCommand());
             command.AddCommand(builder.BuildTabsCommand());
             return command;
         }
@@ -306,7 +335,7 @@ namespace ApiSdk.Me.JoinedTeams.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The Microsoft Teams teams that the user is a member of. Read-only. Nullable.
+        /// Get joinedTeams from me
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TeamItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -353,14 +382,14 @@ namespace ApiSdk.Me.JoinedTeams.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new teamItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public TeamItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The Microsoft Teams teams that the user is a member of. Read-only. Nullable.</summary>
+        /// <summary>Get joinedTeams from me</summary>
         public class TeamItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -378,7 +407,7 @@ namespace ApiSdk.Me.JoinedTeams.Item {
             /// <summary>Request query parameters</summary>
             public TeamItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TeamItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new teamItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TeamItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -392,7 +421,7 @@ namespace ApiSdk.Me.JoinedTeams.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new teamItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public TeamItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -21,6 +21,8 @@ namespace ApiSdk.Models {
         public bool? EnableTargetsToSelfRemoveAccess { get; set; }
         /// <summary>If true, allows requestors to create a request to update their access.</summary>
         public bool? EnableTargetsToSelfUpdateAccess { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The principals who can request on-behalf-of others.</summary>
         public List<SubjectSet> OnBehalfRequestors { get; set; }
         /// <summary>
@@ -28,6 +30,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AccessPackageAssignmentRequestorSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.accessPackageAssignmentRequestorSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -49,6 +52,7 @@ namespace ApiSdk.Models {
                 {"enableTargetsToSelfAddAccess", n => { EnableTargetsToSelfAddAccess = n.GetBoolValue(); } },
                 {"enableTargetsToSelfRemoveAccess", n => { EnableTargetsToSelfRemoveAccess = n.GetBoolValue(); } },
                 {"enableTargetsToSelfUpdateAccess", n => { EnableTargetsToSelfUpdateAccess = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"onBehalfRequestors", n => { OnBehalfRequestors = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
@@ -65,6 +69,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("enableTargetsToSelfAddAccess", EnableTargetsToSelfAddAccess);
             writer.WriteBoolValue("enableTargetsToSelfRemoveAccess", EnableTargetsToSelfRemoveAccess);
             writer.WriteBoolValue("enableTargetsToSelfUpdateAccess", EnableTargetsToSelfUpdateAccess);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfObjectValues<SubjectSet>("onBehalfRequestors", OnBehalfRequestors);
             writer.WriteAdditionalData(AdditionalData);
         }

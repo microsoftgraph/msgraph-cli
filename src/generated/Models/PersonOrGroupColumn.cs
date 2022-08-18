@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public string ChooseFromType { get; set; }
         /// <summary>How to display the information about the person or group chosen. See below.</summary>
         public string DisplayAs { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new personOrGroupColumn and sets the default values.
         /// </summary>
         public PersonOrGroupColumn() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.personOrGroupColumn";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"allowMultipleSelection", n => { AllowMultipleSelection = n.GetBoolValue(); } },
                 {"chooseFromType", n => { ChooseFromType = n.GetStringValue(); } },
                 {"displayAs", n => { DisplayAs = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("allowMultipleSelection", AllowMultipleSelection);
             writer.WriteStringValue("chooseFromType", ChooseFromType);
             writer.WriteStringValue("displayAs", DisplayAs);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

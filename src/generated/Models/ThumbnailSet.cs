@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class ThumbnailSet : Entity, IParsable {
         /// <summary>A 1920x1920 scaled thumbnail.</summary>
         public Thumbnail Large { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public Thumbnail Small { get; set; }
         /// <summary>A custom thumbnail image or the original image used to generate other thumbnails.</summary>
         public Thumbnail Source { get; set; }
+        /// <summary>
+        /// Instantiates a new thumbnailSet and sets the default values.
+        /// </summary>
+        public ThumbnailSet() : base() {
+            OdataType = "#microsoft.graph.thumbnailSet";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

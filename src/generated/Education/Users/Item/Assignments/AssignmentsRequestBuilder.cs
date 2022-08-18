@@ -101,11 +101,11 @@ namespace ApiSdk.Education.Users.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// List of assignments for the user. Nullable.
+        /// Assignments belonging to the user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List of assignments for the user. Nullable.";
+            command.Description = "Assignments belonging to the user.";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
@@ -224,7 +224,7 @@ namespace ApiSdk.Education.Users.Item.Assignments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// List of assignments for the user. Nullable.
+        /// Assignments belonging to the user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AssignmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -271,7 +271,7 @@ namespace ApiSdk.Education.Users.Item.Assignments {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>List of assignments for the user. Nullable.</summary>
+        /// <summary>Assignments belonging to the user.</summary>
         public class AssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

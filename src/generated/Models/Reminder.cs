@@ -21,6 +21,8 @@ namespace ApiSdk.Models {
         public string EventSubject { get; set; }
         /// <summary>The URL to open the event in Outlook on the web.The event will open in the browser if you are logged in to your mailbox via Outlook on the web. You will be prompted to login if you are not already logged in with the browser.This URL cannot be accessed from within an iFrame.</summary>
         public string EventWebLink { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The date, time, and time zone that the reminder is set to occur.</summary>
         public DateTimeTimeZone ReminderFireTime { get; set; }
         /// <summary>
@@ -28,6 +30,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public Reminder() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.reminder";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -49,6 +52,7 @@ namespace ApiSdk.Models {
                 {"eventStartTime", n => { EventStartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"eventSubject", n => { EventSubject = n.GetStringValue(); } },
                 {"eventWebLink", n => { EventWebLink = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"reminderFireTime", n => { ReminderFireTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -65,6 +69,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<DateTimeTimeZone>("eventStartTime", EventStartTime);
             writer.WriteStringValue("eventSubject", EventSubject);
             writer.WriteStringValue("eventWebLink", EventWebLink);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<DateTimeTimeZone>("reminderFireTime", ReminderFireTime);
             writer.WriteAdditionalData(AdditionalData);
         }

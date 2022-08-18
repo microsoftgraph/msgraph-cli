@@ -1,19 +1,25 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class IdentityUserFlowAttribute : Entity, IParsable {
-        /// <summary>The data type of the user flow attribute. This cannot be modified after the custom user flow attribute is created. The supported values for dataType are: string , boolean , int64 , stringCollection , dateTime.</summary>
+        /// <summary>The dataType property</summary>
         public IdentityUserFlowAttributeDataType? DataType { get; set; }
         /// <summary>The description of the user flow attribute that&apos;s shown to the user at the time of sign-up.</summary>
         public string Description { get; set; }
         /// <summary>The display name of the user flow attribute.</summary>
         public string DisplayName { get; set; }
-        /// <summary>The type of the user flow attribute. This is a read-only attribute that is automatically set. Depending on the type of attribute, the values for this property will be builtIn, custom, or required.</summary>
+        /// <summary>The userFlowAttributeType property</summary>
         public IdentityUserFlowAttributeType? UserFlowAttributeType { get; set; }
+        /// <summary>
+        /// Instantiates a new identityUserFlowAttribute and sets the default values.
+        /// </summary>
+        public IdentityUserFlowAttribute() : base() {
+            OdataType = "#microsoft.graph.identityUserFlowAttribute";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

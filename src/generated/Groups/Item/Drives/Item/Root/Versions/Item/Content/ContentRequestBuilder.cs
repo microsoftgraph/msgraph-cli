@@ -22,11 +22,11 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.Versions.Item.Content {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Get content for the navigation property versions from groups
+        /// The content stream for this version of the item.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get content for the navigation property versions from groups";
+            command.Description = "The content stream for this version of the item.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -72,11 +72,11 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.Versions.Item.Content {
             return command;
         }
         /// <summary>
-        /// Update content for the navigation property versions in groups
+        /// The content stream for this version of the item.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "Update content for the navigation property versions in groups";
+            command.Description = "The content stream for this version of the item.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -129,7 +129,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.Versions.Item.Content {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get content for the navigation property versions from groups
+        /// The content stream for this version of the item.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ContentRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -147,7 +147,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.Versions.Item.Content {
             return requestInfo;
         }
         /// <summary>
-        /// Update content for the navigation property versions in groups
+        /// The content stream for this version of the item.
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

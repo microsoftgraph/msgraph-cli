@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The identity of the channel in which the message was posted.</summary>
         public string ChannelId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The identity of the team in which the message was posted.</summary>
         public string TeamId { get; set; }
         /// <summary>
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ChannelIdentity() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.channelIdentity";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"channelId", n => { ChannelId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"teamId", n => { TeamId = n.GetStringValue(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("channelId", ChannelId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("teamId", TeamId);
             writer.WriteAdditionalData(AdditionalData);
         }

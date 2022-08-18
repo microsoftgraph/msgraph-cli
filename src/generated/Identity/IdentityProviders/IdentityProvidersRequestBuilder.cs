@@ -95,11 +95,11 @@ namespace ApiSdk.Identity.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Represents entry point for identity provider base.
+        /// Get identityProviders from identity
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents entry point for identity provider base.";
+            command.Description = "Get identityProviders from identity";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -212,7 +212,7 @@ namespace ApiSdk.Identity.IdentityProviders {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents entry point for identity provider base.
+        /// Get identityProviders from identity
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IdentityProvidersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -253,7 +253,7 @@ namespace ApiSdk.Identity.IdentityProviders {
             }
             return requestInfo;
         }
-        /// <summary>Represents entry point for identity provider base.</summary>
+        /// <summary>Get identityProviders from identity</summary>
         public class IdentityProvidersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

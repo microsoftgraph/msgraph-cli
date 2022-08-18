@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public WorkbookOperationError InnerError { get; set; }
         /// <summary>The error message.</summary>
         public string Message { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new workbookOperationError and sets the default values.
         /// </summary>
         public WorkbookOperationError() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.workbookOperationError";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"code", n => { Code = n.GetStringValue(); } },
                 {"innerError", n => { InnerError = n.GetObjectValue<WorkbookOperationError>(WorkbookOperationError.CreateFromDiscriminatorValue); } },
                 {"message", n => { Message = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("code", Code);
             writer.WriteObjectValue<WorkbookOperationError>("innerError", InnerError);
             writer.WriteStringValue("message", Message);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

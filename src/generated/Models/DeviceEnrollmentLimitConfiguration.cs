@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>The maximum number of devices that a user can enroll</summary>
         public int? Limit { get; set; }
         /// <summary>
+        /// Instantiates a new DeviceEnrollmentLimitConfiguration and sets the default values.
+        /// </summary>
+        public DeviceEnrollmentLimitConfiguration() : base() {
+            OdataType = "#microsoft.graph.deviceEnrollmentLimitConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

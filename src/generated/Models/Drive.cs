@@ -28,6 +28,12 @@ namespace ApiSdk.Models {
         /// <summary>If present, indicates that this is a system-managed drive. Read-only.</summary>
         public SystemFacet System { get; set; }
         /// <summary>
+        /// Instantiates a new Drive and sets the default values.
+        /// </summary>
+        public Drive() : base() {
+            OdataType = "#microsoft.graph.drive";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

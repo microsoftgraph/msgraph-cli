@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationCategory : Entity, IParsable {
         /// <summary>Unique identifier for the category.</summary>
         public string DisplayName { get; set; }
+        /// <summary>
+        /// Instantiates a new EducationCategory and sets the default values.
+        /// </summary>
+        public EducationCategory() : base() {
+            OdataType = "#microsoft.graph.educationCategory";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

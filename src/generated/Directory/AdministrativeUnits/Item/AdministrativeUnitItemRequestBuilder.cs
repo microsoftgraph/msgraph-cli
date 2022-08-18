@@ -264,7 +264,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new administrativeUnitItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -289,7 +289,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
             /// <summary>Request query parameters</summary>
             public AdministrativeUnitItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AdministrativeUnitItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new administrativeUnitItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AdministrativeUnitItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AdministrativeUnitItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -303,7 +303,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new administrativeUnitItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AdministrativeUnitItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AdministrativeUnitItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

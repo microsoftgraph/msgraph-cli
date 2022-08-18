@@ -100,11 +100,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Operations {
             return command;
         }
         /// <summary>
-        /// The collection of long running operations for the site.
+        /// The collection of long-running operations on the site.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of long running operations for the site.";
+            command.Description = "The collection of long-running operations on the site.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -229,7 +229,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Operations {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of long running operations for the site.
+        /// The collection of long-running operations on the site.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OperationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -270,7 +270,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Operations {
             }
             return requestInfo;
         }
-        /// <summary>The collection of long running operations for the site.</summary>
+        /// <summary>The collection of long-running operations on the site.</summary>
         public class OperationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

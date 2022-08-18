@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public enum DeviceManagementReportStatus {
         /// <summary>Report generation status is unknown</summary>
         Unknown,

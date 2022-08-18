@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class PlannerPlan : Entity, IParsable {
-        /// <summary>Collection of buckets in the plan. Read-only. Nullable.</summary>
+        /// <summary>Read-only. Nullable. Collection of buckets in the plan.</summary>
         public List<PlannerBucket> Buckets { get; set; }
         /// <summary>Identifies the container of the plan. After it is set, this property can’t be updated. Required.</summary>
         public PlannerPlanContainer Container { get; set; }
@@ -14,14 +14,20 @@ namespace ApiSdk.Models {
         public IdentitySet CreatedBy { get; set; }
         /// <summary>Read-only. Date and time at which the plan is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Additional details about the plan. Read-only. Nullable.</summary>
+        /// <summary>Read-only. Nullable. Additional details about the plan.</summary>
         public PlannerPlanDetails Details { get; set; }
         /// <summary>The owner property</summary>
         public string Owner { get; set; }
-        /// <summary>Collection of tasks in the plan. Read-only. Nullable.</summary>
+        /// <summary>Read-only. Nullable. Collection of tasks in the plan.</summary>
         public List<PlannerTask> Tasks { get; set; }
         /// <summary>Required. Title of the plan.</summary>
         public string Title { get; set; }
+        /// <summary>
+        /// Instantiates a new plannerPlan and sets the default values.
+        /// </summary>
+        public PlannerPlan() : base() {
+            OdataType = "#microsoft.graph.plannerPlan";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -11,13 +11,16 @@ namespace ApiSdk.Models {
         public TimeSpan? Duration { get; set; }
         /// <summary>Timestamp of date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
-        /// <summary>The requestor&apos;s desired expiration pattern type.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The requestor&apos;s desired expiration pattern type. The possible values are: notSpecified, noExpiration, afterDateTime, afterDuration.</summary>
         public ExpirationPatternType? Type { get; set; }
         /// <summary>
         /// Instantiates a new expirationPattern and sets the default values.
         /// </summary>
         public ExpirationPattern() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.expirationPattern";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"duration", n => { Duration = n.GetTimeSpanValue(); } },
                 {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<ExpirationPatternType>(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteTimeSpanValue("duration", Duration);
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<ExpirationPatternType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

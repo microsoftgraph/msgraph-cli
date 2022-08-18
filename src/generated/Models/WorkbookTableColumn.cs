@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class WorkbookTableColumn : Entity, IParsable {
         /// <summary>Retrieve the filter applied to the column. Read-only.</summary>
         public WorkbookFilter Filter { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public string Name { get; set; }
         /// <summary>Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.</summary>
         public Json Values { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookTableColumn and sets the default values.
+        /// </summary>
+        public WorkbookTableColumn() : base() {
+            OdataType = "#microsoft.graph.workbookTableColumn";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

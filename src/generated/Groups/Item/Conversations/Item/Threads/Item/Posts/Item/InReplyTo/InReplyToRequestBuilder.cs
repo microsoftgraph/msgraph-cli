@@ -104,11 +104,11 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             return command;
         }
         /// <summary>
-        /// The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
+        /// Read-only. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.";
+            command.Description = "Read-only. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -290,7 +290,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             return requestInfo;
         }
         /// <summary>
-        /// The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
+        /// Read-only. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<InReplyToRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -344,7 +344,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.</summary>
+        /// <summary>Read-only. Supports $expand.</summary>
         public class InReplyToRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

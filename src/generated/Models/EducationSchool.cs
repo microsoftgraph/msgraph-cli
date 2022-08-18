@@ -34,6 +34,12 @@ namespace ApiSdk.Models {
         /// <summary>Users in the school. Nullable.</summary>
         public List<EducationUser> Users { get; set; }
         /// <summary>
+        /// Instantiates a new EducationSchool and sets the default values.
+        /// </summary>
+        public EducationSchool() : base() {
+            OdataType = "#microsoft.graph.educationSchool";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

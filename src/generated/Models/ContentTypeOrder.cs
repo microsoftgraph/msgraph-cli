@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether this is the default Content Type</summary>
         public bool? Default { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Specifies the position in which the Content Type appears in the selection UI.</summary>
         public int? Position { get; set; }
         /// <summary>
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ContentTypeOrder() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.contentTypeOrder";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"default", n => { Default = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"position", n => { Position = n.GetIntValue(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("default", Default);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("position", Position);
             writer.WriteAdditionalData(AdditionalData);
         }

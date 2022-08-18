@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AccessPackageSubject : Entity, IParsable {
         /// <summary>The connected organization of the subject. Read-only. Nullable.</summary>
         public ApiSdk.Models.ConnectedOrganization ConnectedOrganization { get; set; }
@@ -20,6 +19,12 @@ namespace ApiSdk.Models {
         public string PrincipalName { get; set; }
         /// <summary>The resource type of the subject. The possible values are: notSpecified, user, servicePrincipal, unknownFutureValue.</summary>
         public AccessPackageSubjectType? SubjectType { get; set; }
+        /// <summary>
+        /// Instantiates a new accessPackageSubject and sets the default values.
+        /// </summary>
+        public AccessPackageSubject() : base() {
+            OdataType = "#microsoft.graph.accessPackageSubject";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

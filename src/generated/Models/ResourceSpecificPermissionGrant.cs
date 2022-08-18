@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
     public class ResourceSpecificPermissionGrant : DirectoryObject, IParsable {
         /// <summary>ID of the service principal of the Azure AD app that has been granted access. Read-only.</summary>
         public string ClientAppId { get; set; }
@@ -16,6 +15,12 @@ namespace ApiSdk.Models {
         public string PermissionType { get; set; }
         /// <summary>ID of the Azure AD app that is hosting the resource. Read-only.</summary>
         public string ResourceAppId { get; set; }
+        /// <summary>
+        /// Instantiates a new ResourceSpecificPermissionGrant and sets the default values.
+        /// </summary>
+        public ResourceSpecificPermissionGrant() : base() {
+            OdataType = "#microsoft.graph.resourceSpecificPermissionGrant";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

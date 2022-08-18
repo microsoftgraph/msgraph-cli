@@ -282,7 +282,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.Hosted
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new chatMessageHostedContentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ChatMessageHostedContentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ChatMessageHostedContentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -307,7 +307,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.Hosted
             /// <summary>Request query parameters</summary>
             public ChatMessageHostedContentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ChatMessageHostedContentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new chatMessageHostedContentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ChatMessageHostedContentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ChatMessageHostedContentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -321,7 +321,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.Hosted
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new chatMessageHostedContentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ChatMessageHostedContentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ChatMessageHostedContentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

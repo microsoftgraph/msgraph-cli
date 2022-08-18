@@ -61,11 +61,11 @@ namespace ApiSdk.Me.Drives.Item.List.Operations.Item {
             return command;
         }
         /// <summary>
-        /// The collection of long running operations for the list.
+        /// The collection of long-running operations on the list.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of long running operations for the list.";
+            command.Description = "The collection of long-running operations on the list.";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -199,7 +199,7 @@ namespace ApiSdk.Me.Drives.Item.List.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of long running operations for the list.
+        /// The collection of long-running operations on the list.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RichLongRunningOperationItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,14 +246,14 @@ namespace ApiSdk.Me.Drives.Item.List.Operations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new richLongRunningOperationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new RichLongRunningOperationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public RichLongRunningOperationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The collection of long running operations for the list.</summary>
+        /// <summary>The collection of long-running operations on the list.</summary>
         public class RichLongRunningOperationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -271,7 +271,7 @@ namespace ApiSdk.Me.Drives.Item.List.Operations.Item {
             /// <summary>Request query parameters</summary>
             public RichLongRunningOperationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new RichLongRunningOperationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new richLongRunningOperationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new RichLongRunningOperationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public RichLongRunningOperationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Me.Drives.Item.List.Operations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new richLongRunningOperationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new RichLongRunningOperationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public RichLongRunningOperationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

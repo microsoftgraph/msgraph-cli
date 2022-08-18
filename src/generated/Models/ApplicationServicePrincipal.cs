@@ -9,13 +9,16 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The application property</summary>
         public ApiSdk.Models.Application Application { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The servicePrincipal property</summary>
         public ApiSdk.Models.ServicePrincipal ServicePrincipal { get; set; }
         /// <summary>
-        /// Instantiates a new ApplicationServicePrincipal and sets the default values.
+        /// Instantiates a new applicationServicePrincipal and sets the default values.
         /// </summary>
         public ApplicationServicePrincipal() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.applicationServicePrincipal";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"application", n => { Application = n.GetObjectValue<ApiSdk.Models.Application>(ApiSdk.Models.Application.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"servicePrincipal", n => { ServicePrincipal = n.GetObjectValue<ApiSdk.Models.ServicePrincipal>(ApiSdk.Models.ServicePrincipal.CreateFromDiscriminatorValue); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<ApiSdk.Models.Application>("application", Application);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<ApiSdk.Models.ServicePrincipal>("servicePrincipal", ServicePrincipal);
             writer.WriteAdditionalData(AdditionalData);
         }

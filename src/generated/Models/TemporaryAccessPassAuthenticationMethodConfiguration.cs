@@ -5,18 +5,24 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class TemporaryAccessPassAuthenticationMethodConfiguration : AuthenticationMethodConfiguration, IParsable {
-        /// <summary>Default length, in characters, of a temporaryAccessPass, between 8 and 48 characters.</summary>
+        /// <summary>Default length in characters of a Temporary Access Pass object. Must be between 8 and 48 characters.</summary>
         public int? DefaultLength { get; set; }
-        /// <summary>Default lifetime, in minutes, for a temporaryAccessPass. Value can be between the minimumLifetimeInMinutes and maximumLifetimeInMinutes.</summary>
+        /// <summary>Default lifetime in minutes for a Temporary Access Pass. Value can be any integer between the minimumLifetimeInMinutes and maximumLifetimeInMinutes.</summary>
         public int? DefaultLifetimeInMinutes { get; set; }
         /// <summary>A collection of users or groups who are enabled to use the authentication method.</summary>
         public List<AuthenticationMethodTarget> IncludeTargets { get; set; }
-        /// <summary>If true, all the passes in the tenant will be restricted to one-time use. If false, passes in the tenant can be created to be either one-time use or multiple time use.</summary>
+        /// <summary>If true, all the passes in the tenant will be restricted to one-time use. If false, passes in the tenant can be created to be either one-time use or reusable.</summary>
         public bool? IsUsableOnce { get; set; }
-        /// <summary>Maximum lifetime in minutes for any temporaryAccessPass created in the tenant. Value can be between 10 and 43200 minutes (equivalent to 30 days).</summary>
+        /// <summary>Maximum lifetime in minutes for any Temporary Access Pass created in the tenant. Value can be between 10 and 43200 minutes (equivalent to 30 days).</summary>
         public int? MaximumLifetimeInMinutes { get; set; }
-        /// <summary>Minimum lifetime in minutes for any temporaryAccessPass created in the tenant. Value can be between 10 and 43200 minutes (equivalent to 30 days).</summary>
+        /// <summary>Minimum lifetime in minutes for any Temporary Access Pass created in the tenant. Value can be between 10 and 43200 minutes (equivalent to 30 days).</summary>
         public int? MinimumLifetimeInMinutes { get; set; }
+        /// <summary>
+        /// Instantiates a new TemporaryAccessPassAuthenticationMethodConfiguration and sets the default values.
+        /// </summary>
+        public TemporaryAccessPassAuthenticationMethodConfiguration() : base() {
+            OdataType = "#microsoft.graph.temporaryAccessPassAuthenticationMethodConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -55,11 +55,11 @@ namespace ApiSdk.SubscribedSkus.Item {
             return command;
         }
         /// <summary>
-        /// Get a specific commercial subscription that an organization has acquired.
+        /// Get entity from subscribedSkus by key
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a specific commercial subscription that an organization has acquired.";
+            command.Description = "Get entity from subscribedSkus by key";
             // Create options for all the parameters
             var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
             };
@@ -174,7 +174,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a specific commercial subscription that an organization has acquired.
+        /// Get entity from subscribedSkus by key
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SubscribedSkuItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -221,14 +221,14 @@ namespace ApiSdk.SubscribedSkus.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new subscribedSkuItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new SubscribedSkuItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public SubscribedSkuItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get a specific commercial subscription that an organization has acquired.</summary>
+        /// <summary>Get entity from subscribedSkus by key</summary>
         public class SubscribedSkuItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
             [QueryParameter("%24select")]
@@ -243,7 +243,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             /// <summary>Request query parameters</summary>
             public SubscribedSkuItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SubscribedSkuItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new subscribedSkuItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SubscribedSkuItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SubscribedSkuItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -257,7 +257,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new subscribedSkuItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SubscribedSkuItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SubscribedSkuItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

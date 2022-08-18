@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public int? Bottom { get; set; }
         /// <summary>The margin in microns from the left edge.</summary>
         public int? Left { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The margin in microns from the right edge.</summary>
         public int? Right { get; set; }
         /// <summary>The margin in microns from the top edge.</summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public PrintMargin() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.printMargin";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -36,6 +39,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"bottom", n => { Bottom = n.GetIntValue(); } },
                 {"left", n => { Left = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"right", n => { Right = n.GetIntValue(); } },
                 {"top", n => { Top = n.GetIntValue(); } },
             };
@@ -48,6 +52,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("bottom", Bottom);
             writer.WriteIntValue("left", Left);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("right", Right);
             writer.WriteIntValue("top", Top);
             writer.WriteAdditionalData(AdditionalData);

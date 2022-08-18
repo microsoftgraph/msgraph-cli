@@ -350,7 +350,7 @@ namespace ApiSdk.Communications.Calls.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new callItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new CallItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public CallItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -375,7 +375,7 @@ namespace ApiSdk.Communications.Calls.Item {
             /// <summary>Request query parameters</summary>
             public CallItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new CallItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new callItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new CallItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public CallItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -389,7 +389,7 @@ namespace ApiSdk.Communications.Calls.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new callItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new CallItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public CallItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

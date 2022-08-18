@@ -11,6 +11,12 @@ namespace ApiSdk.Models {
         /// <summary>The list of scheduled action configurations for this compliance policy. Compliance policy must have one and only one block scheduled action.</summary>
         public List<DeviceComplianceActionItem> ScheduledActionConfigurations { get; set; }
         /// <summary>
+        /// Instantiates a new deviceComplianceScheduledActionForRule and sets the default values.
+        /// </summary>
+        public DeviceComplianceScheduledActionForRule() : base() {
+            OdataType = "#microsoft.graph.deviceComplianceScheduledActionForRule";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

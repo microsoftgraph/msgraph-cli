@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,12 @@ namespace ApiSdk.Models {
         public ManagedDeviceMobileAppConfigurationUserSummary UserStatusSummary { get; set; }
         /// <summary>Version of the device configuration.</summary>
         public int? Version { get; set; }
+        /// <summary>
+        /// Instantiates a new managedDeviceMobileAppConfiguration and sets the default values.
+        /// </summary>
+        public ManagedDeviceMobileAppConfiguration() : base() {
+            OdataType = "#microsoft.graph.managedDeviceMobileAppConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

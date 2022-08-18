@@ -29,7 +29,7 @@ namespace ApiSdk.Models {
         public bool? CellularBlockVoiceRoaming { get; set; }
         /// <summary>Indicates whether or not to block syncing Wi-Fi tethering.</summary>
         public bool? CellularBlockWiFiTethering { get; set; }
-        /// <summary>Type of list that is in the CompliantAppsList. Possible values are: none, appsInListCompliant, appsNotInListCompliant.</summary>
+        /// <summary>Possible values of the compliance app list.</summary>
         public AppListType? CompliantAppListType { get; set; }
         /// <summary>List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.</summary>
         public List<AppListItem> CompliantAppsList { get; set; }
@@ -67,7 +67,7 @@ namespace ApiSdk.Models {
         public int? PasswordPreviousPasswordBlockCount { get; set; }
         /// <summary>Indicates whether or not to require a password.</summary>
         public bool? PasswordRequired { get; set; }
-        /// <summary>Type of password that is required. Possible values are: deviceDefault, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, numeric, numericComplex, any.</summary>
+        /// <summary>Android required password type.</summary>
         public AndroidRequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Number of sign in failures allowed before factory reset. Valid values 1 to 16</summary>
         public int? PasswordSignInFailureCountBeforeFactoryReset { get; set; }
@@ -97,10 +97,16 @@ namespace ApiSdk.Models {
         public bool? WebBrowserBlockJavaScript { get; set; }
         /// <summary>Indicates whether or not to block popups within the web browser.</summary>
         public bool? WebBrowserBlockPopups { get; set; }
-        /// <summary>Cookie settings within the web browser. Possible values are: browserDefault, blockAlways, allowCurrentWebSite, allowFromWebsitesVisited, allowAlways.</summary>
+        /// <summary>Web Browser Cookie Settings.</summary>
         public ApiSdk.Models.WebBrowserCookieSettings? WebBrowserCookieSettings { get; set; }
         /// <summary>Indicates whether or not to block syncing Wi-Fi.</summary>
         public bool? WiFiBlocked { get; set; }
+        /// <summary>
+        /// Instantiates a new AndroidGeneralDeviceConfiguration and sets the default values.
+        /// </summary>
+        public AndroidGeneralDeviceConfiguration() : base() {
+            OdataType = "#microsoft.graph.androidGeneralDeviceConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

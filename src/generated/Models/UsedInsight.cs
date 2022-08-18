@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class UsedInsight : Entity, IParsable {
         /// <summary>Information about when the item was last viewed or modified by the user. Read only.</summary>
         public UsageDetails LastUsed { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.ResourceReference ResourceReference { get; set; }
         /// <summary>Properties that you can use to visualize the document in your experience. Read-only</summary>
         public ApiSdk.Models.ResourceVisualization ResourceVisualization { get; set; }
+        /// <summary>
+        /// Instantiates a new usedInsight and sets the default values.
+        /// </summary>
+        public UsedInsight() : base() {
+            OdataType = "#microsoft.graph.usedInsight";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

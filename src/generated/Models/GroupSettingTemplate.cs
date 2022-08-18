@@ -12,6 +12,12 @@ namespace ApiSdk.Models {
         /// <summary>Collection of settingTemplateValues that list the set of available settings, defaults and types that make up this template.</summary>
         public List<SettingTemplateValue> Values { get; set; }
         /// <summary>
+        /// Instantiates a new GroupSettingTemplate and sets the default values.
+        /// </summary>
+        public GroupSettingTemplate() : base() {
+            OdataType = "#microsoft.graph.groupSettingTemplate";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

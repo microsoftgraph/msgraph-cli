@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the solutionsRoot singleton.</summary>
     public class BookingCurrency : Entity, IParsable {
         /// <summary>The currency symbol. For example, the currency symbol for the US dollar and for the Australian dollar is $.</summary>
         public string Symbol { get; set; }
+        /// <summary>
+        /// Instantiates a new BookingCurrency and sets the default values.
+        /// </summary>
+        public BookingCurrency() : base() {
+            OdataType = "#microsoft.graph.bookingCurrency";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

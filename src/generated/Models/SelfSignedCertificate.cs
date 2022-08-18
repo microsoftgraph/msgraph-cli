@@ -7,29 +7,32 @@ namespace ApiSdk.Models {
     public class SelfSignedCertificate : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Custom key identifier.</summary>
+        /// <summary>The customKeyIdentifier property</summary>
         public byte[] CustomKeyIdentifier { get; set; }
-        /// <summary>The friendly name for the key.</summary>
+        /// <summary>The displayName property</summary>
         public string DisplayName { get; set; }
-        /// <summary>The date and time at which the credential expires. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
+        /// <summary>The endDateTime property</summary>
         public DateTimeOffset? EndDateTime { get; set; }
-        /// <summary>The value for the key credential. Should be a base-64 encoded value.</summary>
+        /// <summary>The key property</summary>
         public byte[] Key { get; set; }
-        /// <summary>The unique identifier (GUID) for the key.</summary>
+        /// <summary>The keyId property</summary>
         public string KeyId { get; set; }
-        /// <summary>The date and time at which the credential becomes valid. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The startDateTime property</summary>
         public DateTimeOffset? StartDateTime { get; set; }
-        /// <summary>The thumbprint value for the key.</summary>
+        /// <summary>The thumbprint property</summary>
         public string Thumbprint { get; set; }
-        /// <summary>The type of key credential. &apos;AsymmetricX509Cert&apos;.</summary>
+        /// <summary>The type property</summary>
         public string Type { get; set; }
-        /// <summary>A string that describes the purpose for which the key can be used. For example, &apos;Verify&apos;.</summary>
+        /// <summary>The usage property</summary>
         public string Usage { get; set; }
         /// <summary>
         /// Instantiates a new SelfSignedCertificate and sets the default values.
         /// </summary>
         public SelfSignedCertificate() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.selfSignedCertificate";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -49,6 +52,7 @@ namespace ApiSdk.Models {
                 {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 {"key", n => { Key = n.GetByteArrayValue(); } },
                 {"keyId", n => { KeyId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"thumbprint", n => { Thumbprint = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetStringValue(); } },
@@ -66,6 +70,7 @@ namespace ApiSdk.Models {
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteByteArrayValue("key", Key);
             writer.WriteStringValue("keyId", KeyId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteStringValue("thumbprint", Thumbprint);
             writer.WriteStringValue("type", Type);

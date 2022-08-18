@@ -256,7 +256,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new meetingAttendanceReportItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new MeetingAttendanceReportItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public MeetingAttendanceReportItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -281,7 +281,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item {
             /// <summary>Request query parameters</summary>
             public MeetingAttendanceReportItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new MeetingAttendanceReportItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new meetingAttendanceReportItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new MeetingAttendanceReportItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public MeetingAttendanceReportItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -295,7 +295,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new meetingAttendanceReportItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new MeetingAttendanceReportItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public MeetingAttendanceReportItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

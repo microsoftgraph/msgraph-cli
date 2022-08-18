@@ -20,6 +20,12 @@ namespace ApiSdk.Models {
         /// <summary>A list of task triggers that are associated with the printer.</summary>
         public List<PrintTaskTrigger> TaskTriggers { get; set; }
         /// <summary>
+        /// Instantiates a new printer and sets the default values.
+        /// </summary>
+        public Printer() : base() {
+            OdataType = "#microsoft.graph.printer";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

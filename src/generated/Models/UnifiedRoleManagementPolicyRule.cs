@@ -1,13 +1,20 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the policyRoot singleton.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class UnifiedRoleManagementPolicyRule : Entity, IParsable {
-        /// <summary>Not implemented. Defines details of scope that&apos;s targeted by role management policy rule. The details can include the principal type, the role assignment type, and actions affecting a role. Supports $filter (eq, ne).</summary>
+        /// <summary>Defines details of scope that&apos;s targeted by role management policy rule. The details can include the principal type, the role assignment type, and actions affecting a role. Supports $filter (eq, ne).</summary>
         public UnifiedRoleManagementPolicyRuleTarget Target { get; set; }
+        /// <summary>
+        /// Instantiates a new unifiedRoleManagementPolicyRule and sets the default values.
+        /// </summary>
+        public UnifiedRoleManagementPolicyRule() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleManagementPolicyRule";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

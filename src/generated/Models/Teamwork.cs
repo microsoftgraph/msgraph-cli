@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the teamwork singleton.</summary>
     public class Teamwork : Entity, IParsable {
-        /// <summary>A workforce integration with shifts.</summary>
+        /// <summary>The workforceIntegrations property</summary>
         public List<WorkforceIntegration> WorkforceIntegrations { get; set; }
+        /// <summary>
+        /// Instantiates a new Teamwork and sets the default values.
+        /// </summary>
+        public Teamwork() : base() {
+            OdataType = "#microsoft.graph.teamwork";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -29,6 +29,8 @@ namespace ApiSdk.Models.CallRecords {
         public float? LowSpeechToNoiseEventRatio { get; set; }
         /// <summary>Glitches per 5 minute interval for the media endpoint&apos;s microphone.</summary>
         public float? MicGlitchRate { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Average energy level of received audio for audio classified as mono noise or left channel of stereo noise by the media endpoint.</summary>
         public int? ReceivedNoiseLevel { get; set; }
         /// <summary>Average energy level of received audio for audio classified as mono speech, or left channel of stereo speech by the media endpoint.</summary>
@@ -54,6 +56,7 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public DeviceInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.callRecords.deviceInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -79,6 +82,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"lowSpeechLevelEventRatio", n => { LowSpeechLevelEventRatio = n.GetFloatValue(); } },
                 {"lowSpeechToNoiseEventRatio", n => { LowSpeechToNoiseEventRatio = n.GetFloatValue(); } },
                 {"micGlitchRate", n => { MicGlitchRate = n.GetFloatValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"receivedNoiseLevel", n => { ReceivedNoiseLevel = n.GetIntValue(); } },
                 {"receivedSignalLevel", n => { ReceivedSignalLevel = n.GetIntValue(); } },
                 {"renderDeviceDriver", n => { RenderDeviceDriver = n.GetStringValue(); } },
@@ -108,6 +112,7 @@ namespace ApiSdk.Models.CallRecords {
             writer.WriteFloatValue("lowSpeechLevelEventRatio", LowSpeechLevelEventRatio);
             writer.WriteFloatValue("lowSpeechToNoiseEventRatio", LowSpeechToNoiseEventRatio);
             writer.WriteFloatValue("micGlitchRate", MicGlitchRate);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("receivedNoiseLevel", ReceivedNoiseLevel);
             writer.WriteIntValue("receivedSignalLevel", ReceivedSignalLevel);
             writer.WriteStringValue("renderDeviceDriver", RenderDeviceDriver);

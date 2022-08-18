@@ -23,11 +23,11 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.Columns.Item.Sour
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The source column for content type column.
+        /// The source column for the content type column.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The source column for content type column.";
+            command.Description = "The source column for the content type column.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -115,7 +115,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.Columns.Item.Sour
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The source column for content type column.
+        /// The source column for the content type column.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SourceColumnRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -134,7 +134,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.Columns.Item.Sour
             }
             return requestInfo;
         }
-        /// <summary>The source column for content type column.</summary>
+        /// <summary>The source column for the content type column.</summary>
         public class SourceColumnRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

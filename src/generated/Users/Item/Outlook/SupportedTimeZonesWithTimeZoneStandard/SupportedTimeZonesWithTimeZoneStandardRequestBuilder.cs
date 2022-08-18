@@ -32,7 +32,7 @@ namespace ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var timeZoneStandardOption = new Option<object>("--time-zone-standard", description: "Usage: TimeZoneStandard='{TimeZoneStandard}'") {
+            var timeZoneStandardOption = new Option<string>("--time-zone-standard", description: "Usage: TimeZoneStandard='{TimeZoneStandard}'") {
             };
             timeZoneStandardOption.IsRequired = true;
             command.AddOption(timeZoneStandardOption);

@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>The printerId property</summary>
         public string PrinterId { get; set; }
         /// <summary>
+        /// Instantiates a new PrintUsageByPrinter and sets the default values.
+        /// </summary>
+        public PrintUsageByPrinter() : base() {
+            OdataType = "#microsoft.graph.printUsageByPrinter";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

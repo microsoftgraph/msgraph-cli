@@ -11,11 +11,13 @@ namespace ApiSdk.Models {
         public List<ContentTypeInfo> AllowedContentTypes { get; set; }
         /// <summary>Default contents of document set.</summary>
         public List<DocumentSetContent> DefaultContents { get; set; }
-        /// <summary>Indicates whether to add the name of the document set to each file name.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>Specifies whether to push welcome page changes to inherited content types.</summary>
         public bool? PropagateWelcomePageChanges { get; set; }
         /// <summary>The sharedColumns property</summary>
         public List<ColumnDefinition> SharedColumns { get; set; }
-        /// <summary>Add the name of the Document Set to each file name.</summary>
+        /// <summary>Indicates whether to add the name of the document set to each file name.</summary>
         public bool? ShouldPrefixNameToFile { get; set; }
         /// <summary>The welcomePageColumns property</summary>
         public List<ColumnDefinition> WelcomePageColumns { get; set; }
@@ -26,6 +28,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public DocumentSet() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.documentSet";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -42,6 +45,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"allowedContentTypes", n => { AllowedContentTypes = n.GetCollectionOfObjectValues<ContentTypeInfo>(ContentTypeInfo.CreateFromDiscriminatorValue).ToList(); } },
                 {"defaultContents", n => { DefaultContents = n.GetCollectionOfObjectValues<DocumentSetContent>(DocumentSetContent.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"propagateWelcomePageChanges", n => { PropagateWelcomePageChanges = n.GetBoolValue(); } },
                 {"sharedColumns", n => { SharedColumns = n.GetCollectionOfObjectValues<ColumnDefinition>(ColumnDefinition.CreateFromDiscriminatorValue).ToList(); } },
                 {"shouldPrefixNameToFile", n => { ShouldPrefixNameToFile = n.GetBoolValue(); } },
@@ -57,6 +61,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<ContentTypeInfo>("allowedContentTypes", AllowedContentTypes);
             writer.WriteCollectionOfObjectValues<DocumentSetContent>("defaultContents", DefaultContents);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("propagateWelcomePageChanges", PropagateWelcomePageChanges);
             writer.WriteCollectionOfObjectValues<ColumnDefinition>("sharedColumns", SharedColumns);
             writer.WriteBoolValue("shouldPrefixNameToFile", ShouldPrefixNameToFile);

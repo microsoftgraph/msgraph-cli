@@ -228,7 +228,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationRubricItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationRubricItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public EducationRubricItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
             /// <summary>Request query parameters</summary>
             public EducationRubricItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EducationRubricItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new educationRubricItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationRubricItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EducationRubricItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationRubricItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationRubricItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public EducationRubricItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

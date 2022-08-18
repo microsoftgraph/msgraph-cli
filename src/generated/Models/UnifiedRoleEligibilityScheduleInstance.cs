@@ -4,16 +4,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the roleManagement singleton.</summary>
     public class UnifiedRoleEligibilityScheduleInstance : UnifiedRoleScheduleInstanceBase, IParsable {
-        /// <summary>Time that the roleEligibilityScheduleInstance will expire.</summary>
+        /// <summary>The end date of the schedule instance.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
-        /// <summary>Membership type of the assignment. It can either be Inherited, Direct, or Group.</summary>
+        /// <summary>How the role eligibility is inherited. It can either be Inherited, Direct, or Group. It can further imply whether the unifiedRoleEligibilitySchedule can be managed by the caller. Supports $filter (eq, ne).</summary>
         public string MemberType { get; set; }
-        /// <summary>Identifier of the parent roleEligibilitySchedule for this instance.</summary>
+        /// <summary>The identifier of the unifiedRoleEligibilitySchedule object from which this instance was created. Supports $filter (eq, ne).</summary>
         public string RoleEligibilityScheduleId { get; set; }
-        /// <summary>Time that the roleEligibilityScheduleInstance will start.</summary>
+        /// <summary>When this instance starts.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
+        /// <summary>
+        /// Instantiates a new unifiedRoleEligibilityScheduleInstance and sets the default values.
+        /// </summary>
+        public UnifiedRoleEligibilityScheduleInstance() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleEligibilityScheduleInstance";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

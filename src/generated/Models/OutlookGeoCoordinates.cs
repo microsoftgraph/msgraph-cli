@@ -17,11 +17,14 @@ namespace ApiSdk.Models {
         public double? Latitude { get; set; }
         /// <summary>The longitude of the location.</summary>
         public double? Longitude { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new outlookGeoCoordinates and sets the default values.
         /// </summary>
         public OutlookGeoCoordinates() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.outlookGeoCoordinates";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -41,6 +44,7 @@ namespace ApiSdk.Models {
                 {"altitudeAccuracy", n => { AltitudeAccuracy = n.GetDoubleValue(); } },
                 {"latitude", n => { Latitude = n.GetDoubleValue(); } },
                 {"longitude", n => { Longitude = n.GetDoubleValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -54,6 +58,7 @@ namespace ApiSdk.Models {
             writer.WriteDoubleValue("altitudeAccuracy", AltitudeAccuracy);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -23,11 +23,11 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand.
+        /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Directory objects that are owners of the application. Read-only. Nullable. Supports $expand.";
+            command.Description = "Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -133,31 +133,13 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var applicationId = invocationContext.ParseResult.GetValueForOption(applicationIdOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
-                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Ref>(Ref.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ReferenceCreate>(ReferenceCreate.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("application%2Did", applicationId);
@@ -165,11 +147,8 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             });
             return command;
         }
@@ -187,7 +166,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand.
+        /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RefRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -211,14 +190,13 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Ref body, Action<RefRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation CreatePostRequestInformation(ReferenceCreate body, Action<RefRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new RefRequestBuilderPostRequestConfiguration();
@@ -228,7 +206,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
             }
             return requestInfo;
         }
-        /// <summary>Directory objects that are owners of the application. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).</summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
@@ -258,7 +236,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
             /// <summary>Request query parameters</summary>
             public RefRequestBuilderGetQueryParameters QueryParameters { get; set; } = new RefRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new refRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new RefRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public RefRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -272,7 +250,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new refRequestBuilderPostRequestConfiguration and sets the default values.
+            /// Instantiates a new RefRequestBuilderPostRequestConfiguration and sets the default values.
             /// </summary>
             public RefRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();

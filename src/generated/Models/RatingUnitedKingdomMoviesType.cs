@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public enum RatingUnitedKingdomMoviesType {
         /// <summary>Default value, allow all movies content</summary>
         AllAllowed,

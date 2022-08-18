@@ -94,11 +94,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return command;
         }
         /// <summary>
-        /// List of notes associated with the request.
+        /// List of notes associcated with the request.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List of notes associated with the request.";
+            command.Description = "List of notes associcated with the request.";
             // Create options for all the parameters
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// List of notes associated with the request.
+        /// List of notes associcated with the request.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<NotesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             }
             return requestInfo;
         }
-        /// <summary>List of notes associated with the request.</summary>
+        /// <summary>List of notes associcated with the request.</summary>
         public class NotesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

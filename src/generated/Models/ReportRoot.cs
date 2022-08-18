@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>The resource that represents an instance of Enrollment Failure Reports.</summary>
     public class ReportRoot : Entity, IParsable {
         /// <summary>The dailyPrintUsageByPrinter property</summary>
         public List<PrintUsageByPrinter> DailyPrintUsageByPrinter { get; set; }
@@ -14,6 +13,12 @@ namespace ApiSdk.Models {
         public List<PrintUsageByPrinter> MonthlyPrintUsageByPrinter { get; set; }
         /// <summary>The monthlyPrintUsageByUser property</summary>
         public List<PrintUsageByUser> MonthlyPrintUsageByUser { get; set; }
+        /// <summary>
+        /// Instantiates a new ReportRoot and sets the default values.
+        /// </summary>
+        public ReportRoot() : base() {
+            OdataType = "#microsoft.graph.reportRoot";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

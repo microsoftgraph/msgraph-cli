@@ -29,6 +29,8 @@ namespace ApiSdk.Models {
         public NotebookLinks Links { get; set; }
         /// <summary>The name property</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The sectionGroupsUrl property</summary>
         public string SectionGroupsUrl { get; set; }
         /// <summary>The sectionsUrl property</summary>
@@ -42,6 +44,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public CopyNotebookModel() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.CopyNotebookModel";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -67,6 +70,7 @@ namespace ApiSdk.Models {
                 {"lastModifiedTime", n => { LastModifiedTime = n.GetDateTimeOffsetValue(); } },
                 {"links", n => { Links = n.GetObjectValue<NotebookLinks>(NotebookLinks.CreateFromDiscriminatorValue); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"sectionGroupsUrl", n => { SectionGroupsUrl = n.GetStringValue(); } },
                 {"sectionsUrl", n => { SectionsUrl = n.GetStringValue(); } },
                 {"self", n => { Self = n.GetStringValue(); } },
@@ -90,6 +94,7 @@ namespace ApiSdk.Models {
             writer.WriteDateTimeOffsetValue("lastModifiedTime", LastModifiedTime);
             writer.WriteObjectValue<NotebookLinks>("links", Links);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("sectionGroupsUrl", SectionGroupsUrl);
             writer.WriteStringValue("sectionsUrl", SectionsUrl);
             writer.WriteStringValue("self", Self);

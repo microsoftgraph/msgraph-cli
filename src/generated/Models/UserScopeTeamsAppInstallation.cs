@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>The chat between the user and Teams app.</summary>
         public ApiSdk.Models.Chat Chat { get; set; }
         /// <summary>
+        /// Instantiates a new UserScopeTeamsAppInstallation and sets the default values.
+        /// </summary>
+        public UserScopeTeamsAppInstallation() : base() {
+            OdataType = "#microsoft.graph.userScopeTeamsAppInstallation";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

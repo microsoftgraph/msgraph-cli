@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookWorksheetProtection : Entity, IParsable {
         /// <summary>Sheet protection options. Read-only.</summary>
         public WorkbookWorksheetProtectionOptions Options { get; set; }
         /// <summary>Indicates if the worksheet is protected.  Read-only.</summary>
         public bool? Protected { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookWorksheetProtection and sets the default values.
+        /// </summary>
+        public WorkbookWorksheetProtection() : base() {
+            OdataType = "#microsoft.graph.workbookWorksheetProtection";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

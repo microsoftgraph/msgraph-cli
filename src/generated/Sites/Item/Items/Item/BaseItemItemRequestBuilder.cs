@@ -23,11 +23,11 @@ namespace ApiSdk.Sites.Item.Items.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Used to address any item contained in this site. This collection cannot be enumerated.
+        /// Used to address any item contained in this site. This collection can&apos;t be enumerated.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Used to address any item contained in this site. This collection cannot be enumerated.";
+            command.Description = "Used to address any item contained in this site. This collection can't be enumerated.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -103,7 +103,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Used to address any item contained in this site. This collection cannot be enumerated.
+        /// Used to address any item contained in this site. This collection can&apos;t be enumerated.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<BaseItemItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -122,7 +122,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
             }
             return requestInfo;
         }
-        /// <summary>Used to address any item contained in this site. This collection cannot be enumerated.</summary>
+        /// <summary>Used to address any item contained in this site. This collection can&apos;t be enumerated.</summary>
         public class BaseItemItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -140,7 +140,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
             /// <summary>Request query parameters</summary>
             public BaseItemItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new BaseItemItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new baseItemItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new BaseItemItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public BaseItemItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

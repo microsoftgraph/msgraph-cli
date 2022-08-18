@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public string ControlName { get; set; }
         /// <summary>Description of the control.</summary>
         public string Description { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Tenant achieved score for the control (it varies day by day depending on tenant operations on the control).</summary>
         public double? Score { get; set; }
         /// <summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ControlScore() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.controlScore";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,6 +40,7 @@ namespace ApiSdk.Models {
                 {"controlCategory", n => { ControlCategory = n.GetStringValue(); } },
                 {"controlName", n => { ControlName = n.GetStringValue(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"score", n => { Score = n.GetDoubleValue(); } },
             };
         }
@@ -49,6 +53,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("controlCategory", ControlCategory);
             writer.WriteStringValue("controlName", ControlName);
             writer.WriteStringValue("description", Description);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDoubleValue("score", Score);
             writer.WriteAdditionalData(AdditionalData);
         }

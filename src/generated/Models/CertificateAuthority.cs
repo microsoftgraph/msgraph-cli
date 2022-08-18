@@ -19,11 +19,14 @@ namespace ApiSdk.Models {
         public string Issuer { get; set; }
         /// <summary>The subject key identifier of the certificate, calculated from the certificate value. Read-only.</summary>
         public string IssuerSki { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new certificateAuthority and sets the default values.
         /// </summary>
         public CertificateAuthority() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.certificateAuthority";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -44,6 +47,7 @@ namespace ApiSdk.Models {
                 {"isRootAuthority", n => { IsRootAuthority = n.GetBoolValue(); } },
                 {"issuer", n => { Issuer = n.GetStringValue(); } },
                 {"issuerSki", n => { IssuerSki = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -58,6 +62,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("isRootAuthority", IsRootAuthority);
             writer.WriteStringValue("issuer", Issuer);
             writer.WriteStringValue("issuerSki", IssuerSki);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

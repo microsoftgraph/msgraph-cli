@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class EntitlementManagement : Entity, IParsable {
         /// <summary>Approval stages for decisions associated with access package assignment requests.</summary>
         public List<Approval> AccessPackageAssignmentApprovals { get; set; }
-        /// <summary>Represents access package objects.</summary>
+        /// <summary>Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.</summary>
         public List<AccessPackage> AccessPackages { get; set; }
         /// <summary>Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.</summary>
         public List<AccessPackageAssignmentPolicy> AssignmentPolicies { get; set; }
@@ -18,10 +17,16 @@ namespace ApiSdk.Models {
         public List<AccessPackageAssignment> Assignments { get; set; }
         /// <summary>A container for access packages.</summary>
         public List<AccessPackageCatalog> Catalogs { get; set; }
-        /// <summary>Represents references to a directory or domain of another organization whose users can request access.</summary>
+        /// <summary>References to a directory or domain of another organization whose users can request access.</summary>
         public List<ConnectedOrganization> ConnectedOrganizations { get; set; }
-        /// <summary>Represents the settings that control the behavior of Azure AD entitlement management.</summary>
+        /// <summary>The settings that control the behavior of Azure AD entitlement management.</summary>
         public EntitlementManagementSettings Settings { get; set; }
+        /// <summary>
+        /// Instantiates a new EntitlementManagement and sets the default values.
+        /// </summary>
+        public EntitlementManagement() : base() {
+            OdataType = "#microsoft.graph.entitlementManagement";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public string Message { get; set; }
         /// <summary>The language that the automatic reply message is in.</summary>
         public LocaleInfo MessageLanguage { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The date and time that automatic replies are set to end.</summary>
         public DateTimeTimeZone ScheduledEndTime { get; set; }
         /// <summary>The date and time that automatic replies are set to begin.</summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AutomaticRepliesMailTips() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.automaticRepliesMailTips";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -36,6 +39,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"message", n => { Message = n.GetStringValue(); } },
                 {"messageLanguage", n => { MessageLanguage = n.GetObjectValue<LocaleInfo>(LocaleInfo.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"scheduledEndTime", n => { ScheduledEndTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"scheduledStartTime", n => { ScheduledStartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
@@ -48,6 +52,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("message", Message);
             writer.WriteObjectValue<LocaleInfo>("messageLanguage", MessageLanguage);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<DateTimeTimeZone>("scheduledEndTime", ScheduledEndTime);
             writer.WriteObjectValue<DateTimeTimeZone>("scheduledStartTime", ScheduledStartTime);
             writer.WriteAdditionalData(AdditionalData);

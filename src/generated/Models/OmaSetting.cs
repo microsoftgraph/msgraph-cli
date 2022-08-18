@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace ApiSdk.Models {
         public string Description { get; set; }
         /// <summary>Display Name.</summary>
         public string DisplayName { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>OMA.</summary>
         public string OmaUri { get; set; }
         /// <summary>
@@ -19,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public OmaSetting() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.omaSetting";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -26,7 +30,18 @@ namespace ApiSdk.Models {
         /// </summary>
         public static OmaSetting CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OmaSetting();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.omaSettingBase64" => new OmaSettingBase64(),
+                "#microsoft.graph.omaSettingBoolean" => new OmaSettingBoolean(),
+                "#microsoft.graph.omaSettingDateTime" => new OmaSettingDateTime(),
+                "#microsoft.graph.omaSettingFloatingPoint" => new OmaSettingFloatingPoint(),
+                "#microsoft.graph.omaSettingInteger" => new OmaSettingInteger(),
+                "#microsoft.graph.omaSettingString" => new OmaSettingString(),
+                "#microsoft.graph.omaSettingStringXml" => new OmaSettingStringXml(),
+                _ => new OmaSetting(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -35,6 +50,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"omaUri", n => { OmaUri = n.GetStringValue(); } },
             };
         }
@@ -46,6 +62,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("omaUri", OmaUri);
             writer.WriteAdditionalData(AdditionalData);
         }

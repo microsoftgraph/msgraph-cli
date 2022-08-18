@@ -10,6 +10,12 @@ namespace ApiSdk.Models {
         /// <summary>The maximum duration allowed for eligibility or assignment which is not permanent. Required when isExpirationRequired is true.</summary>
         public TimeSpan? MaximumDuration { get; set; }
         /// <summary>
+        /// Instantiates a new UnifiedRoleManagementPolicyExpirationRule and sets the default values.
+        /// </summary>
+        public UnifiedRoleManagementPolicyExpirationRule() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

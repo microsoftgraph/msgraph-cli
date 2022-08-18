@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class Trending : Entity, IParsable {
         /// <summary>The lastModifiedDateTime property</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
@@ -16,6 +16,12 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.ResourceVisualization ResourceVisualization { get; set; }
         /// <summary>Value indicating how much the document is currently trending. The larger the number, the more the document is currently trending around the user (the more relevant it is). Returned documents are sorted by this value.</summary>
         public double? Weight { get; set; }
+        /// <summary>
+        /// Instantiates a new trending and sets the default values.
+        /// </summary>
+        public Trending() : base() {
+            OdataType = "#microsoft.graph.trending";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

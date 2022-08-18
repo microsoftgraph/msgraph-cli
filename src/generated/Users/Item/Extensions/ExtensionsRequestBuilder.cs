@@ -94,11 +94,11 @@ namespace ApiSdk.Users.Item.Extensions {
             return command;
         }
         /// <summary>
-        /// The collection of open extensions defined for the user. Nullable.
+        /// The collection of open extensions defined for the user. Read-only. Supports $expand. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of open extensions defined for the user. Nullable.";
+            command.Description = "The collection of open extensions defined for the user. Read-only. Supports $expand. Nullable.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Users.Item.Extensions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of open extensions defined for the user. Nullable.
+        /// The collection of open extensions defined for the user. Read-only. Supports $expand. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ExtensionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.Users.Item.Extensions {
             }
             return requestInfo;
         }
-        /// <summary>The collection of open extensions defined for the user. Nullable.</summary>
+        /// <summary>The collection of open extensions defined for the user. Read-only. Supports $expand. Nullable.</summary>
         public class ExtensionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

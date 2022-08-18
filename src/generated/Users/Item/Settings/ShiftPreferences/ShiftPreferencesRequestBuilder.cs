@@ -55,11 +55,11 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
             return command;
         }
         /// <summary>
-        /// The shift preferences for the user.
+        /// Get shiftPreferences from users
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The shift preferences for the user.";
+            command.Description = "Get shiftPreferences from users";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -181,7 +181,7 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
             return requestInfo;
         }
         /// <summary>
-        /// The shift preferences for the user.
+        /// Get shiftPreferences from users
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ShiftPreferencesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -235,7 +235,7 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The shift preferences for the user.</summary>
+        /// <summary>Get shiftPreferences from users</summary>
         public class ShiftPreferencesRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

@@ -19,12 +19,18 @@ namespace ApiSdk.Models {
         public int? TotalLicenseCount { get; set; }
         /// <summary>The number of VPP licenses in use.</summary>
         public int? UsedLicenseCount { get; set; }
-        /// <summary>The type of volume purchase program which the given Apple Volume Purchase Program Token is associated with. Possible values are: business, education. Possible values are: business, education.</summary>
+        /// <summary>Possible types of an Apple Volume Purchase Program token.</summary>
         public ApiSdk.Models.VppTokenAccountType? VppTokenAccountType { get; set; }
         /// <summary>The Apple Id associated with the given Apple Volume Purchase Program Token.</summary>
         public string VppTokenAppleId { get; set; }
         /// <summary>The organization associated with the Apple Volume Purchase Program Token</summary>
         public string VppTokenOrganizationName { get; set; }
+        /// <summary>
+        /// Instantiates a new IosVppApp and sets the default values.
+        /// </summary>
+        public IosVppApp() : base() {
+            OdataType = "#microsoft.graph.iosVppApp";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

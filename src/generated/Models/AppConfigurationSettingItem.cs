@@ -10,15 +10,18 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>app configuration key.</summary>
         public string AppConfigKey { get; set; }
-        /// <summary>app configuration key type. Possible values are: stringType, integerType, realType, booleanType, tokenType.</summary>
+        /// <summary>App configuration key types.</summary>
         public MdmAppConfigKeyType? AppConfigKeyType { get; set; }
         /// <summary>app configuration key value.</summary>
         public string AppConfigKeyValue { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new appConfigurationSettingItem and sets the default values.
         /// </summary>
         public AppConfigurationSettingItem() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.appConfigurationSettingItem";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -36,6 +39,7 @@ namespace ApiSdk.Models {
                 {"appConfigKey", n => { AppConfigKey = n.GetStringValue(); } },
                 {"appConfigKeyType", n => { AppConfigKeyType = n.GetEnumValue<MdmAppConfigKeyType>(); } },
                 {"appConfigKeyValue", n => { AppConfigKeyValue = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -47,6 +51,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("appConfigKey", AppConfigKey);
             writer.WriteEnumValue<MdmAppConfigKeyType>("appConfigKeyType", AppConfigKeyType);
             writer.WriteStringValue("appConfigKeyValue", AppConfigKeyValue);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

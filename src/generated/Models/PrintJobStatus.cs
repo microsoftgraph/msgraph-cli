@@ -13,13 +13,16 @@ namespace ApiSdk.Models {
         public List<string> Details { get; set; }
         /// <summary>True if the job was acknowledged by a printer; false otherwise. Read-only.</summary>
         public bool? IsAcquiredByPrinter { get; set; }
-        /// <summary>The print job&apos;s current processing state. Valid values are described in the following table. Read-only.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The state property</summary>
         public PrintJobProcessingState? State { get; set; }
         /// <summary>
         /// Instantiates a new printJobStatus and sets the default values.
         /// </summary>
         public PrintJobStatus() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.printJobStatus";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,6 +40,7 @@ namespace ApiSdk.Models {
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"details", n => { Details = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"isAcquiredByPrinter", n => { IsAcquiredByPrinter = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"state", n => { State = n.GetEnumValue<PrintJobProcessingState>(); } },
             };
         }
@@ -49,6 +53,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("description", Description);
             writer.WriteCollectionOfPrimitiveValues<string>("details", Details);
             writer.WriteBoolValue("isAcquiredByPrinter", IsAcquiredByPrinter);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<PrintJobProcessingState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }

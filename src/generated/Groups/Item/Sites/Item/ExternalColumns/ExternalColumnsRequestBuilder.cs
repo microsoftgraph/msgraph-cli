@@ -37,11 +37,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.ExternalColumns {
             return command;
         }
         /// <summary>
-        /// The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.
+        /// Get externalColumns from groups
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.";
+            command.Description = "Get externalColumns from groups";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -166,7 +166,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ExternalColumns {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.
+        /// Get externalColumns from groups
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ExternalColumnsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -185,7 +185,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ExternalColumns {
             }
             return requestInfo;
         }
-        /// <summary>The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.</summary>
+        /// <summary>Get externalColumns from groups</summary>
         public class ExternalColumnsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

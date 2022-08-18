@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class MicrosoftStoreForBusinessApp : MobileApp, IParsable {
-        /// <summary>The app license type. Possible values are: offline, online.</summary>
+        /// <summary>The licenseType property</summary>
         public MicrosoftStoreForBusinessLicenseType? LicenseType { get; set; }
         /// <summary>The app package identifier</summary>
         public string PackageIdentityName { get; set; }
@@ -15,6 +15,12 @@ namespace ApiSdk.Models {
         public int? TotalLicenseCount { get; set; }
         /// <summary>The number of Microsoft Store for Business licenses in use.</summary>
         public int? UsedLicenseCount { get; set; }
+        /// <summary>
+        /// Instantiates a new MicrosoftStoreForBusinessApp and sets the default values.
+        /// </summary>
+        public MicrosoftStoreForBusinessApp() : base() {
+            OdataType = "#microsoft.graph.microsoftStoreForBusinessApp";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

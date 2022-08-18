@@ -16,6 +16,12 @@ namespace ApiSdk.Models {
         /// <summary>The type of recipient of the notification. The possible values are Requestor, Approver, Admin.</summary>
         public string RecipientType { get; set; }
         /// <summary>
+        /// Instantiates a new UnifiedRoleManagementPolicyNotificationRule and sets the default values.
+        /// </summary>
+        public UnifiedRoleManagementPolicyNotificationRule() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleManagementPolicyNotificationRule";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class CalendarGroup : Entity, IParsable {
         /// <summary>The calendars in the calendar group. Navigation property. Read-only. Nullable.</summary>
         public List<Calendar> Calendars { get; set; }
@@ -14,6 +13,12 @@ namespace ApiSdk.Models {
         public string ClassId { get; set; }
         /// <summary>The group name.</summary>
         public string Name { get; set; }
+        /// <summary>
+        /// Instantiates a new CalendarGroup and sets the default values.
+        /// </summary>
+        public CalendarGroup() : base() {
+            OdataType = "#microsoft.graph.calendarGroup";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

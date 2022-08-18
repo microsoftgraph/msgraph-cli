@@ -123,11 +123,16 @@ namespace ApiSdk.Users.Item {
             var command = new Command("authentication");
             var builder = new AuthenticationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildEmailMethodsCommand());
             command.AddCommand(builder.BuildFido2MethodsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMethodsCommand());
             command.AddCommand(builder.BuildMicrosoftAuthenticatorMethodsCommand());
+            command.AddCommand(builder.BuildOperationsCommand());
+            command.AddCommand(builder.BuildPasswordMethodsCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPhoneMethodsCommand());
+            command.AddCommand(builder.BuildSoftwareOathMethodsCommand());
             command.AddCommand(builder.BuildTemporaryAccessPassMethodsCommand());
             command.AddCommand(builder.BuildWindowsHelloForBusinessMethodsCommand());
             return command;
@@ -332,11 +337,11 @@ namespace ApiSdk.Users.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
+        /// Retrieve the properties and relationships of user object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.";
+            command.Description = "Retrieve the properties and relationships of user object.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -710,6 +715,7 @@ namespace ApiSdk.Users.Item {
         public Command BuildTeamworkCommand() {
             var command = new Command("teamwork");
             var builder = new TeamworkRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAssociatedTeamsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstalledAppsCommand());
@@ -784,7 +790,7 @@ namespace ApiSdk.Users.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
+        /// Retrieve the properties and relationships of user object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UserItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -853,14 +859,14 @@ namespace ApiSdk.Users.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UserItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UserItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.</summary>
+        /// <summary>Retrieve the properties and relationships of user object.</summary>
         public class UserItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -878,7 +884,7 @@ namespace ApiSdk.Users.Item {
             /// <summary>Request query parameters</summary>
             public UserItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UserItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new userItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UserItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UserItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -892,7 +898,7 @@ namespace ApiSdk.Users.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UserItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UserItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

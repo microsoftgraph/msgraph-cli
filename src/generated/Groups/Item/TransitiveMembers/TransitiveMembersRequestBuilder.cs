@@ -70,11 +70,11 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
             return command;
         }
         /// <summary>
-        /// Get transitiveMembers from groups
+        /// The direct and transitive members of a group. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get transitiveMembers from groups";
+            command.Description = "The direct and transitive members of a group. Nullable.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -214,7 +214,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get transitiveMembers from groups
+        /// The direct and transitive members of a group. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TransitiveMembersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -233,7 +233,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
             }
             return requestInfo;
         }
-        /// <summary>Get transitiveMembers from groups</summary>
+        /// <summary>The direct and transitive members of a group. Nullable.</summary>
         public class TransitiveMembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -246,7 +246,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new bookingCustomQuestionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new BookingCustomQuestionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public BookingCustomQuestionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             /// <summary>Request query parameters</summary>
             public BookingCustomQuestionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new BookingCustomQuestionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new bookingCustomQuestionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new BookingCustomQuestionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public BookingCustomQuestionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new bookingCustomQuestionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new BookingCustomQuestionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public BookingCustomQuestionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

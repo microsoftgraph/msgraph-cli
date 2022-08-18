@@ -17,6 +17,12 @@ namespace ApiSdk.Models {
         /// <summary>User name.</summary>
         public string UserName { get; set; }
         /// <summary>
+        /// Instantiates a new userInstallStateSummary and sets the default values.
+        /// </summary>
+        public UserInstallStateSummary() : base() {
+            OdataType = "#microsoft.graph.userInstallStateSummary";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

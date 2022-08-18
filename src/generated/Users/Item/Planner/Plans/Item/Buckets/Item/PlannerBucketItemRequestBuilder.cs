@@ -68,11 +68,11 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
             return command;
         }
         /// <summary>
-        /// Collection of buckets in the plan. Read-only. Nullable.
+        /// Read-only. Nullable. Collection of buckets in the plan.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Collection of buckets in the plan. Read-only. Nullable.";
+            command.Description = "Read-only. Nullable. Collection of buckets in the plan.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -227,7 +227,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Collection of buckets in the plan. Read-only. Nullable.
+        /// Read-only. Nullable. Collection of buckets in the plan.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PlannerBucketItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -274,14 +274,14 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new plannerBucketItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new PlannerBucketItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public PlannerBucketItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Collection of buckets in the plan. Read-only. Nullable.</summary>
+        /// <summary>Read-only. Nullable. Collection of buckets in the plan.</summary>
         public class PlannerBucketItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -299,7 +299,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
             /// <summary>Request query parameters</summary>
             public PlannerBucketItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PlannerBucketItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new plannerBucketItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new PlannerBucketItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public PlannerBucketItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -313,7 +313,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new plannerBucketItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new PlannerBucketItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public PlannerBucketItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -94,11 +94,11 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).
+        /// Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).";
+            command.Description = "Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).
+        /// Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ExtensionPropertiesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).</summary>
+        /// <summary>Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).</summary>
         public class ExtensionPropertiesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

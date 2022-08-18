@@ -9,7 +9,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync {
     public class SyncPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The syncType property</summary>
+        /// <summary>The type of Exchange Connector sync requested.</summary>
         public DeviceManagementExchangeConnectorSyncType? SyncType { get; set; }
         /// <summary>
         /// Instantiates a new syncPostRequestBody and sets the default values.

@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public string AaGuid { get; set; }
         /// <summary>The attestation certificate(s) attached to this security key.</summary>
         public List<string> AttestationCertificates { get; set; }
-        /// <summary>The attestation level of this FIDO2 security key. Possible values are: attested, notAttested, unknownFutureValue.</summary>
+        /// <summary>The attestation level of this FIDO2 security key. Possible values are: attested, or notAttested.</summary>
         public ApiSdk.Models.AttestationLevel? AttestationLevel { get; set; }
         /// <summary>The timestamp when this key was registered to the user.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -17,6 +17,12 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>The manufacturer-assigned model of the FIDO2 security key.</summary>
         public string Model { get; set; }
+        /// <summary>
+        /// Instantiates a new Fido2AuthenticationMethod and sets the default values.
+        /// </summary>
+        public Fido2AuthenticationMethod() : base() {
+            OdataType = "#microsoft.graph.fido2AuthenticationMethod";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

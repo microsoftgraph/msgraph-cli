@@ -12,6 +12,8 @@ namespace ApiSdk.Models {
         public bool? BlockCrossOrganizationWriteAccess { get; set; }
         /// <summary>Select the encryption method for removable  drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.</summary>
         public BitLockerEncryptionMethod? EncryptionMethod { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Indicates whether to block write access to devices configured in another organization.  If requireEncryptionForWriteAccess is false, this value does not affect.</summary>
         public bool? RequireEncryptionForWriteAccess { get; set; }
         /// <summary>
@@ -19,6 +21,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public BitLockerRemovableDrivePolicy() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.bitLockerRemovableDrivePolicy";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"blockCrossOrganizationWriteAccess", n => { BlockCrossOrganizationWriteAccess = n.GetBoolValue(); } },
                 {"encryptionMethod", n => { EncryptionMethod = n.GetEnumValue<BitLockerEncryptionMethod>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"requireEncryptionForWriteAccess", n => { RequireEncryptionForWriteAccess = n.GetBoolValue(); } },
             };
         }
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("blockCrossOrganizationWriteAccess", BlockCrossOrganizationWriteAccess);
             writer.WriteEnumValue<BitLockerEncryptionMethod>("encryptionMethod", EncryptionMethod);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("requireEncryptionForWriteAccess", RequireEncryptionForWriteAccess);
             writer.WriteAdditionalData(AdditionalData);
         }

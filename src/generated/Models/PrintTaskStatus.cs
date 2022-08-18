@@ -9,13 +9,16 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A human-readable description of the current processing state of the printTask.</summary>
         public string Description { get; set; }
-        /// <summary>The current processing state of the printTask. Valid values are described in the following table.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The state property</summary>
         public PrintTaskProcessingState? State { get; set; }
         /// <summary>
         /// Instantiates a new printTaskStatus and sets the default values.
         /// </summary>
         public PrintTaskStatus() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.printTaskStatus";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"description", n => { Description = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"state", n => { State = n.GetEnumValue<PrintTaskProcessingState>(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<PrintTaskProcessingState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }

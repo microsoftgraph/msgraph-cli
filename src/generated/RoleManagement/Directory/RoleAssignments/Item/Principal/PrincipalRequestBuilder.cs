@@ -23,11 +23,11 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.Principal {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The assigned principal. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only. Supports $expand.
+        /// Referencing the assigned principal. Read-only. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The assigned principal. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only. Supports $expand.";
+            command.Description = "Referencing the assigned principal. Read-only. Supports $expand.";
             // Create options for all the parameters
             var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "key: id of unifiedRoleAssignment") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.Principal {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The assigned principal. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only. Supports $expand.
+        /// Referencing the assigned principal. Read-only. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PrincipalRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.Principal {
             }
             return requestInfo;
         }
-        /// <summary>The assigned principal. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only. Supports $expand.</summary>
+        /// <summary>Referencing the assigned principal. Read-only. Supports $expand.</summary>
         public class PrincipalRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

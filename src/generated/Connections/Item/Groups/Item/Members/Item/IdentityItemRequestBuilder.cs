@@ -67,11 +67,11 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.
+        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.";
+            command.Description = "A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.
+        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IdentityItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -264,14 +264,14 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new identityItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new IdentityItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public IdentityItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.</summary>
+        /// <summary>A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.</summary>
         public class IdentityItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -289,7 +289,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
             /// <summary>Request query parameters</summary>
             public IdentityItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new IdentityItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new identityItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new IdentityItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public IdentityItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -303,7 +303,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new identityItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new IdentityItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public IdentityItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

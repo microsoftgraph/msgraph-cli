@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the security singleton.</summary>
     public class SecureScoreControlProfile : Entity, IParsable {
         /// <summary>Control action type (Config, Review, Behavior).</summary>
         public string ActionType { get; set; }
@@ -12,11 +11,11 @@ namespace ApiSdk.Models {
         public string ActionUrl { get; set; }
         /// <summary>GUID string for tenant ID.</summary>
         public string AzureTenantId { get; set; }
-        /// <summary>The collection of compliance information associated with secure score control</summary>
+        /// <summary>The complianceInformation property</summary>
         public List<ApiSdk.Models.ComplianceInformation> ComplianceInformation { get; set; }
-        /// <summary>Control action category (Account, Data, Device, Apps, Infrastructure).</summary>
+        /// <summary>Control action category (Identity, Data, Device, Apps, Infrastructure).</summary>
         public string ControlCategory { get; set; }
-        /// <summary>Flag to indicate where the tenant has marked a control (ignore, thirdParty, reviewed) (supports update).</summary>
+        /// <summary>The controlStateUpdates property</summary>
         public List<SecureScoreControlStateUpdate> ControlStateUpdates { get; set; }
         /// <summary>Flag to indicate if a control is depreciated.</summary>
         public bool? Deprecated { get; set; }
@@ -24,7 +23,7 @@ namespace ApiSdk.Models {
         public string ImplementationCost { get; set; }
         /// <summary>Time at which the control profile entity was last modified. The Timestamp type represents date and time</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>Current obtained max score on specified date.</summary>
+        /// <summary>max attainable score for the control.</summary>
         public double? MaxScore { get; set; }
         /// <summary>Microsoft&apos;s stack ranking of control.</summary>
         public int? Rank { get; set; }
@@ -34,16 +33,22 @@ namespace ApiSdk.Models {
         public string RemediationImpact { get; set; }
         /// <summary>Service that owns the control (Exchange, Sharepoint, Azure AD).</summary>
         public string Service { get; set; }
-        /// <summary>List of threats the control mitigates (accountBreach,dataDeletion,dataExfiltration,dataSpillage,elevationOfPrivilege,maliciousInsider,passwordCracking,phishingOrWhaling,spoofing).</summary>
+        /// <summary>List of threats the control mitigates (accountBreach,dataDeletion,dataExfiltration,dataSpillage,</summary>
         public List<string> Threats { get; set; }
-        /// <summary>Control tier (Core, Defense in Depth, Advanced.)</summary>
+        /// <summary>The tier property</summary>
         public string Tier { get; set; }
         /// <summary>Title of the control.</summary>
         public string Title { get; set; }
-        /// <summary>User impact of implementing control (low, moderate, high).</summary>
+        /// <summary>The userImpact property</summary>
         public string UserImpact { get; set; }
         /// <summary>The vendorInformation property</summary>
         public SecurityVendorInformation VendorInformation { get; set; }
+        /// <summary>
+        /// Instantiates a new SecureScoreControlProfile and sets the default values.
+        /// </summary>
+        public SecureScoreControlProfile() : base() {
+            OdataType = "#microsoft.graph.secureScoreControlProfile";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

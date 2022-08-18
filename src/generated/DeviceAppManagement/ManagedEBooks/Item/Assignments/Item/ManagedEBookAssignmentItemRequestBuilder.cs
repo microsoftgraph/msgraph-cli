@@ -246,7 +246,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new managedEBookAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedEBookAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedEBookAssignmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             /// <summary>Request query parameters</summary>
             public ManagedEBookAssignmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ManagedEBookAssignmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new managedEBookAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedEBookAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedEBookAssignmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new managedEBookAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedEBookAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedEBookAssignmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

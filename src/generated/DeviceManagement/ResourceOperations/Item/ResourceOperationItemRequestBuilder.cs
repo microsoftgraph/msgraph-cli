@@ -228,7 +228,7 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new resourceOperationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ResourceOperationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ResourceOperationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
             /// <summary>Request query parameters</summary>
             public ResourceOperationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ResourceOperationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new resourceOperationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ResourceOperationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ResourceOperationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new resourceOperationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ResourceOperationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ResourceOperationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

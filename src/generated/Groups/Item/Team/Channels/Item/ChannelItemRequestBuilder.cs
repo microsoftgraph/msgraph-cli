@@ -1,9 +1,11 @@
 using ApiSdk.Groups.Item.Team.Channels.Item.CompleteMigration;
+using ApiSdk.Groups.Item.Team.Channels.Item.DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalName;
 using ApiSdk.Groups.Item.Team.Channels.Item.FilesFolder;
 using ApiSdk.Groups.Item.Team.Channels.Item.Members;
 using ApiSdk.Groups.Item.Team.Channels.Item.Messages;
 using ApiSdk.Groups.Item.Team.Channels.Item.ProvisionEmail;
 using ApiSdk.Groups.Item.Team.Channels.Item.RemoveEmail;
+using ApiSdk.Groups.Item.Team.Channels.Item.SharedWithTeams;
 using ApiSdk.Groups.Item.Team.Channels.Item.Tabs;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -218,6 +220,15 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item {
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        public Command BuildSharedWithTeamsCommand() {
+            var command = new Command("shared-with-teams");
+            var builder = new SharedWithTeamsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildTabsCommand() {
             var command = new Command("tabs");
             var builder = new TabsRequestBuilder(PathParameters, RequestAdapter);
@@ -299,6 +310,12 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item {
             }
             return requestInfo;
         }
+        /// <summary>
+        /// Provides operations to call the doesUserHaveAccess method.
+        /// </summary>
+        public DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalNameRequestBuilder DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalName() {
+            return new DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalNameRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class ChannelItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
@@ -306,7 +323,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new channelItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ChannelItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ChannelItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -331,7 +348,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item {
             /// <summary>Request query parameters</summary>
             public ChannelItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ChannelItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new channelItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ChannelItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ChannelItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -345,7 +362,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new channelItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ChannelItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ChannelItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

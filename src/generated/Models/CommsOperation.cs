@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,14 @@ namespace ApiSdk.Models {
         public string ClientContext { get; set; }
         /// <summary>The result information. Read-only.</summary>
         public ApiSdk.Models.ResultInfo ResultInfo { get; set; }
-        /// <summary>Possible values are: notStarted, running, completed, failed. Read-only.</summary>
+        /// <summary>The status property</summary>
         public OperationStatus? Status { get; set; }
+        /// <summary>
+        /// Instantiates a new commsOperation and sets the default values.
+        /// </summary>
+        public CommsOperation() : base() {
+            OdataType = "#microsoft.graph.commsOperation";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

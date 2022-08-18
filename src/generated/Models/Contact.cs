@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>The contact&apos;s email addresses.</summary>
         public List<EmailAddress> EmailAddresses { get; set; }
-        /// <summary>The collection of open extensions defined for the contact. Nullable.</summary>
+        /// <summary>The collection of open extensions defined for the contact. Read-only. Nullable.</summary>
         public List<Extension> Extensions { get; set; }
         /// <summary>The name the contact is filed under.</summary>
         public string FileAs { get; set; }
@@ -79,6 +79,12 @@ namespace ApiSdk.Models {
         public string YomiGivenName { get; set; }
         /// <summary>The yomiSurname property</summary>
         public string YomiSurname { get; set; }
+        /// <summary>
+        /// Instantiates a new Contact and sets the default values.
+        /// </summary>
+        public Contact() : base() {
+            OdataType = "#microsoft.graph.contact";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

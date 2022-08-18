@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public byte[] Content { get; set; }
         /// <summary>The height of the thumbnail, in pixels.</summary>
         public int? Height { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The unique identifier of the item that provided the thumbnail. This is only available when a folder thumbnail is requested.</summary>
         public string SourceItemId { get; set; }
         /// <summary>The URL used to fetch the thumbnail content.</summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public Thumbnail() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.thumbnail";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"content", n => { Content = n.GetByteArrayValue(); } },
                 {"height", n => { Height = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"sourceItemId", n => { SourceItemId = n.GetStringValue(); } },
                 {"url", n => { Url = n.GetStringValue(); } },
                 {"width", n => { Width = n.GetIntValue(); } },
@@ -51,6 +55,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteByteArrayValue("content", Content);
             writer.WriteIntValue("height", Height);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("sourceItemId", SourceItemId);
             writer.WriteStringValue("url", Url);
             writer.WriteIntValue("width", Width);

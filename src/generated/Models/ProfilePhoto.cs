@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class ProfilePhoto : Entity, IParsable {
         /// <summary>The height of the photo. Read-only.</summary>
         public int? Height { get; set; }
         /// <summary>The width of the photo. Read-only.</summary>
         public int? Width { get; set; }
+        /// <summary>
+        /// Instantiates a new profilePhoto and sets the default values.
+        /// </summary>
+        public ProfilePhoto() : base() {
+            OdataType = "#microsoft.graph.profilePhoto";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

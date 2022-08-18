@@ -271,7 +271,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new teamsTabItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamsTabItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public TeamsTabItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -296,7 +296,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item {
             /// <summary>Request query parameters</summary>
             public TeamsTabItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TeamsTabItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new teamsTabItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamsTabItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TeamsTabItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -310,7 +310,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new teamsTabItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamsTabItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public TeamsTabItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

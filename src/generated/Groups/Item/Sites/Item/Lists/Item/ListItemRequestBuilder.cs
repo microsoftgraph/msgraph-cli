@@ -323,7 +323,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new listItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ListItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ListItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -348,7 +348,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             /// <summary>Request query parameters</summary>
             public ListItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ListItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new listItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ListItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ListItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -362,7 +362,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new listItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ListItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ListItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

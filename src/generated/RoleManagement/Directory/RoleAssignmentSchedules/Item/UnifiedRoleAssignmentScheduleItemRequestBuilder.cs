@@ -235,7 +235,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignmentSchedules.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new unifiedRoleAssignmentScheduleItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleAssignmentScheduleItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleAssignmentScheduleItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -260,7 +260,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignmentSchedules.Item {
             /// <summary>Request query parameters</summary>
             public UnifiedRoleAssignmentScheduleItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UnifiedRoleAssignmentScheduleItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new unifiedRoleAssignmentScheduleItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleAssignmentScheduleItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleAssignmentScheduleItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -274,7 +274,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignmentSchedules.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new unifiedRoleAssignmentScheduleItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleAssignmentScheduleItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleAssignmentScheduleItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

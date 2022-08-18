@@ -9,7 +9,9 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Identity information of the participant.</summary>
         public IdentitySet Identity { get; set; }
-        /// <summary>Specifies the participant&apos;s role in the meeting.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>Specifies the participant&apos;s role in the meeting.  Possible values are attendee, presenter, producer, and unknownFutureValue.</summary>
         public OnlineMeetingRole? Role { get; set; }
         /// <summary>User principal name of the participant.</summary>
         public string Upn { get; set; }
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public MeetingParticipantInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.meetingParticipantInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"identity", n => { Identity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"role", n => { Role = n.GetEnumValue<OnlineMeetingRole>(); } },
                 {"upn", n => { Upn = n.GetStringValue(); } },
             };
@@ -44,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<IdentitySet>("identity", Identity);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<OnlineMeetingRole>("role", Role);
             writer.WriteStringValue("upn", Upn);
             writer.WriteAdditionalData(AdditionalData);

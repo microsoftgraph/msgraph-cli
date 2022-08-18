@@ -92,11 +92,11 @@ namespace ApiSdk.Me.Planner.Tasks {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
+        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Returns the plannerTasks assigned to the user.";
+            command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.Me.Planner.Tasks {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
+        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TasksRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -250,7 +250,7 @@ namespace ApiSdk.Me.Planner.Tasks {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Returns the plannerTasks assigned to the user.</summary>
+        /// <summary>Read-only. Nullable. Returns the plannerPlans shared with the user.</summary>
         public class TasksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

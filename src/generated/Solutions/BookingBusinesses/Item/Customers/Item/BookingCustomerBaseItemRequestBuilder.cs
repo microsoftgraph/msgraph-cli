@@ -246,7 +246,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new bookingCustomerBaseItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new BookingCustomerBaseItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public BookingCustomerBaseItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             /// <summary>Request query parameters</summary>
             public BookingCustomerBaseItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new BookingCustomerBaseItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new bookingCustomerBaseItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new BookingCustomerBaseItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public BookingCustomerBaseItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new bookingCustomerBaseItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new BookingCustomerBaseItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public BookingCustomerBaseItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

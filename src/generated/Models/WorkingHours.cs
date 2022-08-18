@@ -12,6 +12,8 @@ namespace ApiSdk.Models {
         public List<string> DaysOfWeek { get; set; }
         /// <summary>The time of the day that the user stops working.</summary>
         public Time? EndTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The time of the day that the user starts working.</summary>
         public Time? StartTime { get; set; }
         /// <summary>The time zone to which the working hours apply.</summary>
@@ -21,6 +23,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public WorkingHours() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.workingHours";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,6 +40,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"daysOfWeek", n => { DaysOfWeek = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"endTime", n => { EndTime = n.GetTimeValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startTime", n => { StartTime = n.GetTimeValue(); } },
                 {"timeZone", n => { TimeZone = n.GetObjectValue<TimeZoneBase>(TimeZoneBase.CreateFromDiscriminatorValue); } },
             };
@@ -49,6 +53,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("daysOfWeek", DaysOfWeek);
             writer.WriteTimeValue("endTime", EndTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteTimeValue("startTime", StartTime);
             writer.WriteObjectValue<TimeZoneBase>("timeZone", TimeZone);
             writer.WriteAdditionalData(AdditionalData);

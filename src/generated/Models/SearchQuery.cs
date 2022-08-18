@@ -7,6 +7,8 @@ namespace ApiSdk.Models {
     public class SearchQuery : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The search query containing the search terms. Required.</summary>
         public string QueryString { get; set; }
         /// <summary>
@@ -14,6 +16,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public SearchQuery() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.searchQuery";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -28,6 +31,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"queryString", n => { QueryString = n.GetStringValue(); } },
             };
         }
@@ -37,6 +41,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("queryString", QueryString);
             writer.WriteAdditionalData(AdditionalData);
         }

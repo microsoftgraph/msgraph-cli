@@ -23,11 +23,11 @@ namespace ApiSdk.RoleManagement.Directory.RoleEligibilityScheduleRequests.Item.A
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Read-only property with details of the app-specific scope when the assignment scope is app-specific. Containment entity.
+        /// Read-only property with details of the app-specific scope when the role eligibility is scoped to an app. Nullable. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only property with details of the app-specific scope when the assignment scope is app-specific. Containment entity.";
+            command.Description = "Read-only property with details of the app-specific scope when the role eligibility is scoped to an app. Nullable. Supports $expand.";
             // Create options for all the parameters
             var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "key: id of unifiedRoleEligibilityScheduleRequest") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleEligibilityScheduleRequests.Item.A
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only property with details of the app-specific scope when the assignment scope is app-specific. Containment entity.
+        /// Read-only property with details of the app-specific scope when the role eligibility is scoped to an app. Nullable. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AppScopeRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleEligibilityScheduleRequests.Item.A
             }
             return requestInfo;
         }
-        /// <summary>Read-only property with details of the app-specific scope when the assignment scope is app-specific. Containment entity.</summary>
+        /// <summary>Read-only property with details of the app-specific scope when the role eligibility is scoped to an app. Nullable. Supports $expand.</summary>
         public class AppScopeRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

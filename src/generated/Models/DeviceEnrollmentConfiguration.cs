@@ -1,10 +1,10 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>The Base Class of Device Enrollment Configuration</summary>
     public class DeviceEnrollmentConfiguration : Entity, IParsable {
         /// <summary>The list of group assignments for the device configuration profile</summary>
         public List<EnrollmentConfigurationAssignment> Assignments { get; set; }
@@ -20,6 +20,12 @@ namespace ApiSdk.Models {
         public int? Priority { get; set; }
         /// <summary>The version of the device enrollment configuration</summary>
         public int? Version { get; set; }
+        /// <summary>
+        /// Instantiates a new DeviceEnrollmentConfiguration and sets the default values.
+        /// </summary>
+        public DeviceEnrollmentConfiguration() : base() {
+            OdataType = "#microsoft.graph.deviceEnrollmentConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

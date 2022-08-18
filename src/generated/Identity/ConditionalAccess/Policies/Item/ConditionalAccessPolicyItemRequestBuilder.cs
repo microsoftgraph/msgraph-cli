@@ -55,11 +55,11 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access policies.";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
             // Create options for all the parameters
             var conditionalAccessPolicyIdOption = new Option<string>("--conditional-access-policy-id", description: "key: id of conditionalAccessPolicy") {
             };
@@ -181,7 +181,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ConditionalAccessPolicyItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -228,14 +228,14 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new conditionalAccessPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ConditionalAccessPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ConditionalAccessPolicyItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access policies.</summary>
+        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.</summary>
         public class ConditionalAccessPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -253,7 +253,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             /// <summary>Request query parameters</summary>
             public ConditionalAccessPolicyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ConditionalAccessPolicyItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new conditionalAccessPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ConditionalAccessPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ConditionalAccessPolicyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new conditionalAccessPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ConditionalAccessPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ConditionalAccessPolicyItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

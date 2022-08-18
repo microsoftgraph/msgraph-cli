@@ -1,10 +1,10 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>The Role Assignment resource. Role assignments tie together a role definition with members and scopes. There can be one or more role assignments per role. This applies to custom and built-in roles.</summary>
     public class RoleAssignment : Entity, IParsable {
         /// <summary>Description of the Role Assignment.</summary>
         public string Description { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public List<string> ResourceScopes { get; set; }
         /// <summary>Role definition this assignment is part of.</summary>
         public ApiSdk.Models.RoleDefinition RoleDefinition { get; set; }
+        /// <summary>
+        /// Instantiates a new RoleAssignment and sets the default values.
+        /// </summary>
+        public RoleAssignment() : base() {
+            OdataType = "#microsoft.graph.roleAssignment";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -11,6 +11,12 @@ namespace ApiSdk.Models {
         /// <summary>The date and time the mobileAppCategory was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>
+        /// Instantiates a new mobileAppCategory and sets the default values.
+        /// </summary>
+        public MobileAppCategory() : base() {
+            OdataType = "#microsoft.graph.mobileAppCategory";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

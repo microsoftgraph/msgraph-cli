@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public DateTimeOffset? ClickDateTime { get; set; }
         /// <summary>The id property</summary>
         public string Id { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The sourceId property</summary>
         public string SourceId { get; set; }
         /// <summary>The uriDomain property</summary>
@@ -24,6 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public UriClickSecurityState() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.uriClickSecurityState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -41,6 +44,7 @@ namespace ApiSdk.Models {
                 {"clickAction", n => { ClickAction = n.GetStringValue(); } },
                 {"clickDateTime", n => { ClickDateTime = n.GetDateTimeOffsetValue(); } },
                 {"id", n => { Id = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"sourceId", n => { SourceId = n.GetStringValue(); } },
                 {"uriDomain", n => { UriDomain = n.GetStringValue(); } },
                 {"verdict", n => { Verdict = n.GetStringValue(); } },
@@ -55,6 +59,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("clickAction", ClickAction);
             writer.WriteDateTimeOffsetValue("clickDateTime", ClickDateTime);
             writer.WriteStringValue("id", Id);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("sourceId", SourceId);
             writer.WriteStringValue("uriDomain", UriDomain);
             writer.WriteStringValue("verdict", Verdict);

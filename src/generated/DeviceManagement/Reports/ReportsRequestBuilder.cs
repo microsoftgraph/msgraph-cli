@@ -10,6 +10,7 @@ using ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingContrib
 using ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsReport;
 using ApiSdk.DeviceManagement.Reports.GetDeviceNonComplianceReport;
 using ApiSdk.DeviceManagement.Reports.GetHistoricalReport;
+using ApiSdk.DeviceManagement.Reports.GetNoncompliantDevicesAndSettingsReport;
 using ApiSdk.DeviceManagement.Reports.GetPolicyNonComplianceMetadata;
 using ApiSdk.DeviceManagement.Reports.GetPolicyNonComplianceReport;
 using ApiSdk.DeviceManagement.Reports.GetPolicyNonComplianceSummaryReport;
@@ -192,6 +193,12 @@ namespace ApiSdk.DeviceManagement.Reports {
         public Command BuildGetHistoricalReportCommand() {
             var command = new Command("get-historical-report");
             var builder = new GetHistoricalReportRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        public Command BuildGetNoncompliantDevicesAndSettingsReportCommand() {
+            var command = new Command("get-noncompliant-devices-and-settings-report");
+            var builder = new GetNoncompliantDevicesAndSettingsReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

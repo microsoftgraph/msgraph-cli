@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,12 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.TeamsApp TeamsApp { get; set; }
         /// <summary>The details of this version of the app.</summary>
         public ApiSdk.Models.TeamsAppDefinition TeamsAppDefinition { get; set; }
+        /// <summary>
+        /// Instantiates a new teamsAppInstallation and sets the default values.
+        /// </summary>
+        public TeamsAppInstallation() : base() {
+            OdataType = "#microsoft.graph.teamsAppInstallation";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

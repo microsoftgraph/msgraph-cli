@@ -245,7 +245,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessReviewScheduleDefinitionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewScheduleDefinitionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewScheduleDefinitionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -270,7 +270,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             /// <summary>Request query parameters</summary>
             public AccessReviewScheduleDefinitionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AccessReviewScheduleDefinitionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new accessReviewScheduleDefinitionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewScheduleDefinitionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewScheduleDefinitionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -284,7 +284,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessReviewScheduleDefinitionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewScheduleDefinitionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewScheduleDefinitionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

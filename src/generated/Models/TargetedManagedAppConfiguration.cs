@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Configuration used to deliver a set of custom settings as-is to all users in the targeted security group</summary>
     public class TargetedManagedAppConfiguration : ManagedAppConfiguration, IParsable {
         /// <summary>List of apps to which the policy is deployed.</summary>
         public List<ManagedMobileApp> Apps { get; set; }
@@ -16,6 +15,12 @@ namespace ApiSdk.Models {
         public ManagedAppPolicyDeploymentSummary DeploymentSummary { get; set; }
         /// <summary>Indicates if the policy is deployed to any inclusion groups or not.</summary>
         public bool? IsAssigned { get; set; }
+        /// <summary>
+        /// Instantiates a new TargetedManagedAppConfiguration and sets the default values.
+        /// </summary>
+        public TargetedManagedAppConfiguration() : base() {
+            OdataType = "#microsoft.graph.targetedManagedAppConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

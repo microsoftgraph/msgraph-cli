@@ -254,7 +254,7 @@ namespace ApiSdk.Users.Item.Onenote.Resources.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new onenoteResourceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new OnenoteResourceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public OnenoteResourceItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -279,7 +279,7 @@ namespace ApiSdk.Users.Item.Onenote.Resources.Item {
             /// <summary>Request query parameters</summary>
             public OnenoteResourceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OnenoteResourceItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new onenoteResourceItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new OnenoteResourceItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public OnenoteResourceItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -293,7 +293,7 @@ namespace ApiSdk.Users.Item.Onenote.Resources.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new onenoteResourceItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new OnenoteResourceItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public OnenoteResourceItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

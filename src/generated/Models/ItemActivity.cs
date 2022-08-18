@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class ItemActivity : Entity, IParsable {
         /// <summary>An item was accessed.</summary>
         public AccessAction Access { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public IdentitySet Actor { get; set; }
         /// <summary>Exposes the driveItem that was the target of this activity.</summary>
         public ApiSdk.Models.DriveItem DriveItem { get; set; }
+        /// <summary>
+        /// Instantiates a new itemActivity and sets the default values.
+        /// </summary>
+        public ItemActivity() : base() {
+            OdataType = "#microsoft.graph.itemActivity";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

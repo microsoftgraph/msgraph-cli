@@ -15,11 +15,14 @@ namespace ApiSdk.Models {
         public bool? AllowStickersAndMemes { get; set; }
         /// <summary>Giphy content rating. Possible values are: moderate, strict.</summary>
         public GiphyRatingType? GiphyContentRating { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new teamFunSettings and sets the default values.
         /// </summary>
         public TeamFunSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.teamFunSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
                 {"allowGiphy", n => { AllowGiphy = n.GetBoolValue(); } },
                 {"allowStickersAndMemes", n => { AllowStickersAndMemes = n.GetBoolValue(); } },
                 {"giphyContentRating", n => { GiphyContentRating = n.GetEnumValue<GiphyRatingType>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -50,6 +54,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("allowGiphy", AllowGiphy);
             writer.WriteBoolValue("allowStickersAndMemes", AllowStickersAndMemes);
             writer.WriteEnumValue<GiphyRatingType>("giphyContentRating", GiphyContentRating);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

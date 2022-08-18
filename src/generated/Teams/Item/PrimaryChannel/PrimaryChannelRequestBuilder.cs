@@ -1,11 +1,13 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Teams.Item.PrimaryChannel.CompleteMigration;
+using ApiSdk.Teams.Item.PrimaryChannel.DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalName;
 using ApiSdk.Teams.Item.PrimaryChannel.FilesFolder;
 using ApiSdk.Teams.Item.PrimaryChannel.Members;
 using ApiSdk.Teams.Item.PrimaryChannel.Messages;
 using ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail;
 using ApiSdk.Teams.Item.PrimaryChannel.RemoveEmail;
+using ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams;
 using ApiSdk.Teams.Item.PrimaryChannel.Tabs;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -200,6 +202,15 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        public Command BuildSharedWithTeamsCommand() {
+            var command = new Command("shared-with-teams");
+            var builder = new SharedWithTeamsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildTabsCommand() {
             var command = new Command("tabs");
             var builder = new TabsRequestBuilder(PathParameters, RequestAdapter);
@@ -280,6 +291,12 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
+        }
+        /// <summary>
+        /// Provides operations to call the doesUserHaveAccess method.
+        /// </summary>
+        public DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalNameRequestBuilder DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalName() {
+            return new DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalNameRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class PrimaryChannelRequestBuilderDeleteRequestConfiguration {

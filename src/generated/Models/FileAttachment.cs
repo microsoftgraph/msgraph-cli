@@ -12,6 +12,12 @@ namespace ApiSdk.Models {
         /// <summary>Do not use this property as it is not supported.</summary>
         public string ContentLocation { get; set; }
         /// <summary>
+        /// Instantiates a new FileAttachment and sets the default values.
+        /// </summary>
+        public FileAttachment() : base() {
+            OdataType = "#microsoft.graph.fileAttachment";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

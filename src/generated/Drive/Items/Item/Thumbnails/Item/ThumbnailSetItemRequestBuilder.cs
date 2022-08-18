@@ -246,7 +246,7 @@ namespace ApiSdk.Drive.Items.Item.Thumbnails.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new thumbnailSetItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ThumbnailSetItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ThumbnailSetItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Drive.Items.Item.Thumbnails.Item {
             /// <summary>Request query parameters</summary>
             public ThumbnailSetItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ThumbnailSetItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new thumbnailSetItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ThumbnailSetItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ThumbnailSetItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Drive.Items.Item.Thumbnails.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new thumbnailSetItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ThumbnailSetItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ThumbnailSetItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

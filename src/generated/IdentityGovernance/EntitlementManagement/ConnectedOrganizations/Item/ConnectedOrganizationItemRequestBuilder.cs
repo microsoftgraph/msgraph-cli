@@ -70,11 +70,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Represents references to a directory or domain of another organization whose users can request access.
+        /// References to a directory or domain of another organization whose users can request access.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents references to a directory or domain of another organization whose users can request access.";
+            command.Description = "References to a directory or domain of another organization whose users can request access.";
             // Create options for all the parameters
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Represents references to a directory or domain of another organization whose users can request access.
+        /// References to a directory or domain of another organization whose users can request access.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ConnectedOrganizationItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -256,14 +256,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new connectedOrganizationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ConnectedOrganizationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ConnectedOrganizationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Represents references to a directory or domain of another organization whose users can request access.</summary>
+        /// <summary>References to a directory or domain of another organization whose users can request access.</summary>
         public class ConnectedOrganizationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -281,7 +281,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             /// <summary>Request query parameters</summary>
             public ConnectedOrganizationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ConnectedOrganizationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new connectedOrganizationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ConnectedOrganizationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ConnectedOrganizationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -295,7 +295,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new connectedOrganizationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ConnectedOrganizationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ConnectedOrganizationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

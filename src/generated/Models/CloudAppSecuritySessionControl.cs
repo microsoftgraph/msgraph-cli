@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class CloudAppSecuritySessionControl : ConditionalAccessSessionControl, IParsable {
-        /// <summary>Possible values are: mcasConfigured, monitorOnly, blockDownloads. To learn more about these values, Deploy Conditional Access App Control for featured apps.</summary>
+        /// <summary>Possible values are: mcasConfigured, monitorOnly, blockDownloads, unknownFutureValue. For more information, see Deploy Conditional Access App Control for featured apps.</summary>
         public CloudAppSecuritySessionControlType? CloudAppSecurityType { get; set; }
+        /// <summary>
+        /// Instantiates a new CloudAppSecuritySessionControl and sets the default values.
+        /// </summary>
+        public CloudAppSecuritySessionControl() : base() {
+            OdataType = "#microsoft.graph.cloudAppSecuritySessionControl";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

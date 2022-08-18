@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         public bool? AuthorizedApplicationRulesFromGroupPolicyMerged { get; set; }
         /// <summary>Configures the firewall to merge connection security rules from group policy with those from local store instead of ignoring the local store rules. When ConnectionSecurityRulesFromGroupPolicyNotMerged and ConnectionSecurityRulesFromGroupPolicyMerged are both true, ConnectionSecurityRulesFromGroupPolicyMerged takes priority.</summary>
         public bool? ConnectionSecurityRulesFromGroupPolicyMerged { get; set; }
-        /// <summary>Configures the host device to allow or block the firewall and advanced security enforcement for the network profile. Possible values are: notConfigured, blocked, allowed.</summary>
+        /// <summary>State Management Setting.</summary>
         public StateManagementSetting? FirewallEnabled { get; set; }
         /// <summary>Configures the firewall to merge global port rules from group policy with those from local store instead of ignoring the local store rules. When GlobalPortRulesFromGroupPolicyNotMerged and GlobalPortRulesFromGroupPolicyMerged are both true, GlobalPortRulesFromGroupPolicyMerged takes priority.</summary>
         public bool? GlobalPortRulesFromGroupPolicyMerged { get; set; }
@@ -22,6 +22,8 @@ namespace ApiSdk.Models {
         public bool? InboundNotificationsBlocked { get; set; }
         /// <summary>Configures the firewall to block all incoming traffic regardless of other policy settings. When IncomingTrafficRequired and IncomingTrafficBlocked are both true, IncomingTrafficBlocked takes priority.</summary>
         public bool? IncomingTrafficBlocked { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Configures the firewall to block all outgoing connections by default. When OutboundConnectionsRequired and OutboundConnectionsBlocked are both true, OutboundConnectionsBlocked takes priority. This setting will get applied to Windows releases version 1809 and above.</summary>
         public bool? OutboundConnectionsBlocked { get; set; }
         /// <summary>Configures the firewall to merge Firewall Rule policies from group policy with those from local store instead of ignoring the local store rules. When PolicyRulesFromGroupPolicyNotMerged and PolicyRulesFromGroupPolicyMerged are both true, PolicyRulesFromGroupPolicyMerged takes priority.</summary>
@@ -37,6 +39,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public WindowsFirewallNetworkProfile() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.windowsFirewallNetworkProfile";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -58,6 +61,7 @@ namespace ApiSdk.Models {
                 {"inboundConnectionsBlocked", n => { InboundConnectionsBlocked = n.GetBoolValue(); } },
                 {"inboundNotificationsBlocked", n => { InboundNotificationsBlocked = n.GetBoolValue(); } },
                 {"incomingTrafficBlocked", n => { IncomingTrafficBlocked = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"outboundConnectionsBlocked", n => { OutboundConnectionsBlocked = n.GetBoolValue(); } },
                 {"policyRulesFromGroupPolicyMerged", n => { PolicyRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
                 {"securedPacketExemptionAllowed", n => { SecuredPacketExemptionAllowed = n.GetBoolValue(); } },
@@ -78,6 +82,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("inboundConnectionsBlocked", InboundConnectionsBlocked);
             writer.WriteBoolValue("inboundNotificationsBlocked", InboundNotificationsBlocked);
             writer.WriteBoolValue("incomingTrafficBlocked", IncomingTrafficBlocked);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("outboundConnectionsBlocked", OutboundConnectionsBlocked);
             writer.WriteBoolValue("policyRulesFromGroupPolicyMerged", PolicyRulesFromGroupPolicyMerged);
             writer.WriteBoolValue("securedPacketExemptionAllowed", SecuredPacketExemptionAllowed);

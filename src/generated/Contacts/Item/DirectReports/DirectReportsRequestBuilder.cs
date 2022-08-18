@@ -41,11 +41,11 @@ namespace ApiSdk.Contacts.Item.DirectReports {
             return command;
         }
         /// <summary>
-        /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.) Read-only. Nullable. Supports $expand.
+        /// Get directReports from contacts
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The contact's direct reports. (The users and contacts that have their manager property set to this contact.) Read-only. Nullable. Supports $expand.";
+            command.Description = "Get directReports from contacts";
             // Create options for all the parameters
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
             };
@@ -178,7 +178,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.) Read-only. Nullable. Supports $expand.
+        /// Get directReports from contacts
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectReportsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -197,7 +197,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
             }
             return requestInfo;
         }
-        /// <summary>The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.) Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Get directReports from contacts</summary>
         public class DirectReportsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

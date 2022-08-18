@@ -15,6 +15,8 @@ namespace ApiSdk.Models {
         public string ContainerWebUrl { get; set; }
         /// <summary>The item&apos;s media type. Can be used for filtering for a specific type of file based on supported IANA Media Mime Types. Note that not all Media Mime Types are supported.</summary>
         public string MediaType { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>A URL leading to the preview image for the item.</summary>
         public string PreviewImageUrl { get; set; }
         /// <summary>A preview text for the item.</summary>
@@ -28,6 +30,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ResourceVisualization() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.resourceVisualization";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -46,6 +49,7 @@ namespace ApiSdk.Models {
                 {"containerType", n => { ContainerType = n.GetStringValue(); } },
                 {"containerWebUrl", n => { ContainerWebUrl = n.GetStringValue(); } },
                 {"mediaType", n => { MediaType = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"previewImageUrl", n => { PreviewImageUrl = n.GetStringValue(); } },
                 {"previewText", n => { PreviewText = n.GetStringValue(); } },
                 {"title", n => { Title = n.GetStringValue(); } },
@@ -62,6 +66,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("containerType", ContainerType);
             writer.WriteStringValue("containerWebUrl", ContainerWebUrl);
             writer.WriteStringValue("mediaType", MediaType);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("previewImageUrl", PreviewImageUrl);
             writer.WriteStringValue("previewText", PreviewText);
             writer.WriteStringValue("title", Title);

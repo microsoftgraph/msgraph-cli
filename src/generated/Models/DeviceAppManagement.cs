@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         public List<ManagedEBook> ManagedEBooks { get; set; }
         /// <summary>Windows information protection for apps running on devices which are MDM enrolled.</summary>
         public List<MdmWindowsInformationProtectionPolicy> MdmWindowsInformationProtectionPolicies { get; set; }
-        /// <summary>The locale information used to sync applications from the Microsoft Store for Business. Cultures that are specific to a country/region. The names of these cultures follow RFC 4646 (Windows Vista and later). The format is &lt;languagecode2&gt;-&lt;country/regioncode2&gt;, where &lt;languagecode2&gt; is a lowercase two-letter code derived from ISO 639-1 and &lt;country/regioncode2&gt; is an uppercase two-letter code derived from ISO 3166. For example, en-US for English (United States) is a specific culture.</summary>
+        /// <summary>The locale information used to sync applications from the Microsoft Store for Business. Cultures that are specific to a country/region. The names of these cultures follow RFC 4646 (Windows Vista and later). The format is -&lt;country/regioncode2&gt;, where  is a lowercase two-letter code derived from ISO 639-1 and &lt;country/regioncode2&gt; is an uppercase two-letter code derived from ISO 3166. For example, en-US for English (United States) is a specific culture.</summary>
         public string MicrosoftStoreForBusinessLanguage { get; set; }
         /// <summary>The last time an application sync from the Microsoft Store for Business was completed.</summary>
         public DateTimeOffset? MicrosoftStoreForBusinessLastCompletedApplicationSyncTime { get; set; }
@@ -42,6 +42,12 @@ namespace ApiSdk.Models {
         public List<VppToken> VppTokens { get; set; }
         /// <summary>Windows information protection for apps running on devices which are not MDM enrolled.</summary>
         public List<WindowsInformationProtectionPolicy> WindowsInformationProtectionPolicies { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceAppManagement and sets the default values.
+        /// </summary>
+        public DeviceAppManagement() : base() {
+            OdataType = "#microsoft.graph.deviceAppManagement";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

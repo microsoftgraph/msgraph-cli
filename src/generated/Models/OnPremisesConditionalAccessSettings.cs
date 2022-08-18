@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Singleton entity which represents the Exchange OnPremises Conditional Access Settings for a tenant.</summary>
     public class OnPremisesConditionalAccessSettings : Entity, IParsable {
         /// <summary>Indicates if on premises conditional access is enabled for this organization</summary>
         public bool? Enabled { get; set; }
@@ -14,6 +13,12 @@ namespace ApiSdk.Models {
         public List<string> IncludedGroups { get; set; }
         /// <summary>Override the default access rule when allowing a device to ensure access is granted.</summary>
         public bool? OverrideDefaultRule { get; set; }
+        /// <summary>
+        /// Instantiates a new OnPremisesConditionalAccessSettings and sets the default values.
+        /// </summary>
+        public OnPremisesConditionalAccessSettings() : base() {
+            OdataType = "#microsoft.graph.onPremisesConditionalAccessSettings";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

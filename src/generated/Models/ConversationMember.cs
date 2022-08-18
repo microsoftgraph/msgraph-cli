@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,16 @@ namespace ApiSdk.Models {
     public class ConversationMember : Entity, IParsable {
         /// <summary>The display name of the user.</summary>
         public string DisplayName { get; set; }
-        /// <summary>The roles for that user.</summary>
+        /// <summary>The roles for that user. This property only contains additional qualifiers when relevant - for example, if the member has owner privileges, the roles property contains owner as one of the values. Similarly, if the member is a guest, the roles property contains guest as one of the values. A basic member should not have any values specified in the roles property.</summary>
         public List<string> Roles { get; set; }
         /// <summary>The timestamp denoting how far back a conversation&apos;s history is shared with the conversation member. This property is settable only for members of a chat.</summary>
         public DateTimeOffset? VisibleHistoryStartDateTime { get; set; }
+        /// <summary>
+        /// Instantiates a new conversationMember and sets the default values.
+        /// </summary>
+        public ConversationMember() : base() {
+            OdataType = "#microsoft.graph.conversationMember";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

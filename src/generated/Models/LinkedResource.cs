@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class LinkedResource : Entity, IParsable {
         /// <summary>Field indicating the app name of the source that is sending the linkedResource.</summary>
         public string ApplicationName { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public string ExternalId { get; set; }
         /// <summary>Deep link to the linkedResource.</summary>
         public string WebUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new linkedResource and sets the default values.
+        /// </summary>
+        public LinkedResource() : base() {
+            OdataType = "#microsoft.graph.linkedResource";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

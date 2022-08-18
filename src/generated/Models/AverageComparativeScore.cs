@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public double? AverageScore { get; set; }
         /// <summary>Scope type. The possible values are: AllTenants, TotalSeats, IndustryTypes.</summary>
         public string Basis { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new averageComparativeScore and sets the default values.
         /// </summary>
         public AverageComparativeScore() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.averageComparativeScore";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"averageScore", n => { AverageScore = n.GetDoubleValue(); } },
                 {"basis", n => { Basis = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("averageScore", AverageScore);
             writer.WriteStringValue("basis", Basis);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

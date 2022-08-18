@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AccessReviewSet : Entity, IParsable {
         /// <summary>Represents the template and scheduling for an access review.</summary>
         public List<AccessReviewScheduleDefinition> Definitions { get; set; }
         /// <summary>Represents a collection of access review history data and the scopes used to collect that data.</summary>
         public List<AccessReviewHistoryDefinition> HistoryDefinitions { get; set; }
+        /// <summary>
+        /// Instantiates a new AccessReviewSet and sets the default values.
+        /// </summary>
+        public AccessReviewSet() : base() {
+            OdataType = "#microsoft.graph.accessReviewSet";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

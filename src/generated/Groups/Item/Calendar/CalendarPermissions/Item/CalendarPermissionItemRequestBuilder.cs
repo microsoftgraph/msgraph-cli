@@ -239,7 +239,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new calendarPermissionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new CalendarPermissionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public CalendarPermissionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -261,7 +261,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item {
             /// <summary>Request query parameters</summary>
             public CalendarPermissionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new CalendarPermissionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new calendarPermissionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new CalendarPermissionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public CalendarPermissionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -275,7 +275,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new calendarPermissionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new CalendarPermissionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public CalendarPermissionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

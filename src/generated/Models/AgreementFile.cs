@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>The localized version of the terms of use agreement files attached to the agreement.</summary>
         public List<AgreementFileLocalization> Localizations { get; set; }
         /// <summary>
+        /// Instantiates a new AgreementFile and sets the default values.
+        /// </summary>
+        public AgreementFile() : base() {
+            OdataType = "#microsoft.graph.agreementFile";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

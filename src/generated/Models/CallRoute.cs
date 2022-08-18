@@ -9,15 +9,18 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The final property</summary>
         public IdentitySet Final { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The original property</summary>
         public IdentitySet Original { get; set; }
-        /// <summary>Possible values are: forwarded, lookup, selfFork.</summary>
+        /// <summary>The routingType property</summary>
         public ApiSdk.Models.RoutingType? RoutingType { get; set; }
         /// <summary>
         /// Instantiates a new callRoute and sets the default values.
         /// </summary>
         public CallRoute() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.callRoute";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"final", n => { Final = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"original", n => { Original = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"routingType", n => { RoutingType = n.GetEnumValue<RoutingType>(); } },
             };
@@ -44,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<IdentitySet>("final", Final);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<IdentitySet>("original", Original);
             writer.WriteEnumValue<RoutingType>("routingType", RoutingType);
             writer.WriteAdditionalData(AdditionalData);

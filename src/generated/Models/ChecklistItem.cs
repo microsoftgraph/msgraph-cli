@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class ChecklistItem : Entity, IParsable {
         /// <summary>The date and time when the checklistItem was finished.</summary>
         public DateTimeOffset? CheckedDateTime { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>State indicating whether the item is checked off or not.</summary>
         public bool? IsChecked { get; set; }
+        /// <summary>
+        /// Instantiates a new checklistItem and sets the default values.
+        /// </summary>
+        public ChecklistItem() : base() {
+            OdataType = "#microsoft.graph.checklistItem";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

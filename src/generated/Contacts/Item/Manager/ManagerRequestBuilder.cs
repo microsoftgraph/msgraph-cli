@@ -23,11 +23,11 @@ namespace ApiSdk.Contacts.Item.Manager {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The user or contact that is this contact&apos;s manager. Read-only. Supports $expand.
+        /// Get manager from contacts
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user or contact that is this contact's manager. Read-only. Supports $expand.";
+            command.Description = "Get manager from contacts";
             // Create options for all the parameters
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Contacts.Item.Manager {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user or contact that is this contact&apos;s manager. Read-only. Supports $expand.
+        /// Get manager from contacts
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ManagerRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.Contacts.Item.Manager {
             }
             return requestInfo;
         }
-        /// <summary>The user or contact that is this contact&apos;s manager. Read-only. Supports $expand.</summary>
+        /// <summary>Get manager from contacts</summary>
         public class ManagerRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

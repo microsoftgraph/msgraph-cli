@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public Time? MaintenanceWindowStartTime { get; set; }
         /// <summary>Indicates whether or not to Block wireless projection.</summary>
         public bool? MiracastBlocked { get; set; }
-        /// <summary>The channel. Possible values are: userDefined, one, two, three, four, five, six, seven, eight, nine, ten, eleven, thirtySix, forty, fortyFour, fortyEight, oneHundredFortyNine, oneHundredFiftyThree, oneHundredFiftySeven, oneHundredSixtyOne, oneHundredSixtyFive.</summary>
+        /// <summary>Possible values for Miracast channel.</summary>
         public ApiSdk.Models.MiracastChannel? MiracastChannel { get; set; }
         /// <summary>Indicates whether or not to require a pin for wireless projection.</summary>
         public bool? MiracastRequirePin { get; set; }
@@ -44,8 +44,14 @@ namespace ApiSdk.Models {
         public string WelcomeScreenBackgroundImageUrl { get; set; }
         /// <summary>Indicates whether or not to Block the welcome screen from waking up automatically when someone enters the room.</summary>
         public bool? WelcomeScreenBlockAutomaticWakeUp { get; set; }
-        /// <summary>The welcome screen meeting information shown. Possible values are: userDefined, showOrganizerAndTimeOnly, showOrganizerAndTimeAndSubject.</summary>
+        /// <summary>Possible values for welcome screen meeting information.</summary>
         public ApiSdk.Models.WelcomeScreenMeetingInformation? WelcomeScreenMeetingInformation { get; set; }
+        /// <summary>
+        /// Instantiates a new Windows10TeamGeneralConfiguration and sets the default values.
+        /// </summary>
+        public Windows10TeamGeneralConfiguration() : base() {
+            OdataType = "#microsoft.graph.windows10TeamGeneralConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class SectionGroup : OnenoteEntityHierarchyModel, IParsable {
         /// <summary>The notebook that contains the section group. Read-only.</summary>
         public Notebook ParentNotebook { get; set; }
@@ -18,6 +18,12 @@ namespace ApiSdk.Models {
         public List<OnenoteSection> Sections { get; set; }
         /// <summary>The URL for the sections navigation property, which returns all the sections in the section group. Read-only.</summary>
         public string SectionsUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new sectionGroup and sets the default values.
+        /// </summary>
+        public SectionGroup() : base() {
+            OdataType = "#microsoft.graph.sectionGroup";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

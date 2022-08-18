@@ -60,11 +60,11 @@ namespace ApiSdk.Chats.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from chats by key
+        /// Retrieve a single chat (without its messages).
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from chats by key";
+            command.Description = "Retrieve a single chat (without its messages).";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -229,7 +229,7 @@ namespace ApiSdk.Chats.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from chats by key
+        /// Retrieve a single chat (without its messages).
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChatItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -276,14 +276,14 @@ namespace ApiSdk.Chats.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new chatItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ChatItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ChatItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get entity from chats by key</summary>
+        /// <summary>Retrieve a single chat (without its messages).</summary>
         public class ChatItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -301,7 +301,7 @@ namespace ApiSdk.Chats.Item {
             /// <summary>Request query parameters</summary>
             public ChatItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ChatItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new chatItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ChatItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ChatItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -315,7 +315,7 @@ namespace ApiSdk.Chats.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new chatItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ChatItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ChatItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

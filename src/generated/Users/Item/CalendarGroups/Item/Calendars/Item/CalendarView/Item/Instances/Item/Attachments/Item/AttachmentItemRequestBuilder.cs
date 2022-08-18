@@ -318,7 +318,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new attachmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AttachmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AttachmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -343,7 +343,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
             /// <summary>Request query parameters</summary>
             public AttachmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AttachmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new attachmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AttachmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AttachmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -357,7 +357,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new attachmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AttachmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AttachmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

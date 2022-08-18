@@ -7,25 +7,28 @@ namespace ApiSdk.Models {
     public class DeviceDetail : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Indicates the browser information of the used for signing-in.</summary>
+        /// <summary>Indicates the browser information of the used for signing in.</summary>
         public string Browser { get; set; }
-        /// <summary>Refers to the UniqueID of the device used for signing-in.</summary>
+        /// <summary>Refers to the UniqueID of the device used for signing in.</summary>
         public string DeviceId { get; set; }
-        /// <summary>Refers to the name of the device used for signing-in.</summary>
+        /// <summary>Refers to the name of the device used for signing in.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Indicates whether the device is compliant or not.</summary>
+        /// <summary>Indicates whether the device is compliant.</summary>
         public bool? IsCompliant { get; set; }
-        /// <summary>Indicates if the device is managed or not.</summary>
+        /// <summary>Indicates whether the device is managed.</summary>
         public bool? IsManaged { get; set; }
-        /// <summary>Indicates the OS name and version used for signing-in.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>Indicates the operating system name and version used for signing in.</summary>
         public string OperatingSystem { get; set; }
-        /// <summary>Indicates information on whether the signed-in device is Workplace Joined, AzureAD Joined, Domain Joined.</summary>
+        /// <summary>Provides information about whether the signed-in device is Workplace Joined, AzureAD Joined, Domain Joined.</summary>
         public string TrustType { get; set; }
         /// <summary>
         /// Instantiates a new deviceDetail and sets the default values.
         /// </summary>
         public DeviceDetail() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.deviceDetail";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -45,6 +48,7 @@ namespace ApiSdk.Models {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"isCompliant", n => { IsCompliant = n.GetBoolValue(); } },
                 {"isManaged", n => { IsManaged = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operatingSystem", n => { OperatingSystem = n.GetStringValue(); } },
                 {"trustType", n => { TrustType = n.GetStringValue(); } },
             };
@@ -60,6 +64,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("isCompliant", IsCompliant);
             writer.WriteBoolValue("isManaged", IsManaged);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("operatingSystem", OperatingSystem);
             writer.WriteStringValue("trustType", TrustType);
             writer.WriteAdditionalData(AdditionalData);

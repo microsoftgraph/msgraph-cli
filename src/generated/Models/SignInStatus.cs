@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public int? ErrorCode { get; set; }
         /// <summary>Provides the error message or the reason for failure for the corresponding sign-in activity. Check out the list of error codes and messages.</summary>
         public string FailureReason { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new signInStatus and sets the default values.
         /// </summary>
         public SignInStatus() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.signInStatus";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"additionalDetails", n => { AdditionalDetails = n.GetStringValue(); } },
                 {"errorCode", n => { ErrorCode = n.GetIntValue(); } },
                 {"failureReason", n => { FailureReason = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("additionalDetails", AdditionalDetails);
             writer.WriteIntValue("errorCode", ErrorCode);
             writer.WriteStringValue("failureReason", FailureReason);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -238,7 +238,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new appConsentRequestItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AppConsentRequestItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AppConsentRequestItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -263,7 +263,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             /// <summary>Request query parameters</summary>
             public AppConsentRequestItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AppConsentRequestItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new appConsentRequestItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AppConsentRequestItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AppConsentRequestItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -277,7 +277,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new appConsentRequestItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AppConsentRequestItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AppConsentRequestItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

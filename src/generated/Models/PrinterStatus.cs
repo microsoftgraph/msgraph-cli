@@ -11,13 +11,16 @@ namespace ApiSdk.Models {
         public string Description { get; set; }
         /// <summary>The list of details describing why the printer is in the current state. Valid values are described in the following table. Read-only.</summary>
         public List<string> Details { get; set; }
-        /// <summary>The current processing state. Valid values are described in the following table. Read-only.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The state property</summary>
         public PrinterProcessingState? State { get; set; }
         /// <summary>
         /// Instantiates a new printerStatus and sets the default values.
         /// </summary>
         public PrinterStatus() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.printerStatus";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"details", n => { Details = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"state", n => { State = n.GetEnumValue<PrinterProcessingState>(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteCollectionOfPrimitiveValues<string>("details", Details);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<PrinterProcessingState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }

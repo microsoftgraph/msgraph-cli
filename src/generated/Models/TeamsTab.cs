@@ -4,16 +4,22 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of chat entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class TeamsTab : Entity, IParsable {
         /// <summary>Container for custom settings applied to a tab. The tab is considered configured only once this property is set.</summary>
         public TeamsTabConfiguration Configuration { get; set; }
         /// <summary>Name of the tab.</summary>
         public string DisplayName { get; set; }
-        /// <summary>The application that is linked to the tab.</summary>
+        /// <summary>The application that is linked to the tab. This cannot be changed after tab creation.</summary>
         public ApiSdk.Models.TeamsApp TeamsApp { get; set; }
         /// <summary>Deep link URL of the tab instance. Read only.</summary>
         public string WebUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new teamsTab and sets the default values.
+        /// </summary>
+        public TeamsTab() : base() {
+            OdataType = "#microsoft.graph.teamsTab";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

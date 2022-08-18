@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.TermStore {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Term : Entity, IParsable {
         /// <summary>Children of current term.</summary>
         public List<Term> Children { get; set; }
@@ -22,6 +21,12 @@ namespace ApiSdk.Models.TermStore {
         public List<Relation> Relations { get; set; }
         /// <summary>The [set] in which the term is created.</summary>
         public ApiSdk.Models.TermStore.Set Set { get; set; }
+        /// <summary>
+        /// Instantiates a new term and sets the default values.
+        /// </summary>
+        public Term() : base() {
+            OdataType = "#microsoft.graph.termStore.term";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

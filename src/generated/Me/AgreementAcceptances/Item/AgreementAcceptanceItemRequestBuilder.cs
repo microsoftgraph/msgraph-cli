@@ -134,7 +134,7 @@ namespace ApiSdk.Me.AgreementAcceptances.Item {
             /// <summary>Request query parameters</summary>
             public AgreementAcceptanceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AgreementAcceptanceItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new agreementAcceptanceItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AgreementAcceptanceItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AgreementAcceptanceItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
     public class OpenShiftChangeRequest : ScheduleChangeRequest, IParsable {
         /// <summary>ID for the open shift.</summary>
         public string OpenShiftId { get; set; }
+        /// <summary>
+        /// Instantiates a new OpenShiftChangeRequest and sets the default values.
+        /// </summary>
+        public OpenShiftChangeRequest() : base() {
+            OdataType = "#microsoft.graph.openShiftChangeRequest";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

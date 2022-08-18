@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace ApiSdk.Models {
         public List<Recipient> BccRecipients { get; set; }
         /// <summary>The body of the message. It can be in HTML or text format. Find out about safe HTML in a message body.</summary>
         public ItemBody Body { get; set; }
-        /// <summary>The first 255 characters of the message body. It is in text format. If the message contains instances of mention, this property would contain a concatenation of these mentions as well.</summary>
+        /// <summary>The first 255 characters of the message body. It is in text format.</summary>
         public string BodyPreview { get; set; }
         /// <summary>The Cc: recipients for the message.</summary>
         public List<Recipient> CcRecipients { get; set; }
@@ -66,12 +67,26 @@ namespace ApiSdk.Models {
         /// <summary>The webLink property</summary>
         public string WebLink { get; set; }
         /// <summary>
+        /// Instantiates a new Message and sets the default values.
+        /// </summary>
+        public Message() : base() {
+            OdataType = "#microsoft.graph.message";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
         public static new Message CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Message();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.calendarSharingMessage" => new CalendarSharingMessage(),
+                "#microsoft.graph.eventMessage" => new EventMessage(),
+                "#microsoft.graph.eventMessageRequest" => new EventMessageRequest(),
+                "#microsoft.graph.eventMessageResponse" => new EventMessageResponse(),
+                _ => new Message(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

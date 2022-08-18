@@ -29,7 +29,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             var builder = new AgreementItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAcceptancesCommand());
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFileCommand());
+            command.AddCommand(builder.BuildFileObjectCommand());
             command.AddCommand(builder.BuildFilesCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());

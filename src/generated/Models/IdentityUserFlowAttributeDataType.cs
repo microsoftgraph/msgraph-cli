@@ -1,7 +1,7 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public enum IdentityUserFlowAttributeDataType {
-        @String,
+        String,
         Boolean,
         Int64,
         StringCollection,

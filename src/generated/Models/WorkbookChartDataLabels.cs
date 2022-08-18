@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartDataLabels : Entity, IParsable {
         /// <summary>Represents the format of chart data labels, which includes fill and font formatting. Read-only.</summary>
         public WorkbookChartDataLabelFormat Format { get; set; }
@@ -24,6 +23,12 @@ namespace ApiSdk.Models {
         public bool? ShowSeriesName { get; set; }
         /// <summary>Boolean value representing if the data label value is visible or not.</summary>
         public bool? ShowValue { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookChartDataLabels and sets the default values.
+        /// </summary>
+        public WorkbookChartDataLabels() : base() {
+            OdataType = "#microsoft.graph.workbookChartDataLabels";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

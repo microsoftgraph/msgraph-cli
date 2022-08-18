@@ -7,13 +7,16 @@ namespace ApiSdk.Models {
     public class StoragePlanInformation : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Indicates if there are higher storage quota plans available. Read-only.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>Indicates whether there are higher storage quota plans available. Read-only.</summary>
         public bool? UpgradeAvailable { get; set; }
         /// <summary>
         /// Instantiates a new storagePlanInformation and sets the default values.
         /// </summary>
         public StoragePlanInformation() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.storagePlanInformation";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -28,6 +31,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"upgradeAvailable", n => { UpgradeAvailable = n.GetBoolValue(); } },
             };
         }
@@ -37,6 +41,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("upgradeAvailable", UpgradeAvailable);
             writer.WriteAdditionalData(AdditionalData);
         }

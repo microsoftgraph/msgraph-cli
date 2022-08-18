@@ -1,15 +1,21 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class IdentityUserFlow : Entity, IParsable {
         /// <summary>The userFlowType property</summary>
         public ApiSdk.Models.UserFlowType? UserFlowType { get; set; }
         /// <summary>The userFlowTypeVersion property</summary>
         public float? UserFlowTypeVersion { get; set; }
+        /// <summary>
+        /// Instantiates a new IdentityUserFlow and sets the default values.
+        /// </summary>
+        public IdentityUserFlow() : base() {
+            OdataType = "#microsoft.graph.identityUserFlow";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

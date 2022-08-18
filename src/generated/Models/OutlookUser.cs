@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class OutlookUser : Entity, IParsable {
         /// <summary>A list of categories defined for the user.</summary>
         public List<OutlookCategory> MasterCategories { get; set; }
+        /// <summary>
+        /// Instantiates a new OutlookUser and sets the default values.
+        /// </summary>
+        public OutlookUser() : base() {
+            OdataType = "#microsoft.graph.outlookUser";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

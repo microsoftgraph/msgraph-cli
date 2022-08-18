@@ -23,11 +23,11 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.
+        /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.";
+            command.Description = "The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.
+        /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CreatedOnBehalfOfRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf {
             }
             return requestInfo;
         }
-        /// <summary>The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.</summary>
+        /// <summary>The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.</summary>
         public class CreatedOnBehalfOfRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

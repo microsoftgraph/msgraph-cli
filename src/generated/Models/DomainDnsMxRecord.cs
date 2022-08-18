@@ -10,6 +10,12 @@ namespace ApiSdk.Models {
         /// <summary>Value used when configuring the Preference/Priority property of the MX record at the DNS host.</summary>
         public int? Preference { get; set; }
         /// <summary>
+        /// Instantiates a new DomainDnsMxRecord and sets the default values.
+        /// </summary>
+        public DomainDnsMxRecord() : base() {
+            OdataType = "#microsoft.graph.domainDnsMxRecord";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

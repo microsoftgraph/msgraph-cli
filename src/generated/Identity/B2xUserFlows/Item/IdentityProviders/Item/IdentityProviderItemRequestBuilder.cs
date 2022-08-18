@@ -140,7 +140,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Item {
             /// <summary>Request query parameters</summary>
             public IdentityProviderItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new IdentityProviderItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new identityProviderItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new IdentityProviderItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public IdentityProviderItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

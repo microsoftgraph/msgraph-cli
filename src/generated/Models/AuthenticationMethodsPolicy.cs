@@ -5,21 +5,30 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     /// <summary>Provides operations to manage the authenticationMethodsPolicy singleton.</summary>
-    public class AuthenticationMethodsPolicy : Entity, IParsable {
+    public class AuthenticationMethodsPolicy : Entity, IAdditionalDataHolder, IParsable {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.</summary>
         public List<AuthenticationMethodConfiguration> AuthenticationMethodConfigurations { get; set; }
-        /// <summary>A description of the policy.</summary>
+        /// <summary>A description of the policy. Read-only.</summary>
         public string Description { get; set; }
-        /// <summary>The name of the policy.</summary>
+        /// <summary>The name of the policy. Read-only.</summary>
         public string DisplayName { get; set; }
-        /// <summary>The date and time of the last update to the policy.</summary>
+        /// <summary>The date and time of the last update to the policy. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>The version of the policy in use.</summary>
+        /// <summary>The version of the policy in use. Read-only.</summary>
         public string PolicyVersion { get; set; }
         /// <summary>The reconfirmationInDays property</summary>
         public int? ReconfirmationInDays { get; set; }
         /// <summary>Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.</summary>
         public ApiSdk.Models.RegistrationEnforcement RegistrationEnforcement { get; set; }
+        /// <summary>
+        /// Instantiates a new authenticationMethodsPolicy and sets the default values.
+        /// </summary>
+        public AuthenticationMethodsPolicy() : base() {
+            AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.authenticationMethodsPolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
@@ -56,6 +65,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("policyVersion", PolicyVersion);
             writer.WriteIntValue("reconfirmationInDays", ReconfirmationInDays);
             writer.WriteObjectValue<ApiSdk.Models.RegistrationEnforcement>("registrationEnforcement", RegistrationEnforcement);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

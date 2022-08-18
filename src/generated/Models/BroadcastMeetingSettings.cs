@@ -17,11 +17,14 @@ namespace ApiSdk.Models {
         public bool? IsRecordingEnabled { get; set; }
         /// <summary>Indicates whether video on demand is enabled for this Teams live event. Default value is false.</summary>
         public bool? IsVideoOnDemandEnabled { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new broadcastMeetingSettings and sets the default values.
         /// </summary>
         public BroadcastMeetingSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.broadcastMeetingSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -41,6 +44,7 @@ namespace ApiSdk.Models {
                 {"isQuestionAndAnswerEnabled", n => { IsQuestionAndAnswerEnabled = n.GetBoolValue(); } },
                 {"isRecordingEnabled", n => { IsRecordingEnabled = n.GetBoolValue(); } },
                 {"isVideoOnDemandEnabled", n => { IsVideoOnDemandEnabled = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -54,6 +58,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("isQuestionAndAnswerEnabled", IsQuestionAndAnswerEnabled);
             writer.WriteBoolValue("isRecordingEnabled", IsRecordingEnabled);
             writer.WriteBoolValue("isVideoOnDemandEnabled", IsVideoOnDemandEnabled);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public List<string> ExcludeLocations { get; set; }
         /// <summary>Location IDs in scope of policy unless explicitly excluded, All, or AllTrusted.</summary>
         public List<string> IncludeLocations { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new conditionalAccessLocations and sets the default values.
         /// </summary>
         public ConditionalAccessLocations() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.conditionalAccessLocations";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"excludeLocations", n => { ExcludeLocations = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"includeLocations", n => { IncludeLocations = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("excludeLocations", ExcludeLocations);
             writer.WriteCollectionOfPrimitiveValues<string>("includeLocations", IncludeLocations);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -27,12 +27,14 @@ namespace ApiSdk.Models {
         public string InputBin { get; set; }
         /// <summary>The margin settings to use when printing.</summary>
         public PrintMargin Margin { get; set; }
-        /// <summary>The media sizeto use when printing. Supports standard size names for ISO and ANSI media sizes. Valid values are listed in the printerCapabilities topic.</summary>
+        /// <summary>The media size to use when printing. Supports standard size names for ISO and ANSI media sizes. Valid values listed in the printerCapabilities topic.</summary>
         public string MediaSize { get; set; }
         /// <summary>The default media (such as paper) type to print the document on.</summary>
         public string MediaType { get; set; }
         /// <summary>The direction to lay out pages when multiple pages are being printed per sheet. Valid values are described in the following table.</summary>
         public PrintMultipageLayout? MultipageLayout { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The orientation setting the printer should use when printing the job. Valid values are described in the following table.</summary>
         public PrintOrientation? Orientation { get; set; }
         /// <summary>The output bin to place completed prints into. See the printer&apos;s capabilities for a list of supported output bins.</summary>
@@ -50,6 +52,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public PrintJobConfiguration() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.printJobConfiguration";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -77,6 +80,7 @@ namespace ApiSdk.Models {
                 {"mediaSize", n => { MediaSize = n.GetStringValue(); } },
                 {"mediaType", n => { MediaType = n.GetStringValue(); } },
                 {"multipageLayout", n => { MultipageLayout = n.GetEnumValue<PrintMultipageLayout>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"orientation", n => { Orientation = n.GetEnumValue<PrintOrientation>(); } },
                 {"outputBin", n => { OutputBin = n.GetStringValue(); } },
                 {"pageRanges", n => { PageRanges = n.GetCollectionOfObjectValues<IntegerRange>(IntegerRange.CreateFromDiscriminatorValue).ToList(); } },
@@ -104,6 +108,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("mediaSize", MediaSize);
             writer.WriteStringValue("mediaType", MediaType);
             writer.WriteEnumValue<PrintMultipageLayout>("multipageLayout", MultipageLayout);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<PrintOrientation>("orientation", Orientation);
             writer.WriteStringValue("outputBin", OutputBin);
             writer.WriteCollectionOfObjectValues<IntegerRange>("pageRanges", PageRanges);

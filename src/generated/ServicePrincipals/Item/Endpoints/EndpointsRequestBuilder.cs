@@ -94,11 +94,11 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints {
             return command;
         }
         /// <summary>
-        /// Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.
+        /// Get endpoints from servicePrincipals
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.";
+            command.Description = "Get endpoints from servicePrincipals";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.
+        /// Get endpoints from servicePrincipals
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<EndpointsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints {
             }
             return requestInfo;
         }
-        /// <summary>Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.</summary>
+        /// <summary>Get endpoints from servicePrincipals</summary>
         public class EndpointsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -289,7 +289,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Items.Item.Subscriptions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new subscriptionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new SubscriptionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public SubscriptionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -314,7 +314,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Items.Item.Subscriptions.Item {
             /// <summary>Request query parameters</summary>
             public SubscriptionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SubscriptionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new subscriptionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SubscriptionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SubscriptionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -328,7 +328,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Items.Item.Subscriptions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new subscriptionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SubscriptionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SubscriptionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

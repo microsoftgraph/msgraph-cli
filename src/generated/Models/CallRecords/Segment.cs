@@ -19,6 +19,12 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>UTC time when the segment started. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>
+        /// Instantiates a new segment and sets the default values.
+        /// </summary>
+        public Segment() : base() {
+            OdataType = "#microsoft.graph.callRecords.segment";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

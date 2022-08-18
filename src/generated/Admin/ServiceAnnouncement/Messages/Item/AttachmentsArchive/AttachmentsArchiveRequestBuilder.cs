@@ -22,11 +22,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The zip file of all attachments for a message.
+        /// The zip file that contains all attachments for a message.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The zip file of all attachments for a message.";
+            command.Description = "The zip file that contains all attachments for a message.";
             // Create options for all the parameters
             var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
             };
@@ -60,11 +60,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
             return command;
         }
         /// <summary>
-        /// The zip file of all attachments for a message.
+        /// The zip file that contains all attachments for a message.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The zip file of all attachments for a message.";
+            command.Description = "The zip file that contains all attachments for a message.";
             // Create options for all the parameters
             var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
             };
@@ -105,7 +105,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The zip file of all attachments for a message.
+        /// The zip file that contains all attachments for a message.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AttachmentsArchiveRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -123,7 +123,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
             return requestInfo;
         }
         /// <summary>
-        /// The zip file of all attachments for a message.
+        /// The zip file that contains all attachments for a message.
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

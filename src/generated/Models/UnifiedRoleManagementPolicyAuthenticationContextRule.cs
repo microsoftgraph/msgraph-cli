@@ -10,6 +10,12 @@ namespace ApiSdk.Models {
         /// <summary>Whether this rule is enabled.</summary>
         public bool? IsEnabled { get; set; }
         /// <summary>
+        /// Instantiates a new UnifiedRoleManagementPolicyAuthenticationContextRule and sets the default values.
+        /// </summary>
+        public UnifiedRoleManagementPolicyAuthenticationContextRule() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
