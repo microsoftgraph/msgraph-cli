@@ -258,7 +258,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new unifiedRoleAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleAssignmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -283,7 +283,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
             /// <summary>Request query parameters</summary>
             public UnifiedRoleAssignmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UnifiedRoleAssignmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new unifiedRoleAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleAssignmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -297,7 +297,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new unifiedRoleAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleAssignmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -249,7 +249,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new conversationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ConversationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ConversationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             /// <summary>Request query parameters</summary>
             public ConversationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ConversationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new conversationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ConversationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ConversationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new conversationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ConversationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ConversationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

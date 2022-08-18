@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>The collection of rules that are enabled for this policy rule. For example, MultiFactorAuthentication, Ticketing, and Justification.</summary>
         public List<string> EnabledRules { get; set; }
         /// <summary>
+        /// Instantiates a new UnifiedRoleManagementPolicyEnablementRule and sets the default values.
+        /// </summary>
+        public UnifiedRoleManagementPolicyEnablementRule() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

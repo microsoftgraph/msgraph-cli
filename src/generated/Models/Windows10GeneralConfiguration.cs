@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         public bool? AccountsBlockAddingNonMicrosoftAccountEmail { get; set; }
         /// <summary>Indicates whether or not to block the user from selecting an AntiTheft mode preference (Windows 10 Mobile only).</summary>
         public bool? AntiTheftModeBlocked { get; set; }
-        /// <summary>Indicates whether apps from AppX packages signed with a trusted certificate can be side loaded. Possible values are: notConfigured, blocked, allowed.</summary>
+        /// <summary>State Management Setting.</summary>
         public StateManagementSetting? AppsAllowTrustedAppsSideloading { get; set; }
         /// <summary>Indicates whether or not to disable the launch of all apps from Windows Store that came pre-installed or were downloaded.</summary>
         public bool? AppsBlockWindowsStoreOriginatedApps { get; set; }
@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
         public bool? CortanaBlocked { get; set; }
         /// <summary>Whether or not to block end user access to Defender.</summary>
         public bool? DefenderBlockEndUserAccess { get; set; }
-        /// <summary>Specifies the level of cloud-delivered protection. Possible values are: notConfigured, high, highPlus, zeroTolerance.</summary>
+        /// <summary>Possible values of Cloud Block Level</summary>
         public DefenderCloudBlockLevelType? DefenderCloudBlockLevel { get; set; }
         /// <summary>Number of days before deleting quarantined malware. Valid values 0 to 90</summary>
         public int? DefenderDaysBeforeDeletingQuarantinedMalware { get; set; }
@@ -52,11 +52,11 @@ namespace ApiSdk.Models {
         public List<string> DefenderFileExtensionsToExclude { get; set; }
         /// <summary>Files and folder to exclude from scans and real time protection.</summary>
         public List<string> DefenderFilesAndFoldersToExclude { get; set; }
-        /// <summary>Value for monitoring file activity. Possible values are: userDefined, disable, monitorAllFiles, monitorIncomingFilesOnly, monitorOutgoingFilesOnly.</summary>
+        /// <summary>Possible values for monitoring file activity.</summary>
         public ApiSdk.Models.DefenderMonitorFileActivity? DefenderMonitorFileActivity { get; set; }
         /// <summary>Processes to exclude from scans and real time protection.</summary>
         public List<string> DefenderProcessesToExclude { get; set; }
-        /// <summary>The configuration for how to prompt user for sample submission. Possible values are: userDefined, alwaysPrompt, promptBeforeSendingPersonalData, neverSendData, sendAllDataWithoutPrompting.</summary>
+        /// <summary>Possible values for prompting user for samples submission.</summary>
         public ApiSdk.Models.DefenderPromptForSampleSubmission? DefenderPromptForSampleSubmission { get; set; }
         /// <summary>Indicates whether or not to require behavior monitoring.</summary>
         public bool? DefenderRequireBehaviorMonitoring { get; set; }
@@ -82,7 +82,7 @@ namespace ApiSdk.Models {
         public bool? DefenderScanRemovableDrivesDuringFullScan { get; set; }
         /// <summary>Indicates whether or not to scan scripts loaded in Internet Explorer browser.</summary>
         public bool? DefenderScanScriptsLoadedInInternetExplorer { get; set; }
-        /// <summary>The defender system scan type. Possible values are: userDefined, disabled, quick, full.</summary>
+        /// <summary>Possible values for system scan type.</summary>
         public ApiSdk.Models.DefenderScanType? DefenderScanType { get; set; }
         /// <summary>The time to perform a daily quick scan.</summary>
         public Time? DefenderScheduledQuickScanTime { get; set; }
@@ -90,15 +90,15 @@ namespace ApiSdk.Models {
         public Time? DefenderScheduledScanTime { get; set; }
         /// <summary>The signature update interval in hours. Specify 0 not to check. Valid values 0 to 24</summary>
         public int? DefenderSignatureUpdateIntervalInHours { get; set; }
-        /// <summary>Defender day of the week for the system scan. Possible values are: userDefined, everyday, sunday, monday, tuesday, wednesday, thursday, friday, saturday, noScheduledScan.</summary>
+        /// <summary>Possible values for a weekly schedule.</summary>
         public WeeklySchedule? DefenderSystemScanSchedule { get; set; }
-        /// <summary>Indicates whether or not to allow developer unlock. Possible values are: notConfigured, blocked, allowed.</summary>
+        /// <summary>State Management Setting.</summary>
         public StateManagementSetting? DeveloperUnlockSetting { get; set; }
         /// <summary>Indicates whether or not to Block the user from resetting their phone.</summary>
         public bool? DeviceManagementBlockFactoryResetOnMobile { get; set; }
         /// <summary>Indicates whether or not to Block the user from doing manual un-enrollment from device management.</summary>
         public bool? DeviceManagementBlockManualUnenroll { get; set; }
-        /// <summary>Gets or sets a value allowing the device to send diagnostic and usage telemetry data, such as Watson. Possible values are: userDefined, none, basic, enhanced, full.</summary>
+        /// <summary>Allow the device to send diagnostic and usage telemetry data, such as Watson.</summary>
         public DiagnosticDataSubmissionMode? DiagnosticsDataSubmissionMode { get; set; }
         /// <summary>Allow users to change Start pages on Edge. Use the EdgeHomepageUrls to specify the Start pages that the user would see by default when they open Edge.</summary>
         public bool? EdgeAllowStartPagesModification { get; set; }
@@ -134,7 +134,7 @@ namespace ApiSdk.Models {
         public bool? EdgeBlockSendingIntranetTrafficToInternetExplorer { get; set; }
         /// <summary>Clear browsing data on exiting Microsoft Edge.</summary>
         public bool? EdgeClearBrowsingDataOnExit { get; set; }
-        /// <summary>Indicates which cookies to block in the Edge browser. Possible values are: userDefined, allow, blockThirdParty, blockAll.</summary>
+        /// <summary>Possible values to specify which cookies are allowed in Microsoft Edge.</summary>
         public ApiSdk.Models.EdgeCookiePolicy? EdgeCookiePolicy { get; set; }
         /// <summary>Block the Microsoft web page that opens on the first use of Microsoft Edge. This policy allows enterprises, like those enrolled in zero emissions configurations, to block this page.</summary>
         public bool? EdgeDisableFirstRunPage { get; set; }
@@ -218,7 +218,7 @@ namespace ApiSdk.Models {
         public int? PasswordPreviousPasswordBlockCount { get; set; }
         /// <summary>Indicates whether or not to require the user to have a password.</summary>
         public bool? PasswordRequired { get; set; }
-        /// <summary>The required password type. Possible values are: deviceDefault, alphanumeric, numeric.</summary>
+        /// <summary>Possible values of required passwords.</summary>
         public RequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Indicates whether or not to require a password upon resuming from an idle state.</summary>
         public bool? PasswordRequireWhenResumeFromIdleState { get; set; }
@@ -228,7 +228,7 @@ namespace ApiSdk.Models {
         public string PersonalizationDesktopImageUrl { get; set; }
         /// <summary>A http or https Url to a jpg, jpeg or png image that neeeds to be downloaded and used as the Lock Screen Image or a file Url to a local image on the file system that needs to be used as the Lock Screen Image.</summary>
         public string PersonalizationLockScreenImageUrl { get; set; }
-        /// <summary>Enables or disables the use of advertising ID. Added in Windows 10, version 1607. Possible values are: notConfigured, blocked, allowed.</summary>
+        /// <summary>State Management Setting.</summary>
         public StateManagementSetting? PrivacyAdvertisingId { get; set; }
         /// <summary>Indicates whether or not to allow the automatic acceptance of the pairing and privacy user consent dialog when launching apps.</summary>
         public bool? PrivacyAutoAcceptPairingAndConsentPrompts { get; set; }
@@ -236,7 +236,7 @@ namespace ApiSdk.Models {
         public bool? PrivacyBlockInputPersonalization { get; set; }
         /// <summary>Indicates whether or not to Block the user from reset protection mode.</summary>
         public bool? ResetProtectionModeBlocked { get; set; }
-        /// <summary>Specifies what filter level of safe search is required. Possible values are: userDefined, strict, moderate.</summary>
+        /// <summary>Specifies what level of safe search (filtering adult content) is required</summary>
         public SafeSearchFilterType? SafeSearchFilter { get; set; }
         /// <summary>Indicates whether or not to Block the user from taking Screenshots.</summary>
         public bool? ScreenCaptureBlocked { get; set; }
@@ -302,7 +302,7 @@ namespace ApiSdk.Models {
         public bool? SmartScreenEnableAppInstallControl { get; set; }
         /// <summary>Indicates whether or not to block the user from unpinning apps from taskbar.</summary>
         public bool? StartBlockUnpinningAppsFromTaskbar { get; set; }
-        /// <summary>Setting the value of this collapses the app list, removes the app list entirely, or disables the corresponding toggle in the Settings app. Possible values are: userDefined, collapse, remove, disableSettingsApp.</summary>
+        /// <summary>Type of start menu app list visibility.</summary>
         public WindowsStartMenuAppListVisibilityType? StartMenuAppListVisibility { get; set; }
         /// <summary>Enabling this policy hides the change account setting from appearing in the user tile in the start menu.</summary>
         public bool? StartMenuHideChangeAccountSettings { get; set; }
@@ -334,27 +334,27 @@ namespace ApiSdk.Models {
         public byte[] StartMenuLayoutEdgeAssetsXml { get; set; }
         /// <summary>Allows admins to override the default Start menu layout and prevents the user from changing it. The layout is modified by specifying an XML file based on a layout modification schema. XML needs to be in a UTF8 encoded byte array format.</summary>
         public byte[] StartMenuLayoutXml { get; set; }
-        /// <summary>Allows admins to decide how the Start menu is displayed. Possible values are: userDefined, fullScreen, nonFullScreen.</summary>
+        /// <summary>Type of display modes for the start menu.</summary>
         public WindowsStartMenuModeType? StartMenuMode { get; set; }
-        /// <summary>Enforces the visibility (Show/Hide) of the Documents folder shortcut on the Start menu. Possible values are: notConfigured, hide, show.</summary>
+        /// <summary>Generic visibility state.</summary>
         public VisibilitySetting? StartMenuPinnedFolderDocuments { get; set; }
-        /// <summary>Enforces the visibility (Show/Hide) of the Downloads folder shortcut on the Start menu. Possible values are: notConfigured, hide, show.</summary>
+        /// <summary>Generic visibility state.</summary>
         public VisibilitySetting? StartMenuPinnedFolderDownloads { get; set; }
-        /// <summary>Enforces the visibility (Show/Hide) of the FileExplorer shortcut on the Start menu. Possible values are: notConfigured, hide, show.</summary>
+        /// <summary>Generic visibility state.</summary>
         public VisibilitySetting? StartMenuPinnedFolderFileExplorer { get; set; }
-        /// <summary>Enforces the visibility (Show/Hide) of the HomeGroup folder shortcut on the Start menu. Possible values are: notConfigured, hide, show.</summary>
+        /// <summary>Generic visibility state.</summary>
         public VisibilitySetting? StartMenuPinnedFolderHomeGroup { get; set; }
-        /// <summary>Enforces the visibility (Show/Hide) of the Music folder shortcut on the Start menu. Possible values are: notConfigured, hide, show.</summary>
+        /// <summary>Generic visibility state.</summary>
         public VisibilitySetting? StartMenuPinnedFolderMusic { get; set; }
-        /// <summary>Enforces the visibility (Show/Hide) of the Network folder shortcut on the Start menu. Possible values are: notConfigured, hide, show.</summary>
+        /// <summary>Generic visibility state.</summary>
         public VisibilitySetting? StartMenuPinnedFolderNetwork { get; set; }
-        /// <summary>Enforces the visibility (Show/Hide) of the PersonalFolder shortcut on the Start menu. Possible values are: notConfigured, hide, show.</summary>
+        /// <summary>Generic visibility state.</summary>
         public VisibilitySetting? StartMenuPinnedFolderPersonalFolder { get; set; }
-        /// <summary>Enforces the visibility (Show/Hide) of the Pictures folder shortcut on the Start menu. Possible values are: notConfigured, hide, show.</summary>
+        /// <summary>Generic visibility state.</summary>
         public VisibilitySetting? StartMenuPinnedFolderPictures { get; set; }
-        /// <summary>Enforces the visibility (Show/Hide) of the Settings folder shortcut on the Start menu. Possible values are: notConfigured, hide, show.</summary>
+        /// <summary>Generic visibility state.</summary>
         public VisibilitySetting? StartMenuPinnedFolderSettings { get; set; }
-        /// <summary>Enforces the visibility (Show/Hide) of the Videos folder shortcut on the Start menu. Possible values are: notConfigured, hide, show.</summary>
+        /// <summary>Generic visibility state.</summary>
         public VisibilitySetting? StartMenuPinnedFolderVideos { get; set; }
         /// <summary>Indicates whether or not to Block the user from using removable storage.</summary>
         public bool? StorageBlockRemovableStorage { get; set; }
@@ -394,7 +394,7 @@ namespace ApiSdk.Models {
         public bool? WindowsSpotlightBlockWelcomeExperience { get; set; }
         /// <summary>Allows IT admins to turn off the popup of Windows Tips.</summary>
         public bool? WindowsSpotlightBlockWindowsTips { get; set; }
-        /// <summary>Specifies the type of Spotlight. Possible values are: notConfigured, disabled, enabled.</summary>
+        /// <summary>Allows IT admind to set a predefined default search engine for MDM-Controlled devices</summary>
         public WindowsSpotlightEnablementSettings? WindowsSpotlightConfigureOnLockScreen { get; set; }
         /// <summary>Indicates whether or not to block automatic update of apps from Windows Store.</summary>
         public bool? WindowsStoreBlockAutoUpdate { get; set; }
@@ -408,6 +408,12 @@ namespace ApiSdk.Models {
         public bool? WirelessDisplayBlockUserInputFromReceiver { get; set; }
         /// <summary>Indicates whether or not to require a PIN for new devices to initiate pairing.</summary>
         public bool? WirelessDisplayRequirePinForPairing { get; set; }
+        /// <summary>
+        /// Instantiates a new Windows10GeneralConfiguration and sets the default values.
+        /// </summary>
+        public Windows10GeneralConfiguration() : base() {
+            OdataType = "#microsoft.graph.windows10GeneralConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

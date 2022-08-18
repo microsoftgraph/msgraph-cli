@@ -7,6 +7,8 @@ namespace ApiSdk.Models {
     public class Package : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>A string indicating the type of package. While oneNote is the only currently defined value, you should expect other package types to be returned and handle them accordingly.</summary>
         public string Type { get; set; }
         /// <summary>
@@ -14,6 +16,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public Package() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.package";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -28,6 +31,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -37,6 +41,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

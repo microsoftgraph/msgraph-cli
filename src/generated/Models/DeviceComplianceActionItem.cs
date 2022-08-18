@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models {
     /// <summary>Scheduled Action Configuration</summary>
     public class DeviceComplianceActionItem : Entity, IParsable {
-        /// <summary>What action to take. Possible values are: noAction, notification, block, retire, wipe, removeResourceAccessProfiles, pushNotification, remoteLock.</summary>
+        /// <summary>Scheduled Action Type Enum</summary>
         public DeviceComplianceActionType? ActionType { get; set; }
         /// <summary>Number of hours to wait till the action will be enforced. Valid values 0 to 8760</summary>
         public int? GracePeriodHours { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public List<string> NotificationMessageCCList { get; set; }
         /// <summary>What notification Message template to use</summary>
         public string NotificationTemplateId { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceComplianceActionItem and sets the default values.
+        /// </summary>
+        public DeviceComplianceActionItem() : base() {
+            OdataType = "#microsoft.graph.deviceComplianceActionItem";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

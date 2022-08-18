@@ -15,11 +15,14 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.FileSystemInfo FileSystemInfo { get; set; }
         /// <summary>The name of the item (filename and extension). Read-write.</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new driveItemUploadableProperties and sets the default values.
         /// </summary>
         public DriveItemUploadableProperties() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.driveItemUploadableProperties";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
                 {"fileSize", n => { FileSize = n.GetLongValue(); } },
                 {"fileSystemInfo", n => { FileSystemInfo = n.GetObjectValue<ApiSdk.Models.FileSystemInfo>(ApiSdk.Models.FileSystemInfo.CreateFromDiscriminatorValue); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -50,6 +54,7 @@ namespace ApiSdk.Models {
             writer.WriteLongValue("fileSize", FileSize);
             writer.WriteObjectValue<ApiSdk.Models.FileSystemInfo>("fileSystemInfo", FileSystemInfo);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

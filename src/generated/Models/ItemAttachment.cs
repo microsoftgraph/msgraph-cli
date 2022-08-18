@@ -5,8 +5,14 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class ItemAttachment : Attachment, IParsable {
-        /// <summary>The attached contact, message or event. Navigation property.</summary>
+        /// <summary>The attached message or event. Navigation property.</summary>
         public OutlookItem Item { get; set; }
+        /// <summary>
+        /// Instantiates a new ItemAttachment and sets the default values.
+        /// </summary>
+        public ItemAttachment() : base() {
+            OdataType = "#microsoft.graph.itemAttachment";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

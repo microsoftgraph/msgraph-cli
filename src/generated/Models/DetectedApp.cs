@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>A managed or unmanaged app that is installed on a managed device. Unmanaged apps will only appear for devices marked as corporate owned.</summary>
     public class DetectedApp : Entity, IParsable {
         /// <summary>The number of devices that have installed this application</summary>
         public int? DeviceCount { get; set; }
@@ -16,6 +15,12 @@ namespace ApiSdk.Models {
         public long? SizeInByte { get; set; }
         /// <summary>Version of the discovered application. Read-only</summary>
         public string Version { get; set; }
+        /// <summary>
+        /// Instantiates a new DetectedApp and sets the default values.
+        /// </summary>
+        public DetectedApp() : base() {
+            OdataType = "#microsoft.graph.detectedApp";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

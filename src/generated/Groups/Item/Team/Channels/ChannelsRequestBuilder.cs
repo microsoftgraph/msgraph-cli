@@ -37,6 +37,7 @@ namespace ApiSdk.Groups.Item.Team.Channels {
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildProvisionEmailCommand());
             command.AddCommand(builder.BuildRemoveEmailCommand());
+            command.AddCommand(builder.BuildSharedWithTeamsCommand());
             command.AddCommand(builder.BuildTabsCommand());
             return command;
         }

@@ -4,10 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class UserTeamwork : Entity, IParsable {
+        /// <summary>The list of associatedTeamInfo objects that a user is associated with.</summary>
+        public List<AssociatedTeamInfo> AssociatedTeams { get; set; }
         /// <summary>The apps installed in the personal scope of this user.</summary>
         public List<UserScopeTeamsAppInstallation> InstalledApps { get; set; }
+        /// <summary>
+        /// Instantiates a new UserTeamwork and sets the default values.
+        /// </summary>
+        public UserTeamwork() : base() {
+            OdataType = "#microsoft.graph.userTeamwork";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
@@ -21,6 +28,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+                {"associatedTeams", n => { AssociatedTeams = n.GetCollectionOfObjectValues<AssociatedTeamInfo>(AssociatedTeamInfo.CreateFromDiscriminatorValue).ToList(); } },
                 {"installedApps", n => { InstalledApps = n.GetCollectionOfObjectValues<UserScopeTeamsAppInstallation>(UserScopeTeamsAppInstallation.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
@@ -31,6 +39,7 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteCollectionOfObjectValues<AssociatedTeamInfo>("associatedTeams", AssociatedTeams);
             writer.WriteCollectionOfObjectValues<UserScopeTeamsAppInstallation>("installedApps", InstalledApps);
         }
     }

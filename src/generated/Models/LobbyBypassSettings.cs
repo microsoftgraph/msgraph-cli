@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Specifies whether or not to always let dial-in callers bypass the lobby. Optional.</summary>
         public bool? IsDialInBypassEnabled { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Specifies the type of participants that are automatically admitted into a meeting, bypassing the lobby. Optional.</summary>
         public LobbyBypassScope? Scope { get; set; }
         /// <summary>
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public LobbyBypassSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.lobbyBypassSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"isDialInBypassEnabled", n => { IsDialInBypassEnabled = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"scope", n => { Scope = n.GetEnumValue<LobbyBypassScope>(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("isDialInBypassEnabled", IsDialInBypassEnabled);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<LobbyBypassScope>("scope", Scope);
             writer.WriteAdditionalData(AdditionalData);
         }

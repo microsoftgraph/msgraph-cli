@@ -1,8 +1,13 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Users.Item.Authentication.EmailMethods;
 using ApiSdk.Users.Item.Authentication.Fido2Methods;
 using ApiSdk.Users.Item.Authentication.Methods;
 using ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods;
+using ApiSdk.Users.Item.Authentication.Operations;
+using ApiSdk.Users.Item.Authentication.PasswordMethods;
+using ApiSdk.Users.Item.Authentication.PhoneMethods;
+using ApiSdk.Users.Item.Authentication.SoftwareOathMethods;
 using ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods;
 using ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods;
 using Microsoft.Extensions.DependencyInjection;
@@ -57,6 +62,15 @@ namespace ApiSdk.Users.Item.Authentication {
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        public Command BuildEmailMethodsCommand() {
+            var command = new Command("email-methods");
+            var builder = new EmailMethodsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildFido2MethodsCommand() {
@@ -147,6 +161,24 @@ namespace ApiSdk.Users.Item.Authentication {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        public Command BuildOperationsCommand() {
+            var command = new Command("operations");
+            var builder = new OperationsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildPasswordMethodsCommand() {
+            var command = new Command("password-methods");
+            var builder = new PasswordMethodsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         /// <summary>
         /// Update the navigation property authentication in users
         /// </summary>
@@ -179,6 +211,24 @@ namespace ApiSdk.Users.Item.Authentication {
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        public Command BuildPhoneMethodsCommand() {
+            var command = new Command("phone-methods");
+            var builder = new PhoneMethodsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildSoftwareOathMethodsCommand() {
+            var command = new Command("software-oath-methods");
+            var builder = new SoftwareOathMethodsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildTemporaryAccessPassMethodsCommand() {

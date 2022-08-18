@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         public string ConnectorServerName { get; set; }
         /// <summary>An alias assigned to the Exchange server</summary>
         public string ExchangeAlias { get; set; }
-        /// <summary>The type of Exchange Connector Configured. Possible values are: onPremises, hosted, serviceToService, dedicated.</summary>
+        /// <summary>The type of Exchange Connector.</summary>
         public DeviceManagementExchangeConnectorType? ExchangeConnectorType { get; set; }
         /// <summary>Exchange Organization to the Exchange server</summary>
         public string ExchangeOrganization { get; set; }
@@ -20,10 +20,16 @@ namespace ApiSdk.Models {
         public string PrimarySmtpAddress { get; set; }
         /// <summary>The name of the Exchange server.</summary>
         public string ServerName { get; set; }
-        /// <summary>Exchange Connector Status. Possible values are: none, connectionPending, connected, disconnected.</summary>
+        /// <summary>The current status of the Exchange Connector.</summary>
         public DeviceManagementExchangeConnectorStatus? Status { get; set; }
         /// <summary>The version of the ExchangeConnectorAgent</summary>
         public string Version { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceManagementExchangeConnector and sets the default values.
+        /// </summary>
+        public DeviceManagementExchangeConnector() : base() {
+            OdataType = "#microsoft.graph.deviceManagementExchangeConnector";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

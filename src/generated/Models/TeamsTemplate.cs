@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
     public class TeamsTemplate : Entity, IParsable {
+        /// <summary>
+        /// Instantiates a new teamsTemplate and sets the default values.
+        /// </summary>
+        public TeamsTemplate() : base() {
+            OdataType = "#microsoft.graph.teamsTemplate";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

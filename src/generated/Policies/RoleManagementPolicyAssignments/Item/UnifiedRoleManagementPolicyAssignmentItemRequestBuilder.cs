@@ -56,11 +56,11 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             return command;
         }
         /// <summary>
-        /// Represents the role management policy assignments.
+        /// The assignment of a role management policy to a role definition object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents the role management policy assignments.";
+            command.Description = "The assignment of a role management policy to a role definition object.";
             // Create options for all the parameters
             var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "key: id of unifiedRoleManagementPolicyAssignment") {
             };
@@ -188,7 +188,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents the role management policy assignments.
+        /// The assignment of a role management policy to a role definition object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -235,14 +235,14 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new unifiedRoleManagementPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleManagementPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleManagementPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Represents the role management policy assignments.</summary>
+        /// <summary>The assignment of a role management policy to a role definition object.</summary>
         public class UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -260,7 +260,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             /// <summary>Request query parameters</summary>
             public UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new unifiedRoleManagementPolicyAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -274,7 +274,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new unifiedRoleManagementPolicyAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleManagementPolicyAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleManagementPolicyAssignmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

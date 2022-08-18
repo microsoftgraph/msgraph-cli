@@ -238,7 +238,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new approvalItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ApprovalItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ApprovalItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -263,7 +263,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             /// <summary>Request query parameters</summary>
             public ApprovalItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ApprovalItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new approvalItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ApprovalItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ApprovalItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -277,7 +277,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new approvalItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ApprovalItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ApprovalItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

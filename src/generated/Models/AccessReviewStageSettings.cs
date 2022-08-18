@@ -15,17 +15,20 @@ namespace ApiSdk.Models {
         public int? DurationInDays { get; set; }
         /// <summary>If provided, the fallback reviewers are asked to complete a review if the primary reviewers do not exist. For example, if managers are selected as reviewers and a principal under review does not have a manager in Azure AD, the fallback reviewers are asked to review that principal. NOTE: The value of this property will override the corresponding setting on the accessReviewScheduleDefinition object.</summary>
         public List<AccessReviewReviewerScope> FallbackReviewers { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Indicates whether showing recommendations to reviewers is enabled. Required. NOTE: The value of this property will override override the corresponding setting on the accessReviewScheduleDefinition object.</summary>
         public bool? RecommendationsEnabled { get; set; }
         /// <summary>Defines who the reviewers are. If none are specified, the review is a self-review (users review their own access).  For examples of options for assigning reviewers, see Assign reviewers to your access review definition using the Microsoft Graph API. NOTE: The value of this property will override the corresponding setting on the accessReviewScheduleDefinition.</summary>
         public List<AccessReviewReviewerScope> Reviewers { get; set; }
-        /// <summary>Unique identifier of the accessReviewStageSettings. The stageId will be used in dependsOn property to indicate the stage relationship. Required.</summary>
+        /// <summary>Unique identifier of the accessReviewStageSettings object. The stageId will be used by the dependsOn property to indicate the order of the stages. Required.</summary>
         public string StageId { get; set; }
         /// <summary>
         /// Instantiates a new accessReviewStageSettings and sets the default values.
         /// </summary>
         public AccessReviewStageSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.accessReviewStageSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -44,6 +47,7 @@ namespace ApiSdk.Models {
                 {"dependsOn", n => { DependsOn = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"durationInDays", n => { DurationInDays = n.GetIntValue(); } },
                 {"fallbackReviewers", n => { FallbackReviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"recommendationsEnabled", n => { RecommendationsEnabled = n.GetBoolValue(); } },
                 {"reviewers", n => { Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue).ToList(); } },
                 {"stageId", n => { StageId = n.GetStringValue(); } },
@@ -59,6 +63,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfPrimitiveValues<string>("dependsOn", DependsOn);
             writer.WriteIntValue("durationInDays", DurationInDays);
             writer.WriteCollectionOfObjectValues<AccessReviewReviewerScope>("fallbackReviewers", FallbackReviewers);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("recommendationsEnabled", RecommendationsEnabled);
             writer.WriteCollectionOfObjectValues<AccessReviewReviewerScope>("reviewers", Reviewers);
             writer.WriteStringValue("stageId", StageId);

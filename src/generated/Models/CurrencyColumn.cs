@@ -9,11 +9,14 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Specifies the locale from which to infer the currency symbol.</summary>
         public string Locale { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new currencyColumn and sets the default values.
         /// </summary>
         public CurrencyColumn() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.currencyColumn";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -29,6 +32,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"locale", n => { Locale = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -38,6 +42,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("locale", Locale);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

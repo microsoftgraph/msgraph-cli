@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public IdentitySet FeedbackBy { get; set; }
         /// <summary>Moment in time when the feedback was given. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? FeedbackDateTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Feedback.</summary>
         public EducationItemBody Text { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public EducationFeedback() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.educationFeedback";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"feedbackBy", n => { FeedbackBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"feedbackDateTime", n => { FeedbackDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"text", n => { Text = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<IdentitySet>("feedbackBy", FeedbackBy);
             writer.WriteDateTimeOffsetValue("feedbackDateTime", FeedbackDateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<EducationItemBody>("text", Text);
             writer.WriteAdditionalData(AdditionalData);
         }

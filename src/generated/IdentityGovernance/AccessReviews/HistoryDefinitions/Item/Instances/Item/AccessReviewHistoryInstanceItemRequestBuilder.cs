@@ -253,7 +253,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessReviewHistoryInstanceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewHistoryInstanceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewHistoryInstanceItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -278,7 +278,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             /// <summary>Request query parameters</summary>
             public AccessReviewHistoryInstanceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AccessReviewHistoryInstanceItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new accessReviewHistoryInstanceItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewHistoryInstanceItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewHistoryInstanceItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -292,7 +292,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessReviewHistoryInstanceItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewHistoryInstanceItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewHistoryInstanceItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -38,6 +38,12 @@ namespace ApiSdk.Models {
         /// <summary>Ticket details linked to the role assignment request including details of the ticket number and ticket system.</summary>
         public ApiSdk.Models.TicketInfo TicketInfo { get; set; }
         /// <summary>
+        /// Instantiates a new UnifiedRoleAssignmentScheduleRequest and sets the default values.
+        /// </summary>
+        public UnifiedRoleAssignmentScheduleRequest() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleAssignmentScheduleRequest";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

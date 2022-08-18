@@ -4,16 +4,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>RemoteAssistPartner resources represent the metadata and status of a given Remote Assistance partner service.</summary>
     public class RemoteAssistancePartner : Entity, IParsable {
         /// <summary>Display name of the partner.</summary>
         public string DisplayName { get; set; }
         /// <summary>Timestamp of the last request sent to Intune by the TEM partner.</summary>
         public DateTimeOffset? LastConnectionDateTime { get; set; }
-        /// <summary>A friendly description of the current TeamViewer connector status. Possible values are: notOnboarded, onboarding, onboarded.</summary>
+        /// <summary>The current TeamViewer connector status</summary>
         public RemoteAssistanceOnboardingStatus? OnboardingStatus { get; set; }
         /// <summary>URL of the partner&apos;s onboarding portal, where an administrator can configure their Remote Assistance service.</summary>
         public string OnboardingUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new RemoteAssistancePartner and sets the default values.
+        /// </summary>
+        public RemoteAssistancePartner() : base() {
+            OdataType = "#microsoft.graph.remoteAssistancePartner";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

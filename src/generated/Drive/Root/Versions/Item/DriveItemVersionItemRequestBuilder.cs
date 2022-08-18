@@ -243,7 +243,7 @@ namespace ApiSdk.Drive.Root.Versions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new driveItemVersionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DriveItemVersionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DriveItemVersionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -268,7 +268,7 @@ namespace ApiSdk.Drive.Root.Versions.Item {
             /// <summary>Request query parameters</summary>
             public DriveItemVersionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DriveItemVersionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new driveItemVersionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DriveItemVersionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DriveItemVersionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -282,7 +282,7 @@ namespace ApiSdk.Drive.Root.Versions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new driveItemVersionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DriveItemVersionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DriveItemVersionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

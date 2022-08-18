@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         /// <summary>Controls whether key restrictions are enforced on FIDO2 security keys, either allowing or disallowing certain key types as defined by Authenticator Attestation GUID (AAGUID), an identifier that indicates the type (e.g. make and model) of the authenticator.</summary>
         public Fido2KeyRestrictions KeyRestrictions { get; set; }
         /// <summary>
+        /// Instantiates a new Fido2AuthenticationMethodConfiguration and sets the default values.
+        /// </summary>
+        public Fido2AuthenticationMethodConfiguration() : base() {
+            OdataType = "#microsoft.graph.fido2AuthenticationMethodConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

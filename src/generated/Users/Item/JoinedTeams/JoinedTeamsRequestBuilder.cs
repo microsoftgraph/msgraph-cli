@@ -28,6 +28,7 @@ namespace ApiSdk.Users.Item.JoinedTeams {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new TeamItemRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAllChannelsCommand());
             command.AddCommand(builder.BuildArchiveCommand());
             command.AddCommand(builder.BuildChannelsCommand());
             command.AddCommand(builder.BuildCloneCommand());
@@ -35,10 +36,12 @@ namespace ApiSdk.Users.Item.JoinedTeams {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildGroupCommand());
+            command.AddCommand(builder.BuildIncomingChannelsCommand());
             command.AddCommand(builder.BuildInstalledAppsCommand());
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildOperationsCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPhotoCommand());
             command.AddCommand(builder.BuildPrimaryChannelCommand());
             command.AddCommand(builder.BuildScheduleCommand());
             command.AddCommand(builder.BuildSendActivityNotificationCommand());
@@ -108,11 +111,11 @@ namespace ApiSdk.Users.Item.JoinedTeams {
             return command;
         }
         /// <summary>
-        /// The Microsoft Teams teams that the user is a member of. Read-only. Nullable.
+        /// Get joinedTeams from users
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The Microsoft Teams teams that the user is a member of. Read-only. Nullable.";
+            command.Description = "Get joinedTeams from users";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -231,7 +234,7 @@ namespace ApiSdk.Users.Item.JoinedTeams {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The Microsoft Teams teams that the user is a member of. Read-only. Nullable.
+        /// Get joinedTeams from users
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<JoinedTeamsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -278,7 +281,7 @@ namespace ApiSdk.Users.Item.JoinedTeams {
         public GetAllMessagesRequestBuilder GetAllMessages() {
             return new GetAllMessagesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The Microsoft Teams teams that the user is a member of. Read-only. Nullable.</summary>
+        /// <summary>Get joinedTeams from users</summary>
         public class JoinedTeamsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

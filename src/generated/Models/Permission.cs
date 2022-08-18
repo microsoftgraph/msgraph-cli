@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class Permission : Entity, IParsable {
         /// <summary>A format of yyyy-MM-ddTHH:mm:ssZ of DateTimeOffset indicates the expiration time of the permission. DateTime.MinValue indicates there is no expiration set for this permission. Optional.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         public List<SharePointIdentitySet> GrantedToIdentitiesV2 { get; set; }
         /// <summary>For user type permissions, the details of the users and applications for this permission. Read-only.</summary>
         public SharePointIdentitySet GrantedToV2 { get; set; }
-        /// <summary>Indicates whether the password is set for this permission. This property only appears in the response. Optional. Read-only. For OneDrive Personal only.</summary>
+        /// <summary>Indicates whether the password is set for this permission. This property only appears in the response. Optional. Read-only. For OneDrive Personal only..</summary>
         public bool? HasPassword { get; set; }
         /// <summary>Provides a reference to the ancestor of the current permission, if it is inherited from an ancestor. Read-only.</summary>
         public ItemReference InheritedFrom { get; set; }
@@ -26,8 +26,14 @@ namespace ApiSdk.Models {
         public SharingLink Link { get; set; }
         /// <summary>The type of permission, for example, read. See below for the full list of roles. Read-only.</summary>
         public List<string> Roles { get; set; }
-        /// <summary>A unique token that can be used to access this shared item via the [shares API][]. Read-only.</summary>
+        /// <summary>A unique token that can be used to access this shared item via the **shares** API. Read-only.</summary>
         public string ShareId { get; set; }
+        /// <summary>
+        /// Instantiates a new permission and sets the default values.
+        /// </summary>
+        public Permission() : base() {
+            OdataType = "#microsoft.graph.permission";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

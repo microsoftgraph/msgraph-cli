@@ -265,7 +265,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new microsoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -290,7 +290,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
             /// <summary>Request query parameters</summary>
             public MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new microsoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -304,7 +304,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new microsoftAuthenticatorAuthenticationMethodItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

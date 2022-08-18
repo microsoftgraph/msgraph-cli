@@ -7,25 +7,28 @@ namespace ApiSdk.Models {
     public class AlertHistoryState : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The Application ID of the calling application that submitted an update (PATCH) to the alert. The appId should be extracted from the auth token and not entered manually by the calling application.</summary>
+        /// <summary>The appId property</summary>
         public string AppId { get; set; }
-        /// <summary>UPN of user the alert was assigned to (note: alert.assignedTo only stores the last value/UPN).</summary>
+        /// <summary>The assignedTo property</summary>
         public string AssignedTo { get; set; }
-        /// <summary>Comment entered by signed-in user.</summary>
+        /// <summary>The comments property</summary>
         public List<string> Comments { get; set; }
-        /// <summary>Analyst feedback on the alert in this update. Possible values are: unknown, truePositive, falsePositive, benignPositive.</summary>
+        /// <summary>The feedback property</summary>
         public AlertFeedback? Feedback { get; set; }
-        /// <summary>Alert status value (if updated). Possible values are: unknown, newAlert, inProgress, resolved, dismissed.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The status property</summary>
         public AlertStatus? Status { get; set; }
-        /// <summary>Date and time of the alert update. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
+        /// <summary>The updatedDateTime property</summary>
         public DateTimeOffset? UpdatedDateTime { get; set; }
-        /// <summary>UPN of the signed-in user that updated the alert (taken from the bearer token - if in user/delegated auth mode).</summary>
+        /// <summary>The user property</summary>
         public string User { get; set; }
         /// <summary>
         /// Instantiates a new alertHistoryState and sets the default values.
         /// </summary>
         public AlertHistoryState() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.alertHistoryState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -44,6 +47,7 @@ namespace ApiSdk.Models {
                 {"assignedTo", n => { AssignedTo = n.GetStringValue(); } },
                 {"comments", n => { Comments = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"feedback", n => { Feedback = n.GetEnumValue<AlertFeedback>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"status", n => { Status = n.GetEnumValue<AlertStatus>(); } },
                 {"updatedDateTime", n => { UpdatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"user", n => { User = n.GetStringValue(); } },
@@ -59,6 +63,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("assignedTo", AssignedTo);
             writer.WriteCollectionOfPrimitiveValues<string>("comments", Comments);
             writer.WriteEnumValue<AlertFeedback>("feedback", Feedback);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<AlertStatus>("status", Status);
             writer.WriteDateTimeOffsetValue("updatedDateTime", UpdatedDateTime);
             writer.WriteStringValue("user", User);

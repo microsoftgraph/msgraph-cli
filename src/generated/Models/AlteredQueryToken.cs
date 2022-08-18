@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Defines the length of a changed segment.</summary>
         public int? Length { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Defines the offset of a changed segment.</summary>
         public int? Offset { get; set; }
         /// <summary>Represents the corrected segment string.</summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AlteredQueryToken() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.alteredQueryToken";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"length", n => { Length = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"offset", n => { Offset = n.GetIntValue(); } },
                 {"suggestion", n => { Suggestion = n.GetStringValue(); } },
             };
@@ -44,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("length", Length);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("offset", Offset);
             writer.WriteStringValue("suggestion", Suggestion);
             writer.WriteAdditionalData(AdditionalData);

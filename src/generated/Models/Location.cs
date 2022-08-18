@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>Optional email address of the location.</summary>
         public string LocationEmailAddress { get; set; }
-        /// <summary>The type of location. Possible values are: default, conferenceRoom, homeAddress, businessAddress,geoCoordinates, streetAddress, hotel, restaurant, localBusiness, postalAddress. Read-only.</summary>
+        /// <summary>The type of location. The possible values are: default, conferenceRoom, homeAddress, businessAddress,geoCoordinates, streetAddress, hotel, restaurant, localBusiness, postalAddress. Read-only.</summary>
         public ApiSdk.Models.LocationType? LocationType { get; set; }
         /// <summary>Optional URI representing the location.</summary>
         public string LocationUri { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>For internal use only.</summary>
         public string UniqueId { get; set; }
         /// <summary>For internal use only.</summary>
@@ -28,6 +31,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public Location() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.location";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,7 +39,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static Location CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Location();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.locationConstraintItem" => new LocationConstraintItem(),
+                _ => new Location(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,6 +57,7 @@ namespace ApiSdk.Models {
                 {"locationEmailAddress", n => { LocationEmailAddress = n.GetStringValue(); } },
                 {"locationType", n => { LocationType = n.GetEnumValue<LocationType>(); } },
                 {"locationUri", n => { LocationUri = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"uniqueId", n => { UniqueId = n.GetStringValue(); } },
                 {"uniqueIdType", n => { UniqueIdType = n.GetEnumValue<LocationUniqueIdType>(); } },
             };
@@ -64,6 +74,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("locationEmailAddress", LocationEmailAddress);
             writer.WriteEnumValue<LocationType>("locationType", LocationType);
             writer.WriteStringValue("locationUri", LocationUri);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("uniqueId", UniqueId);
             writer.WriteEnumValue<LocationUniqueIdType>("uniqueIdType", UniqueIdType);
             writer.WriteAdditionalData(AdditionalData);

@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class ConditionalAccessRoot : Entity, IParsable {
         /// <summary>Read-only. Nullable. Returns a collection of the specified named locations.</summary>
         public List<NamedLocation> NamedLocations { get; set; }
-        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access policies.</summary>
+        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.</summary>
         public List<ConditionalAccessPolicy> Policies { get; set; }
+        /// <summary>
+        /// Instantiates a new ConditionalAccessRoot and sets the default values.
+        /// </summary>
+        public ConditionalAccessRoot() : base() {
+            OdataType = "#microsoft.graph.conditionalAccessRoot";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

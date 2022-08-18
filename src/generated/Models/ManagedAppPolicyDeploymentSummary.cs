@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>The ManagedAppEntity is the base entity type for all other entity types under app management workflow.</summary>
     public class ManagedAppPolicyDeploymentSummary : Entity, IParsable {
         /// <summary>Not yet documented</summary>
         public int? ConfigurationDeployedUserCount { get; set; }
@@ -16,6 +15,12 @@ namespace ApiSdk.Models {
         public DateTimeOffset? LastRefreshTime { get; set; }
         /// <summary>Version of the entity.</summary>
         public string Version { get; set; }
+        /// <summary>
+        /// Instantiates a new managedAppPolicyDeploymentSummary and sets the default values.
+        /// </summary>
+        public ManagedAppPolicyDeploymentSummary() : base() {
+            OdataType = "#microsoft.graph.managedAppPolicyDeploymentSummary";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

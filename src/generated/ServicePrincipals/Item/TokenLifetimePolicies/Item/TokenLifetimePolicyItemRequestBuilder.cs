@@ -23,11 +23,11 @@ namespace ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The tokenLifetimePolicies assigned to this service principal. Supports $expand.
+        /// The tokenLifetimePolicies assigned to this service principal.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The tokenLifetimePolicies assigned to this service principal. Supports $expand.";
+            command.Description = "The tokenLifetimePolicies assigned to this service principal.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -103,7 +103,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The tokenLifetimePolicies assigned to this service principal. Supports $expand.
+        /// The tokenLifetimePolicies assigned to this service principal.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TokenLifetimePolicyItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -122,7 +122,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies.Item {
             }
             return requestInfo;
         }
-        /// <summary>The tokenLifetimePolicies assigned to this service principal. Supports $expand.</summary>
+        /// <summary>The tokenLifetimePolicies assigned to this service principal.</summary>
         public class TokenLifetimePolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -140,7 +140,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies.Item {
             /// <summary>Request query parameters</summary>
             public TokenLifetimePolicyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TokenLifetimePolicyItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new tokenLifetimePolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TokenLifetimePolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TokenLifetimePolicyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

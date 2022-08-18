@@ -16,12 +16,18 @@ namespace ApiSdk.Models {
         public bool? IosEnabled { get; set; }
         /// <summary>DateTime of last Heartbeat recieved from the Data Sync Partner</summary>
         public DateTimeOffset? LastHeartbeatDateTime { get; set; }
-        /// <summary>Data Sync Partner state for this account. Possible values are: unavailable, available, enabled, unresponsive.</summary>
+        /// <summary>Partner state of this tenant.</summary>
         public MobileThreatPartnerTenantState? PartnerState { get; set; }
         /// <summary>Get or Set days the per tenant tolerance to unresponsiveness for this partner integration</summary>
         public int? PartnerUnresponsivenessThresholdInDays { get; set; }
         /// <summary>Get or set whether to block devices on the enabled platforms that do not meet the minimum version requirements of the Data Sync Partner</summary>
         public bool? PartnerUnsupportedOsVersionBlocked { get; set; }
+        /// <summary>
+        /// Instantiates a new mobileThreatDefenseConnector and sets the default values.
+        /// </summary>
+        public MobileThreatDefenseConnector() : base() {
+            OdataType = "#microsoft.graph.mobileThreatDefenseConnector";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

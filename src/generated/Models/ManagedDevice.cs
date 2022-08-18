@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         public bool? AzureADRegistered { get; set; }
         /// <summary>The DateTime when device compliance grace period expires. This property is read-only.</summary>
         public DateTimeOffset? ComplianceGracePeriodExpirationDateTime { get; set; }
-        /// <summary>Compliance state of the device. This property is read-only. Possible values are: unknown, compliant, noncompliant, conflict, error, inGracePeriod, configManager.</summary>
+        /// <summary>Compliance state.</summary>
         public ApiSdk.Models.ComplianceState? ComplianceState { get; set; }
         /// <summary>ConfigrMgr client enabled features. This property is read-only.</summary>
         public ApiSdk.Models.ConfigurationManagerClientEnabledFeatures ConfigurationManagerClientEnabledFeatures { get; set; }
@@ -30,13 +30,13 @@ namespace ApiSdk.Models {
         public List<DeviceCompliancePolicyState> DeviceCompliancePolicyStates { get; set; }
         /// <summary>Device configuration states for this device.</summary>
         public List<DeviceConfigurationState> DeviceConfigurationStates { get; set; }
-        /// <summary>Enrollment type of the device. This property is read-only. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement, windowsAzureADJoinUsingDeviceAuth, appleUserEnrollment, appleUserEnrollmentWithServiceAccount, azureAdJoinUsingAzureVmExtension, androidEnterpriseDedicatedDevice, androidEnterpriseFullyManaged, androidEnterpriseCorporateWorkProfile.</summary>
+        /// <summary>Possible ways of adding a mobile device to management.</summary>
         public ApiSdk.Models.DeviceEnrollmentType? DeviceEnrollmentType { get; set; }
         /// <summary>The device health attestation state. This property is read-only.</summary>
         public ApiSdk.Models.DeviceHealthAttestationState DeviceHealthAttestationState { get; set; }
         /// <summary>Name of the device. This property is read-only.</summary>
         public string DeviceName { get; set; }
-        /// <summary>Device registration state. This property is read-only. Possible values are: notRegistered, registered, revoked, keyConflict, approvalPending, certificateReset, notRegisteredPendingEnrollment, unknown.</summary>
+        /// <summary>Device registration status.</summary>
         public ApiSdk.Models.DeviceRegistrationState? DeviceRegistrationState { get; set; }
         /// <summary>Whether the device is Exchange ActiveSync activated. This property is read-only.</summary>
         public bool? EasActivated { get; set; }
@@ -50,9 +50,9 @@ namespace ApiSdk.Models {
         public DateTimeOffset? EnrolledDateTime { get; set; }
         /// <summary>Ethernet MAC. This property is read-only.</summary>
         public string EthernetMacAddress { get; set; }
-        /// <summary>The Access State of the device in Exchange. This property is read-only. Possible values are: none, unknown, allowed, blocked, quarantined.</summary>
+        /// <summary>Device Exchange Access State.</summary>
         public DeviceManagementExchangeAccessState? ExchangeAccessState { get; set; }
-        /// <summary>The reason for the device&apos;s access state in Exchange. This property is read-only. Possible values are: none, unknown, exchangeGlobalRule, exchangeIndividualRule, exchangeDeviceRule, exchangeUpgrade, exchangeMailboxPolicy, other, compliant, notCompliant, notEnrolled, unknownLocation, mfaRequired, azureADBlockDueToAccessPolicy, compromisedPassword, deviceNotKnownWithManagedApp.</summary>
+        /// <summary>Device Exchange Access State Reason.</summary>
         public DeviceManagementExchangeAccessStateReason? ExchangeAccessStateReason { get; set; }
         /// <summary>Last time the device contacted Exchange. This property is read-only.</summary>
         public DateTimeOffset? ExchangeLastSuccessfulSyncDateTime { get; set; }
@@ -72,9 +72,9 @@ namespace ApiSdk.Models {
         public DateTimeOffset? LastSyncDateTime { get; set; }
         /// <summary>Automatically generated name to identify a device. Can be overwritten to a user friendly name.</summary>
         public string ManagedDeviceName { get; set; }
-        /// <summary>Ownership of the device. Can be &apos;company&apos; or &apos;personal&apos;. Possible values are: unknown, company, personal.</summary>
+        /// <summary>Owner type of device.</summary>
         public ApiSdk.Models.ManagedDeviceOwnerType? ManagedDeviceOwnerType { get; set; }
-        /// <summary>Management channel of the device. Intune, EAS, etc. This property is read-only. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController, microsoft365ManagedMdm, msSense, intuneAosp.</summary>
+        /// <summary>The managementAgent property</summary>
         public ManagementAgentType? ManagementAgent { get; set; }
         /// <summary>Manufacturer of the device. This property is read-only.</summary>
         public string Manufacturer { get; set; }
@@ -88,7 +88,7 @@ namespace ApiSdk.Models {
         public string OperatingSystem { get; set; }
         /// <summary>Operating system version of the device. This property is read-only.</summary>
         public string OsVersion { get; set; }
-        /// <summary>Indicates the threat state of a device when a Mobile Threat Defense partner is in use by the account and device. Read Only. This property is read-only. Possible values are: unknown, activated, deactivated, secured, lowSeverity, mediumSeverity, highSeverity, unresponsive, compromised, misconfigured.</summary>
+        /// <summary>Available health states for the Device Health API</summary>
         public ManagedDevicePartnerReportedHealthState? PartnerReportedThreatState { get; set; }
         /// <summary>Phone number of the device. This property is read-only.</summary>
         public string PhoneNumber { get; set; }
@@ -114,6 +114,12 @@ namespace ApiSdk.Models {
         public string UserPrincipalName { get; set; }
         /// <summary>Wi-Fi MAC. This property is read-only.</summary>
         public string WiFiMacAddress { get; set; }
+        /// <summary>
+        /// Instantiates a new managedDevice and sets the default values.
+        /// </summary>
+        public ManagedDevice() : base() {
+            OdataType = "#microsoft.graph.managedDevice";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

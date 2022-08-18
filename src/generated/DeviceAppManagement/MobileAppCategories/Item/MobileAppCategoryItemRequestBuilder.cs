@@ -228,7 +228,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new mobileAppCategoryItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new MobileAppCategoryItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public MobileAppCategoryItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             /// <summary>Request query parameters</summary>
             public MobileAppCategoryItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new MobileAppCategoryItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new mobileAppCategoryItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new MobileAppCategoryItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public MobileAppCategoryItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new mobileAppCategoryItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new MobileAppCategoryItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public MobileAppCategoryItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -16,6 +16,12 @@ namespace ApiSdk.Models {
         /// <summary>Url link to an assessment that&apos;s automatically loaded when the secure assessment browser is launched. It has to be a valid Url (http[s]://msdn.microsoft.com/).</summary>
         public string LaunchUri { get; set; }
         /// <summary>
+        /// Instantiates a new Windows10SecureAssessmentConfiguration and sets the default values.
+        /// </summary>
+        public Windows10SecureAssessmentConfiguration() : base() {
+            OdataType = "#microsoft.graph.windows10SecureAssessmentConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

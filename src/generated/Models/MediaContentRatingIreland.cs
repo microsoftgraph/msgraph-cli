@@ -7,15 +7,18 @@ namespace ApiSdk.Models {
     public class MediaContentRatingIreland : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Movies rating selected for Ireland. Possible values are: allAllowed, allBlocked, general, parentalGuidance, agesAbove12, agesAbove15, agesAbove16, adults.</summary>
+        /// <summary>Movies rating labels in Ireland</summary>
         public RatingIrelandMoviesType? MovieRating { get; set; }
-        /// <summary>TV rating selected for Ireland. Possible values are: allAllowed, allBlocked, general, children, youngAdults, parentalSupervision, mature.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>TV content rating labels in Ireland</summary>
         public RatingIrelandTelevisionType? TvRating { get; set; }
         /// <summary>
         /// Instantiates a new mediaContentRatingIreland and sets the default values.
         /// </summary>
         public MediaContentRatingIreland() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.mediaContentRatingIreland";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"movieRating", n => { MovieRating = n.GetEnumValue<RatingIrelandMoviesType>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"tvRating", n => { TvRating = n.GetEnumValue<RatingIrelandTelevisionType>(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<RatingIrelandMoviesType>("movieRating", MovieRating);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<RatingIrelandTelevisionType>("tvRating", TvRating);
             writer.WriteAdditionalData(AdditionalData);
         }

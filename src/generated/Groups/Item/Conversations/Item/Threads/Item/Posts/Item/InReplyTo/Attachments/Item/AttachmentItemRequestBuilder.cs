@@ -79,11 +79,11 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             return command;
         }
         /// <summary>
-        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
+        /// Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.";
+            command.Description = "Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -253,7 +253,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             return requestInfo;
         }
         /// <summary>
-        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
+        /// Read-only. Nullable. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AttachmentItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -300,14 +300,14 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new attachmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AttachmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AttachmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Read-only. Nullable. Supports $expand.</summary>
         public class AttachmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -325,7 +325,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             /// <summary>Request query parameters</summary>
             public AttachmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AttachmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new attachmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AttachmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AttachmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -339,7 +339,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new attachmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AttachmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AttachmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

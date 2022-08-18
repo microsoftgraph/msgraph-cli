@@ -56,11 +56,11 @@ namespace ApiSdk.Places.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a place object specified by either its ID or email address.  The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object. 
+        /// Get the properties and relationships of a place object specified by either its ID or email address. The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a place object specified by either its ID or email address.  The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object. ";
+            command.Description = "Get the properties and relationships of a place object specified by either its ID or email address. The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object.";
             // Create options for all the parameters
             var placeIdOption = new Option<string>("--place-id", description: "key: id of place") {
             };
@@ -117,11 +117,11 @@ namespace ApiSdk.Places.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in places
+        /// Update the properties of place object, which can be a room or roomList. You can identify the **room** or **roomList** by specifying the **id** or **emailAddress** property.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in places";
+            command.Description = "Update the properties of place object, which can be a room or roomList. You can identify the **room** or **roomList** by specifying the **id** or **emailAddress** property.";
             // Create options for all the parameters
             var placeIdOption = new Option<string>("--place-id", description: "key: id of place") {
             };
@@ -188,7 +188,7 @@ namespace ApiSdk.Places.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a place object specified by either its ID or email address.  The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object. 
+        /// Get the properties and relationships of a place object specified by either its ID or email address. The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PlaceItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -208,7 +208,7 @@ namespace ApiSdk.Places.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in places
+        /// Update the properties of place object, which can be a room or roomList. You can identify the **room** or **roomList** by specifying the **id** or **emailAddress** property.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -235,14 +235,14 @@ namespace ApiSdk.Places.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new placeItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new PlaceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public PlaceItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get the properties and relationships of a place object specified by either its ID or email address.  The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object. </summary>
+        /// <summary>Get the properties and relationships of a place object specified by either its ID or email address. The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object.</summary>
         public class PlaceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -260,7 +260,7 @@ namespace ApiSdk.Places.Item {
             /// <summary>Request query parameters</summary>
             public PlaceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PlaceItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new placeItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new PlaceItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public PlaceItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -274,7 +274,7 @@ namespace ApiSdk.Places.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new placeItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new PlaceItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public PlaceItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -1,4 +1,5 @@
 using ApiSdk.Drive.List.Items.Item.Analytics;
+using ApiSdk.Drive.List.Items.Item.DocumentSetVersions;
 using ApiSdk.Drive.List.Items.Item.DriveItem;
 using ApiSdk.Drive.List.Items.Item.Fields;
 using ApiSdk.Drive.List.Items.Item.GetActivitiesByInterval;
@@ -64,6 +65,15 @@ namespace ApiSdk.Drive.List.Items.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        public Command BuildDocumentSetVersionsCommand() {
+            var command = new Command("document-set-versions");
+            var builder = new DocumentSetVersionsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildDriveItemCommand() {
@@ -282,7 +292,7 @@ namespace ApiSdk.Drive.List.Items.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new listItemItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ListItemItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ListItemItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -307,7 +317,7 @@ namespace ApiSdk.Drive.List.Items.Item {
             /// <summary>Request query parameters</summary>
             public ListItemItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ListItemItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new listItemItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ListItemItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ListItemItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -321,7 +331,7 @@ namespace ApiSdk.Drive.List.Items.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new listItemItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ListItemItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ListItemItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

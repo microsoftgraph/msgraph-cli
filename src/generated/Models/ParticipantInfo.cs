@@ -15,15 +15,18 @@ namespace ApiSdk.Models {
         public IdentitySet Identity { get; set; }
         /// <summary>The language culture string. Read-only.</summary>
         public string LanguageId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The participant ID of the participant. Read-only.</summary>
         public string ParticipantId { get; set; }
-        /// <summary>The home region of the participant. This can be a country, a continent, or a larger geographic region. This does not change based on the participant&apos;s current physical location, unlike countryCode. Read-only.</summary>
+        /// <summary>The home region of the participant. This can be a country, a continent, or a larger geographic region. This does not change based on the participant&apos;s current physical location. Read-only.</summary>
         public string Region { get; set; }
         /// <summary>
         /// Instantiates a new participantInfo and sets the default values.
         /// </summary>
         public ParticipantInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.participantInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -42,6 +45,7 @@ namespace ApiSdk.Models {
                 {"endpointType", n => { EndpointType = n.GetEnumValue<EndpointType>(); } },
                 {"identity", n => { Identity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"languageId", n => { LanguageId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"participantId", n => { ParticipantId = n.GetStringValue(); } },
                 {"region", n => { Region = n.GetStringValue(); } },
             };
@@ -56,6 +60,7 @@ namespace ApiSdk.Models {
             writer.WriteEnumValue<EndpointType>("endpointType", EndpointType);
             writer.WriteObjectValue<IdentitySet>("identity", Identity);
             writer.WriteStringValue("languageId", LanguageId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("participantId", ParticipantId);
             writer.WriteStringValue("region", Region);
             writer.WriteAdditionalData(AdditionalData);

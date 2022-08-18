@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public List<PublicErrorDetail> Details { get; set; }
         /// <summary>The error message.</summary>
         public string Message { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The target of the error.</summary>
         public string Target { get; set; }
         /// <summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public PublicInnerError() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.publicInnerError";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,6 +40,7 @@ namespace ApiSdk.Models {
                 {"code", n => { Code = n.GetStringValue(); } },
                 {"details", n => { Details = n.GetCollectionOfObjectValues<PublicErrorDetail>(PublicErrorDetail.CreateFromDiscriminatorValue).ToList(); } },
                 {"message", n => { Message = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"target", n => { Target = n.GetStringValue(); } },
             };
         }
@@ -49,6 +53,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("code", Code);
             writer.WriteCollectionOfObjectValues<PublicErrorDetail>("details", Details);
             writer.WriteStringValue("message", Message);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("target", Target);
             writer.WriteAdditionalData(AdditionalData);
         }

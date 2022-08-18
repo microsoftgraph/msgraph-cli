@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class PlannerBucket : Entity, IParsable {
         /// <summary>Name of the bucket.</summary>
         public string Name { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public string PlanId { get; set; }
         /// <summary>Read-only. Nullable. The collection of tasks in the bucket.</summary>
         public List<PlannerTask> Tasks { get; set; }
+        /// <summary>
+        /// Instantiates a new plannerBucket and sets the default values.
+        /// </summary>
+        public PlannerBucket() : base() {
+            OdataType = "#microsoft.graph.plannerBucket";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

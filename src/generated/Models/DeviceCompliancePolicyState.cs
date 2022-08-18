@@ -8,16 +8,22 @@ namespace ApiSdk.Models {
     public class DeviceCompliancePolicyState : Entity, IParsable {
         /// <summary>The name of the policy for this policyBase</summary>
         public string DisplayName { get; set; }
-        /// <summary>Platform type that the policy applies to</summary>
+        /// <summary>Supported platform types for policies.</summary>
         public PolicyPlatformType? PlatformType { get; set; }
         /// <summary>Count of how many setting a policy holds</summary>
         public int? SettingCount { get; set; }
         /// <summary>The settingStates property</summary>
         public List<DeviceCompliancePolicySettingState> SettingStates { get; set; }
-        /// <summary>The compliance state of the policy</summary>
+        /// <summary>The state property</summary>
         public ComplianceStatus? State { get; set; }
         /// <summary>The version of the policy</summary>
         public int? Version { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceCompliancePolicyState and sets the default values.
+        /// </summary>
+        public DeviceCompliancePolicyState() : base() {
+            OdataType = "#microsoft.graph.deviceCompliancePolicyState";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

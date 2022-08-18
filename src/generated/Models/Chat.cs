@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models {
     /// <summary>Provides operations to manage the collection of chat entities.</summary>
     public class Chat : Entity, IParsable {
-        /// <summary>Specifies the type of chat. Possible values are: group, oneOnOne, meeting, unknownFutureValue.</summary>
+        /// <summary>The chatType property</summary>
         public ApiSdk.Models.ChatType? ChatType { get; set; }
         /// <summary>Date and time at which the chat was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -28,6 +28,12 @@ namespace ApiSdk.Models {
         public string Topic { get; set; }
         /// <summary>The URL for the chat in Microsoft Teams. The URL should be treated as an opaque blob, and not parsed. Read-only.</summary>
         public string WebUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new chat and sets the default values.
+        /// </summary>
+        public Chat() : base() {
+            OdataType = "#microsoft.graph.chat";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

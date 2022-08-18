@@ -11,7 +11,7 @@ namespace ApiSdk.Models.CallRecords {
         public float? BandwidthLowEventRatio { get; set; }
         /// <summary>The wireless LAN basic service set identifier of the media endpoint used to connect to the network.</summary>
         public string BasicServiceSetIdentifier { get; set; }
-        /// <summary>Type of network used by the media endpoint. Possible values are: unknown, wired, wifi, mobile, tunnel, unknownFutureValue.</summary>
+        /// <summary>The connectionType property</summary>
         public NetworkConnectionType? ConnectionType { get; set; }
         /// <summary>Fraction of the call that the media endpoint detected the network delay was significant enough to impact the ability to have real-time two-way communication.</summary>
         public float? DelayEventRatio { get; set; }
@@ -23,8 +23,10 @@ namespace ApiSdk.Models.CallRecords {
         public long? LinkSpeed { get; set; }
         /// <summary>The media access control (MAC) address of the media endpoint&apos;s network device.</summary>
         public string MacAddress { get; set; }
-        /// <summary>Network protocol used for the transmission of stream. Possible values are: unknown, udp, tcp, unknownFutureValue.</summary>
+        /// <summary>The networkTransportProtocol property</summary>
         public ApiSdk.Models.CallRecords.NetworkTransportProtocol? NetworkTransportProtocol { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Network port number used by media endpoint.</summary>
         public int? Port { get; set; }
         /// <summary>Fraction of the call that the media endpoint detected the network was causing poor quality of the audio received.</summary>
@@ -39,9 +41,9 @@ namespace ApiSdk.Models.CallRecords {
         public float? SentQualityEventRatio { get; set; }
         /// <summary>Subnet used for media stream by the media endpoint.</summary>
         public string Subnet { get; set; }
-        /// <summary>List of network trace route hops collected for this media stream.</summary>
+        /// <summary>List of network trace route hops collected for this media stream.*</summary>
         public List<TraceRouteHop> TraceRouteHops { get; set; }
-        /// <summary>WiFi band used by the media endpoint. Possible values are: unknown, frequency24GHz, frequency50GHz, frequency60GHz, unknownFutureValue.</summary>
+        /// <summary>The wifiBand property</summary>
         public ApiSdk.Models.CallRecords.WifiBand? WifiBand { get; set; }
         /// <summary>Estimated remaining battery charge in percentage reported by the media endpoint.</summary>
         public int? WifiBatteryCharge { get; set; }
@@ -51,7 +53,7 @@ namespace ApiSdk.Models.CallRecords {
         public string WifiMicrosoftDriver { get; set; }
         /// <summary>Version of the Microsoft WiFi driver used by the media endpoint.</summary>
         public string WifiMicrosoftDriverVersion { get; set; }
-        /// <summary>Type of WiFi radio used by the media endpoint. Possible values are: unknown, wifi80211a, wifi80211b, wifi80211g, wifi80211n, wifi80211ac, wifi80211ax, unknownFutureValue.</summary>
+        /// <summary>The wifiRadioType property</summary>
         public ApiSdk.Models.CallRecords.WifiRadioType? WifiRadioType { get; set; }
         /// <summary>WiFi signal strength in percentage reported by the media endpoint.</summary>
         public int? WifiSignalStrength { get; set; }
@@ -64,6 +66,7 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public NetworkInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.callRecords.networkInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -87,6 +90,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"linkSpeed", n => { LinkSpeed = n.GetLongValue(); } },
                 {"macAddress", n => { MacAddress = n.GetStringValue(); } },
                 {"networkTransportProtocol", n => { NetworkTransportProtocol = n.GetEnumValue<NetworkTransportProtocol>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"port", n => { Port = n.GetIntValue(); } },
                 {"receivedQualityEventRatio", n => { ReceivedQualityEventRatio = n.GetFloatValue(); } },
                 {"reflexiveIPAddress", n => { ReflexiveIPAddress = n.GetStringValue(); } },
@@ -121,6 +125,7 @@ namespace ApiSdk.Models.CallRecords {
             writer.WriteLongValue("linkSpeed", LinkSpeed);
             writer.WriteStringValue("macAddress", MacAddress);
             writer.WriteEnumValue<NetworkTransportProtocol>("networkTransportProtocol", NetworkTransportProtocol);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("port", Port);
             writer.WriteFloatValue("receivedQualityEventRatio", ReceivedQualityEventRatio);
             writer.WriteStringValue("reflexiveIPAddress", ReflexiveIPAddress);

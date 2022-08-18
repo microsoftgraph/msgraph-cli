@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public int? DeviceComplianceCheckinThresholdDays { get; set; }
         /// <summary>Is feature enabled or not for scheduled action for rule.</summary>
         public bool? IsScheduledActionEnabled { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Device should be noncompliant when there is no compliance policy targeted when this is true</summary>
         public bool? SecureByDefault { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public DeviceManagementSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.deviceManagementSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"deviceComplianceCheckinThresholdDays", n => { DeviceComplianceCheckinThresholdDays = n.GetIntValue(); } },
                 {"isScheduledActionEnabled", n => { IsScheduledActionEnabled = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"secureByDefault", n => { SecureByDefault = n.GetBoolValue(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("deviceComplianceCheckinThresholdDays", DeviceComplianceCheckinThresholdDays);
             writer.WriteBoolValue("isScheduledActionEnabled", IsScheduledActionEnabled);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("secureByDefault", SecureByDefault);
             writer.WriteAdditionalData(AdditionalData);
         }

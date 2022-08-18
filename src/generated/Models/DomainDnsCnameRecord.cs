@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>The canonical name of the CNAME record. Used to configure the CNAME record at the DNS host.</summary>
         public string CanonicalName { get; set; }
         /// <summary>
+        /// Instantiates a new DomainDnsCnameRecord and sets the default values.
+        /// </summary>
+        public DomainDnsCnameRecord() : base() {
+            OdataType = "#microsoft.graph.domainDnsCnameRecord";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

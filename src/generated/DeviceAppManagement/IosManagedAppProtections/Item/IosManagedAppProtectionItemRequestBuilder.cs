@@ -247,7 +247,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new iosManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new IosManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public IosManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -272,7 +272,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item {
             /// <summary>Request query parameters</summary>
             public IosManagedAppProtectionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new IosManagedAppProtectionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new iosManagedAppProtectionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new IosManagedAppProtectionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public IosManagedAppProtectionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -286,7 +286,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new iosManagedAppProtectionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new IosManagedAppProtectionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public IosManagedAppProtectionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

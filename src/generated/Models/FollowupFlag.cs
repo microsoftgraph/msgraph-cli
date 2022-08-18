@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public DateTimeTimeZone DueDateTime { get; set; }
         /// <summary>The status for follow-up for an item. Possible values are notFlagged, complete, and flagged.</summary>
         public FollowupFlagStatus? FlagStatus { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The date and time that the follow-up is to begin.</summary>
         public DateTimeTimeZone StartDateTime { get; set; }
         /// <summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public FollowupFlag() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.followupFlag";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,6 +40,7 @@ namespace ApiSdk.Models {
                 {"completedDateTime", n => { CompletedDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"dueDateTime", n => { DueDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"flagStatus", n => { FlagStatus = n.GetEnumValue<FollowupFlagStatus>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -49,6 +53,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<DateTimeTimeZone>("completedDateTime", CompletedDateTime);
             writer.WriteObjectValue<DateTimeTimeZone>("dueDateTime", DueDateTime);
             writer.WriteEnumValue<FollowupFlagStatus>("flagStatus", FlagStatus);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<DateTimeTimeZone>("startDateTime", StartDateTime);
             writer.WriteAdditionalData(AdditionalData);
         }

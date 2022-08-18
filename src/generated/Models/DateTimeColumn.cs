@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public string DisplayAs { get; set; }
         /// <summary>Indicates whether the value should be presented as a date only or a date and time. Must be one of dateOnly or dateTime</summary>
         public string Format { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new dateTimeColumn and sets the default values.
         /// </summary>
         public DateTimeColumn() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.dateTimeColumn";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"displayAs", n => { DisplayAs = n.GetStringValue(); } },
                 {"format", n => { Format = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayAs", DisplayAs);
             writer.WriteStringValue("format", Format);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

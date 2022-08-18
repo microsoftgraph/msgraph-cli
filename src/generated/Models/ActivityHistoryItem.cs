@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class ActivityHistoryItem : Entity, IParsable {
         /// <summary>Optional. The duration of active user engagement. if not supplied, this is calculated from the startedDateTime and lastActiveDateTime.</summary>
         public int? ActiveDurationSeconds { get; set; }
@@ -24,6 +24,12 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.Status? Status { get; set; }
         /// <summary>Optional. The timezone in which the user&apos;s device used to generate the activity was located at activity creation time. Values supplied as Olson IDs in order to support cross-platform representation.</summary>
         public string UserTimezone { get; set; }
+        /// <summary>
+        /// Instantiates a new activityHistoryItem and sets the default values.
+        /// </summary>
+        public ActivityHistoryItem() : base() {
+            OdataType = "#microsoft.graph.activityHistoryItem";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

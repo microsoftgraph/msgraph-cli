@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Represents a Microsot Bookings Business.</summary>
     public class BookingBusiness : Entity, IParsable {
-        /// <summary>The street address of the business. The address property, together with phone and webSiteUrl, appear in the footer of a business scheduling page.</summary>
+        /// <summary>The street address of the business. The address property, together with phone and webSiteUrl, appear in the footer of a business scheduling page. The attribute type of physicalAddress is not supported in v1.0. Internally we map the addresses to the type others.</summary>
         public PhysicalAddress Address { get; set; }
         /// <summary>All the appointments of this business. Read-only. Nullable.</summary>
         public List<BookingAppointment> Appointments { get; set; }
@@ -40,6 +39,12 @@ namespace ApiSdk.Models {
         public List<BookingStaffMemberBase> StaffMembers { get; set; }
         /// <summary>The URL of the business web site. The webSiteUrl property, together with address, phone, appear in the footer of a business scheduling page.</summary>
         public string WebSiteUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new BookingBusiness and sets the default values.
+        /// </summary>
+        public BookingBusiness() : base() {
+            OdataType = "#microsoft.graph.bookingBusiness";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

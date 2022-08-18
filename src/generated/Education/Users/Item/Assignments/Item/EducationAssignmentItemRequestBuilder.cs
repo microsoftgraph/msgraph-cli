@@ -77,11 +77,11 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// List of assignments for the user. Nullable.
+        /// Assignments belonging to the user.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "List of assignments for the user. Nullable.";
+            command.Description = "Assignments belonging to the user.";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
@@ -254,7 +254,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// List of assignments for the user. Nullable.
+        /// Assignments belonging to the user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<EducationAssignmentItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -301,14 +301,14 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public EducationAssignmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>List of assignments for the user. Nullable.</summary>
+        /// <summary>Assignments belonging to the user.</summary>
         public class EducationAssignmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -326,7 +326,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
             /// <summary>Request query parameters</summary>
             public EducationAssignmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EducationAssignmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new educationAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EducationAssignmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -340,7 +340,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public EducationAssignmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

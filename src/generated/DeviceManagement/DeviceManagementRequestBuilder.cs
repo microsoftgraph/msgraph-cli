@@ -329,6 +329,7 @@ namespace ApiSdk.DeviceManagement {
             command.AddCommand(builder.BuildGetDeviceManagementIntentSettingsReportCommand());
             command.AddCommand(builder.BuildGetDeviceNonComplianceReportCommand());
             command.AddCommand(builder.BuildGetHistoricalReportCommand());
+            command.AddCommand(builder.BuildGetNoncompliantDevicesAndSettingsReportCommand());
             command.AddCommand(builder.BuildGetPolicyNonComplianceMetadataCommand());
             command.AddCommand(builder.BuildGetPolicyNonComplianceReportCommand());
             command.AddCommand(builder.BuildGetPolicyNonComplianceSummaryReportCommand());

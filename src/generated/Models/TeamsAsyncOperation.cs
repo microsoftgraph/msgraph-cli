@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class TeamsAsyncOperation : Entity, IParsable {
         /// <summary>Number of times the operation was attempted before being marked successful or failed.</summary>
         public int? AttemptsCount { get; set; }
@@ -14,14 +14,20 @@ namespace ApiSdk.Models {
         public OperationError Error { get; set; }
         /// <summary>Time when the async operation was last updated.</summary>
         public DateTimeOffset? LastActionDateTime { get; set; }
-        /// <summary>Denotes the type of operation being described.</summary>
+        /// <summary>The operationType property</summary>
         public TeamsAsyncOperationType? OperationType { get; set; }
-        /// <summary>Operation status.</summary>
+        /// <summary>The status property</summary>
         public TeamsAsyncOperationStatus? Status { get; set; }
         /// <summary>The ID of the object that&apos;s created or modified as result of this async operation, typically a team.</summary>
         public string TargetResourceId { get; set; }
         /// <summary>The location of the object that&apos;s created or modified as result of this async operation. This URL should be treated as an opaque value and not parsed into its component paths.</summary>
         public string TargetResourceLocation { get; set; }
+        /// <summary>
+        /// Instantiates a new teamsAsyncOperation and sets the default values.
+        /// </summary>
+        public TeamsAsyncOperation() : base() {
+            OdataType = "#microsoft.graph.teamsAsyncOperation";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

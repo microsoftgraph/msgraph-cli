@@ -264,7 +264,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item.Atten
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new attendanceRecordItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AttendanceRecordItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AttendanceRecordItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -289,7 +289,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item.Atten
             /// <summary>Request query parameters</summary>
             public AttendanceRecordItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AttendanceRecordItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new attendanceRecordItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AttendanceRecordItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AttendanceRecordItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -303,7 +303,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item.Atten
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new attendanceRecordItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AttendanceRecordItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AttendanceRecordItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

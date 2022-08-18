@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,14 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The error that occurred, if any, during the course of the bulk operation.</summary>
         public PublicError Error { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new actionResultPart and sets the default values.
         /// </summary>
         public ActionResultPart() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.actionResultPart";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -21,7 +25,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static ActionResultPart CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ActionResultPart();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.aadUserConversationMemberResult" => new AadUserConversationMemberResult(),
+                _ => new ActionResultPart(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -29,6 +38,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"error", n => { Error = n.GetObjectValue<PublicError>(PublicError.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -38,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<PublicError>("error", Error);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

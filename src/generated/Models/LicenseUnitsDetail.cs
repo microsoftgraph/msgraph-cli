@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The number of units that are enabled for the active subscription of the service SKU.</summary>
         public int? Enabled { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The number of units that are suspended because the subscription of the service SKU has been cancelled. The units cannot be assigned but can still be reactivated before they are deleted.</summary>
         public int? Suspended { get; set; }
         /// <summary>The number of units that are in warning status. When the subscription of the service SKU has expired, the customer has a grace period to renew their subscription before it is cancelled (moved to a suspended state).</summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public LicenseUnitsDetail() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.licenseUnitsDetail";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"enabled", n => { Enabled = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"suspended", n => { Suspended = n.GetIntValue(); } },
                 {"warning", n => { Warning = n.GetIntValue(); } },
             };
@@ -44,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("enabled", Enabled);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("suspended", Suspended);
             writer.WriteIntValue("warning", Warning);
             writer.WriteAdditionalData(AdditionalData);

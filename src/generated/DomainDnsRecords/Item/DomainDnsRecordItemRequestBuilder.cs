@@ -228,7 +228,7 @@ namespace ApiSdk.DomainDnsRecords.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new domainDnsRecordItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DomainDnsRecordItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DomainDnsRecordItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.DomainDnsRecords.Item {
             /// <summary>Request query parameters</summary>
             public DomainDnsRecordItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DomainDnsRecordItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new domainDnsRecordItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DomainDnsRecordItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DomainDnsRecordItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.DomainDnsRecords.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new domainDnsRecordItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DomainDnsRecordItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DomainDnsRecordItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -94,11 +94,11 @@ namespace ApiSdk.Users.Item.ScopedRoleMemberOf {
             return command;
         }
         /// <summary>
-        /// The scoped-role administrative unit memberships for this user. Read-only. Nullable.
+        /// Get scopedRoleMemberOf from users
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The scoped-role administrative unit memberships for this user. Read-only. Nullable.";
+            command.Description = "Get scopedRoleMemberOf from users";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Users.Item.ScopedRoleMemberOf {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The scoped-role administrative unit memberships for this user. Read-only. Nullable.
+        /// Get scopedRoleMemberOf from users
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ScopedRoleMemberOfRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.Users.Item.ScopedRoleMemberOf {
             }
             return requestInfo;
         }
-        /// <summary>The scoped-role administrative unit memberships for this user. Read-only. Nullable.</summary>
+        /// <summary>Get scopedRoleMemberOf from users</summary>
         public class ScopedRoleMemberOfRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

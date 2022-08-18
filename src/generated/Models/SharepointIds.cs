@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public string ListItemId { get; set; }
         /// <summary>The unique identifier (guid) for the item within OneDrive for Business or a SharePoint site.</summary>
         public string ListItemUniqueId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The unique identifier (guid) for the item&apos;s site collection (SPSite).</summary>
         public string SiteId { get; set; }
         /// <summary>The SharePoint URL for the site that contains the item.</summary>
@@ -26,6 +28,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public SharepointIds() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.sharepointIds";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -43,6 +46,7 @@ namespace ApiSdk.Models {
                 {"listId", n => { ListId = n.GetStringValue(); } },
                 {"listItemId", n => { ListItemId = n.GetStringValue(); } },
                 {"listItemUniqueId", n => { ListItemUniqueId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"siteId", n => { SiteId = n.GetStringValue(); } },
                 {"siteUrl", n => { SiteUrl = n.GetStringValue(); } },
                 {"tenantId", n => { TenantId = n.GetStringValue(); } },
@@ -58,6 +62,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("listId", ListId);
             writer.WriteStringValue("listItemId", ListItemId);
             writer.WriteStringValue("listItemUniqueId", ListItemUniqueId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("siteId", SiteId);
             writer.WriteStringValue("siteUrl", SiteUrl);
             writer.WriteStringValue("tenantId", TenantId);

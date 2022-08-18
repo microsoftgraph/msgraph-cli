@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public DateTimeOffset? LastAccessedDateTime { get; set; }
         /// <summary>The UTC date and time the file was last modified on a client.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new fileSystemInfo and sets the default values.
         /// </summary>
         public FileSystemInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.fileSystemInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"lastAccessedDateTime", n => { LastAccessedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDateTimeOffsetValue("lastAccessedDateTime", LastAccessedDateTime);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

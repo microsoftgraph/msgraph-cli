@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         /// <summary>The value for the minimum applicable operating system.</summary>
         public IosMinimumOperatingSystem MinimumSupportedOperatingSystem { get; set; }
         /// <summary>
+        /// Instantiates a new IosStoreApp and sets the default values.
+        /// </summary>
+        public IosStoreApp() : base() {
+            OdataType = "#microsoft.graph.iosStoreApp";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

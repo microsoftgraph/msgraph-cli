@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>Provides the language culture-code and friendly name of the language that the displayName field has been provided in.</summary>
         public string LanguageTag { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new displayNameLocalization and sets the default values.
         /// </summary>
         public DisplayNameLocalization() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.displayNameLocalization";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"languageTag", n => { LanguageTag = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("languageTag", LanguageTag);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

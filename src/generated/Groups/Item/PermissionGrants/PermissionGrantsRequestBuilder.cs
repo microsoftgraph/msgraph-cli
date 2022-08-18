@@ -114,11 +114,11 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return command;
         }
         /// <summary>
-        /// The permissions that have been granted for a group to a specific application. Supports $expand.
+        /// The permission that has been granted for a group to a specific application. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The permissions that have been granted for a group to a specific application. Supports $expand.";
+            command.Description = "The permission that has been granted for a group to a specific application. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -243,7 +243,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The permissions that have been granted for a group to a specific application. Supports $expand.
+        /// The permission that has been granted for a group to a specific application. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PermissionGrantsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -284,7 +284,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             }
             return requestInfo;
         }
-        /// <summary>The permissions that have been granted for a group to a specific application. Supports $expand.</summary>
+        /// <summary>The permission that has been granted for a group to a specific application. Supports $expand.</summary>
         public class PermissionGrantsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

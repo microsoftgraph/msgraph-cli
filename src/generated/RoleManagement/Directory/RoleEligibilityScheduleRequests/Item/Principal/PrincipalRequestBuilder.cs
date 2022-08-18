@@ -23,11 +23,11 @@ namespace ApiSdk.RoleManagement.Directory.RoleEligibilityScheduleRequests.Item.P
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Property referencing the principal that is getting a role assignment through the request. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only.
+        /// The principal that&apos;s getting a role eligibility through the request. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Property referencing the principal that is getting a role assignment through the request. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only.";
+            command.Description = "The principal that's getting a role eligibility through the request. Supports $expand.";
             // Create options for all the parameters
             var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "key: id of unifiedRoleEligibilityScheduleRequest") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleEligibilityScheduleRequests.Item.P
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Property referencing the principal that is getting a role assignment through the request. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only.
+        /// The principal that&apos;s getting a role eligibility through the request. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PrincipalRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleEligibilityScheduleRequests.Item.P
             }
             return requestInfo;
         }
-        /// <summary>Property referencing the principal that is getting a role assignment through the request. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only.</summary>
+        /// <summary>The principal that&apos;s getting a role eligibility through the request. Supports $expand.</summary>
         public class PrincipalRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

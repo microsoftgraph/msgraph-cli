@@ -23,11 +23,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Property indicating the schedule for an eligible role assignment.
+        /// The schedule for a role eligibility that is referenced through the targetScheduleId property. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Property indicating the schedule for an eligible role assignment.";
+            command.Description = "The schedule for a role eligibility that is referenced through the targetScheduleId property. Supports $expand.";
             // Create options for all the parameters
             var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "key: id of unifiedRoleEligibilityScheduleRequest") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Property indicating the schedule for an eligible role assignment.
+        /// The schedule for a role eligibility that is referenced through the targetScheduleId property. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TargetScheduleRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
             }
             return requestInfo;
         }
-        /// <summary>Property indicating the schedule for an eligible role assignment.</summary>
+        /// <summary>The schedule for a role eligibility that is referenced through the targetScheduleId property. Supports $expand.</summary>
         public class TargetScheduleRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

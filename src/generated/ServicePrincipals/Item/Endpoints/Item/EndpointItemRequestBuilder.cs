@@ -61,11 +61,11 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
             return command;
         }
         /// <summary>
-        /// Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.
+        /// Get endpoints from servicePrincipals
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.";
+            command.Description = "Get endpoints from servicePrincipals";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -199,7 +199,7 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.
+        /// Get endpoints from servicePrincipals
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<EndpointItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,14 +246,14 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new endpointItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new EndpointItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public EndpointItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.</summary>
+        /// <summary>Get endpoints from servicePrincipals</summary>
         public class EndpointItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -271,7 +271,7 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
             /// <summary>Request query parameters</summary>
             public EndpointItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EndpointItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new endpointItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new EndpointItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EndpointItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new endpointItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new EndpointItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public EndpointItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

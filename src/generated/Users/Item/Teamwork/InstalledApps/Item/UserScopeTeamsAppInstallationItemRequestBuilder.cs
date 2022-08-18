@@ -253,7 +253,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userScopeTeamsAppInstallationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UserScopeTeamsAppInstallationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UserScopeTeamsAppInstallationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -278,7 +278,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
             /// <summary>Request query parameters</summary>
             public UserScopeTeamsAppInstallationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UserScopeTeamsAppInstallationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new userScopeTeamsAppInstallationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UserScopeTeamsAppInstallationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UserScopeTeamsAppInstallationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -292,7 +292,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userScopeTeamsAppInstallationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UserScopeTeamsAppInstallationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UserScopeTeamsAppInstallationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

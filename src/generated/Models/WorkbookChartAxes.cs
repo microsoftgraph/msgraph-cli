@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartAxes : Entity, IParsable {
         /// <summary>Represents the category axis in a chart. Read-only.</summary>
         public WorkbookChartAxis CategoryAxis { get; set; }
@@ -12,6 +11,12 @@ namespace ApiSdk.Models {
         public WorkbookChartAxis SeriesAxis { get; set; }
         /// <summary>Represents the value axis in an axis. Read-only.</summary>
         public WorkbookChartAxis ValueAxis { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookChartAxes and sets the default values.
+        /// </summary>
+        public WorkbookChartAxes() : base() {
+            OdataType = "#microsoft.graph.workbookChartAxes";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

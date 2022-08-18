@@ -43,6 +43,7 @@ namespace ApiSdk.ServicePrincipals {
             command.AddCommand(builder.BuildDelegatedPermissionClassificationsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildEndpointsCommand());
+            command.AddCommand(builder.BuildFederatedIdentityCredentialsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildGetMemberGroupsCommand());
             command.AddCommand(builder.BuildGetMemberObjectsCommand());

@@ -140,7 +140,7 @@ namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item {
             /// <summary>Request query parameters</summary>
             public OAuth2PermissionGrantItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OAuth2PermissionGrantItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new oAuth2PermissionGrantItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new OAuth2PermissionGrantItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public OAuth2PermissionGrantItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

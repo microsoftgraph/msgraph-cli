@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public bool? AllowCreateUpdateChannels { get; set; }
         /// <summary>If set to true, guests can delete channels.</summary>
         public bool? AllowDeleteChannels { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new teamGuestSettings and sets the default values.
         /// </summary>
         public TeamGuestSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.teamGuestSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"allowCreateUpdateChannels", n => { AllowCreateUpdateChannels = n.GetBoolValue(); } },
                 {"allowDeleteChannels", n => { AllowDeleteChannels = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("allowCreateUpdateChannels", AllowCreateUpdateChannels);
             writer.WriteBoolValue("allowDeleteChannels", AllowDeleteChannels);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.TermStore {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Set : Entity, IParsable {
         /// <summary>Children terms of set in term [store].</summary>
         public List<Term> Children { get; set; }
         /// <summary>Date and time of set creation. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Description giving details on the term usage.</summary>
+        /// <summary>Description that gives details on the term usage.</summary>
         public string Description { get; set; }
         /// <summary>Name of the set for each languageTag.</summary>
         public List<LocalizedName> LocalizedNames { get; set; }
@@ -22,6 +21,12 @@ namespace ApiSdk.Models.TermStore {
         public List<Relation> Relations { get; set; }
         /// <summary>All the terms under the set.</summary>
         public List<Term> Terms { get; set; }
+        /// <summary>
+        /// Instantiates a new set and sets the default values.
+        /// </summary>
+        public Set() : base() {
+            OdataType = "#microsoft.graph.termStore.set";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

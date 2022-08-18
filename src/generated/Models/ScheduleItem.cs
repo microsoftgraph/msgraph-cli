@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public bool? IsPrivate { get; set; }
         /// <summary>The location where the corresponding event is held or attended from. Optional.</summary>
         public string Location { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The date, time, and time zone that the corresponding event starts.</summary>
         public DateTimeTimeZone Start { get; set; }
         /// <summary>The availability status of the user or resource during the corresponding event. The possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
@@ -24,6 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ScheduleItem() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.scheduleItem";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -41,6 +44,7 @@ namespace ApiSdk.Models {
                 {"end", n => { End = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"isPrivate", n => { IsPrivate = n.GetBoolValue(); } },
                 {"location", n => { Location = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"start", n => { Start = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"status", n => { Status = n.GetEnumValue<FreeBusyStatus>(); } },
                 {"subject", n => { Subject = n.GetStringValue(); } },
@@ -55,6 +59,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<DateTimeTimeZone>("end", End);
             writer.WriteBoolValue("isPrivate", IsPrivate);
             writer.WriteStringValue("location", Location);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<DateTimeTimeZone>("start", Start);
             writer.WriteEnumValue<FreeBusyStatus>("status", Status);
             writer.WriteStringValue("subject", Subject);

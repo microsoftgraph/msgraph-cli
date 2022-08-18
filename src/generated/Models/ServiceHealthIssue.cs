@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class ServiceHealthIssue : ServiceAnnouncementBase, IParsable {
-        /// <summary>The type of service health issue. Possible values are: advisory, incident, unknownFutureValue.</summary>
+        /// <summary>The classification property</summary>
         public ServiceHealthClassificationType? Classification { get; set; }
         /// <summary>The feature name of the service issue.</summary>
         public string Feature { get; set; }
@@ -15,14 +15,20 @@ namespace ApiSdk.Models {
         public string ImpactDescription { get; set; }
         /// <summary>Indicates whether the issue is resolved.</summary>
         public bool? IsResolved { get; set; }
-        /// <summary>Indicates the origin of the service issue. Possible values are: microsoft, thirdParty, customer, unknownFutureValue.</summary>
+        /// <summary>The origin property</summary>
         public ServiceHealthOrigin? Origin { get; set; }
         /// <summary>Collection of historical posts for the service issue.</summary>
         public List<ServiceHealthIssuePost> Posts { get; set; }
         /// <summary>Indicates the service affected by the issue.</summary>
         public string Service { get; set; }
-        /// <summary>The status of the service issue. Possible values are: serviceOperational, investigating, restoringService, verifyingService, serviceRestored, postIncidentReviewPublished, serviceDegradation, serviceInterruption, extendedRecovery, falsePositive, investigationSuspended, resolved, mitigatedExternal, mitigated, resolvedExternal, confirmed, reported, unknownFutureValue. For more details, see serviceHealthStatus values.</summary>
+        /// <summary>The status property</summary>
         public ServiceHealthStatus? Status { get; set; }
+        /// <summary>
+        /// Instantiates a new ServiceHealthIssue and sets the default values.
+        /// </summary>
+        public ServiceHealthIssue() : base() {
+            OdataType = "#microsoft.graph.serviceHealthIssue";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

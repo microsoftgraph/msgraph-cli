@@ -246,7 +246,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new printServiceEndpointItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new PrintServiceEndpointItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public PrintServiceEndpointItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints.Item {
             /// <summary>Request query parameters</summary>
             public PrintServiceEndpointItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PrintServiceEndpointItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new printServiceEndpointItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new PrintServiceEndpointItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public PrintServiceEndpointItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new printServiceEndpointItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new PrintServiceEndpointItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public PrintServiceEndpointItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

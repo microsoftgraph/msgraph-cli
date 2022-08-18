@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The content of the service issue post.</summary>
         public ItemBody Description { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The post type of the service issue historical post. Possible values are: regular, quick, strategic, unknownFutureValue.</summary>
         public ApiSdk.Models.PostType? PostType { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ServiceHealthIssuePost() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.serviceHealthIssuePost";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", n => { Description = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"postType", n => { PostType = n.GetEnumValue<PostType>(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<ItemBody>("description", Description);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<PostType>("postType", PostType);
             writer.WriteAdditionalData(AdditionalData);
         }

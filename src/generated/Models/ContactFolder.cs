@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class ContactFolder : Entity, IParsable {
         /// <summary>The collection of child folders in the folder. Navigation property. Read-only. Nullable.</summary>
         public List<ContactFolder> ChildFolders { get; set; }
@@ -18,6 +17,12 @@ namespace ApiSdk.Models {
         public string ParentFolderId { get; set; }
         /// <summary>The collection of single-value extended properties defined for the contactFolder. Read-only. Nullable.</summary>
         public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
+        /// <summary>
+        /// Instantiates a new ContactFolder and sets the default values.
+        /// </summary>
+        public ContactFolder() : base() {
+            OdataType = "#microsoft.graph.contactFolder";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -103,7 +103,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ReferenceUpdateSchema>(ReferenceUpdateSchema.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ReferenceUpdate>(ReferenceUpdate.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
@@ -171,7 +171,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePutRequestInformation(ReferenceUpdateSchema body, Action<RefRequestBuilderPutRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation CreatePutRequestInformation(ReferenceUpdate body, Action<RefRequestBuilderPutRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PUT,
@@ -194,7 +194,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new refRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new RefRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public RefRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -208,7 +208,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new refRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new RefRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public RefRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -222,7 +222,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new refRequestBuilderPutRequestConfiguration and sets the default values.
+            /// Instantiates a new RefRequestBuilderPutRequestConfiguration and sets the default values.
             /// </summary>
             public RefRequestBuilderPutRequestConfiguration() {
                 Options = new List<IRequestOption>();

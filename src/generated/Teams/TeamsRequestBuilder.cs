@@ -28,6 +28,7 @@ namespace ApiSdk.Teams {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new TeamItemRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAllChannelsCommand());
             command.AddCommand(builder.BuildArchiveCommand());
             command.AddCommand(builder.BuildChannelsCommand());
             command.AddCommand(builder.BuildCloneCommand());
@@ -35,10 +36,12 @@ namespace ApiSdk.Teams {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildGroupCommand());
+            command.AddCommand(builder.BuildIncomingChannelsCommand());
             command.AddCommand(builder.BuildInstalledAppsCommand());
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildOperationsCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPhotoCommand());
             command.AddCommand(builder.BuildPrimaryChannelCommand());
             command.AddCommand(builder.BuildScheduleCommand());
             command.AddCommand(builder.BuildSendActivityNotificationCommand());
@@ -102,11 +105,11 @@ namespace ApiSdk.Teams {
             return command;
         }
         /// <summary>
-        /// List all teams in an organization.
+        /// Retrieve the properties and relationships of the specified team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all teams in an organization.";
+            command.Description = "Retrieve the properties and relationships of the specified team.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -219,7 +222,7 @@ namespace ApiSdk.Teams {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// List all teams in an organization.
+        /// Retrieve the properties and relationships of the specified team.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TeamsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -266,7 +269,7 @@ namespace ApiSdk.Teams {
         public GetAllMessagesRequestBuilder GetAllMessages() {
             return new GetAllMessagesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>List all teams in an organization.</summary>
+        /// <summary>Retrieve the properties and relationships of the specified team.</summary>
         public class TeamsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

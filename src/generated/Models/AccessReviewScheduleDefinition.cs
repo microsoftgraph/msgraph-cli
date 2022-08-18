@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AccessReviewScheduleDefinition : Entity, IParsable {
         /// <summary>Defines the list of additional users or group members to be notified of the access review progress.</summary>
         public List<AccessReviewNotificationRecipientItem> AdditionalNotificationRecipients { get; set; }
@@ -22,7 +21,7 @@ namespace ApiSdk.Models {
         public List<AccessReviewReviewerScope> FallbackReviewers { get; set; }
         /// <summary>This property is required when scoping a review to guest users&apos; access across all Microsoft 365 groups and determines which Microsoft 365 groups are reviewed. Each group will become a unique accessReviewInstance of the access review series.  For supported scopes, see accessReviewScope. Supports $select. For examples of options for configuring instanceEnumerationScope, see Configure the scope of your access review definition using the Microsoft Graph API.</summary>
         public AccessReviewScope InstanceEnumerationScope { get; set; }
-        /// <summary>Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.</summary>
+        /// <summary>If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.</summary>
         public List<AccessReviewInstance> Instances { get; set; }
         /// <summary>Timestamp when the access review series was last modified. Supports $select. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
@@ -36,6 +35,12 @@ namespace ApiSdk.Models {
         public List<AccessReviewStageSettings> StageSettings { get; set; }
         /// <summary>This read-only field specifies the status of an access review. The typical states include Initializing, NotStarted, Starting, InProgress, Completing, Completed, AutoReviewing, and AutoReviewed.  Supports $select, $orderby, and $filter (eq only). Read-only.</summary>
         public string Status { get; set; }
+        /// <summary>
+        /// Instantiates a new AccessReviewScheduleDefinition and sets the default values.
+        /// </summary>
+        public AccessReviewScheduleDefinition() : base() {
+            OdataType = "#microsoft.graph.accessReviewScheduleDefinition";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

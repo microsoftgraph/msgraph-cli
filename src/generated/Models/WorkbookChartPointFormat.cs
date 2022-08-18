@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartPointFormat : Entity, IParsable {
         /// <summary>Represents the fill format of a chart, which includes background formating information. Read-only.</summary>
         public WorkbookChartFill Fill { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookChartPointFormat and sets the default values.
+        /// </summary>
+        public WorkbookChartPointFormat() : base() {
+            OdataType = "#microsoft.graph.workbookChartPointFormat";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -57,11 +57,14 @@ namespace ApiSdk.Models {
         public string Category8 { get; set; }
         /// <summary>The label associated with Category 9</summary>
         public string Category9 { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new plannerCategoryDescriptions and sets the default values.
         /// </summary>
         public PlannerCategoryDescriptions() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.plannerCategoryDescriptions";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -101,6 +104,7 @@ namespace ApiSdk.Models {
                 {"category7", n => { Category7 = n.GetStringValue(); } },
                 {"category8", n => { Category8 = n.GetStringValue(); } },
                 {"category9", n => { Category9 = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -134,6 +138,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("category7", Category7);
             writer.WriteStringValue("category8", Category8);
             writer.WriteStringValue("category9", Category9);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

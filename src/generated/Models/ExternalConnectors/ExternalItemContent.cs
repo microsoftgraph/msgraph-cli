@@ -7,7 +7,9 @@ namespace ApiSdk.Models.ExternalConnectors {
     public class ExternalItemContent : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The type of content in the value property. Possible values are text and html. These are the content types that the indexer supports, and not the file extension types allowed. Required.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The type property</summary>
         public ExternalItemContentType? Type { get; set; }
         /// <summary>The content for the externalItem. Required.</summary>
         public string Value { get; set; }
@@ -16,6 +18,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// </summary>
         public ExternalItemContent() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.externalConnectors.externalItemContent";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -30,6 +33,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<ExternalItemContentType>(); } },
                 {"value", n => { Value = n.GetStringValue(); } },
             };
@@ -40,6 +44,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<ExternalItemContentType>("type", Type);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);

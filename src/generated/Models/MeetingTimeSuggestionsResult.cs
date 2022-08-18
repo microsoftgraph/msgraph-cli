@@ -7,15 +7,18 @@ namespace ApiSdk.Models {
     public class MeetingTimeSuggestionsResult : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>A reason for not returning any meeting suggestions. Possible values are: attendeesUnavailable, attendeesUnavailableOrUnknown, locationsUnavailable, organizerUnavailable, or unknown. This property is an empty string if the meetingTimeSuggestions property does include any meeting suggestions.</summary>
+        /// <summary>A reason for not returning any meeting suggestions. The possible values are: attendeesUnavailable, attendeesUnavailableOrUnknown, locationsUnavailable, organizerUnavailable, or unknown. This property is an empty string if the meetingTimeSuggestions property does include any meeting suggestions.</summary>
         public string EmptySuggestionsReason { get; set; }
         /// <summary>An array of meeting suggestions.</summary>
         public List<MeetingTimeSuggestion> MeetingTimeSuggestions { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
-        /// Instantiates a new MeetingTimeSuggestionsResult and sets the default values.
+        /// Instantiates a new meetingTimeSuggestionsResult and sets the default values.
         /// </summary>
         public MeetingTimeSuggestionsResult() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.meetingTimeSuggestionsResult";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"emptySuggestionsReason", n => { EmptySuggestionsReason = n.GetStringValue(); } },
                 {"meetingTimeSuggestions", n => { MeetingTimeSuggestions = n.GetCollectionOfObjectValues<MeetingTimeSuggestion>(MeetingTimeSuggestion.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("emptySuggestionsReason", EmptySuggestionsReason);
             writer.WriteCollectionOfObjectValues<MeetingTimeSuggestion>("meetingTimeSuggestions", MeetingTimeSuggestions);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

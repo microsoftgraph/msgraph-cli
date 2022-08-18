@@ -15,6 +15,12 @@ namespace ApiSdk.Models {
         /// <summary>UTC Time Offset indicated in minutes</summary>
         public int? UtcTimeOffsetInMinutes { get; set; }
         /// <summary>
+        /// Instantiates a new IosUpdateConfiguration and sets the default values.
+        /// </summary>
+        public IosUpdateConfiguration() : base() {
+            OdataType = "#microsoft.graph.iosUpdateConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

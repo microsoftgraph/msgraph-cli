@@ -17,11 +17,14 @@ namespace ApiSdk.Models {
         public bool? IsApprovalRequiredForExtension { get; set; }
         /// <summary>Indicates whether the requestor is required to supply a justification in their request.</summary>
         public bool? IsRequestorJustificationRequired { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new approvalSettings and sets the default values.
         /// </summary>
         public ApprovalSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.approvalSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -41,6 +44,7 @@ namespace ApiSdk.Models {
                 {"isApprovalRequired", n => { IsApprovalRequired = n.GetBoolValue(); } },
                 {"isApprovalRequiredForExtension", n => { IsApprovalRequiredForExtension = n.GetBoolValue(); } },
                 {"isRequestorJustificationRequired", n => { IsRequestorJustificationRequired = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -54,6 +58,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("isApprovalRequired", IsApprovalRequired);
             writer.WriteBoolValue("isApprovalRequiredForExtension", IsApprovalRequiredForExtension);
             writer.WriteBoolValue("isRequestorJustificationRequired", IsRequestorJustificationRequired);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

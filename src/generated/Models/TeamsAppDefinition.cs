@@ -25,6 +25,12 @@ namespace ApiSdk.Models {
         /// <summary>The version number of the application.</summary>
         public string Version { get; set; }
         /// <summary>
+        /// Instantiates a new teamsAppDefinition and sets the default values.
+        /// </summary>
+        public TeamsAppDefinition() : base() {
+            OdataType = "#microsoft.graph.teamsAppDefinition";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

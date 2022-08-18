@@ -10,9 +10,9 @@ namespace ApiSdk.Models {
         public DateTimeOffset? ExpirationDateTime { get; set; }
         /// <summary>Filters applied on the report</summary>
         public string Filter { get; set; }
-        /// <summary>Format of the exported report. Possible values are: csv, pdf.</summary>
+        /// <summary>Possible values for the file format of a report</summary>
         public DeviceManagementReportFileFormat? Format { get; set; }
-        /// <summary>Configures how the requested export job is localized. Possible values are: localizedValuesAsAdditionalColumn, replaceLocalizableValues.</summary>
+        /// <summary>Configures how the requested export job is localized</summary>
         public DeviceManagementExportJobLocalizationType? LocalizationType { get; set; }
         /// <summary>Name of the report</summary>
         public string ReportName { get; set; }
@@ -22,10 +22,16 @@ namespace ApiSdk.Models {
         public List<string> Select { get; set; }
         /// <summary>A snapshot is an identifiable subset of the dataset represented by the ReportName. A sessionId or CachedReportConfiguration id can be used here. If a sessionId is specified, Filter, Select, and OrderBy are applied to the data represented by the sessionId. Filter, Select, and OrderBy cannot be specified together with a CachedReportConfiguration id.</summary>
         public string SnapshotId { get; set; }
-        /// <summary>Status of the export job. Possible values are: unknown, notStarted, inProgress, completed, failed.</summary>
+        /// <summary>Possible statuses associated with a generated report</summary>
         public DeviceManagementReportStatus? Status { get; set; }
         /// <summary>Temporary location of the exported report</summary>
         public string Url { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceManagementExportJob and sets the default values.
+        /// </summary>
+        public DeviceManagementExportJob() : base() {
+            OdataType = "#microsoft.graph.deviceManagementExportJob";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

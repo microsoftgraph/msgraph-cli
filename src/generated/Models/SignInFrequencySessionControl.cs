@@ -4,12 +4,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class SignInFrequencySessionControl : ConditionalAccessSessionControl, IParsable {
-        /// <summary>Possible values are: days, hours, or null if frequencyInterval is everyTime .</summary>
+        /// <summary>The possible values are primaryAndSecondaryAuthentication, secondaryAuthentication, unknownFutureValue.</summary>
+        public SignInFrequencyAuthenticationType? AuthenticationType { get; set; }
+        /// <summary>The possible values are timeBased, everyTime, unknownFutureValue.</summary>
+        public SignInFrequencyInterval? FrequencyInterval { get; set; }
+        /// <summary>Possible values are: days, hours.</summary>
         public SigninFrequencyType? Type { get; set; }
         /// <summary>The number of days or hours.</summary>
         public int? Value { get; set; }
+        /// <summary>
+        /// Instantiates a new SignInFrequencySessionControl and sets the default values.
+        /// </summary>
+        public SignInFrequencySessionControl() : base() {
+            OdataType = "#microsoft.graph.signInFrequencySessionControl";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
@@ -23,6 +32,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+                {"authenticationType", n => { AuthenticationType = n.GetEnumValue<SignInFrequencyAuthenticationType>(); } },
+                {"frequencyInterval", n => { FrequencyInterval = n.GetEnumValue<SignInFrequencyInterval>(); } },
                 {"type", n => { Type = n.GetEnumValue<SigninFrequencyType>(); } },
                 {"value", n => { Value = n.GetIntValue(); } },
             };
@@ -34,6 +45,8 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteEnumValue<SignInFrequencyAuthenticationType>("authenticationType", AuthenticationType);
+            writer.WriteEnumValue<SignInFrequencyInterval>("frequencyInterval", FrequencyInterval);
             writer.WriteEnumValue<SigninFrequencyType>("type", Type);
             writer.WriteIntValue("value", Value);
         }

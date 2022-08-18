@@ -1,13 +1,20 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
+    /// <summary>Provides operations to manage the authenticationMethodsPolicy singleton.</summary>
     public class AuthenticationMethodConfiguration : Entity, IParsable {
         /// <summary>The state of the policy. Possible values are: enabled, disabled.</summary>
         public AuthenticationMethodState? State { get; set; }
+        /// <summary>
+        /// Instantiates a new authenticationMethodConfiguration and sets the default values.
+        /// </summary>
+        public AuthenticationMethodConfiguration() : base() {
+            OdataType = "#microsoft.graph.authenticationMethodConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

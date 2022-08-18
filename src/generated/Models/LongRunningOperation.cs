@@ -1,21 +1,28 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class LongRunningOperation : Entity, IParsable {
-        /// <summary>The createdDateTime property</summary>
+        /// <summary>The start time of the operation.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The lastActionDateTime property</summary>
+        /// <summary>The time of the last action in the operation.</summary>
         public DateTimeOffset? LastActionDateTime { get; set; }
-        /// <summary>The resourceLocation property</summary>
+        /// <summary>URI of the resource that the operation is performed on.</summary>
         public string ResourceLocation { get; set; }
-        /// <summary>The status property</summary>
+        /// <summary>The status of the operation. The possible values are: notStarted, running, succeeded, failed, unknownFutureValue.</summary>
         public LongRunningOperationStatus? Status { get; set; }
-        /// <summary>The statusDetail property</summary>
+        /// <summary>Details about the status of the operation.</summary>
         public string StatusDetail { get; set; }
+        /// <summary>
+        /// Instantiates a new longRunningOperation and sets the default values.
+        /// </summary>
+        public LongRunningOperation() : base() {
+            OdataType = "#microsoft.graph.longRunningOperation";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

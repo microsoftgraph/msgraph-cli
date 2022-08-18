@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartFont : Entity, IParsable {
         /// <summary>Represents the bold status of font.</summary>
         public bool? Bold { get; set; }
@@ -18,6 +17,12 @@ namespace ApiSdk.Models {
         public double? Size { get; set; }
         /// <summary>Type of underline applied to the font. The possible values are: None, Single.</summary>
         public string Underline { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookChartFont and sets the default values.
+        /// </summary>
+        public WorkbookChartFont() : base() {
+            OdataType = "#microsoft.graph.workbookChartFont";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

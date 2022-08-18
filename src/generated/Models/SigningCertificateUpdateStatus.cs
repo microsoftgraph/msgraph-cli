@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public string CertificateUpdateResult { get; set; }
         /// <summary>Date and time in ISO 8601 format and in UTC time when the certificate was last updated. Read-only.</summary>
         public DateTimeOffset? LastRunDateTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new signingCertificateUpdateStatus and sets the default values.
         /// </summary>
         public SigningCertificateUpdateStatus() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.signingCertificateUpdateStatus";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"certificateUpdateResult", n => { CertificateUpdateResult = n.GetStringValue(); } },
                 {"lastRunDateTime", n => { LastRunDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("certificateUpdateResult", CertificateUpdateResult);
             writer.WriteDateTimeOffsetValue("lastRunDateTime", LastRunDateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

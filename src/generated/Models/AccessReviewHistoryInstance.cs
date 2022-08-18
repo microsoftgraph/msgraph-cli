@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AccessReviewHistoryInstance : Entity, IParsable {
         /// <summary>Uri which can be used to retrieve review history data. This URI will be active for 24 hours after being generated. Required.</summary>
         public string DownloadUri { get; set; }
@@ -20,6 +19,12 @@ namespace ApiSdk.Models {
         public DateTimeOffset? RunDateTime { get; set; }
         /// <summary>Represents the status of the review history data collection. The possible values are: done, inProgress, error, requested, unknownFutureValue. Once the status has been marked as done, a link can be generated to retrieve the instance&apos;s data by calling generateDownloadUri method.</summary>
         public AccessReviewHistoryStatus? Status { get; set; }
+        /// <summary>
+        /// Instantiates a new AccessReviewHistoryInstance and sets the default values.
+        /// </summary>
+        public AccessReviewHistoryInstance() : base() {
+            OdataType = "#microsoft.graph.accessReviewHistoryInstance";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

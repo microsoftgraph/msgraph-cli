@@ -158,7 +158,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes.I
             /// <summary>Request query parameters</summary>
             public ContentTypeItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ContentTypeItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new contentTypeItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ContentTypeItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ContentTypeItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

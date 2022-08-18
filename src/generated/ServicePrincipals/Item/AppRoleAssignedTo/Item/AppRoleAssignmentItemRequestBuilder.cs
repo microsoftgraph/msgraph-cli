@@ -61,11 +61,11 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
             return command;
         }
         /// <summary>
-        /// App role assignments for this app or service, granted to users, groups, and other service principals.Supports $expand.
+        /// App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals.Supports $expand.";
+            command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -199,7 +199,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
             return requestInfo;
         }
         /// <summary>
-        /// App role assignments for this app or service, granted to users, groups, and other service principals.Supports $expand.
+        /// App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AppRoleAssignmentItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,14 +246,14 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new appRoleAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AppRoleAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AppRoleAssignmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>App role assignments for this app or service, granted to users, groups, and other service principals.Supports $expand.</summary>
+        /// <summary>App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.</summary>
         public class AppRoleAssignmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -271,7 +271,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
             /// <summary>Request query parameters</summary>
             public AppRoleAssignmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AppRoleAssignmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new appRoleAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AppRoleAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AppRoleAssignmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new appRoleAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AppRoleAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AppRoleAssignmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

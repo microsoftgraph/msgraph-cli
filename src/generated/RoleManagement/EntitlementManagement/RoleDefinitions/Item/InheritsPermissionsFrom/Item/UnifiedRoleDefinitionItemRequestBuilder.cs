@@ -61,11 +61,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             return command;
         }
         /// <summary>
-        /// Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
+        /// Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.";
+            command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.";
             // Create options for all the parameters
             var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
             };
@@ -199,7 +199,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             return requestInfo;
         }
         /// <summary>
-        /// Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
+        /// Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UnifiedRoleDefinitionItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,14 +246,14 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new unifiedRoleDefinitionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleDefinitionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleDefinitionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.</summary>
+        /// <summary>Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.</summary>
         public class UnifiedRoleDefinitionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -271,7 +271,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             /// <summary>Request query parameters</summary>
             public UnifiedRoleDefinitionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UnifiedRoleDefinitionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new unifiedRoleDefinitionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleDefinitionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleDefinitionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new unifiedRoleDefinitionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleDefinitionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleDefinitionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

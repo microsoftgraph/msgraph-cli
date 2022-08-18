@@ -118,7 +118,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item.Ref {
             /// <summary>Request query parameters</summary>
             public RefRequestBuilderDeleteQueryParameters QueryParameters { get; set; } = new RefRequestBuilderDeleteQueryParameters();
             /// <summary>
-            /// Instantiates a new refRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new RefRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public RefRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();

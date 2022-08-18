@@ -100,11 +100,11 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.ColumnLinks {
             return command;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type
+        /// The collection of columns that are required by this content type.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of columns that are required by this content type";
+            command.Description = "The collection of columns that are required by this content type.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -229,7 +229,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.ColumnLinks {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type
+        /// The collection of columns that are required by this content type.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ColumnLinksRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -270,7 +270,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.ColumnLinks {
             }
             return requestInfo;
         }
-        /// <summary>The collection of columns that are required by this content type</summary>
+        /// <summary>The collection of columns that are required by this content type.</summary>
         public class ColumnLinksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

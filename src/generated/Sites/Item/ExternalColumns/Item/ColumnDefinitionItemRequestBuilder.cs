@@ -23,11 +23,11 @@ namespace ApiSdk.Sites.Item.ExternalColumns.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.
+        /// Get externalColumns from sites
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.";
+            command.Description = "Get externalColumns from sites";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -103,7 +103,7 @@ namespace ApiSdk.Sites.Item.ExternalColumns.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.
+        /// Get externalColumns from sites
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ColumnDefinitionItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -122,7 +122,7 @@ namespace ApiSdk.Sites.Item.ExternalColumns.Item {
             }
             return requestInfo;
         }
-        /// <summary>The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.</summary>
+        /// <summary>Get externalColumns from sites</summary>
         public class ColumnDefinitionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -140,7 +140,7 @@ namespace ApiSdk.Sites.Item.ExternalColumns.Item {
             /// <summary>Request query parameters</summary>
             public ColumnDefinitionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ColumnDefinitionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new columnDefinitionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ColumnDefinitionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ColumnDefinitionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

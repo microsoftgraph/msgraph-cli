@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookTableSort : Entity, IParsable {
         /// <summary>Represents the current conditions used to last sort the table. Read-only.</summary>
         public List<WorkbookSortField> Fields { get; set; }
         /// <summary>Represents whether the casing impacted the last sort of the table. Read-only.</summary>
         public bool? MatchCase { get; set; }
-        /// <summary>Represents Chinese character ordering method last used to sort the table. Possible values are: PinYin, StrokeCount. Read-only.</summary>
+        /// <summary>Represents Chinese character ordering method last used to sort the table. The possible values are: PinYin, StrokeCount. Read-only.</summary>
         public string Method { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookTableSort and sets the default values.
+        /// </summary>
+        public WorkbookTableSort() : base() {
+            OdataType = "#microsoft.graph.workbookTableSort";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

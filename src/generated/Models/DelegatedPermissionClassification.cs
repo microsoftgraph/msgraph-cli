@@ -4,14 +4,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to call the instantiate method.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class DelegatedPermissionClassification : Entity, IParsable {
         /// <summary>The classification value being given. Possible value: low. Does not support $filter.</summary>
         public PermissionClassificationType? Classification { get; set; }
-        /// <summary>The unique identifier (id) for the delegated permission listed in the publishedPermissionScopes collection of the servicePrincipal. Required on create. Does not support $filter.</summary>
+        /// <summary>The unique identifier (id) for the delegated permission listed in the oauth2PermissionScopes collection of the servicePrincipal. Required on create. Does not support $filter.</summary>
         public string PermissionId { get; set; }
-        /// <summary>The claim value (value) for the delegated permission listed in the publishedPermissionScopes collection of the servicePrincipal. Does not support $filter.</summary>
+        /// <summary>The claim value (value) for the delegated permission listed in the oauth2PermissionScopes collection of the servicePrincipal. Does not support $filter.</summary>
         public string PermissionName { get; set; }
+        /// <summary>
+        /// Instantiates a new delegatedPermissionClassification and sets the default values.
+        /// </summary>
+        public DelegatedPermissionClassification() : base() {
+            OdataType = "#microsoft.graph.delegatedPermissionClassification";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

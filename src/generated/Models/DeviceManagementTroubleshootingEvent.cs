@@ -1,15 +1,21 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Event representing an general failure.</summary>
     public class DeviceManagementTroubleshootingEvent : Entity, IParsable {
         /// <summary>Id used for tracing the failure in the service.</summary>
         public string CorrelationId { get; set; }
         /// <summary>Time when the event occurred .</summary>
         public DateTimeOffset? EventDateTime { get; set; }
+        /// <summary>
+        /// Instantiates a new DeviceManagementTroubleshootingEvent and sets the default values.
+        /// </summary>
+        public DeviceManagementTroubleshootingEvent() : base() {
+            OdataType = "#microsoft.graph.deviceManagementTroubleshootingEvent";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

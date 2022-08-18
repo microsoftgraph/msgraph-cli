@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public enum DeviceManagementExchangeConnectorType {
         /// <summary>Connects to on-premises Exchange Environment.</summary>
         OnPremises,

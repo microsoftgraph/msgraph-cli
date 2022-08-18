@@ -10,6 +10,12 @@ namespace ApiSdk.Models {
         /// <summary>The created printer entity. Read-only.</summary>
         public ApiSdk.Models.Printer Printer { get; set; }
         /// <summary>
+        /// Instantiates a new PrinterCreateOperation and sets the default values.
+        /// </summary>
+        public PrinterCreateOperation() : base() {
+            OdataType = "#microsoft.graph.printerCreateOperation";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

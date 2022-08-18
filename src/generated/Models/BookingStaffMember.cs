@@ -11,7 +11,7 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>The email address of the staff member. This can be in the same Microsoft 365 tenant as the business, or in a different email domain. This email address can be used if the sendConfirmationsToOwner property is set to true in the scheduling policy of the business. Required.</summary>
         public string EmailAddress { get; set; }
-        /// <summary>The role of the staff member in the business. Possible values are: guest, administrator, viewer, externalGuest and unknownFutureValue. Required.</summary>
+        /// <summary>The role property</summary>
         public BookingStaffRole? Role { get; set; }
         /// <summary>The time zone of the staff member. For a list of possible values, see dateTimeTimeZone.</summary>
         public string TimeZone { get; set; }
@@ -19,6 +19,12 @@ namespace ApiSdk.Models {
         public bool? UseBusinessHours { get; set; }
         /// <summary>The range of hours each day of the week that the staff member is available for booking. By default, they are initialized to be the same as the businessHours property of the business.</summary>
         public List<BookingWorkHours> WorkingHours { get; set; }
+        /// <summary>
+        /// Instantiates a new BookingStaffMember and sets the default values.
+        /// </summary>
+        public BookingStaffMember() : base() {
+            OdataType = "#microsoft.graph.bookingStaffMember";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

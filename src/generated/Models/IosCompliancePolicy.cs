@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class IosCompliancePolicy : DeviceCompliancePolicy, IParsable {
         /// <summary>Require that devices have enabled device threat protection .</summary>
         public bool? DeviceThreatProtectionEnabled { get; set; }
-        /// <summary>Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.</summary>
+        /// <summary>Device threat protection levels for the Device Threat Protection API.</summary>
         public DeviceThreatProtectionLevel? DeviceThreatProtectionRequiredSecurityLevel { get; set; }
         /// <summary>Indicates whether or not to require a managed email profile.</summary>
         public bool? ManagedEmailProfileRequired { get; set; }
@@ -29,10 +29,16 @@ namespace ApiSdk.Models {
         public int? PasscodePreviousPasscodeBlockCount { get; set; }
         /// <summary>Indicates whether or not to require a passcode.</summary>
         public bool? PasscodeRequired { get; set; }
-        /// <summary>The required passcode type. Possible values are: deviceDefault, alphanumeric, numeric.</summary>
+        /// <summary>Possible values of required passwords.</summary>
         public RequiredPasswordType? PasscodeRequiredType { get; set; }
         /// <summary>Devices must not be jailbroken or rooted.</summary>
         public bool? SecurityBlockJailbrokenDevices { get; set; }
+        /// <summary>
+        /// Instantiates a new IosCompliancePolicy and sets the default values.
+        /// </summary>
+        public IosCompliancePolicy() : base() {
+            OdataType = "#microsoft.graph.iosCompliancePolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

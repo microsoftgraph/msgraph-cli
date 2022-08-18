@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class PlannerBucketTaskBoardTaskFormat : Entity, IParsable {
         /// <summary>Hint used to order tasks in the Bucket view of the Task Board. The format is defined as outlined here.</summary>
         public string OrderHint { get; set; }
+        /// <summary>
+        /// Instantiates a new plannerBucketTaskBoardTaskFormat and sets the default values.
+        /// </summary>
+        public PlannerBucketTaskBoardTaskFormat() : base() {
+            OdataType = "#microsoft.graph.plannerBucketTaskBoardTaskFormat";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

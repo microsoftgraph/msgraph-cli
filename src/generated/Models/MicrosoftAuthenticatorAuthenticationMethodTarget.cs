@@ -5,8 +5,14 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class MicrosoftAuthenticatorAuthenticationMethodTarget : AuthenticationMethodTarget, IParsable {
-        /// <summary>Determines which types of notifications can be used for sign-in. The possible values are: deviceBasedPush (passwordless only), push, and any.</summary>
+        /// <summary>The authenticationMode property</summary>
         public MicrosoftAuthenticatorAuthenticationMode? AuthenticationMode { get; set; }
+        /// <summary>
+        /// Instantiates a new MicrosoftAuthenticatorAuthenticationMethodTarget and sets the default values.
+        /// </summary>
+        public MicrosoftAuthenticatorAuthenticationMethodTarget() : base() {
+            OdataType = "#microsoft.graph.microsoftAuthenticatorAuthenticationMethodTarget";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

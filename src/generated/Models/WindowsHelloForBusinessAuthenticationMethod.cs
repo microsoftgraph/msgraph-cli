@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         /// <summary>Key strength of this Windows Hello for Business key. Possible values are: normal, weak, unknown.</summary>
         public AuthenticationMethodKeyStrength? KeyStrength { get; set; }
         /// <summary>
+        /// Instantiates a new WindowsHelloForBusinessAuthenticationMethod and sets the default values.
+        /// </summary>
+        public WindowsHelloForBusinessAuthenticationMethod() : base() {
+            OdataType = "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

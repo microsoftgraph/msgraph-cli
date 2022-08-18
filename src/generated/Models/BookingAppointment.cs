@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Represents a booked appointment of a service by a customer in a business.</summary>
     public class BookingAppointment : Entity, IParsable {
         /// <summary>Additional information that is sent to the customer when an appointment is confirmed.</summary>
         public string AdditionalInformation { get; set; }
@@ -16,15 +15,15 @@ namespace ApiSdk.Models {
         public TimeSpan? Duration { get; set; }
         /// <summary>The endDateTime property</summary>
         public DateTimeTimeZone EndDateTime { get; set; }
-        /// <summary>The current number of customers in the appointment.</summary>
+        /// <summary>The current number of customers in the appointment</summary>
         public int? FilledAttendeesCount { get; set; }
-        /// <summary>True indicates that the appointment will be held online. Default value is false.</summary>
+        /// <summary>If true, indicates that the appointment will be held online. Default value is false.</summary>
         public bool? IsLocationOnline { get; set; }
         /// <summary>The URL of the online meeting for the appointment.</summary>
         public string JoinWebUrl { get; set; }
         /// <summary>The maximum number of customers allowed in an appointment. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment. To create a customer, use the Create bookingCustomer operation.</summary>
         public int? MaximumAttendeesCount { get; set; }
-        /// <summary>True indicates that the bookingCustomer for this appointment does not wish to receive a confirmation for this appointment.</summary>
+        /// <summary>If true indicates that the bookingCustomer for this appointment does not wish to receive a confirmation for this appointment.</summary>
         public bool? OptOutOfCustomerEmail { get; set; }
         /// <summary>The amount of time to reserve after the appointment ends, for cleaning up, as an example. The value is expressed in ISO8601 format.</summary>
         public TimeSpan? PostBuffer { get; set; }
@@ -32,11 +31,11 @@ namespace ApiSdk.Models {
         public TimeSpan? PreBuffer { get; set; }
         /// <summary>The regular price for an appointment for the specified bookingService.</summary>
         public double? Price { get; set; }
-        /// <summary>A setting to provide flexibility for the pricing structure of services. Possible values are: undefined, fixedPrice, startingAt, hourly, free, priceVaries, callUs, notSet, unknownFutureValue.</summary>
+        /// <summary>Represents the type of pricing of a booking service.</summary>
         public BookingPriceType? PriceType { get; set; }
         /// <summary>The collection of customer reminders sent for this appointment. The value of this property is available only when reading this bookingAppointment by its ID.</summary>
         public List<BookingReminder> Reminders { get; set; }
-        /// <summary>An additional tracking ID for the appointment, if the appointment has been created directly by the customer on the scheduling page, as opposed to by a staff member on the behalf of the customer.</summary>
+        /// <summary>An additional tracking ID for the appointment, if the appointment has been created directly by the customer on the scheduling page, as opposed to by a staff member on the behalf of the customer. Only supported for appointment if maxAttendeeCount is 1.</summary>
         public string SelfServiceAppointmentId { get; set; }
         /// <summary>The ID of the bookingService associated with this appointment.</summary>
         public string ServiceId { get; set; }
@@ -46,12 +45,18 @@ namespace ApiSdk.Models {
         public string ServiceName { get; set; }
         /// <summary>Notes from a bookingStaffMember. The value of this property is available only when reading this bookingAppointment by its ID.</summary>
         public string ServiceNotes { get; set; }
-        /// <summary>True indicates SMS notifications will be sent to the customers for the appointment. Default value is false.</summary>
+        /// <summary>If true, indicates SMS notifications will be sent to the customers for the appointment. Default value is false.</summary>
         public bool? SmsNotificationsEnabled { get; set; }
         /// <summary>The ID of each bookingStaffMember who is scheduled in this appointment.</summary>
         public List<string> StaffMemberIds { get; set; }
         /// <summary>The startDateTime property</summary>
         public DateTimeTimeZone StartDateTime { get; set; }
+        /// <summary>
+        /// Instantiates a new BookingAppointment and sets the default values.
+        /// </summary>
+        public BookingAppointment() : base() {
+            OdataType = "#microsoft.graph.bookingAppointment";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

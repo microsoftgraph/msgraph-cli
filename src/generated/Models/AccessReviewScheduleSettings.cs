@@ -17,12 +17,14 @@ namespace ApiSdk.Models {
         public string DefaultDecision { get; set; }
         /// <summary>Indicates whether the default decision is enabled or disabled when reviewers do not respond. Default value is false.</summary>
         public bool? DefaultDecisionEnabled { get; set; }
-        /// <summary>Duration of each recurrence of review (accessReviewInstance) in number of days. NOTE: If the stageSettings of the accessReviewScheduleDefinition object is defined, its durationInDays setting will be used instead of the value of this property.</summary>
+        /// <summary>Duration of an access review instance in days. NOTE: If the stageSettings of the accessReviewScheduleDefinition object is defined, its durationInDays setting will be used instead of the value of this property.</summary>
         public int? InstanceDurationInDays { get; set; }
         /// <summary>Indicates whether reviewers are required to provide justification with their decision. Default value is false.</summary>
         public bool? JustificationRequiredOnApproval { get; set; }
         /// <summary>Indicates whether emails are enabled or disabled. Default value is false.</summary>
         public bool? MailNotificationsEnabled { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Indicates whether decision recommendations are enabled or disabled. NOTE: If the stageSettings of the accessReviewScheduleDefinition object is defined, its recommendationsEnabled setting will be used instead of the value of this property.</summary>
         public bool? RecommendationsEnabled { get; set; }
         /// <summary>Detailed settings for recurrence using the standard Outlook recurrence object. Note: Only dayOfMonth, interval, and type (weekly, absoluteMonthly) properties are supported. Use the property startDate on recurrenceRange to determine the day the review starts.</summary>
@@ -34,6 +36,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AccessReviewScheduleSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.accessReviewScheduleSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -56,6 +59,7 @@ namespace ApiSdk.Models {
                 {"instanceDurationInDays", n => { InstanceDurationInDays = n.GetIntValue(); } },
                 {"justificationRequiredOnApproval", n => { JustificationRequiredOnApproval = n.GetBoolValue(); } },
                 {"mailNotificationsEnabled", n => { MailNotificationsEnabled = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"recommendationsEnabled", n => { RecommendationsEnabled = n.GetBoolValue(); } },
                 {"recurrence", n => { Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
                 {"reminderNotificationsEnabled", n => { ReminderNotificationsEnabled = n.GetBoolValue(); } },
@@ -75,6 +79,7 @@ namespace ApiSdk.Models {
             writer.WriteIntValue("instanceDurationInDays", InstanceDurationInDays);
             writer.WriteBoolValue("justificationRequiredOnApproval", JustificationRequiredOnApproval);
             writer.WriteBoolValue("mailNotificationsEnabled", MailNotificationsEnabled);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("recommendationsEnabled", RecommendationsEnabled);
             writer.WriteObjectValue<PatternedRecurrence>("recurrence", Recurrence);
             writer.WriteBoolValue("reminderNotificationsEnabled", ReminderNotificationsEnabled);

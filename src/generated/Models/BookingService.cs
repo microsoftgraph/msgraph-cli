@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Represents a particular service offered by a booking business.</summary>
     public class BookingService : Entity, IParsable {
         /// <summary>Additional information that is sent to the customer when an appointment is confirmed.</summary>
         public string AdditionalInformation { get; set; }
@@ -16,7 +15,7 @@ namespace ApiSdk.Models {
         public Location DefaultLocation { get; set; }
         /// <summary>The default monetary price for the service.</summary>
         public double? DefaultPrice { get; set; }
-        /// <summary>The default way the service is charged. Possible values are: undefined, fixedPrice, startingAt, hourly, free, priceVaries, callUs, notSet, unknownFutureValue.</summary>
+        /// <summary>Represents the type of pricing of a booking service.</summary>
         public BookingPriceType? DefaultPriceType { get; set; }
         /// <summary>The default set of reminders for an appointment of this service. The value of this property is available only when reading this bookingService by its ID.</summary>
         public List<BookingReminder> DefaultReminders { get; set; }
@@ -28,7 +27,7 @@ namespace ApiSdk.Models {
         public bool? IsHiddenFromCustomers { get; set; }
         /// <summary>True indicates that the appointments for the service will be held online. Default value is false.</summary>
         public bool? IsLocationOnline { get; set; }
-        /// <summary>The maximum number of customers allowed in a service. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment.  To create a customer, use the Create bookingCustomer operation.</summary>
+        /// <summary>The maximum number of customers allowed in a service. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment. To create a customer, use the Create bookingCustomer operation.</summary>
         public int? MaximumAttendeesCount { get; set; }
         /// <summary>Additional information about this service.</summary>
         public string Notes { get; set; }
@@ -44,6 +43,12 @@ namespace ApiSdk.Models {
         public List<string> StaffMemberIds { get; set; }
         /// <summary>The URL a customer uses to access the service.</summary>
         public string WebUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new BookingService and sets the default values.
+        /// </summary>
+        public BookingService() : base() {
+            OdataType = "#microsoft.graph.bookingService";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

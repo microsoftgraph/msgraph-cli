@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public string Category { get; set; }
         /// <summary>The date and time at which the error occurred.</summary>
         public DateTimeOffset? OccurredDateTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Name of the directory property causing the error. Current possible values: UserPrincipalName or ProxyAddress</summary>
         public string PropertyCausingError { get; set; }
         /// <summary>Value of the property causing the error.</summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public OnPremisesProvisioningError() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.onPremisesProvisioningError";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -36,6 +39,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"category", n => { Category = n.GetStringValue(); } },
                 {"occurredDateTime", n => { OccurredDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"propertyCausingError", n => { PropertyCausingError = n.GetStringValue(); } },
                 {"value", n => { Value = n.GetStringValue(); } },
             };
@@ -48,6 +52,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("category", Category);
             writer.WriteDateTimeOffsetValue("occurredDateTime", OccurredDateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("propertyCausingError", PropertyCausingError);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);

@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class PlannerUser : Entity, IParsable {
         /// <summary>Read-only. Nullable. Returns the plannerTasks assigned to the user.</summary>
         public List<PlannerPlan> Plans { get; set; }
-        /// <summary>Read-only. Nullable. Returns the plannerTasks assigned to the user.</summary>
+        /// <summary>Read-only. Nullable. Returns the plannerPlans shared with the user.</summary>
         public List<PlannerTask> Tasks { get; set; }
+        /// <summary>
+        /// Instantiates a new PlannerUser and sets the default values.
+        /// </summary>
+        public PlannerUser() : base() {
+            OdataType = "#microsoft.graph.plannerUser";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

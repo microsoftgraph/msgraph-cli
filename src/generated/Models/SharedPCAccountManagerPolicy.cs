@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models {
     /// <summary>SharedPC Account Manager Policy. Only applies when the account manager is enabled.</summary>
     public class SharedPCAccountManagerPolicy : IAdditionalDataHolder, IParsable {
-        /// <summary>Configures when accounts are deleted. Possible values are: immediate, diskSpaceThreshold, diskSpaceThresholdOrInactiveThreshold.</summary>
+        /// <summary>Possible values for when accounts are deleted on a shared PC.</summary>
         public SharedPCAccountDeletionPolicyType? AccountDeletionPolicy { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -14,6 +14,8 @@ namespace ApiSdk.Models {
         public int? CacheAccountsAboveDiskFreePercentage { get; set; }
         /// <summary>Specifies when the accounts will start being deleted when they have not been logged on during the specified period, given as number of days. Only applies when AccountDeletionPolicy is DiskSpaceThreshold or DiskSpaceThresholdOrInactiveThreshold.</summary>
         public int? InactiveThresholdDays { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Sets the percentage of disk space remaining on a PC before cached accounts will be deleted to free disk space. Accounts that have been inactive the longest will be deleted first. Only applies when AccountDeletionPolicy is DiskSpaceThresholdOrInactiveThreshold. Valid values 0 to 100</summary>
         public int? RemoveAccountsBelowDiskFreePercentage { get; set; }
         /// <summary>
@@ -21,6 +23,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public SharedPCAccountManagerPolicy() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.sharedPCAccountManagerPolicy";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
                 {"accountDeletionPolicy", n => { AccountDeletionPolicy = n.GetEnumValue<SharedPCAccountDeletionPolicyType>(); } },
                 {"cacheAccountsAboveDiskFreePercentage", n => { CacheAccountsAboveDiskFreePercentage = n.GetIntValue(); } },
                 {"inactiveThresholdDays", n => { InactiveThresholdDays = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"removeAccountsBelowDiskFreePercentage", n => { RemoveAccountsBelowDiskFreePercentage = n.GetIntValue(); } },
             };
         }
@@ -50,6 +54,7 @@ namespace ApiSdk.Models {
             writer.WriteEnumValue<SharedPCAccountDeletionPolicyType>("accountDeletionPolicy", AccountDeletionPolicy);
             writer.WriteIntValue("cacheAccountsAboveDiskFreePercentage", CacheAccountsAboveDiskFreePercentage);
             writer.WriteIntValue("inactiveThresholdDays", InactiveThresholdDays);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("removeAccountsBelowDiskFreePercentage", RemoveAccountsBelowDiskFreePercentage);
             writer.WriteAdditionalData(AdditionalData);
         }

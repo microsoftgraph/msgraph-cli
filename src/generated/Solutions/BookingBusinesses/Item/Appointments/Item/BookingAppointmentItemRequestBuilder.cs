@@ -253,7 +253,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new bookingAppointmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new BookingAppointmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public BookingAppointmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -278,7 +278,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             /// <summary>Request query parameters</summary>
             public BookingAppointmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new BookingAppointmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new bookingAppointmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new BookingAppointmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public BookingAppointmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -292,7 +292,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new bookingAppointmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new BookingAppointmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public BookingAppointmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

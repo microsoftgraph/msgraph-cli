@@ -1,6 +1,11 @@
+using ApiSdk.Me.Authentication.EmailMethods;
 using ApiSdk.Me.Authentication.Fido2Methods;
 using ApiSdk.Me.Authentication.Methods;
 using ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods;
+using ApiSdk.Me.Authentication.Operations;
+using ApiSdk.Me.Authentication.PasswordMethods;
+using ApiSdk.Me.Authentication.PhoneMethods;
+using ApiSdk.Me.Authentication.SoftwareOathMethods;
 using ApiSdk.Me.Authentication.TemporaryAccessPassMethods;
 using ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods;
 using ApiSdk.Models;
@@ -51,6 +56,15 @@ namespace ApiSdk.Me.Authentication {
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        public Command BuildEmailMethodsCommand() {
+            var command = new Command("email-methods");
+            var builder = new EmailMethodsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildFido2MethodsCommand() {
@@ -135,6 +149,24 @@ namespace ApiSdk.Me.Authentication {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        public Command BuildOperationsCommand() {
+            var command = new Command("operations");
+            var builder = new OperationsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildPasswordMethodsCommand() {
+            var command = new Command("password-methods");
+            var builder = new PasswordMethodsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         /// <summary>
         /// Update the navigation property authentication in me
         /// </summary>
@@ -161,6 +193,24 @@ namespace ApiSdk.Me.Authentication {
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        public Command BuildPhoneMethodsCommand() {
+            var command = new Command("phone-methods");
+            var builder = new PhoneMethodsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildSoftwareOathMethodsCommand() {
+            var command = new Command("software-oath-methods");
+            var builder = new SoftwareOathMethodsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildTemporaryAccessPassMethodsCommand() {

@@ -15,6 +15,8 @@ namespace ApiSdk.Models {
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>Indicates whether the microsoft.graph.user should be paid for the activity during their shift. Required.</summary>
         public bool? IsPaid { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The start date and time for the shiftActivity. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Required.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>The theme property</summary>
@@ -24,6 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ShiftActivity() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.shiftActivity";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -42,6 +45,7 @@ namespace ApiSdk.Models {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 {"isPaid", n => { IsPaid = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"theme", n => { Theme = n.GetEnumValue<ScheduleEntityTheme>(); } },
             };
@@ -56,6 +60,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteBoolValue("isPaid", IsPaid);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteEnumValue<ScheduleEntityTheme>("theme", Theme);
             writer.WriteAdditionalData(AdditionalData);

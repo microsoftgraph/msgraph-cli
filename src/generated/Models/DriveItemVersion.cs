@@ -5,10 +5,16 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class DriveItemVersion : BaseItemVersion, IParsable {
-        /// <summary>The content property</summary>
+        /// <summary>The content stream for this version of the item.</summary>
         public byte[] Content { get; set; }
         /// <summary>Indicates the size of the content stream for this version of the item.</summary>
         public long? Size { get; set; }
+        /// <summary>
+        /// Instantiates a new DriveItemVersion and sets the default values.
+        /// </summary>
+        public DriveItemVersion() : base() {
+            OdataType = "#microsoft.graph.driveItemVersion";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

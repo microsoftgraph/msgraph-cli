@@ -14,11 +14,14 @@ namespace ApiSdk.Models {
         public bool? CellularDataBlockWhenRoaming { get; set; }
         /// <summary>Information about the managed apps that this rule is going to apply to. This collection can contain a maximum of 500 elements.</summary>
         public List<AppListItem> ManagedApps { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new iosNetworkUsageRule and sets the default values.
         /// </summary>
         public IosNetworkUsageRule() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.iosNetworkUsageRule";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -36,6 +39,7 @@ namespace ApiSdk.Models {
                 {"cellularDataBlocked", n => { CellularDataBlocked = n.GetBoolValue(); } },
                 {"cellularDataBlockWhenRoaming", n => { CellularDataBlockWhenRoaming = n.GetBoolValue(); } },
                 {"managedApps", n => { ManagedApps = n.GetCollectionOfObjectValues<AppListItem>(AppListItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -47,6 +51,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("cellularDataBlocked", CellularDataBlocked);
             writer.WriteBoolValue("cellularDataBlockWhenRoaming", CellularDataBlockWhenRoaming);
             writer.WriteCollectionOfObjectValues<AppListItem>("managedApps", ManagedApps);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

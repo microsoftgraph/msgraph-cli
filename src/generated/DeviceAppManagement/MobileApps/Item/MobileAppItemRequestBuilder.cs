@@ -268,7 +268,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new mobileAppItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new MobileAppItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public MobileAppItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -293,7 +293,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             /// <summary>Request query parameters</summary>
             public MobileAppItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new MobileAppItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new mobileAppItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new MobileAppItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public MobileAppItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -307,7 +307,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new mobileAppItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new MobileAppItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public MobileAppItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

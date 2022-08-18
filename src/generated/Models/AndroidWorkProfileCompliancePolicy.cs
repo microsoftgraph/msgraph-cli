@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class AndroidWorkProfileCompliancePolicy : DeviceCompliancePolicy, IParsable {
         /// <summary>Require that devices have enabled device threat protection.</summary>
         public bool? DeviceThreatProtectionEnabled { get; set; }
-        /// <summary>Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.</summary>
+        /// <summary>Device threat protection levels for the Device Threat Protection API.</summary>
         public DeviceThreatProtectionLevel? DeviceThreatProtectionRequiredSecurityLevel { get; set; }
         /// <summary>Minimum Android security patch level.</summary>
         public string MinAndroidSecurityPatchLevel { get; set; }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
         public int? PasswordPreviousPasswordBlockCount { get; set; }
         /// <summary>Require a password to unlock device.</summary>
         public bool? PasswordRequired { get; set; }
-        /// <summary>Type of characters in password. Possible values are: deviceDefault, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, numeric, numericComplex, any.</summary>
+        /// <summary>Android required password type.</summary>
         public AndroidRequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Devices must not be jailbroken or rooted.</summary>
         public bool? SecurityBlockJailbrokenDevices { get; set; }
@@ -47,6 +47,12 @@ namespace ApiSdk.Models {
         public bool? SecurityRequireVerifyApps { get; set; }
         /// <summary>Require encryption on Android devices.</summary>
         public bool? StorageRequireEncryption { get; set; }
+        /// <summary>
+        /// Instantiates a new AndroidWorkProfileCompliancePolicy and sets the default values.
+        /// </summary>
+        public AndroidWorkProfileCompliancePolicy() : base() {
+            OdataType = "#microsoft.graph.androidWorkProfileCompliancePolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

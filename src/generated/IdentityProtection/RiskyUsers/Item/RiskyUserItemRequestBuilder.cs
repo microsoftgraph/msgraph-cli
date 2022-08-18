@@ -238,7 +238,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new riskyUserItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new RiskyUserItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public RiskyUserItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -263,7 +263,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             /// <summary>Request query parameters</summary>
             public RiskyUserItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new RiskyUserItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new riskyUserItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new RiskyUserItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public RiskyUserItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -277,7 +277,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new riskyUserItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new RiskyUserItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public RiskyUserItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

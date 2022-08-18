@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the print singleton.</summary>
     public class PrintDocument : Entity, IParsable {
         /// <summary>The document&apos;s content (MIME) type. Read-only.</summary>
         public string ContentType { get; set; }
@@ -12,6 +11,12 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>The document&apos;s size in bytes. Read-only.</summary>
         public long? Size { get; set; }
+        /// <summary>
+        /// Instantiates a new PrintDocument and sets the default values.
+        /// </summary>
+        public PrintDocument() : base() {
+            OdataType = "#microsoft.graph.printDocument";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

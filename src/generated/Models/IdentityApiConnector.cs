@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class IdentityApiConnector : Entity, IParsable {
         /// <summary>The object which describes the authentication configuration details for calling the API. Basic and PKCS 12 client certificate are supported.</summary>
         public ApiAuthenticationConfigurationBase AuthenticationConfiguration { get; set; }
@@ -12,6 +11,12 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>The URL of the API endpoint to call.</summary>
         public string TargetUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new IdentityApiConnector and sets the default values.
+        /// </summary>
+        public IdentityApiConnector() : base() {
+            OdataType = "#microsoft.graph.identityApiConnector";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

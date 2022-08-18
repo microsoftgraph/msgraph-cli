@@ -62,11 +62,11 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return command;
         }
         /// <summary>
-        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.";
+            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return requestInfo;
         }
         /// <summary>
-        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AgreementFileLocalizationItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -256,14 +256,14 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new agreementFileLocalizationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AgreementFileLocalizationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AgreementFileLocalizationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.</summary>
+        /// <summary>PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.</summary>
         public class AgreementFileLocalizationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -281,7 +281,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             /// <summary>Request query parameters</summary>
             public AgreementFileLocalizationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AgreementFileLocalizationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new agreementFileLocalizationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AgreementFileLocalizationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AgreementFileLocalizationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -295,7 +295,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new agreementFileLocalizationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AgreementFileLocalizationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AgreementFileLocalizationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

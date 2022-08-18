@@ -23,11 +23,11 @@ namespace ApiSdk.RoleManagement.Directory.RoleEligibilityScheduleRequests.Item.R
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Property indicating the roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.Id will be auto expanded.
+        /// Detailed information for the unifiedRoleDefinition object that is referenced through the roleDefinitionId property. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Property indicating the roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.Id will be auto expanded.";
+            command.Description = "Detailed information for the unifiedRoleDefinition object that is referenced through the roleDefinitionId property. Supports $expand.";
             // Create options for all the parameters
             var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "key: id of unifiedRoleEligibilityScheduleRequest") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleEligibilityScheduleRequests.Item.R
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Property indicating the roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.Id will be auto expanded.
+        /// Detailed information for the unifiedRoleDefinition object that is referenced through the roleDefinitionId property. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RoleDefinitionRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleEligibilityScheduleRequests.Item.R
             }
             return requestInfo;
         }
-        /// <summary>Property indicating the roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.Id will be auto expanded.</summary>
+        /// <summary>Detailed information for the unifiedRoleDefinition object that is referenced through the roleDefinitionId property. Supports $expand.</summary>
         public class RoleDefinitionRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

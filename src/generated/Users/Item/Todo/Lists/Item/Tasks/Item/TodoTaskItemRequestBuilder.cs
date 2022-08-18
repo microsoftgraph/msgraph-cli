@@ -1,5 +1,7 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments;
+using ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions;
 using ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems;
 using ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Extensions;
 using ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources;
@@ -25,6 +27,25 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildAttachmentsCommand() {
+            var command = new Command("attachments");
+            var builder = new AttachmentsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildAttachmentSessionsCommand() {
+            var command = new Command("attachment-sessions");
+            var builder = new AttachmentSessionsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildChecklistItemsCommand() {
             var command = new Command("checklist-items");
             var builder = new ChecklistItemsRequestBuilder(PathParameters, RequestAdapter);
@@ -294,7 +315,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new todoTaskItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new TodoTaskItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public TodoTaskItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -319,7 +340,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             /// <summary>Request query parameters</summary>
             public TodoTaskItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TodoTaskItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new todoTaskItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TodoTaskItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TodoTaskItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -333,7 +354,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new todoTaskItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new TodoTaskItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public TodoTaskItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

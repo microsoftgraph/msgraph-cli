@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class ConditionalAccessPolicy : Entity, IParsable {
         /// <summary>The conditions property</summary>
         public ConditionalAccessConditionSet Conditions { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Readonly.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Not used.</summary>
+        /// <summary>The description property</summary>
         public string Description { get; set; }
         /// <summary>Specifies a display name for the conditionalAccessPolicy object.</summary>
         public string DisplayName { get; set; }
@@ -20,8 +20,14 @@ namespace ApiSdk.Models {
         public DateTimeOffset? ModifiedDateTime { get; set; }
         /// <summary>Specifies the session controls that are enforced after sign-in.</summary>
         public ConditionalAccessSessionControls SessionControls { get; set; }
-        /// <summary>Specifies the state of the conditionalAccessPolicy object. Possible values are: enabled, disabled, enabledForReportingButNotEnforced. Required.</summary>
+        /// <summary>The state property</summary>
         public ConditionalAccessPolicyState? State { get; set; }
+        /// <summary>
+        /// Instantiates a new conditionalAccessPolicy and sets the default values.
+        /// </summary>
+        public ConditionalAccessPolicy() : base() {
+            OdataType = "#microsoft.graph.conditionalAccessPolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

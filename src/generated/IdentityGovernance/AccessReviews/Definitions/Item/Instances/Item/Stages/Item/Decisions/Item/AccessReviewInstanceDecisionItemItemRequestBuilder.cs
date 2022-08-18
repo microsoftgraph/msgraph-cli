@@ -282,7 +282,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessReviewInstanceDecisionItemItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewInstanceDecisionItemItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewInstanceDecisionItemItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -307,7 +307,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             /// <summary>Request query parameters</summary>
             public AccessReviewInstanceDecisionItemItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AccessReviewInstanceDecisionItemItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new accessReviewInstanceDecisionItemItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewInstanceDecisionItemItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewInstanceDecisionItemItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -321,7 +321,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessReviewInstanceDecisionItemItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewInstanceDecisionItemItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewInstanceDecisionItemItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

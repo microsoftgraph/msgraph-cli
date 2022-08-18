@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of domain entities.</summary>
     public class InternalDomainFederation : SamlOrWsFedProvider, IParsable {
         /// <summary>URL of the endpoint used by active clients when authenticating with federated domains set up for single sign-on in Azure Active Directory (Azure AD). Corresponds to the ActiveLogOnUri property of the Set-MsolDomainFederationSettings MSOnline v1 PowerShell cmdlet.</summary>
         public string ActiveSignInUri { get; set; }
@@ -20,6 +19,12 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.SigningCertificateUpdateStatus SigningCertificateUpdateStatus { get; set; }
         /// <summary>URI that clients are redirected to when they sign out of Azure AD services. Corresponds to the LogOffUri property of the Set-MsolDomainFederationSettings MSOnline v1 PowerShell cmdlet.</summary>
         public string SignOutUri { get; set; }
+        /// <summary>
+        /// Instantiates a new InternalDomainFederation and sets the default values.
+        /// </summary>
+        public InternalDomainFederation() : base() {
+            OdataType = "#microsoft.graph.internalDomainFederation";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

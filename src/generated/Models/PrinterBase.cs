@@ -1,10 +1,10 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the print singleton.</summary>
     public class PrinterBase : Entity, IParsable {
         /// <summary>The capabilities of the printer/printerShare.</summary>
         public PrinterCapabilities Capabilities { get; set; }
@@ -24,6 +24,12 @@ namespace ApiSdk.Models {
         public string Model { get; set; }
         /// <summary>The status property</summary>
         public PrinterStatus Status { get; set; }
+        /// <summary>
+        /// Instantiates a new PrinterBase and sets the default values.
+        /// </summary>
+        public PrinterBase() : base() {
+            OdataType = "#microsoft.graph.printerBase";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
     public class SoftwareUpdateStatusSummary : Entity, IParsable {
         /// <summary>Number of compliant devices.</summary>
         public int? CompliantDeviceCount { get; set; }
@@ -36,6 +35,12 @@ namespace ApiSdk.Models {
         public int? UnknownDeviceCount { get; set; }
         /// <summary>Number of unknown users.</summary>
         public int? UnknownUserCount { get; set; }
+        /// <summary>
+        /// Instantiates a new SoftwareUpdateStatusSummary and sets the default values.
+        /// </summary>
+        public SoftwareUpdateStatusSummary() : base() {
+            OdataType = "#microsoft.graph.softwareUpdateStatusSummary";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

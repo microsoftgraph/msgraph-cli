@@ -70,11 +70,11 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf {
             return command;
         }
         /// <summary>
-        /// Get transitiveMemberOf from groups
+        /// The groups that a group is a member of, either directly and through nested membership. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get transitiveMemberOf from groups";
+            command.Description = "The groups that a group is a member of, either directly and through nested membership. Nullable.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -214,7 +214,7 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get transitiveMemberOf from groups
+        /// The groups that a group is a member of, either directly and through nested membership. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TransitiveMemberOfRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -233,7 +233,7 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf {
             }
             return requestInfo;
         }
-        /// <summary>Get transitiveMemberOf from groups</summary>
+        /// <summary>The groups that a group is a member of, either directly and through nested membership. Nullable.</summary>
         public class TransitiveMemberOfRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>OMA settings. This collection can contain a maximum of 500 elements.</summary>
         public List<OmaSetting> OmaSettings { get; set; }
         /// <summary>
+        /// Instantiates a new AndroidWorkProfileCustomConfiguration and sets the default values.
+        /// </summary>
+        public AndroidWorkProfileCustomConfiguration() : base() {
+            OdataType = "#microsoft.graph.androidWorkProfileCustomConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

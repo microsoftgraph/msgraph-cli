@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to uninstall a fixed list of built-in Windows apps.</summary>
         public bool? UninstallBuiltInApps { get; set; }
         /// <summary>
+        /// Instantiates a new Windows10EnterpriseModernAppManagementConfiguration and sets the default values.
+        /// </summary>
+        public Windows10EnterpriseModernAppManagementConfiguration() : base() {
+            OdataType = "#microsoft.graph.windows10EnterpriseModernAppManagementConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

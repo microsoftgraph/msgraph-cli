@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,12 @@ namespace ApiSdk.Models {
         public string Publisher { get; set; }
         /// <summary>The list of installation states for this eBook.</summary>
         public List<UserInstallStateSummary> UserStateSummary { get; set; }
+        /// <summary>
+        /// Instantiates a new managedEBook and sets the default values.
+        /// </summary>
+        public ManagedEBook() : base() {
+            OdataType = "#microsoft.graph.managedEBook";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

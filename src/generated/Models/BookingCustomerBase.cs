@@ -1,11 +1,17 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Booking entities that provide a display name.</summary>
     public class BookingCustomerBase : Entity, IParsable {
+        /// <summary>
+        /// Instantiates a new BookingCustomerBase and sets the default values.
+        /// </summary>
+        public BookingCustomerBase() : base() {
+            OdataType = "#microsoft.graph.bookingCustomerBase";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class PlannerProgressTaskBoardTaskFormat : Entity, IParsable {
         /// <summary>Hint value used to order the task on the Progress view of the Task Board. The format is defined as outlined here.</summary>
         public string OrderHint { get; set; }
+        /// <summary>
+        /// Instantiates a new plannerProgressTaskBoardTaskFormat and sets the default values.
+        /// </summary>
+        public PlannerProgressTaskBoardTaskFormat() : base() {
+            OdataType = "#microsoft.graph.plannerProgressTaskBoardTaskFormat";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Specific feedback for one quality of this rubric.</summary>
         public EducationItemBody Feedback { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The ID of the rubricQuality that this feedback is related to.</summary>
         public string QualityId { get; set; }
         /// <summary>
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public RubricQualityFeedbackModel() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.rubricQualityFeedbackModel";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"feedback", n => { Feedback = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"qualityId", n => { QualityId = n.GetStringValue(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<EducationItemBody>("feedback", Feedback);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("qualityId", QualityId);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class PlannerAssignedToTaskBoardTaskFormat : Entity, IParsable {
         /// <summary>Dictionary of hints used to order tasks on the AssignedTo view of the Task Board. The key of each entry is one of the users the task is assigned to and the value is the order hint. The format of each value is defined as outlined here.</summary>
         public PlannerOrderHintsByAssignee OrderHintsByAssignee { get; set; }
         /// <summary>Hint value used to order the task on the AssignedTo view of the Task Board when the task is not assigned to anyone, or if the orderHintsByAssignee dictionary does not provide an order hint for the user the task is assigned to. The format is defined as outlined here.</summary>
         public string UnassignedOrderHint { get; set; }
+        /// <summary>
+        /// Instantiates a new plannerAssignedToTaskBoardTaskFormat and sets the default values.
+        /// </summary>
+        public PlannerAssignedToTaskBoardTaskFormat() : base() {
+            OdataType = "#microsoft.graph.plannerAssignedToTaskBoardTaskFormat";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

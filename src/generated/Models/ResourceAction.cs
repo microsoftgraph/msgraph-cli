@@ -12,11 +12,14 @@ namespace ApiSdk.Models {
         public List<string> AllowedResourceActions { get; set; }
         /// <summary>Not Allowed Actions.</summary>
         public List<string> NotAllowedResourceActions { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new resourceAction and sets the default values.
         /// </summary>
         public ResourceAction() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.resourceAction";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"allowedResourceActions", n => { AllowedResourceActions = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"notAllowedResourceActions", n => { NotAllowedResourceActions = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -43,6 +47,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("allowedResourceActions", AllowedResourceActions);
             writer.WriteCollectionOfPrimitiveValues<string>("notAllowedResourceActions", NotAllowedResourceActions);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

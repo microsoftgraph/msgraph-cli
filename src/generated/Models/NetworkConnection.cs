@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class NetworkConnection : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Name of the application managing the network connection (for example, Facebook, SMTP, etc.).</summary>
+        /// <summary>Name of the application managing the network connection (for example, Facebook or SMTP).</summary>
         public string ApplicationName { get; set; }
         /// <summary>Destination IP address (of the network connection).</summary>
         public string DestinationAddress { get; set; }
@@ -33,6 +33,8 @@ namespace ApiSdk.Models {
         public string NatSourceAddress { get; set; }
         /// <summary>Network Address Translation source port.</summary>
         public string NatSourcePort { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Network protocol. Possible values are: unknown, ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII.</summary>
         public SecurityNetworkProtocol? Protocol { get; set; }
         /// <summary>Provider generated/calculated risk score of the network connection. Recommended value range of 0-1, which equates to a percentage.</summary>
@@ -52,6 +54,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public NetworkConnection() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.networkConnection";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -79,6 +82,7 @@ namespace ApiSdk.Models {
                 {"natDestinationPort", n => { NatDestinationPort = n.GetStringValue(); } },
                 {"natSourceAddress", n => { NatSourceAddress = n.GetStringValue(); } },
                 {"natSourcePort", n => { NatSourcePort = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"protocol", n => { Protocol = n.GetEnumValue<SecurityNetworkProtocol>(); } },
                 {"riskScore", n => { RiskScore = n.GetStringValue(); } },
                 {"sourceAddress", n => { SourceAddress = n.GetStringValue(); } },
@@ -107,6 +111,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("natDestinationPort", NatDestinationPort);
             writer.WriteStringValue("natSourceAddress", NatSourceAddress);
             writer.WriteStringValue("natSourcePort", NatSourcePort);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<SecurityNetworkProtocol>("protocol", Protocol);
             writer.WriteStringValue("riskScore", RiskScore);
             writer.WriteStringValue("sourceAddress", SourceAddress);

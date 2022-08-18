@@ -32,7 +32,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
-            var onOption = new Option<object>("--on", description: "Usage: on='{on}'") {
+            var onOption = new Option<string>("--on", description: "Usage: on='{on}'") {
             };
             onOption.IsRequired = true;
             command.AddOption(onOption);

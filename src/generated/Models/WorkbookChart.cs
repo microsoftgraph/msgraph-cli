@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class WorkbookChart : Entity, IParsable {
         /// <summary>Represents chart axes. Read-only.</summary>
         public WorkbookChartAxes Axes { get; set; }
@@ -30,6 +30,12 @@ namespace ApiSdk.Models {
         public double? Width { get; set; }
         /// <summary>The worksheet containing the current chart. Read-only.</summary>
         public WorkbookWorksheet Worksheet { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookChart and sets the default values.
+        /// </summary>
+        public WorkbookChart() : base() {
+            OdataType = "#microsoft.graph.workbookChart";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

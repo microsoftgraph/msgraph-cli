@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public List<CertificationControl> CertificationControls { get; set; }
         /// <summary>Compliance certification name (for example, ISO 27018:2014, GDPR, FedRAMP, NIST 800-171)</summary>
         public string CertificationName { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new complianceInformation and sets the default values.
         /// </summary>
         public ComplianceInformation() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.complianceInformation";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"certificationControls", n => { CertificationControls = n.GetCollectionOfObjectValues<CertificationControl>(CertificationControl.CreateFromDiscriminatorValue).ToList(); } },
                 {"certificationName", n => { CertificationName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<CertificationControl>("certificationControls", CertificationControls);
             writer.WriteStringValue("certificationName", CertificationName);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

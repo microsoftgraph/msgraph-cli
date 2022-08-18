@@ -113,11 +113,11 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments {
             return command;
         }
         /// <summary>
-        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
+        /// Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.";
+            command.Description = "Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -242,7 +242,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
+        /// Read-only. Nullable. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AttachmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -283,7 +283,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments {
             }
             return requestInfo;
         }
-        /// <summary>The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Read-only. Nullable. Supports $expand.</summary>
         public class AttachmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

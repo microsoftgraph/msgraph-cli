@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public bool? EnableAccessTokenIssuance { get; set; }
         /// <summary>Specifies whether this web application can request an ID token using the OAuth 2.0 implicit flow.</summary>
         public bool? EnableIdTokenIssuance { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new implicitGrantSettings and sets the default values.
         /// </summary>
         public ImplicitGrantSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.implicitGrantSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"enableAccessTokenIssuance", n => { EnableAccessTokenIssuance = n.GetBoolValue(); } },
                 {"enableIdTokenIssuance", n => { EnableIdTokenIssuance = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("enableAccessTokenIssuance", EnableAccessTokenIssuance);
             writer.WriteBoolValue("enableIdTokenIssuance", EnableIdTokenIssuance);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

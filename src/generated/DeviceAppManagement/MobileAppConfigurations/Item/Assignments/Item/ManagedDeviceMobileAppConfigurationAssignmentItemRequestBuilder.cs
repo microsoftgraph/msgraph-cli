@@ -246,7 +246,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new managedDeviceMobileAppConfigurationAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             /// <summary>Request query parameters</summary>
             public ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new managedDeviceMobileAppConfigurationAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new managedDeviceMobileAppConfigurationAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

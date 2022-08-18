@@ -238,7 +238,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new serviceHealthItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ServiceHealthItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ServiceHealthItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -263,7 +263,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             /// <summary>Request query parameters</summary>
             public ServiceHealthItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ServiceHealthItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new serviceHealthItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ServiceHealthItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ServiceHealthItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -277,7 +277,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new serviceHealthItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ServiceHealthItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ServiceHealthItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

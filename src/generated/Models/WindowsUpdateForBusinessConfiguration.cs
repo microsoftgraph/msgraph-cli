@@ -5,11 +5,11 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class WindowsUpdateForBusinessConfiguration : DeviceConfiguration, IParsable {
-        /// <summary>Automatic update mode. Possible values are: userDefined, notifyDownload, autoInstallAtMaintenanceTime, autoInstallAndRebootAtMaintenanceTime, autoInstallAndRebootAtScheduledTime, autoInstallAndRebootWithoutEndUserControl, windowsDefault.</summary>
+        /// <summary>Possible values for automatic update mode.</summary>
         public ApiSdk.Models.AutomaticUpdateMode? AutomaticUpdateMode { get; set; }
-        /// <summary>Determines which branch devices will receive their updates from. Possible values are: userDefined, all, businessReadyOnly, windowsInsiderBuildFast, windowsInsiderBuildSlow, windowsInsiderBuildRelease.</summary>
+        /// <summary>Which branch devices will receive their updates from</summary>
         public WindowsUpdateType? BusinessReadyUpdatesOnly { get; set; }
-        /// <summary>Delivery Optimization Mode. Possible values are: userDefined, httpOnly, httpWithPeeringNat, httpWithPeeringPrivateGroup, httpWithInternetPeering, simpleDownload, bypassMode.</summary>
+        /// <summary>Delivery optimization mode for peer distribution</summary>
         public WindowsDeliveryOptimizationMode? DeliveryOptimizationMode { get; set; }
         /// <summary>Exclude Windows update Drivers</summary>
         public bool? DriversExcluded { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
         public WindowsUpdateInstallScheduleType InstallationSchedule { get; set; }
         /// <summary>Allow Microsoft Update Service</summary>
         public bool? MicrosoftUpdateServiceAllowed { get; set; }
-        /// <summary>The pre-release features. Possible values are: userDefined, settingsOnly, settingsAndExperimentations, notAllowed.</summary>
+        /// <summary>Possible values for pre-release features.</summary>
         public ApiSdk.Models.PrereleaseFeatures? PrereleaseFeatures { get; set; }
         /// <summary>Defer Quality Updates by these many days</summary>
         public int? QualityUpdatesDeferralPeriodInDays { get; set; }
@@ -31,6 +31,12 @@ namespace ApiSdk.Models {
         public bool? QualityUpdatesPaused { get; set; }
         /// <summary>Quality Updates Pause Expiry datetime</summary>
         public DateTimeOffset? QualityUpdatesPauseExpiryDateTime { get; set; }
+        /// <summary>
+        /// Instantiates a new WindowsUpdateForBusinessConfiguration and sets the default values.
+        /// </summary>
+        public WindowsUpdateForBusinessConfiguration() : base() {
+            OdataType = "#microsoft.graph.windowsUpdateForBusinessConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

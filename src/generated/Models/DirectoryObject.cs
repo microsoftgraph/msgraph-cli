@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,12 @@ namespace ApiSdk.Models {
         /// <summary>Date and time when this object was deleted. Always null when the object hasn&apos;t been deleted.</summary>
         public DateTimeOffset? DeletedDateTime { get; set; }
         /// <summary>
+        /// Instantiates a new directoryObject and sets the default values.
+        /// </summary>
+        public DirectoryObject() : base() {
+            OdataType = "#microsoft.graph.directoryObject";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
@@ -17,10 +24,14 @@ namespace ApiSdk.Models {
             var mappingValueNode = parseNode.GetChildNode("@odata.type");
             var mappingValue = mappingValueNode?.GetStringValue();
             return mappingValue switch {
+                "#microsoft.graph.activityBasedTimeoutPolicy" => new ActivityBasedTimeoutPolicy(),
                 "#microsoft.graph.administrativeUnit" => new AdministrativeUnit(),
                 "#microsoft.graph.application" => new Application(),
                 "#microsoft.graph.appRoleAssignment" => new AppRoleAssignment(),
+                "#microsoft.graph.authorizationPolicy" => new AuthorizationPolicy(),
+                "#microsoft.graph.claimsMappingPolicy" => new ClaimsMappingPolicy(),
                 "#microsoft.graph.contract" => new Contract(),
+                "#microsoft.graph.crossTenantAccessPolicy" => new CrossTenantAccessPolicy(),
                 "#microsoft.graph.device" => new Device(),
                 "#microsoft.graph.directoryObjectPartnerReference" => new DirectoryObjectPartnerReference(),
                 "#microsoft.graph.directoryRole" => new DirectoryRole(),
@@ -29,11 +40,17 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.extensionProperty" => new ExtensionProperty(),
                 "#microsoft.graph.group" => new Group(),
                 "#microsoft.graph.groupSettingTemplate" => new GroupSettingTemplate(),
+                "#microsoft.graph.homeRealmDiscoveryPolicy" => new HomeRealmDiscoveryPolicy(),
+                "#microsoft.graph.identitySecurityDefaultsEnforcementPolicy" => new IdentitySecurityDefaultsEnforcementPolicy(),
                 "#microsoft.graph.organization" => new Organization(),
                 "#microsoft.graph.orgContact" => new OrgContact(),
+                "#microsoft.graph.permissionGrantPolicy" => new PermissionGrantPolicy(),
                 "#microsoft.graph.policyBase" => new PolicyBase(),
                 "#microsoft.graph.resourceSpecificPermissionGrant" => new ResourceSpecificPermissionGrant(),
                 "#microsoft.graph.servicePrincipal" => new ServicePrincipal(),
+                "#microsoft.graph.stsPolicy" => new StsPolicy(),
+                "#microsoft.graph.tokenIssuancePolicy" => new TokenIssuancePolicy(),
+                "#microsoft.graph.tokenLifetimePolicy" => new TokenLifetimePolicy(),
                 "#microsoft.graph.user" => new User(),
                 _ => new DirectoryObject(),
             };

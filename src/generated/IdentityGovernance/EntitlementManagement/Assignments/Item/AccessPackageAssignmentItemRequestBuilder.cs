@@ -256,7 +256,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessPackageAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageAssignmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -281,7 +281,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             /// <summary>Request query parameters</summary>
             public AccessPackageAssignmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AccessPackageAssignmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new accessPackageAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageAssignmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -295,7 +295,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessPackageAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageAssignmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

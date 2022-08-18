@@ -4,9 +4,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class RestrictedSignIn : SignIn, IParsable {
         /// <summary>The targetTenantId property</summary>
         public string TargetTenantId { get; set; }
+        /// <summary>
+        /// Instantiates a new restrictedSignIn and sets the default values.
+        /// </summary>
+        public RestrictedSignIn() : base() {
+            OdataType = "#microsoft.graph.restrictedSignIn";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

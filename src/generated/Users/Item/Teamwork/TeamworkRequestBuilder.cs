@@ -1,5 +1,6 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Users.Item.Teamwork.AssociatedTeams;
 using ApiSdk.Users.Item.Teamwork.InstalledApps;
 using ApiSdk.Users.Item.Teamwork.SendActivityNotification;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,15 @@ namespace ApiSdk.Users.Item.Teamwork {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildAssociatedTeamsCommand() {
+            var command = new Command("associated-teams");
+            var builder = new AssociatedTeamsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         /// <summary>
         /// Delete navigation property teamwork for users
         /// </summary>
@@ -57,11 +67,11 @@ namespace ApiSdk.Users.Item.Teamwork {
             return command;
         }
         /// <summary>
-        /// A container for Microsoft Teams features available for the user. Read-only. Nullable.
+        /// Get teamwork from users
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A container for Microsoft Teams features available for the user. Read-only. Nullable.";
+            command.Description = "Get teamwork from users";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -198,7 +208,7 @@ namespace ApiSdk.Users.Item.Teamwork {
             return requestInfo;
         }
         /// <summary>
-        /// A container for Microsoft Teams features available for the user. Read-only. Nullable.
+        /// Get teamwork from users
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TeamworkRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -252,7 +262,7 @@ namespace ApiSdk.Users.Item.Teamwork {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>A container for Microsoft Teams features available for the user. Read-only. Nullable.</summary>
+        /// <summary>Get teamwork from users</summary>
         public class TeamworkRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

@@ -7,7 +7,9 @@ namespace ApiSdk.Models {
     public class AccessReviewReviewerScope : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The query specifying who will be the reviewer. See table for examples.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The query specifying who will be the reviewer.</summary>
         public string Query { get; set; }
         /// <summary>In the scenario where reviewers need to be specified dynamically, this property is used to indicate the relative source of the query. This property is only required if a relative query, for example, ./manager, is specified. Possible value: decisions.</summary>
         public string QueryRoot { get; set; }
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AccessReviewReviewerScope() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.accessReviewReviewerScope";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"query", n => { Query = n.GetStringValue(); } },
                 {"queryRoot", n => { QueryRoot = n.GetStringValue(); } },
                 {"queryType", n => { QueryType = n.GetStringValue(); } },
@@ -43,6 +47,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("query", Query);
             writer.WriteStringValue("queryRoot", QueryRoot);
             writer.WriteStringValue("queryType", QueryType);

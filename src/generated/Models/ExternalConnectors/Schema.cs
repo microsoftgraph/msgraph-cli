@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.ExternalConnectors {
-    /// <summary>Provides operations to manage the collection of externalConnection entities.</summary>
     public class Schema : Entity, IParsable {
-        /// <summary>Must be set to microsoft.graph.externalItem. Required.</summary>
+        /// <summary>Must be set to microsoft.graph.externalConnector.externalItem. Required.</summary>
         public string BaseType { get; set; }
         /// <summary>The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.</summary>
         public List<Property> Properties { get; set; }
+        /// <summary>
+        /// Instantiates a new schema and sets the default values.
+        /// </summary>
+        public Schema() : base() {
+            OdataType = "#microsoft.graph.externalConnectors.schema";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

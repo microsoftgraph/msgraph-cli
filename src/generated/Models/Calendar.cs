@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Calendar : Entity, IParsable {
         /// <summary>Represent the online meeting service providers that can be used to create online meetings in this calendar. Possible values are: unknown, skypeForBusiness, skypeForConsumer, teamsForBusiness.</summary>
         public List<string> AllowedOnlineMeetingProviders { get; set; }
@@ -12,11 +11,11 @@ namespace ApiSdk.Models {
         public List<CalendarPermission> CalendarPermissions { get; set; }
         /// <summary>The calendar view for the calendar. Navigation property. Read-only.</summary>
         public List<Event> CalendarView { get; set; }
-        /// <summary>true if the user can write to the calendar, false otherwise. This property is true for the user who created the calendar. This property is also true for a user who has been shared a calendar and granted write access, through an Outlook client or the corresponding calendarPermission resource. Read-only.</summary>
+        /// <summary>true if the user can write to the calendar, false otherwise. This property is true for the user who created the calendar. This property is also true for a user who has been shared a calendar and granted write access.</summary>
         public bool? CanEdit { get; set; }
-        /// <summary>true if the user has the permission to share the calendar, false otherwise. Only the user who created the calendar can share it. Read-only.</summary>
+        /// <summary>true if the user has the permission to share the calendar, false otherwise. Only the user who created the calendar can share it.</summary>
         public bool? CanShare { get; set; }
-        /// <summary>true if the user can read calendar items that have been marked private, false otherwise. This property is set through an Outlook client or the corresponding calendarPermission resource. Read-only.</summary>
+        /// <summary>true if the user can read calendar items that have been marked private, false otherwise.</summary>
         public bool? CanViewPrivateItems { get; set; }
         /// <summary>Identifies the version of the calendar object. Every time the calendar is changed, changeKey changes as well. This allows Exchange to apply changes to the correct version of the object. Read-only.</summary>
         public string ChangeKey { get; set; }
@@ -26,7 +25,7 @@ namespace ApiSdk.Models {
         public OnlineMeetingProviderType? DefaultOnlineMeetingProvider { get; set; }
         /// <summary>The events in the calendar. Navigation property. Read-only.</summary>
         public List<Event> Events { get; set; }
-        /// <summary>The calendar color, expressed in a hex color code of three hexadecimal values, each ranging from 00 to FF and representing the red, green, or blue components of the color in the RGB color space. If the user has never explicitly set a color for the calendar, this property is  empty.</summary>
+        /// <summary>The calendar color, expressed in a hex color code of three hexadecimal values, each ranging from 00 to FF and representing the red, green, or blue components of the color in the RGB color space. If the user has never explicitly set a color for the calendar, this property is empty. Read-only.</summary>
         public string HexColor { get; set; }
         /// <summary>true if this is the default calendar where new events are created by default, false otherwise.</summary>
         public bool? IsDefaultCalendar { get; set; }
@@ -38,10 +37,16 @@ namespace ApiSdk.Models {
         public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
         /// <summary>The calendar name.</summary>
         public string Name { get; set; }
-        /// <summary>If set, this represents the user who created or added the calendar. For a calendar that the user created or added, the owner property is set to the user. For a calendar shared with the user, the owner property is set to the person who shared that calendar with the user. Read-only.</summary>
+        /// <summary>If set, this represents the user who created or added the calendar. For a calendar that the user created or added, the owner property is set to the user. For a calendar shared with the user, the owner property is set to the person who shared that calendar with the user.</summary>
         public EmailAddress Owner { get; set; }
         /// <summary>The collection of single-value extended properties defined for the calendar. Read-only. Nullable.</summary>
         public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
+        /// <summary>
+        /// Instantiates a new calendar and sets the default values.
+        /// </summary>
+        public Calendar() : base() {
+            OdataType = "#microsoft.graph.calendar";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

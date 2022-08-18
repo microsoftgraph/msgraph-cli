@@ -4,6 +4,7 @@ using ApiSdk.Applications.Item.CheckMemberGroups;
 using ApiSdk.Applications.Item.CheckMemberObjects;
 using ApiSdk.Applications.Item.CreatedOnBehalfOf;
 using ApiSdk.Applications.Item.ExtensionProperties;
+using ApiSdk.Applications.Item.FederatedIdentityCredentials;
 using ApiSdk.Applications.Item.GetMemberGroups;
 using ApiSdk.Applications.Item.GetMemberObjects;
 using ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies;
@@ -71,11 +72,11 @@ namespace ApiSdk.Applications.Item {
             return command;
         }
         /// <summary>
-        /// Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
+        /// Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.";
+            command.Description = "Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -105,6 +106,15 @@ namespace ApiSdk.Applications.Item {
         public Command BuildExtensionPropertiesCommand() {
             var command = new Command("extension-properties");
             var builder = new ExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildFederatedIdentityCredentialsCommand() {
+            var command = new Command("federated-identity-credentials");
+            var builder = new FederatedIdentityCredentialsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -308,7 +318,7 @@ namespace ApiSdk.Applications.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
+        /// Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<ApplicationItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
@@ -373,7 +383,7 @@ namespace ApiSdk.Applications.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new applicationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ApplicationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ApplicationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -398,7 +408,7 @@ namespace ApiSdk.Applications.Item {
             /// <summary>Request query parameters</summary>
             public ApplicationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ApplicationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new applicationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ApplicationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ApplicationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -412,7 +422,7 @@ namespace ApiSdk.Applications.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new applicationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ApplicationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ApplicationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

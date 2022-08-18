@@ -129,11 +129,11 @@ namespace ApiSdk.Users.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// The user&apos;s events. Default is to show events under the Default Calendar. Read-only. Nullable.
+        /// The user&apos;s events. Default is to show Events under the Default Calendar. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.";
+            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -299,7 +299,7 @@ namespace ApiSdk.Users.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The user&apos;s events. Default is to show events under the Default Calendar. Read-only. Nullable.
+        /// The user&apos;s events. Default is to show Events under the Default Calendar. Read-only. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<EventItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -346,14 +346,14 @@ namespace ApiSdk.Users.Item.Events.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new eventItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new EventItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public EventItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The user&apos;s events. Default is to show events under the Default Calendar. Read-only. Nullable.</summary>
+        /// <summary>The user&apos;s events. Default is to show Events under the Default Calendar. Read-only. Nullable.</summary>
         public class EventItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
             [QueryParameter("%24select")]
@@ -368,7 +368,7 @@ namespace ApiSdk.Users.Item.Events.Item {
             /// <summary>Request query parameters</summary>
             public EventItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EventItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new eventItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new EventItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EventItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -382,7 +382,7 @@ namespace ApiSdk.Users.Item.Events.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new eventItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new EventItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public EventItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

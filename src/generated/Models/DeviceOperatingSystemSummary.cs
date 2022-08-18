@@ -14,6 +14,8 @@ namespace ApiSdk.Models {
         public int? IosCount { get; set; }
         /// <summary>Number of Mac OS X device count.</summary>
         public int? MacOSCount { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Number of unknown device count.</summary>
         public int? UnknownCount { get; set; }
         /// <summary>Number of Windows device count.</summary>
@@ -25,6 +27,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public DeviceOperatingSystemSummary() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.deviceOperatingSystemSummary";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -42,6 +45,7 @@ namespace ApiSdk.Models {
                 {"androidCount", n => { AndroidCount = n.GetIntValue(); } },
                 {"iosCount", n => { IosCount = n.GetIntValue(); } },
                 {"macOSCount", n => { MacOSCount = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"unknownCount", n => { UnknownCount = n.GetIntValue(); } },
                 {"windowsCount", n => { WindowsCount = n.GetIntValue(); } },
                 {"windowsMobileCount", n => { WindowsMobileCount = n.GetIntValue(); } },
@@ -56,6 +60,7 @@ namespace ApiSdk.Models {
             writer.WriteIntValue("androidCount", AndroidCount);
             writer.WriteIntValue("iosCount", IosCount);
             writer.WriteIntValue("macOSCount", MacOSCount);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("unknownCount", UnknownCount);
             writer.WriteIntValue("windowsCount", WindowsCount);
             writer.WriteIntValue("windowsMobileCount", WindowsMobileCount);

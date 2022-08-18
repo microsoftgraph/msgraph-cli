@@ -57,11 +57,11 @@ namespace ApiSdk.Sites.Item.TermStore {
             return command;
         }
         /// <summary>
-        /// The termStore under this site.
+        /// The default termStore under this site.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The termStore under this site.";
+            command.Description = "The default termStore under this site.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -201,7 +201,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// The termStore under this site.
+        /// The default termStore under this site.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TermStoreRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -255,7 +255,7 @@ namespace ApiSdk.Sites.Item.TermStore {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The termStore under this site.</summary>
+        /// <summary>The default termStore under this site.</summary>
         public class TermStoreRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

@@ -4,18 +4,23 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to call the instantiate method.</summary>
     public class Endpoint : DirectoryObject, IParsable {
-        /// <summary>Describes the capability that is associated with this resource. (e.g. Messages, Conversations, etc.) Not nullable. Read-only.</summary>
+        /// <summary>The capability property</summary>
         public string Capability { get; set; }
-        /// <summary>Application id of the publishing underlying service. Not nullable. Read-only.</summary>
+        /// <summary>The providerId property</summary>
         public string ProviderId { get; set; }
-        /// <summary>Name of the publishing underlying service. Read-only.</summary>
+        /// <summary>The providerName property</summary>
         public string ProviderName { get; set; }
-        /// <summary>For Microsoft 365 groups, this is set to a well-known name for the resource (e.g. Yammer.FeedURL etc.). Not nullable. Read-only.</summary>
+        /// <summary>The providerResourceId property</summary>
         public string ProviderResourceId { get; set; }
-        /// <summary>URL of the published resource. Not nullable. Read-only.</summary>
+        /// <summary>The uri property</summary>
         public string Uri { get; set; }
+        /// <summary>
+        /// Instantiates a new Endpoint and sets the default values.
+        /// </summary>
+        public Endpoint() : base() {
+            OdataType = "#microsoft.graph.endpoint";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -88,11 +88,11 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access policies.";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access policies.</summary>
+        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.</summary>
         public class PoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

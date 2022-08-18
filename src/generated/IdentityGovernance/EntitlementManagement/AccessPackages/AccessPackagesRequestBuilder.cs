@@ -92,11 +92,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             return command;
         }
         /// <summary>
-        /// Represents access package objects.
+        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents access package objects.";
+            command.Description = "Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents access package objects.
+        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AccessPackagesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>Represents access package objects.</summary>
+        /// <summary>Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.</summary>
         public class AccessPackagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

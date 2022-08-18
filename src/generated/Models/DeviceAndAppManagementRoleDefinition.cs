@@ -6,6 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class DeviceAndAppManagementRoleDefinition : RoleDefinition, IParsable {
         /// <summary>
+        /// Instantiates a new DeviceAndAppManagementRoleDefinition and sets the default values.
+        /// </summary>
+        public DeviceAndAppManagementRoleDefinition() : base() {
+            OdataType = "#microsoft.graph.deviceAndAppManagementRoleDefinition";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

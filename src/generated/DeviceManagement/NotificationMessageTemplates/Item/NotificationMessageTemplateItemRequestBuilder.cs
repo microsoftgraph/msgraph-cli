@@ -245,7 +245,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new notificationMessageTemplateItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new NotificationMessageTemplateItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public NotificationMessageTemplateItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -270,7 +270,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             /// <summary>Request query parameters</summary>
             public NotificationMessageTemplateItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new NotificationMessageTemplateItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new notificationMessageTemplateItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new NotificationMessageTemplateItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public NotificationMessageTemplateItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -284,7 +284,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new notificationMessageTemplateItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new NotificationMessageTemplateItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public NotificationMessageTemplateItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

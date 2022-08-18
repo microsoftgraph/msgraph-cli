@@ -11,6 +11,7 @@ using ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies;
 using ApiSdk.ServicePrincipals.Item.CreatedObjects;
 using ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications;
 using ApiSdk.ServicePrincipals.Item.Endpoints;
+using ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials;
 using ApiSdk.ServicePrincipals.Item.GetMemberGroups;
 using ApiSdk.ServicePrincipals.Item.GetMemberObjects;
 using ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies;
@@ -162,6 +163,15 @@ namespace ApiSdk.ServicePrincipals.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        public Command BuildFederatedIdentityCredentialsCommand() {
+            var command = new Command("federated-identity-credentials");
+            var builder = new FederatedIdentityCredentialsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         /// <summary>
         /// Retrieve the properties and relationships of a servicePrincipal object.
         /// </summary>
@@ -293,11 +303,11 @@ namespace ApiSdk.ServicePrincipals.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of servicePrincipal object.
+        /// Update entity in servicePrincipals
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of servicePrincipal object.";
+            command.Description = "Update entity in servicePrincipals";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -426,7 +436,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of servicePrincipal object.
+        /// Update entity in servicePrincipals
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -453,7 +463,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new servicePrincipalItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ServicePrincipalItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ServicePrincipalItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -478,7 +488,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             /// <summary>Request query parameters</summary>
             public ServicePrincipalItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ServicePrincipalItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new servicePrincipalItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ServicePrincipalItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ServicePrincipalItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -492,7 +502,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new servicePrincipalItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ServicePrincipalItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ServicePrincipalItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

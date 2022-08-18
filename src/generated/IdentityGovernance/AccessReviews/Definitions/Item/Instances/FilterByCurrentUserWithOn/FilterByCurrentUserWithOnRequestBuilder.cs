@@ -32,7 +32,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Fil
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var onOption = new Option<object>("--on", description: "Usage: on='{on}'") {
+            var onOption = new Option<string>("--on", description: "Usage: on='{on}'") {
             };
             onOption.IsRequired = true;
             command.AddOption(onOption);

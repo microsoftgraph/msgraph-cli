@@ -140,7 +140,7 @@ namespace ApiSdk.Sites.Item.Drives.Item {
             /// <summary>Request query parameters</summary>
             public DriveItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DriveItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new driveItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DriveItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DriveItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

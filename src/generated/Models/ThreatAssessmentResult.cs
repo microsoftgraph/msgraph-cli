@@ -4,14 +4,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the informationProtection singleton.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class ThreatAssessmentResult : Entity, IParsable {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The result message for each threat assessment.</summary>
         public string Message { get; set; }
-        /// <summary>The threat assessment result type. Possible values are: checkPolicy (only for mail assessment), rescan.</summary>
+        /// <summary>The threat assessment result type. Possible values are: checkPolicy, rescan.</summary>
         public ThreatAssessmentResultType? ResultType { get; set; }
+        /// <summary>
+        /// Instantiates a new threatAssessmentResult and sets the default values.
+        /// </summary>
+        public ThreatAssessmentResult() : base() {
+            OdataType = "#microsoft.graph.threatAssessmentResult";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

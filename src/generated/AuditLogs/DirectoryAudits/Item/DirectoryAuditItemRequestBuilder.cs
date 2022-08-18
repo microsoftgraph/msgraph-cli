@@ -228,7 +228,7 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new directoryAuditItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryAuditItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryAuditItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
             /// <summary>Request query parameters</summary>
             public DirectoryAuditItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DirectoryAuditItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new directoryAuditItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryAuditItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryAuditItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new directoryAuditItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryAuditItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryAuditItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -25,6 +25,8 @@ namespace ApiSdk.Models {
         public double? FrameRate { get; set; }
         /// <summary>Height of the video, in pixels.</summary>
         public int? Height { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Width of the video, in pixels.</summary>
         public int? Width { get; set; }
         /// <summary>
@@ -32,6 +34,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public Video() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.video";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -55,6 +58,7 @@ namespace ApiSdk.Models {
                 {"fourCC", n => { FourCC = n.GetStringValue(); } },
                 {"frameRate", n => { FrameRate = n.GetDoubleValue(); } },
                 {"height", n => { Height = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"width", n => { Width = n.GetIntValue(); } },
             };
         }
@@ -73,6 +77,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("fourCC", FourCC);
             writer.WriteDoubleValue("frameRate", FrameRate);
             writer.WriteIntValue("height", Height);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("width", Width);
             writer.WriteAdditionalData(AdditionalData);
         }

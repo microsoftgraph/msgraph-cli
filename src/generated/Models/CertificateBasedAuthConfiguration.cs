@@ -4,10 +4,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of certificateBasedAuthConfiguration entities.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class CertificateBasedAuthConfiguration : Entity, IParsable {
         /// <summary>Collection of certificate authorities which creates a trusted certificate chain.</summary>
         public List<CertificateAuthority> CertificateAuthorities { get; set; }
+        /// <summary>
+        /// Instantiates a new certificateBasedAuthConfiguration and sets the default values.
+        /// </summary>
+        public CertificateBasedAuthConfiguration() : base() {
+            OdataType = "#microsoft.graph.certificateBasedAuthConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class Event : OutlookItem, IParsable {
-        /// <summary>true if the meeting organizer allows invitees to propose a new time when responding; otherwise false. Optional. Default is true.</summary>
+        /// <summary>true if the meeting organizer allows invitees to propose a new time when responding; otherwise, false. Optional. Default is true.</summary>
         public bool? AllowNewTimeProposals { get; set; }
         /// <summary>The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.</summary>
         public List<Attachment> Attachments { get; set; }
@@ -89,6 +89,12 @@ namespace ApiSdk.Models {
         public EventType? Type { get; set; }
         /// <summary>The webLink property</summary>
         public string WebLink { get; set; }
+        /// <summary>
+        /// Instantiates a new Event and sets the default values.
+        /// </summary>
+        public Event() : base() {
+            OdataType = "#microsoft.graph.event";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

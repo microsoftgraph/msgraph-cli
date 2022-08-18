@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to call the answer method.</summary>
     public class IncomingCallOptions : CallOptions, IParsable {
+        /// <summary>
+        /// Instantiates a new IncomingCallOptions and sets the default values.
+        /// </summary>
+        public IncomingCallOptions() : base() {
+            OdataType = "#microsoft.graph.incomingCallOptions";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

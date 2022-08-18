@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Policy for Windows information protection with MDM</summary>
     public class MdmWindowsInformationProtectionPolicy : WindowsInformationProtection, IParsable {
+        /// <summary>
+        /// Instantiates a new MdmWindowsInformationProtectionPolicy and sets the default values.
+        /// </summary>
+        public MdmWindowsInformationProtectionPolicy() : base() {
+            OdataType = "#microsoft.graph.mdmWindowsInformationProtectionPolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

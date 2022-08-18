@@ -365,7 +365,7 @@ namespace ApiSdk.Sites.Item {
             /// <summary>Request query parameters</summary>
             public SiteItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SiteItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new siteItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SiteItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SiteItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -379,7 +379,7 @@ namespace ApiSdk.Sites.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new siteItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SiteItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SiteItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

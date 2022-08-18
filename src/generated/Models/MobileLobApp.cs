@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,27 @@ namespace ApiSdk.Models {
         /// <summary>The total size, including all uploaded files.</summary>
         public long? Size { get; set; }
         /// <summary>
+        /// Instantiates a new MobileLobApp and sets the default values.
+        /// </summary>
+        public MobileLobApp() : base() {
+            OdataType = "#microsoft.graph.mobileLobApp";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
         public static new MobileLobApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MobileLobApp();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.androidLobApp" => new AndroidLobApp(),
+                "#microsoft.graph.iosLobApp" => new IosLobApp(),
+                "#microsoft.graph.win32LobApp" => new Win32LobApp(),
+                "#microsoft.graph.windowsMobileMSI" => new WindowsMobileMSI(),
+                "#microsoft.graph.windowsUniversalAppX" => new WindowsUniversalAppX(),
+                _ => new MobileLobApp(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

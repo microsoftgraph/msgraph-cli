@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>An error object indicating the reason for the conversion failure. This value is not present if the conversion succeeded.</summary>
         public GenericError ErrorDetails { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The identifier that was converted. This value is the original, un-converted identifier.</summary>
         public string SourceId { get; set; }
         /// <summary>The converted identifier. This value is not present if the conversion failed.</summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ConvertIdResult() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.convertIdResult";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"errorDetails", n => { ErrorDetails = n.GetObjectValue<GenericError>(GenericError.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"sourceId", n => { SourceId = n.GetStringValue(); } },
                 {"targetId", n => { TargetId = n.GetStringValue(); } },
             };
@@ -44,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<GenericError>("errorDetails", ErrorDetails);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("sourceId", SourceId);
             writer.WriteStringValue("targetId", TargetId);
             writer.WriteAdditionalData(AdditionalData);

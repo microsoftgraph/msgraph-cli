@@ -219,6 +219,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root {
             var builder = new ListItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAnalyticsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDocumentSetVersionsCommand());
             command.AddCommand(builder.BuildDriveItemCommand());
             command.AddCommand(builder.BuildFieldsCommand());
             command.AddCommand(builder.BuildGetCommand());

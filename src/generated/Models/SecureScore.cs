@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the security singleton.</summary>
     public class SecureScore : Entity, IParsable {
         /// <summary>Active user count of the given tenant.</summary>
         public int? ActiveUserCount { get; set; }
@@ -26,6 +25,12 @@ namespace ApiSdk.Models {
         public double? MaxScore { get; set; }
         /// <summary>Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.</summary>
         public SecurityVendorInformation VendorInformation { get; set; }
+        /// <summary>
+        /// Instantiates a new SecureScore and sets the default values.
+        /// </summary>
+        public SecureScore() : base() {
+            OdataType = "#microsoft.graph.secureScore";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

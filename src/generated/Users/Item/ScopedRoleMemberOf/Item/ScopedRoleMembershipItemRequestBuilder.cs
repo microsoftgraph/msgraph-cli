@@ -61,11 +61,11 @@ namespace ApiSdk.Users.Item.ScopedRoleMemberOf.Item {
             return command;
         }
         /// <summary>
-        /// The scoped-role administrative unit memberships for this user. Read-only. Nullable.
+        /// Get scopedRoleMemberOf from users
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The scoped-role administrative unit memberships for this user. Read-only. Nullable.";
+            command.Description = "Get scopedRoleMemberOf from users";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -199,7 +199,7 @@ namespace ApiSdk.Users.Item.ScopedRoleMemberOf.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The scoped-role administrative unit memberships for this user. Read-only. Nullable.
+        /// Get scopedRoleMemberOf from users
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ScopedRoleMembershipItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,14 +246,14 @@ namespace ApiSdk.Users.Item.ScopedRoleMemberOf.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new scopedRoleMembershipItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ScopedRoleMembershipItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ScopedRoleMembershipItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The scoped-role administrative unit memberships for this user. Read-only. Nullable.</summary>
+        /// <summary>Get scopedRoleMemberOf from users</summary>
         public class ScopedRoleMembershipItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -271,7 +271,7 @@ namespace ApiSdk.Users.Item.ScopedRoleMemberOf.Item {
             /// <summary>Request query parameters</summary>
             public ScopedRoleMembershipItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ScopedRoleMembershipItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new scopedRoleMembershipItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ScopedRoleMembershipItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ScopedRoleMembershipItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Users.Item.ScopedRoleMemberOf.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new scopedRoleMembershipItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ScopedRoleMembershipItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ScopedRoleMembershipItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

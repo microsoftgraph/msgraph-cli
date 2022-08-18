@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the solutionsRoot singleton.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public enum BookingPriceType {
         /// <summary>The price of the service is not defined.</summary>
         Undefined,

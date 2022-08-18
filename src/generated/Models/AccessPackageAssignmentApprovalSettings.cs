@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public bool? IsApprovalRequiredForAdd { get; set; }
         /// <summary>If false, then approval is not required for updates to requests in this policy.</summary>
         public bool? IsApprovalRequiredForUpdate { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>If approval is required, the one, two or three elements of this collection define each of the stages of approval. An empty array is present if no approval is required.</summary>
         public List<AccessPackageApprovalStage> Stages { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AccessPackageAssignmentApprovalSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.accessPackageAssignmentApprovalSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"isApprovalRequiredForAdd", n => { IsApprovalRequiredForAdd = n.GetBoolValue(); } },
                 {"isApprovalRequiredForUpdate", n => { IsApprovalRequiredForUpdate = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"stages", n => { Stages = n.GetCollectionOfObjectValues<AccessPackageApprovalStage>(AccessPackageApprovalStage.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("isApprovalRequiredForAdd", IsApprovalRequiredForAdd);
             writer.WriteBoolValue("isApprovalRequiredForUpdate", IsApprovalRequiredForUpdate);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfObjectValues<AccessPackageApprovalStage>("stages", Stages);
             writer.WriteAdditionalData(AdditionalData);
         }

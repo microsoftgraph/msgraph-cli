@@ -63,11 +63,11 @@ namespace ApiSdk.Groups.Item.Photo {
             return command;
         }
         /// <summary>
-        /// The group&apos;s profile photo.
+        /// The group&apos;s profile photo
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The group's profile photo.";
+            command.Description = "The group's profile photo";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -182,7 +182,7 @@ namespace ApiSdk.Groups.Item.Photo {
             return requestInfo;
         }
         /// <summary>
-        /// The group&apos;s profile photo.
+        /// The group&apos;s profile photo
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PhotoRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -236,7 +236,7 @@ namespace ApiSdk.Groups.Item.Photo {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The group&apos;s profile photo.</summary>
+        /// <summary>The group&apos;s profile photo</summary>
         public class PhotoRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
             [QueryParameter("%24select")]

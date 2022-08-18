@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
     public class DeviceComplianceDeviceOverview : Entity, IParsable {
         /// <summary>Version of the policy for that overview</summary>
         public int? ConfigurationVersion { get; set; }
@@ -20,6 +19,12 @@ namespace ApiSdk.Models {
         public int? PendingCount { get; set; }
         /// <summary>Number of succeeded devices</summary>
         public int? SuccessCount { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceComplianceDeviceOverview and sets the default values.
+        /// </summary>
+        public DeviceComplianceDeviceOverview() : base() {
+            OdataType = "#microsoft.graph.deviceComplianceDeviceOverview";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

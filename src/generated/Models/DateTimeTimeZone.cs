@@ -7,15 +7,18 @@ namespace ApiSdk.Models {
     public class DateTimeTimeZone : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>A single point of time in a combined date and time representation ({date}T{time}). For example, &apos;2019-04-16T09:00:00&apos;.</summary>
+        /// <summary>A single point of time in a combined date and time representation ({date}T{time}; for example, 2017-08-29T04:00:00.0000000).</summary>
         public string DateTime { get; set; }
-        /// <summary>Represents a time zone, for example, &apos;Pacific Standard Time&apos;. See below for possible values.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>Represents a time zone, for example, &apos;Pacific Standard Time&apos;. See below for more possible values.</summary>
         public string TimeZone { get; set; }
         /// <summary>
         /// Instantiates a new dateTimeTimeZone and sets the default values.
         /// </summary>
         public DateTimeTimeZone() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.dateTimeTimeZone";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"dateTime", n => { DateTime = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"timeZone", n => { TimeZone = n.GetStringValue(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("dateTime", DateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("timeZone", TimeZone);
             writer.WriteAdditionalData(AdditionalData);
         }

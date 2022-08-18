@@ -22,6 +22,8 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>Logo image displayed in Company Portal apps which have a light background behind the logo.</summary>
         public MimeContent LightBackgroundLogo { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Display name of the company/organization’s IT helpdesk site.</summary>
         public string OnlineSupportSiteName { get; set; }
         /// <summary>URL to the company/organization’s IT helpdesk site.</summary>
@@ -41,6 +43,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IntuneBrand() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.intuneBrand";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -62,6 +65,7 @@ namespace ApiSdk.Models {
                 {"darkBackgroundLogo", n => { DarkBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"lightBackgroundLogo", n => { LightBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"onlineSupportSiteName", n => { OnlineSupportSiteName = n.GetStringValue(); } },
                 {"onlineSupportSiteUrl", n => { OnlineSupportSiteUrl = n.GetStringValue(); } },
                 {"privacyUrl", n => { PrivacyUrl = n.GetStringValue(); } },
@@ -84,6 +88,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<MimeContent>("darkBackgroundLogo", DarkBackgroundLogo);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteObjectValue<MimeContent>("lightBackgroundLogo", LightBackgroundLogo);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("onlineSupportSiteName", OnlineSupportSiteName);
             writer.WriteStringValue("onlineSupportSiteUrl", OnlineSupportSiteUrl);
             writer.WriteStringValue("privacyUrl", PrivacyUrl);

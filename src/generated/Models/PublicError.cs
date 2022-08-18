@@ -15,6 +15,8 @@ namespace ApiSdk.Models {
         public PublicInnerError InnerError { get; set; }
         /// <summary>A non-localized message for the developer.</summary>
         public string Message { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The target of the error.</summary>
         public string Target { get; set; }
         /// <summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public PublicError() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.publicError";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -40,6 +43,7 @@ namespace ApiSdk.Models {
                 {"details", n => { Details = n.GetCollectionOfObjectValues<PublicErrorDetail>(PublicErrorDetail.CreateFromDiscriminatorValue).ToList(); } },
                 {"innerError", n => { InnerError = n.GetObjectValue<PublicInnerError>(PublicInnerError.CreateFromDiscriminatorValue); } },
                 {"message", n => { Message = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"target", n => { Target = n.GetStringValue(); } },
             };
         }
@@ -53,6 +57,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<PublicErrorDetail>("details", Details);
             writer.WriteObjectValue<PublicInnerError>("innerError", InnerError);
             writer.WriteStringValue("message", Message);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("target", Target);
             writer.WriteAdditionalData(AdditionalData);
         }

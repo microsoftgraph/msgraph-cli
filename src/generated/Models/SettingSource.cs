@@ -11,13 +11,16 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>Not yet documented</summary>
         public string Id { get; set; }
-        /// <summary>Not yet documented. Possible values are: deviceConfiguration, deviceIntent.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The sourceType property</summary>
         public SettingSourceType? SourceType { get; set; }
         /// <summary>
         /// Instantiates a new settingSource and sets the default values.
         /// </summary>
         public SettingSource() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.settingSource";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"id", n => { Id = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"sourceType", n => { SourceType = n.GetEnumValue<SettingSourceType>(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("id", Id);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<SettingSourceType>("sourceType", SourceType);
             writer.WriteAdditionalData(AdditionalData);
         }

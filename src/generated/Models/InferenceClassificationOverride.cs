@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class InferenceClassificationOverride : Entity, IParsable {
-        /// <summary>Specifies how incoming messages from a specific sender should always be classified as. Possible values are: focused, other.</summary>
+        /// <summary>Specifies how incoming messages from a specific sender should always be classified as. The possible values are: focused, other.</summary>
         public InferenceClassificationType? ClassifyAs { get; set; }
         /// <summary>The email address information of the sender for whom the override is created.</summary>
         public EmailAddress SenderEmailAddress { get; set; }
+        /// <summary>
+        /// Instantiates a new inferenceClassificationOverride and sets the default values.
+        /// </summary>
+        public InferenceClassificationOverride() : base() {
+            OdataType = "#microsoft.graph.inferenceClassificationOverride";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

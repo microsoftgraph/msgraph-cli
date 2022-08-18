@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         public string DeviceName { get; set; }
         /// <summary>The error code for install failures.</summary>
         public string ErrorCode { get; set; }
-        /// <summary>The install state of the eBook. Possible values are: notApplicable, installed, failed, notInstalled, uninstallFailed, unknown.</summary>
+        /// <summary>Possible values for install state.</summary>
         public ApiSdk.Models.InstallState? InstallState { get; set; }
         /// <summary>Last sync date and time.</summary>
         public DateTimeOffset? LastSyncDateTime { get; set; }
@@ -22,6 +22,12 @@ namespace ApiSdk.Models {
         public string OsVersion { get; set; }
         /// <summary>Device User Name.</summary>
         public string UserName { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceInstallState and sets the default values.
+        /// </summary>
+        public DeviceInstallState() : base() {
+            OdataType = "#microsoft.graph.deviceInstallState";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -10,6 +10,12 @@ namespace ApiSdk.Models {
         /// <summary>The file name.</summary>
         public string FileName { get; set; }
         /// <summary>
+        /// Instantiates a new FileAssessmentRequest and sets the default values.
+        /// </summary>
+        public FileAssessmentRequest() : base() {
+            OdataType = "#microsoft.graph.fileAssessmentRequest";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

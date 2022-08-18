@@ -28,7 +28,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleEligibilitySchedules.FilterByCurre
             var command = new Command("get");
             command.Description = "Invoke function filterByCurrentUser";
             // Create options for all the parameters
-            var onOption = new Option<object>("--on", description: "Usage: on='{on}'") {
+            var onOption = new Option<string>("--on", description: "Usage: on='{on}'") {
             };
             onOption.IsRequired = true;
             command.AddOption(onOption);

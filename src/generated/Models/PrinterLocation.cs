@@ -23,6 +23,8 @@ namespace ApiSdk.Models {
         public double? Latitude { get; set; }
         /// <summary>The longitude that the printer is located at.</summary>
         public double? Longitude { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The organizational hierarchy that the printer belongs to. The elements should be in hierarchical order.</summary>
         public List<string> Organization { get; set; }
         /// <summary>The postal code that the printer is located in.</summary>
@@ -46,6 +48,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public PrinterLocation() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.printerLocation";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -68,6 +71,7 @@ namespace ApiSdk.Models {
                 {"floorDescription", n => { FloorDescription = n.GetStringValue(); } },
                 {"latitude", n => { Latitude = n.GetDoubleValue(); } },
                 {"longitude", n => { Longitude = n.GetDoubleValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"organization", n => { Organization = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"postalCode", n => { PostalCode = n.GetStringValue(); } },
                 {"roomDescription", n => { RoomDescription = n.GetStringValue(); } },
@@ -93,6 +97,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("floorDescription", FloorDescription);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfPrimitiveValues<string>("organization", Organization);
             writer.WriteStringValue("postalCode", PostalCode);
             writer.WriteStringValue("roomDescription", RoomDescription);

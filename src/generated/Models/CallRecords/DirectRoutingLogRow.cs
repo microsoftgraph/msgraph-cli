@@ -35,6 +35,8 @@ namespace ApiSdk.Models.CallRecords {
         public bool? MediaBypassEnabled { get; set; }
         /// <summary>The datacenter used for media path in non-bypass call.</summary>
         public string MediaPathLocation { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The datacenter used for signaling for both bypass and non-bypass calls.</summary>
         public string SignalingLocation { get; set; }
         /// <summary>Call start time.For failed and unanswered calls, this can be equal to invite or failure time.</summary>
@@ -54,6 +56,7 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public DirectRoutingLogRow() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.callRecords.directRoutingLogRow";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -82,6 +85,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"inviteDateTime", n => { InviteDateTime = n.GetDateTimeOffsetValue(); } },
                 {"mediaBypassEnabled", n => { MediaBypassEnabled = n.GetBoolValue(); } },
                 {"mediaPathLocation", n => { MediaPathLocation = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"signalingLocation", n => { SignalingLocation = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"successfulCall", n => { SuccessfulCall = n.GetBoolValue(); } },
@@ -111,6 +115,7 @@ namespace ApiSdk.Models.CallRecords {
             writer.WriteDateTimeOffsetValue("inviteDateTime", InviteDateTime);
             writer.WriteBoolValue("mediaBypassEnabled", MediaBypassEnabled);
             writer.WriteStringValue("mediaPathLocation", MediaPathLocation);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("signalingLocation", SignalingLocation);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteBoolValue("successfulCall", SuccessfulCall);

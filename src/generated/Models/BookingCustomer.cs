@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class BookingCustomer : BookingCustomerBase, IParsable {
-        /// <summary>Addresses associated with the customer, including home, business and other addresses.</summary>
+        /// <summary>Addresses associated with the customer. The attribute type of physicalAddress is not supported in v1.0. Internally we map the addresses to the type others.</summary>
         public List<PhysicalAddress> Addresses { get; set; }
         /// <summary>The name of the customer.</summary>
         public string DisplayName { get; set; }
@@ -13,6 +13,12 @@ namespace ApiSdk.Models {
         public string EmailAddress { get; set; }
         /// <summary>Phone numbers associated with the customer, including home, business and mobile numbers.</summary>
         public List<Phone> Phones { get; set; }
+        /// <summary>
+        /// Instantiates a new BookingCustomer and sets the default values.
+        /// </summary>
+        public BookingCustomer() : base() {
+            OdataType = "#microsoft.graph.bookingCustomer";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

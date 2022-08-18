@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The service does not have source data before the specified time.</summary>
         public DateTimeOffset? MissingDataBeforeDateTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Some data was not recorded due to excessive activity.</summary>
         public bool? WasThrottled { get; set; }
         /// <summary>
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IncompleteData() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.incompleteData";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"missingDataBeforeDateTime", n => { MissingDataBeforeDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"wasThrottled", n => { WasThrottled = n.GetBoolValue(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("missingDataBeforeDateTime", MissingDataBeforeDateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("wasThrottled", WasThrottled);
             writer.WriteAdditionalData(AdditionalData);
         }

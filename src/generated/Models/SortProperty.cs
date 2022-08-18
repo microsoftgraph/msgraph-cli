@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public bool? IsDescending { get; set; }
         /// <summary>The name of the property to sort on. Required.</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new sortProperty and sets the default values.
         /// </summary>
         public SortProperty() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.sortProperty";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"isDescending", n => { IsDescending = n.GetBoolValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("isDescending", IsDescending);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

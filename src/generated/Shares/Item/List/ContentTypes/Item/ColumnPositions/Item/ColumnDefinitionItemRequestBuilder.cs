@@ -146,7 +146,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnPositions.Item {
             /// <summary>Request query parameters</summary>
             public ColumnDefinitionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ColumnDefinitionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new columnDefinitionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ColumnDefinitionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ColumnDefinitionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

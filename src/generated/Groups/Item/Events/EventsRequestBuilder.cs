@@ -108,11 +108,11 @@ namespace ApiSdk.Groups.Item.Events {
             return command;
         }
         /// <summary>
-        /// The group&apos;s events.
+        /// The group&apos;s calendar events.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The group's events.";
+            command.Description = "The group's calendar events.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.Groups.Item.Events {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The group&apos;s events.
+        /// The group&apos;s calendar events.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<EventsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -265,7 +265,7 @@ namespace ApiSdk.Groups.Item.Events {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The group&apos;s events.</summary>
+        /// <summary>The group&apos;s calendar events.</summary>
         public class EventsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

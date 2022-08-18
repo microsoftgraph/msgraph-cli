@@ -246,7 +246,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new externalItemItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ExternalItemItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ExternalItemItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             /// <summary>Request query parameters</summary>
             public ExternalItemItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ExternalItemItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new externalItemItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ExternalItemItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ExternalItemItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new externalItemItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ExternalItemItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ExternalItemItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

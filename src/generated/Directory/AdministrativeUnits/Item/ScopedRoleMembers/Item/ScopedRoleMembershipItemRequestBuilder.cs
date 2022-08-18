@@ -246,7 +246,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new scopedRoleMembershipItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ScopedRoleMembershipItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ScopedRoleMembershipItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers.Item {
             /// <summary>Request query parameters</summary>
             public ScopedRoleMembershipItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ScopedRoleMembershipItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new scopedRoleMembershipItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ScopedRoleMembershipItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ScopedRoleMembershipItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new scopedRoleMembershipItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ScopedRoleMembershipItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ScopedRoleMembershipItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

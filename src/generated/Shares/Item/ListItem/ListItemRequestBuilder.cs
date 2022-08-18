@@ -1,6 +1,7 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Shares.Item.ListItem.Analytics;
+using ApiSdk.Shares.Item.ListItem.DocumentSetVersions;
 using ApiSdk.Shares.Item.ListItem.DriveItem;
 using ApiSdk.Shares.Item.ListItem.Fields;
 using ApiSdk.Shares.Item.ListItem.GetActivitiesByInterval;
@@ -64,6 +65,15 @@ namespace ApiSdk.Shares.Item.ListItem {
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        public Command BuildDocumentSetVersionsCommand() {
+            var command = new Command("document-set-versions");
+            var builder = new DocumentSetVersionsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildDriveItemCommand() {

@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class TermsOfUseContainer : Entity, IParsable {
         /// <summary>Represents the current status of a user&apos;s response to a company&apos;s customizable terms of use agreement.</summary>
         public List<AgreementAcceptance> AgreementAcceptances { get; set; }
         /// <summary>Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Azure Active Directory (Azure AD).</summary>
         public List<Agreement> Agreements { get; set; }
+        /// <summary>
+        /// Instantiates a new TermsOfUseContainer and sets the default values.
+        /// </summary>
+        public TermsOfUseContainer() : base() {
+            OdataType = "#microsoft.graph.termsOfUseContainer";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

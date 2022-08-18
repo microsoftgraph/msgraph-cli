@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Windows Information Protection Network learning Summary entity.</summary>
     public class WindowsInformationProtectionNetworkLearningSummary : Entity, IParsable {
         /// <summary>Device Count</summary>
         public int? DeviceCount { get; set; }
         /// <summary>Website url</summary>
         public string Url { get; set; }
+        /// <summary>
+        /// Instantiates a new WindowsInformationProtectionNetworkLearningSummary and sets the default values.
+        /// </summary>
+        public WindowsInformationProtectionNetworkLearningSummary() : base() {
+            OdataType = "#microsoft.graph.windowsInformationProtectionNetworkLearningSummary";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

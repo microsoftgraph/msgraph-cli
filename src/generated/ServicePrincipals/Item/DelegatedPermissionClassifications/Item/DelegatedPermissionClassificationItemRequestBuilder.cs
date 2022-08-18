@@ -61,11 +61,11 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             return command;
         }
         /// <summary>
-        /// The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.
+        /// Get delegatedPermissionClassifications from servicePrincipals
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.";
+            command.Description = "Get delegatedPermissionClassifications from servicePrincipals";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -199,7 +199,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             return requestInfo;
         }
         /// <summary>
-        /// The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.
+        /// Get delegatedPermissionClassifications from servicePrincipals
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DelegatedPermissionClassificationItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,14 +246,14 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new delegatedPermissionClassificationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DelegatedPermissionClassificationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DelegatedPermissionClassificationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.</summary>
+        /// <summary>Get delegatedPermissionClassifications from servicePrincipals</summary>
         public class DelegatedPermissionClassificationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -271,7 +271,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             /// <summary>Request query parameters</summary>
             public DelegatedPermissionClassificationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DelegatedPermissionClassificationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new delegatedPermissionClassificationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DelegatedPermissionClassificationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DelegatedPermissionClassificationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new delegatedPermissionClassificationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DelegatedPermissionClassificationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DelegatedPermissionClassificationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

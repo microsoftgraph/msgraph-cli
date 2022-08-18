@@ -9,15 +9,18 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The date and time in UTC that the upload session will expire. The complete file must be uploaded before this expiration time is reached.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
-        /// <summary>When uploading files to document libraries, this is a collection of byte ranges that the server is missing for the file. These ranges are zero-indexed and of the format, &apos;{start}-{end}&apos; (e.g. &apos;0-26&apos; to indicate the first 27 bytes of the file). When uploading files as Outlook attachments, instead of a collection of ranges, this property always indicates a single value &apos;{start}&apos;, the location in the file where the next upload should begin.</summary>
+        /// <summary>A collection of byte ranges that the server is missing for the file. These ranges are zero indexed and of the format &apos;start-end&apos; (e.g. &apos;0-26&apos; to indicate the first 27 bytes of the file). When uploading files as Outlook attachments, instead of a collection of ranges, this property always indicates a single value &apos;{start}&apos;, the location in the file where the next upload should begin.</summary>
         public List<string> NextExpectedRanges { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The URL endpoint that accepts PUT requests for byte ranges of the file.</summary>
         public string UploadUrl { get; set; }
         /// <summary>
-        /// Instantiates a new UploadSession and sets the default values.
+        /// Instantiates a new uploadSession and sets the default values.
         /// </summary>
         public UploadSession() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.uploadSession";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"nextExpectedRanges", n => { NextExpectedRanges = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"uploadUrl", n => { UploadUrl = n.GetStringValue(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("nextExpectedRanges", NextExpectedRanges);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("uploadUrl", UploadUrl);
             writer.WriteAdditionalData(AdditionalData);
         }

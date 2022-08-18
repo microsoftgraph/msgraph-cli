@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>A termsAndConditions entity represents the metadata and contents of a given Terms and Conditions (T&amp;C) policy. T&amp;C policies’ contents are presented to users upon their first attempt to enroll into Intune and subsequently upon edits where an administrator has required re-acceptance. They enable administrators to communicate the provisions to which a user must agree in order to have devices enrolled into Intune.</summary>
     public class TermsAndConditions : Entity, IParsable {
         /// <summary>Administrator-supplied explanation of the terms and conditions, typically describing what it means to accept the terms and conditions set out in the T&amp;C policy. This is shown to the user on prompts to accept the T&amp;C policy.</summary>
         public string AcceptanceStatement { get; set; }
@@ -26,6 +25,12 @@ namespace ApiSdk.Models {
         public string Title { get; set; }
         /// <summary>Integer indicating the current version of the terms. Incremented when an administrator makes a change to the terms and wishes to require users to re-accept the modified T&amp;C policy.</summary>
         public int? Version { get; set; }
+        /// <summary>
+        /// Instantiates a new TermsAndConditions and sets the default values.
+        /// </summary>
+        public TermsAndConditions() : base() {
+            OdataType = "#microsoft.graph.termsAndConditions";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

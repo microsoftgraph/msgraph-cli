@@ -41,11 +41,11 @@ namespace ApiSdk.Users.Item.MemberOf.Item {
             return command;
         }
         /// <summary>
-        /// The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.
+        /// The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.";
+            command.Description = "The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -145,7 +145,7 @@ namespace ApiSdk.Users.Item.MemberOf.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.
+        /// The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectoryObjectItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -164,7 +164,7 @@ namespace ApiSdk.Users.Item.MemberOf.Item {
             }
             return requestInfo;
         }
-        /// <summary>The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.</summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -182,7 +182,7 @@ namespace ApiSdk.Users.Item.MemberOf.Item {
             /// <summary>Request query parameters</summary>
             public DirectoryObjectItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DirectoryObjectItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new directoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryObjectItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

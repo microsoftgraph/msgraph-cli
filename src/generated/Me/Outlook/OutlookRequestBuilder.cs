@@ -53,11 +53,11 @@ namespace ApiSdk.Me.Outlook {
             return command;
         }
         /// <summary>
-        /// Selective Outlook services available to the user. Read-only. Nullable.
+        /// Get outlook from me
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Selective Outlook services available to the user. Read-only. Nullable.";
+            command.Description = "Get outlook from me";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -169,7 +169,7 @@ namespace ApiSdk.Me.Outlook {
             return requestInfo;
         }
         /// <summary>
-        /// Selective Outlook services available to the user. Read-only. Nullable.
+        /// Get outlook from me
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OutlookRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -243,7 +243,7 @@ namespace ApiSdk.Me.Outlook {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Selective Outlook services available to the user. Read-only. Nullable.</summary>
+        /// <summary>Get outlook from me</summary>
         public class OutlookRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
             [QueryParameter("%24select")]

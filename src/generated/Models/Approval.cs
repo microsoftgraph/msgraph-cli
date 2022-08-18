@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class Approval : Entity, IParsable {
-        /// <summary>Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.</summary>
+        /// <summary>A collection of stages in the approval decision.</summary>
         public List<ApprovalStage> Stages { get; set; }
+        /// <summary>
+        /// Instantiates a new approval and sets the default values.
+        /// </summary>
+        public Approval() : base() {
+            OdataType = "#microsoft.graph.approval";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

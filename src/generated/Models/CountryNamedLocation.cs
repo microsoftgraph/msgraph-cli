@@ -5,12 +5,18 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class CountryNamedLocation : NamedLocation, IParsable {
-        /// <summary>List of countries and/or regions in two-letter format specified by ISO 3166-2.</summary>
+        /// <summary>List of countries and/or regions in two-letter format specified by ISO 3166-2. Required.</summary>
         public List<string> CountriesAndRegions { get; set; }
-        /// <summary>Determines what method is used to decide which country the user is located in. Possible values are clientIpAddress (default) and authenticatorAppGps.</summary>
+        /// <summary>Determines what method is used to decide which country the user is located in. Possible values are clientIpAddress(default) and authenticatorAppGps. Note: authenticatorAppGps is not yet supported in the Microsoft Cloud for US Government.</summary>
         public CountryLookupMethodType? CountryLookupMethod { get; set; }
         /// <summary>true if IP addresses that don&apos;t map to a country or region should be included in the named location. Optional. Default value is false.</summary>
         public bool? IncludeUnknownCountriesAndRegions { get; set; }
+        /// <summary>
+        /// Instantiates a new CountryNamedLocation and sets the default values.
+        /// </summary>
+        public CountryNamedLocation() : base() {
+            OdataType = "#microsoft.graph.countryNamedLocation";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

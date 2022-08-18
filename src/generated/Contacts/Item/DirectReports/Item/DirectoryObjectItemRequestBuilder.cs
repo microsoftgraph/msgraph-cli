@@ -25,11 +25,11 @@ namespace ApiSdk.Contacts.Item.DirectReports.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.) Read-only. Nullable. Supports $expand.
+        /// Get directReports from contacts
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The contact's direct reports. (The users and contacts that have their manager property set to this contact.) Read-only. Nullable. Supports $expand.";
+            command.Description = "Get directReports from contacts";
             // Create options for all the parameters
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
             };
@@ -117,7 +117,7 @@ namespace ApiSdk.Contacts.Item.DirectReports.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.) Read-only. Nullable. Supports $expand.
+        /// Get directReports from contacts
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectoryObjectItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -136,7 +136,7 @@ namespace ApiSdk.Contacts.Item.DirectReports.Item {
             }
             return requestInfo;
         }
-        /// <summary>The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.) Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Get directReports from contacts</summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -154,7 +154,7 @@ namespace ApiSdk.Contacts.Item.DirectReports.Item {
             /// <summary>Request query parameters</summary>
             public DirectoryObjectItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DirectoryObjectItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new directoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryObjectItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

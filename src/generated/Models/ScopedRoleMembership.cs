@@ -13,6 +13,12 @@ namespace ApiSdk.Models {
         /// <summary>The roleMemberInfo property</summary>
         public Identity RoleMemberInfo { get; set; }
         /// <summary>
+        /// Instantiates a new scopedRoleMembership and sets the default values.
+        /// </summary>
+        public ScopedRoleMembership() : base() {
+            OdataType = "#microsoft.graph.scopedRoleMembership";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

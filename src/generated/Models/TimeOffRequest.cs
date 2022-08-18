@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
     public class TimeOffRequest : ScheduleChangeRequest, IParsable {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? EndDateTime { get; set; }
@@ -12,6 +11,12 @@ namespace ApiSdk.Models {
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>The reason for the time off.</summary>
         public string TimeOffReasonId { get; set; }
+        /// <summary>
+        /// Instantiates a new TimeOffRequest and sets the default values.
+        /// </summary>
+        public TimeOffRequest() : base() {
+            OdataType = "#microsoft.graph.timeOffRequest";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

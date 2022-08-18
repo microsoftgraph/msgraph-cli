@@ -18,6 +18,12 @@ namespace ApiSdk.Models {
         /// <summary>Value to use when configuring the weight property of the SRV record at the DNS host.</summary>
         public int? Weight { get; set; }
         /// <summary>
+        /// Instantiates a new DomainDnsSrvRecord and sets the default values.
+        /// </summary>
+        public DomainDnsSrvRecord() : base() {
+            OdataType = "#microsoft.graph.domainDnsSrvRecord";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

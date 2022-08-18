@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of subscribedSku entities.</summary>
     public class SubscribedSku : Entity, IParsable {
         /// <summary>For example, &apos;User&apos; or &apos;Company&apos;.</summary>
         public string AppliesTo { get; set; }
@@ -20,6 +19,12 @@ namespace ApiSdk.Models {
         public string SkuId { get; set; }
         /// <summary>The SKU part number; for example: &apos;AAD_PREMIUM&apos; or &apos;RMSBASIC&apos;. To get a list of commercial subscriptions that an organization has acquired, see List subscribedSkus.</summary>
         public string SkuPartNumber { get; set; }
+        /// <summary>
+        /// Instantiates a new SubscribedSku and sets the default values.
+        /// </summary>
+        public SubscribedSku() : base() {
+            OdataType = "#microsoft.graph.subscribedSku";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

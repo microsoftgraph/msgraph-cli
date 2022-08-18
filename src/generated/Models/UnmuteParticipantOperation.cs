@@ -6,6 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class UnmuteParticipantOperation : CommsOperation, IParsable {
         /// <summary>
+        /// Instantiates a new UnmuteParticipantOperation and sets the default values.
+        /// </summary>
+        public UnmuteParticipantOperation() : base() {
+            OdataType = "#microsoft.graph.unmuteParticipantOperation";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

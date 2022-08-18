@@ -278,7 +278,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessPackageAssignmentPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageAssignmentPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageAssignmentPolicyItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -303,7 +303,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             /// <summary>Request query parameters</summary>
             public AccessPackageAssignmentPolicyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AccessPackageAssignmentPolicyItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new accessPackageAssignmentPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageAssignmentPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageAssignmentPolicyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -317,7 +317,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessPackageAssignmentPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageAssignmentPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageAssignmentPolicyItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

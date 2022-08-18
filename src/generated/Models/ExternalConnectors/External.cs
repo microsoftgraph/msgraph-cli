@@ -9,11 +9,14 @@ namespace ApiSdk.Models.ExternalConnectors {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The connections property</summary>
         public List<ExternalConnection> Connections { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new External and sets the default values.
         /// </summary>
         public External() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.externalConnectors.external";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -29,6 +32,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"connections", n => { Connections = n.GetCollectionOfObjectValues<ExternalConnection>(ExternalConnection.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -38,6 +42,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<ExternalConnection>("connections", Connections);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

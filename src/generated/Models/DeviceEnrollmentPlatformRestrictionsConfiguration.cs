@@ -16,6 +16,12 @@ namespace ApiSdk.Models {
         /// <summary>Windows restrictions based on platform, platform operating system version, and device ownership</summary>
         public DeviceEnrollmentPlatformRestriction WindowsRestriction { get; set; }
         /// <summary>
+        /// Instantiates a new DeviceEnrollmentPlatformRestrictionsConfiguration and sets the default values.
+        /// </summary>
+        public DeviceEnrollmentPlatformRestrictionsConfiguration() : base() {
+            OdataType = "#microsoft.graph.deviceEnrollmentPlatformRestrictionsConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

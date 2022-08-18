@@ -4,18 +4,23 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class IdentityContainer : Entity, IParsable {
         /// <summary>Represents entry point for API connectors.</summary>
         public List<IdentityApiConnector> ApiConnectors { get; set; }
-        /// <summary>Represents entry point for B2X and self-service sign-up identity userflows.</summary>
+        /// <summary>Represents entry point for B2X/self-service sign-up identity userflows.</summary>
         public List<B2xIdentityUserFlow> B2xUserFlows { get; set; }
         /// <summary>the entry point for the Conditional Access (CA) object model.</summary>
         public ConditionalAccessRoot ConditionalAccess { get; set; }
-        /// <summary>Represents entry point for identity provider base.</summary>
+        /// <summary>The identityProviders property</summary>
         public List<IdentityProviderBase> IdentityProviders { get; set; }
         /// <summary>Represents entry point for identity userflow attributes.</summary>
         public List<IdentityUserFlowAttribute> UserFlowAttributes { get; set; }
+        /// <summary>
+        /// Instantiates a new IdentityContainer and sets the default values.
+        /// </summary>
+        public IdentityContainer() : base() {
+            OdataType = "#microsoft.graph.identityContainer";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

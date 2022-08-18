@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public bool? AllowedToCreateSecurityGroups { get; set; }
         /// <summary>Indicates whether the default user role can read other users.</summary>
         public bool? AllowedToReadOtherUsers { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Indicates if user consent to apps is allowed, and if it is, which permission to grant consent and which app consent policy (permissionGrantPolicy) govern the permission for users to grant consent. Value should be in the format managePermissionGrantsForSelf.{id}, where {id} is the id of a built-in or custom app consent policy. An empty list indicates user consent to apps is disabled.</summary>
         public List<string> PermissionGrantPoliciesAssigned { get; set; }
         /// <summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public DefaultUserRolePermissions() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.defaultUserRolePermissions";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,6 +40,7 @@ namespace ApiSdk.Models {
                 {"allowedToCreateApps", n => { AllowedToCreateApps = n.GetBoolValue(); } },
                 {"allowedToCreateSecurityGroups", n => { AllowedToCreateSecurityGroups = n.GetBoolValue(); } },
                 {"allowedToReadOtherUsers", n => { AllowedToReadOtherUsers = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"permissionGrantPoliciesAssigned", n => { PermissionGrantPoliciesAssigned = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };
         }
@@ -49,6 +53,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("allowedToCreateApps", AllowedToCreateApps);
             writer.WriteBoolValue("allowedToCreateSecurityGroups", AllowedToCreateSecurityGroups);
             writer.WriteBoolValue("allowedToReadOtherUsers", AllowedToReadOtherUsers);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfPrimitiveValues<string>("permissionGrantPoliciesAssigned", PermissionGrantPoliciesAssigned);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -15,8 +15,10 @@ namespace ApiSdk.Models {
         public string Id { get; set; }
         /// <summary>The name of the item being referenced. Read-only.</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Path that can be used to navigate to the item. Read-only.</summary>
-        public string Path { get; set; }
+        public string PathObject { get; set; }
         /// <summary>A unique identifier for a shared resource that can be accessed via the [Shares][] API.</summary>
         public string ShareId { get; set; }
         /// <summary>Returns identifiers useful for SharePoint REST compatibility. Read-only.</summary>
@@ -28,6 +30,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ItemReference() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.itemReference";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -46,7 +49,8 @@ namespace ApiSdk.Models {
                 {"driveType", n => { DriveType = n.GetStringValue(); } },
                 {"id", n => { Id = n.GetStringValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
-                {"path", n => { Path = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"path", n => { PathObject = n.GetStringValue(); } },
                 {"shareId", n => { ShareId = n.GetStringValue(); } },
                 {"sharepointIds", n => { SharepointIds = n.GetObjectValue<ApiSdk.Models.SharepointIds>(ApiSdk.Models.SharepointIds.CreateFromDiscriminatorValue); } },
                 {"siteId", n => { SiteId = n.GetStringValue(); } },
@@ -62,7 +66,8 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("driveType", DriveType);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("path", Path);
+            writer.WriteStringValue("@odata.type", OdataType);
+            writer.WriteStringValue("path", PathObject);
             writer.WriteStringValue("shareId", ShareId);
             writer.WriteObjectValue<ApiSdk.Models.SharepointIds>("sharepointIds", SharepointIds);
             writer.WriteStringValue("siteId", SiteId);

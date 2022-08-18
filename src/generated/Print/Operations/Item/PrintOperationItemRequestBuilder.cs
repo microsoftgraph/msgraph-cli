@@ -228,7 +228,7 @@ namespace ApiSdk.Print.Operations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new printOperationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new PrintOperationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public PrintOperationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.Print.Operations.Item {
             /// <summary>Request query parameters</summary>
             public PrintOperationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PrintOperationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new printOperationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new PrintOperationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public PrintOperationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Print.Operations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new printOperationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new PrintOperationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public PrintOperationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -281,7 +281,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessReviewStageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewStageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewStageItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -306,7 +306,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             /// <summary>Request query parameters</summary>
             public AccessReviewStageItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AccessReviewStageItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new accessReviewStageItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewStageItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewStageItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -320,7 +320,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessReviewStageItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewStageItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewStageItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

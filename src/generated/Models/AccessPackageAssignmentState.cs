@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public enum AccessPackageAssignmentState {
         Delivering,
         PartiallyDelivered,

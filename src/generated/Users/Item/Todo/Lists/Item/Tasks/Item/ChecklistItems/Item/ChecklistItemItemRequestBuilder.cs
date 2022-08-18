@@ -73,11 +73,11 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             return command;
         }
         /// <summary>
-        /// A collection of smaller subtasks linked to the more complex parent task.
+        /// A collection of checklistItems linked to a task.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of smaller subtasks linked to the more complex parent task.";
+            command.Description = "A collection of checklistItems linked to a task.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -235,7 +235,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of smaller subtasks linked to the more complex parent task.
+        /// A collection of checklistItems linked to a task.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChecklistItemItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -282,14 +282,14 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new checklistItemItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ChecklistItemItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ChecklistItemItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>A collection of smaller subtasks linked to the more complex parent task.</summary>
+        /// <summary>A collection of checklistItems linked to a task.</summary>
         public class ChecklistItemItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -307,7 +307,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             /// <summary>Request query parameters</summary>
             public ChecklistItemItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ChecklistItemItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new checklistItemItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ChecklistItemItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ChecklistItemItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -321,7 +321,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new checklistItemItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ChecklistItemItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ChecklistItemItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

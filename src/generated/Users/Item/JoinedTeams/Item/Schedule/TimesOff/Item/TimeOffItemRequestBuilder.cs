@@ -257,7 +257,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new timeOffItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new TimeOffItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public TimeOffItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -279,7 +279,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
             /// <summary>Request query parameters</summary>
             public TimeOffItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TimeOffItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new timeOffItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TimeOffItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TimeOffItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -293,7 +293,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new timeOffItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new TimeOffItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public TimeOffItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

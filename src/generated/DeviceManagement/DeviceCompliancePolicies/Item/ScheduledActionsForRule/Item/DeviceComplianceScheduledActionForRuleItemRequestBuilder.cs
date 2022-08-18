@@ -62,11 +62,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return command;
         }
         /// <summary>
-        /// The list of scheduled action for this rule
+        /// The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The list of scheduled action for this rule";
+            command.Description = "The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.";
             // Create options for all the parameters
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return requestInfo;
         }
         /// <summary>
-        /// The list of scheduled action for this rule
+        /// The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DeviceComplianceScheduledActionForRuleItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -256,14 +256,14 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceComplianceScheduledActionForRuleItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceComplianceScheduledActionForRuleItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceComplianceScheduledActionForRuleItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The list of scheduled action for this rule</summary>
+        /// <summary>The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.</summary>
         public class DeviceComplianceScheduledActionForRuleItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -281,7 +281,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             /// <summary>Request query parameters</summary>
             public DeviceComplianceScheduledActionForRuleItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DeviceComplianceScheduledActionForRuleItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new deviceComplianceScheduledActionForRuleItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceComplianceScheduledActionForRuleItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceComplianceScheduledActionForRuleItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -295,7 +295,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceComplianceScheduledActionForRuleItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceComplianceScheduledActionForRuleItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceComplianceScheduledActionForRuleItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

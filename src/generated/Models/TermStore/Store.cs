@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.TermStore {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Store : Entity, IParsable {
         /// <summary>Default language of the term store.</summary>
         public string DefaultLanguageTag { get; set; }
@@ -14,6 +13,12 @@ namespace ApiSdk.Models.TermStore {
         public List<string> LanguageTags { get; set; }
         /// <summary>Collection of all sets available in the term store.</summary>
         public List<Set> Sets { get; set; }
+        /// <summary>
+        /// Instantiates a new store and sets the default values.
+        /// </summary>
+        public Store() : base() {
+            OdataType = "#microsoft.graph.termStore.store";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

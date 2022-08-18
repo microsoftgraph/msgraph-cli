@@ -274,7 +274,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new managedEBookItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedEBookItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedEBookItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -299,7 +299,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             /// <summary>Request query parameters</summary>
             public ManagedEBookItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ManagedEBookItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new managedEBookItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedEBookItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedEBookItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -313,7 +313,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new managedEBookItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedEBookItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedEBookItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

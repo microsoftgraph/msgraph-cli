@@ -264,7 +264,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceComplianceActionItemItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceComplianceActionItemItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceComplianceActionItemItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -289,7 +289,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             /// <summary>Request query parameters</summary>
             public DeviceComplianceActionItemItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DeviceComplianceActionItemItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new deviceComplianceActionItemItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceComplianceActionItemItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceComplianceActionItemItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -303,7 +303,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceComplianceActionItemItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceComplianceActionItemItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceComplianceActionItemItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

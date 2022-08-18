@@ -246,7 +246,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new openShiftItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new OpenShiftItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public OpenShiftItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
             /// <summary>Request query parameters</summary>
             public OpenShiftItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OpenShiftItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new openShiftItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new OpenShiftItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public OpenShiftItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new openShiftItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new OpenShiftItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public OpenShiftItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

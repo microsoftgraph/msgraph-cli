@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>For example, &apos;Enabled&apos;.</summary>
         public string CapabilityStatus { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>For example, &apos;Success&apos;.</summary>
         public string ProvisioningStatus { get; set; }
         /// <summary>The name of the service; for example, &apos;AccessControlS2S&apos;</summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ProvisionedPlan() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.provisionedPlan";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"capabilityStatus", n => { CapabilityStatus = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"provisioningStatus", n => { ProvisioningStatus = n.GetStringValue(); } },
                 {"service", n => { Service = n.GetStringValue(); } },
             };
@@ -44,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("capabilityStatus", CapabilityStatus);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("provisioningStatus", ProvisioningStatus);
             writer.WriteStringValue("service", Service);
             writer.WriteAdditionalData(AdditionalData);

@@ -1,19 +1,25 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
     public class OfferShiftRequest : ScheduleChangeRequest, IParsable {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? RecipientActionDateTime { get; set; }
         /// <summary>Custom message sent by recipient of the offer shift request.</summary>
         public string RecipientActionMessage { get; set; }
-        /// <summary>User id of the recipient of the offer shift request.</summary>
+        /// <summary>User ID of the recipient of the offer shift request.</summary>
         public string RecipientUserId { get; set; }
-        /// <summary>User id of the sender of the offer shift request.</summary>
+        /// <summary>User ID of the sender of the offer shift request.</summary>
         public string SenderShiftId { get; set; }
+        /// <summary>
+        /// Instantiates a new OfferShiftRequest and sets the default values.
+        /// </summary>
+        public OfferShiftRequest() : base() {
+            OdataType = "#microsoft.graph.offerShiftRequest";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

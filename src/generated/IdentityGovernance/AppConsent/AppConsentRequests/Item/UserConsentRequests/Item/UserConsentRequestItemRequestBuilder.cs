@@ -71,11 +71,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return command;
         }
         /// <summary>
-        /// A list of pending user consent requests.
+        /// A list of pending user consent requests. Supports $filter (eq).
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A list of pending user consent requests.";
+            command.Description = "A list of pending user consent requests. Supports $filter (eq).";
             // Create options for all the parameters
             var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// A list of pending user consent requests.
+        /// A list of pending user consent requests. Supports $filter (eq).
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UserConsentRequestItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -256,14 +256,14 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userConsentRequestItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UserConsentRequestItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UserConsentRequestItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>A list of pending user consent requests.</summary>
+        /// <summary>A list of pending user consent requests. Supports $filter (eq).</summary>
         public class UserConsentRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -281,7 +281,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             /// <summary>Request query parameters</summary>
             public UserConsentRequestItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UserConsentRequestItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new userConsentRequestItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UserConsentRequestItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UserConsentRequestItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -295,7 +295,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userConsentRequestItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UserConsentRequestItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UserConsentRequestItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

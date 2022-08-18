@@ -15,11 +15,14 @@ namespace ApiSdk.Models {
         public string AlternativeText { get; set; }
         /// <summary>Optional; URI that points to an icon which represents the application used to generate the activity</summary>
         public string IconUrl { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new imageInfo and sets the default values.
         /// </summary>
         public ImageInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.imageInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
                 {"alternateText", n => { AlternateText = n.GetStringValue(); } },
                 {"alternativeText", n => { AlternativeText = n.GetStringValue(); } },
                 {"iconUrl", n => { IconUrl = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -50,6 +54,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("alternateText", AlternateText);
             writer.WriteStringValue("alternativeText", AlternativeText);
             writer.WriteStringValue("iconUrl", IconUrl);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

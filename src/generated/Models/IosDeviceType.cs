@@ -12,11 +12,14 @@ namespace ApiSdk.Models {
         public bool? IPad { get; set; }
         /// <summary>Whether the app should run on iPhones and iPods.</summary>
         public bool? IPhoneAndIPod { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new iosDeviceType and sets the default values.
         /// </summary>
         public IosDeviceType() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.iosDeviceType";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"iPad", n => { IPad = n.GetBoolValue(); } },
                 {"iPhoneAndIPod", n => { IPhoneAndIPod = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -43,6 +47,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("iPad", IPad);
             writer.WriteBoolValue("iPhoneAndIPod", IPhoneAndIPod);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

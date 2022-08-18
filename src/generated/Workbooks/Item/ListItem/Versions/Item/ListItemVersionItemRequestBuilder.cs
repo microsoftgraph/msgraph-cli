@@ -262,7 +262,7 @@ namespace ApiSdk.Workbooks.Item.ListItem.Versions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new listItemVersionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ListItemVersionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ListItemVersionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -287,7 +287,7 @@ namespace ApiSdk.Workbooks.Item.ListItem.Versions.Item {
             /// <summary>Request query parameters</summary>
             public ListItemVersionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ListItemVersionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new listItemVersionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ListItemVersionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ListItemVersionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -301,7 +301,7 @@ namespace ApiSdk.Workbooks.Item.ListItem.Versions.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new listItemVersionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ListItemVersionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ListItemVersionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

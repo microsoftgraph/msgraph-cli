@@ -140,7 +140,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item {
             /// <summary>Request query parameters</summary>
             public CertificateBasedAuthConfigurationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new CertificateBasedAuthConfigurationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new certificateBasedAuthConfigurationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new CertificateBasedAuthConfigurationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public CertificateBasedAuthConfigurationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

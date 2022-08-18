@@ -15,19 +15,22 @@ namespace ApiSdk.Models.ExternalConnectors {
         public bool? IsRefinable { get; set; }
         /// <summary>Specifies if the property is retrievable. Retrievable properties are returned in the result set when items are returned by the search API. Retrievable properties are also available to add to the display template used to render search results. Optional.</summary>
         public bool? IsRetrievable { get; set; }
-        /// <summary>Specifies if the property is searchable. Only properties of type string or stringCollection can be searchable. Non-searchable properties are not added to the search index. Optional.</summary>
+        /// <summary>Specifies if the property is searchable. Only properties of type String or StringCollection can be searchable. Non-searchable properties are not added to the search index. Optional.</summary>
         public bool? IsSearchable { get; set; }
-        /// <summary>Specifies one or more well-known tags added against a property. Labels help Microsoft Search understand the semantics of the data in the connection. Adding appropriate labels would result in an enhanced search experience (e.g. better relevance). Optional.The possible values are: title, url, createdBy, lastModifiedBy, authors, createdDateTime, lastModifiedDateTime, fileName, fileExtension, unknownFutureValue, iconUrl, containerName, containerUrl. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: iconUrl, containerName, containerUrl.</summary>
+        /// <summary>Specifies one or more well-known tags added against a property. Labels help Microsoft Search understand the semantics of the data in the connection. Adding appropriate labels would result in an enhanced search experience (e.g. better relevance). The possible values are: title, url, createdBy, lastModifiedBy, authors, createdDateTime, lastModifiedDateTime, fileName, fileExtension, unknownFutureValue. Optional.</summary>
         public List<string> Labels { get; set; }
         /// <summary>The name of the property. Maximum 32 characters. Only alphanumeric characters allowed. For example, each string may not contain control characters, whitespace, or any of the following: :, ;, ,, (, ), [, ], {, }, %, $, +, !, *, =, &amp;, ?, @, #, /, ~, &apos;, &apos;, &lt;, &gt;, `, ^.  Required.</summary>
         public string Name { get; set; }
-        /// <summary>The data type of the property. Possible values are: string, int64, double, dateTime, boolean, stringCollection, int64Collection, doubleCollection, dateTimeCollection, unknownFutureValue. Required.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The type property</summary>
         public PropertyType? Type { get; set; }
         /// <summary>
         /// Instantiates a new property and sets the default values.
         /// </summary>
         public Property() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.externalConnectors.property";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -49,6 +52,7 @@ namespace ApiSdk.Models.ExternalConnectors {
                 {"isSearchable", n => { IsSearchable = n.GetBoolValue(); } },
                 {"labels", n => { Labels = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<PropertyType>(); } },
             };
         }
@@ -65,6 +69,7 @@ namespace ApiSdk.Models.ExternalConnectors {
             writer.WriteBoolValue("isSearchable", IsSearchable);
             writer.WriteCollectionOfPrimitiveValues<string>("labels", Labels);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<PropertyType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

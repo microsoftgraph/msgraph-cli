@@ -228,7 +228,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new restrictedSignInItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new RestrictedSignInItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public RestrictedSignInItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
             /// <summary>Request query parameters</summary>
             public RestrictedSignInItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new RestrictedSignInItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new restrictedSignInItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new RestrictedSignInItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public RestrictedSignInItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new restrictedSignInItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new RestrictedSignInItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public RestrictedSignInItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

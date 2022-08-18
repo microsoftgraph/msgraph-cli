@@ -19,6 +19,8 @@ namespace ApiSdk.Models {
         public bool? IsReviewerJustificationRequired { get; set; }
         /// <summary>Specifies whether the principals can review their own assignments.</summary>
         public bool? IsSelfReview { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>This collection specifies the users or group of users who will review the access package assignments.</summary>
         public List<SubjectSet> PrimaryReviewers { get; set; }
         /// <summary>When the first review should start and how often it should recur.</summary>
@@ -28,6 +30,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AccessPackageAssignmentReviewSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.accessPackageAssignmentReviewSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -48,6 +51,7 @@ namespace ApiSdk.Models {
                 {"isRecommendationEnabled", n => { IsRecommendationEnabled = n.GetBoolValue(); } },
                 {"isReviewerJustificationRequired", n => { IsReviewerJustificationRequired = n.GetBoolValue(); } },
                 {"isSelfReview", n => { IsSelfReview = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"primaryReviewers", n => { PrimaryReviewers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue).ToList(); } },
                 {"schedule", n => { Schedule = n.GetObjectValue<EntitlementManagementSchedule>(EntitlementManagementSchedule.CreateFromDiscriminatorValue); } },
             };
@@ -64,6 +68,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("isRecommendationEnabled", IsRecommendationEnabled);
             writer.WriteBoolValue("isReviewerJustificationRequired", IsReviewerJustificationRequired);
             writer.WriteBoolValue("isSelfReview", IsSelfReview);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfObjectValues<SubjectSet>("primaryReviewers", PrimaryReviewers);
             writer.WriteObjectValue<EntitlementManagementSchedule>("schedule", Schedule);
             writer.WriteAdditionalData(AdditionalData);

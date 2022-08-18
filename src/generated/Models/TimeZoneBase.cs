@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,14 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The name of a time zone. It can be a standard time zone name such as &apos;Hawaii-Aleutian Standard Time&apos;, or &apos;Customized Time Zone&apos; for a custom time zone.</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new timeZoneBase and sets the default values.
         /// </summary>
         public TimeZoneBase() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.timeZoneBase";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -21,7 +25,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public static TimeZoneBase CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TimeZoneBase();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.customTimeZone" => new CustomTimeZone(),
+                _ => new TimeZoneBase(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -29,6 +38,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -38,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

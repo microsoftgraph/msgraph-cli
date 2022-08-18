@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -34,8 +35,14 @@ namespace ApiSdk.Models {
         public string PrivacyInformationUrl { get; set; }
         /// <summary>The publisher of the app.</summary>
         public string Publisher { get; set; }
-        /// <summary>The publishing state for the app. The app cannot be assigned unless the app is published. Possible values are: notPublished, processing, published.</summary>
+        /// <summary>Indicates the publishing state of an app.</summary>
         public MobileAppPublishingState? PublishingState { get; set; }
+        /// <summary>
+        /// Instantiates a new mobileApp and sets the default values.
+        /// </summary>
+        public MobileApp() : base() {
+            OdataType = "#microsoft.graph.mobileApp";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
@@ -45,14 +52,24 @@ namespace ApiSdk.Models {
             var mappingValueNode = parseNode.GetChildNode("@odata.type");
             var mappingValue = mappingValueNode?.GetStringValue();
             return mappingValue switch {
+                "#microsoft.graph.androidLobApp" => new AndroidLobApp(),
                 "#microsoft.graph.androidStoreApp" => new AndroidStoreApp(),
+                "#microsoft.graph.iosLobApp" => new IosLobApp(),
                 "#microsoft.graph.iosStoreApp" => new IosStoreApp(),
                 "#microsoft.graph.iosVppApp" => new IosVppApp(),
                 "#microsoft.graph.macOSOfficeSuiteApp" => new MacOSOfficeSuiteApp(),
+                "#microsoft.graph.managedAndroidLobApp" => new ManagedAndroidLobApp(),
+                "#microsoft.graph.managedAndroidStoreApp" => new ManagedAndroidStoreApp(),
                 "#microsoft.graph.managedApp" => new ManagedApp(),
+                "#microsoft.graph.managedIOSLobApp" => new ManagedIOSLobApp(),
+                "#microsoft.graph.managedIOSStoreApp" => new ManagedIOSStoreApp(),
+                "#microsoft.graph.managedMobileLobApp" => new ManagedMobileLobApp(),
                 "#microsoft.graph.microsoftStoreForBusinessApp" => new MicrosoftStoreForBusinessApp(),
                 "#microsoft.graph.mobileLobApp" => new MobileLobApp(),
                 "#microsoft.graph.webApp" => new WebApp(),
+                "#microsoft.graph.win32LobApp" => new Win32LobApp(),
+                "#microsoft.graph.windowsMobileMSI" => new WindowsMobileMSI(),
+                "#microsoft.graph.windowsUniversalAppX" => new WindowsUniversalAppX(),
                 _ => new MobileApp(),
             };
         }

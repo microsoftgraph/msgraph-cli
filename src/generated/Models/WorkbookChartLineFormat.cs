@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartLineFormat : Entity, IParsable {
         /// <summary>HTML color code representing the color of lines in the chart.</summary>
         public string Color { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookChartLineFormat and sets the default values.
+        /// </summary>
+        public WorkbookChartLineFormat() : base() {
+            OdataType = "#microsoft.graph.workbookChartLineFormat";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -228,7 +228,7 @@ namespace ApiSdk.Me.Authentication.TemporaryAccessPassMethods.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new temporaryAccessPassAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new TemporaryAccessPassAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public TemporaryAccessPassAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.Me.Authentication.TemporaryAccessPassMethods.Item {
             /// <summary>Request query parameters</summary>
             public TemporaryAccessPassAuthenticationMethodItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TemporaryAccessPassAuthenticationMethodItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new temporaryAccessPassAuthenticationMethodItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TemporaryAccessPassAuthenticationMethodItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TemporaryAccessPassAuthenticationMethodItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Me.Authentication.TemporaryAccessPassMethods.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new temporaryAccessPassAuthenticationMethodItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new TemporaryAccessPassAuthenticationMethodItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public TemporaryAccessPassAuthenticationMethodItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

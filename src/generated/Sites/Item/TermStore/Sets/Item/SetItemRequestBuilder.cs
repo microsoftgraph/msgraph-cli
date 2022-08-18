@@ -286,7 +286,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new setItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new SetItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public SetItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -311,7 +311,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item {
             /// <summary>Request query parameters</summary>
             public SetItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SetItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new setItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SetItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SetItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -325,7 +325,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new setItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SetItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SetItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

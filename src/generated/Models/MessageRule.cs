@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class MessageRule : Entity, IParsable {
         /// <summary>Actions to be taken on a message when the corresponding conditions are fulfilled.</summary>
         public MessageRuleActions Actions { get; set; }
@@ -22,6 +22,12 @@ namespace ApiSdk.Models {
         public bool? IsReadOnly { get; set; }
         /// <summary>Indicates the order in which the rule is executed, among other rules.</summary>
         public int? Sequence { get; set; }
+        /// <summary>
+        /// Instantiates a new messageRule and sets the default values.
+        /// </summary>
+        public MessageRule() : base() {
+            OdataType = "#microsoft.graph.messageRule";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -9,6 +9,12 @@ namespace ApiSdk.Models {
         /// <summary>The assignment target for the device configuration.</summary>
         public DeviceAndAppManagementAssignmentTarget Target { get; set; }
         /// <summary>
+        /// Instantiates a new deviceConfigurationAssignment and sets the default values.
+        /// </summary>
+        public DeviceConfigurationAssignment() : base() {
+            OdataType = "#microsoft.graph.deviceConfigurationAssignment";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

@@ -1,10 +1,10 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class MailFolder : Entity, IParsable {
         /// <summary>The number of immediate child mailFolders in the current mailFolder.</summary>
         public int? ChildFolderCount { get; set; }
@@ -28,6 +28,12 @@ namespace ApiSdk.Models {
         public int? TotalItemCount { get; set; }
         /// <summary>The number of items in the mailFolder marked as unread.</summary>
         public int? UnreadItemCount { get; set; }
+        /// <summary>
+        /// Instantiates a new MailFolder and sets the default values.
+        /// </summary>
+        public MailFolder() : base() {
+            OdataType = "#microsoft.graph.mailFolder";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

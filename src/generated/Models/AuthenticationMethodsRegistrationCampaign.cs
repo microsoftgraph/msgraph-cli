@@ -11,15 +11,18 @@ namespace ApiSdk.Models {
         public List<ExcludeTarget> ExcludeTargets { get; set; }
         /// <summary>Users and groups of users that are prompted to set up the authentication method.</summary>
         public List<AuthenticationMethodsRegistrationCampaignIncludeTarget> IncludeTargets { get; set; }
-        /// <summary>Specifies the number of days that the user sees a prompt again if they select &apos;Not now&apos; and snoozes the prompt. Minimum 0 days. Maximum: 14 days. If the value is &apos;0&apos; – The user is prompted during every MFA attempt.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>Specifies the number of days that the user sees a prompt again if they select &apos;Not now&apos; and snoozes the prompt. Minimum: 0 days. Maximum: 14 days. If the value is &apos;0&apos;, the user is prompted during every MFA attempt.</summary>
         public int? SnoozeDurationInDays { get; set; }
-        /// <summary>Enable or disable the feature. Possible values are: default, enabled, disabled, unknownFutureValue. The default value is used when the configuration hasn&apos;t been explicitly set and uses the default behavior of Azure AD for the setting. The default value is disabled.</summary>
+        /// <summary>The state property</summary>
         public AdvancedConfigState? State { get; set; }
         /// <summary>
         /// Instantiates a new authenticationMethodsRegistrationCampaign and sets the default values.
         /// </summary>
         public AuthenticationMethodsRegistrationCampaign() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.authenticationMethodsRegistrationCampaign";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -36,6 +39,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"excludeTargets", n => { ExcludeTargets = n.GetCollectionOfObjectValues<ExcludeTarget>(ExcludeTarget.CreateFromDiscriminatorValue).ToList(); } },
                 {"includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<AuthenticationMethodsRegistrationCampaignIncludeTarget>(AuthenticationMethodsRegistrationCampaignIncludeTarget.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"snoozeDurationInDays", n => { SnoozeDurationInDays = n.GetIntValue(); } },
                 {"state", n => { State = n.GetEnumValue<AdvancedConfigState>(); } },
             };
@@ -48,6 +52,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<ExcludeTarget>("excludeTargets", ExcludeTargets);
             writer.WriteCollectionOfObjectValues<AuthenticationMethodsRegistrationCampaignIncludeTarget>("includeTargets", IncludeTargets);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("snoozeDurationInDays", SnoozeDurationInDays);
             writer.WriteEnumValue<AdvancedConfigState>("state", State);
             writer.WriteAdditionalData(AdditionalData);

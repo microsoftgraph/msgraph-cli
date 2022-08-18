@@ -7,21 +7,23 @@ namespace ApiSdk.Models {
     public class MailboxSettings : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Folder ID of an archive folder for the user. Read only.</summary>
+        /// <summary>Folder ID of an archive folder for the user.</summary>
         public string ArchiveFolder { get; set; }
         /// <summary>Configuration settings to automatically notify the sender of an incoming email with a message from the signed-in user.</summary>
         public ApiSdk.Models.AutomaticRepliesSetting AutomaticRepliesSetting { get; set; }
         /// <summary>The date format for the user&apos;s mailbox.</summary>
         public string DateFormat { get; set; }
-        /// <summary>If the user has a calendar delegate, this specifies whether the delegate, mailbox owner, or both receive meeting messages and meeting responses. Possible values are: sendToDelegateAndInformationToPrincipal, sendToDelegateAndPrincipal, sendToDelegateOnly. The default is sendToDelegateOnly.</summary>
+        /// <summary>If the user has a calendar delegate, this specifies whether the delegate, mailbox owner, or both receive meeting messages and meeting responses. Possible values are: sendToDelegateAndInformationToPrincipal, sendToDelegateAndPrincipal, sendToDelegateOnly.</summary>
         public ApiSdk.Models.DelegateMeetingMessageDeliveryOptions? DelegateMeetingMessageDeliveryOptions { get; set; }
         /// <summary>The locale information for the user, including the preferred language and country/region.</summary>
         public LocaleInfo Language { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The time format for the user&apos;s mailbox.</summary>
         public string TimeFormat { get; set; }
         /// <summary>The default time zone for the user&apos;s mailbox.</summary>
         public string TimeZone { get; set; }
-        /// <summary>The purpose of the mailbox. Used to differentiate a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Read only.</summary>
+        /// <summary>The userPurpose property</summary>
         public ApiSdk.Models.UserPurpose? UserPurpose { get; set; }
         /// <summary>The days of the week and hours in a specific time zone that the user works.</summary>
         public ApiSdk.Models.WorkingHours WorkingHours { get; set; }
@@ -30,6 +32,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public MailboxSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.mailboxSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -49,6 +52,7 @@ namespace ApiSdk.Models {
                 {"dateFormat", n => { DateFormat = n.GetStringValue(); } },
                 {"delegateMeetingMessageDeliveryOptions", n => { DelegateMeetingMessageDeliveryOptions = n.GetEnumValue<DelegateMeetingMessageDeliveryOptions>(); } },
                 {"language", n => { Language = n.GetObjectValue<LocaleInfo>(LocaleInfo.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"timeFormat", n => { TimeFormat = n.GetStringValue(); } },
                 {"timeZone", n => { TimeZone = n.GetStringValue(); } },
                 {"userPurpose", n => { UserPurpose = n.GetEnumValue<UserPurpose>(); } },
@@ -66,6 +70,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("dateFormat", DateFormat);
             writer.WriteEnumValue<DelegateMeetingMessageDeliveryOptions>("delegateMeetingMessageDeliveryOptions", DelegateMeetingMessageDeliveryOptions);
             writer.WriteObjectValue<LocaleInfo>("language", Language);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("timeFormat", TimeFormat);
             writer.WriteStringValue("timeZone", TimeZone);
             writer.WriteEnumValue<UserPurpose>("userPurpose", UserPurpose);

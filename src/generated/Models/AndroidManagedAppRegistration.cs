@@ -6,6 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class AndroidManagedAppRegistration : ManagedAppRegistration, IParsable {
         /// <summary>
+        /// Instantiates a new AndroidManagedAppRegistration and sets the default values.
+        /// </summary>
+        public AndroidManagedAppRegistration() : base() {
+            OdataType = "#microsoft.graph.androidManagedAppRegistration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

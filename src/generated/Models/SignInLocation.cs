@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public string CountryOrRegion { get; set; }
         /// <summary>Provides the latitude, longitude and altitude where the sign-in originated.</summary>
         public ApiSdk.Models.GeoCoordinates GeoCoordinates { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Provides the State where the sign-in originated. This is calculated using latitude/longitude information from the sign-in activity.</summary>
         public string State { get; set; }
         /// <summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public SignInLocation() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.signInLocation";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,6 +40,7 @@ namespace ApiSdk.Models {
                 {"city", n => { City = n.GetStringValue(); } },
                 {"countryOrRegion", n => { CountryOrRegion = n.GetStringValue(); } },
                 {"geoCoordinates", n => { GeoCoordinates = n.GetObjectValue<ApiSdk.Models.GeoCoordinates>(ApiSdk.Models.GeoCoordinates.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"state", n => { State = n.GetStringValue(); } },
             };
         }
@@ -49,6 +53,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("city", City);
             writer.WriteStringValue("countryOrRegion", CountryOrRegion);
             writer.WriteObjectValue<ApiSdk.Models.GeoCoordinates>("geoCoordinates", GeoCoordinates);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -106,7 +106,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Co
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new countRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new CountRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public CountRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

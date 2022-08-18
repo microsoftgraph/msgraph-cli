@@ -89,11 +89,11 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
             return command;
         }
         /// <summary>
-        /// Represents the role management policy assignments.
+        /// The assignment of a role management policy to a role definition object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents the role management policy assignments.";
+            command.Description = "The assignment of a role management policy to a role definition object.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents the role management policy assignments.
+        /// The assignment of a role management policy to a role definition object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RoleManagementPolicyAssignmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -247,7 +247,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
             }
             return requestInfo;
         }
-        /// <summary>Represents the role management policy assignments.</summary>
+        /// <summary>The assignment of a role management policy to a role definition object.</summary>
         public class RoleManagementPolicyAssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

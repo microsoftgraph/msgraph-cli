@@ -7,15 +7,18 @@ namespace ApiSdk.Models {
     public class SearchAggregation : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Defines the actual buckets of the computed aggregation.</summary>
+        /// <summary>The buckets property</summary>
         public List<SearchBucket> Buckets { get; set; }
-        /// <summary>Defines on which field the aggregation was computed on.</summary>
+        /// <summary>The field property</summary>
         public string Field { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new searchAggregation and sets the default values.
         /// </summary>
         public SearchAggregation() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.searchAggregation";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"buckets", n => { Buckets = n.GetCollectionOfObjectValues<SearchBucket>(SearchBucket.CreateFromDiscriminatorValue).ToList(); } },
                 {"field", n => { Field = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<SearchBucket>("buckets", Buckets);
             writer.WriteStringValue("field", Field);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

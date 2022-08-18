@@ -259,7 +259,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new subjectRightsRequestItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -284,7 +284,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             /// <summary>Request query parameters</summary>
             public SubjectRightsRequestItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SubjectRightsRequestItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new subjectRightsRequestItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SubjectRightsRequestItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SubjectRightsRequestItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -298,7 +298,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new subjectRightsRequestItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

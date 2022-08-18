@@ -282,7 +282,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationSubmissionResourceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationSubmissionResourceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public EducationSubmissionResourceItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -307,7 +307,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
             /// <summary>Request query parameters</summary>
             public EducationSubmissionResourceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EducationSubmissionResourceItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new educationSubmissionResourceItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationSubmissionResourceItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EducationSubmissionResourceItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -321,7 +321,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationSubmissionResourceItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationSubmissionResourceItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public EducationSubmissionResourceItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

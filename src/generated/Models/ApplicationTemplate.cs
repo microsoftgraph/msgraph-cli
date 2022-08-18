@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     /// <summary>Provides operations to manage the collection of applicationTemplate entities.</summary>
-    public class ApplicationTemplate : Entity, IParsable {
+    public class ApplicationTemplate : Entity, IAdditionalDataHolder, IParsable {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The list of categories for the application. Supported values can be: Collaboration, Business Management, Consumer, Content management, CRM, Data services, Developer services, E-commerce, Education, ERP, Finance, Health, Human resources, IT infrastructure, Mail, Management, Marketing, Media, Productivity, Project management, Telecommunications, Tools, Travel, and Web design &amp; hosting.</summary>
         public List<string> Categories { get; set; }
         /// <summary>A description of the application.</summary>
@@ -22,6 +24,13 @@ namespace ApiSdk.Models {
         public List<string> SupportedProvisioningTypes { get; set; }
         /// <summary>The list of single sign-on modes supported by this application. The supported values are oidc, password, saml, and notSupported.</summary>
         public List<string> SupportedSingleSignOnModes { get; set; }
+        /// <summary>
+        /// Instantiates a new applicationTemplate and sets the default values.
+        /// </summary>
+        public ApplicationTemplate() : base() {
+            AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.applicationTemplate";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
@@ -60,6 +69,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("publisher", Publisher);
             writer.WriteCollectionOfPrimitiveValues<string>("supportedProvisioningTypes", SupportedProvisioningTypes);
             writer.WriteCollectionOfPrimitiveValues<string>("supportedSingleSignOnModes", SupportedSingleSignOnModes);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

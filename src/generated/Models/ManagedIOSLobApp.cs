@@ -18,6 +18,12 @@ namespace ApiSdk.Models {
         /// <summary>The version number of managed iOS Line of Business (LoB) app.</summary>
         public string VersionNumber { get; set; }
         /// <summary>
+        /// Instantiates a new ManagedIOSLobApp and sets the default values.
+        /// </summary>
+        public ManagedIOSLobApp() : base() {
+            OdataType = "#microsoft.graph.managedIOSLobApp";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

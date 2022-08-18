@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the print singleton.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class PrintTaskTrigger : Entity, IParsable {
         /// <summary>The definition property</summary>
         public PrintTaskDefinition Definition { get; set; }
-        /// <summary>The Universal Print event that will cause a new printTask to be triggered. Valid values are described in the following table.</summary>
+        /// <summary>The event property</summary>
         public PrintEvent? Event { get; set; }
+        /// <summary>
+        /// Instantiates a new printTaskTrigger and sets the default values.
+        /// </summary>
+        public PrintTaskTrigger() : base() {
+            OdataType = "#microsoft.graph.printTaskTrigger";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

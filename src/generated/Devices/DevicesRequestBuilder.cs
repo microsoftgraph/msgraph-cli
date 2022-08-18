@@ -1,4 +1,5 @@
 using ApiSdk.Devices.Count;
+using ApiSdk.Devices.Delta;
 using ApiSdk.Devices.GetAvailableExtensionProperties;
 using ApiSdk.Devices.GetByIds;
 using ApiSdk.Devices.Item;
@@ -52,11 +53,11 @@ namespace ApiSdk.Devices {
             return command;
         }
         /// <summary>
-        /// Create a new device.
+        /// Create and register a new device in the organization.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new device.";
+            command.Description = "Create and register a new device in the organization.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -113,11 +114,11 @@ namespace ApiSdk.Devices {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of devices registered in the directory. 
+        /// Retrieve a list of device objects registered in the organization.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of devices registered in the directory. ";
+            command.Description = "Retrieve a list of device objects registered in the organization.";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
             };
@@ -242,7 +243,7 @@ namespace ApiSdk.Devices {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Retrieve a list of devices registered in the directory. 
+        /// Retrieve a list of device objects registered in the organization.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DevicesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -262,7 +263,7 @@ namespace ApiSdk.Devices {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new device.
+        /// Create and register a new device in the organization.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -283,7 +284,13 @@ namespace ApiSdk.Devices {
             }
             return requestInfo;
         }
-        /// <summary>Retrieve a list of devices registered in the directory. </summary>
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public DeltaRequestBuilder Delta() {
+            return new DeltaRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>Retrieve a list of device objects registered in the organization.</summary>
         public class DevicesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

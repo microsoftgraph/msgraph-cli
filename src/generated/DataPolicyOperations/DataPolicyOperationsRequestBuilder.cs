@@ -88,11 +88,11 @@ namespace ApiSdk.DataPolicyOperations {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of the dataPolicyOperation object.
+        /// Retrieve the properties of a **dataPolicyOperation** object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties of the dataPolicyOperation object.";
+            command.Description = "Retrieve the properties of a **dataPolicyOperation** object.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.DataPolicyOperations {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Retrieve the properties of the dataPolicyOperation object.
+        /// Retrieve the properties of a **dataPolicyOperation** object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DataPolicyOperationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.DataPolicyOperations {
             }
             return requestInfo;
         }
-        /// <summary>Retrieve the properties of the dataPolicyOperation object.</summary>
+        /// <summary>Retrieve the properties of a **dataPolicyOperation** object.</summary>
         public class DataPolicyOperationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

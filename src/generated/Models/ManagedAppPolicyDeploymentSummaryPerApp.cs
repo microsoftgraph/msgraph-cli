@@ -12,11 +12,14 @@ namespace ApiSdk.Models {
         public int? ConfigurationAppliedUserCount { get; set; }
         /// <summary>Deployment of an app.</summary>
         public ApiSdk.Models.MobileAppIdentifier MobileAppIdentifier { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new managedAppPolicyDeploymentSummaryPerApp and sets the default values.
         /// </summary>
         public ManagedAppPolicyDeploymentSummaryPerApp() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.managedAppPolicyDeploymentSummaryPerApp";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"configurationAppliedUserCount", n => { ConfigurationAppliedUserCount = n.GetIntValue(); } },
                 {"mobileAppIdentifier", n => { MobileAppIdentifier = n.GetObjectValue<ApiSdk.Models.MobileAppIdentifier>(ApiSdk.Models.MobileAppIdentifier.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -43,6 +47,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("configurationAppliedUserCount", ConfigurationAppliedUserCount);
             writer.WriteObjectValue<ApiSdk.Models.MobileAppIdentifier>("mobileAppIdentifier", MobileAppIdentifier);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

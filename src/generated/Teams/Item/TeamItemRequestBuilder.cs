@@ -1,13 +1,16 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Teams.Item.AllChannels;
 using ApiSdk.Teams.Item.Archive;
 using ApiSdk.Teams.Item.Channels;
 using ApiSdk.Teams.Item.Clone;
 using ApiSdk.Teams.Item.CompleteMigration;
 using ApiSdk.Teams.Item.Group;
+using ApiSdk.Teams.Item.IncomingChannels;
 using ApiSdk.Teams.Item.InstalledApps;
 using ApiSdk.Teams.Item.Members;
 using ApiSdk.Teams.Item.Operations;
+using ApiSdk.Teams.Item.Photo;
 using ApiSdk.Teams.Item.PrimaryChannel;
 using ApiSdk.Teams.Item.Schedule;
 using ApiSdk.Teams.Item.SendActivityNotification;
@@ -35,6 +38,14 @@ namespace ApiSdk.Teams.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildAllChannelsCommand() {
+            var command = new Command("all-channels");
+            var builder = new AllChannelsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildArchiveCommand() {
             var command = new Command("archive");
             var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
@@ -161,6 +172,14 @@ namespace ApiSdk.Teams.Item {
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        public Command BuildIncomingChannelsCommand() {
+            var command = new Command("incoming-channels");
+            var builder = new IncomingChannelsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildInstalledAppsCommand() {
             var command = new Command("installed-apps");
             var builder = new InstalledAppsRequestBuilder(PathParameters, RequestAdapter);
@@ -223,6 +242,15 @@ namespace ApiSdk.Teams.Item {
             });
             return command;
         }
+        public Command BuildPhotoCommand() {
+            var command = new Command("photo");
+            var builder = new PhotoRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            return command;
+        }
         public Command BuildPrimaryChannelCommand() {
             var command = new Command("primary-channel");
             var builder = new PrimaryChannelRequestBuilder(PathParameters, RequestAdapter);
@@ -235,6 +263,7 @@ namespace ApiSdk.Teams.Item {
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildProvisionEmailCommand());
             command.AddCommand(builder.BuildRemoveEmailCommand());
+            command.AddCommand(builder.BuildSharedWithTeamsCommand());
             command.AddCommand(builder.BuildTabsCommand());
             return command;
         }
@@ -353,7 +382,7 @@ namespace ApiSdk.Teams.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new teamItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public TeamItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -378,7 +407,7 @@ namespace ApiSdk.Teams.Item {
             /// <summary>Request query parameters</summary>
             public TeamItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TeamItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new teamItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TeamItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -392,7 +421,7 @@ namespace ApiSdk.Teams.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new teamItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public TeamItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

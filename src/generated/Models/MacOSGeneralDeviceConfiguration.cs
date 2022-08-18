@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class MacOSGeneralDeviceConfiguration : DeviceConfiguration, IParsable {
-        /// <summary>List that is in the CompliantAppsList. Possible values are: none, appsInListCompliant, appsNotInListCompliant.</summary>
+        /// <summary>Possible values of the compliance app list.</summary>
         public AppListType? CompliantAppListType { get; set; }
         /// <summary>List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.</summary>
         public List<AppListItem> CompliantAppsList { get; set; }
@@ -27,8 +27,14 @@ namespace ApiSdk.Models {
         public int? PasswordPreviousPasswordBlockCount { get; set; }
         /// <summary>Whether or not to require a password.</summary>
         public bool? PasswordRequired { get; set; }
-        /// <summary>Type of password that is required. Possible values are: deviceDefault, alphanumeric, numeric.</summary>
+        /// <summary>Possible values of required passwords.</summary>
         public RequiredPasswordType? PasswordRequiredType { get; set; }
+        /// <summary>
+        /// Instantiates a new MacOSGeneralDeviceConfiguration and sets the default values.
+        /// </summary>
+        public MacOSGeneralDeviceConfiguration() : base() {
+            OdataType = "#microsoft.graph.macOSGeneralDeviceConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

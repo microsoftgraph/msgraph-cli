@@ -7,7 +7,9 @@ namespace ApiSdk.Models {
     public class PatternedRecurrence : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The frequency of an event. Do not specify for a one-time access review.  For access reviews: Do not specify this property for a one-time access review.   Only interval, dayOfMonth, and type (weekly, absoluteMonthly) properties of recurrencePattern are supported.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The frequency of an event.  For access reviews: Do not specify this property for a one-time access review.  Only interval, dayOfMonth, and type (weekly, absoluteMonthly) properties of recurrencePattern are supported.</summary>
         public RecurrencePattern Pattern { get; set; }
         /// <summary>The duration of an event.</summary>
         public RecurrenceRange Range { get; set; }
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public PatternedRecurrence() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.patternedRecurrence";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -30,6 +33,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"pattern", n => { Pattern = n.GetObjectValue<RecurrencePattern>(RecurrencePattern.CreateFromDiscriminatorValue); } },
                 {"range", n => { Range = n.GetObjectValue<RecurrenceRange>(RecurrenceRange.CreateFromDiscriminatorValue); } },
             };
@@ -40,6 +44,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<RecurrencePattern>("pattern", Pattern);
             writer.WriteObjectValue<RecurrenceRange>("range", Range);
             writer.WriteAdditionalData(AdditionalData);

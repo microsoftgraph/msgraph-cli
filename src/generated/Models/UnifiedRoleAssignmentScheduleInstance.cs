@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class UnifiedRoleAssignmentScheduleInstance : UnifiedRoleScheduleInstanceBase, IParsable {
         /// <summary>If the request is from an eligible administrator to activate a role, this parameter will show the related eligible assignment for that activation. Otherwise, it is null. Supports $expand.</summary>
         public UnifiedRoleEligibilityScheduleInstance ActivatedUsing { get; set; }
@@ -13,12 +14,18 @@ namespace ApiSdk.Models {
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>How the assignments is inherited. It can either be Inherited, Direct, or Group. It can further imply whether the unifiedRoleAssignmentSchedule can be managed by the caller. Supports $filter (eq, ne).</summary>
         public string MemberType { get; set; }
-        /// <summary>The identifier of the role assignment in Azure AD.</summary>
+        /// <summary>The identifier of the role assignment in Azure AD. Supports $filter (eq, ne).</summary>
         public string RoleAssignmentOriginId { get; set; }
-        /// <summary>The identifier of the unifiedRoleAssignmentSchedule object from which this instance was created.</summary>
+        /// <summary>The identifier of the unifiedRoleAssignmentSchedule object from which this instance was created. Supports $filter (eq, ne).</summary>
         public string RoleAssignmentScheduleId { get; set; }
         /// <summary>When this instance starts.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
+        /// <summary>
+        /// Instantiates a new unifiedRoleAssignmentScheduleInstance and sets the default values.
+        /// </summary>
+        public UnifiedRoleAssignmentScheduleInstance() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleAssignmentScheduleInstance";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

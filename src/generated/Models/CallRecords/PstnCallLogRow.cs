@@ -39,6 +39,8 @@ namespace ApiSdk.Models.CallRecords {
         public string InventoryType { get; set; }
         /// <summary>The license used for the call.</summary>
         public string LicenseCapability { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The telecommunications operator which provided PSTN services for this call. This may be Microsoft, or it may be a third-party operator via the Operator Connect Program.</summary>
         public string Operator { get; set; }
         /// <summary>Call start time.</summary>
@@ -58,6 +60,7 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public PstnCallLogRow() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.callRecords.pstnCallLogRow";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -88,6 +91,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"id", n => { Id = n.GetStringValue(); } },
                 {"inventoryType", n => { InventoryType = n.GetStringValue(); } },
                 {"licenseCapability", n => { LicenseCapability = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operator", n => { Operator = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"tenantCountryCode", n => { TenantCountryCode = n.GetStringValue(); } },
@@ -119,6 +123,7 @@ namespace ApiSdk.Models.CallRecords {
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("inventoryType", InventoryType);
             writer.WriteStringValue("licenseCapability", LicenseCapability);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("operator", Operator);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteStringValue("tenantCountryCode", TenantCountryCode);

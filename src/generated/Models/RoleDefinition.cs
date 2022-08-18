@@ -1,10 +1,10 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>The Role Definition resource. The role definition is the foundation of role based access in Intune. The role combines an Intune resource such as a Mobile App and associated role permissions such as Create or Read for the resource. There are two types of roles, built-in and custom. Built-in roles cannot be modified. Both built-in roles and custom roles must have assignments to be enforced. Create custom roles if you want to define a role that allows any of the available resources and role permissions to be combined into a single role.</summary>
     public class RoleDefinition : Entity, IParsable {
         /// <summary>Description of the Role definition.</summary>
         public string Description { get; set; }
@@ -16,6 +16,12 @@ namespace ApiSdk.Models {
         public List<RoleAssignment> RoleAssignments { get; set; }
         /// <summary>List of Role Permissions this role is allowed to perform. These must match the actionName that is defined as part of the rolePermission.</summary>
         public List<RolePermission> RolePermissions { get; set; }
+        /// <summary>
+        /// Instantiates a new roleDefinition and sets the default values.
+        /// </summary>
+        public RoleDefinition() : base() {
+            OdataType = "#microsoft.graph.roleDefinition";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

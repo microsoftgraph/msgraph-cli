@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>The participants to invite.</summary>
         public List<InvitationParticipantInfo> Participants { get; set; }
         /// <summary>
+        /// Instantiates a new InviteParticipantsOperation and sets the default values.
+        /// </summary>
+        public InviteParticipantsOperation() : base() {
+            OdataType = "#microsoft.graph.inviteParticipantsOperation";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

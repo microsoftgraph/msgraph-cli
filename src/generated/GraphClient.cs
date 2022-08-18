@@ -82,6 +82,10 @@ using System.Threading.Tasks;
 namespace ApiSdk {
     /// <summary>The main entry point of the SDK, exposes the configuration and the fluent API.</summary>
     public class GraphClient {
+        /// <summary>The directory property</summary>
+        public DirectoryRequestBuilder DirectoryObject { get =>
+            new DirectoryRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
         /// <summary>The request adapter to use to execute the requests.</summary>
@@ -331,8 +335,8 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildValidatePropertiesCommand());
             return command;
         }
-        public Command BuildDirectoryCommand() {
-            var command = new Command("directory");
+        public Command BuildDirectoryObjectCommand() {
+            var command = new Command("directory-object");
             var builder = new DirectoryRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAdministrativeUnitsCommand());
             command.AddCommand(builder.BuildDeletedItemsCommand());
@@ -677,6 +681,7 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildAuthorizationPolicyCommand());
             command.AddCommand(builder.BuildClaimsMappingPoliciesCommand());
             command.AddCommand(builder.BuildConditionalAccessPoliciesCommand());
+            command.AddCommand(builder.BuildCrossTenantAccessPolicyCommand());
             command.AddCommand(builder.BuildFeatureRolloutPoliciesCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildHomeRealmDiscoveryPoliciesCommand());
@@ -724,7 +729,7 @@ namespace ApiSdk {
         public Command BuildRoleManagementCommand() {
             var command = new Command("role-management");
             var builder = new RoleManagementRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildDirectoryCommand());
+            command.AddCommand(builder.BuildDirectoryObjectCommand());
             command.AddCommand(builder.BuildEntitlementManagementCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -757,7 +762,7 @@ namespace ApiSdk {
             command.AddCommand(BuildDeviceAppManagementCommand());
             command.AddCommand(BuildDeviceManagementCommand());
             command.AddCommand(BuildDevicesCommand());
-            command.AddCommand(BuildDirectoryCommand());
+            command.AddCommand(BuildDirectoryObjectCommand());
             command.AddCommand(BuildDirectoryObjectsCommand());
             command.AddCommand(BuildDirectoryRolesCommand());
             command.AddCommand(BuildDirectoryRoleTemplatesCommand());
@@ -836,6 +841,7 @@ namespace ApiSdk {
             var command = new Command("security");
             var builder = new SecurityRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAlertsCommand());
+            command.AddCommand(builder.BuildCasesCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSecureScoreControlProfilesCommand());

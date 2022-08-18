@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class SharePointIdentitySet : IdentitySet, IParsable {
         /// <summary>The group associated with this action. Optional.</summary>
         public Identity Group { get; set; }
@@ -12,6 +11,12 @@ namespace ApiSdk.Models {
         public SharePointIdentity SiteGroup { get; set; }
         /// <summary>The SharePoint user associated with this action. Optional.</summary>
         public SharePointIdentity SiteUser { get; set; }
+        /// <summary>
+        /// Instantiates a new SharePointIdentitySet and sets the default values.
+        /// </summary>
+        public SharePointIdentitySet() : base() {
+            OdataType = "#microsoft.graph.sharePointIdentitySet";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

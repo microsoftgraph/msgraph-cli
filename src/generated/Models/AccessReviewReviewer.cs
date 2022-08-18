@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AccessReviewReviewer : Entity, IParsable {
         /// <summary>The date when the reviewer was added for the access review.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Name of reviewer.</summary>
         public string DisplayName { get; set; }
-        /// <summary>User principal name of the user.</summary>
+        /// <summary>User principal name of the reviewer.</summary>
         public string UserPrincipalName { get; set; }
+        /// <summary>
+        /// Instantiates a new AccessReviewReviewer and sets the default values.
+        /// </summary>
+        public AccessReviewReviewer() : base() {
+            OdataType = "#microsoft.graph.accessReviewReviewer";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

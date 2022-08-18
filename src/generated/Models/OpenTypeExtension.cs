@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>A unique text identifier for an open type data extension. Required.</summary>
         public string ExtensionName { get; set; }
         /// <summary>
+        /// Instantiates a new OpenTypeExtension and sets the default values.
+        /// </summary>
+        public OpenTypeExtension() : base() {
+            OdataType = "#microsoft.graph.openTypeExtension";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

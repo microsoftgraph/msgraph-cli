@@ -15,6 +15,8 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>ID of the course from the syncing system.</summary>
         public string ExternalId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Subject of the course.</summary>
         public string Subject { get; set; }
         /// <summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public EducationCourse() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.educationCourse";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -40,6 +43,7 @@ namespace ApiSdk.Models {
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"externalId", n => { ExternalId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"subject", n => { Subject = n.GetStringValue(); } },
             };
         }
@@ -53,6 +57,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("externalId", ExternalId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("subject", Subject);
             writer.WriteAdditionalData(AdditionalData);
         }

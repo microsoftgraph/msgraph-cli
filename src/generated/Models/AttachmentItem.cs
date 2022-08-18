@@ -17,6 +17,8 @@ namespace ApiSdk.Models {
         public bool? IsInline { get; set; }
         /// <summary>The display name of the attachment. This can be a descriptive string and does not have to be the actual file name. Required.</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The length of the attachment in bytes. Required.</summary>
         public long? Size { get; set; }
         /// <summary>
@@ -24,6 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AttachmentItem() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.attachmentItem";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -43,6 +46,7 @@ namespace ApiSdk.Models {
                 {"contentType", n => { ContentType = n.GetStringValue(); } },
                 {"isInline", n => { IsInline = n.GetBoolValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"size", n => { Size = n.GetLongValue(); } },
             };
         }
@@ -57,6 +61,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("contentType", ContentType);
             writer.WriteBoolValue("isInline", IsInline);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteLongValue("size", Size);
             writer.WriteAdditionalData(AdditionalData);
         }

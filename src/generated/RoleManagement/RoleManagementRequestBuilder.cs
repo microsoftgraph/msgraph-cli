@@ -18,14 +18,18 @@ using System.Threading.Tasks;
 namespace ApiSdk.RoleManagement {
     /// <summary>Provides operations to manage the roleManagement singleton.</summary>
     public class RoleManagementRequestBuilder {
+        /// <summary>The directory property</summary>
+        public DirectoryRequestBuilder DirectoryObject { get =>
+            new DirectoryRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
         /// <summary>The request adapter to use to execute the requests.</summary>
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command BuildDirectoryCommand() {
-            var command = new Command("directory");
+        public Command BuildDirectoryObjectCommand() {
+            var command = new Command("directory-object");
             var builder = new DirectoryRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());

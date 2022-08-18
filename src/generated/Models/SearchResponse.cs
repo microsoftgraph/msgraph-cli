@@ -9,7 +9,9 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A collection of search results.</summary>
         public List<SearchHitsContainer> HitsContainers { get; set; }
-        /// <summary>Provides details of query alteration response for spelling correction.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>Provides information related to spelling corrections in the alteration response.</summary>
         public AlterationResponse QueryAlterationResponse { get; set; }
         /// <summary>A dictionary of resultTemplateIds and associated values, which include the name and JSON schema of the result templates.</summary>
         public ResultTemplateDictionary ResultTemplates { get; set; }
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public SearchResponse() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.searchResponse";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"hitsContainers", n => { HitsContainers = n.GetCollectionOfObjectValues<SearchHitsContainer>(SearchHitsContainer.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"queryAlterationResponse", n => { QueryAlterationResponse = n.GetObjectValue<AlterationResponse>(AlterationResponse.CreateFromDiscriminatorValue); } },
                 {"resultTemplates", n => { ResultTemplates = n.GetObjectValue<ResultTemplateDictionary>(ResultTemplateDictionary.CreateFromDiscriminatorValue); } },
                 {"searchTerms", n => { SearchTerms = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
@@ -47,6 +51,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<SearchHitsContainer>("hitsContainers", HitsContainers);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<AlterationResponse>("queryAlterationResponse", QueryAlterationResponse);
             writer.WriteObjectValue<ResultTemplateDictionary>("resultTemplates", ResultTemplates);
             writer.WriteCollectionOfPrimitiveValues<string>("searchTerms", SearchTerms);

@@ -27,6 +27,8 @@ namespace ApiSdk.Models {
         public string LogonLocation { get; set; }
         /// <summary>Method of user sign in. Possible values are: unknown, interactive, remoteInteractive, network, batch, service.</summary>
         public ApiSdk.Models.LogonType? LogonType { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Active Directory (on-premises) Security Identifier (SID) of the user.</summary>
         public string OnPremisesSecurityIdentifier { get; set; }
         /// <summary>Provider-generated/calculated risk score of the user account. Recommended value range of 0-1, which equates to a percentage.</summary>
@@ -40,6 +42,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public UserSecurityState() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.userSecurityState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -64,6 +67,7 @@ namespace ApiSdk.Models {
                 {"logonIp", n => { LogonIp = n.GetStringValue(); } },
                 {"logonLocation", n => { LogonLocation = n.GetStringValue(); } },
                 {"logonType", n => { LogonType = n.GetEnumValue<LogonType>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
                 {"riskScore", n => { RiskScore = n.GetStringValue(); } },
                 {"userAccountType", n => { UserAccountType = n.GetEnumValue<UserAccountSecurityType>(); } },
@@ -86,6 +90,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("logonIp", LogonIp);
             writer.WriteStringValue("logonLocation", LogonLocation);
             writer.WriteEnumValue<LogonType>("logonType", LogonType);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("onPremisesSecurityIdentifier", OnPremisesSecurityIdentifier);
             writer.WriteStringValue("riskScore", RiskScore);
             writer.WriteEnumValue<UserAccountSecurityType>("userAccountType", UserAccountType);

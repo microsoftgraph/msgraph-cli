@@ -4,18 +4,24 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class DeviceConfigurationUserStatus : Entity, IParsable {
         /// <summary>Devices count for that user.</summary>
         public int? DevicesCount { get; set; }
         /// <summary>Last modified date time of the policy report.</summary>
         public DateTimeOffset? LastReportedDateTime { get; set; }
-        /// <summary>Compliance status of the policy report. Possible values are: unknown, notApplicable, compliant, remediated, nonCompliant, error, conflict, notAssigned.</summary>
+        /// <summary>The status property</summary>
         public ComplianceStatus? Status { get; set; }
         /// <summary>User name of the DevicePolicyStatus.</summary>
         public string UserDisplayName { get; set; }
         /// <summary>UserPrincipalName.</summary>
         public string UserPrincipalName { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceConfigurationUserStatus and sets the default values.
+        /// </summary>
+        public DeviceConfigurationUserStatus() : base() {
+            OdataType = "#microsoft.graph.deviceConfigurationUserStatus";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the directory singleton.</summary>
     public class AdministrativeUnit : DirectoryObject, IParsable {
         /// <summary>An optional description for the administrative unit. Supports $filter (eq, ne, in, startsWith), $search.</summary>
         public string Description { get; set; }
@@ -18,6 +17,12 @@ namespace ApiSdk.Models {
         public List<ScopedRoleMembership> ScopedRoleMembers { get; set; }
         /// <summary>Controls whether the administrative unit and its members are hidden or public. Can be set to HiddenMembership. If not set (value is null), the default behavior is public. When set to HiddenMembership, only members of the administrative unit can list other members of the administrative unit.</summary>
         public string Visibility { get; set; }
+        /// <summary>
+        /// Instantiates a new AdministrativeUnit and sets the default values.
+        /// </summary>
+        public AdministrativeUnit() : base() {
+            OdataType = "#microsoft.graph.administrativeUnit";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

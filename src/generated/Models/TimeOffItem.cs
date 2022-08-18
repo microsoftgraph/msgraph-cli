@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class TimeOffItem : ScheduleEntity, IParsable {
         /// <summary>ID of the timeOffReason for this timeOffItem. Required.</summary>
         public string TimeOffReasonId { get; set; }
+        /// <summary>
+        /// Instantiates a new TimeOffItem and sets the default values.
+        /// </summary>
+        public TimeOffItem() : base() {
+            OdataType = "#microsoft.graph.timeOffItem";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Apple push notification certificate.</summary>
     public class ApplePushNotificationCertificate : Entity, IParsable {
         /// <summary>Apple Id of the account used to create the MDM push certificate.</summary>
         public string AppleIdentifier { get; set; }
@@ -18,6 +17,12 @@ namespace ApiSdk.Models {
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Topic Id.</summary>
         public string TopicIdentifier { get; set; }
+        /// <summary>
+        /// Instantiates a new ApplePushNotificationCertificate and sets the default values.
+        /// </summary>
+        public ApplePushNotificationCertificate() : base() {
+            OdataType = "#microsoft.graph.applePushNotificationCertificate";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

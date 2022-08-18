@@ -47,13 +47,15 @@ namespace ApiSdk.Models.CallRecords {
         public float? MaxRatioOfConcealedSamples { get; set; }
         /// <summary>Maximum network propagation round-trip time computed as specified in [RFC 3550][], denoted in [ISO 8601][] format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
         public TimeSpan? MaxRoundTripTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Packet count for the stream.</summary>
         public long? PacketUtilization { get; set; }
         /// <summary>Packet loss rate after FEC has been applied aggregated across all video streams and codecs.</summary>
         public float? PostForwardErrorCorrectionPacketLossRate { get; set; }
         /// <summary>UTC time when the stream started. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? StartDateTime { get; set; }
-        /// <summary>Indicates the direction of the media stream. Possible values are: callerToCallee, calleeToCaller.</summary>
+        /// <summary>The streamDirection property</summary>
         public MediaStreamDirection? StreamDirection { get; set; }
         /// <summary>Unique identifier for the stream.</summary>
         public string StreamId { get; set; }
@@ -66,6 +68,7 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public MediaStream() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.callRecords.mediaStream";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -100,6 +103,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"maxPacketLossRate", n => { MaxPacketLossRate = n.GetFloatValue(); } },
                 {"maxRatioOfConcealedSamples", n => { MaxRatioOfConcealedSamples = n.GetFloatValue(); } },
                 {"maxRoundTripTime", n => { MaxRoundTripTime = n.GetTimeSpanValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"packetUtilization", n => { PacketUtilization = n.GetLongValue(); } },
                 {"postForwardErrorCorrectionPacketLossRate", n => { PostForwardErrorCorrectionPacketLossRate = n.GetFloatValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
@@ -135,6 +139,7 @@ namespace ApiSdk.Models.CallRecords {
             writer.WriteFloatValue("maxPacketLossRate", MaxPacketLossRate);
             writer.WriteFloatValue("maxRatioOfConcealedSamples", MaxRatioOfConcealedSamples);
             writer.WriteTimeSpanValue("maxRoundTripTime", MaxRoundTripTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteLongValue("packetUtilization", PacketUtilization);
             writer.WriteFloatValue("postForwardErrorCorrectionPacketLossRate", PostForwardErrorCorrectionPacketLossRate);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);

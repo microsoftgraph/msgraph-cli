@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,23 @@ namespace ApiSdk.Models {
         /// <summary>A set of string key and string value pairs to be sent to apps for users to whom the configuration is scoped, unalterned by this service</summary>
         public List<KeyValuePair> CustomSettings { get; set; }
         /// <summary>
+        /// Instantiates a new ManagedAppConfiguration and sets the default values.
+        /// </summary>
+        public ManagedAppConfiguration() : base() {
+            OdataType = "#microsoft.graph.managedAppConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
         public static new ManagedAppConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedAppConfiguration();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.targetedManagedAppConfiguration" => new TargetedManagedAppConfiguration(),
+                _ => new ManagedAppConfiguration(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

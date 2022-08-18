@@ -302,7 +302,7 @@ namespace ApiSdk.Education.Classes.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationClassItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationClassItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public EducationClassItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -327,7 +327,7 @@ namespace ApiSdk.Education.Classes.Item {
             /// <summary>Request query parameters</summary>
             public EducationClassItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EducationClassItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new educationClassItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationClassItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EducationClassItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -341,7 +341,7 @@ namespace ApiSdk.Education.Classes.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationClassItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationClassItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public EducationClassItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

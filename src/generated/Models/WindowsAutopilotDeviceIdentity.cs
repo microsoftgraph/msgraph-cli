@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>The windowsAutopilotDeviceIdentity resource represents a Windows Autopilot Device.</summary>
     public class WindowsAutopilotDeviceIdentity : Entity, IParsable {
         /// <summary>Addressable user name.</summary>
         public string AddressableUserName { get; set; }
@@ -12,7 +11,7 @@ namespace ApiSdk.Models {
         public string AzureActiveDirectoryDeviceId { get; set; }
         /// <summary>Display Name</summary>
         public string DisplayName { get; set; }
-        /// <summary>Intune enrollment state of the Windows autopilot device. Possible values are: unknown, enrolled, pendingReset, failed, notContacted, blocked.</summary>
+        /// <summary>The enrollmentState property</summary>
         public ApiSdk.Models.EnrollmentState? EnrollmentState { get; set; }
         /// <summary>Group Tag of the Windows autopilot device.</summary>
         public string GroupTag { get; set; }
@@ -38,6 +37,12 @@ namespace ApiSdk.Models {
         public string SystemFamily { get; set; }
         /// <summary>User Principal Name.</summary>
         public string UserPrincipalName { get; set; }
+        /// <summary>
+        /// Instantiates a new WindowsAutopilotDeviceIdentity and sets the default values.
+        /// </summary>
+        public WindowsAutopilotDeviceIdentity() : base() {
+            OdataType = "#microsoft.graph.windowsAutopilotDeviceIdentity";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

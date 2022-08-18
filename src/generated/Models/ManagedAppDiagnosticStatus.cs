@@ -10,6 +10,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Instruction on how to mitigate a failed validation</summary>
         public string MitigationInstruction { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The state of the operation</summary>
         public string State { get; set; }
         /// <summary>The validation friendly name</summary>
@@ -19,6 +21,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ManagedAppDiagnosticStatus() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.managedAppDiagnosticStatus";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"mitigationInstruction", n => { MitigationInstruction = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"state", n => { State = n.GetStringValue(); } },
                 {"validationName", n => { ValidationName = n.GetStringValue(); } },
             };
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("mitigationInstruction", MitigationInstruction);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("state", State);
             writer.WriteStringValue("validationName", ValidationName);
             writer.WriteAdditionalData(AdditionalData);

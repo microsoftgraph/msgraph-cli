@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AccessReviewInstance : Entity, IParsable {
         /// <summary>Returns the collection of reviewers who were contacted to complete this review. While the reviewers and fallbackReviewers properties of the accessReviewScheduleDefinition might specify group owners or managers as reviewers, contactedReviewers returns their individual identities. Supports $select. Read-only.</summary>
         public List<AccessReviewReviewer> ContactedReviewers { get; set; }
@@ -24,6 +23,12 @@ namespace ApiSdk.Models {
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>Specifies the status of an accessReview. Possible values: Initializing, NotStarted, Starting, InProgress, Completing, Completed, AutoReviewing, and AutoReviewed. Supports $select, $orderby, and $filter (eq only). Read-only.</summary>
         public string Status { get; set; }
+        /// <summary>
+        /// Instantiates a new AccessReviewInstance and sets the default values.
+        /// </summary>
+        public AccessReviewInstance() : base() {
+            OdataType = "#microsoft.graph.accessReviewInstance";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AppConsentApprovalRoute : Entity, IParsable {
         /// <summary>A collection of userConsentRequest objects for a specific application.</summary>
         public List<AppConsentRequest> AppConsentRequests { get; set; }
+        /// <summary>
+        /// Instantiates a new AppConsentApprovalRoute and sets the default values.
+        /// </summary>
+        public AppConsentApprovalRoute() : base() {
+            OdataType = "#microsoft.graph.appConsentApprovalRoute";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

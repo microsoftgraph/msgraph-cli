@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The inclusive upper bound of the integer range.</summary>
         public long? End { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The inclusive lower bound of the integer range.</summary>
         public long? Start { get; set; }
         /// <summary>
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IntegerRange() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.integerRange";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"end", n => { End = n.GetLongValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"start", n => { Start = n.GetLongValue(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteLongValue("end", End);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteLongValue("start", Start);
             writer.WriteAdditionalData(AdditionalData);
         }

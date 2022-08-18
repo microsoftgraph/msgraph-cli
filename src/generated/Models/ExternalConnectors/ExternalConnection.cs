@@ -20,8 +20,14 @@ namespace ApiSdk.Models.ExternalConnectors {
         public List<ConnectionOperation> Operations { get; set; }
         /// <summary>The schema property</summary>
         public ApiSdk.Models.ExternalConnectors.Schema Schema { get; set; }
-        /// <summary>Indicates the current state of the connection. Possible values are draft, ready, obsolete, and limitExceeded. Required.</summary>
+        /// <summary>Indicates the current state of the connection. Possible values are: draft, ready, obsolete, limitExceeded, unknownFutureValue.</summary>
         public ConnectionState? State { get; set; }
+        /// <summary>
+        /// Instantiates a new externalConnection and sets the default values.
+        /// </summary>
+        public ExternalConnection() : base() {
+            OdataType = "#microsoft.graph.externalConnectors.externalConnection";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

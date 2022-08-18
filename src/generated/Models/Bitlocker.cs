@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the informationProtection singleton.</summary>
     public class Bitlocker : Entity, IParsable {
         /// <summary>The recovery keys associated with the bitlocker entity.</summary>
         public List<BitlockerRecoveryKey> RecoveryKeys { get; set; }
+        /// <summary>
+        /// Instantiates a new Bitlocker and sets the default values.
+        /// </summary>
+        public Bitlocker() : base() {
+            OdataType = "#microsoft.graph.bitlocker";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

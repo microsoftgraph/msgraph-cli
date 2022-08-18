@@ -9,6 +9,12 @@ namespace ApiSdk.Models {
         /// <summary>Represents an assignment to managed devices in the tenant</summary>
         public DeviceAndAppManagementAssignmentTarget Target { get; set; }
         /// <summary>
+        /// Instantiates a new enrollmentConfigurationAssignment and sets the default values.
+        /// </summary>
+        public EnrollmentConfigurationAssignment() : base() {
+            OdataType = "#microsoft.graph.enrollmentConfigurationAssignment";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

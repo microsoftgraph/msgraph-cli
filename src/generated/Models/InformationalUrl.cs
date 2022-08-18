@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public string LogoUrl { get; set; }
         /// <summary>Link to the application&apos;s marketing page. For example, https://www.contoso.com/app/marketing</summary>
         public string MarketingUrl { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Link to the application&apos;s privacy statement. For example, https://www.contoso.com/app/privacy</summary>
         public string PrivacyStatementUrl { get; set; }
         /// <summary>Link to the application&apos;s support page. For example, https://www.contoso.com/app/support</summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public InformationalUrl() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.informationalUrl";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"logoUrl", n => { LogoUrl = n.GetStringValue(); } },
                 {"marketingUrl", n => { MarketingUrl = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"privacyStatementUrl", n => { PrivacyStatementUrl = n.GetStringValue(); } },
                 {"supportUrl", n => { SupportUrl = n.GetStringValue(); } },
                 {"termsOfServiceUrl", n => { TermsOfServiceUrl = n.GetStringValue(); } },
@@ -51,6 +55,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("logoUrl", LogoUrl);
             writer.WriteStringValue("marketingUrl", MarketingUrl);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("privacyStatementUrl", PrivacyStatementUrl);
             writer.WriteStringValue("supportUrl", SupportUrl);
             writer.WriteStringValue("termsOfServiceUrl", TermsOfServiceUrl);

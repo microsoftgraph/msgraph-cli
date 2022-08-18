@@ -1,7 +1,7 @@
 namespace ApiSdk.Models {
     /// <summary>Provides operations to manage the cloudCommunications singleton.</summary>
     public enum EndpointType {
-        @Default,
+        Default,
         Voicemail,
         SkypeForBusiness,
         SkypeForBusinessVoipPhone,

@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public bool? IsApprovalRequiredForAdd { get; set; }
         /// <summary>Indicates whether a request to update must be approved by an approver.</summary>
         public bool? IsApprovalRequiredForUpdate { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The description of the policy that the user is trying to request access using.</summary>
         public string PolicyDescription { get; set; }
         /// <summary>The display name of the policy that the user is trying to request access using.</summary>
@@ -26,6 +28,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AccessPackageAssignmentRequestRequirements() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.accessPackageAssignmentRequestRequirements";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -43,6 +46,7 @@ namespace ApiSdk.Models {
                 {"allowCustomAssignmentSchedule", n => { AllowCustomAssignmentSchedule = n.GetBoolValue(); } },
                 {"isApprovalRequiredForAdd", n => { IsApprovalRequiredForAdd = n.GetBoolValue(); } },
                 {"isApprovalRequiredForUpdate", n => { IsApprovalRequiredForUpdate = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"policyDescription", n => { PolicyDescription = n.GetStringValue(); } },
                 {"policyDisplayName", n => { PolicyDisplayName = n.GetStringValue(); } },
                 {"policyId", n => { PolicyId = n.GetStringValue(); } },
@@ -58,6 +62,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("allowCustomAssignmentSchedule", AllowCustomAssignmentSchedule);
             writer.WriteBoolValue("isApprovalRequiredForAdd", IsApprovalRequiredForAdd);
             writer.WriteBoolValue("isApprovalRequiredForUpdate", IsApprovalRequiredForUpdate);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("policyDescription", PolicyDescription);
             writer.WriteStringValue("policyDisplayName", PolicyDisplayName);
             writer.WriteStringValue("policyId", PolicyId);

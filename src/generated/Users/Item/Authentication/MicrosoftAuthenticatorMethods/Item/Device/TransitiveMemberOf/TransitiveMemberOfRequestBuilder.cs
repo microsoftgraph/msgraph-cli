@@ -70,11 +70,11 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item.De
             return command;
         }
         /// <summary>
-        /// Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.
+        /// Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.";
+            command.Description = "Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -220,7 +220,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item.De
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.
+        /// Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TransitiveMemberOfRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -239,7 +239,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item.De
             }
             return requestInfo;
         }
-        /// <summary>Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.</summary>
+        /// <summary>Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.</summary>
         public class TransitiveMemberOfRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

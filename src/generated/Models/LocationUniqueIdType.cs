@@ -4,7 +4,7 @@ namespace ApiSdk.Models {
         Unknown,
         LocationStore,
         Directory,
-        @Private,
+        Private,
         Bing,
     }
 }

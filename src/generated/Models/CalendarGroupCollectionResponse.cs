@@ -7,8 +7,8 @@ namespace ApiSdk.Models {
     public class CalendarGroupCollectionResponse : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The nextLink property</summary>
-        public string NextLink { get; set; }
+        /// <summary>The OdataNextLink property</summary>
+        public string OdataNextLink { get; set; }
         /// <summary>The value property</summary>
         public List<CalendarGroup> Value { get; set; }
         /// <summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.nextLink", n => { NextLink = n.GetStringValue(); } },
+                {"@odata.nextLink", n => { OdataNextLink = n.GetStringValue(); } },
                 {"value", n => { Value = n.GetCollectionOfObjectValues<CalendarGroup>(CalendarGroup.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("@odata.nextLink", NextLink);
+            writer.WriteStringValue("@odata.nextLink", OdataNextLink);
             writer.WriteCollectionOfObjectValues<CalendarGroup>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
