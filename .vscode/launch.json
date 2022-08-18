@@ -22,7 +22,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/src/bin/Debug/net6.0/mgc.dll",
-            "args": ["login", "--scopes", "User.ReadWrite Mail.ReadWrite"],
+            "args": ["login"],
             "cwd": "${workspaceFolder}/src",
             "envFile": "${workspaceFolder}/src/.env",
             "console": "internalConsole",

@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+## [0.1.0-preview.6] - 2022-08-18
+
+### Added
+- Added interactive browser login (`mgc login --strategy InteractiveBrowser`)
+
+### Changed
+- Fix issue with corrupted config files on changing user accounts
+
 ## [0.1.0-preview.5] - 2022-06-10
 ### Added
 - Add item sub-command for indexer paths (paths with id). `GET /users/{user-id}` changes from `mgc users get --user-id` to `mgc users item get --user-id`
