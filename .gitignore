@@ -577,3 +577,6 @@ app-settings.*.json
 
 # docker compose mounts
 tmp/
+
+# Exclude any matches under src/generated
+!src/generated/**
