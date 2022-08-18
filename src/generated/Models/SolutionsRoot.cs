@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public List<BookingBusiness> BookingBusinesses { get; set; }
         /// <summary>The bookingCurrencies property</summary>
         public List<BookingCurrency> BookingCurrencies { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new SolutionsRoot and sets the default values.
         /// </summary>
         public SolutionsRoot() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.solutionsRoot";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"bookingBusinesses", n => { BookingBusinesses = n.GetCollectionOfObjectValues<BookingBusiness>(BookingBusiness.CreateFromDiscriminatorValue).ToList(); } },
                 {"bookingCurrencies", n => { BookingCurrencies = n.GetCollectionOfObjectValues<BookingCurrency>(BookingCurrency.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<BookingBusiness>("bookingBusinesses", BookingBusinesses);
             writer.WriteCollectionOfObjectValues<BookingCurrency>("bookingCurrencies", BookingCurrencies);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

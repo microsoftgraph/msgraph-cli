@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Person : Entity, IParsable {
         /// <summary>The person&apos;s birthday.</summary>
         public string Birthday { get; set; }
@@ -26,7 +25,7 @@ namespace ApiSdk.Models {
         public string OfficeLocation { get; set; }
         /// <summary>Free-form notes that the user has taken about this person.</summary>
         public string PersonNotes { get; set; }
-        /// <summary>The type of person, for example distribution list.</summary>
+        /// <summary>The type of person.</summary>
         public ApiSdk.Models.PersonType PersonType { get; set; }
         /// <summary>The person&apos;s phone numbers.</summary>
         public List<Phone> Phones { get; set; }
@@ -44,6 +43,12 @@ namespace ApiSdk.Models {
         public List<Website> Websites { get; set; }
         /// <summary>The phonetic Japanese name of the person&apos;s company.</summary>
         public string YomiCompany { get; set; }
+        /// <summary>
+        /// Instantiates a new Person and sets the default values.
+        /// </summary>
+        public Person() : base() {
+            OdataType = "#microsoft.graph.person";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

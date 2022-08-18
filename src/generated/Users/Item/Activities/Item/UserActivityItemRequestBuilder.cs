@@ -256,7 +256,7 @@ namespace ApiSdk.Users.Item.Activities.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userActivityItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UserActivityItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UserActivityItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -281,7 +281,7 @@ namespace ApiSdk.Users.Item.Activities.Item {
             /// <summary>Request query parameters</summary>
             public UserActivityItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UserActivityItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new userActivityItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UserActivityItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UserActivityItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -295,7 +295,7 @@ namespace ApiSdk.Users.Item.Activities.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userActivityItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UserActivityItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UserActivityItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

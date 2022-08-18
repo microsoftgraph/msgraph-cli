@@ -23,9 +23,11 @@ namespace ApiSdk.Models {
         public Importance? MarkImportance { get; set; }
         /// <summary>The ID of the folder that a message will be moved to.</summary>
         public string MoveToFolder { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Indicates whether a message should be permanently deleted and not saved to the Deleted Items folder.</summary>
         public bool? PermanentDelete { get; set; }
-        /// <summary>The email address to which a message should be redirected.</summary>
+        /// <summary>The email addresses to which a message should be redirected.</summary>
         public List<Recipient> RedirectTo { get; set; }
         /// <summary>Indicates whether subsequent rules should be evaluated.</summary>
         public bool? StopProcessingRules { get; set; }
@@ -34,6 +36,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public MessageRuleActions() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.messageRuleActions";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -56,6 +59,7 @@ namespace ApiSdk.Models {
                 {"markAsRead", n => { MarkAsRead = n.GetBoolValue(); } },
                 {"markImportance", n => { MarkImportance = n.GetEnumValue<Importance>(); } },
                 {"moveToFolder", n => { MoveToFolder = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"permanentDelete", n => { PermanentDelete = n.GetBoolValue(); } },
                 {"redirectTo", n => { RedirectTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"stopProcessingRules", n => { StopProcessingRules = n.GetBoolValue(); } },
@@ -75,6 +79,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("markAsRead", MarkAsRead);
             writer.WriteEnumValue<Importance>("markImportance", MarkImportance);
             writer.WriteStringValue("moveToFolder", MoveToFolder);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("permanentDelete", PermanentDelete);
             writer.WriteCollectionOfObjectValues<Recipient>("redirectTo", RedirectTo);
             writer.WriteBoolValue("stopProcessingRules", StopProcessingRules);

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class OnenotePage : OnenoteEntitySchemaObjectModel, IParsable {
         /// <summary>The page&apos;s HTML content.</summary>
         public byte[] Content { get; set; }
@@ -28,6 +28,12 @@ namespace ApiSdk.Models {
         public string Title { get; set; }
         /// <summary>The userTags property</summary>
         public List<string> UserTags { get; set; }
+        /// <summary>
+        /// Instantiates a new onenotePage and sets the default values.
+        /// </summary>
+        public OnenotePage() : base() {
+            OdataType = "#microsoft.graph.onenotePage";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

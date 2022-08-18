@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AppScope : Entity, IParsable {
-        /// <summary>Provides the display name of the app-specific resource represented by the app scope. Provided for display purposes since appScopeId is often an immutable, non-human-readable id. This property is read only.</summary>
+        /// <summary>Provides the display name of the app-specific resource represented by the app scope. Provided for display purposes since appScopeId is often an immutable, non-human-readable id. Read-only.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Describes the type of app-specific resource represented by the app scope. Provided for display purposes, so a user interface can convey to the user the kind of app specific resource represented by the app scope. This property is read only.</summary>
+        /// <summary>Describes the type of app-specific resource represented by the app scope. Provided for display purposes, so a user interface can convey to the user the kind of app specific resource represented by the app scope. Read-only.</summary>
         public string Type { get; set; }
+        /// <summary>
+        /// Instantiates a new AppScope and sets the default values.
+        /// </summary>
+        public AppScope() : base() {
+            OdataType = "#microsoft.graph.appScope";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

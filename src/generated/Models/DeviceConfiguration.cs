@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,12 @@ namespace ApiSdk.Models {
         /// <summary>Version of the device configuration.</summary>
         public int? Version { get; set; }
         /// <summary>
+        /// Instantiates a new deviceConfiguration and sets the default values.
+        /// </summary>
+        public DeviceConfiguration() : base() {
+            OdataType = "#microsoft.graph.deviceConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
@@ -45,9 +52,11 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.editionUpgradeConfiguration" => new EditionUpgradeConfiguration(),
                 "#microsoft.graph.iosCertificateProfile" => new IosCertificateProfile(),
                 "#microsoft.graph.iosCustomConfiguration" => new IosCustomConfiguration(),
+                "#microsoft.graph.iosDeviceFeaturesConfiguration" => new IosDeviceFeaturesConfiguration(),
                 "#microsoft.graph.iosGeneralDeviceConfiguration" => new IosGeneralDeviceConfiguration(),
                 "#microsoft.graph.iosUpdateConfiguration" => new IosUpdateConfiguration(),
                 "#microsoft.graph.macOSCustomConfiguration" => new MacOSCustomConfiguration(),
+                "#microsoft.graph.macOSDeviceFeaturesConfiguration" => new MacOSDeviceFeaturesConfiguration(),
                 "#microsoft.graph.macOSGeneralDeviceConfiguration" => new MacOSGeneralDeviceConfiguration(),
                 "#microsoft.graph.sharedPCConfiguration" => new SharedPCConfiguration(),
                 "#microsoft.graph.windows10CustomConfiguration" => new Windows10CustomConfiguration(),

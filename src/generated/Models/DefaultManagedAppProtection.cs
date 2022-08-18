@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Policy used to configure detailed management settings for a specified set of apps for all users not targeted by a TargetedManagedAppProtection Policy</summary>
     public class DefaultManagedAppProtection : ManagedAppProtection, IParsable {
-        /// <summary>Type of encryption which should be used for data in a managed app. (iOS Only). Possible values are: useDeviceSettings, afterDeviceRestart, whenDeviceLockedExceptOpenFiles, whenDeviceLocked.</summary>
+        /// <summary>Represents the level to which app data is encrypted for managed apps</summary>
         public ManagedAppDataEncryptionType? AppDataEncryptionType { get; set; }
         /// <summary>List of apps to which the policy is deployed.</summary>
         public List<ManagedMobileApp> Apps { get; set; }
@@ -30,6 +29,12 @@ namespace ApiSdk.Models {
         public string MinimumWarningPatchVersion { get; set; }
         /// <summary>Indicates whether screen capture is blocked. (Android only)</summary>
         public bool? ScreenCaptureBlocked { get; set; }
+        /// <summary>
+        /// Instantiates a new DefaultManagedAppProtection and sets the default values.
+        /// </summary>
+        public DefaultManagedAppProtection() : base() {
+            OdataType = "#microsoft.graph.defaultManagedAppProtection";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

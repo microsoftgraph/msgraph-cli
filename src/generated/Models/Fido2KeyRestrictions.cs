@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public Fido2RestrictionEnforcementType? EnforcementType { get; set; }
         /// <summary>Determines if the configured key enforcement is enabled.</summary>
         public bool? IsEnforced { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new fido2KeyRestrictions and sets the default values.
         /// </summary>
         public Fido2KeyRestrictions() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.fido2KeyRestrictions";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"aaGuids", n => { AaGuids = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"enforcementType", n => { EnforcementType = n.GetEnumValue<Fido2RestrictionEnforcementType>(); } },
                 {"isEnforced", n => { IsEnforced = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfPrimitiveValues<string>("aaGuids", AaGuids);
             writer.WriteEnumValue<Fido2RestrictionEnforcementType>("enforcementType", EnforcementType);
             writer.WriteBoolValue("isEnforced", IsEnforced);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

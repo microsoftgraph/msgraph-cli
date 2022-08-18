@@ -106,11 +106,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return command;
         }
         /// <summary>
-        /// Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.
+        /// If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.";
+            command.Description = "If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.";
             // Create options for all the parameters
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
             };
@@ -271,7 +271,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.
+        /// If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AccessReviewInstanceItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -318,14 +318,14 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessReviewInstanceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewInstanceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewInstanceItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.</summary>
+        /// <summary>If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.</summary>
         public class AccessReviewInstanceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -343,7 +343,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             /// <summary>Request query parameters</summary>
             public AccessReviewInstanceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AccessReviewInstanceItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new accessReviewInstanceItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewInstanceItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewInstanceItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -357,7 +357,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessReviewInstanceItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

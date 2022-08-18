@@ -10,6 +10,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The time of the day when work stops. For example, 17:00:00.0000000.</summary>
         public Time? EndTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The time of the day when work starts. For example, 08:00:00.0000000.</summary>
         public Time? StartTime { get; set; }
         /// <summary>
@@ -17,6 +19,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public BookingWorkTimeSlot() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.bookingWorkTimeSlot";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"endTime", n => { EndTime = n.GetTimeValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startTime", n => { StartTime = n.GetTimeValue(); } },
             };
         }
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteTimeValue("endTime", EndTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteTimeValue("startTime", StartTime);
             writer.WriteAdditionalData(AdditionalData);
         }

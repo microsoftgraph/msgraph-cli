@@ -1,15 +1,21 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Policy used to configure detailed management settings targeted to specific security groups</summary>
     public class TargetedManagedAppProtection : ManagedAppProtection, IParsable {
         /// <summary>Navigation property to list of inclusion and exclusion groups to which the policy is deployed.</summary>
         public List<TargetedManagedAppPolicyAssignment> Assignments { get; set; }
         /// <summary>Indicates if the policy is deployed to any inclusion groups or not.</summary>
         public bool? IsAssigned { get; set; }
+        /// <summary>
+        /// Instantiates a new TargetedManagedAppProtection and sets the default values.
+        /// </summary>
+        public TargetedManagedAppProtection() : base() {
+            OdataType = "#microsoft.graph.targetedManagedAppProtection";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

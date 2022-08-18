@@ -16,6 +16,8 @@ namespace ApiSdk.Models {
         public bool? Inventory { get; set; }
         /// <summary>Whether modern application is managed by Intune</summary>
         public bool? ModernApps { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Whether resource access is managed by Intune</summary>
         public bool? ResourceAccess { get; set; }
         /// <summary>Whether Windows Update for Business is managed by Intune</summary>
@@ -25,6 +27,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ConfigurationManagerClientEnabledFeatures() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.configurationManagerClientEnabledFeatures";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -43,6 +46,7 @@ namespace ApiSdk.Models {
                 {"deviceConfiguration", n => { DeviceConfiguration = n.GetBoolValue(); } },
                 {"inventory", n => { Inventory = n.GetBoolValue(); } },
                 {"modernApps", n => { ModernApps = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"resourceAccess", n => { ResourceAccess = n.GetBoolValue(); } },
                 {"windowsUpdateForBusiness", n => { WindowsUpdateForBusiness = n.GetBoolValue(); } },
             };
@@ -57,6 +61,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("deviceConfiguration", DeviceConfiguration);
             writer.WriteBoolValue("inventory", Inventory);
             writer.WriteBoolValue("modernApps", ModernApps);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("resourceAccess", ResourceAccess);
             writer.WriteBoolValue("windowsUpdateForBusiness", WindowsUpdateForBusiness);
             writer.WriteAdditionalData(AdditionalData);

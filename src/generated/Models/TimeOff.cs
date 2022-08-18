@@ -12,6 +12,12 @@ namespace ApiSdk.Models {
         /// <summary>ID of the user assigned to the timeOff. Required.</summary>
         public string UserId { get; set; }
         /// <summary>
+        /// Instantiates a new TimeOff and sets the default values.
+        /// </summary>
+        public TimeOff() : base() {
+            OdataType = "#microsoft.graph.timeOff";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

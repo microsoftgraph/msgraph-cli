@@ -263,7 +263,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new directoryRoleTemplateItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryRoleTemplateItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryRoleTemplateItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -288,7 +288,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             /// <summary>Request query parameters</summary>
             public DirectoryRoleTemplateItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DirectoryRoleTemplateItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new directoryRoleTemplateItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryRoleTemplateItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryRoleTemplateItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -302,7 +302,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new directoryRoleTemplateItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryRoleTemplateItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryRoleTemplateItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

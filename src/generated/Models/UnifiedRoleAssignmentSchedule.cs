@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         /// <summary>The period of the role assignment. It can represent a single occurrence or multiple recurrences.</summary>
         public RequestSchedule ScheduleInfo { get; set; }
         /// <summary>
+        /// Instantiates a new UnifiedRoleAssignmentSchedule and sets the default values.
+        /// </summary>
+        public UnifiedRoleAssignmentSchedule() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleAssignmentSchedule";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

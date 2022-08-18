@@ -12,6 +12,12 @@ namespace ApiSdk.Models {
         /// <summary>The id of the user.</summary>
         public string UserId { get; set; }
         /// <summary>
+        /// Instantiates a new RiskyUserHistoryItem and sets the default values.
+        /// </summary>
+        public RiskyUserHistoryItem() : base() {
+            OdataType = "#microsoft.graph.riskyUserHistoryItem";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

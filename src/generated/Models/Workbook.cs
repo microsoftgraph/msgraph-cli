@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Workbook : Entity, IParsable {
         /// <summary>The application property</summary>
         public WorkbookApplication Application { get; set; }
@@ -14,12 +13,18 @@ namespace ApiSdk.Models {
         public WorkbookFunctions Functions { get; set; }
         /// <summary>Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.</summary>
         public List<WorkbookNamedItem> Names { get; set; }
-        /// <summary>The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.</summary>
+        /// <summary>The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.</summary>
         public List<WorkbookOperation> Operations { get; set; }
         /// <summary>Represents a collection of tables associated with the workbook. Read-only.</summary>
         public List<WorkbookTable> Tables { get; set; }
         /// <summary>Represents a collection of worksheets associated with the workbook. Read-only.</summary>
         public List<WorkbookWorksheet> Worksheets { get; set; }
+        /// <summary>
+        /// Instantiates a new workbook and sets the default values.
+        /// </summary>
+        public Workbook() : base() {
+            OdataType = "#microsoft.graph.workbook";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

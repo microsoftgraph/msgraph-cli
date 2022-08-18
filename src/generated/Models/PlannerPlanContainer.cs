@@ -9,7 +9,9 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The identifier of the resource that contains the plan.</summary>
         public string ContainerId { get; set; }
-        /// <summary>The type of the resource that contains the plan. See the previous table for supported types. Possible values are: group, unknownFutureValue, roster. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: roster.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The type property</summary>
         public PlannerContainerType? Type { get; set; }
         /// <summary>The full canonical URL of the container.</summary>
         public string Url { get; set; }
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public PlannerPlanContainer() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.plannerPlanContainer";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"containerId", n => { ContainerId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<PlannerContainerType>(); } },
                 {"url", n => { Url = n.GetStringValue(); } },
             };
@@ -44,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("containerId", ContainerId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<PlannerContainerType>("type", Type);
             writer.WriteStringValue("url", Url);
             writer.WriteAdditionalData(AdditionalData);

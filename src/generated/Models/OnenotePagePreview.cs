@@ -9,13 +9,16 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The links property</summary>
         public OnenotePagePreviewLinks Links { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The previewText property</summary>
         public string PreviewText { get; set; }
         /// <summary>
-        /// Instantiates a new OnenotePagePreview and sets the default values.
+        /// Instantiates a new onenotePagePreview and sets the default values.
         /// </summary>
         public OnenotePagePreview() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.onenotePagePreview";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"links", n => { Links = n.GetObjectValue<OnenotePagePreviewLinks>(OnenotePagePreviewLinks.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"previewText", n => { PreviewText = n.GetStringValue(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<OnenotePagePreviewLinks>("links", Links);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("previewText", PreviewText);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -12,6 +12,12 @@ namespace ApiSdk.Models {
         /// <summary>The mail recipient whose policies are used to assess the mail.</summary>
         public string RecipientEmail { get; set; }
         /// <summary>
+        /// Instantiates a new MailAssessmentRequest and sets the default values.
+        /// </summary>
+        public MailAssessmentRequest() : base() {
+            OdataType = "#microsoft.graph.mailAssessmentRequest";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

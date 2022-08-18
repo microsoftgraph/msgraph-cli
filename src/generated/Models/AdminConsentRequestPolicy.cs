@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the policyRoot singleton.</summary>
     public class AdminConsentRequestPolicy : Entity, IParsable {
         /// <summary>Specifies whether the admin consent request feature is enabled or disabled. Required.</summary>
         public bool? IsEnabled { get; set; }
@@ -14,10 +13,16 @@ namespace ApiSdk.Models {
         public bool? RemindersEnabled { get; set; }
         /// <summary>Specifies the duration the request is active before it automatically expires if no decision is applied.</summary>
         public int? RequestDurationInDays { get; set; }
-        /// <summary>Required.</summary>
+        /// <summary>The list of reviewers for the admin consent. Required.</summary>
         public List<AccessReviewReviewerScope> Reviewers { get; set; }
         /// <summary>Specifies the version of this policy. When the policy is updated, this version is updated. Read-only.</summary>
         public int? Version { get; set; }
+        /// <summary>
+        /// Instantiates a new AdminConsentRequestPolicy and sets the default values.
+        /// </summary>
+        public AdminConsentRequestPolicy() : base() {
+            OdataType = "#microsoft.graph.adminConsentRequestPolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

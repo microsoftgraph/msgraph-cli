@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The list of available print connectors.</summary>
         public List<PrintConnector> Connectors { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The list of print long running operations.</summary>
         public List<PrintOperation> Operations { get; set; }
         /// <summary>The list of printers registered in the tenant.</summary>
@@ -26,6 +28,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public Print() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.print";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -41,6 +44,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"connectors", n => { Connectors = n.GetCollectionOfObjectValues<PrintConnector>(PrintConnector.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operations", n => { Operations = n.GetCollectionOfObjectValues<PrintOperation>(PrintOperation.CreateFromDiscriminatorValue).ToList(); } },
                 {"printers", n => { Printers = n.GetCollectionOfObjectValues<Printer>(Printer.CreateFromDiscriminatorValue).ToList(); } },
                 {"services", n => { Services = n.GetCollectionOfObjectValues<PrintService>(PrintService.CreateFromDiscriminatorValue).ToList(); } },
@@ -56,6 +60,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<PrintConnector>("connectors", Connectors);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfObjectValues<PrintOperation>("operations", Operations);
             writer.WriteCollectionOfObjectValues<Printer>("printers", Printers);
             writer.WriteCollectionOfObjectValues<PrintService>("services", Services);

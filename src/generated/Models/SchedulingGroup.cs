@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class SchedulingGroup : ChangeTrackedEntity, IParsable {
         /// <summary>The display name for the schedulingGroup. Required.</summary>
         public string DisplayName { get; set; }
@@ -12,6 +12,12 @@ namespace ApiSdk.Models {
         public bool? IsActive { get; set; }
         /// <summary>The list of user IDs that are a member of the schedulingGroup. Required.</summary>
         public List<string> UserIds { get; set; }
+        /// <summary>
+        /// Instantiates a new schedulingGroup and sets the default values.
+        /// </summary>
+        public SchedulingGroup() : base() {
+            OdataType = "#microsoft.graph.schedulingGroup";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

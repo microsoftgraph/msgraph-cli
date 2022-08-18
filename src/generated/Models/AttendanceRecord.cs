@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the cloudCommunications singleton.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class AttendanceRecord : Entity, IParsable {
         /// <summary>List of time periods between joining and leaving a meeting.</summary>
         public List<AttendanceInterval> AttendanceIntervals { get; set; }
@@ -16,6 +16,12 @@ namespace ApiSdk.Models {
         public string Role { get; set; }
         /// <summary>Total duration of the attendances in seconds.</summary>
         public int? TotalAttendanceInSeconds { get; set; }
+        /// <summary>
+        /// Instantiates a new attendanceRecord and sets the default values.
+        /// </summary>
+        public AttendanceRecord() : base() {
+            OdataType = "#microsoft.graph.attendanceRecord";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

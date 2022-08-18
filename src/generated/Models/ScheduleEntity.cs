@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The endDateTime property</summary>
         public DateTimeOffset? EndDateTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The startDateTime property</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>The theme property</summary>
@@ -18,6 +21,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ScheduleEntity() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.scheduleEntity";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -25,7 +29,14 @@ namespace ApiSdk.Models {
         /// </summary>
         public static ScheduleEntity CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ScheduleEntity();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.openShiftItem" => new OpenShiftItem(),
+                "#microsoft.graph.shiftItem" => new ShiftItem(),
+                "#microsoft.graph.timeOffItem" => new TimeOffItem(),
+                _ => new ScheduleEntity(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -33,6 +44,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"theme", n => { Theme = n.GetEnumValue<ScheduleEntityTheme>(); } },
             };
@@ -44,6 +56,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteEnumValue<ScheduleEntityTheme>("theme", Theme);
             writer.WriteAdditionalData(AdditionalData);

@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public string AssignedTo { get; set; }
         /// <summary>Provides optional comment about the control.</summary>
         public string Comment { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>State of the control, which can be modified via a PATCH command (for example, ignored, thirdParty).</summary>
         public string State { get; set; }
         /// <summary>ID of the user who updated tenant state.</summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public SecureScoreControlStateUpdate() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.secureScoreControlStateUpdate";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"assignedTo", n => { AssignedTo = n.GetStringValue(); } },
                 {"comment", n => { Comment = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"state", n => { State = n.GetStringValue(); } },
                 {"updatedBy", n => { UpdatedBy = n.GetStringValue(); } },
                 {"updatedDateTime", n => { UpdatedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -51,6 +55,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("assignedTo", AssignedTo);
             writer.WriteStringValue("comment", Comment);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("state", State);
             writer.WriteStringValue("updatedBy", UpdatedBy);
             writer.WriteDateTimeOffsetValue("updatedDateTime", UpdatedDateTime);

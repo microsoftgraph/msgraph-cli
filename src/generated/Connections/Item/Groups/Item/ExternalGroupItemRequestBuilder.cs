@@ -256,7 +256,7 @@ namespace ApiSdk.Connections.Item.Groups.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new externalGroupItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ExternalGroupItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ExternalGroupItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -281,7 +281,7 @@ namespace ApiSdk.Connections.Item.Groups.Item {
             /// <summary>Request query parameters</summary>
             public ExternalGroupItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ExternalGroupItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new externalGroupItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ExternalGroupItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ExternalGroupItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -295,7 +295,7 @@ namespace ApiSdk.Connections.Item.Groups.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new externalGroupItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ExternalGroupItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ExternalGroupItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

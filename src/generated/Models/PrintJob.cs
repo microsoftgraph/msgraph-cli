@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the print singleton.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class PrintJob : Entity, IParsable {
         /// <summary>The configuration property</summary>
         public PrintJobConfiguration Configuration { get; set; }
@@ -24,6 +24,12 @@ namespace ApiSdk.Models {
         public PrintJobStatus Status { get; set; }
         /// <summary>A list of printTasks that were triggered by this print job.</summary>
         public List<PrintTask> Tasks { get; set; }
+        /// <summary>
+        /// Instantiates a new printJob and sets the default values.
+        /// </summary>
+        public PrintJob() : base() {
+            OdataType = "#microsoft.graph.printJob";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

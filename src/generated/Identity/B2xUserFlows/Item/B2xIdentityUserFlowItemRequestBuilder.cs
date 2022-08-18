@@ -59,11 +59,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             return command;
         }
         /// <summary>
-        /// Represents entry point for B2X and self-service sign-up identity userflows.
+        /// Represents entry point for B2X/self-service sign-up identity userflows.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents entry point for B2X and self-service sign-up identity userflows.";
+            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
@@ -221,7 +221,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents entry point for B2X and self-service sign-up identity userflows.
+        /// Represents entry point for B2X/self-service sign-up identity userflows.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<B2xIdentityUserFlowItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -268,14 +268,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new b2xIdentityUserFlowItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new B2xIdentityUserFlowItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public B2xIdentityUserFlowItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Represents entry point for B2X and self-service sign-up identity userflows.</summary>
+        /// <summary>Represents entry point for B2X/self-service sign-up identity userflows.</summary>
         public class B2xIdentityUserFlowItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -293,7 +293,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             /// <summary>Request query parameters</summary>
             public B2xIdentityUserFlowItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new B2xIdentityUserFlowItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new b2xIdentityUserFlowItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new B2xIdentityUserFlowItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public B2xIdentityUserFlowItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -307,7 +307,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new b2xIdentityUserFlowItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new B2xIdentityUserFlowItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public B2xIdentityUserFlowItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Policy for Windows information protection without MDM</summary>
     public class WindowsInformationProtectionPolicy : WindowsInformationProtection, IParsable {
         /// <summary>Offline interval before app data is wiped (days)</summary>
         public int? DaysWithoutContactBeforeUnenroll { get; set; }
@@ -18,18 +17,24 @@ namespace ApiSdk.Models {
         public int? PasswordMaximumAttemptCount { get; set; }
         /// <summary>Integer value specifies the period of time (in days) that a PIN can be used before the system requires the user to change it. The largest number you can configure for this policy setting is 730. The lowest number you can configure for this policy setting is 0. If this policy is set to 0, then the user&apos;s PIN will never expire. This node was added in Windows 10, version 1511. Default is 0.</summary>
         public int? PinExpirationDays { get; set; }
-        /// <summary>Integer value that configures the use of lowercase letters in the Windows Hello for Business PIN. Default is NotAllow. Possible values are: notAllow, requireAtLeastOne, allow.</summary>
+        /// <summary>Pin Character Requirements</summary>
         public WindowsInformationProtectionPinCharacterRequirements? PinLowercaseLetters { get; set; }
         /// <summary>Integer value that sets the minimum number of characters required for the PIN. Default value is 4. The lowest number you can configure for this policy setting is 4. The largest number you can configure must be less than the number configured in the Maximum PIN length policy setting or the number 127, whichever is the lowest.</summary>
         public int? PinMinimumLength { get; set; }
-        /// <summary>Integer value that configures the use of special characters in the Windows Hello for Business PIN. Valid special characters for Windows Hello for Business PIN gestures include: ! &apos; # $ % &amp; &apos; ( )  + , - . / : ; &lt; = &gt; ? @ [ / ] ^  ` {</summary>
+        /// <summary>Pin Character Requirements</summary>
         public WindowsInformationProtectionPinCharacterRequirements? PinSpecialCharacters { get; set; }
-        /// <summary>Integer value that configures the use of uppercase letters in the Windows Hello for Business PIN. Default is NotAllow. Possible values are: notAllow, requireAtLeastOne, allow.</summary>
+        /// <summary>Pin Character Requirements</summary>
         public WindowsInformationProtectionPinCharacterRequirements? PinUppercaseLetters { get; set; }
         /// <summary>New property in RS2, pending documentation</summary>
         public bool? RevokeOnMdmHandoffDisabled { get; set; }
         /// <summary>Boolean value that sets Windows Hello for Business as a method for signing into Windows.</summary>
         public bool? WindowsHelloForBusinessBlocked { get; set; }
+        /// <summary>
+        /// Instantiates a new WindowsInformationProtectionPolicy and sets the default values.
+        /// </summary>
+        public WindowsInformationProtectionPolicy() : base() {
+            OdataType = "#microsoft.graph.windowsInformationProtectionPolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,14 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The recipient&apos;s email address.</summary>
         public ApiSdk.Models.EmailAddress EmailAddress { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new recipient and sets the default values.
         /// </summary>
         public Recipient() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.recipient";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -21,7 +25,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public static Recipient CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Recipient();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.attendee" => new Attendee(),
+                "#microsoft.graph.attendeeBase" => new AttendeeBase(),
+                _ => new Recipient(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -29,6 +39,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"emailAddress", n => { EmailAddress = n.GetObjectValue<ApiSdk.Models.EmailAddress>(ApiSdk.Models.EmailAddress.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -38,6 +49,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<ApiSdk.Models.EmailAddress>("emailAddress", EmailAddress);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

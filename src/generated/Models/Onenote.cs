@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Onenote : Entity, IParsable {
         /// <summary>The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.</summary>
         public List<Notebook> Notebooks { get; set; }
@@ -18,6 +17,12 @@ namespace ApiSdk.Models {
         public List<SectionGroup> SectionGroups { get; set; }
         /// <summary>The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.</summary>
         public List<OnenoteSection> Sections { get; set; }
+        /// <summary>
+        /// Instantiates a new onenote and sets the default values.
+        /// </summary>
+        public Onenote() : base() {
+            OdataType = "#microsoft.graph.onenote";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

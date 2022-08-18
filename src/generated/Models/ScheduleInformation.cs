@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public string AvailabilityView { get; set; }
         /// <summary>Error information from attempting to get the availability of the user, distribution list, or resource.</summary>
         public FreeBusyError Error { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>An SMTP address of the user, distribution list, or resource, identifying an instance of scheduleInformation.</summary>
         public string ScheduleId { get; set; }
         /// <summary>Contains the items that describe the availability of the user or resource.</summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ScheduleInformation() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.scheduleInformation";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"availabilityView", n => { AvailabilityView = n.GetStringValue(); } },
                 {"error", n => { Error = n.GetObjectValue<FreeBusyError>(FreeBusyError.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"scheduleId", n => { ScheduleId = n.GetStringValue(); } },
                 {"scheduleItems", n => { ScheduleItems = n.GetCollectionOfObjectValues<ScheduleItem>(ScheduleItem.CreateFromDiscriminatorValue).ToList(); } },
                 {"workingHours", n => { WorkingHours = n.GetObjectValue<ApiSdk.Models.WorkingHours>(ApiSdk.Models.WorkingHours.CreateFromDiscriminatorValue); } },
@@ -51,6 +55,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("availabilityView", AvailabilityView);
             writer.WriteObjectValue<FreeBusyError>("error", Error);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("scheduleId", ScheduleId);
             writer.WriteCollectionOfObjectValues<ScheduleItem>("scheduleItems", ScheduleItems);
             writer.WriteObjectValue<ApiSdk.Models.WorkingHours>("workingHours", WorkingHours);

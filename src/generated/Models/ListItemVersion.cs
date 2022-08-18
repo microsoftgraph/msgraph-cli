@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,23 @@ namespace ApiSdk.Models {
         /// <summary>A collection of the fields and values for this version of the list item.</summary>
         public FieldValueSet Fields { get; set; }
         /// <summary>
+        /// Instantiates a new ListItemVersion and sets the default values.
+        /// </summary>
+        public ListItemVersion() : base() {
+            OdataType = "#microsoft.graph.listItemVersion";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
         public static new ListItemVersion CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ListItemVersion();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.documentSetVersion" => new DocumentSetVersion(),
+                _ => new ListItemVersion(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

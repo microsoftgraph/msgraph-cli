@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public bool? Hidden { get; set; }
         /// <summary>The identity property</summary>
         public IdentitySet Identity { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Optional. The ID of the target participant.</summary>
         public string ParticipantId { get; set; }
         /// <summary>The removeFromDefaultAudioRoutingGroup property</summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public InvitationParticipantInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.invitationParticipantInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"hidden", n => { Hidden = n.GetBoolValue(); } },
                 {"identity", n => { Identity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"participantId", n => { ParticipantId = n.GetStringValue(); } },
                 {"removeFromDefaultAudioRoutingGroup", n => { RemoveFromDefaultAudioRoutingGroup = n.GetBoolValue(); } },
                 {"replacesCallId", n => { ReplacesCallId = n.GetStringValue(); } },
@@ -51,6 +55,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("hidden", Hidden);
             writer.WriteObjectValue<IdentitySet>("identity", Identity);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("participantId", ParticipantId);
             writer.WriteBoolValue("removeFromDefaultAudioRoutingGroup", RemoveFromDefaultAudioRoutingGroup);
             writer.WriteStringValue("replacesCallId", ReplacesCallId);

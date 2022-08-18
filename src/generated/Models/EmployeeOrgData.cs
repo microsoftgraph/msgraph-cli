@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public string CostCenter { get; set; }
         /// <summary>The name of the division in which the user works. Returned only on $select. Supports $filter.</summary>
         public string Division { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new employeeOrgData and sets the default values.
         /// </summary>
         public EmployeeOrgData() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.employeeOrgData";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"costCenter", n => { CostCenter = n.GetStringValue(); } },
                 {"division", n => { Division = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("costCenter", CostCenter);
             writer.WriteStringValue("division", Division);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

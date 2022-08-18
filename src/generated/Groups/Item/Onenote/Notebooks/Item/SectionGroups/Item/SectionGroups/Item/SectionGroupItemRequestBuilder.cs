@@ -152,7 +152,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGr
             /// <summary>Request query parameters</summary>
             public SectionGroupItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SectionGroupItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new sectionGroupItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SectionGroupItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SectionGroupItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

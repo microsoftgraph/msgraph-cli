@@ -9,12 +9,14 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Indicates the visible name defined for the resource. Typically specified when the resource is created.</summary>
         public string DisplayName { get; set; }
-        /// <summary>When type is set to Group, this indicates the group type.  Possible values are: unifiedGroups, azureAD, and unknownFutureValue</summary>
+        /// <summary>When type is set to Group, this indicates the group type. Possible values are: unifiedGroups, azureAD, and unknownFutureValue</summary>
         public ApiSdk.Models.GroupType? GroupType { get; set; }
         /// <summary>Indicates the unique ID of the resource.</summary>
         public string Id { get; set; }
         /// <summary>Indicates name, old value and new value of each attribute that changed. Property values depend on the operation type.</summary>
         public List<ModifiedProperty> ModifiedProperties { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Describes the resource type.  Example values include Application, Group, ServicePrincipal, and User.</summary>
         public string Type { get; set; }
         /// <summary>When type is set to User, this includes the user name that initiated the action; null for other types.</summary>
@@ -24,6 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public TargetResource() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.targetResource";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -42,6 +45,7 @@ namespace ApiSdk.Models {
                 {"groupType", n => { GroupType = n.GetEnumValue<GroupType>(); } },
                 {"id", n => { Id = n.GetStringValue(); } },
                 {"modifiedProperties", n => { ModifiedProperties = n.GetCollectionOfObjectValues<ModifiedProperty>(ModifiedProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetStringValue(); } },
                 {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
@@ -56,6 +60,7 @@ namespace ApiSdk.Models {
             writer.WriteEnumValue<GroupType>("groupType", GroupType);
             writer.WriteStringValue("id", Id);
             writer.WriteCollectionOfObjectValues<ModifiedProperty>("modifiedProperties", ModifiedProperties);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("type", Type);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);
             writer.WriteAdditionalData(AdditionalData);

@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public DetailsInfo Details { get; set; }
         /// <summary>Name of the step.</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Type of step. Possible values are: import, scoping, matching, processing, referenceResolution, export, unknownFutureValue.</summary>
         public ApiSdk.Models.ProvisioningStepType? ProvisioningStepType { get; set; }
         /// <summary>Status of the step. Possible values are: success, warning,  failure, skipped, unknownFutureValue.</summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ProvisioningStep() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.provisioningStep";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -39,6 +42,7 @@ namespace ApiSdk.Models {
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"details", n => { Details = n.GetObjectValue<DetailsInfo>(DetailsInfo.CreateFromDiscriminatorValue); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"provisioningStepType", n => { ProvisioningStepType = n.GetEnumValue<ProvisioningStepType>(); } },
                 {"status", n => { Status = n.GetEnumValue<ProvisioningResult>(); } },
             };
@@ -52,6 +56,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("description", Description);
             writer.WriteObjectValue<DetailsInfo>("details", Details);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<ProvisioningStepType>("provisioningStepType", ProvisioningStepType);
             writer.WriteEnumValue<ProvisioningResult>("status", Status);
             writer.WriteAdditionalData(AdditionalData);

@@ -15,11 +15,14 @@ namespace ApiSdk.Models {
         public EducationAssignmentGradeType Grading { get; set; }
         /// <summary>The ID of this resource.</summary>
         public string LevelId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new rubricLevel and sets the default values.
         /// </summary>
         public RubricLevel() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.rubricLevel";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"grading", n => { Grading = n.GetObjectValue<EducationAssignmentGradeType>(EducationAssignmentGradeType.CreateFromDiscriminatorValue); } },
                 {"levelId", n => { LevelId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -50,6 +54,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteObjectValue<EducationAssignmentGradeType>("grading", Grading);
             writer.WriteStringValue("levelId", LevelId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

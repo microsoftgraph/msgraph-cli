@@ -41,11 +41,11 @@ namespace ApiSdk.Groups.Item.MemberOf.Item {
             return command;
         }
         /// <summary>
-        /// Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
+        /// Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.";
+            command.Description = "Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -145,7 +145,7 @@ namespace ApiSdk.Groups.Item.MemberOf.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
+        /// Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectoryObjectItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -164,7 +164,7 @@ namespace ApiSdk.Groups.Item.MemberOf.Item {
             }
             return requestInfo;
         }
-        /// <summary>Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.</summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -182,7 +182,7 @@ namespace ApiSdk.Groups.Item.MemberOf.Item {
             /// <summary>Request query parameters</summary>
             public DirectoryObjectItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DirectoryObjectItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new directoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryObjectItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

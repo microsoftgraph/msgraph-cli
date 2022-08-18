@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         /// <summary>The version name of managed Android Line of Business (LoB) app.</summary>
         public string VersionName { get; set; }
         /// <summary>
+        /// Instantiates a new ManagedAndroidLobApp and sets the default values.
+        /// </summary>
+        public ManagedAndroidLobApp() : base() {
+            OdataType = "#microsoft.graph.managedAndroidLobApp";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

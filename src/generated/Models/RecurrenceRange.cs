@@ -12,17 +12,20 @@ namespace ApiSdk.Models {
         public Date? EndDate { get; set; }
         /// <summary>The number of times to repeat the event. Required and must be positive if type is numbered.</summary>
         public int? NumberOfOccurrences { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Time zone for the startDate and endDate properties. Optional. If not specified, the time zone of the event is used.</summary>
         public string RecurrenceTimeZone { get; set; }
         /// <summary>The date to start applying the recurrence pattern. The first occurrence of the meeting may be this date or later, depending on the recurrence pattern of the event. Must be the same value as the start property of the recurring event. Required.</summary>
         public Date? StartDate { get; set; }
-        /// <summary>The recurrence range. Possible values are: endDate, noEnd, numbered. Required.</summary>
+        /// <summary>The recurrence range. The possible values are: endDate, noEnd, numbered. Required.</summary>
         public RecurrenceRangeType? Type { get; set; }
         /// <summary>
         /// Instantiates a new recurrenceRange and sets the default values.
         /// </summary>
         public RecurrenceRange() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.recurrenceRange";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -39,6 +42,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"endDate", n => { EndDate = n.GetDateValue(); } },
                 {"numberOfOccurrences", n => { NumberOfOccurrences = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"recurrenceTimeZone", n => { RecurrenceTimeZone = n.GetStringValue(); } },
                 {"startDate", n => { StartDate = n.GetDateValue(); } },
                 {"type", n => { Type = n.GetEnumValue<RecurrenceRangeType>(); } },
@@ -52,6 +56,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("endDate", EndDate);
             writer.WriteIntValue("numberOfOccurrences", NumberOfOccurrences);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("recurrenceTimeZone", RecurrenceTimeZone);
             writer.WriteDateValue("startDate", StartDate);
             writer.WriteEnumValue<RecurrenceRangeType>("type", Type);

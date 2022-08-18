@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class Conversation : Entity, IParsable {
         /// <summary>Indicates whether any of the posts within this Conversation has at least one attachment. Supports $filter (eq, ne) and $search.</summary>
         public bool? HasAttachments { get; set; }
-        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ne, le, ge).</summary>
+        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? LastDeliveredDateTime { get; set; }
-        /// <summary>A short summary from the body of the latest post in this conversation.</summary>
+        /// <summary>A short summary from the body of the latest post in this conversation. Supports $filter (eq, ne, le, ge).</summary>
         public string Preview { get; set; }
         /// <summary>A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.</summary>
         public List<ConversationThread> Threads { get; set; }
@@ -18,6 +18,12 @@ namespace ApiSdk.Models {
         public string Topic { get; set; }
         /// <summary>All the users that sent a message to this Conversation.</summary>
         public List<string> UniqueSenders { get; set; }
+        /// <summary>
+        /// Instantiates a new conversation and sets the default values.
+        /// </summary>
+        public Conversation() : base() {
+            OdataType = "#microsoft.graph.conversation";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

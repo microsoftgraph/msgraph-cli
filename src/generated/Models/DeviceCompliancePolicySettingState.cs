@@ -16,13 +16,15 @@ namespace ApiSdk.Models {
         public string ErrorDescription { get; set; }
         /// <summary>Name of setting instance that is being reported.</summary>
         public string InstanceDisplayName { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The setting that is being reported</summary>
         public string Setting { get; set; }
         /// <summary>Localized/user friendly setting name that is being reported</summary>
         public string SettingName { get; set; }
         /// <summary>Contributing policies</summary>
         public List<SettingSource> Sources { get; set; }
-        /// <summary>The compliance state of the setting. Possible values are: unknown, notApplicable, compliant, remediated, nonCompliant, error, conflict, notAssigned.</summary>
+        /// <summary>The state property</summary>
         public ComplianceStatus? State { get; set; }
         /// <summary>UserEmail</summary>
         public string UserEmail { get; set; }
@@ -37,6 +39,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public DeviceCompliancePolicySettingState() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.deviceCompliancePolicySettingState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -55,6 +58,7 @@ namespace ApiSdk.Models {
                 {"errorCode", n => { ErrorCode = n.GetLongValue(); } },
                 {"errorDescription", n => { ErrorDescription = n.GetStringValue(); } },
                 {"instanceDisplayName", n => { InstanceDisplayName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"setting", n => { Setting = n.GetStringValue(); } },
                 {"settingName", n => { SettingName = n.GetStringValue(); } },
                 {"sources", n => { Sources = n.GetCollectionOfObjectValues<SettingSource>(SettingSource.CreateFromDiscriminatorValue).ToList(); } },
@@ -75,6 +79,7 @@ namespace ApiSdk.Models {
             writer.WriteLongValue("errorCode", ErrorCode);
             writer.WriteStringValue("errorDescription", ErrorDescription);
             writer.WriteStringValue("instanceDisplayName", InstanceDisplayName);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("setting", Setting);
             writer.WriteStringValue("settingName", SettingName);
             writer.WriteCollectionOfObjectValues<SettingSource>("sources", Sources);

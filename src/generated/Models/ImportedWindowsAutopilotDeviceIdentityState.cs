@@ -11,15 +11,18 @@ namespace ApiSdk.Models {
         public int? DeviceErrorCode { get; set; }
         /// <summary>Device error name reported by Device Directory Service(DDS).</summary>
         public string DeviceErrorName { get; set; }
-        /// <summary>Device status reported by Device Directory Service(DDS). Possible values are: unknown, pending, partial, complete, error.</summary>
+        /// <summary>The deviceImportStatus property</summary>
         public ImportedWindowsAutopilotDeviceIdentityImportStatus? DeviceImportStatus { get; set; }
         /// <summary>Device Registration ID for successfully added device reported by Device Directory Service(DDS).</summary>
         public string DeviceRegistrationId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new importedWindowsAutopilotDeviceIdentityState and sets the default values.
         /// </summary>
         public ImportedWindowsAutopilotDeviceIdentityState() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.importedWindowsAutopilotDeviceIdentityState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
                 {"deviceErrorName", n => { DeviceErrorName = n.GetStringValue(); } },
                 {"deviceImportStatus", n => { DeviceImportStatus = n.GetEnumValue<ImportedWindowsAutopilotDeviceIdentityImportStatus>(); } },
                 {"deviceRegistrationId", n => { DeviceRegistrationId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -50,6 +54,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("deviceErrorName", DeviceErrorName);
             writer.WriteEnumValue<ImportedWindowsAutopilotDeviceIdentityImportStatus>("deviceImportStatus", DeviceImportStatus);
             writer.WriteStringValue("deviceRegistrationId", DeviceRegistrationId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

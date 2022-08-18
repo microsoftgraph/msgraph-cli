@@ -46,11 +46,11 @@ namespace ApiSdk.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Create a new identityProvider object.
+        /// Add new entity to identityProviders
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new identityProvider object.";
+            command.Description = "Add new entity to identityProviders";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -95,11 +95,11 @@ namespace ApiSdk.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of identityProviders objects.
+        /// Retrieve all identityProviders in the directory.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of identityProviders objects.";
+            command.Description = "Retrieve all identityProviders in the directory.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -212,7 +212,7 @@ namespace ApiSdk.IdentityProviders {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Retrieve a list of identityProviders objects.
+        /// Retrieve all identityProviders in the directory.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IdentityProvidersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -232,7 +232,7 @@ namespace ApiSdk.IdentityProviders {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new identityProvider object.
+        /// Add new entity to identityProviders
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -253,7 +253,7 @@ namespace ApiSdk.IdentityProviders {
             }
             return requestInfo;
         }
-        /// <summary>Retrieve a list of identityProviders objects.</summary>
+        /// <summary>Retrieve all identityProviders in the directory.</summary>
         public class IdentityProvidersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

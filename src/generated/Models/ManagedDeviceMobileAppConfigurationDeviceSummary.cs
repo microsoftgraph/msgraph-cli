@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Contains properties, inherited properties and actions for an MDM mobile app configuration device status summary.</summary>
     public class ManagedDeviceMobileAppConfigurationDeviceSummary : Entity, IParsable {
         /// <summary>Version of the policy for that overview</summary>
         public int? ConfigurationVersion { get; set; }
@@ -20,6 +19,12 @@ namespace ApiSdk.Models {
         public int? PendingCount { get; set; }
         /// <summary>Number of succeeded devices</summary>
         public int? SuccessCount { get; set; }
+        /// <summary>
+        /// Instantiates a new managedDeviceMobileAppConfigurationDeviceSummary and sets the default values.
+        /// </summary>
+        public ManagedDeviceMobileAppConfigurationDeviceSummary() : base() {
+            OdataType = "#microsoft.graph.managedDeviceMobileAppConfigurationDeviceSummary";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

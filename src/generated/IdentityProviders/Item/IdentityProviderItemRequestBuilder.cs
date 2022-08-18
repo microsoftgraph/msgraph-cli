@@ -23,11 +23,11 @@ namespace ApiSdk.IdentityProviders.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete an identityProvider.
+        /// Delete an existing identityProvider.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an identityProvider.";
+            command.Description = "Delete an existing identityProvider.";
             // Create options for all the parameters
             var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "key: id of identityProvider") {
             };
@@ -55,11 +55,11 @@ namespace ApiSdk.IdentityProviders.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an identityProvider.
+        /// Retrieve the properties of an existing identityProvider.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an identityProvider.";
+            command.Description = "Retrieve the properties of an existing identityProvider.";
             // Create options for all the parameters
             var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "key: id of identityProvider") {
             };
@@ -116,11 +116,11 @@ namespace ApiSdk.IdentityProviders.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in identityProviders
+        /// Update properties in an existing identityProvider.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in identityProviders";
+            command.Description = "Update properties in an existing identityProvider.";
             // Create options for all the parameters
             var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "key: id of identityProvider") {
             };
@@ -163,7 +163,7 @@ namespace ApiSdk.IdentityProviders.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete an identityProvider.
+        /// Delete an existing identityProvider.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IdentityProviderItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
@@ -181,7 +181,7 @@ namespace ApiSdk.IdentityProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an identityProvider.
+        /// Retrieve the properties of an existing identityProvider.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IdentityProviderItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -201,7 +201,7 @@ namespace ApiSdk.IdentityProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in identityProviders
+        /// Update properties in an existing identityProvider.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -228,14 +228,14 @@ namespace ApiSdk.IdentityProviders.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new identityProviderItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new IdentityProviderItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public IdentityProviderItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Retrieve the properties and relationships of an identityProvider.</summary>
+        /// <summary>Retrieve the properties of an existing identityProvider.</summary>
         public class IdentityProviderItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -253,7 +253,7 @@ namespace ApiSdk.IdentityProviders.Item {
             /// <summary>Request query parameters</summary>
             public IdentityProviderItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new IdentityProviderItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new identityProviderItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new IdentityProviderItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public IdentityProviderItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.IdentityProviders.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new identityProviderItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new IdentityProviderItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public IdentityProviderItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

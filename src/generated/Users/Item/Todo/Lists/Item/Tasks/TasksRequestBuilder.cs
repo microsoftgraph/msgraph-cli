@@ -28,6 +28,8 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new TodoTaskItemRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAttachmentsCommand());
+            command.AddCommand(builder.BuildAttachmentSessionsCommand());
             command.AddCommand(builder.BuildChecklistItemsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildExtensionsCommand());

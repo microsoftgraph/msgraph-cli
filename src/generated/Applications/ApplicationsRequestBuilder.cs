@@ -38,6 +38,7 @@ namespace ApiSdk.Applications {
             command.AddCommand(builder.BuildCreatedOnBehalfOfCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildFederatedIdentityCredentialsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildGetMemberGroupsCommand());
             command.AddCommand(builder.BuildGetMemberObjectsCommand());

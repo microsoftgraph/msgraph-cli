@@ -94,11 +94,11 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo {
             return command;
         }
         /// <summary>
-        /// App role assignments for this app or service, granted to users, groups, and other service principals.Supports $expand.
+        /// App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals.Supports $expand.";
+            command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// App role assignments for this app or service, granted to users, groups, and other service principals.Supports $expand.
+        /// App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AppRoleAssignedToRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo {
             }
             return requestInfo;
         }
-        /// <summary>App role assignments for this app or service, granted to users, groups, and other service principals.Supports $expand.</summary>
+        /// <summary>App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.</summary>
         public class AppRoleAssignedToRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

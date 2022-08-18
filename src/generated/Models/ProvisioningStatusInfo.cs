@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The errorInformation property</summary>
         public ProvisioningErrorInfo ErrorInformation { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Possible values are: success, warning, failure, skipped, unknownFutureValue.</summary>
         public ProvisioningResult? Status { get; set; }
         /// <summary>
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ProvisioningStatusInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.provisioningStatusInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"errorInformation", n => { ErrorInformation = n.GetObjectValue<ProvisioningErrorInfo>(ProvisioningErrorInfo.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"status", n => { Status = n.GetEnumValue<ProvisioningResult>(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<ProvisioningErrorInfo>("errorInformation", ErrorInformation);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<ProvisioningResult>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }

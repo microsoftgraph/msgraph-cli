@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class UnifiedRoleEligibilitySchedule : UnifiedRoleScheduleBase, IParsable {
-        /// <summary>Membership type of the eligible assignment. It can either be Inherited, Direct, or Group.</summary>
+        /// <summary>How the role eligibility is inherited. It can either be Inherited, Direct, or Group. It can further imply whether the unifiedRoleEligibilitySchedule can be managed by the caller. Supports $filter (eq, ne).</summary>
         public string MemberType { get; set; }
-        /// <summary>The schedule object of the eligible role assignment request.</summary>
+        /// <summary>The period of the role eligibility.</summary>
         public RequestSchedule ScheduleInfo { get; set; }
+        /// <summary>
+        /// Instantiates a new unifiedRoleEligibilitySchedule and sets the default values.
+        /// </summary>
+        public UnifiedRoleEligibilitySchedule() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleEligibilitySchedule";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -228,7 +228,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new secureScoreControlProfileItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new SecureScoreControlProfileItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public SecureScoreControlProfileItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             /// <summary>Request query parameters</summary>
             public SecureScoreControlProfileItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SecureScoreControlProfileItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new secureScoreControlProfileItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SecureScoreControlProfileItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SecureScoreControlProfileItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new secureScoreControlProfileItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SecureScoreControlProfileItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SecureScoreControlProfileItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

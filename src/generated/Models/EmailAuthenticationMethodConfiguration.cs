@@ -10,6 +10,12 @@ namespace ApiSdk.Models {
         /// <summary>A collection of users or groups who are enabled to use the authentication method.</summary>
         public List<AuthenticationMethodTarget> IncludeTargets { get; set; }
         /// <summary>
+        /// Instantiates a new EmailAuthenticationMethodConfiguration and sets the default values.
+        /// </summary>
+        public EmailAuthenticationMethodConfiguration() : base() {
+            OdataType = "#microsoft.graph.emailAuthenticationMethodConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

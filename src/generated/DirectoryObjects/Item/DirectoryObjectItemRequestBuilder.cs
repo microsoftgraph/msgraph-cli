@@ -263,7 +263,7 @@ namespace ApiSdk.DirectoryObjects.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new directoryObjectItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryObjectItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryObjectItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -288,7 +288,7 @@ namespace ApiSdk.DirectoryObjects.Item {
             /// <summary>Request query parameters</summary>
             public DirectoryObjectItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DirectoryObjectItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new directoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryObjectItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -302,7 +302,7 @@ namespace ApiSdk.DirectoryObjects.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new directoryObjectItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryObjectItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryObjectItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

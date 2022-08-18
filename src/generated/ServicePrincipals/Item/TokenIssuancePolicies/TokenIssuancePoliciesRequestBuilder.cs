@@ -37,11 +37,11 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
             return command;
         }
         /// <summary>
-        /// The tokenIssuancePolicies assigned to this service principal. Supports $expand.
+        /// The tokenIssuancePolicies assigned to this service principal.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The tokenIssuancePolicies assigned to this service principal. Supports $expand.";
+            command.Description = "The tokenIssuancePolicies assigned to this service principal.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -160,7 +160,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The tokenIssuancePolicies assigned to this service principal. Supports $expand.
+        /// The tokenIssuancePolicies assigned to this service principal.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TokenIssuancePoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -179,7 +179,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
             }
             return requestInfo;
         }
-        /// <summary>The tokenIssuancePolicies assigned to this service principal. Supports $expand.</summary>
+        /// <summary>The tokenIssuancePolicies assigned to this service principal.</summary>
         public class TokenIssuancePoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

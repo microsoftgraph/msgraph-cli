@@ -1,15 +1,22 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
+    /// <summary>Provides operations to manage the authenticationMethodsPolicy singleton.</summary>
     public class AuthenticationMethodTarget : Entity, IParsable {
         /// <summary>Determines if the user is enforced to register the authentication method.</summary>
         public bool? IsRegistrationRequired { get; set; }
-        /// <summary>Possible values are: user, group, and unknownFutureValue.</summary>
+        /// <summary>The targetType property</summary>
         public AuthenticationMethodTargetType? TargetType { get; set; }
+        /// <summary>
+        /// Instantiates a new authenticationMethodTarget and sets the default values.
+        /// </summary>
+        public AuthenticationMethodTarget() : base() {
+            OdataType = "#microsoft.graph.authenticationMethodTarget";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

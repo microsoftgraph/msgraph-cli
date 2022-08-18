@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,27 @@ namespace ApiSdk.Models {
         /// <summary>If set to true, activates this policy. There can be many policies for the same policy type, but only one can be activated as the organization default. Optional, default value is false.</summary>
         public bool? IsOrganizationDefault { get; set; }
         /// <summary>
+        /// Instantiates a new StsPolicy and sets the default values.
+        /// </summary>
+        public StsPolicy() : base() {
+            OdataType = "#microsoft.graph.stsPolicy";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
         public static new StsPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new StsPolicy();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.activityBasedTimeoutPolicy" => new ActivityBasedTimeoutPolicy(),
+                "#microsoft.graph.claimsMappingPolicy" => new ClaimsMappingPolicy(),
+                "#microsoft.graph.homeRealmDiscoveryPolicy" => new HomeRealmDiscoveryPolicy(),
+                "#microsoft.graph.tokenIssuancePolicy" => new TokenIssuancePolicy(),
+                "#microsoft.graph.tokenLifetimePolicy" => new TokenLifetimePolicy(),
+                _ => new StsPolicy(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

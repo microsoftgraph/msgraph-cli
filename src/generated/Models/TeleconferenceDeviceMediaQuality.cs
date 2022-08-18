@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,8 @@ namespace ApiSdk.Models {
         public TimeSpan? MediaDuration { get; set; }
         /// <summary>The network link speed in bytes</summary>
         public long? NetworkLinkSpeedInBytes { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The total number of the outbound packets.</summary>
         public long? OutboundPackets { get; set; }
         /// <summary>The remote IP address for the media session.</summary>
@@ -54,6 +57,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public TeleconferenceDeviceMediaQuality() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.teleconferenceDeviceMediaQuality";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -61,7 +65,14 @@ namespace ApiSdk.Models {
         /// </summary>
         public static TeleconferenceDeviceMediaQuality CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeleconferenceDeviceMediaQuality();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.teleconferenceDeviceAudioQuality" => new TeleconferenceDeviceAudioQuality(),
+                "#microsoft.graph.teleconferenceDeviceScreenSharingQuality" => new TeleconferenceDeviceScreenSharingQuality(),
+                "#microsoft.graph.teleconferenceDeviceVideoQuality" => new TeleconferenceDeviceVideoQuality(),
+                _ => new TeleconferenceDeviceMediaQuality(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -86,6 +97,7 @@ namespace ApiSdk.Models {
                 {"maximumOutboundRoundTripDelay", n => { MaximumOutboundRoundTripDelay = n.GetTimeSpanValue(); } },
                 {"mediaDuration", n => { MediaDuration = n.GetTimeSpanValue(); } },
                 {"networkLinkSpeedInBytes", n => { NetworkLinkSpeedInBytes = n.GetLongValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"outboundPackets", n => { OutboundPackets = n.GetLongValue(); } },
                 {"remoteIPAddress", n => { RemoteIPAddress = n.GetStringValue(); } },
                 {"remotePort", n => { RemotePort = n.GetIntValue(); } },
@@ -115,6 +127,7 @@ namespace ApiSdk.Models {
             writer.WriteTimeSpanValue("maximumOutboundRoundTripDelay", MaximumOutboundRoundTripDelay);
             writer.WriteTimeSpanValue("mediaDuration", MediaDuration);
             writer.WriteLongValue("networkLinkSpeedInBytes", NetworkLinkSpeedInBytes);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteLongValue("outboundPackets", OutboundPackets);
             writer.WriteStringValue("remoteIPAddress", RemoteIPAddress);
             writer.WriteIntValue("remotePort", RemotePort);

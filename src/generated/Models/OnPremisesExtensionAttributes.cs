@@ -37,11 +37,14 @@ namespace ApiSdk.Models {
         public string ExtensionAttribute8 { get; set; }
         /// <summary>Ninth customizable extension attribute.</summary>
         public string ExtensionAttribute9 { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new onPremisesExtensionAttributes and sets the default values.
         /// </summary>
         public OnPremisesExtensionAttributes() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.onPremisesExtensionAttributes";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -71,6 +74,7 @@ namespace ApiSdk.Models {
                 {"extensionAttribute7", n => { ExtensionAttribute7 = n.GetStringValue(); } },
                 {"extensionAttribute8", n => { ExtensionAttribute8 = n.GetStringValue(); } },
                 {"extensionAttribute9", n => { ExtensionAttribute9 = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -94,6 +98,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("extensionAttribute7", ExtensionAttribute7);
             writer.WriteStringValue("extensionAttribute8", ExtensionAttribute8);
             writer.WriteStringValue("extensionAttribute9", ExtensionAttribute9);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

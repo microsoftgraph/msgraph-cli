@@ -264,7 +264,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new segmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new SegmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public SegmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -289,7 +289,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
             /// <summary>Request query parameters</summary>
             public SegmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SegmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new segmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SegmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SegmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -303,7 +303,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new segmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SegmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SegmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

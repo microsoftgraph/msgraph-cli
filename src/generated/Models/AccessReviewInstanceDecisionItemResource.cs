@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,10 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Display name of the resource</summary>
         public string DisplayName { get; set; }
-        /// <summary>Resource ID</summary>
+        /// <summary>Identifier of the resource</summary>
         public string Id { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Type of resource. Types include: Group, ServicePrincipal, DirectoryRole, AzureRole, AccessPackageAssignmentPolicy.</summary>
         public string Type { get; set; }
         /// <summary>
@@ -18,6 +21,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AccessReviewInstanceDecisionItemResource() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.accessReviewInstanceDecisionItemResource";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -25,7 +29,14 @@ namespace ApiSdk.Models {
         /// </summary>
         public static AccessReviewInstanceDecisionItemResource CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessReviewInstanceDecisionItemResource();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.accessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource" => new AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource(),
+                "#microsoft.graph.accessReviewInstanceDecisionItemAzureRoleResource" => new AccessReviewInstanceDecisionItemAzureRoleResource(),
+                "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalResource" => new AccessReviewInstanceDecisionItemServicePrincipalResource(),
+                _ => new AccessReviewInstanceDecisionItemResource(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -34,6 +45,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"id", n => { Id = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -45,6 +57,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("id", Id);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

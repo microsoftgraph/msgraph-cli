@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class AuditLogRoot : Entity, IParsable {
         /// <summary>The directoryAudits property</summary>
         public List<DirectoryAudit> DirectoryAudits { get; set; }
@@ -14,6 +13,12 @@ namespace ApiSdk.Models {
         public List<RestrictedSignIn> RestrictedSignIns { get; set; }
         /// <summary>The signIns property</summary>
         public List<SignIn> SignIns { get; set; }
+        /// <summary>
+        /// Instantiates a new AuditLogRoot and sets the default values.
+        /// </summary>
+        public AuditLogRoot() : base() {
+            OdataType = "#microsoft.graph.auditLogRoot";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

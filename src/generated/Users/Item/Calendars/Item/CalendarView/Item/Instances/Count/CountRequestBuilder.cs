@@ -100,7 +100,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Count {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new countRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new CountRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public CountRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -246,7 +246,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationAssignmentResourceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationAssignmentResourceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public EducationAssignmentResourceItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             /// <summary>Request query parameters</summary>
             public EducationAssignmentResourceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EducationAssignmentResourceItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new educationAssignmentResourceItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationAssignmentResourceItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EducationAssignmentResourceItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationAssignmentResourceItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationAssignmentResourceItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public EducationAssignmentResourceItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

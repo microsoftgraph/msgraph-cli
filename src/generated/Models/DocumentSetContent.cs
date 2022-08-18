@@ -9,15 +9,18 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Content type information of the file.</summary>
         public ContentTypeInfo ContentType { get; set; }
-        /// <summary>Name of the file in resource folder that should be added as a default content or a template in the document set</summary>
+        /// <summary>Name of the file in resource folder that should be added as a default content or a template in the document set.</summary>
         public string FileName { get; set; }
         /// <summary>Folder name in which the file will be placed when a new document set is created in the library.</summary>
         public string FolderName { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new documentSetContent and sets the default values.
         /// </summary>
         public DocumentSetContent() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.documentSetContent";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"contentType", n => { ContentType = n.GetObjectValue<ContentTypeInfo>(ContentTypeInfo.CreateFromDiscriminatorValue); } },
                 {"fileName", n => { FileName = n.GetStringValue(); } },
                 {"folderName", n => { FolderName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<ContentTypeInfo>("contentType", ContentType);
             writer.WriteStringValue("fileName", FileName);
             writer.WriteStringValue("folderName", FolderName);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

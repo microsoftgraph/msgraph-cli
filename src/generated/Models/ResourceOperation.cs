@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Describes the resourceOperation resource (entity) of the Microsoft Graph API (REST), which supports Intune workflows related to role-based access control (RBAC).</summary>
     public class ResourceOperation : Entity, IParsable {
         /// <summary>Type of action this operation is going to perform. The actionName should be concise and limited to as few words as possible.</summary>
         public string ActionName { get; set; }
@@ -12,6 +11,12 @@ namespace ApiSdk.Models {
         public string Description { get; set; }
         /// <summary>Name of the Resource this operation is performed on.</summary>
         public string ResourceName { get; set; }
+        /// <summary>
+        /// Instantiates a new ResourceOperation and sets the default values.
+        /// </summary>
+        public ResourceOperation() : base() {
+            OdataType = "#microsoft.graph.resourceOperation";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

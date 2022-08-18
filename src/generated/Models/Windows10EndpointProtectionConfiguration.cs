@@ -15,9 +15,9 @@ namespace ApiSdk.Models {
         public bool? ApplicationGuardAllowPrintToPDF { get; set; }
         /// <summary>Allow printing to XPS from Container</summary>
         public bool? ApplicationGuardAllowPrintToXPS { get; set; }
-        /// <summary>Block clipboard to share data from Host to Container, or from Container to Host, or both ways, or neither ways. Possible values are: notConfigured, blockBoth, blockHostToContainer, blockContainerToHost, blockNone.</summary>
+        /// <summary>Possible values for applicationGuardBlockClipboardSharingType</summary>
         public ApplicationGuardBlockClipboardSharingType? ApplicationGuardBlockClipboardSharing { get; set; }
-        /// <summary>Block clipboard to transfer image file, text file or neither of them. Possible values are: notConfigured, blockImageAndTextFile, blockImageFile, blockNone, blockTextFile.</summary>
+        /// <summary>Possible values for applicationGuardBlockFileTransfer</summary>
         public ApplicationGuardBlockFileTransferType? ApplicationGuardBlockFileTransfer { get; set; }
         /// <summary>Block enterprise sites to load non-enterprise content, such as third party plug-ins</summary>
         public bool? ApplicationGuardBlockNonEnterpriseContent { get; set; }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
         public bool? ApplicationGuardEnabled { get; set; }
         /// <summary>Force auditing will persist Windows logs and events to meet security/compliance criteria (sample events are user login-logoff, use of privilege rights, software installation, system changes, etc.)</summary>
         public bool? ApplicationGuardForceAuditing { get; set; }
-        /// <summary>Enables the Admin to choose what types of app to allow on devices. Possible values are: notConfigured, enforceComponentsAndStoreApps, auditComponentsAndStoreApps, enforceComponentsStoreAppsAndSmartlocker, auditComponentsStoreAppsAndSmartlocker.</summary>
+        /// <summary>Possible values of AppLocker Application Control Types</summary>
         public AppLockerApplicationControlType? AppLockerApplicationControl { get; set; }
         /// <summary>Allows the Admin to disable the warning prompt for other disk encryption on the user machines.</summary>
         public bool? BitLockerDisableWarningForOtherDiskEncryption { get; set; }
@@ -49,7 +49,7 @@ namespace ApiSdk.Models {
         public bool? DefenderSecurityCenterBlockExploitProtectionOverride { get; set; }
         /// <summary>Blocks stateful FTP connections to the device</summary>
         public bool? FirewallBlockStatefulFTP { get; set; }
-        /// <summary>Specify how the certificate revocation list is to be enforced. Possible values are: deviceDefault, none, attempt, require.</summary>
+        /// <summary>Possible values for firewallCertificateRevocationListCheckMethod</summary>
         public FirewallCertificateRevocationListCheckMethodType? FirewallCertificateRevocationListCheckMethod { get; set; }
         /// <summary>Configures the idle timeout for security associations, in seconds, from 300 to 3600 inclusive. This is the period after which security associations will expire and be deleted. Valid values 300 to 3600</summary>
         public int? FirewallIdleTimeoutForSecurityAssociationInSeconds { get; set; }
@@ -63,9 +63,9 @@ namespace ApiSdk.Models {
         public bool? FirewallIPSecExemptionsAllowRouterDiscovery { get; set; }
         /// <summary>If an authentication set is not fully supported by a keying module, direct the module to ignore only unsupported authentication suites rather than the entire set</summary>
         public bool? FirewallMergeKeyingModuleSettings { get; set; }
-        /// <summary>Configures how packet queueing should be applied in the tunnel gateway scenario. Possible values are: deviceDefault, disabled, queueInbound, queueOutbound, queueBoth.</summary>
+        /// <summary>Possible values for firewallPacketQueueingMethod</summary>
         public FirewallPacketQueueingMethodType? FirewallPacketQueueingMethod { get; set; }
-        /// <summary>Select the preshared key encoding to be used. Possible values are: deviceDefault, none, utF8.</summary>
+        /// <summary>Possible values for firewallPreSharedKeyEncodingMethod</summary>
         public FirewallPreSharedKeyEncodingMethodType? FirewallPreSharedKeyEncodingMethod { get; set; }
         /// <summary>Configures the firewall profile settings for domain networks</summary>
         public WindowsFirewallNetworkProfile FirewallProfileDomain { get; set; }
@@ -77,6 +77,12 @@ namespace ApiSdk.Models {
         public bool? SmartScreenBlockOverrideForFiles { get; set; }
         /// <summary>Allows IT Admins to configure SmartScreen for Windows.</summary>
         public bool? SmartScreenEnableInShell { get; set; }
+        /// <summary>
+        /// Instantiates a new Windows10EndpointProtectionConfiguration and sets the default values.
+        /// </summary>
+        public Windows10EndpointProtectionConfiguration() : base() {
+            OdataType = "#microsoft.graph.windows10EndpointProtectionConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

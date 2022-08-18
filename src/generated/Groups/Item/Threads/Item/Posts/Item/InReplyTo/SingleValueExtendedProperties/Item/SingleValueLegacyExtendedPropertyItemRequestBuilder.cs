@@ -282,7 +282,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.SingleValueExtend
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new singleValueLegacyExtendedPropertyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new SingleValueLegacyExtendedPropertyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public SingleValueLegacyExtendedPropertyItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -307,7 +307,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.SingleValueExtend
             /// <summary>Request query parameters</summary>
             public SingleValueLegacyExtendedPropertyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SingleValueLegacyExtendedPropertyItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new singleValueLegacyExtendedPropertyItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SingleValueLegacyExtendedPropertyItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SingleValueLegacyExtendedPropertyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -321,7 +321,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.SingleValueExtend
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new singleValueLegacyExtendedPropertyItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SingleValueLegacyExtendedPropertyItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SingleValueLegacyExtendedPropertyItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public int? MaximumSize { get; set; }
         /// <summary>The minimum size (in kilobytes) that an incoming message must have in order for a condition or exception to apply.</summary>
         public int? MinimumSize { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new sizeRange and sets the default values.
         /// </summary>
         public SizeRange() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.sizeRange";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"maximumSize", n => { MaximumSize = n.GetIntValue(); } },
                 {"minimumSize", n => { MinimumSize = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("maximumSize", MaximumSize);
             writer.WriteIntValue("minimumSize", MinimumSize);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

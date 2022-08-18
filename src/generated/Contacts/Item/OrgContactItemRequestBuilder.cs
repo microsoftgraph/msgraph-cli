@@ -86,11 +86,11 @@ namespace ApiSdk.Contacts.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of an organizational contact object.
+        /// Get the properties and relationships of an organizational contact.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of an organizational contact object.";
+            command.Description = "Get the properties and relationships of an organizational contact.";
             // Create options for all the parameters
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
             };
@@ -264,7 +264,7 @@ namespace ApiSdk.Contacts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of an organizational contact object.
+        /// Get the properties and relationships of an organizational contact.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OrgContactItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -311,14 +311,14 @@ namespace ApiSdk.Contacts.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new orgContactItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new OrgContactItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public OrgContactItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get the properties and relationships of an organizational contact object.</summary>
+        /// <summary>Get the properties and relationships of an organizational contact.</summary>
         public class OrgContactItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -336,7 +336,7 @@ namespace ApiSdk.Contacts.Item {
             /// <summary>Request query parameters</summary>
             public OrgContactItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OrgContactItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new orgContactItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new OrgContactItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public OrgContactItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -350,7 +350,7 @@ namespace ApiSdk.Contacts.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new orgContactItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new OrgContactItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public OrgContactItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

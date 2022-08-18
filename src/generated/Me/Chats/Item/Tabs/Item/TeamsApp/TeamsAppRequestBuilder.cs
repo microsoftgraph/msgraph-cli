@@ -23,11 +23,11 @@ namespace ApiSdk.Me.Chats.Item.Tabs.Item.TeamsApp {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The application that is linked to the tab.
+        /// The application that is linked to the tab. This cannot be changed after tab creation.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The application that is linked to the tab.";
+            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -103,7 +103,7 @@ namespace ApiSdk.Me.Chats.Item.Tabs.Item.TeamsApp {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The application that is linked to the tab.
+        /// The application that is linked to the tab. This cannot be changed after tab creation.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TeamsAppRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -122,7 +122,7 @@ namespace ApiSdk.Me.Chats.Item.Tabs.Item.TeamsApp {
             }
             return requestInfo;
         }
-        /// <summary>The application that is linked to the tab.</summary>
+        /// <summary>The application that is linked to the tab. This cannot be changed after tab creation.</summary>
         public class TeamsAppRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

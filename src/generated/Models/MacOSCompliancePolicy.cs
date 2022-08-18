@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class MacOSCompliancePolicy : DeviceCompliancePolicy, IParsable {
         /// <summary>Require that devices have enabled device threat protection.</summary>
         public bool? DeviceThreatProtectionEnabled { get; set; }
-        /// <summary>Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.</summary>
+        /// <summary>Device threat protection levels for the Device Threat Protection API.</summary>
         public DeviceThreatProtectionLevel? DeviceThreatProtectionRequiredSecurityLevel { get; set; }
         /// <summary>Corresponds to the &apos;Block all incoming connections&apos; option.</summary>
         public bool? FirewallBlockAllIncoming { get; set; }
@@ -33,12 +33,18 @@ namespace ApiSdk.Models {
         public int? PasswordPreviousPasswordBlockCount { get; set; }
         /// <summary>Whether or not to require a password.</summary>
         public bool? PasswordRequired { get; set; }
-        /// <summary>The required password type. Possible values are: deviceDefault, alphanumeric, numeric.</summary>
+        /// <summary>Possible values of required passwords.</summary>
         public RequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Require encryption on Mac OS devices.</summary>
         public bool? StorageRequireEncryption { get; set; }
         /// <summary>Require that devices have enabled system integrity protection.</summary>
         public bool? SystemIntegrityProtectionEnabled { get; set; }
+        /// <summary>
+        /// Instantiates a new MacOSCompliancePolicy and sets the default values.
+        /// </summary>
+        public MacOSCompliancePolicy() : base() {
+            OdataType = "#microsoft.graph.macOSCompliancePolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

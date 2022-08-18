@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the privacy singleton.</summary>
     public class SubjectRightsRequest : Entity, IParsable {
         /// <summary>Identity that the request is assigned to.</summary>
         public Identity AssignedTo { get; set; }
@@ -32,18 +31,24 @@ namespace ApiSdk.Models {
         public IdentitySet LastModifiedBy { get; set; }
         /// <summary>The date and time when the request was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>List of notes associated with the request.</summary>
+        /// <summary>List of notes associcated with the request.</summary>
         public List<AuthoredNote> Notes { get; set; }
         /// <summary>List of regulations that this request will fulfill.</summary>
         public List<string> Regulations { get; set; }
         /// <summary>Information about the different stages for the request.</summary>
         public List<SubjectRightsRequestStageDetail> Stages { get; set; }
-        /// <summary>The status of the request. Possible values are: active, closed, unknownFutureValue.</summary>
+        /// <summary>The status of the request.. Possible values are: active, closed, unknownFutureValue.</summary>
         public SubjectRightsRequestStatus? Status { get; set; }
         /// <summary>Information about the Microsoft Teams team that was created for the request.</summary>
         public ApiSdk.Models.Team Team { get; set; }
-        /// <summary>The type of the request. Possible values are: export, delete, access, tagForAction, unknownFutureValue.</summary>
+        /// <summary>The type of the request. Possible values are: export, delete,  access, tagForAction, unknownFutureValue.</summary>
         public SubjectRightsRequestType? Type { get; set; }
+        /// <summary>
+        /// Instantiates a new SubjectRightsRequest and sets the default values.
+        /// </summary>
+        public SubjectRightsRequest() : base() {
+            OdataType = "#microsoft.graph.subjectRightsRequest";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

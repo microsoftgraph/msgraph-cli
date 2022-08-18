@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class PlannerTask : Entity, IParsable {
         /// <summary>Number of checklist items with value set to false, representing incomplete items.</summary>
         public int? ActiveChecklistItemCount { get; set; }
@@ -44,9 +44,9 @@ namespace ApiSdk.Models {
         public int? PercentComplete { get; set; }
         /// <summary>Plan ID to which the task belongs.</summary>
         public string PlanId { get; set; }
-        /// <summary>This sets the type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference.</summary>
+        /// <summary>This sets the type of preview that shows up on the task. The possible values are: automatic, noPreview, checklist, description, reference.</summary>
         public PlannerPreviewType? PreviewType { get; set; }
-        /// <summary>Priority of the task. Valid range of values is between 0 and 10 (inclusive), with increasing value being lower priority (0 has the highest priority and 10 has the lowest priority).  Currently, Planner interprets values 0 and 1 as &apos;urgent&apos;, 2 and 3 and 4 as &apos;important&apos;, 5, 6, and 7 as &apos;medium&apos;, and 8, 9, and 10 as &apos;low&apos;.  Currently, Planner sets the value 1 for &apos;urgent&apos;, 3 for &apos;important&apos;, 5 for &apos;medium&apos;, and 9 for &apos;low&apos;.</summary>
+        /// <summary>Priority of the task. The valid range of values is between 0 and 10, with the increasing value being lower priority (0 has the highest priority and 10 has the lowest priority).  Currently, Planner interprets values 0 and 1 as &apos;urgent&apos;, 2, 3 and 4 as &apos;important&apos;, 5, 6, and 7 as &apos;medium&apos;, and 8, 9, and 10 as &apos;low&apos;.  Additionally, Planner sets the value 1 for &apos;urgent&apos;, 3 for &apos;important&apos;, 5 for &apos;medium&apos;, and 9 for &apos;low&apos;.</summary>
         public int? Priority { get; set; }
         /// <summary>Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.</summary>
         public PlannerProgressTaskBoardTaskFormat ProgressTaskBoardFormat { get; set; }
@@ -56,6 +56,12 @@ namespace ApiSdk.Models {
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>Title of the task.</summary>
         public string Title { get; set; }
+        /// <summary>
+        /// Instantiates a new plannerTask and sets the default values.
+        /// </summary>
+        public PlannerTask() : base() {
+            OdataType = "#microsoft.graph.plannerTask";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

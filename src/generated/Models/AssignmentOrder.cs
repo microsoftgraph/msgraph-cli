@@ -7,13 +7,16 @@ namespace ApiSdk.Models {
     public class AssignmentOrder : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>A list of identityUserFlowAttribute IDs provided to determine the order in which attributes should be collected within a user flow.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>A list of identityUserFlowAttribute object identifiers that determine the order in which attributes should be collected within a user flow.</summary>
         public List<string> Order { get; set; }
         /// <summary>
-        /// Instantiates a new AssignmentOrder and sets the default values.
+        /// Instantiates a new assignmentOrder and sets the default values.
         /// </summary>
         public AssignmentOrder() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.assignmentOrder";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -28,6 +31,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"order", n => { Order = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };
         }
@@ -37,6 +41,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfPrimitiveValues<string>("order", Order);
             writer.WriteAdditionalData(AdditionalData);
         }

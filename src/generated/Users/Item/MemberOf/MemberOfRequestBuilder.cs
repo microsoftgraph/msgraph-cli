@@ -70,11 +70,11 @@ namespace ApiSdk.Users.Item.MemberOf {
             return command;
         }
         /// <summary>
-        /// The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.
+        /// The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.";
+            command.Description = "The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -214,7 +214,7 @@ namespace ApiSdk.Users.Item.MemberOf {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.
+        /// The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MemberOfRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -233,7 +233,7 @@ namespace ApiSdk.Users.Item.MemberOf {
             }
             return requestInfo;
         }
-        /// <summary>The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.</summary>
         public class MemberOfRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

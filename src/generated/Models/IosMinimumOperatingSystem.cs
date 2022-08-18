@@ -8,6 +8,8 @@ namespace ApiSdk.Models {
     public class IosMinimumOperatingSystem : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Version 10.0 or later.</summary>
         public bool? V10_0 { get; set; }
         /// <summary>Version 11.0 or later.</summary>
@@ -27,6 +29,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IosMinimumOperatingSystem() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.iosMinimumOperatingSystem";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -41,6 +44,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"v10_0", n => { V10_0 = n.GetBoolValue(); } },
                 {"v11_0", n => { V11_0 = n.GetBoolValue(); } },
                 {"v12_0", n => { V12_0 = n.GetBoolValue(); } },
@@ -56,6 +60,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("v10_0", V10_0);
             writer.WriteBoolValue("v11_0", V11_0);
             writer.WriteBoolValue("v12_0", V12_0);

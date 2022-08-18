@@ -22,11 +22,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The content stream of the attendee report of a Teams live event. Read-only.
+        /// The content stream of the attendee report of a Microsoft Teams live event. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The content stream of the attendee report of a Teams live event. Read-only.";
+            command.Description = "The content stream of the attendee report of a Microsoft Teams live event. Read-only.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -66,11 +66,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
             return command;
         }
         /// <summary>
-        /// The content stream of the attendee report of a Teams live event. Read-only.
+        /// The content stream of the attendee report of a Microsoft Teams live event. Read-only.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The content stream of the attendee report of a Teams live event. Read-only.";
+            command.Description = "The content stream of the attendee report of a Microsoft Teams live event. Read-only.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -117,7 +117,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The content stream of the attendee report of a Teams live event. Read-only.
+        /// The content stream of the attendee report of a Microsoft Teams live event. Read-only.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AttendeeReportRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -135,7 +135,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
             return requestInfo;
         }
         /// <summary>
-        /// The content stream of the attendee report of a Teams live event. Read-only.
+        /// The content stream of the attendee report of a Microsoft Teams live event. Read-only.
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

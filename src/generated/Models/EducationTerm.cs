@@ -14,6 +14,8 @@ namespace ApiSdk.Models {
         public Date? EndDate { get; set; }
         /// <summary>ID of term in the syncing system.</summary>
         public string ExternalId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Start of the term.</summary>
         public Date? StartDate { get; set; }
         /// <summary>
@@ -21,6 +23,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public EducationTerm() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.educationTerm";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"endDate", n => { EndDate = n.GetDateValue(); } },
                 {"externalId", n => { ExternalId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startDate", n => { StartDate = n.GetDateValue(); } },
             };
         }
@@ -50,6 +54,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateValue("endDate", EndDate);
             writer.WriteStringValue("externalId", ExternalId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDateValue("startDate", StartDate);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>When the access should expire.</summary>
         public ExpirationPattern Expiration { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>For recurring access reviews.  Not used in access requests.</summary>
         public PatternedRecurrence Recurrence { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public EntitlementManagementSchedule() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.entitlementManagementSchedule";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"expiration", n => { Expiration = n.GetObjectValue<ExpirationPattern>(ExpirationPattern.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"recurrence", n => { Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
             };
@@ -44,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<ExpirationPattern>("expiration", Expiration);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<PatternedRecurrence>("recurrence", Recurrence);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteAdditionalData(AdditionalData);

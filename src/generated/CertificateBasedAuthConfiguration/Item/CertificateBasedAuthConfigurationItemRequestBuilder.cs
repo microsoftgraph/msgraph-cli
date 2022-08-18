@@ -228,7 +228,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new certificateBasedAuthConfigurationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new CertificateBasedAuthConfigurationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public CertificateBasedAuthConfigurationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
             /// <summary>Request query parameters</summary>
             public CertificateBasedAuthConfigurationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new CertificateBasedAuthConfigurationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new certificateBasedAuthConfigurationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new CertificateBasedAuthConfigurationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public CertificateBasedAuthConfigurationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new certificateBasedAuthConfigurationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new CertificateBasedAuthConfigurationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public CertificateBasedAuthConfigurationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -21,15 +21,18 @@ namespace ApiSdk.Models {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The archived print job&apos;s GUID. Read-only.</summary>
         public string Id { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The printer ID that the job was queued for. Read-only.</summary>
         public string PrinterId { get; set; }
-        /// <summary>The print job&apos;s final processing state. Read-only.</summary>
+        /// <summary>The processingState property</summary>
         public PrintJobProcessingState? ProcessingState { get; set; }
         /// <summary>
         /// Instantiates a new archivedPrintJob and sets the default values.
         /// </summary>
         public ArchivedPrintJob() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.archivedPrintJob";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -51,6 +54,7 @@ namespace ApiSdk.Models {
                 {"createdBy", n => { CreatedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"id", n => { Id = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"printerId", n => { PrinterId = n.GetStringValue(); } },
                 {"processingState", n => { ProcessingState = n.GetEnumValue<PrintJobProcessingState>(); } },
             };
@@ -68,6 +72,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<UserIdentity>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("id", Id);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("printerId", PrinterId);
             writer.WriteEnumValue<PrintJobProcessingState>("processingState", ProcessingState);
             writer.WriteAdditionalData(AdditionalData);

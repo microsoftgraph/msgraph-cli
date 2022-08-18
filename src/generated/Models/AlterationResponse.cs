@@ -7,17 +7,20 @@ namespace ApiSdk.Models {
     public class AlterationResponse : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Defines the original user query string.</summary>
         public string OriginalQueryString { get; set; }
-        /// <summary>Defines the details of alteration information for the spelling correction.</summary>
+        /// <summary>Defines the details of the alteration information for the spelling correction.</summary>
         public SearchAlteration QueryAlteration { get; set; }
-        /// <summary>Defines the type of the spelling correction. Possible values are suggestion, modification.</summary>
+        /// <summary>Defines the type of the spelling correction. Possible values are: suggestion, modification.</summary>
         public SearchAlterationType? QueryAlterationType { get; set; }
         /// <summary>
         /// Instantiates a new alterationResponse and sets the default values.
         /// </summary>
         public AlterationResponse() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.alterationResponse";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"originalQueryString", n => { OriginalQueryString = n.GetStringValue(); } },
                 {"queryAlteration", n => { QueryAlteration = n.GetObjectValue<SearchAlteration>(SearchAlteration.CreateFromDiscriminatorValue); } },
                 {"queryAlterationType", n => { QueryAlterationType = n.GetEnumValue<SearchAlterationType>(); } },
@@ -43,6 +47,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("originalQueryString", OriginalQueryString);
             writer.WriteObjectValue<SearchAlteration>("queryAlteration", QueryAlteration);
             writer.WriteEnumValue<SearchAlterationType>("queryAlterationType", QueryAlterationType);

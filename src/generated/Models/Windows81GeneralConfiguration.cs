@@ -27,9 +27,9 @@ namespace ApiSdk.Models {
         public bool? BrowserBlockSingleWordEntryOnIntranetSites { get; set; }
         /// <summary>The enterprise mode site list location. Could be a local file, local network or http location.</summary>
         public string BrowserEnterpriseModeSiteListLocation { get; set; }
-        /// <summary>The internet security level. Possible values are: userDefined, medium, mediumHigh, high.</summary>
+        /// <summary>Possible values for internet site security level.</summary>
         public InternetSiteSecurityLevel? BrowserInternetSecurityLevel { get; set; }
-        /// <summary>The Intranet security level. Possible values are: userDefined, low, mediumLow, medium, mediumHigh, high.</summary>
+        /// <summary>Possible values for site security level.</summary>
         public SiteSecurityLevel? BrowserIntranetSecurityLevel { get; set; }
         /// <summary>The logging report location.</summary>
         public string BrowserLoggingReportLocation { get; set; }
@@ -41,7 +41,7 @@ namespace ApiSdk.Models {
         public bool? BrowserRequireHighSecurityForRestrictedSites { get; set; }
         /// <summary>Indicates whether or not to require the user to use the smart screen filter.</summary>
         public bool? BrowserRequireSmartScreen { get; set; }
-        /// <summary>The trusted sites security level. Possible values are: userDefined, low, mediumLow, medium, mediumHigh, high.</summary>
+        /// <summary>Possible values for site security level.</summary>
         public SiteSecurityLevel? BrowserTrustedSitesSecurityLevel { get; set; }
         /// <summary>Indicates whether or not to block data roaming.</summary>
         public bool? CellularBlockDataRoaming { get; set; }
@@ -59,7 +59,7 @@ namespace ApiSdk.Models {
         public int? PasswordMinutesOfInactivityBeforeScreenTimeout { get; set; }
         /// <summary>The number of previous passwords to prevent re-use of. Valid values 0 to 24</summary>
         public int? PasswordPreviousPasswordBlockCount { get; set; }
-        /// <summary>The required password type. Possible values are: deviceDefault, alphanumeric, numeric.</summary>
+        /// <summary>Possible values of required passwords.</summary>
         public RequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>The number of sign in failures before factory reset.</summary>
         public int? PasswordSignInFailureCountBeforeFactoryReset { get; set; }
@@ -67,10 +67,16 @@ namespace ApiSdk.Models {
         public bool? StorageRequireDeviceEncryption { get; set; }
         /// <summary>Indicates whether or not to require automatic updates.</summary>
         public bool? UpdatesRequireAutomaticUpdates { get; set; }
-        /// <summary>The user account control settings. Possible values are: userDefined, alwaysNotify, notifyOnAppChanges, notifyOnAppChangesWithoutDimming, neverNotify.</summary>
+        /// <summary>Possible values for Windows user account control settings.</summary>
         public WindowsUserAccountControlSettings? UserAccountControlSettings { get; set; }
         /// <summary>The work folders url.</summary>
         public string WorkFoldersUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new Windows81GeneralConfiguration and sets the default values.
+        /// </summary>
+        public Windows81GeneralConfiguration() : base() {
+            OdataType = "#microsoft.graph.windows81GeneralConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

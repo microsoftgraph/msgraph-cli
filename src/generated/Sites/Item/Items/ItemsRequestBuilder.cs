@@ -37,11 +37,11 @@ namespace ApiSdk.Sites.Item.Items {
             return command;
         }
         /// <summary>
-        /// Used to address any item contained in this site. This collection cannot be enumerated.
+        /// Used to address any item contained in this site. This collection can&apos;t be enumerated.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Used to address any item contained in this site. This collection cannot be enumerated.";
+            command.Description = "Used to address any item contained in this site. This collection can't be enumerated.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -160,7 +160,7 @@ namespace ApiSdk.Sites.Item.Items {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Used to address any item contained in this site. This collection cannot be enumerated.
+        /// Used to address any item contained in this site. This collection can&apos;t be enumerated.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ItemsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -179,7 +179,7 @@ namespace ApiSdk.Sites.Item.Items {
             }
             return requestInfo;
         }
-        /// <summary>Used to address any item contained in this site. This collection cannot be enumerated.</summary>
+        /// <summary>Used to address any item contained in this site. This collection can&apos;t be enumerated.</summary>
         public class ItemsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -242,7 +242,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new featureRolloutPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new FeatureRolloutPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public FeatureRolloutPolicyItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             /// <summary>Request query parameters</summary>
             public FeatureRolloutPolicyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new FeatureRolloutPolicyItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new featureRolloutPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new FeatureRolloutPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public FeatureRolloutPolicyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -281,7 +281,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new featureRolloutPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new FeatureRolloutPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public FeatureRolloutPolicyItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

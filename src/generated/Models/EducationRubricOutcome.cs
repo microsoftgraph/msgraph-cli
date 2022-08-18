@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         /// <summary>The level that the teacher has selected for each quality while grading this assignment.</summary>
         public List<RubricQualitySelectedColumnModel> RubricQualitySelectedLevels { get; set; }
         /// <summary>
+        /// Instantiates a new EducationRubricOutcome and sets the default values.
+        /// </summary>
+        public EducationRubricOutcome() : base() {
+            OdataType = "#microsoft.graph.educationRubricOutcome";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

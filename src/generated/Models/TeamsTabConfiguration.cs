@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public string ContentUrl { get; set; }
         /// <summary>Identifier for the entity hosted by the tab provider.</summary>
         public string EntityId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Url called by Teams client when a Tab is removed using the Teams Client.</summary>
         public string RemoveUrl { get; set; }
         /// <summary>Url for showing tab contents outside of Teams.</summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public TeamsTabConfiguration() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.teamsTabConfiguration";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -36,6 +39,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"contentUrl", n => { ContentUrl = n.GetStringValue(); } },
                 {"entityId", n => { EntityId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"removeUrl", n => { RemoveUrl = n.GetStringValue(); } },
                 {"websiteUrl", n => { WebsiteUrl = n.GetStringValue(); } },
             };
@@ -48,6 +52,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("contentUrl", ContentUrl);
             writer.WriteStringValue("entityId", EntityId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("removeUrl", RemoveUrl);
             writer.WriteStringValue("websiteUrl", WebsiteUrl);
             writer.WriteAdditionalData(AdditionalData);

@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public AppConsentApprovalRoute AppConsent { get; set; }
         /// <summary>The entitlementManagement property</summary>
         public ApiSdk.Models.EntitlementManagement EntitlementManagement { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The termsOfUse property</summary>
         public TermsOfUseContainer TermsOfUse { get; set; }
         /// <summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IdentityGovernance() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.identityGovernance";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,6 +40,7 @@ namespace ApiSdk.Models {
                 {"accessReviews", n => { AccessReviews = n.GetObjectValue<AccessReviewSet>(AccessReviewSet.CreateFromDiscriminatorValue); } },
                 {"appConsent", n => { AppConsent = n.GetObjectValue<AppConsentApprovalRoute>(AppConsentApprovalRoute.CreateFromDiscriminatorValue); } },
                 {"entitlementManagement", n => { EntitlementManagement = n.GetObjectValue<ApiSdk.Models.EntitlementManagement>(ApiSdk.Models.EntitlementManagement.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"termsOfUse", n => { TermsOfUse = n.GetObjectValue<TermsOfUseContainer>(TermsOfUseContainer.CreateFromDiscriminatorValue); } },
             };
         }
@@ -49,6 +53,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<AccessReviewSet>("accessReviews", AccessReviews);
             writer.WriteObjectValue<AppConsentApprovalRoute>("appConsent", AppConsent);
             writer.WriteObjectValue<ApiSdk.Models.EntitlementManagement>("entitlementManagement", EntitlementManagement);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<TermsOfUseContainer>("termsOfUse", TermsOfUse);
             writer.WriteAdditionalData(AdditionalData);
         }

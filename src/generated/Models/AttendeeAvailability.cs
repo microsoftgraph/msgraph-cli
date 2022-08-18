@@ -9,13 +9,16 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The email address and type of attendee - whether it&apos;s a person or a resource, and whether required or optional if it&apos;s a person.</summary>
         public AttendeeBase Attendee { get; set; }
-        /// <summary>The availability status of the attendee. Possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
+        /// <summary>The availability status of the attendee. The possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
         public FreeBusyStatus? Availability { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new attendeeAvailability and sets the default values.
         /// </summary>
         public AttendeeAvailability() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.attendeeAvailability";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"attendee", n => { Attendee = n.GetObjectValue<AttendeeBase>(AttendeeBase.CreateFromDiscriminatorValue); } },
                 {"availability", n => { Availability = n.GetEnumValue<FreeBusyStatus>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<AttendeeBase>("attendee", Attendee);
             writer.WriteEnumValue<FreeBusyStatus>("availability", Availability);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

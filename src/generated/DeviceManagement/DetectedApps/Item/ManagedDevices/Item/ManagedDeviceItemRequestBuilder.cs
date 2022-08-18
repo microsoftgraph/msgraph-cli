@@ -140,7 +140,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item.ManagedDevices.Item {
             /// <summary>Request query parameters</summary>
             public ManagedDeviceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ManagedDeviceItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new managedDeviceItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedDeviceItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedDeviceItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

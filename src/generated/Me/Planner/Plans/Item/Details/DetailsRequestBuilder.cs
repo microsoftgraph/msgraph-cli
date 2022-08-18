@@ -55,11 +55,11 @@ namespace ApiSdk.Me.Planner.Plans.Item.Details {
             return command;
         }
         /// <summary>
-        /// Additional details about the plan. Read-only. Nullable.
+        /// Read-only. Nullable. Additional details about the plan.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Additional details about the plan. Read-only. Nullable.";
+            command.Description = "Read-only. Nullable. Additional details about the plan.";
             // Create options for all the parameters
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
             };
@@ -181,7 +181,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Additional details about the plan. Read-only. Nullable.
+        /// Read-only. Nullable. Additional details about the plan.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DetailsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -235,7 +235,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Details {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Additional details about the plan. Read-only. Nullable.</summary>
+        /// <summary>Read-only. Nullable. Additional details about the plan.</summary>
         public class DetailsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

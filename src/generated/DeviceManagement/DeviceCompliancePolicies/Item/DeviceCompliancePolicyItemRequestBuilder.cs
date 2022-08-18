@@ -310,7 +310,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceCompliancePolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceCompliancePolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceCompliancePolicyItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -335,7 +335,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             /// <summary>Request query parameters</summary>
             public DeviceCompliancePolicyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DeviceCompliancePolicyItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new deviceCompliancePolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceCompliancePolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceCompliancePolicyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -349,7 +349,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceCompliancePolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceCompliancePolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceCompliancePolicyItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

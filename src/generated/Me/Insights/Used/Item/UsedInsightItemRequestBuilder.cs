@@ -56,11 +56,11 @@ namespace ApiSdk.Me.Insights.Used.Item {
             return command;
         }
         /// <summary>
-        /// Access this property from the derived type itemInsights.
+        /// Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Access this property from the derived type itemInsights.";
+            command.Description = "Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.";
             // Create options for all the parameters
             var usedInsightIdOption = new Option<string>("--used-insight-id", description: "key: id of usedInsight") {
             };
@@ -188,7 +188,7 @@ namespace ApiSdk.Me.Insights.Used.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Access this property from the derived type itemInsights.
+        /// Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UsedInsightItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -235,14 +235,14 @@ namespace ApiSdk.Me.Insights.Used.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new usedInsightItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UsedInsightItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UsedInsightItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Access this property from the derived type itemInsights.</summary>
+        /// <summary>Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.</summary>
         public class UsedInsightItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -260,7 +260,7 @@ namespace ApiSdk.Me.Insights.Used.Item {
             /// <summary>Request query parameters</summary>
             public UsedInsightItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UsedInsightItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new usedInsightItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UsedInsightItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UsedInsightItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -274,7 +274,7 @@ namespace ApiSdk.Me.Insights.Used.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new usedInsightItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UsedInsightItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UsedInsightItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

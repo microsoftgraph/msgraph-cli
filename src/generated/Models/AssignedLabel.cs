@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>The unique identifier of the label.</summary>
         public string LabelId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new assignedLabel and sets the default values.
         /// </summary>
         public AssignedLabel() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.assignedLabel";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"labelId", n => { LabelId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("labelId", LabelId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

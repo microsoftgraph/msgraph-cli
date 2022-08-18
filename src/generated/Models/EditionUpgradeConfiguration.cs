@@ -7,12 +7,18 @@ namespace ApiSdk.Models {
     public class EditionUpgradeConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Edition Upgrade License File Content.</summary>
         public string License { get; set; }
-        /// <summary>Edition Upgrade License Type. Possible values are: productKey, licenseFile, notConfigured.</summary>
+        /// <summary>Edition Upgrade License type</summary>
         public EditionUpgradeLicenseType? LicenseType { get; set; }
         /// <summary>Edition Upgrade Product Key.</summary>
         public string ProductKey { get; set; }
-        /// <summary>Edition Upgrade Target Edition. Possible values are: windows10Enterprise, windows10EnterpriseN, windows10Education, windows10EducationN, windows10MobileEnterprise, windows10HolographicEnterprise, windows10Professional, windows10ProfessionalN, windows10ProfessionalEducation, windows10ProfessionalEducationN, windows10ProfessionalWorkstation, windows10ProfessionalWorkstationN, notConfigured, windows10Home, windows10HomeChina, windows10HomeN, windows10HomeSingleLanguage, windows10Mobile, windows10IoTCore, windows10IoTCoreCommercial.</summary>
+        /// <summary>Windows 10 Edition type.</summary>
         public Windows10EditionType? TargetEdition { get; set; }
+        /// <summary>
+        /// Instantiates a new EditionUpgradeConfiguration and sets the default values.
+        /// </summary>
+        public EditionUpgradeConfiguration() : base() {
+            OdataType = "#microsoft.graph.editionUpgradeConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

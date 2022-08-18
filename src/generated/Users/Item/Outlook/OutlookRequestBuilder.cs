@@ -59,11 +59,11 @@ namespace ApiSdk.Users.Item.Outlook {
             return command;
         }
         /// <summary>
-        /// Selective Outlook services available to the user. Read-only. Nullable.
+        /// Get outlook from users
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Selective Outlook services available to the user. Read-only. Nullable.";
+            command.Description = "Get outlook from users";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -187,7 +187,7 @@ namespace ApiSdk.Users.Item.Outlook {
             return requestInfo;
         }
         /// <summary>
-        /// Selective Outlook services available to the user. Read-only. Nullable.
+        /// Get outlook from users
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OutlookRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -261,7 +261,7 @@ namespace ApiSdk.Users.Item.Outlook {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Selective Outlook services available to the user. Read-only. Nullable.</summary>
+        /// <summary>Get outlook from users</summary>
         public class OutlookRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
             [QueryParameter("%24select")]

@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public ChatMessageMentionedIdentitySet Mentioned { get; set; }
         /// <summary>String used to represent the mention. For example, a user&apos;s display name, a team name.</summary>
         public string MentionText { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new chatMessageMention and sets the default values.
         /// </summary>
         public ChatMessageMention() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.chatMessageMention";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"id", n => { Id = n.GetIntValue(); } },
                 {"mentioned", n => { Mentioned = n.GetObjectValue<ChatMessageMentionedIdentitySet>(ChatMessageMentionedIdentitySet.CreateFromDiscriminatorValue); } },
                 {"mentionText", n => { MentionText = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteIntValue("id", Id);
             writer.WriteObjectValue<ChatMessageMentionedIdentitySet>("mentioned", Mentioned);
             writer.WriteStringValue("mentionText", MentionText);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

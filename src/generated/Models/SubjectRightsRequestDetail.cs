@@ -15,6 +15,8 @@ namespace ApiSdk.Models {
         public long? ItemCount { get; set; }
         /// <summary>Count of item that need review.</summary>
         public long? ItemNeedReview { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Count of items per product, such as Exchange, SharePoint, OneDrive, and Teams.</summary>
         public List<KeyValuePair> ProductItemCounts { get; set; }
         /// <summary>Count of items signed off by the administrator.</summary>
@@ -26,6 +28,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public SubjectRightsRequestDetail() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.subjectRightsRequestDetail";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -44,6 +47,7 @@ namespace ApiSdk.Models {
                 {"insightCounts", n => { InsightCounts = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue).ToList(); } },
                 {"itemCount", n => { ItemCount = n.GetLongValue(); } },
                 {"itemNeedReview", n => { ItemNeedReview = n.GetLongValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"productItemCounts", n => { ProductItemCounts = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue).ToList(); } },
                 {"signedOffItemCount", n => { SignedOffItemCount = n.GetLongValue(); } },
                 {"totalItemSize", n => { TotalItemSize = n.GetLongValue(); } },
@@ -59,6 +63,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<KeyValuePair>("insightCounts", InsightCounts);
             writer.WriteLongValue("itemCount", ItemCount);
             writer.WriteLongValue("itemNeedReview", ItemNeedReview);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfObjectValues<KeyValuePair>("productItemCounts", ProductItemCounts);
             writer.WriteLongValue("signedOffItemCount", SignedOffItemCount);
             writer.WriteLongValue("totalItemSize", TotalItemSize);

@@ -4,14 +4,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class WorkbookComment : Entity, IParsable {
-        /// <summary>The content of the comment.</summary>
+        /// <summary>The content of comment.</summary>
         public string Content { get; set; }
         /// <summary>Indicates the type for the comment.</summary>
         public string ContentType { get; set; }
         /// <summary>The replies property</summary>
         public List<WorkbookCommentReply> Replies { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookComment and sets the default values.
+        /// </summary>
+        public WorkbookComment() : base() {
+            OdataType = "#microsoft.graph.workbookComment";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

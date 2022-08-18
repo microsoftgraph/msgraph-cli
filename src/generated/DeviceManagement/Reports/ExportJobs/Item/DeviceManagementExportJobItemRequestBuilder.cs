@@ -228,7 +228,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceManagementExportJobItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceManagementExportJobItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceManagementExportJobItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             /// <summary>Request query parameters</summary>
             public DeviceManagementExportJobItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DeviceManagementExportJobItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new deviceManagementExportJobItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceManagementExportJobItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceManagementExportJobItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceManagementExportJobItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceManagementExportJobItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceManagementExportJobItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

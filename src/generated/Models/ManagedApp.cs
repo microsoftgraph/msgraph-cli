@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -5,17 +6,32 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class ManagedApp : MobileApp, IParsable {
-        /// <summary>The Application&apos;s availability. Possible values are: global, lineOfBusiness.</summary>
+        /// <summary>A managed (MAM) application&apos;s availability.</summary>
         public ManagedAppAvailability? AppAvailability { get; set; }
         /// <summary>The Application&apos;s version.</summary>
         public string Version { get; set; }
+        /// <summary>
+        /// Instantiates a new ManagedApp and sets the default values.
+        /// </summary>
+        public ManagedApp() : base() {
+            OdataType = "#microsoft.graph.managedApp";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
         public static new ManagedApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedApp();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.managedAndroidLobApp" => new ManagedAndroidLobApp(),
+                "#microsoft.graph.managedAndroidStoreApp" => new ManagedAndroidStoreApp(),
+                "#microsoft.graph.managedIOSLobApp" => new ManagedIOSLobApp(),
+                "#microsoft.graph.managedIOSStoreApp" => new ManagedIOSStoreApp(),
+                "#microsoft.graph.managedMobileLobApp" => new ManagedMobileLobApp(),
+                _ => new ManagedApp(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

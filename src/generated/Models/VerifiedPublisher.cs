@@ -9,8 +9,10 @@ namespace ApiSdk.Models {
         public DateTimeOffset? AddedDateTime { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The verified publisher name from the app publisher&apos;s Microsoft Partner Network (MPN) account.</summary>
+        /// <summary>The verified publisher name from the app publisher&apos;s Partner Center account.</summary>
         public string DisplayName { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The ID of the verified publisher from the app publisher&apos;s Partner Center account.</summary>
         public string VerifiedPublisherId { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public VerifiedPublisher() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.verifiedPublisher";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"addedDateTime", n => { AddedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"verifiedPublisherId", n => { VerifiedPublisherId = n.GetStringValue(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("addedDateTime", AddedDateTime);
             writer.WriteStringValue("displayName", DisplayName);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("verifiedPublisherId", VerifiedPublisherId);
             writer.WriteAdditionalData(AdditionalData);
         }

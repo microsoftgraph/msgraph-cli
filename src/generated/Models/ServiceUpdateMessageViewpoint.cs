@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public bool? IsFavorited { get; set; }
         /// <summary>Indicates whether the user read the message.</summary>
         public bool? IsRead { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new serviceUpdateMessageViewpoint and sets the default values.
         /// </summary>
         public ServiceUpdateMessageViewpoint() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.serviceUpdateMessageViewpoint";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"isArchived", n => { IsArchived = n.GetBoolValue(); } },
                 {"isFavorited", n => { IsFavorited = n.GetBoolValue(); } },
                 {"isRead", n => { IsRead = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("isArchived", IsArchived);
             writer.WriteBoolValue("isFavorited", IsFavorited);
             writer.WriteBoolValue("isRead", IsRead);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

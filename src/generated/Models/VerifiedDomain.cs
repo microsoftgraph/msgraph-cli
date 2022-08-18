@@ -15,6 +15,8 @@ namespace ApiSdk.Models {
         public bool? IsInitial { get; set; }
         /// <summary>The domain name; for example, contoso.onmicrosoft.com.</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>For example, Managed.</summary>
         public string Type { get; set; }
         /// <summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public VerifiedDomain() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.verifiedDomain";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -40,6 +43,7 @@ namespace ApiSdk.Models {
                 {"isDefault", n => { IsDefault = n.GetBoolValue(); } },
                 {"isInitial", n => { IsInitial = n.GetBoolValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -53,6 +57,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("isDefault", IsDefault);
             writer.WriteBoolValue("isInitial", IsInitial);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

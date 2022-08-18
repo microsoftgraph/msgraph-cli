@@ -276,7 +276,7 @@ namespace ApiSdk.Me.Chats.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new chatItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ChatItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ChatItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -301,7 +301,7 @@ namespace ApiSdk.Me.Chats.Item {
             /// <summary>Request query parameters</summary>
             public ChatItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ChatItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new chatItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ChatItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ChatItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -315,7 +315,7 @@ namespace ApiSdk.Me.Chats.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new chatItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ChatItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ChatItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

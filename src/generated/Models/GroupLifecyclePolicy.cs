@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class GroupLifecyclePolicy : Entity, IParsable {
         /// <summary>List of email address to send notifications for groups without owners. Multiple email address can be defined by separating email address with a semicolon.</summary>
         public string AlternateNotificationEmails { get; set; }
@@ -12,6 +12,12 @@ namespace ApiSdk.Models {
         public int? GroupLifetimeInDays { get; set; }
         /// <summary>The group type for which the expiration policy applies. Possible values are All, Selected or None.</summary>
         public string ManagedGroupTypes { get; set; }
+        /// <summary>
+        /// Instantiates a new groupLifecyclePolicy and sets the default values.
+        /// </summary>
+        public GroupLifecyclePolicy() : base() {
+            OdataType = "#microsoft.graph.groupLifecyclePolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

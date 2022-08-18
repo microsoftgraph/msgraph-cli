@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationClass : Entity, IParsable {
         /// <summary>All categories associated with this class. Nullable.</summary>
         public List<EducationCategory> AssignmentCategories { get; set; }
@@ -16,9 +15,9 @@ namespace ApiSdk.Models {
         public EducationAssignmentSettings AssignmentSettings { get; set; }
         /// <summary>Class code used by the school to identify the class.</summary>
         public string ClassCode { get; set; }
-        /// <summary>Course information for the class.</summary>
+        /// <summary>The course property</summary>
         public EducationCourse Course { get; set; }
-        /// <summary>Entity who created the class.</summary>
+        /// <summary>Entity who created the class</summary>
         public IdentitySet CreatedBy { get; set; }
         /// <summary>Description of the class.</summary>
         public string Description { get; set; }
@@ -28,7 +27,7 @@ namespace ApiSdk.Models {
         public string ExternalId { get; set; }
         /// <summary>Name of the class in the syncing system.</summary>
         public string ExternalName { get; set; }
-        /// <summary>The type of external source this resource was generated from (automatically determined from externalSourceDetail). Possible values are: sis, lms, or manual.</summary>
+        /// <summary>How this class was created. Possible values are: sis, manual.</summary>
         public EducationExternalSource? ExternalSource { get; set; }
         /// <summary>The name of the external source this resources was generated from.</summary>
         public string ExternalSourceDetail { get; set; }
@@ -44,8 +43,14 @@ namespace ApiSdk.Models {
         public List<EducationSchool> Schools { get; set; }
         /// <summary>All teachers in the class. Nullable.</summary>
         public List<EducationUser> Teachers { get; set; }
-        /// <summary>Term for the class.</summary>
+        /// <summary>Term for this class.</summary>
         public EducationTerm Term { get; set; }
+        /// <summary>
+        /// Instantiates a new EducationClass and sets the default values.
+        /// </summary>
+        public EducationClass() : base() {
+            OdataType = "#microsoft.graph.educationClass";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

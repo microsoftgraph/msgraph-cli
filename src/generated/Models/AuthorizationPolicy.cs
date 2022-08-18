@@ -17,8 +17,14 @@ namespace ApiSdk.Models {
         public bool? BlockMsolPowerShell { get; set; }
         /// <summary>The defaultUserRolePermissions property</summary>
         public ApiSdk.Models.DefaultUserRolePermissions DefaultUserRolePermissions { get; set; }
-        /// <summary>Represents role templateId for the role that should be granted to guest user. Refer to List unifiedRoleDefinitions to find the list of available role templates. Currently following roles are supported:  User (a0b1b346-4d3e-4e8b-98f8-753987be4970), Guest User (10dae51f-b6af-4016-8d66-8c2a99b929b3), and Restricted Guest User (2af84b1e-32c8-42b7-82bc-daa82404023b).</summary>
+        /// <summary>Represents role templateId for the role that should be granted to guest user. Currently following roles are supported:  User (a0b1b346-4d3e-4e8b-98f8-753987be4970), Guest User (10dae51f-b6af-4016-8d66-8c2a99b929b3), and Restricted Guest User (2af84b1e-32c8-42b7-82bc-daa82404023b).</summary>
         public string GuestUserRoleId { get; set; }
+        /// <summary>
+        /// Instantiates a new AuthorizationPolicy and sets the default values.
+        /// </summary>
+        public AuthorizationPolicy() : base() {
+            OdataType = "#microsoft.graph.authorizationPolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

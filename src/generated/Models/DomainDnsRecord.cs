@@ -1,10 +1,11 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of domainDnsRecord entities.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class DomainDnsRecord : Entity, IParsable {
         /// <summary>If false, this record must be configured by the customer at the DNS host for Microsoft Online Services to operate correctly with the domain.</summary>
         public bool? IsOptional { get; set; }
@@ -16,6 +17,12 @@ namespace ApiSdk.Models {
         public string SupportedService { get; set; }
         /// <summary>Value to use when configuring the time-to-live (ttl) property of the DNS record at the DNS host. Not nullable.</summary>
         public int? Ttl { get; set; }
+        /// <summary>
+        /// Instantiates a new domainDnsRecord and sets the default values.
+        /// </summary>
+        public DomainDnsRecord() : base() {
+            OdataType = "#microsoft.graph.domainDnsRecord";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

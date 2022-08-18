@@ -25,11 +25,14 @@ namespace ApiSdk.Models {
         public string MessageSubject { get; set; }
         /// <summary>The networkMessageId property</summary>
         public string NetworkMessageId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new messageSecurityState and sets the default values.
         /// </summary>
         public MessageSecurityState() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.messageSecurityState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -53,6 +56,7 @@ namespace ApiSdk.Models {
                 {"messageReceivedDateTime", n => { MessageReceivedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"messageSubject", n => { MessageSubject = n.GetStringValue(); } },
                 {"networkMessageId", n => { NetworkMessageId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -70,6 +74,7 @@ namespace ApiSdk.Models {
             writer.WriteDateTimeOffsetValue("messageReceivedDateTime", MessageReceivedDateTime);
             writer.WriteStringValue("messageSubject", MessageSubject);
             writer.WriteStringValue("networkMessageId", NetworkMessageId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

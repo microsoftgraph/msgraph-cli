@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,12 @@ namespace ApiSdk.Models {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>
+        /// Instantiates a new outlookItem and sets the default values.
+        /// </summary>
+        public OutlookItem() : base() {
+            OdataType = "#microsoft.graph.outlookItem";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
@@ -23,8 +30,12 @@ namespace ApiSdk.Models {
             var mappingValueNode = parseNode.GetChildNode("@odata.type");
             var mappingValue = mappingValueNode?.GetStringValue();
             return mappingValue switch {
+                "#microsoft.graph.calendarSharingMessage" => new CalendarSharingMessage(),
                 "#microsoft.graph.contact" => new Contact(),
                 "#microsoft.graph.event" => new Event(),
+                "#microsoft.graph.eventMessage" => new EventMessage(),
+                "#microsoft.graph.eventMessageRequest" => new EventMessageRequest(),
+                "#microsoft.graph.eventMessageResponse" => new EventMessageResponse(),
                 "#microsoft.graph.message" => new Message(),
                 "#microsoft.graph.post" => new Post(),
                 _ => new OutlookItem(),

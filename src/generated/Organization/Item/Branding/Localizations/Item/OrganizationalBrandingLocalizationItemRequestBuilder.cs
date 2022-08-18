@@ -270,7 +270,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new organizationalBrandingLocalizationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new OrganizationalBrandingLocalizationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public OrganizationalBrandingLocalizationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -295,7 +295,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             /// <summary>Request query parameters</summary>
             public OrganizationalBrandingLocalizationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OrganizationalBrandingLocalizationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new organizationalBrandingLocalizationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new OrganizationalBrandingLocalizationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public OrganizationalBrandingLocalizationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -309,7 +309,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new organizationalBrandingLocalizationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new OrganizationalBrandingLocalizationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public OrganizationalBrandingLocalizationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

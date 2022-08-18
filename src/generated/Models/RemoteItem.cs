@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         /// <summary>Date and time of item creation. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Indicates that the remote item is a file. Read-only.</summary>
-        public ApiSdk.Models.File File { get; set; }
+        public ApiSdk.Models.FileObject FileObject { get; set; }
         /// <summary>Information about the remote item from the local file system. Read-only.</summary>
         public ApiSdk.Models.FileSystemInfo FileSystemInfo { get; set; }
         /// <summary>Indicates that the remote item is a folder. Read-only.</summary>
@@ -27,6 +27,8 @@ namespace ApiSdk.Models {
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Optional. Filename of the remote item. Read-only.</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.</summary>
         public ApiSdk.Models.Package Package { get; set; }
         /// <summary>Properties of the parent of the remote item. Read-only.</summary>
@@ -50,6 +52,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public RemoteItem() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.remoteItem";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -66,7 +69,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"file", n => { File = n.GetObjectValue<ApiSdk.Models.File>(ApiSdk.Models.File.CreateFromDiscriminatorValue); } },
+                {"file", n => { FileObject = n.GetObjectValue<ApiSdk.Models.FileObject>(ApiSdk.Models.FileObject.CreateFromDiscriminatorValue); } },
                 {"fileSystemInfo", n => { FileSystemInfo = n.GetObjectValue<ApiSdk.Models.FileSystemInfo>(ApiSdk.Models.FileSystemInfo.CreateFromDiscriminatorValue); } },
                 {"folder", n => { Folder = n.GetObjectValue<ApiSdk.Models.Folder>(ApiSdk.Models.Folder.CreateFromDiscriminatorValue); } },
                 {"id", n => { Id = n.GetStringValue(); } },
@@ -74,6 +77,7 @@ namespace ApiSdk.Models {
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"package", n => { Package = n.GetObjectValue<ApiSdk.Models.Package>(ApiSdk.Models.Package.CreateFromDiscriminatorValue); } },
                 {"parentReference", n => { ParentReference = n.GetObjectValue<ItemReference>(ItemReference.CreateFromDiscriminatorValue); } },
                 {"shared", n => { Shared = n.GetObjectValue<ApiSdk.Models.Shared>(ApiSdk.Models.Shared.CreateFromDiscriminatorValue); } },
@@ -93,7 +97,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<ApiSdk.Models.File>("file", File);
+            writer.WriteObjectValue<ApiSdk.Models.FileObject>("file", FileObject);
             writer.WriteObjectValue<ApiSdk.Models.FileSystemInfo>("fileSystemInfo", FileSystemInfo);
             writer.WriteObjectValue<ApiSdk.Models.Folder>("folder", Folder);
             writer.WriteStringValue("id", Id);
@@ -101,6 +105,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<ApiSdk.Models.Package>("package", Package);
             writer.WriteObjectValue<ItemReference>("parentReference", ParentReference);
             writer.WriteObjectValue<ApiSdk.Models.Shared>("shared", Shared);

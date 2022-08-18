@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public string GeneralText { get; set; }
         /// <summary>The list of improper data in the message that was detected by the data loss prevention app. Each DLP app defines its own conditions, examples include &apos;Credit Card Number&apos; and &apos;Social Security Number&apos;.</summary>
         public List<string> MatchedConditionDescriptions { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new chatMessagePolicyViolationPolicyTip and sets the default values.
         /// </summary>
         public ChatMessagePolicyViolationPolicyTip() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.chatMessagePolicyViolationPolicyTip";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"complianceUrl", n => { ComplianceUrl = n.GetStringValue(); } },
                 {"generalText", n => { GeneralText = n.GetStringValue(); } },
                 {"matchedConditionDescriptions", n => { MatchedConditionDescriptions = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("complianceUrl", ComplianceUrl);
             writer.WriteStringValue("generalText", GeneralText);
             writer.WriteCollectionOfPrimitiveValues<string>("matchedConditionDescriptions", MatchedConditionDescriptions);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

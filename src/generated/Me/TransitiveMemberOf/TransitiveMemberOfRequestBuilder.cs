@@ -70,11 +70,11 @@ namespace ApiSdk.Me.TransitiveMemberOf {
             return command;
         }
         /// <summary>
-        /// Get transitiveMemberOf from me
+        /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get transitiveMemberOf from me";
+            command.Description = "The groups, including nested groups, and directory roles that a user is a member of. Nullable.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -208,7 +208,7 @@ namespace ApiSdk.Me.TransitiveMemberOf {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get transitiveMemberOf from me
+        /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TransitiveMemberOfRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -227,7 +227,7 @@ namespace ApiSdk.Me.TransitiveMemberOf {
             }
             return requestInfo;
         }
-        /// <summary>Get transitiveMemberOf from me</summary>
+        /// <summary>The groups, including nested groups, and directory roles that a user is a member of. Nullable.</summary>
         public class TransitiveMemberOfRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

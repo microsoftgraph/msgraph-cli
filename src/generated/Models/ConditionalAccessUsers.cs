@@ -19,11 +19,14 @@ namespace ApiSdk.Models {
         public List<string> IncludeRoles { get; set; }
         /// <summary>User IDs in scope of policy unless explicitly excluded, or None or All or GuestsOrExternalUsers.</summary>
         public List<string> IncludeUsers { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new conditionalAccessUsers and sets the default values.
         /// </summary>
         public ConditionalAccessUsers() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.conditionalAccessUsers";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -44,6 +47,7 @@ namespace ApiSdk.Models {
                 {"includeGroups", n => { IncludeGroups = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"includeRoles", n => { IncludeRoles = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"includeUsers", n => { IncludeUsers = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -58,6 +62,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfPrimitiveValues<string>("includeGroups", IncludeGroups);
             writer.WriteCollectionOfPrimitiveValues<string>("includeRoles", IncludeRoles);
             writer.WriteCollectionOfPrimitiveValues<string>("includeUsers", IncludeUsers);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

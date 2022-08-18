@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
     public class AccessReviewHistoryDefinition : Entity, IParsable {
         /// <summary>The createdBy property</summary>
         public UserIdentity CreatedBy { get; set; }
@@ -26,6 +25,12 @@ namespace ApiSdk.Models {
         public List<AccessReviewScope> Scopes { get; set; }
         /// <summary>Represents the status of the review history data collection. The possible values are: done, inProgress, error, requested, unknownFutureValue.</summary>
         public AccessReviewHistoryStatus? Status { get; set; }
+        /// <summary>
+        /// Instantiates a new AccessReviewHistoryDefinition and sets the default values.
+        /// </summary>
+        public AccessReviewHistoryDefinition() : base() {
+            OdataType = "#microsoft.graph.accessReviewHistoryDefinition";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

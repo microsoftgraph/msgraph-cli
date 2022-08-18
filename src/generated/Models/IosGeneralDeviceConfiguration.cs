@@ -35,7 +35,7 @@ namespace ApiSdk.Models {
         public bool? AppStoreRequirePassword { get; set; }
         /// <summary>List of apps in the visibility list (either visible/launchable apps list or hidden/unlaunchable apps list, controlled by AppsVisibilityListType) (iOS 9.3 and later). This collection can contain a maximum of 10000 elements.</summary>
         public List<AppListItem> AppsVisibilityList { get; set; }
-        /// <summary>Type of list that is in the AppsVisibilityList. Possible values are: none, appsInListCompliant, appsNotInListCompliant.</summary>
+        /// <summary>Possible values of the compliance app list.</summary>
         public AppListType? AppsVisibilityListType { get; set; }
         /// <summary>Indicates whether or not to allow modification of Bluetooth settings when the device is in supervised mode (iOS 10.0 and later).</summary>
         public bool? BluetoothBlockModification { get; set; }
@@ -57,7 +57,7 @@ namespace ApiSdk.Models {
         public bool? ClassroomAppBlockRemoteScreenObservation { get; set; }
         /// <summary>Indicates whether or not to automatically give permission to the teacher of a managed course on the Classroom app to view a student&apos;s screen without prompting when the device is in supervised mode.</summary>
         public bool? ClassroomAppForceUnpromptedScreenObservation { get; set; }
-        /// <summary>List that is in the AppComplianceList. Possible values are: none, appsInListCompliant, appsNotInListCompliant.</summary>
+        /// <summary>Possible values of the compliance app list.</summary>
         public AppListType? CompliantAppListType { get; set; }
         /// <summary>List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.</summary>
         public List<AppListItem> CompliantAppsList { get; set; }
@@ -179,7 +179,7 @@ namespace ApiSdk.Models {
         public bool? LockScreenBlockPassbook { get; set; }
         /// <summary>Indicates whether or not to block the user from using the Today View on the lock screen.</summary>
         public bool? LockScreenBlockTodayView { get; set; }
-        /// <summary>Media content rating settings for Apps. Possible values are: allAllowed, allBlocked, agesAbove4, agesAbove9, agesAbove12, agesAbove17.</summary>
+        /// <summary>Apps rating as in media content</summary>
         public RatingAppsType? MediaContentRatingApps { get; set; }
         /// <summary>Media content rating settings for Australia</summary>
         public ApiSdk.Models.MediaContentRatingAustralia MediaContentRatingAustralia { get; set; }
@@ -227,7 +227,7 @@ namespace ApiSdk.Models {
         public int? PasscodePreviousPasscodeBlockCount { get; set; }
         /// <summary>Indicates whether or not to require a passcode.</summary>
         public bool? PasscodeRequired { get; set; }
-        /// <summary>Type of passcode that is required. Possible values are: deviceDefault, alphanumeric, numeric.</summary>
+        /// <summary>Possible values of required passwords.</summary>
         public RequiredPasswordType? PasscodeRequiredType { get; set; }
         /// <summary>Number of sign in failures allowed before wiping the device. Valid values 2 to 11</summary>
         public int? PasscodeSignInFailureCountBeforeWipe { get; set; }
@@ -241,7 +241,7 @@ namespace ApiSdk.Models {
         public bool? SafariBlockJavaScript { get; set; }
         /// <summary>Indicates whether or not to block popups in Safari.</summary>
         public bool? SafariBlockPopups { get; set; }
-        /// <summary>Cookie settings for Safari. Possible values are: browserDefault, blockAlways, allowCurrentWebSite, allowFromWebsitesVisited, allowAlways.</summary>
+        /// <summary>Web Browser Cookie Settings.</summary>
         public WebBrowserCookieSettings? SafariCookieSettings { get; set; }
         /// <summary>URLs matching the patterns listed here will be considered managed.</summary>
         public List<string> SafariManagedDomains { get; set; }
@@ -267,6 +267,12 @@ namespace ApiSdk.Models {
         public bool? WallpaperBlockModification { get; set; }
         /// <summary>Indicates whether or not to force the device to use only Wi-Fi networks from configuration profiles when the device is in supervised mode. Available for devices running iOS and iPadOS versions 14.4 and earlier. Devices running 14.5+ should use the setting, &apos;WiFiConnectToAllowedNetworksOnlyForced.</summary>
         public bool? WiFiConnectOnlyToConfiguredNetworks { get; set; }
+        /// <summary>
+        /// Instantiates a new IosGeneralDeviceConfiguration and sets the default values.
+        /// </summary>
+        public IosGeneralDeviceConfiguration() : base() {
+            OdataType = "#microsoft.graph.iosGeneralDeviceConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

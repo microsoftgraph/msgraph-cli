@@ -70,11 +70,11 @@ namespace ApiSdk.Groups.Item.MemberOf {
             return command;
         }
         /// <summary>
-        /// Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
+        /// Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.";
+            command.Description = "Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -214,7 +214,7 @@ namespace ApiSdk.Groups.Item.MemberOf {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
+        /// Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MemberOfRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -233,7 +233,7 @@ namespace ApiSdk.Groups.Item.MemberOf {
             }
             return requestInfo;
         }
-        /// <summary>Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.</summary>
         public class MemberOfRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

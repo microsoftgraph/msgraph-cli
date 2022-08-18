@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationRubric : Entity, IParsable {
         /// <summary>The user who created this resource.</summary>
         public IdentitySet CreatedBy { get; set; }
@@ -24,6 +23,12 @@ namespace ApiSdk.Models {
         public List<RubricLevel> Levels { get; set; }
         /// <summary>The collection of qualities making up this rubric.</summary>
         public List<RubricQuality> Qualities { get; set; }
+        /// <summary>
+        /// Instantiates a new EducationRubric and sets the default values.
+        /// </summary>
+        public EducationRubric() : base() {
+            OdataType = "#microsoft.graph.educationRubric";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

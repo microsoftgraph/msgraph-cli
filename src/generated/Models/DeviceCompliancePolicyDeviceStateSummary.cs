@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
     public class DeviceCompliancePolicyDeviceStateSummary : Entity, IParsable {
         /// <summary>Number of compliant devices</summary>
         public int? CompliantDeviceCount { get; set; }
@@ -24,6 +23,12 @@ namespace ApiSdk.Models {
         public int? RemediatedDeviceCount { get; set; }
         /// <summary>Number of unknown devices</summary>
         public int? UnknownDeviceCount { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceCompliancePolicyDeviceStateSummary and sets the default values.
+        /// </summary>
+        public DeviceCompliancePolicyDeviceStateSummary() : base() {
+            OdataType = "#microsoft.graph.deviceCompliancePolicyDeviceStateSummary";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

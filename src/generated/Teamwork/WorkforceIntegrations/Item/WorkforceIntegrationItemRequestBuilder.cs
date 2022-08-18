@@ -55,11 +55,11 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             return command;
         }
         /// <summary>
-        /// A workforce integration with shifts.
+        /// Get workforceIntegrations from teamwork
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A workforce integration with shifts.";
+            command.Description = "Get workforceIntegrations from teamwork";
             // Create options for all the parameters
             var workforceIntegrationIdOption = new Option<string>("--workforce-integration-id", description: "key: id of workforceIntegration") {
             };
@@ -181,7 +181,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A workforce integration with shifts.
+        /// Get workforceIntegrations from teamwork
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<WorkforceIntegrationItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -228,14 +228,14 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new workforceIntegrationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new WorkforceIntegrationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public WorkforceIntegrationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>A workforce integration with shifts.</summary>
+        /// <summary>Get workforceIntegrations from teamwork</summary>
         public class WorkforceIntegrationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -253,7 +253,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             /// <summary>Request query parameters</summary>
             public WorkforceIntegrationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new WorkforceIntegrationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new workforceIntegrationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new WorkforceIntegrationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public WorkforceIntegrationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new workforceIntegrationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new WorkforceIntegrationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public WorkforceIntegrationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

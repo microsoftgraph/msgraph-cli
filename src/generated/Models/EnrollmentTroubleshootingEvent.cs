@@ -7,9 +7,9 @@ namespace ApiSdk.Models {
     public class EnrollmentTroubleshootingEvent : DeviceManagementTroubleshootingEvent, IParsable {
         /// <summary>Azure AD device identifier.</summary>
         public string DeviceId { get; set; }
-        /// <summary>Type of the enrollment. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement, windowsAzureADJoinUsingDeviceAuth, appleUserEnrollment, appleUserEnrollmentWithServiceAccount, azureAdJoinUsingAzureVmExtension, androidEnterpriseDedicatedDevice, androidEnterpriseFullyManaged, androidEnterpriseCorporateWorkProfile.</summary>
+        /// <summary>Possible ways of adding a mobile device to management.</summary>
         public DeviceEnrollmentType? EnrollmentType { get; set; }
-        /// <summary>Highlevel failure category. Possible values are: unknown, authentication, authorization, accountValidation, userValidation, deviceNotSupported, inMaintenance, badRequest, featureNotSupported, enrollmentRestrictionsEnforced, clientDisconnected, userAbandonment.</summary>
+        /// <summary>Top level failure categories for enrollment.</summary>
         public DeviceEnrollmentFailureReason? FailureCategory { get; set; }
         /// <summary>Detailed failure reason.</summary>
         public string FailureReason { get; set; }
@@ -21,6 +21,12 @@ namespace ApiSdk.Models {
         public string OsVersion { get; set; }
         /// <summary>Identifier for the user that tried to enroll the device.</summary>
         public string UserId { get; set; }
+        /// <summary>
+        /// Instantiates a new EnrollmentTroubleshootingEvent and sets the default values.
+        /// </summary>
+        public EnrollmentTroubleshootingEvent() : base() {
+            OdataType = "#microsoft.graph.enrollmentTroubleshootingEvent";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

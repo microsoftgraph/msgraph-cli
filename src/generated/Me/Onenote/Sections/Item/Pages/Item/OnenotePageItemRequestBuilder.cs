@@ -289,7 +289,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new onenotePageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new OnenotePageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public OnenotePageItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -314,7 +314,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item {
             /// <summary>Request query parameters</summary>
             public OnenotePageItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OnenotePageItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new onenotePageItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new OnenotePageItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public OnenotePageItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -328,7 +328,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new onenotePageItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new OnenotePageItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public OnenotePageItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

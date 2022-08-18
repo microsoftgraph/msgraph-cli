@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The state of publication for this document. Either published or checkout. Read-only.</summary>
         public string Level { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The unique identifier for the version that is visible to the current caller. Read-only.</summary>
         public string VersionId { get; set; }
         /// <summary>
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public PublicationFacet() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.publicationFacet";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"level", n => { Level = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"versionId", n => { VersionId = n.GetStringValue(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("level", Level);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("versionId", VersionId);
             writer.WriteAdditionalData(AdditionalData);
         }

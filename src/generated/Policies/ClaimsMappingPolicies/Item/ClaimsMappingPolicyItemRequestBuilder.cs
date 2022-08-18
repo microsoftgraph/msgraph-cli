@@ -228,7 +228,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new claimsMappingPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ClaimsMappingPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ClaimsMappingPolicyItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
             /// <summary>Request query parameters</summary>
             public ClaimsMappingPolicyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ClaimsMappingPolicyItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new claimsMappingPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ClaimsMappingPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ClaimsMappingPolicyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new claimsMappingPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ClaimsMappingPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ClaimsMappingPolicyItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

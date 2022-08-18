@@ -5,19 +5,22 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.ExternalConnectors {
     public class Acl : IAdditionalDataHolder, IParsable {
-        /// <summary>The access granted to the identity. Possible values are: grant, deny.</summary>
+        /// <summary>The accessType property</summary>
         public ApiSdk.Models.ExternalConnectors.AccessType? AccessType { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The type of identity. Possible values are: user, group, everyone, everyoneExceptGuests if the identitySource is azureActiveDirectory and just group if the identitySource is external.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The type property</summary>
         public AclType? Type { get; set; }
-        /// <summary>The unique identifer of the identity. In case of Azure Active Directory identities, value is set to the object identifier of the user, group or tenant for types user, group and everyone (and everyoneExceptGuests) respectively. In case of external groups value is set to the ID of the externalGroup.</summary>
+        /// <summary>The unique identifer of the identity. In case of Azure Active Directory identities, value is set to the object identifier of the user, group or tenant for types user, group and everyone (and everyoneExceptGuests) respectively. In case of external groups value is set to the ID of the externalGroup</summary>
         public string Value { get; set; }
         /// <summary>
         /// Instantiates a new acl and sets the default values.
         /// </summary>
         public Acl() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.externalConnectors.acl";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"accessType", n => { AccessType = n.GetEnumValue<AccessType>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<AclType>(); } },
                 {"value", n => { Value = n.GetStringValue(); } },
             };
@@ -44,6 +48,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<AccessType>("accessType", AccessType);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<AclType>("type", Type);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);

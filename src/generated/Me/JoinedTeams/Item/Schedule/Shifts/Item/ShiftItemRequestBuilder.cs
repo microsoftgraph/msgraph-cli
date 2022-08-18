@@ -239,7 +239,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.Shifts.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new shiftItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ShiftItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ShiftItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -261,7 +261,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.Shifts.Item {
             /// <summary>Request query parameters</summary>
             public ShiftItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ShiftItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new shiftItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ShiftItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ShiftItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -275,7 +275,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.Shifts.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new shiftItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ShiftItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ShiftItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

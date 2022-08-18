@@ -19,6 +19,8 @@ namespace ApiSdk.Models {
         public int? Interval { get; set; }
         /// <summary>The month in which the event occurs.  This is a number from 1 to 12.</summary>
         public int? Month { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The recurrence pattern type: daily, weekly, absoluteMonthly, relativeMonthly, absoluteYearly, relativeYearly. Required. For more information, see values of type property.</summary>
         public RecurrencePatternType? Type { get; set; }
         /// <summary>
@@ -26,6 +28,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public RecurrencePattern() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.recurrencePattern";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -46,6 +49,7 @@ namespace ApiSdk.Models {
                 {"index", n => { Index = n.GetEnumValue<WeekIndex>(); } },
                 {"interval", n => { Interval = n.GetIntValue(); } },
                 {"month", n => { Month = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<RecurrencePatternType>(); } },
             };
         }
@@ -61,6 +65,7 @@ namespace ApiSdk.Models {
             writer.WriteEnumValue<WeekIndex>("index", Index);
             writer.WriteIntValue("interval", Interval);
             writer.WriteIntValue("month", Month);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<RecurrencePatternType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

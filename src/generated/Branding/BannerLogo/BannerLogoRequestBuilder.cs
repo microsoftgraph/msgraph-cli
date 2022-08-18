@@ -22,11 +22,11 @@ namespace ApiSdk.Branding.BannerLogo {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
+        /// A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG no larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.";
+            command.Description = "A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG no larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.";
             // Create options for all the parameters
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
@@ -54,11 +54,11 @@ namespace ApiSdk.Branding.BannerLogo {
             return command;
         }
         /// <summary>
-        /// A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
+        /// A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG no larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.";
+            command.Description = "A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG no larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.";
             // Create options for all the parameters
             var fileOption = new Option<FileInfo>("--file", description: "Binary request body") {
             };
@@ -93,7 +93,7 @@ namespace ApiSdk.Branding.BannerLogo {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
+        /// A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG no larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<BannerLogoRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -111,7 +111,7 @@ namespace ApiSdk.Branding.BannerLogo {
             return requestInfo;
         }
         /// <summary>
-        /// A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
+        /// A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG no larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

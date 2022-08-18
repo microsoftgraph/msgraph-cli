@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of domain entities.</summary>
     public class Domain : Entity, IParsable {
         /// <summary>Indicates the configured authentication type for the domain. The value is either Managed or Federated. Managed indicates a cloud managed domain where Azure AD performs user authentication. Federated indicates authentication is federated with an identity provider such as the tenant&apos;s on-premises Active Directory via Active Directory Federation Services. This property is read-only and is not nullable.</summary>
         public string AuthenticationType { get; set; }
@@ -12,7 +11,7 @@ namespace ApiSdk.Models {
         public string AvailabilityStatus { get; set; }
         /// <summary>The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.</summary>
         public List<DirectoryObject> DomainNameReferences { get; set; }
-        /// <summary>Domain settings configured by customer when federated with Azure AD. Supports $expand.</summary>
+        /// <summary>Domain settings configured by a customer when federated with Azure AD. Supports $expand.</summary>
         public List<InternalDomainFederation> FederationConfiguration { get; set; }
         /// <summary>The value of the property is false if the DNS record management of the domain has been delegated to Microsoft 365. Otherwise, the value is true. Not nullable</summary>
         public bool? IsAdminManaged { get; set; }
@@ -36,10 +35,16 @@ namespace ApiSdk.Models {
         public List<DomainDnsRecord> ServiceConfigurationRecords { get; set; }
         /// <summary>Status of asynchronous operations scheduled for the domain.</summary>
         public DomainState State { get; set; }
-        /// <summary>The capabilities assigned to the domain. Can include 0, 1 or more of following values: Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline,SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune. The values which you can add/remove using Graph API include: Email, OfficeCommunicationsOnline, Yammer. Not nullable.</summary>
+        /// <summary>The capabilities assigned to the domain. Can include 0, 1 or more of following values: Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune. The values which you can add/remove using Graph API include: Email, OfficeCommunicationsOnline, Yammer. Not nullable.</summary>
         public List<string> SupportedServices { get; set; }
         /// <summary>DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable. Supports $expand.</summary>
         public List<DomainDnsRecord> VerificationDnsRecords { get; set; }
+        /// <summary>
+        /// Instantiates a new Domain and sets the default values.
+        /// </summary>
+        public Domain() : base() {
+            OdataType = "#microsoft.graph.domain";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

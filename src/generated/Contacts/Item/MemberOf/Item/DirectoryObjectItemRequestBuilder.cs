@@ -41,11 +41,11 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
             return command;
         }
         /// <summary>
-        /// Groups that this contact is a member of. Read-only. Nullable. Supports $expand.
+        /// Get memberOf from contacts
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Groups that this contact is a member of. Read-only. Nullable. Supports $expand.";
+            command.Description = "Get memberOf from contacts";
             // Create options for all the parameters
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
             };
@@ -145,7 +145,7 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Groups that this contact is a member of. Read-only. Nullable. Supports $expand.
+        /// Get memberOf from contacts
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectoryObjectItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -164,7 +164,7 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
             }
             return requestInfo;
         }
-        /// <summary>Groups that this contact is a member of. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Get memberOf from contacts</summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -182,7 +182,7 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
             /// <summary>Request query parameters</summary>
             public DirectoryObjectItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DirectoryObjectItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new directoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DirectoryObjectItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DirectoryObjectItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

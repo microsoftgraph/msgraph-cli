@@ -11,15 +11,18 @@ namespace ApiSdk.Models {
         public string Language { get; set; }
         /// <summary>The phone number.</summary>
         public string Number { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The region property</summary>
         public string Region { get; set; }
-        /// <summary>The type of phone number. Possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.</summary>
+        /// <summary>The type of phone number. The possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.</summary>
         public PhoneType? Type { get; set; }
         /// <summary>
         /// Instantiates a new phone and sets the default values.
         /// </summary>
         public Phone() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.phone";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -36,6 +39,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"language", n => { Language = n.GetStringValue(); } },
                 {"number", n => { Number = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"region", n => { Region = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<PhoneType>(); } },
             };
@@ -48,6 +52,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("language", Language);
             writer.WriteStringValue("number", Number);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("region", Region);
             writer.WriteEnumValue<PhoneType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);

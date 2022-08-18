@@ -4,16 +4,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class PlannerTaskDetails : Entity, IParsable {
         /// <summary>The collection of checklist items on the task.</summary>
         public PlannerChecklistItems Checklist { get; set; }
         /// <summary>Description of the task.</summary>
         public string Description { get; set; }
-        /// <summary>This sets the type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference. When set to automatic the displayed preview is chosen by the app viewing the task.</summary>
+        /// <summary>This sets the type of preview that shows up on the task. The possible values are: automatic, noPreview, checklist, description, reference. When set to automatic the displayed preview is chosen by the app viewing the task.</summary>
         public PlannerPreviewType? PreviewType { get; set; }
         /// <summary>The collection of references on the task.</summary>
         public PlannerExternalReferences References { get; set; }
+        /// <summary>
+        /// Instantiates a new plannerTaskDetails and sets the default values.
+        /// </summary>
+        public PlannerTaskDetails() : base() {
+            OdataType = "#microsoft.graph.plannerTaskDetails";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

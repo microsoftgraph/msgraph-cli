@@ -9,6 +9,12 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// <summary>The type of identity. Possible values are: user or group for Azure AD identities and externalgroup for groups in an external system.</summary>
         public IdentityType? Type { get; set; }
         /// <summary>
+        /// Instantiates a new identity and sets the default values.
+        /// </summary>
+        public Identity() : base() {
+            OdataType = "#microsoft.graph.externalConnectors.identity";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

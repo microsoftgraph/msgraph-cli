@@ -11,13 +11,16 @@ namespace ApiSdk.Models {
         public string Address { get; set; }
         /// <summary>The display name of the web site.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Possible values are: other, home, work, blog, profile.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The possible values are: other, home, work, blog, profile.</summary>
         public WebsiteType? Type { get; set; }
         /// <summary>
         /// Instantiates a new website and sets the default values.
         /// </summary>
         public Website() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.website";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"address", n => { Address = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<WebsiteType>(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("address", Address);
             writer.WriteStringValue("displayName", DisplayName);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<WebsiteType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

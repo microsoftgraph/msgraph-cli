@@ -55,11 +55,11 @@ namespace ApiSdk.DataPolicyOperations.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of the dataPolicyOperation object.
+        /// Retrieve the properties of a **dataPolicyOperation** object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of the dataPolicyOperation object.";
+            command.Description = "Retrieve the properties of a **dataPolicyOperation** object.";
             // Create options for all the parameters
             var dataPolicyOperationIdOption = new Option<string>("--data-policy-operation-id", description: "key: id of dataPolicyOperation") {
             };
@@ -181,7 +181,7 @@ namespace ApiSdk.DataPolicyOperations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of the dataPolicyOperation object.
+        /// Retrieve the properties of a **dataPolicyOperation** object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DataPolicyOperationItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -228,14 +228,14 @@ namespace ApiSdk.DataPolicyOperations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new dataPolicyOperationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DataPolicyOperationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DataPolicyOperationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Retrieve the properties of the dataPolicyOperation object.</summary>
+        /// <summary>Retrieve the properties of a **dataPolicyOperation** object.</summary>
         public class DataPolicyOperationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -253,7 +253,7 @@ namespace ApiSdk.DataPolicyOperations.Item {
             /// <summary>Request query parameters</summary>
             public DataPolicyOperationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DataPolicyOperationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new dataPolicyOperationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DataPolicyOperationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DataPolicyOperationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.DataPolicyOperations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new dataPolicyOperationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DataPolicyOperationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DataPolicyOperationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

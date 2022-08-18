@@ -246,7 +246,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceInstallStateItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceInstallStateItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceInstallStateItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.Item {
             /// <summary>Request query parameters</summary>
             public DeviceInstallStateItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DeviceInstallStateItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new deviceInstallStateItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceInstallStateItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceInstallStateItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceInstallStateItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceInstallStateItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceInstallStateItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

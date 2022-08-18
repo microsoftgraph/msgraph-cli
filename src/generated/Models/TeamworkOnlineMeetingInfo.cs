@@ -9,8 +9,10 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The identifier of the calendar event associated with the meeting.</summary>
         public string CalendarEventId { get; set; }
-        /// <summary>The URL which can be clicked on to join or uniquely identify the meeting.</summary>
+        /// <summary>The URL that users click to join or uniquely identify the meeting.</summary>
         public string JoinWebUrl { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The organizer of the meeting.</summary>
         public TeamworkUserIdentity Organizer { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public TeamworkOnlineMeetingInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.teamworkOnlineMeetingInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"calendarEventId", n => { CalendarEventId = n.GetStringValue(); } },
                 {"joinWebUrl", n => { JoinWebUrl = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"organizer", n => { Organizer = n.GetObjectValue<TeamworkUserIdentity>(TeamworkUserIdentity.CreateFromDiscriminatorValue); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("calendarEventId", CalendarEventId);
             writer.WriteStringValue("joinWebUrl", JoinWebUrl);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<TeamworkUserIdentity>("organizer", Organizer);
             writer.WriteAdditionalData(AdditionalData);
         }

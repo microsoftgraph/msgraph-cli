@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The type of data source, such as Person.</summary>
         public string Class { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The secondary type of data source, such as OrganizationUser.</summary>
         public string Subclass { get; set; }
         /// <summary>
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public PersonType() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.personType";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"class", n => { Class = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"subclass", n => { Subclass = n.GetStringValue(); } },
             };
         }
@@ -41,6 +45,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("class", Class);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("subclass", Subclass);
             writer.WriteAdditionalData(AdditionalData);
         }

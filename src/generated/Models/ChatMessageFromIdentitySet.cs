@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of chat entities.</summary>
     public class ChatMessageFromIdentitySet : IdentitySet, IParsable {
+        /// <summary>
+        /// Instantiates a new ChatMessageFromIdentitySet and sets the default values.
+        /// </summary>
+        public ChatMessageFromIdentitySet() : base() {
+            OdataType = "#microsoft.graph.chatMessageFromIdentitySet";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

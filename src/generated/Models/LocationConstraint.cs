@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public bool? IsRequired { get; set; }
         /// <summary>Constraint information for one or more locations that the client requests for the meeting.</summary>
         public List<LocationConstraintItem> Locations { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The client requests the service to suggest one or more meeting locations.</summary>
         public bool? SuggestLocation { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public LocationConstraint() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.locationConstraint";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"isRequired", n => { IsRequired = n.GetBoolValue(); } },
                 {"locations", n => { Locations = n.GetCollectionOfObjectValues<LocationConstraintItem>(LocationConstraintItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"suggestLocation", n => { SuggestLocation = n.GetBoolValue(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("isRequired", IsRequired);
             writer.WriteCollectionOfObjectValues<LocationConstraintItem>("locations", Locations);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("suggestLocation", SuggestLocation);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public enum TeamsAsyncOperationType {
         Invalid,
         CloneTeam,
@@ -7,5 +7,7 @@ namespace ApiSdk.Models {
         UnarchiveTeam,
         CreateTeam,
         UnknownFutureValue,
+        TeamifyGroup,
+        CreateChannel,
     }
 }

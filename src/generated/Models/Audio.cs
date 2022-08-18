@@ -31,6 +31,8 @@ namespace ApiSdk.Models {
         public bool? HasDrm { get; set; }
         /// <summary>Indicates if the file is encoded with a variable bitrate.</summary>
         public bool? IsVariableBitrate { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The title of the audio file.</summary>
         public string Title { get; set; }
         /// <summary>The number of the track on the original disc for this audio file.</summary>
@@ -44,6 +46,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public Audio() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.audio";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -70,6 +73,7 @@ namespace ApiSdk.Models {
                 {"genre", n => { Genre = n.GetStringValue(); } },
                 {"hasDrm", n => { HasDrm = n.GetBoolValue(); } },
                 {"isVariableBitrate", n => { IsVariableBitrate = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"title", n => { Title = n.GetStringValue(); } },
                 {"track", n => { Track = n.GetIntValue(); } },
                 {"trackCount", n => { TrackCount = n.GetIntValue(); } },
@@ -94,6 +98,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("genre", Genre);
             writer.WriteBoolValue("hasDrm", HasDrm);
             writer.WriteBoolValue("isVariableBitrate", IsVariableBitrate);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("title", Title);
             writer.WriteIntValue("track", Track);
             writer.WriteIntValue("trackCount", TrackCount);

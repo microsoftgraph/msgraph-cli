@@ -258,7 +258,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new managedAppRegistrationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedAppRegistrationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedAppRegistrationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -283,7 +283,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
             /// <summary>Request query parameters</summary>
             public ManagedAppRegistrationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ManagedAppRegistrationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new managedAppRegistrationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedAppRegistrationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedAppRegistrationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -297,7 +297,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new managedAppRegistrationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ManagedAppRegistrationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ManagedAppRegistrationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

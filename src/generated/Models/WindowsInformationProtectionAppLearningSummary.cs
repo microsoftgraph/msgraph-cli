@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Windows Information Protection AppLearning Summary entity.</summary>
     public class WindowsInformationProtectionAppLearningSummary : Entity, IParsable {
         /// <summary>Application Name</summary>
         public string ApplicationName { get; set; }
-        /// <summary>Application Type. Possible values are: universal, desktop.</summary>
+        /// <summary>Possible types of Application</summary>
         public ApiSdk.Models.ApplicationType? ApplicationType { get; set; }
         /// <summary>Device Count</summary>
         public int? DeviceCount { get; set; }
+        /// <summary>
+        /// Instantiates a new WindowsInformationProtectionAppLearningSummary and sets the default values.
+        /// </summary>
+        public WindowsInformationProtectionAppLearningSummary() : base() {
+            OdataType = "#microsoft.graph.windowsInformationProtectionAppLearningSummary";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

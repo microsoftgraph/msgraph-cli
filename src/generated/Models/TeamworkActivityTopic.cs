@@ -7,6 +7,8 @@ namespace ApiSdk.Models {
     public class TeamworkActivityTopic : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Type of source. Possible values are: entityUrl, text. For supported Microsoft Graph URLs, use entityUrl. For custom text, use text.</summary>
         public TeamworkActivityTopicSource? Source { get; set; }
         /// <summary>The topic value. If the value of the source property is entityUrl, this must be a Microsoft Graph URL. If the vaule is text, this must be a plain text value.</summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public TeamworkActivityTopic() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.teamworkActivityTopic";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"source", n => { Source = n.GetEnumValue<TeamworkActivityTopicSource>(); } },
                 {"value", n => { Value = n.GetStringValue(); } },
                 {"webUrl", n => { WebUrl = n.GetStringValue(); } },
@@ -43,6 +47,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<TeamworkActivityTopicSource>("source", Source);
             writer.WriteStringValue("value", Value);
             writer.WriteStringValue("webUrl", WebUrl);

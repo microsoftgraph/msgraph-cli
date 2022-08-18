@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public string Content { get; set; }
         /// <summary>The contentType property</summary>
         public BodyType? ContentType { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new educationItemBody and sets the default values.
         /// </summary>
         public EducationItemBody() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.educationItemBody";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"content", n => { Content = n.GetStringValue(); } },
                 {"contentType", n => { ContentType = n.GetEnumValue<BodyType>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("content", Content);
             writer.WriteEnumValue<BodyType>("contentType", ContentType);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

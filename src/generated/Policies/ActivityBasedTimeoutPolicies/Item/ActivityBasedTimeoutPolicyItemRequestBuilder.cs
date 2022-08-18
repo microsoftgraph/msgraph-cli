@@ -228,7 +228,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new activityBasedTimeoutPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ActivityBasedTimeoutPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ActivityBasedTimeoutPolicyItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item {
             /// <summary>Request query parameters</summary>
             public ActivityBasedTimeoutPolicyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ActivityBasedTimeoutPolicyItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new activityBasedTimeoutPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ActivityBasedTimeoutPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ActivityBasedTimeoutPolicyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new activityBasedTimeoutPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ActivityBasedTimeoutPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ActivityBasedTimeoutPolicyItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

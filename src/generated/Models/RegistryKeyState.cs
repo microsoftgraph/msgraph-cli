@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public RegistryHive? Hive { get; set; }
         /// <summary>Current (i.e. changed) registry key (excludes HIVE).</summary>
         public string Key { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Previous (i.e. before changed) registry key (excludes HIVE).</summary>
         public string OldKey { get; set; }
         /// <summary>Previous (i.e. before changed) registry key value data (contents).</summary>
@@ -32,6 +34,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public RegistryKeyState() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.registryKeyState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -48,6 +51,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"hive", n => { Hive = n.GetEnumValue<RegistryHive>(); } },
                 {"key", n => { Key = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"oldKey", n => { OldKey = n.GetStringValue(); } },
                 {"oldValueData", n => { OldValueData = n.GetStringValue(); } },
                 {"oldValueName", n => { OldValueName = n.GetStringValue(); } },
@@ -66,6 +70,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<RegistryHive>("hive", Hive);
             writer.WriteStringValue("key", Key);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("oldKey", OldKey);
             writer.WriteStringValue("oldValueData", OldValueData);
             writer.WriteStringValue("oldValueName", OldValueName);

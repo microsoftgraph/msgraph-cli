@@ -7,6 +7,8 @@ namespace ApiSdk.Models {
     public class ShiftAvailability : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Specifies the pattern for recurrence</summary>
         public PatternedRecurrence Recurrence { get; set; }
         /// <summary>The time slot(s) preferred by the user.</summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ShiftAvailability() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.shiftAvailability";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"recurrence", n => { Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
                 {"timeSlots", n => { TimeSlots = n.GetCollectionOfObjectValues<TimeRange>(TimeRange.CreateFromDiscriminatorValue).ToList(); } },
                 {"timeZone", n => { TimeZone = n.GetStringValue(); } },
@@ -43,6 +47,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<PatternedRecurrence>("recurrence", Recurrence);
             writer.WriteCollectionOfObjectValues<TimeRange>("timeSlots", TimeSlots);
             writer.WriteStringValue("timeZone", TimeZone);

@@ -25,6 +25,8 @@ namespace ApiSdk.Models {
         public bool? MailboxFull { get; set; }
         /// <summary>The maximum message size that has been configured for the recipient&apos;s organization or mailbox.</summary>
         public int? MaxMessageSize { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The scope of the recipient. Possible values are: none, internal, external, externalPartner, externalNonParther. For example, an administrator can set another organization to be its &apos;partner&apos;. The scope is useful if an administrator wants certain mailtips to be accessible to certain scopes. It&apos;s also useful to senders to inform them that their message may leave the organization, helping them make the correct decisions about wording, tone and content.</summary>
         public RecipientScopeType? RecipientScope { get; set; }
         /// <summary>Recipients suggested based on previous contexts where they appear in the same message.</summary>
@@ -36,6 +38,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public MailTips() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.mailTips";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -59,6 +62,7 @@ namespace ApiSdk.Models {
                 {"isModerated", n => { IsModerated = n.GetBoolValue(); } },
                 {"mailboxFull", n => { MailboxFull = n.GetBoolValue(); } },
                 {"maxMessageSize", n => { MaxMessageSize = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"recipientScope", n => { RecipientScope = n.GetEnumValue<RecipientScopeType>(); } },
                 {"recipientSuggestions", n => { RecipientSuggestions = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"totalMemberCount", n => { TotalMemberCount = n.GetIntValue(); } },
@@ -79,6 +83,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("isModerated", IsModerated);
             writer.WriteBoolValue("mailboxFull", MailboxFull);
             writer.WriteIntValue("maxMessageSize", MaxMessageSize);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<RecipientScopeType>("recipientScope", RecipientScope);
             writer.WriteCollectionOfObjectValues<Recipient>("recipientSuggestions", RecipientSuggestions);
             writer.WriteIntValue("totalMemberCount", TotalMemberCount);

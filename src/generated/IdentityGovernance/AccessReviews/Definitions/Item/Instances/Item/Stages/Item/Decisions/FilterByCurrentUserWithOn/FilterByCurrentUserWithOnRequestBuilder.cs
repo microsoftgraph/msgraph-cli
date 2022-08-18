@@ -40,7 +40,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             };
             accessReviewStageIdOption.IsRequired = true;
             command.AddOption(accessReviewStageIdOption);
-            var onOption = new Option<object>("--on", description: "Usage: on='{on}'") {
+            var onOption = new Option<string>("--on", description: "Usage: on='{on}'") {
             };
             onOption.IsRequired = true;
             command.AddOption(onOption);

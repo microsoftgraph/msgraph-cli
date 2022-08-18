@@ -60,11 +60,11 @@ namespace ApiSdk.Applications.Item.Owners {
             return command;
         }
         /// <summary>
-        /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand.
+        /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Directory objects that are owners of the application. Read-only. Nullable. Supports $expand.";
+            command.Description = "Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -204,7 +204,7 @@ namespace ApiSdk.Applications.Item.Owners {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand.
+        /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OwnersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -223,7 +223,7 @@ namespace ApiSdk.Applications.Item.Owners {
             }
             return requestInfo;
         }
-        /// <summary>Directory objects that are owners of the application. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).</summary>
         public class OwnersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

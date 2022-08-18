@@ -10,8 +10,14 @@ namespace ApiSdk.Models.ExternalConnectors {
         public string Description { get; set; }
         /// <summary>The friendly name of the external group. Optional.</summary>
         public string DisplayName { get; set; }
-        /// <summary>A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.</summary>
+        /// <summary>A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.</summary>
         public List<Identity> Members { get; set; }
+        /// <summary>
+        /// Instantiates a new externalGroup and sets the default values.
+        /// </summary>
+        public ExternalGroup() : base() {
+            OdataType = "#microsoft.graph.externalConnectors.externalGroup";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

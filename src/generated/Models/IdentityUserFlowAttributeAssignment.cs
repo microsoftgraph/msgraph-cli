@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
     public class IdentityUserFlowAttributeAssignment : Entity, IParsable {
         /// <summary>The display name of the identityUserFlowAttribute within a user flow.</summary>
         public string DisplayName { get; set; }
@@ -16,8 +15,14 @@ namespace ApiSdk.Models {
         public IdentityUserFlowAttribute UserAttribute { get; set; }
         /// <summary>The input options for the user flow attribute. Only applicable when the userInputType is radioSingleSelect, dropdownSingleSelect, or checkboxMultiSelect.</summary>
         public List<UserAttributeValuesItem> UserAttributeValues { get; set; }
-        /// <summary>The input type of the user flow attribute. Possible values are: textBox, dateTimeDropdown, radioSingleSelect, dropdownSingleSelect, emailBox, checkboxMultiSelect.</summary>
+        /// <summary>The userInputType property</summary>
         public IdentityUserFlowAttributeInputType? UserInputType { get; set; }
+        /// <summary>
+        /// Instantiates a new IdentityUserFlowAttributeAssignment and sets the default values.
+        /// </summary>
+        public IdentityUserFlowAttributeAssignment() : base() {
+            OdataType = "#microsoft.graph.identityUserFlowAttributeAssignment";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

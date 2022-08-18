@@ -73,11 +73,11 @@ namespace ApiSdk.Organization.Item.Branding {
             return command;
         }
         /// <summary>
-        /// Resource to manage the default branding for the organization. Nullable.
+        /// Branding for the organization. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Resource to manage the default branding for the organization. Nullable.";
+            command.Description = "Branding for the organization. Nullable.";
             // Create options for all the parameters
             var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
             };
@@ -215,7 +215,7 @@ namespace ApiSdk.Organization.Item.Branding {
             return requestInfo;
         }
         /// <summary>
-        /// Resource to manage the default branding for the organization. Nullable.
+        /// Branding for the organization. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<BrandingRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -269,7 +269,7 @@ namespace ApiSdk.Organization.Item.Branding {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Resource to manage the default branding for the organization. Nullable.</summary>
+        /// <summary>Branding for the organization. Nullable.</summary>
         public class BrandingRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

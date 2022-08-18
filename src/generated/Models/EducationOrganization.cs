@@ -1,19 +1,26 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class EducationOrganization : Entity, IParsable {
         /// <summary>Organization description.</summary>
         public string Description { get; set; }
         /// <summary>Organization display name.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Where this user was created from. Possible values are: sis, lms, or manual.</summary>
+        /// <summary>Source where this organization was created from. Possible values are: sis, manual.</summary>
         public EducationExternalSource? ExternalSource { get; set; }
         /// <summary>The name of the external source this resources was generated from.</summary>
         public string ExternalSourceDetail { get; set; }
+        /// <summary>
+        /// Instantiates a new educationOrganization and sets the default values.
+        /// </summary>
+        public EducationOrganization() : base() {
+            OdataType = "#microsoft.graph.educationOrganization";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

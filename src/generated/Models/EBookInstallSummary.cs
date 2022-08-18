@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Contains properties for the installation summary of a book for a device.</summary>
     public class EBookInstallSummary : Entity, IParsable {
         /// <summary>Number of Devices that have failed to install this book.</summary>
         public int? FailedDeviceCount { get; set; }
@@ -18,6 +17,12 @@ namespace ApiSdk.Models {
         public int? NotInstalledDeviceCount { get; set; }
         /// <summary>Number of Users that did not install this book.</summary>
         public int? NotInstalledUserCount { get; set; }
+        /// <summary>
+        /// Instantiates a new eBookInstallSummary and sets the default values.
+        /// </summary>
+        public EBookInstallSummary() : base() {
+            OdataType = "#microsoft.graph.eBookInstallSummary";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

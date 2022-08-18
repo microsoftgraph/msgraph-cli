@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public string CustomizedMessageBody { get; set; }
         /// <summary>The language you want to send the default message in. If the customizedMessageBody is specified, this property is ignored, and the message is sent using the customizedMessageBody. The language format should be in ISO 639. The default is en-US.</summary>
         public string MessageLanguage { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new invitedUserMessageInfo and sets the default values.
         /// </summary>
         public InvitedUserMessageInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.invitedUserMessageInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"ccRecipients", n => { CcRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"customizedMessageBody", n => { CustomizedMessageBody = n.GetStringValue(); } },
                 {"messageLanguage", n => { MessageLanguage = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<Recipient>("ccRecipients", CcRecipients);
             writer.WriteStringValue("customizedMessageBody", CustomizedMessageBody);
             writer.WriteStringValue("messageLanguage", MessageLanguage);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

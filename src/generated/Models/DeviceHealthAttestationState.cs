@@ -45,6 +45,8 @@ namespace ApiSdk.Models {
         public DateTimeOffset? IssuedDateTime { get; set; }
         /// <summary>The Timestamp of the last update.</summary>
         public string LastUpdateDateTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>When operatingSystemKernelDebugging is enabled, the device is used in development and testing</summary>
         public string OperatingSystemKernelDebugging { get; set; }
         /// <summary>The Operating System Revision List that was loaded during initial boot on the attested device</summary>
@@ -76,6 +78,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public DeviceHealthAttestationState() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.deviceHealthAttestationState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -109,6 +112,7 @@ namespace ApiSdk.Models {
                 {"healthStatusMismatchInfo", n => { HealthStatusMismatchInfo = n.GetStringValue(); } },
                 {"issuedDateTime", n => { IssuedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"lastUpdateDateTime", n => { LastUpdateDateTime = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operatingSystemKernelDebugging", n => { OperatingSystemKernelDebugging = n.GetStringValue(); } },
                 {"operatingSystemRevListInfo", n => { OperatingSystemRevListInfo = n.GetStringValue(); } },
                 {"pcr0", n => { Pcr0 = n.GetStringValue(); } },
@@ -149,6 +153,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("healthStatusMismatchInfo", HealthStatusMismatchInfo);
             writer.WriteDateTimeOffsetValue("issuedDateTime", IssuedDateTime);
             writer.WriteStringValue("lastUpdateDateTime", LastUpdateDateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("operatingSystemKernelDebugging", OperatingSystemKernelDebugging);
             writer.WriteStringValue("operatingSystemRevListInfo", OperatingSystemRevListInfo);
             writer.WriteStringValue("pcr0", Pcr0);

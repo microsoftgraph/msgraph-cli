@@ -22,11 +22,11 @@ namespace ApiSdk.Drives.Item.Root.Versions.Item.Content {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Get content for the navigation property versions from drives
+        /// The content stream for this version of the item.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get content for the navigation property versions from drives";
+            command.Description = "The content stream for this version of the item.";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -66,11 +66,11 @@ namespace ApiSdk.Drives.Item.Root.Versions.Item.Content {
             return command;
         }
         /// <summary>
-        /// Update content for the navigation property versions in drives
+        /// The content stream for this version of the item.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "Update content for the navigation property versions in drives";
+            command.Description = "The content stream for this version of the item.";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -117,7 +117,7 @@ namespace ApiSdk.Drives.Item.Root.Versions.Item.Content {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get content for the navigation property versions from drives
+        /// The content stream for this version of the item.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ContentRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -135,7 +135,7 @@ namespace ApiSdk.Drives.Item.Root.Versions.Item.Content {
             return requestInfo;
         }
         /// <summary>
-        /// Update content for the navigation property versions in drives
+        /// The content stream for this version of the item.
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

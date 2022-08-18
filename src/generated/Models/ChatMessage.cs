@@ -20,13 +20,13 @@ namespace ApiSdk.Models {
         public DateTimeOffset? DeletedDateTime { get; set; }
         /// <summary>Read-only. Version number of the chat message.</summary>
         public string Etag { get; set; }
-        /// <summary>Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, adding new members. For event messages, the messageType property will be set to systemEventMessage.</summary>
+        /// <summary>Read-only. If present, represents details of an event that happened in a chat, a channel, or a team, for example, adding new members. For event messages, the messageType property will be set to systemEventMessage.</summary>
         public EventMessageDetail EventDetail { get; set; }
         /// <summary>Details of the sender of the chat message. Can only be set during migration.</summary>
         public ChatMessageFromIdentitySet From { get; set; }
         /// <summary>Content in a message hosted by Microsoft Teams - for example, images or code snippets.</summary>
         public List<ChatMessageHostedContent> HostedContents { get; set; }
-        /// <summary>The importance of the chat message. The possible values are: normal, high, urgent.</summary>
+        /// <summary>The importance property</summary>
         public ChatMessageImportance? Importance { get; set; }
         /// <summary>Read only. Timestamp when edits to the chat message were made. Triggers an &apos;Edited&apos; flag in the Teams UI. If no edits are made the value is null.</summary>
         public DateTimeOffset? LastEditedDateTime { get; set; }
@@ -34,9 +34,9 @@ namespace ApiSdk.Models {
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Locale of the chat message set by the client. Always set to en-us.</summary>
         public string Locale { get; set; }
-        /// <summary>List of entities mentioned in the chat message. Supported entities are: user, bot, team, channel, and tag.</summary>
+        /// <summary>List of entities mentioned in the chat message. Supported entities are: user, bot, team, and channel.</summary>
         public List<ChatMessageMention> Mentions { get; set; }
-        /// <summary>The type of chat message. The possible values are: message, chatEvent, typing, unknownFutureValue, systemEventMessage. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: systemEventMessage.</summary>
+        /// <summary>The messageType property</summary>
         public ChatMessageType? MessageType { get; set; }
         /// <summary>Defines the properties of a policy violation set by a data loss prevention (DLP) application.</summary>
         public ChatMessagePolicyViolation PolicyViolation { get; set; }
@@ -52,6 +52,12 @@ namespace ApiSdk.Models {
         public string Summary { get; set; }
         /// <summary>Read-only. Link to the message in Microsoft Teams.</summary>
         public string WebUrl { get; set; }
+        /// <summary>
+        /// Instantiates a new chatMessage and sets the default values.
+        /// </summary>
+        public ChatMessage() : base() {
+            OdataType = "#microsoft.graph.chatMessage";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

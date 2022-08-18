@@ -61,11 +61,11 @@ namespace ApiSdk.Users.Item.People.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user&apos;s communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
+        /// People that are relevant to the user. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.";
+            command.Description = "People that are relevant to the user. Read-only. Nullable.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -192,7 +192,7 @@ namespace ApiSdk.Users.Item.People.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user&apos;s communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
+        /// People that are relevant to the user. Read-only. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PersonItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -239,14 +239,14 @@ namespace ApiSdk.Users.Item.People.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new personItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new PersonItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public PersonItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user&apos;s communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.</summary>
+        /// <summary>People that are relevant to the user. Read-only. Nullable.</summary>
         public class PersonItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
             [QueryParameter("%24select")]
@@ -261,7 +261,7 @@ namespace ApiSdk.Users.Item.People.Item {
             /// <summary>Request query parameters</summary>
             public PersonItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PersonItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new personItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new PersonItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public PersonItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -275,7 +275,7 @@ namespace ApiSdk.Users.Item.People.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new personItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new PersonItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public PersonItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

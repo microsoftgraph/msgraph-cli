@@ -291,7 +291,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new notebookItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new NotebookItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public NotebookItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -316,7 +316,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
             /// <summary>Request query parameters</summary>
             public NotebookItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new NotebookItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new notebookItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new NotebookItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public NotebookItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -330,7 +330,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new notebookItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new NotebookItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public NotebookItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

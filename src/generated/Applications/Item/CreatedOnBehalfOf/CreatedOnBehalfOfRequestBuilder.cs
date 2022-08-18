@@ -23,11 +23,11 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Get createdOnBehalfOf from applications
+        /// Supports $filter (eq when counting empty collections). Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get createdOnBehalfOf from applications";
+            command.Description = "Supports $filter (eq when counting empty collections). Read-only.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get createdOnBehalfOf from applications
+        /// Supports $filter (eq when counting empty collections). Read-only.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CreatedOnBehalfOfRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf {
             }
             return requestInfo;
         }
-        /// <summary>Get createdOnBehalfOf from applications</summary>
+        /// <summary>Supports $filter (eq when counting empty collections). Read-only.</summary>
         public class CreatedOnBehalfOfRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

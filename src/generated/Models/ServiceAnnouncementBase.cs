@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,12 @@ namespace ApiSdk.Models {
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>The title of the service event.</summary>
         public string Title { get; set; }
+        /// <summary>
+        /// Instantiates a new serviceAnnouncementBase and sets the default values.
+        /// </summary>
+        public ServiceAnnouncementBase() : base() {
+            OdataType = "#microsoft.graph.serviceAnnouncementBase";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

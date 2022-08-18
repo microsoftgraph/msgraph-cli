@@ -13,6 +13,12 @@ namespace ApiSdk.Models {
         /// <summary>Unique SKU display name. Equal to the skuPartNumber on the related SubscribedSku object; for example: &apos;AAD_Premium&apos;. Read-only</summary>
         public string SkuPartNumber { get; set; }
         /// <summary>
+        /// Instantiates a new licenseDetails and sets the default values.
+        /// </summary>
+        public LicenseDetails() : base() {
+            OdataType = "#microsoft.graph.licenseDetails";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,27 @@ namespace ApiSdk.Models {
         /// <summary>The date and time when the page was created. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>
+        /// Instantiates a new OnenoteEntitySchemaObjectModel and sets the default values.
+        /// </summary>
+        public OnenoteEntitySchemaObjectModel() : base() {
+            OdataType = "#microsoft.graph.onenoteEntitySchemaObjectModel";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
         public static new OnenoteEntitySchemaObjectModel CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnenoteEntitySchemaObjectModel();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.notebook" => new Notebook(),
+                "#microsoft.graph.onenoteEntityHierarchyModel" => new OnenoteEntityHierarchyModel(),
+                "#microsoft.graph.onenotePage" => new OnenotePage(),
+                "#microsoft.graph.onenoteSection" => new OnenoteSection(),
+                "#microsoft.graph.sectionGroup" => new SectionGroup(),
+                _ => new OnenoteEntitySchemaObjectModel(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -108,11 +108,11 @@ namespace ApiSdk.DirectoryRoleTemplates {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of directoryroletemplate objects.
+        /// Retrieve a list of directoryRoleTemplate objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of directoryroletemplate objects.";
+            command.Description = "Retrieve a list of directoryRoleTemplate objects.";
             // Create options for all the parameters
             var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
             };
@@ -225,7 +225,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Retrieve a list of directoryroletemplate objects.
+        /// Retrieve a list of directoryRoleTemplate objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DirectoryRoleTemplatesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -266,7 +266,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
             }
             return requestInfo;
         }
-        /// <summary>Retrieve a list of directoryroletemplate objects.</summary>
+        /// <summary>Retrieve a list of directoryRoleTemplate objects.</summary>
         public class DirectoryRoleTemplatesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class UserSettings : Entity, IParsable {
-        /// <summary>Reflects the Office Delve organization level setting. When set to true, the organization doesn&apos;t have access to Office Delve. This setting is read-only and can only be changed by administrators in the SharePoint admin center.</summary>
+        /// <summary>The contributionToContentDiscoveryAsOrganizationDisabled property</summary>
         public bool? ContributionToContentDiscoveryAsOrganizationDisabled { get; set; }
-        /// <summary>When set to true, documents in the user&apos;s Office Delve are disabled. Users can control this setting in Office Delve.</summary>
+        /// <summary>The contributionToContentDiscoveryDisabled property</summary>
         public bool? ContributionToContentDiscoveryDisabled { get; set; }
-        /// <summary>The shift preferences for the user.</summary>
+        /// <summary>The shiftPreferences property</summary>
         public ApiSdk.Models.ShiftPreferences ShiftPreferences { get; set; }
+        /// <summary>
+        /// Instantiates a new userSettings and sets the default values.
+        /// </summary>
+        public UserSettings() : base() {
+            OdataType = "#microsoft.graph.userSettings";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

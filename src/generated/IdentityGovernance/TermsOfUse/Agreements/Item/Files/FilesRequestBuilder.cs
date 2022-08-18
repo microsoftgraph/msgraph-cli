@@ -95,11 +95,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
             return command;
         }
         /// <summary>
-        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.";
+            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<FilesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -259,7 +259,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
             }
             return requestInfo;
         }
-        /// <summary>PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.</summary>
+        /// <summary>PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.</summary>
         public class FilesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

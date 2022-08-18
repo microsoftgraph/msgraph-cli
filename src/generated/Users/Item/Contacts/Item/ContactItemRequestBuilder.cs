@@ -279,7 +279,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new contactItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ContactItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ContactItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -301,7 +301,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             /// <summary>Request query parameters</summary>
             public ContactItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ContactItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new contactItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ContactItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ContactItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -315,7 +315,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new contactItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ContactItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ContactItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

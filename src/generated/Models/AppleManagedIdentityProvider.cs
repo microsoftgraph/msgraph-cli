@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class AppleManagedIdentityProvider : IdentityProviderBase, IParsable {
-        /// <summary>The certificate data which is a long string of text from the certificate, can be null.</summary>
+        /// <summary>The certificate data, which is a long string of text from the certificate. Can be null.</summary>
         public string CertificateData { get; set; }
         /// <summary>The Apple developer identifier. Required.</summary>
         public string DeveloperId { get; set; }
@@ -13,6 +13,12 @@ namespace ApiSdk.Models {
         public string KeyId { get; set; }
         /// <summary>The Apple service identifier. Required.</summary>
         public string ServiceId { get; set; }
+        /// <summary>
+        /// Instantiates a new AppleManagedIdentityProvider and sets the default values.
+        /// </summary>
+        public AppleManagedIdentityProvider() : base() {
+            OdataType = "#microsoft.graph.appleManagedIdentityProvider";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityGovernance singleton.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class ApprovalStage : Entity, IParsable {
         /// <summary>Indicates whether the stage is assigned to the calling user to review. Read-only.</summary>
         public bool? AssignedToMe { get; set; }
@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>The justification associated with the approval stage decision.</summary>
         public string Justification { get; set; }
-        /// <summary>The identifier of the reviewer. Read-only.</summary>
+        /// <summary>The identifier of the reviewer. 00000000-0000-0000-0000-000000000000 if the assigned reviewer hasn&apos;t reviewed. Read-only.</summary>
         public Identity ReviewedBy { get; set; }
         /// <summary>The date and time when a decision was recorded. The date and time information uses ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? ReviewedDateTime { get; set; }
@@ -20,6 +20,12 @@ namespace ApiSdk.Models {
         public string ReviewResult { get; set; }
         /// <summary>The stage status. Possible values: InProgress, Initializing, Completed, Expired. Read-only.</summary>
         public string Status { get; set; }
+        /// <summary>
+        /// Instantiates a new approvalStage and sets the default values.
+        /// </summary>
+        public ApprovalStage() : base() {
+            OdataType = "#microsoft.graph.approvalStage";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

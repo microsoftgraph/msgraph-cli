@@ -228,7 +228,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new complianceManagementPartnerItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ComplianceManagementPartnerItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ComplianceManagementPartnerItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             /// <summary>Request query parameters</summary>
             public ComplianceManagementPartnerItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ComplianceManagementPartnerItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new complianceManagementPartnerItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ComplianceManagementPartnerItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ComplianceManagementPartnerItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new complianceManagementPartnerItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ComplianceManagementPartnerItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ComplianceManagementPartnerItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

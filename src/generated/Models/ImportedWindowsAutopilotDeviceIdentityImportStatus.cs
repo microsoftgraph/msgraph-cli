@@ -1,12 +1,12 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public enum ImportedWindowsAutopilotDeviceIdentityImportStatus {
         /// <summary>Unknown status.</summary>
         Unknown,
         /// <summary>Pending status.</summary>
         Pending,
         /// <summary>Partial status.</summary>
-        @Partial,
+        Partial,
         /// <summary>Complete status.</summary>
         Complete,
         /// <summary>Error status.</summary>

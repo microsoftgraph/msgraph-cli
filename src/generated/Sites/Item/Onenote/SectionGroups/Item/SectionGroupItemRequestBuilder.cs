@@ -279,7 +279,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new sectionGroupItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new SectionGroupItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public SectionGroupItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -304,7 +304,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item {
             /// <summary>Request query parameters</summary>
             public SectionGroupItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SectionGroupItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new sectionGroupItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SectionGroupItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SectionGroupItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -318,7 +318,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new sectionGroupItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SectionGroupItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SectionGroupItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

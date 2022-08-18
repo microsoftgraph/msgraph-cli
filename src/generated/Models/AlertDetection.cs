@@ -13,11 +13,14 @@ namespace ApiSdk.Models {
         public string Method { get; set; }
         /// <summary>The name property</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new alertDetection and sets the default values.
         /// </summary>
         public AlertDetection() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.alertDetection";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
                 {"detectionType", n => { DetectionType = n.GetStringValue(); } },
                 {"method", n => { Method = n.GetStringValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("detectionType", DetectionType);
             writer.WriteStringValue("method", Method);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

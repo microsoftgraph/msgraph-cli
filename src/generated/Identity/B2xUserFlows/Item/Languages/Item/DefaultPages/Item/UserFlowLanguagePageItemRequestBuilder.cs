@@ -272,7 +272,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userFlowLanguagePageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UserFlowLanguagePageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UserFlowLanguagePageItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -297,7 +297,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item {
             /// <summary>Request query parameters</summary>
             public UserFlowLanguagePageItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UserFlowLanguagePageItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new userFlowLanguagePageItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UserFlowLanguagePageItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UserFlowLanguagePageItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -311,7 +311,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userFlowLanguagePageItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UserFlowLanguagePageItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UserFlowLanguagePageItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

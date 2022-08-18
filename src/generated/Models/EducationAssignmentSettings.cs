@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationAssignmentSettings : Entity, IParsable {
         /// <summary>Indicates whether turn-in celebration animation will be shown. A value of true indicates that the animation will not be shown. Default value is false.</summary>
         public bool? SubmissionAnimationDisabled { get; set; }
+        /// <summary>
+        /// Instantiates a new EducationAssignmentSettings and sets the default values.
+        /// </summary>
+        public EducationAssignmentSettings() : base() {
+            OdataType = "#microsoft.graph.educationAssignmentSettings";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

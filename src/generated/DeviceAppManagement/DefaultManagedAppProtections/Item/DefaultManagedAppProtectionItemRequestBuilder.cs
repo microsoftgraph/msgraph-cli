@@ -247,7 +247,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new defaultManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DefaultManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DefaultManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -272,7 +272,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             /// <summary>Request query parameters</summary>
             public DefaultManagedAppProtectionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DefaultManagedAppProtectionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new defaultManagedAppProtectionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DefaultManagedAppProtectionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DefaultManagedAppProtectionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -286,7 +286,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new defaultManagedAppProtectionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DefaultManagedAppProtectionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DefaultManagedAppProtectionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

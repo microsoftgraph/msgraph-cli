@@ -9,11 +9,14 @@ namespace ApiSdk.Models.ExternalConnectors {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A collection of application IDs for registered Azure Active Directory apps that are allowed to manage the externalConnection and to index content in the externalConnection.</summary>
         public List<string> AuthorizedAppIds { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new configuration and sets the default values.
         /// </summary>
         public Configuration() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.externalConnectors.configuration";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -29,6 +32,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"authorizedAppIds", n => { AuthorizedAppIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -38,6 +42,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("authorizedAppIds", AuthorizedAppIds);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

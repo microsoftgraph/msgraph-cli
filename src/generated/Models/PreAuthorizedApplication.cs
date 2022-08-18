@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public string AppId { get; set; }
         /// <summary>The unique identifier for the oauth2PermissionScopes the application requires.</summary>
         public List<string> DelegatedPermissionIds { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new preAuthorizedApplication and sets the default values.
         /// </summary>
         public PreAuthorizedApplication() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.preAuthorizedApplication";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"appId", n => { AppId = n.GetStringValue(); } },
                 {"delegatedPermissionIds", n => { DelegatedPermissionIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("appId", AppId);
             writer.WriteCollectionOfPrimitiveValues<string>("delegatedPermissionIds", DelegatedPermissionIds);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

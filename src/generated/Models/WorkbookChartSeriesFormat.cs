@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartSeriesFormat : Entity, IParsable {
         /// <summary>Represents the fill format of a chart series, which includes background formating information. Read-only.</summary>
         public WorkbookChartFill Fill { get; set; }
         /// <summary>Represents line formatting. Read-only.</summary>
         public WorkbookChartLineFormat Line { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookChartSeriesFormat and sets the default values.
+        /// </summary>
+        public WorkbookChartSeriesFormat() : base() {
+            OdataType = "#microsoft.graph.workbookChartSeriesFormat";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -88,11 +88,11 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             return command;
         }
         /// <summary>
-        /// A workforce integration with shifts.
+        /// Get workforceIntegrations from teamwork
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A workforce integration with shifts.";
+            command.Description = "Get workforceIntegrations from teamwork";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A workforce integration with shifts.
+        /// Get workforceIntegrations from teamwork
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<WorkforceIntegrationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             }
             return requestInfo;
         }
-        /// <summary>A workforce integration with shifts.</summary>
+        /// <summary>Get workforceIntegrations from teamwork</summary>
         public class WorkforceIntegrationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

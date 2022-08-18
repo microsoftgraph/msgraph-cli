@@ -228,7 +228,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new homeRealmDiscoveryPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new HomeRealmDiscoveryPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public HomeRealmDiscoveryPolicyItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             /// <summary>Request query parameters</summary>
             public HomeRealmDiscoveryPolicyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new HomeRealmDiscoveryPolicyItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new homeRealmDiscoveryPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new HomeRealmDiscoveryPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public HomeRealmDiscoveryPolicyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new homeRealmDiscoveryPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new HomeRealmDiscoveryPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public HomeRealmDiscoveryPolicyItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

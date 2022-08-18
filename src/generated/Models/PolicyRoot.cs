@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the policyRoot singleton.</summary>
     public class PolicyRoot : Entity, IParsable {
         /// <summary>The policy that controls the idle time out for web sessions for applications.</summary>
         public List<ActivityBasedTimeoutPolicy> ActivityBasedTimeoutPolicies { get; set; }
@@ -20,6 +19,8 @@ namespace ApiSdk.Models {
         public List<ClaimsMappingPolicy> ClaimsMappingPolicies { get; set; }
         /// <summary>The custom rules that define an access scenario.</summary>
         public List<ConditionalAccessPolicy> ConditionalAccessPolicies { get; set; }
+        /// <summary>The custom rules that define an access scenario when interacting with external Azure AD tenants.</summary>
+        public ApiSdk.Models.CrossTenantAccessPolicy CrossTenantAccessPolicy { get; set; }
         /// <summary>The feature rollout policy associated with a directory object.</summary>
         public List<FeatureRolloutPolicy> FeatureRolloutPolicies { get; set; }
         /// <summary>The policy to control Azure AD authentication behavior for federated users.</summary>
@@ -28,14 +29,20 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.IdentitySecurityDefaultsEnforcementPolicy IdentitySecurityDefaultsEnforcementPolicy { get; set; }
         /// <summary>The policy that specifies the conditions under which consent can be granted.</summary>
         public List<PermissionGrantPolicy> PermissionGrantPolicies { get; set; }
-        /// <summary>Represents the role management policies.</summary>
+        /// <summary>Specifies the various policies associated with scopes and roles.</summary>
         public List<UnifiedRoleManagementPolicy> RoleManagementPolicies { get; set; }
-        /// <summary>Represents the role management policy assignments.</summary>
+        /// <summary>The assignment of a role management policy to a role definition object.</summary>
         public List<UnifiedRoleManagementPolicyAssignment> RoleManagementPolicyAssignments { get; set; }
         /// <summary>The policy that specifies the characteristics of SAML tokens issued by Azure AD.</summary>
         public List<TokenIssuancePolicy> TokenIssuancePolicies { get; set; }
         /// <summary>The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.</summary>
         public List<TokenLifetimePolicy> TokenLifetimePolicies { get; set; }
+        /// <summary>
+        /// Instantiates a new PolicyRoot and sets the default values.
+        /// </summary>
+        public PolicyRoot() : base() {
+            OdataType = "#microsoft.graph.policyRoot";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
@@ -56,6 +63,7 @@ namespace ApiSdk.Models {
                 {"authorizationPolicy", n => { AuthorizationPolicy = n.GetObjectValue<ApiSdk.Models.AuthorizationPolicy>(ApiSdk.Models.AuthorizationPolicy.CreateFromDiscriminatorValue); } },
                 {"claimsMappingPolicies", n => { ClaimsMappingPolicies = n.GetCollectionOfObjectValues<ClaimsMappingPolicy>(ClaimsMappingPolicy.CreateFromDiscriminatorValue).ToList(); } },
                 {"conditionalAccessPolicies", n => { ConditionalAccessPolicies = n.GetCollectionOfObjectValues<ConditionalAccessPolicy>(ConditionalAccessPolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"crossTenantAccessPolicy", n => { CrossTenantAccessPolicy = n.GetObjectValue<ApiSdk.Models.CrossTenantAccessPolicy>(ApiSdk.Models.CrossTenantAccessPolicy.CreateFromDiscriminatorValue); } },
                 {"featureRolloutPolicies", n => { FeatureRolloutPolicies = n.GetCollectionOfObjectValues<FeatureRolloutPolicy>(FeatureRolloutPolicy.CreateFromDiscriminatorValue).ToList(); } },
                 {"homeRealmDiscoveryPolicies", n => { HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<HomeRealmDiscoveryPolicy>(HomeRealmDiscoveryPolicy.CreateFromDiscriminatorValue).ToList(); } },
                 {"identitySecurityDefaultsEnforcementPolicy", n => { IdentitySecurityDefaultsEnforcementPolicy = n.GetObjectValue<ApiSdk.Models.IdentitySecurityDefaultsEnforcementPolicy>(ApiSdk.Models.IdentitySecurityDefaultsEnforcementPolicy.CreateFromDiscriminatorValue); } },
@@ -80,6 +88,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<ApiSdk.Models.AuthorizationPolicy>("authorizationPolicy", AuthorizationPolicy);
             writer.WriteCollectionOfObjectValues<ClaimsMappingPolicy>("claimsMappingPolicies", ClaimsMappingPolicies);
             writer.WriteCollectionOfObjectValues<ConditionalAccessPolicy>("conditionalAccessPolicies", ConditionalAccessPolicies);
+            writer.WriteObjectValue<ApiSdk.Models.CrossTenantAccessPolicy>("crossTenantAccessPolicy", CrossTenantAccessPolicy);
             writer.WriteCollectionOfObjectValues<FeatureRolloutPolicy>("featureRolloutPolicies", FeatureRolloutPolicies);
             writer.WriteCollectionOfObjectValues<HomeRealmDiscoveryPolicy>("homeRealmDiscoveryPolicies", HomeRealmDiscoveryPolicies);
             writer.WriteObjectValue<ApiSdk.Models.IdentitySecurityDefaultsEnforcementPolicy>("identitySecurityDefaultsEnforcementPolicy", IdentitySecurityDefaultsEnforcementPolicy);

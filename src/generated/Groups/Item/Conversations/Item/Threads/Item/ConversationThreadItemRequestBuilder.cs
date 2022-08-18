@@ -281,7 +281,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new conversationThreadItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ConversationThreadItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ConversationThreadItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -306,7 +306,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
             /// <summary>Request query parameters</summary>
             public ConversationThreadItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ConversationThreadItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new conversationThreadItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ConversationThreadItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ConversationThreadItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -320,7 +320,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new conversationThreadItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ConversationThreadItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ConversationThreadItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

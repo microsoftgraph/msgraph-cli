@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public enum EnrollmentState {
         /// <summary>Device enrollment state is unknown</summary>
         Unknown,

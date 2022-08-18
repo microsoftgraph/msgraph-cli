@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The id property</summary>
         public string Id { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The properties property</summary>
         public List<KeyValue> Properties { get; set; }
         /// <summary>The type property</summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AddIn() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.addIn";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,6 +36,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"id", n => { Id = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"properties", n => { Properties = n.GetCollectionOfObjectValues<KeyValue>(KeyValue.CreateFromDiscriminatorValue).ToList(); } },
                 {"type", n => { Type = n.GetStringValue(); } },
             };
@@ -44,6 +48,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("id", Id);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfObjectValues<KeyValue>("properties", Properties);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class Post : OutlookItem, IParsable {
-        /// <summary>The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Read-only. Nullable. Supports $expand.</summary>
         public List<Attachment> Attachments { get; set; }
         /// <summary>The contents of the post. This is a default property. This property can be null.</summary>
         public ItemBody Body { get; set; }
@@ -19,7 +20,7 @@ namespace ApiSdk.Models {
         public Recipient From { get; set; }
         /// <summary>Indicates whether the post has at least one attachment. This is a default property.</summary>
         public bool? HasAttachments { get; set; }
-        /// <summary>The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.</summary>
+        /// <summary>Read-only. Supports $expand.</summary>
         public Post InReplyTo { get; set; }
         /// <summary>The collection of multi-value extended properties defined for the post. Read-only. Nullable.</summary>
         public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
@@ -31,6 +32,12 @@ namespace ApiSdk.Models {
         public Recipient Sender { get; set; }
         /// <summary>The collection of single-value extended properties defined for the post. Read-only. Nullable.</summary>
         public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
+        /// <summary>
+        /// Instantiates a new post and sets the default values.
+        /// </summary>
+        public Post() : base() {
+            OdataType = "#microsoft.graph.post";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

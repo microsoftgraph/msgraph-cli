@@ -15,6 +15,8 @@ namespace ApiSdk.Models {
         public int? LinesForEditing { get; set; }
         /// <summary>The maximum number of characters for the value.</summary>
         public int? MaxLength { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The type of text being stored. Must be one of plain or richText</summary>
         public string TextType { get; set; }
         /// <summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public TextColumn() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.textColumn";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -40,6 +43,7 @@ namespace ApiSdk.Models {
                 {"appendChangesToExistingText", n => { AppendChangesToExistingText = n.GetBoolValue(); } },
                 {"linesForEditing", n => { LinesForEditing = n.GetIntValue(); } },
                 {"maxLength", n => { MaxLength = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"textType", n => { TextType = n.GetStringValue(); } },
             };
         }
@@ -53,6 +57,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("appendChangesToExistingText", AppendChangesToExistingText);
             writer.WriteIntValue("linesForEditing", LinesForEditing);
             writer.WriteIntValue("maxLength", MaxLength);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("textType", TextType);
             writer.WriteAdditionalData(AdditionalData);
         }

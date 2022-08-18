@@ -228,7 +228,7 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceCategoryItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceCategoryItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceCategoryItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
             /// <summary>Request query parameters</summary>
             public DeviceCategoryItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DeviceCategoryItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new deviceCategoryItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceCategoryItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceCategoryItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceCategoryItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceCategoryItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceCategoryItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

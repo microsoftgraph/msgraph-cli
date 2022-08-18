@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
+    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
     public class UserFlowLanguageConfiguration : Entity, IParsable {
         /// <summary>Collection of pages with the default content to display in a user flow for a specified language. This collection does not allow any kind of modification.</summary>
         public List<UserFlowLanguagePage> DefaultPages { get; set; }
@@ -14,6 +14,12 @@ namespace ApiSdk.Models {
         public bool? IsEnabled { get; set; }
         /// <summary>Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows to modify the content of the page, any other modification is not allowed (creation or deletion of pages).</summary>
         public List<UserFlowLanguagePage> OverridesPages { get; set; }
+        /// <summary>
+        /// Instantiates a new userFlowLanguageConfiguration and sets the default values.
+        /// </summary>
+        public UserFlowLanguageConfiguration() : base() {
+            OdataType = "#microsoft.graph.userFlowLanguageConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

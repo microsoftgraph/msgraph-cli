@@ -21,6 +21,8 @@ namespace ApiSdk.Models {
         public bool? IsApproverJustificationRequired { get; set; }
         /// <summary>If true, then one or more escalationApprovers are configured in this approval stage.</summary>
         public bool? IsEscalationEnabled { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The subjects, typically users, who will be asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors or externalSponsors.</summary>
         public List<SubjectSet> PrimaryApprovers { get; set; }
         /// <summary>
@@ -28,6 +30,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AccessPackageApprovalStage() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.accessPackageApprovalStage";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -49,6 +52,7 @@ namespace ApiSdk.Models {
                 {"fallbackPrimaryApprovers", n => { FallbackPrimaryApprovers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue).ToList(); } },
                 {"isApproverJustificationRequired", n => { IsApproverJustificationRequired = n.GetBoolValue(); } },
                 {"isEscalationEnabled", n => { IsEscalationEnabled = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"primaryApprovers", n => { PrimaryApprovers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
@@ -65,6 +69,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<SubjectSet>("fallbackPrimaryApprovers", FallbackPrimaryApprovers);
             writer.WriteBoolValue("isApproverJustificationRequired", IsApproverJustificationRequired);
             writer.WriteBoolValue("isEscalationEnabled", IsEscalationEnabled);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfObjectValues<SubjectSet>("primaryApprovers", PrimaryApprovers);
             writer.WriteAdditionalData(AdditionalData);
         }

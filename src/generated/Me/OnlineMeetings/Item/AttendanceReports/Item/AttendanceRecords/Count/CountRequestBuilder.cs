@@ -94,7 +94,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item.AttendanceRecords
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new countRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new CountRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public CountRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -9,6 +9,12 @@ namespace ApiSdk.Models {
         /// <summary>The teamsApps property</summary>
         public List<TeamsApp> TeamsApps { get; set; }
         /// <summary>
+        /// Instantiates a new appCatalogs and sets the default values.
+        /// </summary>
+        public AppCatalogs() : base() {
+            OdataType = "#microsoft.graph.appCatalogs";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

@@ -12,6 +12,12 @@ namespace ApiSdk.Models {
         /// <summary>Name that is displayed to the user.</summary>
         public string PayloadName { get; set; }
         /// <summary>
+        /// Instantiates a new IosCustomConfiguration and sets the default values.
+        /// </summary>
+        public IosCustomConfiguration() : base() {
+            OdataType = "#microsoft.graph.iosCustomConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

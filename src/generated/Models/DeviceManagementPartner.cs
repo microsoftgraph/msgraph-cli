@@ -12,9 +12,9 @@ namespace ApiSdk.Models {
         public bool? IsConfigured { get; set; }
         /// <summary>Timestamp of last heartbeat after admin enabled option Connect to Device management Partner</summary>
         public DateTimeOffset? LastHeartbeatDateTime { get; set; }
-        /// <summary>Partner App type. Possible values are: unknown, singleTenantApp, multiTenantApp.</summary>
+        /// <summary>Partner App Type.</summary>
         public DeviceManagementPartnerAppType? PartnerAppType { get; set; }
-        /// <summary>Partner state of this tenant. Possible values are: unknown, unavailable, enabled, terminated, rejected, unresponsive.</summary>
+        /// <summary>Partner state of this tenant.</summary>
         public DeviceManagementPartnerTenantState? PartnerState { get; set; }
         /// <summary>Partner Single tenant App id</summary>
         public string SingleTenantAppId { get; set; }
@@ -22,6 +22,12 @@ namespace ApiSdk.Models {
         public DateTimeOffset? WhenPartnerDevicesWillBeMarkedAsNonCompliantDateTime { get; set; }
         /// <summary>DateTime in UTC when PartnerDevices will be removed</summary>
         public DateTimeOffset? WhenPartnerDevicesWillBeRemovedDateTime { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceManagementPartner and sets the default values.
+        /// </summary>
+        public DeviceManagementPartner() : base() {
+            OdataType = "#microsoft.graph.deviceManagementPartner";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

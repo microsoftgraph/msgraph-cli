@@ -7,6 +7,7 @@ using ApiSdk.Policies.AuthenticationMethodsPolicy;
 using ApiSdk.Policies.AuthorizationPolicy;
 using ApiSdk.Policies.ClaimsMappingPolicies;
 using ApiSdk.Policies.ConditionalAccessPolicies;
+using ApiSdk.Policies.CrossTenantAccessPolicy;
 using ApiSdk.Policies.FeatureRolloutPolicies;
 using ApiSdk.Policies.HomeRealmDiscoveryPolicies;
 using ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy;
@@ -95,6 +96,16 @@ namespace ApiSdk.Policies {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildCrossTenantAccessPolicyCommand() {
+            var command = new Command("cross-tenant-access-policy");
+            var builder = new CrossTenantAccessPolicyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildDefaultCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPartnersCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         public Command BuildFeatureRolloutPoliciesCommand() {

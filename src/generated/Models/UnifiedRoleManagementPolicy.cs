@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the policyRoot singleton.</summary>
     public class UnifiedRoleManagementPolicy : Entity, IParsable {
         /// <summary>Description for the policy.</summary>
         public string Description { get; set; }
@@ -24,6 +23,12 @@ namespace ApiSdk.Models {
         public string ScopeId { get; set; }
         /// <summary>The type of the scope where the policy is created. One of Directory, DirectoryRole. Required.</summary>
         public string ScopeType { get; set; }
+        /// <summary>
+        /// Instantiates a new UnifiedRoleManagementPolicy and sets the default values.
+        /// </summary>
+        public UnifiedRoleManagementPolicy() : base() {
+            OdataType = "#microsoft.graph.unifiedRoleManagementPolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

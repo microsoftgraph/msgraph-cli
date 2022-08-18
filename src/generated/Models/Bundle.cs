@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.Album Album { get; set; }
         /// <summary>Number of children contained immediately within this container.</summary>
         public int? ChildCount { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new bundle and sets the default values.
         /// </summary>
         public Bundle() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.bundle";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"album", n => { Album = n.GetObjectValue<ApiSdk.Models.Album>(ApiSdk.Models.Album.CreateFromDiscriminatorValue); } },
                 {"childCount", n => { ChildCount = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<ApiSdk.Models.Album>("album", Album);
             writer.WriteIntValue("childCount", ChildCount);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

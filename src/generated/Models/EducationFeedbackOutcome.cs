@@ -10,6 +10,12 @@ namespace ApiSdk.Models {
         /// <summary>A copy of the feedback property that is made when the grade is released to the student.</summary>
         public EducationFeedback PublishedFeedback { get; set; }
         /// <summary>
+        /// Instantiates a new EducationFeedbackOutcome and sets the default values.
+        /// </summary>
+        public EducationFeedbackOutcome() : base() {
+            OdataType = "#microsoft.graph.educationFeedbackOutcome";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

@@ -30,6 +30,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildResetPasswordCommand());
             return command;
         }
         public Command BuildCountCommand() {

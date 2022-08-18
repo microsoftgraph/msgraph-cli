@@ -89,11 +89,11 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
             return command;
         }
         /// <summary>
-        /// Collection of tasks in the plan. Read-only. Nullable.
+        /// Read-only. Nullable. Collection of tasks in the plan.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Collection of tasks in the plan. Read-only. Nullable.";
+            command.Description = "Read-only. Nullable. Collection of tasks in the plan.";
             // Create options for all the parameters
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
             };
@@ -235,7 +235,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Collection of tasks in the plan. Read-only. Nullable.
+        /// Read-only. Nullable. Collection of tasks in the plan.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PlannerTaskItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -282,14 +282,14 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new plannerTaskItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new PlannerTaskItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public PlannerTaskItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Collection of tasks in the plan. Read-only. Nullable.</summary>
+        /// <summary>Read-only. Nullable. Collection of tasks in the plan.</summary>
         public class PlannerTaskItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -307,7 +307,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
             /// <summary>Request query parameters</summary>
             public PlannerTaskItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PlannerTaskItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new plannerTaskItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new PlannerTaskItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public PlannerTaskItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -321,7 +321,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new plannerTaskItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new PlannerTaskItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public PlannerTaskItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

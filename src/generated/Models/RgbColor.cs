@@ -12,6 +12,8 @@ namespace ApiSdk.Models {
         public byte? B { get; set; }
         /// <summary>Green value</summary>
         public byte? G { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Red value</summary>
         public byte? R { get; set; }
         /// <summary>
@@ -19,6 +21,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public RgbColor() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.rgbColor";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"b", n => { B = n.GetByteValue(); } },
                 {"g", n => { G = n.GetByteValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"r", n => { R = n.GetByteValue(); } },
             };
         }
@@ -46,6 +50,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteByteValue("b", B);
             writer.WriteByteValue("g", G);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteByteValue("r", R);
             writer.WriteAdditionalData(AdditionalData);
         }

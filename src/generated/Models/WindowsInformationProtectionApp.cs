@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace ApiSdk.Models {
         public string Description { get; set; }
         /// <summary>App display name.</summary>
         public string DisplayName { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The product name.</summary>
         public string ProductName { get; set; }
         /// <summary>The publisher name</summary>
@@ -23,6 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public WindowsInformationProtectionApp() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.windowsInformationProtectionApp";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -30,7 +34,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public static WindowsInformationProtectionApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsInformationProtectionApp();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.windowsInformationProtectionDesktopApp" => new WindowsInformationProtectionDesktopApp(),
+                "#microsoft.graph.windowsInformationProtectionStoreApp" => new WindowsInformationProtectionStoreApp(),
+                _ => new WindowsInformationProtectionApp(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,6 +50,7 @@ namespace ApiSdk.Models {
                 {"denied", n => { Denied = n.GetBoolValue(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"productName", n => { ProductName = n.GetStringValue(); } },
                 {"publisherName", n => { PublisherName = n.GetStringValue(); } },
             };
@@ -53,6 +64,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("denied", Denied);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("productName", ProductName);
             writer.WriteStringValue("publisherName", PublisherName);
             writer.WriteAdditionalData(AdditionalData);

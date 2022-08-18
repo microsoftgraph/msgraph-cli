@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>The identity provider type. For a B2B scenario, possible values: AADSignup, MicrosoftAccount, EmailOTP. Required.</summary>
         public string IdentityProviderType { get; set; }
         /// <summary>
+        /// Instantiates a new BuiltInIdentityProvider and sets the default values.
+        /// </summary>
+        public BuiltInIdentityProvider() : base() {
+            OdataType = "#microsoft.graph.builtInIdentityProvider";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

@@ -55,11 +55,11 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             return command;
         }
         /// <summary>
-        /// Represents entry point for identity provider base.
+        /// Get identityProviders from identity
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents entry point for identity provider base.";
+            command.Description = "Get identityProviders from identity";
             // Create options for all the parameters
             var identityProviderBaseIdOption = new Option<string>("--identity-provider-base-id", description: "key: id of identityProviderBase") {
             };
@@ -181,7 +181,7 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents entry point for identity provider base.
+        /// Get identityProviders from identity
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IdentityProviderBaseItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -228,14 +228,14 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new identityProviderBaseItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new IdentityProviderBaseItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public IdentityProviderBaseItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Represents entry point for identity provider base.</summary>
+        /// <summary>Get identityProviders from identity</summary>
         public class IdentityProviderBaseItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -253,7 +253,7 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             /// <summary>Request query parameters</summary>
             public IdentityProviderBaseItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new IdentityProviderBaseItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new identityProviderBaseItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new IdentityProviderBaseItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public IdentityProviderBaseItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new identityProviderBaseItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new IdentityProviderBaseItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public IdentityProviderBaseItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

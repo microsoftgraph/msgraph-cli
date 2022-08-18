@@ -7,13 +7,15 @@ namespace ApiSdk.Models {
     public class MediaStream : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The direction. The possible values are inactive, sendOnly, receiveOnly, sendReceive.</summary>
+        /// <summary>The direction property</summary>
         public MediaDirection? Direction { get; set; }
         /// <summary>The media stream label.</summary>
         public string Label { get; set; }
-        /// <summary>The media type. The possible value are unknown, audio, video, videoBasedScreenSharing, data.</summary>
+        /// <summary>The mediaType property</summary>
         public Modality? MediaType { get; set; }
-        /// <summary>Indicates whether the media is muted by the server.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>If the media is muted by the server.</summary>
         public bool? ServerMuted { get; set; }
         /// <summary>The source ID.</summary>
         public string SourceId { get; set; }
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public MediaStream() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.mediaStream";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -39,6 +42,7 @@ namespace ApiSdk.Models {
                 {"direction", n => { Direction = n.GetEnumValue<MediaDirection>(); } },
                 {"label", n => { Label = n.GetStringValue(); } },
                 {"mediaType", n => { MediaType = n.GetEnumValue<Modality>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"serverMuted", n => { ServerMuted = n.GetBoolValue(); } },
                 {"sourceId", n => { SourceId = n.GetStringValue(); } },
             };
@@ -52,6 +56,7 @@ namespace ApiSdk.Models {
             writer.WriteEnumValue<MediaDirection>("direction", Direction);
             writer.WriteStringValue("label", Label);
             writer.WriteEnumValue<Modality>("mediaType", MediaType);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("serverMuted", ServerMuted);
             writer.WriteStringValue("sourceId", SourceId);
             writer.WriteAdditionalData(AdditionalData);

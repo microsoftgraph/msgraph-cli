@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public EducationItemBody Description { get; set; }
         /// <summary>The name of this rubric quality.</summary>
         public string DisplayName { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The ID of this resource.</summary>
         public string QualityId { get; set; }
         /// <summary>If present, a numerical weight for this quality.  Weights must add up to 100.</summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public RubricQuality() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.rubricQuality";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -39,6 +42,7 @@ namespace ApiSdk.Models {
                 {"criteria", n => { Criteria = n.GetCollectionOfObjectValues<RubricCriterion>(RubricCriterion.CreateFromDiscriminatorValue).ToList(); } },
                 {"description", n => { Description = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"qualityId", n => { QualityId = n.GetStringValue(); } },
                 {"weight", n => { Weight = n.GetFloatValue(); } },
             };
@@ -52,6 +56,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<RubricCriterion>("criteria", Criteria);
             writer.WriteObjectValue<EducationItemBody>("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("qualityId", QualityId);
             writer.WriteFloatValue("weight", Weight);
             writer.WriteAdditionalData(AdditionalData);

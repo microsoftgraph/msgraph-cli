@@ -301,7 +301,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public EducationAssignmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -326,7 +326,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             /// <summary>Request query parameters</summary>
             public EducationAssignmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EducationAssignmentItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new educationAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EducationAssignmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -340,7 +340,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new educationAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new EducationAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public EducationAssignmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

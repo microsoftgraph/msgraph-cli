@@ -13,6 +13,12 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// <summary>A property bag with the properties of the item. The properties MUST conform to the schema defined for the externalConnection. Required.</summary>
         public ApiSdk.Models.ExternalConnectors.Properties Properties { get; set; }
         /// <summary>
+        /// Instantiates a new externalItem and sets the default values.
+        /// </summary>
+        public ExternalItem() : base() {
+            OdataType = "#microsoft.graph.externalConnectors.externalItem";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

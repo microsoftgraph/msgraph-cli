@@ -253,7 +253,7 @@ namespace ApiSdk.Sites.Item.Columns.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new columnDefinitionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ColumnDefinitionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ColumnDefinitionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -278,7 +278,7 @@ namespace ApiSdk.Sites.Item.Columns.Item {
             /// <summary>Request query parameters</summary>
             public ColumnDefinitionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ColumnDefinitionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new columnDefinitionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ColumnDefinitionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ColumnDefinitionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -292,7 +292,7 @@ namespace ApiSdk.Sites.Item.Columns.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new columnDefinitionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ColumnDefinitionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ColumnDefinitionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

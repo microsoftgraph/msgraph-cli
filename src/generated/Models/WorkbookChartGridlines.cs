@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartGridlines : Entity, IParsable {
         /// <summary>Represents the formatting of chart gridlines. Read-only.</summary>
         public WorkbookChartGridlinesFormat Format { get; set; }
         /// <summary>Boolean value representing if the axis gridlines are visible or not.</summary>
         public bool? Visible { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookChartGridlines and sets the default values.
+        /// </summary>
+        public WorkbookChartGridlines() : base() {
+            OdataType = "#microsoft.graph.workbookChartGridlines";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

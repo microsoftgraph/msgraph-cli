@@ -7,10 +7,12 @@ namespace ApiSdk.Models {
     public class UserAttributeValuesItem : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Used to set the value as the default.</summary>
+        /// <summary>Determines whether the value is set as the default.</summary>
         public bool? IsDefault { get; set; }
-        /// <summary>The display name of the property displayed to the end user in the user flow.</summary>
+        /// <summary>The display name of the property displayed to the user in the user flow.</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The value that is set when this item is selected.</summary>
         public string Value { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public UserAttributeValuesItem() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.userAttributeValuesItem";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"isDefault", n => { IsDefault = n.GetBoolValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"value", n => { Value = n.GetStringValue(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("isDefault", IsDefault);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }

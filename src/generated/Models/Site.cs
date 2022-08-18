@@ -20,15 +20,15 @@ namespace ApiSdk.Models {
         public List<ApiSdk.Models.Drive> Drives { get; set; }
         /// <summary>The error property</summary>
         public PublicError Error { get; set; }
-        /// <summary>The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.</summary>
+        /// <summary>The externalColumns property</summary>
         public List<ColumnDefinition> ExternalColumns { get; set; }
-        /// <summary>Used to address any item contained in this site. This collection cannot be enumerated.</summary>
+        /// <summary>Used to address any item contained in this site. This collection can&apos;t be enumerated.</summary>
         public List<BaseItem> Items { get; set; }
         /// <summary>The collection of lists under this site.</summary>
         public List<List> Lists { get; set; }
         /// <summary>Calls the OneNote service for notebook related operations.</summary>
         public ApiSdk.Models.Onenote Onenote { get; set; }
-        /// <summary>The collection of long running operations for the site.</summary>
+        /// <summary>The collection of long-running operations on the site.</summary>
         public List<RichLongRunningOperation> Operations { get; set; }
         /// <summary>The permissions associated with the site. Nullable.</summary>
         public List<Permission> Permissions { get; set; }
@@ -40,10 +40,16 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.SiteCollection SiteCollection { get; set; }
         /// <summary>The collection of the sub-sites under this site.</summary>
         public List<Site> Sites { get; set; }
-        /// <summary>The termStore under this site.</summary>
+        /// <summary>The default termStore under this site.</summary>
         public Store TermStore { get; set; }
         /// <summary>The collection of termStores under this site.</summary>
         public List<Store> TermStores { get; set; }
+        /// <summary>
+        /// Instantiates a new Site and sets the default values.
+        /// </summary>
+        public Site() : base() {
+            OdataType = "#microsoft.graph.site";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

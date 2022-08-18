@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public BucketAggregationDefinition BucketDefinition { get; set; }
         /// <summary>Computes aggregation on the field while the field exists in current entity type. Required.</summary>
         public string Field { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The number of searchBucket resources to be returned. This is not required when the range is provided manually in the search request. Optional.</summary>
         public int? Size { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public AggregationOption() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.aggregationOption";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"bucketDefinition", n => { BucketDefinition = n.GetObjectValue<BucketAggregationDefinition>(BucketAggregationDefinition.CreateFromDiscriminatorValue); } },
                 {"field", n => { Field = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"size", n => { Size = n.GetIntValue(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<BucketAggregationDefinition>("bucketDefinition", BucketDefinition);
             writer.WriteStringValue("field", Field);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("size", Size);
             writer.WriteAdditionalData(AdditionalData);
         }

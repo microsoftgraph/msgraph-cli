@@ -1,10 +1,11 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class BaseItemVersion : Entity, IParsable {
         /// <summary>Identity of the user which last modified the version. Read-only.</summary>
         public IdentitySet LastModifiedBy { get; set; }
@@ -12,6 +13,12 @@ namespace ApiSdk.Models {
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Indicates the publication status of this particular version. Read-only.</summary>
         public PublicationFacet Publication { get; set; }
+        /// <summary>
+        /// Instantiates a new baseItemVersion and sets the default values.
+        /// </summary>
+        public BaseItemVersion() : base() {
+            OdataType = "#microsoft.graph.baseItemVersion";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
@@ -21,6 +28,7 @@ namespace ApiSdk.Models {
             var mappingValueNode = parseNode.GetChildNode("@odata.type");
             var mappingValue = mappingValueNode?.GetStringValue();
             return mappingValue switch {
+                "#microsoft.graph.documentSetVersion" => new DocumentSetVersion(),
                 "#microsoft.graph.driveItemVersion" => new DriveItemVersion(),
                 "#microsoft.graph.listItemVersion" => new ListItemVersion(),
                 _ => new BaseItemVersion(),

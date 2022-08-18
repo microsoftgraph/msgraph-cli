@@ -73,11 +73,11 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item 
             return command;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type
+        /// The collection of columns that are required by this content type.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of columns that are required by this content type";
+            command.Description = "The collection of columns that are required by this content type.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -235,7 +235,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item 
             return requestInfo;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type
+        /// The collection of columns that are required by this content type.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ColumnLinkItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -282,14 +282,14 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item 
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new columnLinkItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ColumnLinkItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ColumnLinkItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The collection of columns that are required by this content type</summary>
+        /// <summary>The collection of columns that are required by this content type.</summary>
         public class ColumnLinkItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -307,7 +307,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item 
             /// <summary>Request query parameters</summary>
             public ColumnLinkItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ColumnLinkItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new columnLinkItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ColumnLinkItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ColumnLinkItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -321,7 +321,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item 
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new columnLinkItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ColumnLinkItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ColumnLinkItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

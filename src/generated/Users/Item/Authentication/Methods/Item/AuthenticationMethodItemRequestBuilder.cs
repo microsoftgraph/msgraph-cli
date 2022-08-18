@@ -1,5 +1,6 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -167,6 +168,12 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item {
             });
             return command;
         }
+        public Command BuildResetPasswordCommand() {
+            var command = new Command("reset-password");
+            var builder = new ResetPasswordRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
         /// <summary>
         /// Instantiates a new AuthenticationMethodItemRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
@@ -246,7 +253,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new authenticationMethodItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AuthenticationMethodItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AuthenticationMethodItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +278,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item {
             /// <summary>Request query parameters</summary>
             public AuthenticationMethodItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AuthenticationMethodItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new authenticationMethodItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AuthenticationMethodItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AuthenticationMethodItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +292,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new authenticationMethodItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AuthenticationMethodItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AuthenticationMethodItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

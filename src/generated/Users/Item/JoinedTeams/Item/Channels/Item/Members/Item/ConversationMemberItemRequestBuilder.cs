@@ -282,7 +282,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new conversationMemberItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ConversationMemberItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ConversationMemberItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -307,7 +307,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members.Item {
             /// <summary>Request query parameters</summary>
             public ConversationMemberItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ConversationMemberItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new conversationMemberItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ConversationMemberItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ConversationMemberItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -321,7 +321,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new conversationMemberItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ConversationMemberItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ConversationMemberItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

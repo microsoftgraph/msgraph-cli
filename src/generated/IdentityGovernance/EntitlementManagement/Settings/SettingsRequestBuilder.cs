@@ -49,11 +49,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return command;
         }
         /// <summary>
-        /// Represents the settings that control the behavior of Azure AD entitlement management.
+        /// The settings that control the behavior of Azure AD entitlement management.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents the settings that control the behavior of Azure AD entitlement management.";
+            command.Description = "The settings that control the behavior of Azure AD entitlement management.";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -163,7 +163,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Represents the settings that control the behavior of Azure AD entitlement management.
+        /// The settings that control the behavior of Azure AD entitlement management.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SettingsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -217,7 +217,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Represents the settings that control the behavior of Azure AD entitlement management.</summary>
+        /// <summary>The settings that control the behavior of Azure AD entitlement management.</summary>
         public class SettingsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

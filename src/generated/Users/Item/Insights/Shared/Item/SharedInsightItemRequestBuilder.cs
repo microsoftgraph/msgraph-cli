@@ -63,11 +63,11 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
             return command;
         }
         /// <summary>
-        /// Access this property from the derived type itemInsights.
+        /// Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Access this property from the derived type itemInsights.";
+            command.Description = "Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -213,7 +213,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Access this property from the derived type itemInsights.
+        /// Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SharedInsightItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -260,14 +260,14 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new sharedInsightItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new SharedInsightItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public SharedInsightItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Access this property from the derived type itemInsights.</summary>
+        /// <summary>Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.</summary>
         public class SharedInsightItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -285,7 +285,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
             /// <summary>Request query parameters</summary>
             public SharedInsightItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SharedInsightItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new sharedInsightItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SharedInsightItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SharedInsightItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -299,7 +299,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new sharedInsightItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new SharedInsightItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public SharedInsightItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

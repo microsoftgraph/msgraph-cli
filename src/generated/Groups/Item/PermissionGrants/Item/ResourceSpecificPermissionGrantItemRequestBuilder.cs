@@ -78,11 +78,11 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             return command;
         }
         /// <summary>
-        /// The permissions that have been granted for a group to a specific application. Supports $expand.
+        /// The permission that has been granted for a group to a specific application. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The permissions that have been granted for a group to a specific application. Supports $expand.";
+            command.Description = "The permission that has been granted for a group to a specific application. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -234,7 +234,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The permissions that have been granted for a group to a specific application. Supports $expand.
+        /// The permission that has been granted for a group to a specific application. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ResourceSpecificPermissionGrantItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -281,14 +281,14 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new resourceSpecificPermissionGrantItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ResourceSpecificPermissionGrantItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ResourceSpecificPermissionGrantItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The permissions that have been granted for a group to a specific application. Supports $expand.</summary>
+        /// <summary>The permission that has been granted for a group to a specific application. Supports $expand.</summary>
         public class ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -306,7 +306,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             /// <summary>Request query parameters</summary>
             public ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new resourceSpecificPermissionGrantItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ResourceSpecificPermissionGrantItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ResourceSpecificPermissionGrantItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -320,7 +320,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new resourceSpecificPermissionGrantItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ResourceSpecificPermissionGrantItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ResourceSpecificPermissionGrantItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

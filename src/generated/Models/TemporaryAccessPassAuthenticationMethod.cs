@@ -5,20 +5,26 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class TemporaryAccessPassAuthenticationMethod : AuthenticationMethod, IParsable {
-        /// <summary>The date and time when the temporaryAccessPass was created.</summary>
+        /// <summary>The date and time when the Temporary Access Pass was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The state of the authentication method that indicates whether it&apos;s currently usable by the user.</summary>
         public bool? IsUsable { get; set; }
-        /// <summary>Determines whether the pass is limited to a one time use. If true, the pass can be used once; if false, the pass can be used multiple times within the temporaryAccessPass lifetime.</summary>
+        /// <summary>Determines whether the pass is limited to a one-time use. If true, the pass can be used once; if false, the pass can be used multiple times within the Temporary Access Pass lifetime.</summary>
         public bool? IsUsableOnce { get; set; }
-        /// <summary>The lifetime of the temporaryAccessPass in minutes starting at startDateTime. Minimum 10, Maximum 43200 (equivalent to 30 days).</summary>
+        /// <summary>The lifetime of the Temporary Access Pass in minutes starting at startDateTime. Must be between 10 and 43200 inclusive (equivalent to 30 days).</summary>
         public int? LifetimeInMinutes { get; set; }
-        /// <summary>Details about usability state (isUsable). Reasons can include: enabledByPolicy, disabledByPolicy, expired, notYetValid, oneTimeUsed.</summary>
+        /// <summary>Details about the usability state (isUsable). Reasons can include: EnabledByPolicy, DisabledByPolicy, Expired, NotYetValid, OneTimeUsed.</summary>
         public string MethodUsabilityReason { get; set; }
-        /// <summary>The date and time when the temporaryAccessPass becomes available to use.</summary>
+        /// <summary>The date and time when the Temporary Access Pass becomes available to use and when isUsable is true is enforced.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
-        /// <summary>The temporaryAccessPass used to authenticate. Returned only on creation of a new temporaryAccessPass; returned as NULL with GET.</summary>
+        /// <summary>The Temporary Access Pass used to authenticate. Returned only on creation of a new temporaryAccessPassAuthenticationMethod object; Hidden in subsequent read operations and returned as null with GET.</summary>
         public string TemporaryAccessPass { get; set; }
+        /// <summary>
+        /// Instantiates a new TemporaryAccessPassAuthenticationMethod and sets the default values.
+        /// </summary>
+        public TemporaryAccessPassAuthenticationMethod() : base() {
+            OdataType = "#microsoft.graph.temporaryAccessPassAuthenticationMethod";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

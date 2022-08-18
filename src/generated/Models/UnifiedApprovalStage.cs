@@ -17,6 +17,8 @@ namespace ApiSdk.Models {
         public bool? IsApproverJustificationRequired { get; set; }
         /// <summary>Indicates whether escalation if enabled.</summary>
         public bool? IsEscalationEnabled { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The primary approvers of this stage.</summary>
         public List<SubjectSet> PrimaryApprovers { get; set; }
         /// <summary>
@@ -24,6 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public UnifiedApprovalStage() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.unifiedApprovalStage";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -43,6 +46,7 @@ namespace ApiSdk.Models {
                 {"escalationTimeInMinutes", n => { EscalationTimeInMinutes = n.GetIntValue(); } },
                 {"isApproverJustificationRequired", n => { IsApproverJustificationRequired = n.GetBoolValue(); } },
                 {"isEscalationEnabled", n => { IsEscalationEnabled = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"primaryApprovers", n => { PrimaryApprovers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
@@ -57,6 +61,7 @@ namespace ApiSdk.Models {
             writer.WriteIntValue("escalationTimeInMinutes", EscalationTimeInMinutes);
             writer.WriteBoolValue("isApproverJustificationRequired", IsApproverJustificationRequired);
             writer.WriteBoolValue("isEscalationEnabled", IsEscalationEnabled);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfObjectValues<SubjectSet>("primaryApprovers", PrimaryApprovers);
             writer.WriteAdditionalData(AdditionalData);
         }

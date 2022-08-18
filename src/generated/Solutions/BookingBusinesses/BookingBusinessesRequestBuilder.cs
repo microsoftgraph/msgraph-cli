@@ -33,6 +33,7 @@ namespace ApiSdk.Solutions.BookingBusinesses {
             command.AddCommand(builder.BuildCustomQuestionsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildGetStaffAvailabilityCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPublishCommand());
             command.AddCommand(builder.BuildServicesCommand());

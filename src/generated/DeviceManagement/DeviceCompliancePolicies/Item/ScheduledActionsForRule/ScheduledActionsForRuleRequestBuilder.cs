@@ -95,11 +95,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return command;
         }
         /// <summary>
-        /// The list of scheduled action for this rule
+        /// The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of scheduled action for this rule";
+            command.Description = "The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.";
             // Create options for all the parameters
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The list of scheduled action for this rule
+        /// The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ScheduledActionsForRuleRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -259,7 +259,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             }
             return requestInfo;
         }
-        /// <summary>The list of scheduled action for this rule</summary>
+        /// <summary>The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.</summary>
         public class ScheduledActionsForRuleRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

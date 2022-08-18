@@ -94,11 +94,11 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return command;
         }
         /// <summary>
-        /// Domain settings configured by customer when federated with Azure AD. Supports $expand.
+        /// Domain settings configured by a customer when federated with Azure AD. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Domain settings configured by customer when federated with Azure AD. Supports $expand.";
+            command.Description = "Domain settings configured by a customer when federated with Azure AD. Supports $expand.";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Domain settings configured by customer when federated with Azure AD. Supports $expand.
+        /// Domain settings configured by a customer when federated with Azure AD. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<FederationConfigurationRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             }
             return requestInfo;
         }
-        /// <summary>Domain settings configured by customer when federated with Azure AD. Supports $expand.</summary>
+        /// <summary>Domain settings configured by a customer when federated with Azure AD. Supports $expand.</summary>
         public class FederationConfigurationRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

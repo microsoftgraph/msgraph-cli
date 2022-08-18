@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class WorkbookChartLegend : Entity, IParsable {
         /// <summary>Represents the formatting of a chart legend, which includes fill and font formatting. Read-only.</summary>
         public WorkbookChartLegendFormat Format { get; set; }
@@ -14,6 +13,12 @@ namespace ApiSdk.Models {
         public string Position { get; set; }
         /// <summary>A boolean value the represents the visibility of a ChartLegend object.</summary>
         public bool? Visible { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookChartLegend and sets the default values.
+        /// </summary>
+        public WorkbookChartLegend() : base() {
+            OdataType = "#microsoft.graph.workbookChartLegend";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

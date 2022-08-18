@@ -221,7 +221,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new agreementAcceptanceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AgreementAcceptanceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AgreementAcceptanceItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -243,7 +243,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
             /// <summary>Request query parameters</summary>
             public AgreementAcceptanceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AgreementAcceptanceItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new agreementAcceptanceItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AgreementAcceptanceItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AgreementAcceptanceItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -257,7 +257,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new agreementAcceptanceItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AgreementAcceptanceItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AgreementAcceptanceItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

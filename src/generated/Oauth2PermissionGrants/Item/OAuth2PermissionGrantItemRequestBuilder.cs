@@ -23,11 +23,11 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from oauth2PermissionGrants
+        /// Delete a delegated permission grant, represented by an oAuth2PermissionGrant object. When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted **oAuth2PermissionGrant**.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from oauth2PermissionGrants";
+            command.Description = "Delete a delegated permission grant, represented by an oAuth2PermissionGrant object. When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted **oAuth2PermissionGrant**.";
             // Create options for all the parameters
             var oAuth2PermissionGrantIdOption = new Option<string>("--o-auth2permission-grant-id", description: "key: id of oAuth2PermissionGrant") {
             };
@@ -55,11 +55,11 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from oauth2PermissionGrants by key
+        /// Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An **oAuth2PermissionGrant** represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from oauth2PermissionGrants by key";
+            command.Description = "Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An **oAuth2PermissionGrant** represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user.";
             // Create options for all the parameters
             var oAuth2PermissionGrantIdOption = new Option<string>("--o-auth2permission-grant-id", description: "key: id of oAuth2PermissionGrant") {
             };
@@ -116,11 +116,11 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in oauth2PermissionGrants
+        /// Update the properties of oAuth2PermissionGrant object, representing a delegated permission grant. An **oAuth2PermissionGrant** can be updated to change which delegated permissions are granted, by adding or removing items from the list in **scopes**.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in oauth2PermissionGrants";
+            command.Description = "Update the properties of oAuth2PermissionGrant object, representing a delegated permission grant. An **oAuth2PermissionGrant** can be updated to change which delegated permissions are granted, by adding or removing items from the list in **scopes**.";
             // Create options for all the parameters
             var oAuth2PermissionGrantIdOption = new Option<string>("--o-auth2permission-grant-id", description: "key: id of oAuth2PermissionGrant") {
             };
@@ -163,7 +163,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from oauth2PermissionGrants
+        /// Delete a delegated permission grant, represented by an oAuth2PermissionGrant object. When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted **oAuth2PermissionGrant**.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<OAuth2PermissionGrantItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
@@ -181,7 +181,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from oauth2PermissionGrants by key
+        /// Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An **oAuth2PermissionGrant** represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OAuth2PermissionGrantItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -201,7 +201,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in oauth2PermissionGrants
+        /// Update the properties of oAuth2PermissionGrant object, representing a delegated permission grant. An **oAuth2PermissionGrant** can be updated to change which delegated permissions are granted, by adding or removing items from the list in **scopes**.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -228,14 +228,14 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new oAuth2PermissionGrantItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new OAuth2PermissionGrantItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public OAuth2PermissionGrantItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get entity from oauth2PermissionGrants by key</summary>
+        /// <summary>Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An **oAuth2PermissionGrant** represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user.</summary>
         public class OAuth2PermissionGrantItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -253,7 +253,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             /// <summary>Request query parameters</summary>
             public OAuth2PermissionGrantItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OAuth2PermissionGrantItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new oAuth2PermissionGrantItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new OAuth2PermissionGrantItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public OAuth2PermissionGrantItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new oAuth2PermissionGrantItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new OAuth2PermissionGrantItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public OAuth2PermissionGrantItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

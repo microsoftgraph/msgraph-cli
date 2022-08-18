@@ -1,11 +1,14 @@
+using ApiSdk.Groups.Item.Team.AllChannels;
 using ApiSdk.Groups.Item.Team.Archive;
 using ApiSdk.Groups.Item.Team.Channels;
 using ApiSdk.Groups.Item.Team.Clone;
 using ApiSdk.Groups.Item.Team.CompleteMigration;
 using ApiSdk.Groups.Item.Team.Group;
+using ApiSdk.Groups.Item.Team.IncomingChannels;
 using ApiSdk.Groups.Item.Team.InstalledApps;
 using ApiSdk.Groups.Item.Team.Members;
 using ApiSdk.Groups.Item.Team.Operations;
+using ApiSdk.Groups.Item.Team.Photo;
 using ApiSdk.Groups.Item.Team.PrimaryChannel;
 using ApiSdk.Groups.Item.Team.Schedule;
 using ApiSdk.Groups.Item.Team.SendActivityNotification;
@@ -35,6 +38,14 @@ namespace ApiSdk.Groups.Item.Team {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildAllChannelsCommand() {
+            var command = new Command("all-channels");
+            var builder = new AllChannelsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildArchiveCommand() {
             var command = new Command("archive");
             var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
@@ -161,6 +172,14 @@ namespace ApiSdk.Groups.Item.Team {
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        public Command BuildIncomingChannelsCommand() {
+            var command = new Command("incoming-channels");
+            var builder = new IncomingChannelsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildInstalledAppsCommand() {
             var command = new Command("installed-apps");
             var builder = new InstalledAppsRequestBuilder(PathParameters, RequestAdapter);
@@ -223,6 +242,15 @@ namespace ApiSdk.Groups.Item.Team {
             });
             return command;
         }
+        public Command BuildPhotoCommand() {
+            var command = new Command("photo");
+            var builder = new PhotoRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            return command;
+        }
         public Command BuildPrimaryChannelCommand() {
             var command = new Command("primary-channel");
             var builder = new PrimaryChannelRequestBuilder(PathParameters, RequestAdapter);
@@ -235,6 +263,7 @@ namespace ApiSdk.Groups.Item.Team {
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildProvisionEmailCommand());
             command.AddCommand(builder.BuildRemoveEmailCommand());
+            command.AddCommand(builder.BuildSharedWithTeamsCommand());
             command.AddCommand(builder.BuildTabsCommand());
             return command;
         }

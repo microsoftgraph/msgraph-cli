@@ -228,7 +228,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new iosUpdateDeviceStatusItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new IosUpdateDeviceStatusItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public IosUpdateDeviceStatusItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             /// <summary>Request query parameters</summary>
             public IosUpdateDeviceStatusItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new IosUpdateDeviceStatusItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new iosUpdateDeviceStatusItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new IosUpdateDeviceStatusItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public IosUpdateDeviceStatusItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new iosUpdateDeviceStatusItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new IosUpdateDeviceStatusItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public IosUpdateDeviceStatusItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

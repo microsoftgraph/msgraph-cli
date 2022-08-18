@@ -228,7 +228,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new windowsInformationProtectionAppLearningSummaryItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new WindowsInformationProtectionAppLearningSummaryItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public WindowsInformationProtectionAppLearningSummaryItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             /// <summary>Request query parameters</summary>
             public WindowsInformationProtectionAppLearningSummaryItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new WindowsInformationProtectionAppLearningSummaryItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new windowsInformationProtectionAppLearningSummaryItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new WindowsInformationProtectionAppLearningSummaryItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public WindowsInformationProtectionAppLearningSummaryItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new windowsInformationProtectionAppLearningSummaryItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new WindowsInformationProtectionAppLearningSummaryItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public WindowsInformationProtectionAppLearningSummaryItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -88,11 +88,11 @@ namespace ApiSdk.Me.People {
             return command;
         }
         /// <summary>
-        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user&apos;s communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
+        /// People that are relevant to the user. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.";
+            command.Description = "People that are relevant to the user. Read-only. Nullable.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -198,7 +198,7 @@ namespace ApiSdk.Me.People {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user&apos;s communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
+        /// People that are relevant to the user. Read-only. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PeopleRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -239,7 +239,7 @@ namespace ApiSdk.Me.People {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user&apos;s communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.</summary>
+        /// <summary>People that are relevant to the user. Read-only. Nullable.</summary>
         public class PeopleRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

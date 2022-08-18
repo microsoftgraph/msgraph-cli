@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of chat entities.</summary>
     public class ChatMessageMentionedIdentitySet : IdentitySet, IParsable {
         /// <summary>If present, represents a conversation (for example, team or channel) @mentioned in a message.</summary>
         public TeamworkConversationIdentity Conversation { get; set; }
+        /// <summary>
+        /// Instantiates a new ChatMessageMentionedIdentitySet and sets the default values.
+        /// </summary>
+        public ChatMessageMentionedIdentitySet() : base() {
+            OdataType = "#microsoft.graph.chatMessageMentionedIdentitySet";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

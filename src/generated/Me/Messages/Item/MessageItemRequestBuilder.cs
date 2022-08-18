@@ -333,7 +333,7 @@ namespace ApiSdk.Me.Messages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new messageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new MessageItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public MessageItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -355,7 +355,7 @@ namespace ApiSdk.Me.Messages.Item {
             /// <summary>Request query parameters</summary>
             public MessageItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new MessageItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new messageItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new MessageItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public MessageItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -369,7 +369,7 @@ namespace ApiSdk.Me.Messages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new messageItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new MessageItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public MessageItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

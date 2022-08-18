@@ -326,7 +326,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new contentTypeItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ContentTypeItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ContentTypeItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -351,7 +351,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
             /// <summary>Request query parameters</summary>
             public ContentTypeItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ContentTypeItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new contentTypeItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ContentTypeItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ContentTypeItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -365,7 +365,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new contentTypeItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ContentTypeItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ContentTypeItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

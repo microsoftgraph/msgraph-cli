@@ -146,7 +146,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Sites.Item {
             /// <summary>Request query parameters</summary>
             public SiteItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new SiteItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new siteItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new SiteItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public SiteItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();

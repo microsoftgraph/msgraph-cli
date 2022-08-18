@@ -263,7 +263,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessPackageAssignmentRequestItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageAssignmentRequestItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageAssignmentRequestItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -288,7 +288,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             /// <summary>Request query parameters</summary>
             public AccessPackageAssignmentRequestItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AccessPackageAssignmentRequestItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new accessPackageAssignmentRequestItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageAssignmentRequestItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageAssignmentRequestItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -302,7 +302,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new accessPackageAssignmentRequestItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new AccessPackageAssignmentRequestItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public AccessPackageAssignmentRequestItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

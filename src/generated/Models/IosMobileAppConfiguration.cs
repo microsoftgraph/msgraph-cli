@@ -10,6 +10,12 @@ namespace ApiSdk.Models {
         /// <summary>app configuration setting items.</summary>
         public List<AppConfigurationSettingItem> Settings { get; set; }
         /// <summary>
+        /// Instantiates a new IosMobileAppConfiguration and sets the default values.
+        /// </summary>
+        public IosMobileAppConfiguration() : base() {
+            OdataType = "#microsoft.graph.iosMobileAppConfiguration";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

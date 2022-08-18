@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.ImplicitGrantSettings ImplicitGrantSettings { get; set; }
         /// <summary>Specifies the URL that will be used by Microsoft&apos;s authorization service to logout an user using front-channel, back-channel or SAML logout protocols.</summary>
         public string LogoutUrl { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Specifies the URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent.</summary>
         public List<string> RedirectUris { get; set; }
         /// <summary>
@@ -20,6 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public WebApplication() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.webApplication";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,6 +40,7 @@ namespace ApiSdk.Models {
                 {"homePageUrl", n => { HomePageUrl = n.GetStringValue(); } },
                 {"implicitGrantSettings", n => { ImplicitGrantSettings = n.GetObjectValue<ApiSdk.Models.ImplicitGrantSettings>(ApiSdk.Models.ImplicitGrantSettings.CreateFromDiscriminatorValue); } },
                 {"logoutUrl", n => { LogoutUrl = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"redirectUris", n => { RedirectUris = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };
         }
@@ -49,6 +53,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("homePageUrl", HomePageUrl);
             writer.WriteObjectValue<ApiSdk.Models.ImplicitGrantSettings>("implicitGrantSettings", ImplicitGrantSettings);
             writer.WriteStringValue("logoutUrl", LogoutUrl);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfPrimitiveValues<string>("redirectUris", RedirectUris);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
         public string Setting { get; set; }
         /// <summary>The Setting Name that is being reported</summary>
         public string SettingName { get; set; }
-        /// <summary>The compliance state of the setting. Possible values are: unknown, notApplicable, compliant, remediated, nonCompliant, error, conflict, notAssigned.</summary>
+        /// <summary>The state property</summary>
         public ComplianceStatus? State { get; set; }
         /// <summary>The User email address that is being reported</summary>
         public string UserEmail { get; set; }
@@ -28,6 +28,12 @@ namespace ApiSdk.Models {
         public string UserName { get; set; }
         /// <summary>The User PrincipalName that is being reported</summary>
         public string UserPrincipalName { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceComplianceSettingState and sets the default values.
+        /// </summary>
+        public DeviceComplianceSettingState() : base() {
+            OdataType = "#microsoft.graph.deviceComplianceSettingState";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

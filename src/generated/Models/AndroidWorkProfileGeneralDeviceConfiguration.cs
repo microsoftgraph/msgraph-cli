@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
         public int? PasswordMinutesOfInactivityBeforeScreenTimeout { get; set; }
         /// <summary>Number of previous passwords to block. Valid values 0 to 24</summary>
         public int? PasswordPreviousPasswordBlockCount { get; set; }
-        /// <summary>Type of password that is required. Possible values are: deviceDefault, lowSecurityBiometric, required, atLeastNumeric, numericComplex, atLeastAlphabetic, atLeastAlphanumeric, alphanumericWithSymbols.</summary>
+        /// <summary>Android Work Profile required password type.</summary>
         public AndroidWorkProfileRequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Number of sign in failures allowed before factory reset. Valid values 1 to 16</summary>
         public int? PasswordSignInFailureCountBeforeFactoryReset { get; set; }
@@ -39,9 +39,9 @@ namespace ApiSdk.Models {
         public bool? WorkProfileBlockScreenCapture { get; set; }
         /// <summary>Allow bluetooth devices to access enterprise contacts.</summary>
         public bool? WorkProfileBluetoothEnableContactSharing { get; set; }
-        /// <summary>Type of data sharing that is allowed. Possible values are: deviceDefault, preventAny, allowPersonalToWork, noRestrictions.</summary>
+        /// <summary>Android Work Profile cross profile data sharing type.</summary>
         public AndroidWorkProfileCrossProfileDataSharingType? WorkProfileDataSharingType { get; set; }
-        /// <summary>Type of password that is required. Possible values are: deviceDefault, prompt, autoGrant, autoDeny.</summary>
+        /// <summary>Android Work Profile default app permission policy type.</summary>
         public AndroidWorkProfileDefaultAppPermissionPolicyType? WorkProfileDefaultAppPermissionPolicy { get; set; }
         /// <summary>Indicates whether or not to block fingerprint unlock for work profile.</summary>
         public bool? WorkProfilePasswordBlockFingerprintUnlock { get; set; }
@@ -67,12 +67,18 @@ namespace ApiSdk.Models {
         public int? WorkProfilePasswordMinutesOfInactivityBeforeScreenTimeout { get; set; }
         /// <summary>Number of previous work profile passwords to block. Valid values 0 to 24</summary>
         public int? WorkProfilePasswordPreviousPasswordBlockCount { get; set; }
-        /// <summary>Type of work profile password that is required. Possible values are: deviceDefault, lowSecurityBiometric, required, atLeastNumeric, numericComplex, atLeastAlphabetic, atLeastAlphanumeric, alphanumericWithSymbols.</summary>
+        /// <summary>Android Work Profile required password type.</summary>
         public AndroidWorkProfileRequiredPasswordType? WorkProfilePasswordRequiredType { get; set; }
         /// <summary>Number of sign in failures allowed before work profile is removed and all corporate data deleted. Valid values 1 to 16</summary>
         public int? WorkProfilePasswordSignInFailureCountBeforeFactoryReset { get; set; }
         /// <summary>Password is required or not for work profile</summary>
         public bool? WorkProfileRequirePassword { get; set; }
+        /// <summary>
+        /// Instantiates a new AndroidWorkProfileGeneralDeviceConfiguration and sets the default values.
+        /// </summary>
+        public AndroidWorkProfileGeneralDeviceConfiguration() : base() {
+            OdataType = "#microsoft.graph.androidWorkProfileGeneralDeviceConfiguration";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

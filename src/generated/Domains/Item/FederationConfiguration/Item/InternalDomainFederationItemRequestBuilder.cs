@@ -61,11 +61,11 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return command;
         }
         /// <summary>
-        /// Domain settings configured by customer when federated with Azure AD. Supports $expand.
+        /// Domain settings configured by a customer when federated with Azure AD. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Domain settings configured by customer when federated with Azure AD. Supports $expand.";
+            command.Description = "Domain settings configured by a customer when federated with Azure AD. Supports $expand.";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };
@@ -199,7 +199,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Domain settings configured by customer when federated with Azure AD. Supports $expand.
+        /// Domain settings configured by a customer when federated with Azure AD. Supports $expand.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<InternalDomainFederationItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,14 +246,14 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new internalDomainFederationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new InternalDomainFederationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public InternalDomainFederationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Domain settings configured by customer when federated with Azure AD. Supports $expand.</summary>
+        /// <summary>Domain settings configured by a customer when federated with Azure AD. Supports $expand.</summary>
         public class InternalDomainFederationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -271,7 +271,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             /// <summary>Request query parameters</summary>
             public InternalDomainFederationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new InternalDomainFederationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new internalDomainFederationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new InternalDomainFederationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public InternalDomainFederationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new internalDomainFederationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new InternalDomainFederationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public InternalDomainFederationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

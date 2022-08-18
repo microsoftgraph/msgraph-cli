@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public string Alias { get; set; }
         /// <summary>A display string that represents the time zone.</summary>
         public string DisplayName { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new timeZoneInformation and sets the default values.
         /// </summary>
         public TimeZoneInformation() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.timeZoneInformation";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"alias", n => { Alias = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("alias", Alias);
             writer.WriteStringValue("displayName", DisplayName);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

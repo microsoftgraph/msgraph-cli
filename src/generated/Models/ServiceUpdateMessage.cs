@@ -9,11 +9,11 @@ namespace ApiSdk.Models {
         public DateTimeOffset? ActionRequiredByDateTime { get; set; }
         /// <summary>A collection of serviceAnnouncementAttachments.</summary>
         public List<ServiceAnnouncementAttachment> Attachments { get; set; }
-        /// <summary>The zip file of all attachments for a message.</summary>
+        /// <summary>The zip file that contains all attachments for a message.</summary>
         public byte[] AttachmentsArchive { get; set; }
         /// <summary>The body property</summary>
         public ItemBody Body { get; set; }
-        /// <summary>The service message category. Possible values are: preventOrFixIssue, planForChange, stayInformed, unknownFutureValue.</summary>
+        /// <summary>The category property</summary>
         public ServiceUpdateCategory? Category { get; set; }
         /// <summary>Indicates whether the message has any attachment.</summary>
         public bool? HasAttachments { get; set; }
@@ -21,12 +21,18 @@ namespace ApiSdk.Models {
         public bool? IsMajorChange { get; set; }
         /// <summary>The affected services by the service message.</summary>
         public List<string> Services { get; set; }
-        /// <summary>The severity of the service message. Possible values are: normal, high, critical, unknownFutureValue.</summary>
+        /// <summary>The severity property</summary>
         public ServiceUpdateSeverity? Severity { get; set; }
         /// <summary>A collection of tags for the service message. Tags are provided by the service team/support team who post the message to tell whether this message contains privacy data, or whether this message is for a service new feature update, and so on.</summary>
         public List<string> Tags { get; set; }
         /// <summary>Represents user viewpoints data of the service message. This data includes message status such as whether the user has archived, read, or marked the message as favorite. This property is null when accessed with application permissions.</summary>
         public ServiceUpdateMessageViewpoint ViewPoint { get; set; }
+        /// <summary>
+        /// Instantiates a new ServiceUpdateMessage and sets the default values.
+        /// </summary>
+        public ServiceUpdateMessage() : base() {
+            OdataType = "#microsoft.graph.serviceUpdateMessage";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Todo : Entity, IParsable {
         /// <summary>The task lists in the users mailbox.</summary>
         public List<TodoTaskList> Lists { get; set; }
+        /// <summary>
+        /// Instantiates a new Todo and sets the default values.
+        /// </summary>
+        public Todo() : base() {
+            OdataType = "#microsoft.graph.todo";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

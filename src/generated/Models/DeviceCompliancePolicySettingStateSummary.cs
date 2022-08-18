@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
         public int? NonCompliantDeviceCount { get; set; }
         /// <summary>Number of not applicable devices</summary>
         public int? NotApplicableDeviceCount { get; set; }
-        /// <summary>Setting platform. Possible values are: android, androidForWork, iOS, macOS, windowsPhone81, windows81AndLater, windows10AndLater, androidWorkProfile, windows10XProfile, androidAOSP, all.</summary>
+        /// <summary>Supported platform types for policies.</summary>
         public PolicyPlatformType? PlatformType { get; set; }
         /// <summary>Number of remediated devices</summary>
         public int? RemediatedDeviceCount { get; set; }
@@ -28,6 +28,12 @@ namespace ApiSdk.Models {
         public string SettingName { get; set; }
         /// <summary>Number of unknown devices</summary>
         public int? UnknownDeviceCount { get; set; }
+        /// <summary>
+        /// Instantiates a new deviceCompliancePolicySettingStateSummary and sets the default values.
+        /// </summary>
+        public DeviceCompliancePolicySettingStateSummary() : base() {
+            OdataType = "#microsoft.graph.deviceCompliancePolicySettingStateSummary";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

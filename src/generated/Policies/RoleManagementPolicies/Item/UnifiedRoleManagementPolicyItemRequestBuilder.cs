@@ -66,11 +66,11 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Represents the role management policies.
+        /// Specifies the various policies associated with scopes and roles.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents the role management policies.";
+            command.Description = "Specifies the various policies associated with scopes and roles.";
             // Create options for all the parameters
             var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "key: id of unifiedRoleManagementPolicy") {
             };
@@ -201,7 +201,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents the role management policies.
+        /// Specifies the various policies associated with scopes and roles.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UnifiedRoleManagementPolicyItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -248,14 +248,14 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new unifiedRoleManagementPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleManagementPolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleManagementPolicyItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Represents the role management policies.</summary>
+        /// <summary>Specifies the various policies associated with scopes and roles.</summary>
         public class UnifiedRoleManagementPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -273,7 +273,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
             /// <summary>Request query parameters</summary>
             public UnifiedRoleManagementPolicyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UnifiedRoleManagementPolicyItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new unifiedRoleManagementPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleManagementPolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleManagementPolicyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -287,7 +287,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new unifiedRoleManagementPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UnifiedRoleManagementPolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UnifiedRoleManagementPolicyItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

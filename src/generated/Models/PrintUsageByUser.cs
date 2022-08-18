@@ -8,6 +8,12 @@ namespace ApiSdk.Models {
         /// <summary>The UPN of the user represented by these statistics.</summary>
         public string UserPrincipalName { get; set; }
         /// <summary>
+        /// Instantiates a new PrintUsageByUser and sets the default values.
+        /// </summary>
+        public PrintUsageByUser() : base() {
+            OdataType = "#microsoft.graph.printUsageByUser";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

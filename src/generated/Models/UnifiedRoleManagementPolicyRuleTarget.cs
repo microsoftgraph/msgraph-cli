@@ -15,6 +15,8 @@ namespace ApiSdk.Models {
         public List<string> InheritableSettings { get; set; }
         /// <summary>The role assignment type that&apos;s the target of policy rule. Allowed values are: Eligibility, Assignment.</summary>
         public string Level { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>The role management operations that are the target of the policy rule. Allowed values are: All, Activate, Deactivate, Assign, Update, Remove, Extend, Renew.</summary>
         public List<string> Operations { get; set; }
         /// <summary>The targetObjects property</summary>
@@ -24,6 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public UnifiedRoleManagementPolicyRuleTarget() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.unifiedRoleManagementPolicyRuleTarget";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -42,6 +45,7 @@ namespace ApiSdk.Models {
                 {"enforcedSettings", n => { EnforcedSettings = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"inheritableSettings", n => { InheritableSettings = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"level", n => { Level = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operations", n => { Operations = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"targetObjects", n => { TargetObjects = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
             };
@@ -56,6 +60,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfPrimitiveValues<string>("enforcedSettings", EnforcedSettings);
             writer.WriteCollectionOfPrimitiveValues<string>("inheritableSettings", InheritableSettings);
             writer.WriteStringValue("level", Level);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfPrimitiveValues<string>("operations", Operations);
             writer.WriteCollectionOfObjectValues<DirectoryObject>("targetObjects", TargetObjects);
             writer.WriteAdditionalData(AdditionalData);

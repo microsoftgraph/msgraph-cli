@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -6,10 +7,16 @@ using System.Linq;
 namespace ApiSdk.Models {
     /// <summary>Contains properties used to assign a eBook to a group.</summary>
     public class ManagedEBookAssignment : Entity, IParsable {
-        /// <summary>The install intent for eBook. Possible values are: available, required, uninstall, availableWithoutEnrollment.</summary>
+        /// <summary>Possible values for the install intent chosen by the admin.</summary>
         public ApiSdk.Models.InstallIntent? InstallIntent { get; set; }
         /// <summary>The assignment target for eBook.</summary>
         public DeviceAndAppManagementAssignmentTarget Target { get; set; }
+        /// <summary>
+        /// Instantiates a new managedEBookAssignment and sets the default values.
+        /// </summary>
+        public ManagedEBookAssignment() : base() {
+            OdataType = "#microsoft.graph.managedEBookAssignment";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

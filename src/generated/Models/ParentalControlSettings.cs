@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public List<string> CountriesBlockedForMinors { get; set; }
         /// <summary>Specifies the legal age group rule that applies to users of the app. Can be set to one of the following values: ValueDescriptionAllowDefault. Enforces the legal minimum. This means parental consent is required for minors in the European Union and Korea.RequireConsentForPrivacyServicesEnforces the user to specify date of birth to comply with COPPA rules. RequireConsentForMinorsRequires parental consent for ages below 18, regardless of country minor rules.RequireConsentForKidsRequires parental consent for ages below 14, regardless of country minor rules.BlockMinorsBlocks minors from using the app.</summary>
         public string LegalAgeGroupRule { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new parentalControlSettings and sets the default values.
         /// </summary>
         public ParentalControlSettings() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.parentalControlSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"countriesBlockedForMinors", n => { CountriesBlockedForMinors = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"legalAgeGroupRule", n => { LegalAgeGroupRule = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("countriesBlockedForMinors", CountriesBlockedForMinors);
             writer.WriteStringValue("legalAgeGroupRule", LegalAgeGroupRule);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -228,7 +228,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceManagementPartnerItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceManagementPartnerItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceManagementPartnerItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item {
             /// <summary>Request query parameters</summary>
             public DeviceManagementPartnerItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DeviceManagementPartnerItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new deviceManagementPartnerItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceManagementPartnerItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceManagementPartnerItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceManagementPartnerItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceManagementPartnerItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceManagementPartnerItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -6,12 +6,18 @@ using System.Linq;
 namespace ApiSdk.Models {
     /// <summary>A class containing the properties used for Group Assignment of a Mobile App.</summary>
     public class MobileAppAssignment : Entity, IParsable {
-        /// <summary>The install intent defined by the admin. Possible values are: available, required, uninstall, availableWithoutEnrollment.</summary>
+        /// <summary>Possible values for the install intent chosen by the admin.</summary>
         public InstallIntent? Intent { get; set; }
         /// <summary>The settings for target assignment defined by the admin.</summary>
         public MobileAppAssignmentSettings Settings { get; set; }
         /// <summary>The target group assignment defined by the admin.</summary>
         public DeviceAndAppManagementAssignmentTarget Target { get; set; }
+        /// <summary>
+        /// Instantiates a new mobileAppAssignment and sets the default values.
+        /// </summary>
+        public MobileAppAssignment() : base() {
+            OdataType = "#microsoft.graph.mobileAppAssignment";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -246,7 +246,7 @@ namespace ApiSdk.External.Connections.Item.Operations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new connectionOperationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ConnectionOperationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ConnectionOperationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.External.Connections.Item.Operations.Item {
             /// <summary>Request query parameters</summary>
             public ConnectionOperationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ConnectionOperationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new connectionOperationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ConnectionOperationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ConnectionOperationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.External.Connections.Item.Operations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new connectionOperationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ConnectionOperationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ConnectionOperationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

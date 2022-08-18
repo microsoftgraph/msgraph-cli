@@ -150,11 +150,11 @@ namespace ApiSdk.Groups.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted. This isn&apos;t applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems.
+        /// Delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they&apos;re permanently deleted. This isn&apos;t applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted. This isn't applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems.";
+            command.Description = "Delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they're permanently deleted. This isn't applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -215,11 +215,11 @@ namespace ApiSdk.Groups.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that are _not_ returned by default, specify them in a `$select` OData query option. The **hasMembersWithLicenseErrors** property is an exception and is not returned in the `$select` query. Because the **group** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **group** instance.
+        /// Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that are _not_ returned by default, specify them in a `$select` OData query option. The **hasMembersWithLicenseErrors** and **isArchived** properties are an exception and are not returned in the `$select` query.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that are _not_ returned by default, specify them in a `$select` OData query option. The **hasMembersWithLicenseErrors** property is an exception and is not returned in the `$select` query. Because the **group** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **group** instance.";
+            command.Description = "Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that are _not_ returned by default, specify them in a `$select` OData query option. The **hasMembersWithLicenseErrors** and **isArchived** properties are an exception and are not returned in the `$select` query.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -503,6 +503,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildTeamCommand() {
             var command = new Command("team");
             var builder = new TeamRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAllChannelsCommand());
             command.AddCommand(builder.BuildArchiveCommand());
             command.AddCommand(builder.BuildChannelsCommand());
             command.AddCommand(builder.BuildCloneCommand());
@@ -510,10 +511,12 @@ namespace ApiSdk.Groups.Item {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildGroupCommand());
+            command.AddCommand(builder.BuildIncomingChannelsCommand());
             command.AddCommand(builder.BuildInstalledAppsCommand());
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildOperationsCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPhotoCommand());
             command.AddCommand(builder.BuildPrimaryChannelCommand());
             command.AddCommand(builder.BuildScheduleCommand());
             command.AddCommand(builder.BuildSendActivityNotificationCommand());
@@ -584,7 +587,7 @@ namespace ApiSdk.Groups.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Deletes a group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted. This isn&apos;t applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems.
+        /// Delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they&apos;re permanently deleted. This isn&apos;t applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<GroupItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
@@ -602,7 +605,7 @@ namespace ApiSdk.Groups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that are _not_ returned by default, specify them in a `$select` OData query option. The **hasMembersWithLicenseErrors** property is an exception and is not returned in the `$select` query. Because the **group** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **group** instance.
+        /// Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that are _not_ returned by default, specify them in a `$select` OData query option. The **hasMembersWithLicenseErrors** and **isArchived** properties are an exception and are not returned in the `$select` query.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GroupItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -649,14 +652,14 @@ namespace ApiSdk.Groups.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new groupItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new GroupItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public GroupItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that are _not_ returned by default, specify them in a `$select` OData query option. The **hasMembersWithLicenseErrors** property is an exception and is not returned in the `$select` query. Because the **group** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **group** instance.</summary>
+        /// <summary>Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that are _not_ returned by default, specify them in a `$select` OData query option. The **hasMembersWithLicenseErrors** and **isArchived** properties are an exception and are not returned in the `$select` query.</summary>
         public class GroupItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -674,7 +677,7 @@ namespace ApiSdk.Groups.Item {
             /// <summary>Request query parameters</summary>
             public GroupItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new GroupItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new groupItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new GroupItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public GroupItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -688,7 +691,7 @@ namespace ApiSdk.Groups.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new groupItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new GroupItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public GroupItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

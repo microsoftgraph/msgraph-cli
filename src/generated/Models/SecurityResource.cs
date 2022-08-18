@@ -7,6 +7,8 @@ namespace ApiSdk.Models {
     public class SecurityResource : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Name of the resource that is related to current alert. Required.</summary>
         public string Resource { get; set; }
         /// <summary>Represents type of security resources related to an alert. Possible values are: attacked, related.</summary>
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public SecurityResource() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.securityResource";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -30,6 +33,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"resource", n => { Resource = n.GetStringValue(); } },
                 {"resourceType", n => { ResourceType = n.GetEnumValue<SecurityResourceType>(); } },
             };
@@ -40,6 +44,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("resource", Resource);
             writer.WriteEnumValue<SecurityResourceType>("resourceType", ResourceType);
             writer.WriteAdditionalData(AdditionalData);

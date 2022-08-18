@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the roleManagement singleton.</summary>
     public class RbacApplication : Entity, IParsable {
         /// <summary>Resource to grant access to users or groups.</summary>
         public List<UnifiedRoleAssignment> RoleAssignments { get; set; }
@@ -22,6 +21,12 @@ namespace ApiSdk.Models {
         public List<UnifiedRoleEligibilityScheduleRequest> RoleEligibilityScheduleRequests { get; set; }
         /// <summary>Schedules for role eligibility operations.</summary>
         public List<UnifiedRoleEligibilitySchedule> RoleEligibilitySchedules { get; set; }
+        /// <summary>
+        /// Instantiates a new RbacApplication and sets the default values.
+        /// </summary>
+        public RbacApplication() : base() {
+            OdataType = "#microsoft.graph.rbacApplication";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

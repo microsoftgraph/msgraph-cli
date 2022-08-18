@@ -13,11 +13,14 @@ namespace ApiSdk.Models.TermStore {
         public string LanguageTag { get; set; }
         /// <summary>The name of the label.</summary>
         public string Name { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new localizedLabel and sets the default values.
         /// </summary>
         public LocalizedLabel() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.termStore.localizedLabel";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -35,6 +38,7 @@ namespace ApiSdk.Models.TermStore {
                 {"isDefault", n => { IsDefault = n.GetBoolValue(); } },
                 {"languageTag", n => { LanguageTag = n.GetStringValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -46,6 +50,7 @@ namespace ApiSdk.Models.TermStore {
             writer.WriteBoolValue("isDefault", IsDefault);
             writer.WriteStringValue("languageTag", LanguageTag);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

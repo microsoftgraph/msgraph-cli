@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public bool? ContentTypesEnabled { get; set; }
         /// <summary>If true, indicates that the list is not normally visible in the SharePoint user experience.</summary>
         public bool? Hidden { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>An enumerated value that represents the base list template used in creating the list. Possible values include documentLibrary, genericList, task, survey, announcements, contacts, and more.</summary>
         public string Template { get; set; }
         /// <summary>
@@ -18,6 +20,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ListInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.listInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -34,6 +37,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"contentTypesEnabled", n => { ContentTypesEnabled = n.GetBoolValue(); } },
                 {"hidden", n => { Hidden = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"template", n => { Template = n.GetStringValue(); } },
             };
         }
@@ -45,6 +49,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("contentTypesEnabled", ContentTypesEnabled);
             writer.WriteBoolValue("hidden", Hidden);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("template", Template);
             writer.WriteAdditionalData(AdditionalData);
         }

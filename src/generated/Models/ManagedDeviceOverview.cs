@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Summary data for managed devices</summary>
     public class ManagedDeviceOverview : Entity, IParsable {
         /// <summary>Distribution of Exchange Access State in Intune</summary>
         public ApiSdk.Models.DeviceExchangeAccessStateSummary DeviceExchangeAccessStateSummary { get; set; }
@@ -16,6 +15,12 @@ namespace ApiSdk.Models {
         public int? EnrolledDeviceCount { get; set; }
         /// <summary>The number of devices enrolled in MDM</summary>
         public int? MdmEnrolledCount { get; set; }
+        /// <summary>
+        /// Instantiates a new ManagedDeviceOverview and sets the default values.
+        /// </summary>
+        public ManagedDeviceOverview() : base() {
+            OdataType = "#microsoft.graph.managedDeviceOverview";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

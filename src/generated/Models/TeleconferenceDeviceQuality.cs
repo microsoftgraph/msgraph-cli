@@ -25,6 +25,8 @@ namespace ApiSdk.Models {
         public string MediaLegId { get; set; }
         /// <summary>The list of media qualities in a media session (call), such as audio quality, video quality, and/or screen sharing quality.</summary>
         public List<TeleconferenceDeviceMediaQuality> MediaQualityList { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>A unique identifier for a specific participant in a conference. The CVI partner needs to copy over Call.MyParticipantId to this property.</summary>
         public string ParticipantId { get; set; }
         /// <summary>
@@ -32,6 +34,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public TeleconferenceDeviceQuality() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.teleconferenceDeviceQuality";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -55,6 +58,7 @@ namespace ApiSdk.Models {
                 {"deviceName", n => { DeviceName = n.GetStringValue(); } },
                 {"mediaLegId", n => { MediaLegId = n.GetStringValue(); } },
                 {"mediaQualityList", n => { MediaQualityList = n.GetCollectionOfObjectValues<TeleconferenceDeviceMediaQuality>(TeleconferenceDeviceMediaQuality.CreateFromDiscriminatorValue).ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"participantId", n => { ParticipantId = n.GetStringValue(); } },
             };
         }
@@ -73,6 +77,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("deviceName", DeviceName);
             writer.WriteStringValue("mediaLegId", MediaLegId);
             writer.WriteCollectionOfObjectValues<TeleconferenceDeviceMediaQuality>("mediaQualityList", MediaQualityList);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("participantId", ParticipantId);
             writer.WriteAdditionalData(AdditionalData);
         }

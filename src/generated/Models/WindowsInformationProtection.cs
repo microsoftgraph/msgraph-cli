@@ -1,3 +1,4 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace ApiSdk.Models {
         public bool? AzureRightsManagementServicesAllowed { get; set; }
         /// <summary>Specifies a recovery certificate that can be used for data recovery of encrypted files. This is the same as the data recovery agent(DRA) certificate for encrypting file system(EFS)</summary>
         public WindowsInformationProtectionDataRecoveryCertificate DataRecoveryCertificate { get; set; }
-        /// <summary>WIP enforcement level.See the Enum definition for supported values. Possible values are: noProtection, encryptAndAuditOnly, encryptAuditAndPrompt, encryptAuditAndBlock.</summary>
+        /// <summary>Possible values for WIP Protection enforcement levels</summary>
         public WindowsInformationProtectionEnforcementLevel? EnforcementLevel { get; set; }
         /// <summary>Primary enterprise domain</summary>
         public string EnterpriseDomain { get; set; }
@@ -56,12 +57,24 @@ namespace ApiSdk.Models {
         /// <summary>Specifies a list of file extensions, so that files with these extensions are encrypted when copying from an SMB share within the corporate boundary</summary>
         public List<WindowsInformationProtectionResourceCollection> SmbAutoEncryptedFileExtensions { get; set; }
         /// <summary>
+        /// Instantiates a new WindowsInformationProtection and sets the default values.
+        /// </summary>
+        public WindowsInformationProtection() : base() {
+            OdataType = "#microsoft.graph.windowsInformationProtection";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
         public static new WindowsInformationProtection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsInformationProtection();
+            var mappingValueNode = parseNode.GetChildNode("@odata.type");
+            var mappingValue = mappingValueNode?.GetStringValue();
+            return mappingValue switch {
+                "#microsoft.graph.mdmWindowsInformationProtectionPolicy" => new MdmWindowsInformationProtectionPolicy(),
+                "#microsoft.graph.windowsInformationProtectionPolicy" => new WindowsInformationProtectionPolicy(),
+                _ => new WindowsInformationProtection(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model

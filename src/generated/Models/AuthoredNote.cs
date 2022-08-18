@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the privacy singleton.</summary>
     public class AuthoredNote : Entity, IParsable {
         /// <summary>Identity information about the note&apos;s author.</summary>
         public Identity Author { get; set; }
@@ -12,6 +11,12 @@ namespace ApiSdk.Models {
         public ItemBody Content { get; set; }
         /// <summary>The date and time when the entity was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
+        /// <summary>
+        /// Instantiates a new AuthoredNote and sets the default values.
+        /// </summary>
+        public AuthoredNote() : base() {
+            OdataType = "#microsoft.graph.authoredNote";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

@@ -15,6 +15,8 @@ namespace ApiSdk.Models {
         public string DeviceAccountEmail { get; set; }
         /// <summary>Not yet documented</summary>
         public string ExchangeServer { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Not yet documented</summary>
         public bool? PasswordRotationEnabled { get; set; }
         /// <summary>Not yet documented</summary>
@@ -24,6 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public UpdateWindowsDeviceAccountActionParameter() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.updateWindowsDeviceAccountActionParameter";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -42,6 +45,7 @@ namespace ApiSdk.Models {
                 {"deviceAccount", n => { DeviceAccount = n.GetObjectValue<WindowsDeviceAccount>(WindowsDeviceAccount.CreateFromDiscriminatorValue); } },
                 {"deviceAccountEmail", n => { DeviceAccountEmail = n.GetStringValue(); } },
                 {"exchangeServer", n => { ExchangeServer = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"passwordRotationEnabled", n => { PasswordRotationEnabled = n.GetBoolValue(); } },
                 {"sessionInitiationProtocalAddress", n => { SessionInitiationProtocalAddress = n.GetStringValue(); } },
             };
@@ -56,6 +60,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<WindowsDeviceAccount>("deviceAccount", DeviceAccount);
             writer.WriteStringValue("deviceAccountEmail", DeviceAccountEmail);
             writer.WriteStringValue("exchangeServer", ExchangeServer);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("passwordRotationEnabled", PasswordRotationEnabled);
             writer.WriteStringValue("sessionInitiationProtocalAddress", SessionInitiationProtocalAddress);
             writer.WriteAdditionalData(AdditionalData);

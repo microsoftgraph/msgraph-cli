@@ -300,7 +300,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Extensions
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new extensionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ExtensionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ExtensionItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -325,7 +325,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Extensions
             /// <summary>Request query parameters</summary>
             public ExtensionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ExtensionItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new extensionItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ExtensionItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ExtensionItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -339,7 +339,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Extensions
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new extensionItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ExtensionItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ExtensionItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

@@ -14,6 +14,8 @@ namespace ApiSdk.Models {
         public string Description { get; set; }
         /// <summary>Data recovery Certificate expiration datetime</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Data recovery Certificate subject name</summary>
         public string SubjectName { get; set; }
         /// <summary>
@@ -21,6 +23,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public WindowsInformationProtectionDataRecoveryCertificate() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.windowsInformationProtectionDataRecoveryCertificate";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +41,7 @@ namespace ApiSdk.Models {
                 {"certificate", n => { Certificate = n.GetByteArrayValue(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"subjectName", n => { SubjectName = n.GetStringValue(); } },
             };
         }
@@ -50,6 +54,7 @@ namespace ApiSdk.Models {
             writer.WriteByteArrayValue("certificate", Certificate);
             writer.WriteStringValue("description", Description);
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("subjectName", SubjectName);
             writer.WriteAdditionalData(AdditionalData);
         }

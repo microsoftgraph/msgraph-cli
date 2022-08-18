@@ -57,11 +57,11 @@ namespace ApiSdk.Users.Item.Planner {
             return command;
         }
         /// <summary>
-        /// Selective Planner services available to the user. Read-only. Nullable.
+        /// Entry-point to the Planner resource that might exist for a user. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Selective Planner services available to the user. Read-only. Nullable.";
+            command.Description = "Entry-point to the Planner resource that might exist for a user. Read-only.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -201,7 +201,7 @@ namespace ApiSdk.Users.Item.Planner {
             return requestInfo;
         }
         /// <summary>
-        /// Selective Planner services available to the user. Read-only. Nullable.
+        /// Entry-point to the Planner resource that might exist for a user. Read-only.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PlannerRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -255,7 +255,7 @@ namespace ApiSdk.Users.Item.Planner {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Selective Planner services available to the user. Read-only. Nullable.</summary>
+        /// <summary>Entry-point to the Planner resource that might exist for a user. Read-only.</summary>
         public class PlannerRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

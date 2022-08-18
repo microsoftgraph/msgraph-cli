@@ -10,6 +10,12 @@ namespace ApiSdk.Models {
         /// <summary>A copy of the points property that is made when the grade is released to the student.</summary>
         public EducationAssignmentPointsGrade PublishedPoints { get; set; }
         /// <summary>
+        /// Instantiates a new EducationPointsOutcome and sets the default values.
+        /// </summary>
+        public EducationPointsOutcome() : base() {
+            OdataType = "#microsoft.graph.educationPointsOutcome";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

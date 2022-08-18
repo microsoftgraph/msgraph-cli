@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class Initiator : Identity, IParsable {
         /// <summary>Type of initiator. Possible values are: user, application, system, unknownFutureValue.</summary>
         public ApiSdk.Models.InitiatorType? InitiatorType { get; set; }
+        /// <summary>
+        /// Instantiates a new Initiator and sets the default values.
+        /// </summary>
+        public Initiator() : base() {
+            OdataType = "#microsoft.graph.initiator";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

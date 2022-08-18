@@ -228,7 +228,7 @@ namespace ApiSdk.TeamsTemplates.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new teamsTemplateItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamsTemplateItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public TeamsTemplateItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.TeamsTemplates.Item {
             /// <summary>Request query parameters</summary>
             public TeamsTemplateItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TeamsTemplateItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new teamsTemplateItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamsTemplateItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TeamsTemplateItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.TeamsTemplates.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new teamsTemplateItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new TeamsTemplateItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public TeamsTemplateItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

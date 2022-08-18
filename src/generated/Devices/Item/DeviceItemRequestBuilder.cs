@@ -86,11 +86,11 @@ namespace ApiSdk.Devices.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a device object. Since the **device** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **device** instance.
+        /// Get the properties and relationships of a device object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a device object. Since the **device** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **device** instance.";
+            command.Description = "Get the properties and relationships of a device object.";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };
@@ -173,11 +173,11 @@ namespace ApiSdk.Devices.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a device. Only certain properties of a device can be updated through approved Mobile Device Management (MDM) apps.
+        /// Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a device. Only certain properties of a device can be updated through approved Mobile Device Management (MDM) apps.";
+            command.Description = "Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };
@@ -283,7 +283,7 @@ namespace ApiSdk.Devices.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a device object. Since the **device** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **device** instance.
+        /// Get the properties and relationships of a device object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DeviceItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -303,7 +303,7 @@ namespace ApiSdk.Devices.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a device. Only certain properties of a device can be updated through approved Mobile Device Management (MDM) apps.
+        /// Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -330,14 +330,14 @@ namespace ApiSdk.Devices.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get the properties and relationships of a device object. Since the **device** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **device** instance.</summary>
+        /// <summary>Get the properties and relationships of a device object.</summary>
         public class DeviceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -355,7 +355,7 @@ namespace ApiSdk.Devices.Item {
             /// <summary>Request query parameters</summary>
             public DeviceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DeviceItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new deviceItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -369,7 +369,7 @@ namespace ApiSdk.Devices.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new deviceItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new DeviceItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public DeviceItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

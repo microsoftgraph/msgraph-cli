@@ -11,11 +11,14 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>A locale representation for the user, which includes the user&apos;s preferred language and country/region. For example, &apos;en-us&apos;. The language component follows 2-letter codes as defined in ISO 639-1, and the country component follows 2-letter codes as defined in ISO 3166-1 alpha-2.</summary>
         public string Locale { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new localeInfo and sets the default values.
         /// </summary>
         public LocaleInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.localeInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"locale", n => { Locale = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("locale", Locale);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

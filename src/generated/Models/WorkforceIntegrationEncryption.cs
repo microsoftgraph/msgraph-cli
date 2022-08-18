@@ -7,6 +7,8 @@ namespace ApiSdk.Models {
     public class WorkforceIntegrationEncryption : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Possible values are: sharedSecret, unknownFutureValue.</summary>
         public WorkforceIntegrationEncryptionProtocol? Protocol { get; set; }
         /// <summary>Encryption shared secret.</summary>
@@ -16,6 +18,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public WorkforceIntegrationEncryption() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.workforceIntegrationEncryption";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -30,6 +33,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"protocol", n => { Protocol = n.GetEnumValue<WorkforceIntegrationEncryptionProtocol>(); } },
                 {"secret", n => { Secret = n.GetStringValue(); } },
             };
@@ -40,6 +44,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<WorkforceIntegrationEncryptionProtocol>("protocol", Protocol);
             writer.WriteStringValue("secret", Secret);
             writer.WriteAdditionalData(AdditionalData);

@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public ProvisioningStatusErrorCategory? ErrorCategory { get; set; }
         /// <summary>Unique error code if any occurred. Learn more</summary>
         public string ErrorCode { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Summarizes the status and describes why the status happened.</summary>
         public string Reason { get; set; }
         /// <summary>Provides the resolution for the corresponding error.</summary>
@@ -22,6 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public ProvisioningErrorInfo() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.provisioningErrorInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -39,6 +42,7 @@ namespace ApiSdk.Models {
                 {"additionalDetails", n => { AdditionalDetails = n.GetStringValue(); } },
                 {"errorCategory", n => { ErrorCategory = n.GetEnumValue<ProvisioningStatusErrorCategory>(); } },
                 {"errorCode", n => { ErrorCode = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"reason", n => { Reason = n.GetStringValue(); } },
                 {"recommendedAction", n => { RecommendedAction = n.GetStringValue(); } },
             };
@@ -52,6 +56,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("additionalDetails", AdditionalDetails);
             writer.WriteEnumValue<ProvisioningStatusErrorCategory>("errorCategory", ErrorCategory);
             writer.WriteStringValue("errorCode", ErrorCode);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("reason", Reason);
             writer.WriteStringValue("recommendedAction", RecommendedAction);
             writer.WriteAdditionalData(AdditionalData);

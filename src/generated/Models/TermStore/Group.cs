@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.TermStore {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class Group : Entity, IParsable {
         /// <summary>Date and time of the group creation. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -18,6 +18,12 @@ namespace ApiSdk.Models.TermStore {
         public TermGroupScope? Scope { get; set; }
         /// <summary>All sets under the group in a term [store].</summary>
         public List<Set> Sets { get; set; }
+        /// <summary>
+        /// Instantiates a new group and sets the default values.
+        /// </summary>
+        public Group() : base() {
+            OdataType = "#microsoft.graph.termStore.group";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

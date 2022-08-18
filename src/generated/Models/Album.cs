@@ -9,11 +9,14 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Unique identifier of the [driveItem][] that is the cover of the album.</summary>
         public string CoverImageItemId { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new album and sets the default values.
         /// </summary>
         public Album() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.album";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -29,6 +32,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"coverImageItemId", n => { CoverImageItemId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -38,6 +42,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("coverImageItemId", CoverImageItemId);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

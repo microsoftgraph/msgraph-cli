@@ -23,10 +23,16 @@ namespace ApiSdk.Models {
         public int? PasswordPreviousPasswordBlockCount { get; set; }
         /// <summary>Whether or not to require a password.</summary>
         public bool? PasswordRequired { get; set; }
-        /// <summary>The required password type. Possible values are: deviceDefault, alphanumeric, numeric.</summary>
+        /// <summary>Possible values of required passwords.</summary>
         public RequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Require encryption on windows phone devices.</summary>
         public bool? StorageRequireEncryption { get; set; }
+        /// <summary>
+        /// Instantiates a new WindowsPhone81CompliancePolicy and sets the default values.
+        /// </summary>
+        public WindowsPhone81CompliancePolicy() : base() {
+            OdataType = "#microsoft.graph.windowsPhone81CompliancePolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

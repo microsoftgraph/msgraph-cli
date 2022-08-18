@@ -10,6 +10,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Display name</summary>
         public string DisplayName { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Collection of proxied domains</summary>
         public List<ProxiedDomain> ProxiedDomains { get; set; }
         /// <summary>
@@ -17,6 +19,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public WindowsInformationProtectionProxiedDomainCollection() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.windowsInformationProtectionProxiedDomainCollection";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -32,6 +35,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"proxiedDomains", n => { ProxiedDomains = n.GetCollectionOfObjectValues<ProxiedDomain>(ProxiedDomain.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
@@ -42,6 +46,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfObjectValues<ProxiedDomain>("proxiedDomains", ProxiedDomains);
             writer.WriteAdditionalData(AdditionalData);
         }

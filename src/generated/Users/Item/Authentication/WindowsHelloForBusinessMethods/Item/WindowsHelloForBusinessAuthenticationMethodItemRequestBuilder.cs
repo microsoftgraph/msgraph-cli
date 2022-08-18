@@ -265,7 +265,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new windowsHelloForBusinessAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new WindowsHelloForBusinessAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public WindowsHelloForBusinessAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -290,7 +290,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
             /// <summary>Request query parameters</summary>
             public WindowsHelloForBusinessAuthenticationMethodItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new WindowsHelloForBusinessAuthenticationMethodItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new windowsHelloForBusinessAuthenticationMethodItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new WindowsHelloForBusinessAuthenticationMethodItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public WindowsHelloForBusinessAuthenticationMethodItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -304,7 +304,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new windowsHelloForBusinessAuthenticationMethodItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new WindowsHelloForBusinessAuthenticationMethodItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public WindowsHelloForBusinessAuthenticationMethodItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

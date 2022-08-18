@@ -309,7 +309,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new termItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new TermItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public TermItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -334,7 +334,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item {
             /// <summary>Request query parameters</summary>
             public TermItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TermItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new termItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TermItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TermItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -348,7 +348,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new termItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new TermItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public TermItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

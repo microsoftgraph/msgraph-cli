@@ -17,6 +17,8 @@ namespace ApiSdk.Models {
         public bool? IsHybridAzureDomainJoined { get; set; }
         /// <summary>The local host name, without the DNS domain name.</summary>
         public string NetBiosName { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>Host Operating System. (For example, Windows10, MacOS, RHEL, etc.).</summary>
         public string Os { get; set; }
         /// <summary>Private (not routable) IPv4 or IPv6 address (see RFC 1918) at the time of the alert.</summary>
@@ -30,6 +32,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public HostSecurityState() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.hostSecurityState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -49,6 +52,7 @@ namespace ApiSdk.Models {
                 {"isAzureAdRegistered", n => { IsAzureAdRegistered = n.GetBoolValue(); } },
                 {"isHybridAzureDomainJoined", n => { IsHybridAzureDomainJoined = n.GetBoolValue(); } },
                 {"netBiosName", n => { NetBiosName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"os", n => { Os = n.GetStringValue(); } },
                 {"privateIpAddress", n => { PrivateIpAddress = n.GetStringValue(); } },
                 {"publicIpAddress", n => { PublicIpAddress = n.GetStringValue(); } },
@@ -66,6 +70,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("isAzureAdRegistered", IsAzureAdRegistered);
             writer.WriteBoolValue("isHybridAzureDomainJoined", IsHybridAzureDomainJoined);
             writer.WriteStringValue("netBiosName", NetBiosName);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("os", Os);
             writer.WriteStringValue("privateIpAddress", PrivateIpAddress);
             writer.WriteStringValue("publicIpAddress", PublicIpAddress);

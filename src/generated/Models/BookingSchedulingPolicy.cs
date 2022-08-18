@@ -14,6 +14,8 @@ namespace ApiSdk.Models {
         public TimeSpan? MaximumAdvance { get; set; }
         /// <summary>The minimum amount of time before which bookings and cancellations must be made. It follows the ISO 8601 format.</summary>
         public TimeSpan? MinimumLeadTime { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>True to notify the business via email when a booking is created or changed. Use the email address specified in the email property of the bookingBusiness entity for the business.</summary>
         public bool? SendConfirmationsToOwner { get; set; }
         /// <summary>Duration of each time slot, denoted in ISO 8601 format.</summary>
@@ -23,6 +25,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public BookingSchedulingPolicy() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.bookingSchedulingPolicy";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -40,6 +43,7 @@ namespace ApiSdk.Models {
                 {"allowStaffSelection", n => { AllowStaffSelection = n.GetBoolValue(); } },
                 {"maximumAdvance", n => { MaximumAdvance = n.GetTimeSpanValue(); } },
                 {"minimumLeadTime", n => { MinimumLeadTime = n.GetTimeSpanValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"sendConfirmationsToOwner", n => { SendConfirmationsToOwner = n.GetBoolValue(); } },
                 {"timeSlotInterval", n => { TimeSlotInterval = n.GetTimeSpanValue(); } },
             };
@@ -53,6 +57,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("allowStaffSelection", AllowStaffSelection);
             writer.WriteTimeSpanValue("maximumAdvance", MaximumAdvance);
             writer.WriteTimeSpanValue("minimumLeadTime", MinimumLeadTime);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("sendConfirmationsToOwner", SendConfirmationsToOwner);
             writer.WriteTimeSpanValue("timeSlotInterval", TimeSlotInterval);
             writer.WriteAdditionalData(AdditionalData);

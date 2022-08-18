@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class WorkbookChartSeries : Entity, IParsable {
         /// <summary>Represents the formatting of a chart series, which includes fill and line formatting. Read-only.</summary>
         public WorkbookChartSeriesFormat Format { get; set; }
@@ -12,6 +12,12 @@ namespace ApiSdk.Models {
         public string Name { get; set; }
         /// <summary>Represents a collection of all points in the series. Read-only.</summary>
         public List<WorkbookChartPoint> Points { get; set; }
+        /// <summary>
+        /// Instantiates a new workbookChartSeries and sets the default values.
+        /// </summary>
+        public WorkbookChartSeries() : base() {
+            OdataType = "#microsoft.graph.workbookChartSeries";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

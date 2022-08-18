@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class DriveItem : BaseItem, IParsable {
         /// <summary>Analytics about the view activities that took place on this item.</summary>
         public ItemAnalytics Analytics { get; set; }
-        /// <summary>Audio metadata, if the item is an audio file. Read-only. Only on OneDrive Personal.</summary>
+        /// <summary>Audio metadata, if the item is an audio file. Read-only. Read-only. Only on OneDrive Personal.</summary>
         public ApiSdk.Models.Audio Audio { get; set; }
         /// <summary>Bundle metadata, if the item is a bundle. Read-only.</summary>
         public ApiSdk.Models.Bundle Bundle { get; set; }
@@ -21,7 +21,7 @@ namespace ApiSdk.Models {
         /// <summary>Information about the deleted state of the item. Read-only.</summary>
         public ApiSdk.Models.Deleted Deleted { get; set; }
         /// <summary>File metadata, if the item is a file. Read-only.</summary>
-        public ApiSdk.Models.File File { get; set; }
+        public ApiSdk.Models.FileObject FileObject { get; set; }
         /// <summary>File system information on client. Read-write.</summary>
         public ApiSdk.Models.FileSystemInfo FileSystemInfo { get; set; }
         /// <summary>Folder metadata, if the item is a folder. Read-only.</summary>
@@ -36,7 +36,7 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.Malware Malware { get; set; }
         /// <summary>If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.</summary>
         public ApiSdk.Models.Package Package { get; set; }
-        /// <summary>If present, indicates that indicates that one or more operations that may affect the state of the driveItem are pending completion. Read-only.</summary>
+        /// <summary>If present, indicates that one or more operations that might affect the state of the driveItem are pending completion. Read-only.</summary>
         public ApiSdk.Models.PendingOperations PendingOperations { get; set; }
         /// <summary>The set of permissions for the item. Read-only. Nullable.</summary>
         public List<Permission> Permissions { get; set; }
@@ -71,6 +71,12 @@ namespace ApiSdk.Models {
         /// <summary>For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet&apos;s contents. Nullable.</summary>
         public ApiSdk.Models.Workbook Workbook { get; set; }
         /// <summary>
+        /// Instantiates a new driveItem and sets the default values.
+        /// </summary>
+        public DriveItem() : base() {
+            OdataType = "#microsoft.graph.driveItem";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
@@ -90,7 +96,7 @@ namespace ApiSdk.Models {
                 {"content", n => { Content = n.GetByteArrayValue(); } },
                 {"cTag", n => { CTag = n.GetStringValue(); } },
                 {"deleted", n => { Deleted = n.GetObjectValue<ApiSdk.Models.Deleted>(ApiSdk.Models.Deleted.CreateFromDiscriminatorValue); } },
-                {"file", n => { File = n.GetObjectValue<ApiSdk.Models.File>(ApiSdk.Models.File.CreateFromDiscriminatorValue); } },
+                {"file", n => { FileObject = n.GetObjectValue<ApiSdk.Models.FileObject>(ApiSdk.Models.FileObject.CreateFromDiscriminatorValue); } },
                 {"fileSystemInfo", n => { FileSystemInfo = n.GetObjectValue<ApiSdk.Models.FileSystemInfo>(ApiSdk.Models.FileSystemInfo.CreateFromDiscriminatorValue); } },
                 {"folder", n => { Folder = n.GetObjectValue<ApiSdk.Models.Folder>(ApiSdk.Models.Folder.CreateFromDiscriminatorValue); } },
                 {"image", n => { Image = n.GetObjectValue<ApiSdk.Models.Image>(ApiSdk.Models.Image.CreateFromDiscriminatorValue); } },
@@ -131,7 +137,7 @@ namespace ApiSdk.Models {
             writer.WriteByteArrayValue("content", Content);
             writer.WriteStringValue("cTag", CTag);
             writer.WriteObjectValue<ApiSdk.Models.Deleted>("deleted", Deleted);
-            writer.WriteObjectValue<ApiSdk.Models.File>("file", File);
+            writer.WriteObjectValue<ApiSdk.Models.FileObject>("file", FileObject);
             writer.WriteObjectValue<ApiSdk.Models.FileSystemInfo>("fileSystemInfo", FileSystemInfo);
             writer.WriteObjectValue<ApiSdk.Models.Folder>("folder", Folder);
             writer.WriteObjectValue<ApiSdk.Models.Image>("image", Image);

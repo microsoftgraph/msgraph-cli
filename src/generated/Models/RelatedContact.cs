@@ -11,17 +11,20 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Name of the contact. Required.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Email address of the contact.</summary>
+        /// <summary>Primary email address of the contact. Required.</summary>
         public string EmailAddress { get; set; }
         /// <summary>Mobile phone number of the contact.</summary>
         public string MobilePhone { get; set; }
-        /// <summary>Relationship to the user. Possible values are: parent, relative, aide, doctor, guardian, child, other, unknownFutureValue.</summary>
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
+        /// <summary>The relationship property</summary>
         public ContactRelationship? Relationship { get; set; }
         /// <summary>
         /// Instantiates a new relatedContact and sets the default values.
         /// </summary>
         public RelatedContact() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.relatedContact";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -40,6 +43,7 @@ namespace ApiSdk.Models {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"emailAddress", n => { EmailAddress = n.GetStringValue(); } },
                 {"mobilePhone", n => { MobilePhone = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"relationship", n => { Relationship = n.GetEnumValue<ContactRelationship>(); } },
             };
         }
@@ -53,6 +57,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("emailAddress", EmailAddress);
             writer.WriteStringValue("mobilePhone", MobilePhone);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<ContactRelationship>("relationship", Relationship);
             writer.WriteAdditionalData(AdditionalData);
         }

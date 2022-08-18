@@ -228,7 +228,7 @@ namespace ApiSdk.Print.Connectors.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new printConnectorItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new PrintConnectorItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public PrintConnectorItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -253,7 +253,7 @@ namespace ApiSdk.Print.Connectors.Item {
             /// <summary>Request query parameters</summary>
             public PrintConnectorItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PrintConnectorItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new printConnectorItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new PrintConnectorItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public PrintConnectorItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -267,7 +267,7 @@ namespace ApiSdk.Print.Connectors.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new printConnectorItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new PrintConnectorItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public PrintConnectorItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

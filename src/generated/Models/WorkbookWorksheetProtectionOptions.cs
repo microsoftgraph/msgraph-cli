@@ -29,11 +29,14 @@ namespace ApiSdk.Models {
         public bool? AllowPivotTables { get; set; }
         /// <summary>Represents the worksheet protection option of allowing using sort feature.</summary>
         public bool? AllowSort { get; set; }
+        /// <summary>The OdataType property</summary>
+        public string OdataType { get; set; }
         /// <summary>
         /// Instantiates a new workbookWorksheetProtectionOptions and sets the default values.
         /// </summary>
         public WorkbookWorksheetProtectionOptions() {
             AdditionalData = new Dictionary<string, object>();
+            OdataType = "#microsoft.graph.workbookWorksheetProtectionOptions";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -59,6 +62,7 @@ namespace ApiSdk.Models {
                 {"allowInsertRows", n => { AllowInsertRows = n.GetBoolValue(); } },
                 {"allowPivotTables", n => { AllowPivotTables = n.GetBoolValue(); } },
                 {"allowSort", n => { AllowSort = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -78,6 +82,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("allowInsertRows", AllowInsertRows);
             writer.WriteBoolValue("allowPivotTables", AllowPivotTables);
             writer.WriteBoolValue("allowSort", AllowSort);
+            writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

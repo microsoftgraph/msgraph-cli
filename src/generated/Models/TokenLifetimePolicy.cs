@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to call the instantiate method.</summary>
     public class TokenLifetimePolicy : StsPolicy, IParsable {
+        /// <summary>
+        /// Instantiates a new TokenLifetimePolicy and sets the default values.
+        /// </summary>
+        public TokenLifetimePolicy() : base() {
+            OdataType = "#microsoft.graph.tokenLifetimePolicy";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

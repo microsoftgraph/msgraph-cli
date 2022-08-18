@@ -271,7 +271,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new targetedManagedAppConfigurationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new TargetedManagedAppConfigurationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public TargetedManagedAppConfigurationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -296,7 +296,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
             /// <summary>Request query parameters</summary>
             public TargetedManagedAppConfigurationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TargetedManagedAppConfigurationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new targetedManagedAppConfigurationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TargetedManagedAppConfigurationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TargetedManagedAppConfigurationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -310,7 +310,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new targetedManagedAppConfigurationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new TargetedManagedAppConfigurationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public TargetedManagedAppConfigurationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

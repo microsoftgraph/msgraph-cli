@@ -16,6 +16,12 @@ namespace ApiSdk.Models {
         /// <summary>Members of this directory role that are scoped to administrative units. Read-only. Nullable.</summary>
         public List<ScopedRoleMembership> ScopedMembers { get; set; }
         /// <summary>
+        /// Instantiates a new DirectoryRole and sets the default values.
+        /// </summary>
+        public DirectoryRole() : base() {
+            OdataType = "#microsoft.graph.directoryRole";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>

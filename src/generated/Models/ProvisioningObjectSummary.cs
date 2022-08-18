@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class ProvisioningObjectSummary : Entity, IParsable {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? ActivityDateTime { get; set; }
@@ -38,6 +37,12 @@ namespace ApiSdk.Models {
         public ProvisioningSystem TargetSystem { get; set; }
         /// <summary>Unique Azure AD tenant ID.</summary>
         public string TenantId { get; set; }
+        /// <summary>
+        /// Instantiates a new ProvisioningObjectSummary and sets the default values.
+        /// </summary>
+        public ProvisioningObjectSummary() : base() {
+            OdataType = "#microsoft.graph.provisioningObjectSummary";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

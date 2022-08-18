@@ -61,11 +61,11 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).
+        /// Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).";
+            command.Description = "Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -199,7 +199,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).
+        /// Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ExtensionPropertyItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,14 +246,14 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new extensionPropertyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new ExtensionPropertyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public ExtensionPropertyItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Read-only. Nullable. Supports $expand and $filter (eq when counting empty collections).</summary>
+        /// <summary>Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).</summary>
         public class ExtensionPropertyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -271,7 +271,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             /// <summary>Request query parameters</summary>
             public ExtensionPropertyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ExtensionPropertyItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new extensionPropertyItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new ExtensionPropertyItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ExtensionPropertyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new extensionPropertyItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new ExtensionPropertyItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public ExtensionPropertyItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

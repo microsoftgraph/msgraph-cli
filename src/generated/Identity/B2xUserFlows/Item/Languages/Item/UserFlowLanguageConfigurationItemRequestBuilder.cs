@@ -72,11 +72,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             return command;
         }
         /// <summary>
-        /// The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign up user flow. You cannot create custom languages in self-service sign up user flows.
+        /// The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You cannot create custom languages in self-service sign-up user flows.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign up user flow. You cannot create custom languages in self-service sign up user flows.";
+            command.Description = "The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You cannot create custom languages in self-service sign-up user flows.";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
@@ -219,7 +219,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign up user flow. You cannot create custom languages in self-service sign up user flows.
+        /// The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You cannot create custom languages in self-service sign-up user flows.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UserFlowLanguageConfigurationItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -266,14 +266,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userFlowLanguageConfigurationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new UserFlowLanguageConfigurationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public UserFlowLanguageConfigurationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign up user flow. You cannot create custom languages in self-service sign up user flows.</summary>
+        /// <summary>The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You cannot create custom languages in self-service sign-up user flows.</summary>
         public class UserFlowLanguageConfigurationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -291,7 +291,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             /// <summary>Request query parameters</summary>
             public UserFlowLanguageConfigurationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UserFlowLanguageConfigurationItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new userFlowLanguageConfigurationItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new UserFlowLanguageConfigurationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public UserFlowLanguageConfigurationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -305,7 +305,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new userFlowLanguageConfigurationItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new UserFlowLanguageConfigurationItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public UserFlowLanguageConfigurationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

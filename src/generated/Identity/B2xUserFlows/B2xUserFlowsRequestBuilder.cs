@@ -92,11 +92,11 @@ namespace ApiSdk.Identity.B2xUserFlows {
             return command;
         }
         /// <summary>
-        /// Represents entry point for B2X and self-service sign-up identity userflows.
+        /// Represents entry point for B2X/self-service sign-up identity userflows.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents entry point for B2X and self-service sign-up identity userflows.";
+            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.Identity.B2xUserFlows {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents entry point for B2X and self-service sign-up identity userflows.
+        /// Represents entry point for B2X/self-service sign-up identity userflows.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<B2xUserFlowsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -250,7 +250,7 @@ namespace ApiSdk.Identity.B2xUserFlows {
             }
             return requestInfo;
         }
-        /// <summary>Represents entry point for B2X and self-service sign-up identity userflows.</summary>
+        /// <summary>Represents entry point for B2X/self-service sign-up identity userflows.</summary>
         public class B2xUserFlowsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

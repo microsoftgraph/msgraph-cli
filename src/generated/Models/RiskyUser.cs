@@ -1,10 +1,10 @@
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the identityProtectionRoot singleton.</summary>
     public class RiskyUser : Entity, IParsable {
         /// <summary>The activity related to user risk level change</summary>
         public List<RiskyUserHistoryItem> History { get; set; }
@@ -12,11 +12,11 @@ namespace ApiSdk.Models {
         public bool? IsDeleted { get; set; }
         /// <summary>Indicates whether a user&apos;s risky state is being processed by the backend.</summary>
         public bool? IsProcessing { get; set; }
-        /// <summary>The possible values are none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue.</summary>
+        /// <summary>Details of the detected risk. Possible values are: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue.</summary>
         public ApiSdk.Models.RiskDetail? RiskDetail { get; set; }
         /// <summary>The date and time that the risky user was last updated.  The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? RiskLastUpdatedDateTime { get; set; }
-        /// <summary>Level of the detected risky user. The possible values are low, medium, high, hidden, none, unknownFutureValue.</summary>
+        /// <summary>Level of the detected risky user. Possible values are: low, medium, high, hidden, none, unknownFutureValue.</summary>
         public ApiSdk.Models.RiskLevel? RiskLevel { get; set; }
         /// <summary>State of the user&apos;s risk. Possible values are: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, unknownFutureValue.</summary>
         public ApiSdk.Models.RiskState? RiskState { get; set; }
@@ -24,6 +24,12 @@ namespace ApiSdk.Models {
         public string UserDisplayName { get; set; }
         /// <summary>Risky user principal name.</summary>
         public string UserPrincipalName { get; set; }
+        /// <summary>
+        /// Instantiates a new RiskyUser and sets the default values.
+        /// </summary>
+        public RiskyUser() : base() {
+            OdataType = "#microsoft.graph.riskyUser";
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

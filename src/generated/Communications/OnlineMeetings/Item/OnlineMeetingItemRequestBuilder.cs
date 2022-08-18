@@ -246,7 +246,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new onlineMeetingItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new OnlineMeetingItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public OnlineMeetingItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -271,7 +271,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
             /// <summary>Request query parameters</summary>
             public OnlineMeetingItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OnlineMeetingItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new onlineMeetingItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new OnlineMeetingItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public OnlineMeetingItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -285,7 +285,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new onlineMeetingItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new OnlineMeetingItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public OnlineMeetingItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();

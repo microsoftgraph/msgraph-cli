@@ -56,11 +56,11 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             return command;
         }
         /// <summary>
-        /// Access this property from the derived type itemInsights.
+        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user&apos;s closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Access this property from the derived type itemInsights.";
+            command.Description = "Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.";
             // Create options for all the parameters
             var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
             };
@@ -188,7 +188,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Access this property from the derived type itemInsights.
+        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user&apos;s closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TrendingItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -235,14 +235,14 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new trendingItemRequestBuilderDeleteRequestConfiguration and sets the default values.
+            /// Instantiates a new TrendingItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public TrendingItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Access this property from the derived type itemInsights.</summary>
+        /// <summary>Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user&apos;s closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.</summary>
         public class TrendingItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]
@@ -260,7 +260,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             /// <summary>Request query parameters</summary>
             public TrendingItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TrendingItemRequestBuilderGetQueryParameters();
             /// <summary>
-            /// Instantiates a new trendingItemRequestBuilderGetRequestConfiguration and sets the default values.
+            /// Instantiates a new TrendingItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TrendingItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
@@ -274,7 +274,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new trendingItemRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new TrendingItemRequestBuilderPatchRequestConfiguration and sets the default values.
             /// </summary>
             public TrendingItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
