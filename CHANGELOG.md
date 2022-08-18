@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+## [0.1.0-preview.6] - 2022-08-18
+
+### Added
 - Added interactive browser login (`mgc login --strategy InteractiveBrowser`)
 
 ### Changed
