@@ -58,6 +58,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Sign binaries
-        uses: ${{github.repository}}/.github/workflows/sign-binary.yml@${{github.event.inputs.tag || github.ref_name || 'main'}}
+        uses: ./.github/workflows/sign-binary.yml@${{github.event.inputs.tag || github.ref_name || 'main'}}
         with:
           tag: ${{github.event.inputs.tag || github.ref_name}}
