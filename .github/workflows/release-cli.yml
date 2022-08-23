@@ -28,7 +28,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: true
           ref: ${{github.event.inputs.tag || ''}}
       - name: Setup .NET Core SDK 6
         uses: actions/setup-dotnet@v2
@@ -57,7 +56,8 @@ jobs:
           gh release upload ${{env.PACKAGE_VERSION}} ${{env.OUTPUT_DIR}}/${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Sign binaries
-        uses: ./.github/workflows/sign-binary.yml@8ee85301ee883824d6b7b7937d8ecced2db01df3
-        with:
-          tag: ${{github.event.inputs.tag || github.ref_name}}
+  sign:
+    name: Sign binaries
+    uses: ./.github/workflows/sign-binary.yml@8ee85301ee883824d6b7b7937d8ecced2db01df3
+    with:
+      tag: ${{github.event.inputs.tag || github.ref_name}}
