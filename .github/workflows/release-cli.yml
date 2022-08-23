@@ -58,6 +58,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   sign:
     name: Sign binaries
-    uses: ./.github/workflows/sign-binary.yml@8ee85301ee883824d6b7b7937d8ecced2db01df3
+    uses: ./.github/workflows/sign-binary.yml
     with:
       tag: ${{github.event.inputs.tag || github.ref_name}}
