@@ -18,6 +18,18 @@ mgc login --scopes User.ReadWrite Mail.ReadWrite --client-id <client id> --tenan
 mgc login --scopes User.ReadWrite Mail.ReadWrite --client-id <client id> --tenant-id <tenant id>
 ```
 
+### Login using interactive browser
+
+```sh
+mgc login --strategy InteractiveBrowser
+```
+
+### Login using client certificate
+
+```sh
+mgc login --strategy ClientCertificate
+```
+
 ## Logout
 
 Forget access tokens
