@@ -3,6 +3,7 @@ using Azure.Identity;
 using DevLab.JmesPath;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Graph.Cli.Core.Authentication;
 using Microsoft.Graph.Cli.Core.Commands.Authentication;
@@ -124,6 +125,9 @@ namespace Microsoft.Graph.Cli
                 services.AddSingleton<JmesPath>();
                 services.AddSingleton<IOutputFormatterFactory, OutputFormatterFactory>();
                 services.AddSingleton<IPagingService, GraphODataPagingService>();
+            }).ConfigureLogging((ctx, logBuilder) =>
+            {
+                logBuilder.SetMinimumLevel(LogLevel.Warning);
             });
 
         static void ConfigureAppConfiguration(IConfigurationBuilder builder)
