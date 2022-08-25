@@ -36,17 +36,18 @@ namespace Microsoft.Graph.Cli
             var config = configBuilder.Build();
 
             var authSettings = config.GetSection(nameof(AuthenticationOptions)).Get<AuthenticationOptions>();
-            var authServiceFactory = new AuthenticationServiceFactory(new PathUtility());
+            var pathUtil = new PathUtility();
+            var authServiceFactory = new AuthenticationServiceFactory(pathUtil, authSettings);
             var authStrategy = AuthenticationStrategy.DeviceCode;
 
-            var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy, authSettings?.TenantId, authSettings?.ClientId);
+            var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy, authSettings?.TenantId, authSettings?.ClientId, authSettings?.ClientCertificateName, authSettings?.ClientCertificateThumbPrint);
             var authProvider = new AzureIdentityAuthenticationProvider(credential, new string[] { "graph.microsoft.com" });
 
             var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
             var options = new GraphClientOptions
             {
                 GraphProductPrefix = "graph-cli",
-                GraphServiceLibraryClientVersion = $"{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}",
+                GraphServiceLibraryClientVersion = $"{assemblyVersion?.Major ?? 0}.{assemblyVersion?.Minor ?? 0}.{assemblyVersion?.Build ?? 0}",
                 GraphServiceTargetVersion = "1.0"
             };
             using var httpClient = GraphCliClientFactory.GetDefaultClient(options);
@@ -57,7 +58,8 @@ namespace Microsoft.Graph.Cli
             var loginCommand = new LoginCommand(authServiceFactory);
             commands.Add(loginCommand.Build());
 
-            var logoutCommand = new LogoutCommand(new LogoutService());
+            var authCacheUtil = new AuthenticationCacheUtility(pathUtil);
+            var logoutCommand = new LogoutCommand(new LogoutService(authCacheUtil));
             commands.Add(logoutCommand.Build());
 
             var builder = BuildCommandLine(client, commands).UseDefaults().UseHost(CreateHostBuilder);
@@ -73,20 +75,23 @@ namespace Microsoft.Graph.Cli
             });
             builder.UseExceptionHandler((ex, context) =>
             {
-                if (ex is AuthenticationRequiredException)
+                switch (ex)
                 {
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    context.Console.Error.WriteLine("Token acquisition failed. Run mgc login command first to get an access token.");
-                    Console.ResetColor();
-                }
-                else
-                {
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    context.Console.Error.WriteLine(ex.Message);
-                    context.Console.Error.WriteLine(ex.StackTrace);
-                    Console.ResetColor();
+                    case AuthenticationRequiredException:
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        context.Console.Error.WriteLine("Token acquisition failed. Run mgc login command first to get an access token.");
+                        Console.ResetColor();
+                        break;
+                    case TaskCanceledException:
+                        break;
+                    default:
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        context.Console.Error.WriteLine(ex.Message);
+                        context.Console.Error.WriteLine(ex.StackTrace);
+                        Console.ResetColor();
+                        break;
                 }
             });
 
