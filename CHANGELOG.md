@@ -8,8 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added certificate login (`mgc login --strategy ClientCertificate`)
 
 ### Changed
+- Implement `none` output formatter as no-op output
+
 
 ## [0.1.0-preview.6] - 2022-08-18
 
