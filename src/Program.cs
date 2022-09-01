@@ -65,6 +65,17 @@ namespace Microsoft.Graph.Cli
             var builder = BuildCommandLine(client, commands).UseDefaults().UseHost(CreateHostBuilder);
             builder.AddMiddleware((invocation) =>
             {
+                var debug = invocation.Parser.Configuration.RootCommand.Options.FirstOrDefault(o => o.Name == "debug") as Option<bool>;
+                var isDebug = invocation.ParseResult.GetValueForOption(debug);
+                if (isDebug)
+                {
+                    // Enable logging
+                }
+                else
+                {
+                    // disable logging
+                }
+
                 var host = invocation.GetHost();
                 var outputFilter = host.Services.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = host.Services.GetRequiredService<IOutputFormatterFactory>();
@@ -109,6 +120,9 @@ namespace Microsoft.Graph.Cli
             {
                 rootCommand.AddCommand(command);
             }
+
+            var debug = new Option<bool>("--debug", "Turn on debug logging.");
+            rootCommand.AddGlobalOption(debug);
 
             return new CommandLineBuilder(rootCommand);
         }
