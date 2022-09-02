@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Graph.Cli.Core.Authentication;
 using Microsoft.Graph.Cli.Core.Commands.Authentication;
 using Microsoft.Graph.Cli.Core.Configuration;
+using Microsoft.Graph.Cli.Core.Http;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Authentication.Azure;
 using Microsoft.Kiota.Cli.Commons.IO;
@@ -66,18 +67,18 @@ namespace Microsoft.Graph.Cli
             var builder = BuildCommandLine(client, commands).UseDefaults().UseHost(CreateHostBuilder);
             builder.AddMiddleware((invocation) =>
             {
-                var debug = invocation.Parser.Configuration.RootCommand.Options.FirstOrDefault(o => o.Name == "debug") as Option<bool>;
-                var isDebug = invocation.ParseResult.GetValueForOption(debug);
-                if (isDebug)
+                var host = invocation.GetHost();
+                var isDebug = invocation.Parser.Configuration.RootCommand.Options.SingleOrDefault(static o => "debug".Equals(o.Name, StringComparison.Ordinal)) is Option<bool> debug ?
+                                    invocation.ParseResult.GetValueForOption(debug) : false;
+                if (isDebug == true)
                 {
-                    // Enable logging
+                    loggingHandler.Logger = host.Services.GetService<ILogger<LoggingHandler>>();
                 }
                 else
                 {
-                    // disable logging
+                    loggingHandler.Logger = null;
                 }
 
-                var host = invocation.GetHost();
                 var outputFilter = host.Services.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = host.Services.GetRequiredService<IOutputFormatterFactory>();
                 var pagingService = host.Services.GetRequiredService<IPagingService>();
