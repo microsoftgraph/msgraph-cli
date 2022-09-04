@@ -52,7 +52,8 @@ namespace Microsoft.Graph.Cli
                 GraphServiceLibraryClientVersion = $"{assemblyVersion?.Major ?? 0}.{assemblyVersion?.Minor ?? 0}.{assemblyVersion?.Build ?? 0}",
                 GraphServiceTargetVersion = "1.0"
             };
-            using var httpClient = GraphCliClientFactory.GetDefaultClient(options);
+            var loggingHandler = new LoggingHandler();
+            using var httpClient = GraphCliClientFactory.GetDefaultClient(options, lowestPriorityMiddlewares: new[] { loggingHandler });
             var core = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
             var client = new GraphClient(core);
 
@@ -102,7 +103,6 @@ namespace Microsoft.Graph.Cli
                         Console.ResetColor();
                         Console.ForegroundColor = ConsoleColor.Red;
                         context.Console.Error.WriteLine(ex.Message);
-                        context.Console.Error.WriteLine(ex.StackTrace);
                         Console.ResetColor();
                         break;
                 }
