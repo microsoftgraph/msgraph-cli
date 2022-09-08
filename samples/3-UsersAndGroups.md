@@ -28,6 +28,15 @@ mgc users list --select "id, displayName, OfficeLocation, BusinessPhones" --quer
 
 ### Update the location of the user
 
+Powershell:
+
+```powershell
+$body = ConvertTo-Json '{"officeLocation": "NewLocation"}'
+mgc users item patch --user-id <UserId> --body $body
+```
+
+Bash:
+
 ```sh
 mgc users item patch --user-id <UserId> --body '{"officeLocation": "NewLocation"}'
 ```
@@ -70,6 +79,15 @@ mgc users item messages list --user-id <UserId> --filter "contains(subject,'Mark
 
 ### New Group
 
+Powershell:
+
+```powershell
+$body = ConvertTo-Json '{"displayName": "PowerFam", "mailEnabled": false, "mailNickName": "powerfam", "securityEnabled": true}'
+mgc groups create --body $body
+```
+
+Bash:
+
 ```sh
 mgc groups create --body '{"displayName": "PowerFam", "mailEnabled": false, "mailNickName": "powerfam", "securityEnabled": true}'
 ```
@@ -81,6 +99,16 @@ mgc groups item delete --group-id <GroupId>
 ```
 
 ### Create a new User
+
+PowerShell:
+
+```powershell
+$body = ConvertTo-Json '{"displayName": "Bob Brown", "accountEnabled": true, "passwordProfile": {"password": "password"},\
+        "mailNickname": "Bob.Brown", "userPrincipalName": "bob.brown@{tenantdomain}"}'
+mgc users create --body $body
+```
+
+Bash:
 
 ```sh
 mgc users create --body '{"displayName": "Bob Brown", "accountEnabled": true, "passwordProfile": {"password": "password"},\
