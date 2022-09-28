@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Event representing an general failure.</summary>
     public class DeviceManagementTroubleshootingEvent : Entity, IParsable {
         /// <summary>Id used for tracing the failure in the service.</summary>
         public string CorrelationId { get; set; }
         /// <summary>Time when the event occurred .</summary>
         public DateTimeOffset? EventDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new DeviceManagementTroubleshootingEvent and sets the default values.
+        /// Instantiates a new deviceManagementTroubleshootingEvent and sets the default values.
         /// </summary>
         public DeviceManagementTroubleshootingEvent() : base() {
             OdataType = "#microsoft.graph.deviceManagementTroubleshootingEvent";
@@ -22,8 +23,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new DeviceManagementTroubleshootingEvent CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.enrollmentTroubleshootingEvent" => new EnrollmentTroubleshootingEvent(),
                 _ => new DeviceManagementTroubleshootingEvent(),

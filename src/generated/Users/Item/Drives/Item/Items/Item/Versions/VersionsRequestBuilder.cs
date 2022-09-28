@@ -108,11 +108,11 @@ namespace ApiSdk.Users.Item.Drives.Item.Items.Item.Versions {
             return command;
         }
         /// <summary>
-        /// The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
+        /// OneDrive and SharePoint can be configured to retain the history for files.Depending on the service and configuration, a new version can be created for each edit, each time the file is saved, manually, or never. Previous versions of a document may be retained for a finite period of time depending on admin settings which may be unique per user or location.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.";
+            command.Description = "OneDrive and SharePoint can be configured to retain the history for files.Depending on the service and configuration, a new version can be created for each edit, each time the file is saved, manually, or never. Previous versions of a document may be retained for a finite period of time depending on admin settings which may be unique per user or location.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -243,7 +243,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Items.Item.Versions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
+        /// OneDrive and SharePoint can be configured to retain the history for files.Depending on the service and configuration, a new version can be created for each edit, each time the file is saved, manually, or never. Previous versions of a document may be retained for a finite period of time depending on admin settings which may be unique per user or location.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<VersionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -284,7 +284,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Items.Item.Versions {
             }
             return requestInfo;
         }
-        /// <summary>The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.</summary>
+        /// <summary>OneDrive and SharePoint can be configured to retain the history for files.Depending on the service and configuration, a new version can be created for each edit, each time the file is saved, manually, or never. Previous versions of a document may be retained for a finite period of time depending on admin settings which may be unique per user or location.</summary>
         public class VersionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

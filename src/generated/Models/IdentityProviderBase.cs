@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class IdentityProviderBase : Entity, IParsable {
         /// <summary>The display name of the identity provider.</summary>
         public string DisplayName { get; set; }
         /// <summary>
-        /// Instantiates a new IdentityProviderBase and sets the default values.
+        /// Instantiates a new identityProviderBase and sets the default values.
         /// </summary>
         public IdentityProviderBase() : base() {
             OdataType = "#microsoft.graph.identityProviderBase";
@@ -20,8 +21,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new IdentityProviderBase CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.appleManagedIdentityProvider" => new AppleManagedIdentityProvider(),
                 "#microsoft.graph.builtInIdentityProvider" => new BuiltInIdentityProvider(),

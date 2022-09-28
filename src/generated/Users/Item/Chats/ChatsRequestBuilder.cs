@@ -34,6 +34,7 @@ namespace ApiSdk.Users.Item.Chats {
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildMessagesCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPinnedMessagesCommand());
             command.AddCommand(builder.BuildSendActivityNotificationCommand());
             command.AddCommand(builder.BuildTabsCommand());
             return command;
@@ -100,11 +101,11 @@ namespace ApiSdk.Users.Item.Chats {
             return command;
         }
         /// <summary>
-        /// Get chats from users
+        /// Retrieve the list of chats that the user is part of.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get chats from users";
+            command.Description = "Retrieve the list of chats that the user is part of.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -223,7 +224,7 @@ namespace ApiSdk.Users.Item.Chats {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get chats from users
+        /// Retrieve the list of chats that the user is part of.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChatsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -270,7 +271,7 @@ namespace ApiSdk.Users.Item.Chats {
         public GetAllMessagesRequestBuilder GetAllMessages() {
             return new GetAllMessagesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>Get chats from users</summary>
+        /// <summary>Retrieve the list of chats that the user is part of.</summary>
         public class ChatsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

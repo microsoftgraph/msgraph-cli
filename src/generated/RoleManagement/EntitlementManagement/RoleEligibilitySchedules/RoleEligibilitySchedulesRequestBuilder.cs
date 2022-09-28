@@ -89,11 +89,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules {
             return command;
         }
         /// <summary>
-        /// Schedules for role eligibility operations.
+        /// Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Schedules for role eligibility operations.";
+            command.Description = "Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Schedules for role eligibility operations.
+        /// Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RoleEligibilitySchedulesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -255,7 +255,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules {
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>Schedules for role eligibility operations.</summary>
+        /// <summary>Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.</summary>
         public class RoleEligibilitySchedulesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

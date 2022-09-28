@@ -43,11 +43,11 @@ namespace ApiSdk.External.Connections {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to connections for external
+        /// Create a new externalConnection object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to connections for external";
+            command.Description = "Create a new externalConnection object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -92,11 +92,11 @@ namespace ApiSdk.External.Connections {
             return command;
         }
         /// <summary>
-        /// Get connections from external
+        /// Get a list of the externalConnection objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get connections from external";
+            command.Description = "Get a list of the externalConnection objects and their properties.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.External.Connections {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get connections from external
+        /// Get a list of the externalConnection objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ConnectionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -229,7 +229,7 @@ namespace ApiSdk.External.Connections {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to connections for external
+        /// Create a new externalConnection object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -250,7 +250,7 @@ namespace ApiSdk.External.Connections {
             }
             return requestInfo;
         }
-        /// <summary>Get connections from external</summary>
+        /// <summary>Get a list of the externalConnection objects and their properties.</summary>
         public class ConnectionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

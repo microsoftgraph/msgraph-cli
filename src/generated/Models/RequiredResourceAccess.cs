@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"resourceAccess", n => { ResourceAccess = n.GetCollectionOfObjectValues<ApiSdk.Models.ResourceAccess>(ApiSdk.Models.ResourceAccess.CreateFromDiscriminatorValue).ToList(); } },
+                {"resourceAccess", n => { ResourceAccess = n.GetCollectionOfObjectValues<ApiSdk.Models.ResourceAccess>(ApiSdk.Models.ResourceAccess.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"resourceAppId", n => { ResourceAppId = n.GetStringValue(); } },
             };
         }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Casts the previous resource to group.</summary>
     public class ColumnDefinition : Entity, IParsable {
         /// <summary>This column stores boolean values.</summary>
         public BooleanColumn Boolean { get; set; }

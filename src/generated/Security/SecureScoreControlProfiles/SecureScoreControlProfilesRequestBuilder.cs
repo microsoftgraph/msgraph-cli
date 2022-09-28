@@ -88,11 +88,11 @@ namespace ApiSdk.Security.SecureScoreControlProfiles {
             return command;
         }
         /// <summary>
-        /// Get secureScoreControlProfiles from security
+        /// Retrieve the properties and relationships of a secureScoreControlProfiles object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get secureScoreControlProfiles from security";
+            command.Description = "Retrieve the properties and relationships of a secureScoreControlProfiles object.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get secureScoreControlProfiles from security
+        /// Retrieve the properties and relationships of a secureScoreControlProfiles object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SecureScoreControlProfilesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles {
             }
             return requestInfo;
         }
-        /// <summary>Get secureScoreControlProfiles from security</summary>
+        /// <summary>Retrieve the properties and relationships of a secureScoreControlProfiles object.</summary>
         public class SecureScoreControlProfilesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

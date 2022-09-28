@@ -48,11 +48,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to ediscoveryCases for security
+        /// Create a new ediscoveryCase object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to ediscoveryCases for security";
+            command.Description = "Create a new ediscoveryCase object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -97,11 +97,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             return command;
         }
         /// <summary>
-        /// Get ediscoveryCases from security
+        /// Get a list of the ediscoveryCase objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get ediscoveryCases from security";
+            command.Description = "Get a list of the ediscoveryCase objects and their properties.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -214,7 +214,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get ediscoveryCases from security
+        /// Get a list of the ediscoveryCase objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<EdiscoveryCasesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -234,7 +234,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to ediscoveryCases for security
+        /// Create a new ediscoveryCase object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -255,7 +255,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             }
             return requestInfo;
         }
-        /// <summary>Get ediscoveryCases from security</summary>
+        /// <summary>Get a list of the ediscoveryCase objects and their properties.</summary>
         public class EdiscoveryCasesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

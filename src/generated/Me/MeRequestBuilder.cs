@@ -142,7 +142,6 @@ namespace ApiSdk.Me {
             var builder = new CalendarRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCalendarPermissionsCommand());
             command.AddCommand(builder.BuildCalendarViewCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildEventsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildGetScheduleCommand());
@@ -174,7 +173,6 @@ namespace ApiSdk.Me {
             var builder = new CalendarViewRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -305,11 +303,11 @@ namespace ApiSdk.Me {
             return command;
         }
         /// <summary>
-        /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.
+        /// Retrieve the properties and relationships of user object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node.";
+            command.Description = "Retrieve the properties and relationships of user object.";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
             };
@@ -386,7 +384,6 @@ namespace ApiSdk.Me {
         public Command BuildInferenceClassificationCommand() {
             var command = new Command("inference-classification");
             var builder = new InferenceClassificationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildOverridesCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -512,7 +509,6 @@ namespace ApiSdk.Me {
         public Command BuildOutlookCommand() {
             var command = new Command("outlook");
             var builder = new OutlookRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMasterCategoriesCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -551,8 +547,26 @@ namespace ApiSdk.Me {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
@@ -563,8 +577,11 @@ namespace ApiSdk.Me {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
             return command;
         }
@@ -573,7 +590,6 @@ namespace ApiSdk.Me {
             var builder = new PeopleRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -581,7 +597,6 @@ namespace ApiSdk.Me {
             var command = new Command("photo");
             var builder = new PhotoRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildContentCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -591,7 +606,6 @@ namespace ApiSdk.Me {
             var builder = new PhotosRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -609,10 +623,12 @@ namespace ApiSdk.Me {
             var command = new Command("presence");
             var builder = new PresenceRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildClearPresenceCommand());
+            command.AddCommand(builder.BuildClearUserPreferredPresenceCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSetPresenceCommand());
+            command.AddCommand(builder.BuildSetUserPreferredPresenceCommand());
             return command;
         }
         public Command BuildRegisteredDevicesCommand() {
@@ -734,7 +750,7 @@ namespace ApiSdk.Me {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.
+        /// Retrieve the properties and relationships of user object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MeRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -765,6 +781,7 @@ namespace ApiSdk.Me {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new MeRequestBuilderPatchRequestConfiguration();
@@ -796,7 +813,7 @@ namespace ApiSdk.Me {
             if(string.IsNullOrEmpty(startDateTime)) throw new ArgumentNullException(nameof(startDateTime));
             return new ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(PathParameters, RequestAdapter, endDateTime, startDateTime);
         }
-        /// <summary>Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.</summary>
+        /// <summary>Retrieve the properties and relationships of user object.</summary>
         public class MeRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

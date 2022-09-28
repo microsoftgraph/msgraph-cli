@@ -40,11 +40,11 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to assignmentCategories for education
+        /// Creates a new educationCategory on an educationClass.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to assignmentCategories for education";
+            command.Description = "Creates a new educationCategory on an educationClass.";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
@@ -95,11 +95,11 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
             return command;
         }
         /// <summary>
-        /// All categories associated with this class. Nullable.
+        /// Retrieve a list of educationCategory objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All categories associated with this class. Nullable.";
+            command.Description = "Retrieve a list of educationCategory objects.";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// All categories associated with this class. Nullable.
+        /// Retrieve a list of educationCategory objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AssignmentCategoriesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -238,7 +238,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to assignmentCategories for education
+        /// Creates a new educationCategory on an educationClass.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -265,7 +265,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>All categories associated with this class. Nullable.</summary>
+        /// <summary>Retrieve a list of educationCategory objects.</summary>
         public class AssignmentCategoriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

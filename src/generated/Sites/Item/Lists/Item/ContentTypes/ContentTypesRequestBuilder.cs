@@ -124,11 +124,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
             return command;
         }
         /// <summary>
-        /// The collection of content types present in this list.
+        /// Get the collection of [contentType][contentType] resources in a [list][].
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of content types present in this list.";
+            command.Description = "Get the collection of [contentType][contentType] resources in a [list][].";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -253,7 +253,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of content types present in this list.
+        /// Get the collection of [contentType][contentType] resources in a [list][].
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ContentTypesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -300,7 +300,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
         public GetCompatibleHubContentTypesRequestBuilder GetCompatibleHubContentTypes() {
             return new GetCompatibleHubContentTypesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The collection of content types present in this list.</summary>
+        /// <summary>Get the collection of [contentType][contentType] resources in a [list][].</summary>
         public class ContentTypesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

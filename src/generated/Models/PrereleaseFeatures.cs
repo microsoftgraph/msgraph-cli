@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public enum PrereleaseFeatures {
         /// <summary>User Defined, default value, no intent.</summary>
         UserDefined,

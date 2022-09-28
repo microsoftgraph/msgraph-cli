@@ -42,11 +42,11 @@ namespace ApiSdk.Print.Shares {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to shares for print
+        /// Create a new **printerShare** for the specified printer.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to shares for print";
+            command.Description = "Create a new **printerShare** for the specified printer.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -91,11 +91,11 @@ namespace ApiSdk.Print.Shares {
             return command;
         }
         /// <summary>
-        /// The list of printer shares registered in the tenant.
+        /// Retrieve a list of **printerShares**.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of printer shares registered in the tenant.";
+            command.Description = "Retrieve a list of **printerShares**.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -208,7 +208,7 @@ namespace ApiSdk.Print.Shares {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The list of printer shares registered in the tenant.
+        /// Retrieve a list of **printerShares**.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SharesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -228,7 +228,7 @@ namespace ApiSdk.Print.Shares {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to shares for print
+        /// Create a new **printerShare** for the specified printer.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -249,7 +249,7 @@ namespace ApiSdk.Print.Shares {
             }
             return requestInfo;
         }
-        /// <summary>The list of printer shares registered in the tenant.</summary>
+        /// <summary>Retrieve a list of **printerShares**.</summary>
         public class SharesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -22,11 +22,11 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action dismissReminder
+        /// Dismiss a reminder that has been triggered for an event in a user calendar.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action dismissReminder";
+            command.Description = "Dismiss a reminder that has been triggered for an event in a user calendar.";
             // Create options for all the parameters
             var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
             };
@@ -79,7 +79,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action dismissReminder
+        /// Dismiss a reminder that has been triggered for an event in a user calendar.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<DismissReminderRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

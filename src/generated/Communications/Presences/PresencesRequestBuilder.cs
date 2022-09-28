@@ -28,10 +28,12 @@ namespace ApiSdk.Communications.Presences {
             var command = new Command("item");
             var builder = new PresenceItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildClearPresenceCommand());
+            command.AddCommand(builder.BuildClearUserPreferredPresenceCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSetPresenceCommand());
+            command.AddCommand(builder.BuildSetUserPreferredPresenceCommand());
             return command;
         }
         public Command BuildCountCommand() {

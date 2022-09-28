@@ -40,11 +40,11 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to threatAssessmentRequests for informationProtection
+        /// Create a new threat assessment request. A threat assessment request can be one of the following types:
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to threatAssessmentRequests for informationProtection";
+            command.Description = "Create a new threat assessment request. A threat assessment request can be one of the following types:";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -89,11 +89,11 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests {
             return command;
         }
         /// <summary>
-        /// Get threatAssessmentRequests from informationProtection
+        /// Retrieve a list of threatAssessmentRequest objects. A threat assessment request can be one of the following types:
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get threatAssessmentRequests from informationProtection";
+            command.Description = "Retrieve a list of threatAssessmentRequest objects. A threat assessment request can be one of the following types:";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get threatAssessmentRequests from informationProtection
+        /// Retrieve a list of threatAssessmentRequest objects. A threat assessment request can be one of the following types:
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ThreatAssessmentRequestsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -226,7 +226,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to threatAssessmentRequests for informationProtection
+        /// Create a new threat assessment request. A threat assessment request can be one of the following types:
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests {
             }
             return requestInfo;
         }
-        /// <summary>Get threatAssessmentRequests from informationProtection</summary>
+        /// <summary>Retrieve a list of threatAssessmentRequest objects. A threat assessment request can be one of the following types:</summary>
         public class ThreatAssessmentRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

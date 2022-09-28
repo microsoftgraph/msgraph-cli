@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         /// <summary>Automatic action that the service should take when an external user&apos;s last access package assignment is removed. The possible values are: none, blockSignIn, blockSignInAndDelete, unknownFutureValue.</summary>
         public AccessPackageExternalUserLifecycleAction? ExternalUserLifecycleAction { get; set; }
         /// <summary>
-        /// Instantiates a new EntitlementManagementSettings and sets the default values.
+        /// Instantiates a new entitlementManagementSettings and sets the default values.
         /// </summary>
         public EntitlementManagementSettings() : base() {
             OdataType = "#microsoft.graph.entitlementManagementSettings";

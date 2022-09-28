@@ -22,11 +22,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.Activate {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action activate
+        /// Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an eDiscovery (Premium) case.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action activate";
+            command.Description = "Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an eDiscovery (Premium) case.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.Activate {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action activate
+        /// Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an eDiscovery (Premium) case.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<ActivateRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

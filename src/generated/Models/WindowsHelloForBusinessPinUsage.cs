@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
+    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
     public enum WindowsHelloForBusinessPinUsage {
         /// <summary>Allowed the usage of certain pin rule</summary>
         Allowed,

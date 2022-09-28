@@ -30,7 +30,7 @@ namespace ApiSdk.Communications.GetPresencesByUserId {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Presence>(ApiSdk.Models.Presence.CreateFromDiscriminatorValue).ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Presence>(ApiSdk.Models.Presence.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

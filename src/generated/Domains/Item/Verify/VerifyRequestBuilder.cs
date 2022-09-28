@@ -23,11 +23,11 @@ namespace ApiSdk.Domains.Item.Verify {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action verify
+        /// Validates the ownership of the domain.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action verify";
+            command.Description = "Validates the ownership of the domain.";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };
@@ -83,7 +83,7 @@ namespace ApiSdk.Domains.Item.Verify {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action verify
+        /// Validates the ownership of the domain.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<VerifyRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

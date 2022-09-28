@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class SecureScore : Entity, IParsable {
         /// <summary>Active user count of the given tenant.</summary>
         public int? ActiveUserCount { get; set; }
@@ -26,7 +27,7 @@ namespace ApiSdk.Models {
         /// <summary>Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.</summary>
         public SecurityVendorInformation VendorInformation { get; set; }
         /// <summary>
-        /// Instantiates a new SecureScore and sets the default values.
+        /// Instantiates a new secureScore and sets the default values.
         /// </summary>
         public SecureScore() : base() {
             OdataType = "#microsoft.graph.secureScore";
@@ -45,12 +46,12 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"activeUserCount", n => { ActiveUserCount = n.GetIntValue(); } },
-                {"averageComparativeScores", n => { AverageComparativeScores = n.GetCollectionOfObjectValues<AverageComparativeScore>(AverageComparativeScore.CreateFromDiscriminatorValue).ToList(); } },
+                {"averageComparativeScores", n => { AverageComparativeScores = n.GetCollectionOfObjectValues<AverageComparativeScore>(AverageComparativeScore.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"azureTenantId", n => { AzureTenantId = n.GetStringValue(); } },
-                {"controlScores", n => { ControlScores = n.GetCollectionOfObjectValues<ControlScore>(ControlScore.CreateFromDiscriminatorValue).ToList(); } },
+                {"controlScores", n => { ControlScores = n.GetCollectionOfObjectValues<ControlScore>(ControlScore.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"currentScore", n => { CurrentScore = n.GetDoubleValue(); } },
-                {"enabledServices", n => { EnabledServices = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"enabledServices", n => { EnabledServices = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"licensedUserCount", n => { LicensedUserCount = n.GetIntValue(); } },
                 {"maxScore", n => { MaxScore = n.GetDoubleValue(); } },
                 {"vendorInformation", n => { VendorInformation = n.GetObjectValue<SecurityVendorInformation>(SecurityVendorInformation.CreateFromDiscriminatorValue); } },

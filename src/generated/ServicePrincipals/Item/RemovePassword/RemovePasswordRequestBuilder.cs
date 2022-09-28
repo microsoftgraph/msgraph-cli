@@ -22,11 +22,11 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action removePassword
+        /// Remove a password from a servicePrincipal object.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action removePassword";
+            command.Description = "Remove a password from a servicePrincipal object.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -69,7 +69,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action removePassword
+        /// Remove a password from a servicePrincipal object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

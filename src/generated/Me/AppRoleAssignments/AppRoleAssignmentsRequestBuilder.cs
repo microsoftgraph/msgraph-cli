@@ -39,11 +39,11 @@ namespace ApiSdk.Me.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to appRoleAssignments for me
+        /// Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to appRoleAssignments for me";
+            command.Description = "Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -94,6 +94,10 @@ namespace ApiSdk.Me.AppRoleAssignments {
             var command = new Command("list");
             command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.";
             // Create options for all the parameters
+            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
+            };
+            consistencyLevelOption.IsRequired = false;
+            command.AddOption(consistencyLevelOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -145,6 +149,7 @@ namespace ApiSdk.Me.AppRoleAssignments {
             var allOption = new Option<bool>("--all");
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
+                var consistencyLevel = invocationContext.ParseResult.GetValueForOption(consistencyLevelOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -171,6 +176,7 @@ namespace ApiSdk.Me.AppRoleAssignments {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
+                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -225,7 +231,7 @@ namespace ApiSdk.Me.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to appRoleAssignments for me
+        /// Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

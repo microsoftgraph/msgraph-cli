@@ -23,11 +23,11 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The chat between the user and Teams app.
+        /// Retrieve the chat of the specified user and Teams app.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The chat between the user and Teams app.";
+            command.Description = "Retrieve the chat of the specified user and Teams app.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -103,7 +103,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The chat between the user and Teams app.
+        /// Retrieve the chat of the specified user and Teams app.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChatRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -122,7 +122,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
             }
             return requestInfo;
         }
-        /// <summary>The chat between the user and Teams app.</summary>
+        /// <summary>Retrieve the chat of the specified user and Teams app.</summary>
         public class ChatRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

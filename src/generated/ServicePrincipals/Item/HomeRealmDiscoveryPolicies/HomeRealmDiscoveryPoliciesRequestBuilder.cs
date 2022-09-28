@@ -38,11 +38,11 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies {
             return command;
         }
         /// <summary>
-        /// The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.
+        /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.";
+            command.Description = "List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -168,7 +168,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.
+        /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<HomeRealmDiscoveryPoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -187,7 +187,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies {
             }
             return requestInfo;
         }
-        /// <summary>The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.</summary>
+        /// <summary>List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.</summary>
         public class HomeRealmDiscoveryPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

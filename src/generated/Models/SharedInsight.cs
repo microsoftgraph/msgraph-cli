@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class SharedInsight : Entity, IParsable {
         /// <summary>Details about the shared item. Read only.</summary>
         public SharingDetail LastShared { get; set; }
@@ -13,9 +13,9 @@ namespace ApiSdk.Models {
         /// <summary>Used for navigating to the item that was shared. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.</summary>
         public Entity Resource { get; set; }
         /// <summary>Reference properties of the shared document, such as the url and type of the document. Read-only</summary>
-        public ApiSdk.Models.ResourceReference ResourceReference { get; set; }
+        public ApiSdk.Models.ResourceReference ResourceReference { get; private set; }
         /// <summary>Properties that you can use to visualize the document in your experience. Read-only</summary>
-        public ApiSdk.Models.ResourceVisualization ResourceVisualization { get; set; }
+        public ApiSdk.Models.ResourceVisualization ResourceVisualization { get; private set; }
         /// <summary>The sharingHistory property</summary>
         public List<SharingDetail> SharingHistory { get; set; }
         /// <summary>
@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
                 {"resource", n => { Resource = n.GetObjectValue<Entity>(Entity.CreateFromDiscriminatorValue); } },
                 {"resourceReference", n => { ResourceReference = n.GetObjectValue<ApiSdk.Models.ResourceReference>(ApiSdk.Models.ResourceReference.CreateFromDiscriminatorValue); } },
                 {"resourceVisualization", n => { ResourceVisualization = n.GetObjectValue<ApiSdk.Models.ResourceVisualization>(ApiSdk.Models.ResourceVisualization.CreateFromDiscriminatorValue); } },
-                {"sharingHistory", n => { SharingHistory = n.GetCollectionOfObjectValues<SharingDetail>(SharingDetail.CreateFromDiscriminatorValue).ToList(); } },
+                {"sharingHistory", n => { SharingHistory = n.GetCollectionOfObjectValues<SharingDetail>(SharingDetail.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -55,8 +55,6 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<SharingDetail>("lastShared", LastShared);
             writer.WriteObjectValue<Entity>("lastSharedMethod", LastSharedMethod);
             writer.WriteObjectValue<Entity>("resource", Resource);
-            writer.WriteObjectValue<ApiSdk.Models.ResourceReference>("resourceReference", ResourceReference);
-            writer.WriteObjectValue<ApiSdk.Models.ResourceVisualization>("resourceVisualization", ResourceVisualization);
             writer.WriteCollectionOfObjectValues<SharingDetail>("sharingHistory", SharingHistory);
         }
     }

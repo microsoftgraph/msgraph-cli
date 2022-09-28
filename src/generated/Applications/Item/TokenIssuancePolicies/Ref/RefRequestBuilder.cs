@@ -23,11 +23,11 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Get ref of tokenIssuancePolicies from applications
+        /// List the tokenIssuancePolicy objects that are assigned to an application.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get ref of tokenIssuancePolicies from applications";
+            command.Description = "List the tokenIssuancePolicy objects that are assigned to an application.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -166,7 +166,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get ref of tokenIssuancePolicies from applications
+        /// List the tokenIssuancePolicy objects that are assigned to an application.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RefRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -206,7 +206,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
             }
             return requestInfo;
         }
-        /// <summary>Get ref of tokenIssuancePolicies from applications</summary>
+        /// <summary>List the tokenIssuancePolicy objects that are assigned to an application.</summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

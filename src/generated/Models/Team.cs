@@ -49,6 +49,8 @@ namespace ApiSdk.Models {
         public TeamSpecialization? Specialization { get; set; }
         /// <summary>The summary property</summary>
         public TeamSummary Summary { get; set; }
+        /// <summary>The tags property</summary>
+        public List<TeamworkTag> Tags { get; set; }
         /// <summary>The template this team was created from. See available templates.</summary>
         public TeamsTemplate Template { get; set; }
         /// <summary>The ID of the Azure Active Directory tenant.</summary>
@@ -76,8 +78,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"allChannels", n => { AllChannels = n.GetCollectionOfObjectValues<Channel>(Channel.CreateFromDiscriminatorValue).ToList(); } },
-                {"channels", n => { Channels = n.GetCollectionOfObjectValues<Channel>(Channel.CreateFromDiscriminatorValue).ToList(); } },
+                {"allChannels", n => { AllChannels = n.GetCollectionOfObjectValues<Channel>(Channel.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"channels", n => { Channels = n.GetCollectionOfObjectValues<Channel>(Channel.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"classification", n => { Classification = n.GetStringValue(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
@@ -85,19 +87,20 @@ namespace ApiSdk.Models {
                 {"funSettings", n => { FunSettings = n.GetObjectValue<TeamFunSettings>(TeamFunSettings.CreateFromDiscriminatorValue); } },
                 {"group", n => { Group = n.GetObjectValue<ApiSdk.Models.Group>(ApiSdk.Models.Group.CreateFromDiscriminatorValue); } },
                 {"guestSettings", n => { GuestSettings = n.GetObjectValue<TeamGuestSettings>(TeamGuestSettings.CreateFromDiscriminatorValue); } },
-                {"incomingChannels", n => { IncomingChannels = n.GetCollectionOfObjectValues<Channel>(Channel.CreateFromDiscriminatorValue).ToList(); } },
-                {"installedApps", n => { InstalledApps = n.GetCollectionOfObjectValues<TeamsAppInstallation>(TeamsAppInstallation.CreateFromDiscriminatorValue).ToList(); } },
+                {"incomingChannels", n => { IncomingChannels = n.GetCollectionOfObjectValues<Channel>(Channel.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"installedApps", n => { InstalledApps = n.GetCollectionOfObjectValues<TeamsAppInstallation>(TeamsAppInstallation.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"internalId", n => { InternalId = n.GetStringValue(); } },
                 {"isArchived", n => { IsArchived = n.GetBoolValue(); } },
-                {"members", n => { Members = n.GetCollectionOfObjectValues<ConversationMember>(ConversationMember.CreateFromDiscriminatorValue).ToList(); } },
+                {"members", n => { Members = n.GetCollectionOfObjectValues<ConversationMember>(ConversationMember.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"memberSettings", n => { MemberSettings = n.GetObjectValue<TeamMemberSettings>(TeamMemberSettings.CreateFromDiscriminatorValue); } },
                 {"messagingSettings", n => { MessagingSettings = n.GetObjectValue<TeamMessagingSettings>(TeamMessagingSettings.CreateFromDiscriminatorValue); } },
-                {"operations", n => { Operations = n.GetCollectionOfObjectValues<TeamsAsyncOperation>(TeamsAsyncOperation.CreateFromDiscriminatorValue).ToList(); } },
+                {"operations", n => { Operations = n.GetCollectionOfObjectValues<TeamsAsyncOperation>(TeamsAsyncOperation.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"photo", n => { Photo = n.GetObjectValue<ProfilePhoto>(ProfilePhoto.CreateFromDiscriminatorValue); } },
                 {"primaryChannel", n => { PrimaryChannel = n.GetObjectValue<Channel>(Channel.CreateFromDiscriminatorValue); } },
                 {"schedule", n => { Schedule = n.GetObjectValue<ApiSdk.Models.Schedule>(ApiSdk.Models.Schedule.CreateFromDiscriminatorValue); } },
                 {"specialization", n => { Specialization = n.GetEnumValue<TeamSpecialization>(); } },
                 {"summary", n => { Summary = n.GetObjectValue<TeamSummary>(TeamSummary.CreateFromDiscriminatorValue); } },
+                {"tags", n => { Tags = n.GetCollectionOfObjectValues<TeamworkTag>(TeamworkTag.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"template", n => { Template = n.GetObjectValue<TeamsTemplate>(TeamsTemplate.CreateFromDiscriminatorValue); } },
                 {"tenantId", n => { TenantId = n.GetStringValue(); } },
                 {"visibility", n => { Visibility = n.GetEnumValue<TeamVisibilityType>(); } },
@@ -133,6 +136,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<ApiSdk.Models.Schedule>("schedule", Schedule);
             writer.WriteEnumValue<TeamSpecialization>("specialization", Specialization);
             writer.WriteObjectValue<TeamSummary>("summary", Summary);
+            writer.WriteCollectionOfObjectValues<TeamworkTag>("tags", Tags);
             writer.WriteObjectValue<TeamsTemplate>("template", Template);
             writer.WriteStringValue("tenantId", TenantId);
             writer.WriteEnumValue<TeamVisibilityType>("visibility", Visibility);

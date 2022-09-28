@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationAssignment : Entity, IParsable {
         /// <summary>Optional field to control the assignment behavior for students who are added after the assignment is published. If not specified, defaults to none value. Currently supports only two values: none or assignIfOpen.</summary>
         public EducationAddedStudentAction? AddedStudentAction { get; set; }
@@ -14,9 +15,9 @@ namespace ApiSdk.Models {
         /// <summary>Identifies whether students can add their own resources to a submission or if they can only modify resources added by the teacher.</summary>
         public bool? AllowStudentsToAddResourcesToSubmission { get; set; }
         /// <summary>The date when the assignment should become active.  If in the future, the assignment isn&apos;t shown to the student until this date.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
-        public DateTimeOffset? AssignDateTime { get; set; }
+        public DateTimeOffset? AssignDateTime { get; private set; }
         /// <summary>The moment that the assignment was published to students and the assignment shows up on the students timeline.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
-        public DateTimeOffset? AssignedDateTime { get; set; }
+        public DateTimeOffset? AssignedDateTime { get; private set; }
         /// <summary>Which users, or whole class should receive a submission object once the assignment is published.</summary>
         public EducationAssignmentRecipient AssignTo { get; set; }
         /// <summary>When set, enables users to easily find assignments of a given type.  Read-only. Nullable.</summary>
@@ -26,9 +27,9 @@ namespace ApiSdk.Models {
         /// <summary>Date when the assignment will be closed for submissions. This is an optional field that can be null if the assignment does not allowLateSubmissions or when the closeDateTime is the same as the dueDateTime. But if specified, then the closeDateTime must be greater than or equal to the dueDateTime. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CloseDateTime { get; set; }
         /// <summary>Who created the assignment.</summary>
-        public IdentitySet CreatedBy { get; set; }
+        public IdentitySet CreatedBy { get; private set; }
         /// <summary>Moment when the assignment was created.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
-        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; private set; }
         /// <summary>Name of the assignment.</summary>
         public string DisplayName { get; set; }
         /// <summary>Date when the students assignment is due.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
@@ -38,25 +39,25 @@ namespace ApiSdk.Models {
         /// <summary>Instructions for the assignment.  This along with the display name tell the student what to do.</summary>
         public EducationItemBody Instructions { get; set; }
         /// <summary>Who last modified the assignment.</summary>
-        public IdentitySet LastModifiedBy { get; set; }
+        public IdentitySet LastModifiedBy { get; private set; }
         /// <summary>Moment when the assignment was last modified.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; private set; }
         /// <summary>Optional field to specify the URL of the channel to post the assignment publish notification. If not specified or null, defaults to the General channel. This field only applies to assignments where the assignTo value is educationAssignmentClassRecipient. Updating the notificationChannelUrl isn&apos;t allowed after the assignment has been published.</summary>
         public string NotificationChannelUrl { get; set; }
         /// <summary>Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.</summary>
         public List<EducationAssignmentResource> Resources { get; set; }
         /// <summary>Folder URL where all the file resources for this assignment are stored.</summary>
-        public string ResourcesFolderUrl { get; set; }
+        public string ResourcesFolderUrl { get; private set; }
         /// <summary>When set, the grading rubric attached to this assignment.</summary>
         public EducationRubric Rubric { get; set; }
         /// <summary>Status of the Assignment.  You can&apos;t PATCH this value.  Possible values are: draft, scheduled, published, assigned.</summary>
-        public EducationAssignmentStatus? Status { get; set; }
+        public EducationAssignmentStatus? Status { get; private set; }
         /// <summary>Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.</summary>
         public List<EducationSubmission> Submissions { get; set; }
         /// <summary>The deep link URL for the given assignment.</summary>
-        public string WebUrl { get; set; }
+        public string WebUrl { get; private set; }
         /// <summary>
-        /// Instantiates a new EducationAssignment and sets the default values.
+        /// Instantiates a new educationAssignment and sets the default values.
         /// </summary>
         public EducationAssignment() : base() {
             OdataType = "#microsoft.graph.educationAssignment";
@@ -81,7 +82,7 @@ namespace ApiSdk.Models {
                 {"assignDateTime", n => { AssignDateTime = n.GetDateTimeOffsetValue(); } },
                 {"assignedDateTime", n => { AssignedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"assignTo", n => { AssignTo = n.GetObjectValue<EducationAssignmentRecipient>(EducationAssignmentRecipient.CreateFromDiscriminatorValue); } },
-                {"categories", n => { Categories = n.GetCollectionOfObjectValues<EducationCategory>(EducationCategory.CreateFromDiscriminatorValue).ToList(); } },
+                {"categories", n => { Categories = n.GetCollectionOfObjectValues<EducationCategory>(EducationCategory.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"classId", n => { ClassId = n.GetStringValue(); } },
                 {"closeDateTime", n => { CloseDateTime = n.GetDateTimeOffsetValue(); } },
                 {"createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
@@ -93,11 +94,11 @@ namespace ApiSdk.Models {
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"notificationChannelUrl", n => { NotificationChannelUrl = n.GetStringValue(); } },
-                {"resources", n => { Resources = n.GetCollectionOfObjectValues<EducationAssignmentResource>(EducationAssignmentResource.CreateFromDiscriminatorValue).ToList(); } },
+                {"resources", n => { Resources = n.GetCollectionOfObjectValues<EducationAssignmentResource>(EducationAssignmentResource.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"resourcesFolderUrl", n => { ResourcesFolderUrl = n.GetStringValue(); } },
                 {"rubric", n => { Rubric = n.GetObjectValue<EducationRubric>(EducationRubric.CreateFromDiscriminatorValue); } },
                 {"status", n => { Status = n.GetEnumValue<EducationAssignmentStatus>(); } },
-                {"submissions", n => { Submissions = n.GetCollectionOfObjectValues<EducationSubmission>(EducationSubmission.CreateFromDiscriminatorValue).ToList(); } },
+                {"submissions", n => { Submissions = n.GetCollectionOfObjectValues<EducationSubmission>(EducationSubmission.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"webUrl", n => { WebUrl = n.GetStringValue(); } },
             };
         }
@@ -112,27 +113,18 @@ namespace ApiSdk.Models {
             writer.WriteEnumValue<EducationAddToCalendarOptions>("addToCalendarAction", AddToCalendarAction);
             writer.WriteBoolValue("allowLateSubmissions", AllowLateSubmissions);
             writer.WriteBoolValue("allowStudentsToAddResourcesToSubmission", AllowStudentsToAddResourcesToSubmission);
-            writer.WriteDateTimeOffsetValue("assignDateTime", AssignDateTime);
-            writer.WriteDateTimeOffsetValue("assignedDateTime", AssignedDateTime);
             writer.WriteObjectValue<EducationAssignmentRecipient>("assignTo", AssignTo);
             writer.WriteCollectionOfObjectValues<EducationCategory>("categories", Categories);
             writer.WriteStringValue("classId", ClassId);
             writer.WriteDateTimeOffsetValue("closeDateTime", CloseDateTime);
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
-            writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("dueDateTime", DueDateTime);
             writer.WriteObjectValue<EducationAssignmentGradeType>("grading", Grading);
             writer.WriteObjectValue<EducationItemBody>("instructions", Instructions);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
-            writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("notificationChannelUrl", NotificationChannelUrl);
             writer.WriteCollectionOfObjectValues<EducationAssignmentResource>("resources", Resources);
-            writer.WriteStringValue("resourcesFolderUrl", ResourcesFolderUrl);
             writer.WriteObjectValue<EducationRubric>("rubric", Rubric);
-            writer.WriteEnumValue<EducationAssignmentStatus>("status", Status);
             writer.WriteCollectionOfObjectValues<EducationSubmission>("submissions", Submissions);
-            writer.WriteStringValue("webUrl", WebUrl);
         }
     }
 }

@@ -22,11 +22,11 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Dismiss {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action dismiss
+        /// Dismiss the risk of one or more riskyUser objects. This action sets the targeted user&apos;s risk level to none.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action dismiss";
+            command.Description = "Dismiss the risk of one or more riskyUser objects. This action sets the targeted user's risk level to none.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -63,7 +63,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Dismiss {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action dismiss
+        /// Dismiss the risk of one or more riskyUser objects. This action sets the targeted user&apos;s risk level to none.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

@@ -37,11 +37,11 @@ namespace ApiSdk.Education.Me.Schools {
             return command;
         }
         /// <summary>
-        /// Schools to which the user belongs. Nullable.
+        /// Retrieve a list of schools for a user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Schools to which the user belongs. Nullable.";
+            command.Description = "Retrieve a list of schools for a user.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -154,7 +154,7 @@ namespace ApiSdk.Education.Me.Schools {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Schools to which the user belongs. Nullable.
+        /// Retrieve a list of schools for a user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SchoolsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -173,7 +173,7 @@ namespace ApiSdk.Education.Me.Schools {
             }
             return requestInfo;
         }
-        /// <summary>Schools to which the user belongs. Nullable.</summary>
+        /// <summary>Retrieve a list of schools for a user.</summary>
         public class SchoolsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

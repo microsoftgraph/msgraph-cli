@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class PrintTask : Entity, IParsable {
         /// <summary>The definition property</summary>
         public PrintTaskDefinition Definition { get; set; }

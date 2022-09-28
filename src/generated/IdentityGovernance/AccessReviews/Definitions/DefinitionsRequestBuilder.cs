@@ -42,11 +42,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to definitions for identityGovernance
+        /// Create a new accessReviewScheduleDefinition object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to definitions for identityGovernance";
+            command.Description = "Create a new accessReviewScheduleDefinition object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -91,11 +91,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             return command;
         }
         /// <summary>
-        /// Represents the template and scheduling for an access review.
+        /// Get a list of the accessReviewScheduleDefinition objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents the template and scheduling for an access review.";
+            command.Description = "Get a list of the accessReviewScheduleDefinition objects and their properties.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -208,7 +208,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents the template and scheduling for an access review.
+        /// Get a list of the accessReviewScheduleDefinition objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DefinitionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -228,7 +228,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to definitions for identityGovernance
+        /// Create a new accessReviewScheduleDefinition object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -257,7 +257,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>Represents the template and scheduling for an access review.</summary>
+        /// <summary>Get a list of the accessReviewScheduleDefinition objects and their properties.</summary>
         public class DefinitionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

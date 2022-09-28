@@ -9,8 +9,6 @@ namespace ApiSdk.Models {
         public List<DirectoryAudit> DirectoryAudits { get; set; }
         /// <summary>The provisioning property</summary>
         public List<ProvisioningObjectSummary> Provisioning { get; set; }
-        /// <summary>The restrictedSignIns property</summary>
-        public List<RestrictedSignIn> RestrictedSignIns { get; set; }
         /// <summary>The signIns property</summary>
         public List<SignIn> SignIns { get; set; }
         /// <summary>
@@ -32,10 +30,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"directoryAudits", n => { DirectoryAudits = n.GetCollectionOfObjectValues<DirectoryAudit>(DirectoryAudit.CreateFromDiscriminatorValue).ToList(); } },
-                {"provisioning", n => { Provisioning = n.GetCollectionOfObjectValues<ProvisioningObjectSummary>(ProvisioningObjectSummary.CreateFromDiscriminatorValue).ToList(); } },
-                {"restrictedSignIns", n => { RestrictedSignIns = n.GetCollectionOfObjectValues<RestrictedSignIn>(RestrictedSignIn.CreateFromDiscriminatorValue).ToList(); } },
-                {"signIns", n => { SignIns = n.GetCollectionOfObjectValues<SignIn>(SignIn.CreateFromDiscriminatorValue).ToList(); } },
+                {"directoryAudits", n => { DirectoryAudits = n.GetCollectionOfObjectValues<DirectoryAudit>(DirectoryAudit.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"provisioning", n => { Provisioning = n.GetCollectionOfObjectValues<ProvisioningObjectSummary>(ProvisioningObjectSummary.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"signIns", n => { SignIns = n.GetCollectionOfObjectValues<SignIn>(SignIn.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +44,6 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<DirectoryAudit>("directoryAudits", DirectoryAudits);
             writer.WriteCollectionOfObjectValues<ProvisioningObjectSummary>("provisioning", Provisioning);
-            writer.WriteCollectionOfObjectValues<RestrictedSignIn>("restrictedSignIns", RestrictedSignIns);
             writer.WriteCollectionOfObjectValues<SignIn>("signIns", SignIns);
         }
     }

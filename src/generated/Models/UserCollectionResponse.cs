@@ -4,45 +4,34 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    public class UserCollectionResponse : IAdditionalDataHolder, IParsable {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The OdataNextLink property</summary>
-        public string OdataNextLink { get; set; }
+    /// <summary>Casts the previous resource to user.</summary>
+    public class UserCollectionResponse : BaseCollectionPaginationCountResponse, IParsable {
         /// <summary>The value property</summary>
         public List<User> Value { get; set; }
-        /// <summary>
-        /// Instantiates a new UserCollectionResponse and sets the default values.
-        /// </summary>
-        public UserCollectionResponse() {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static UserCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new UserCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UserCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.nextLink", n => { OdataNextLink = n.GetStringValue(); } },
-                {"value", n => { Value = n.GetCollectionOfObjectValues<User>(User.CreateFromDiscriminatorValue).ToList(); } },
+        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+                {"value", n => { Value = n.GetCollectionOfObjectValues<User>(User.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
-        public void Serialize(ISerializationWriter writer) {
+        public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("@odata.nextLink", OdataNextLink);
+            base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<User>("value", Value);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

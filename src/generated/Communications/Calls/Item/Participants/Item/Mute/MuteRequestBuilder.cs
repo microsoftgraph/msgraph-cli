@@ -23,11 +23,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.Mute {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action mute
+        /// Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action mute";
+            command.Description = "Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation.";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.Mute {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action mute
+        /// Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

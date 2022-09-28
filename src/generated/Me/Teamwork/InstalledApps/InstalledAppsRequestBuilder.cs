@@ -40,11 +40,11 @@ namespace ApiSdk.Me.Teamwork.InstalledApps {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to installedApps for me
+        /// Install an app in the personal scope of the specified user.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to installedApps for me";
+            command.Description = "Install an app in the personal scope of the specified user.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -89,11 +89,11 @@ namespace ApiSdk.Me.Teamwork.InstalledApps {
             return command;
         }
         /// <summary>
-        /// The apps installed in the personal scope of this user.
+        /// Retrieve the list of apps installed in the personal scope of the specified user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The apps installed in the personal scope of this user.";
+            command.Description = "Retrieve the list of apps installed in the personal scope of the specified user.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The apps installed in the personal scope of this user.
+        /// Retrieve the list of apps installed in the personal scope of the specified user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<InstalledAppsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -226,7 +226,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to installedApps for me
+        /// Install an app in the personal scope of the specified user.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps {
             }
             return requestInfo;
         }
-        /// <summary>The apps installed in the personal scope of this user.</summary>
+        /// <summary>Retrieve the list of apps installed in the personal scope of the specified user.</summary>
         public class InstalledAppsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

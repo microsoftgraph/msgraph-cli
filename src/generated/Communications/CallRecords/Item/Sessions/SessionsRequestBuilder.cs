@@ -95,11 +95,11 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
             return command;
         }
         /// <summary>
-        /// List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.
+        /// Retrieve the list of sessions associated with a callRecord object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.";
+            command.Description = "Retrieve the list of sessions associated with a callRecord object.";
             // Create options for all the parameters
             var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.
+        /// Retrieve the list of sessions associated with a callRecord object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SessionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -259,7 +259,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
             }
             return requestInfo;
         }
-        /// <summary>List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.</summary>
+        /// <summary>Retrieve the list of sessions associated with a callRecord object.</summary>
         public class SessionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

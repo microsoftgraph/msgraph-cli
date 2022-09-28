@@ -35,7 +35,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"deviceStates", n => { DeviceStates = n.GetCollectionOfObjectValues<DeviceInstallState>(DeviceInstallState.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceStates", n => { DeviceStates = n.GetCollectionOfObjectValues<DeviceInstallState>(DeviceInstallState.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"failedDeviceCount", n => { FailedDeviceCount = n.GetIntValue(); } },
                 {"installedDeviceCount", n => { InstalledDeviceCount = n.GetIntValue(); } },
                 {"notInstalledDeviceCount", n => { NotInstalledDeviceCount = n.GetIntValue(); } },

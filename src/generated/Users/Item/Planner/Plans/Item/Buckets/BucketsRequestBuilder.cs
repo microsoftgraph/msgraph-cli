@@ -101,11 +101,11 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Retrieve a list of plannerBucket objects contained by a plannerPlan object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Collection of buckets in the plan.";
+            command.Description = "Retrieve a list of plannerBucket objects contained by a plannerPlan object.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -230,7 +230,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Retrieve a list of plannerBucket objects contained by a plannerPlan object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<BucketsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -271,7 +271,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Collection of buckets in the plan.</summary>
+        /// <summary>Retrieve a list of plannerBucket objects contained by a plannerPlan object.</summary>
         public class BucketsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

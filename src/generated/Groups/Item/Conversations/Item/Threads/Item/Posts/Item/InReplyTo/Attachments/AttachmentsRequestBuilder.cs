@@ -30,7 +30,6 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             var builder = new AttachmentItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         public Command BuildCountCommand() {
@@ -119,11 +118,11 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// Retrieve a list of attachment objects attached to a post.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Supports $expand.";
+            command.Description = "Retrieve a list of attachment objects attached to a post.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -254,7 +253,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// Retrieve a list of attachment objects attached to a post.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AttachmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -295,7 +294,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Retrieve a list of attachment objects attached to a post.</summary>
         public class AttachmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

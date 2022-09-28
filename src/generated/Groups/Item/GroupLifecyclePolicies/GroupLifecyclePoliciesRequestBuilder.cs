@@ -96,11 +96,11 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies {
             return command;
         }
         /// <summary>
-        /// The collection of lifecycle policies for this group. Read-only. Nullable.
+        /// Retrieves a list of groupLifecyclePolicy objects to which a group belongs.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of lifecycle policies for this group. Read-only. Nullable.";
+            command.Description = "Retrieves a list of groupLifecyclePolicy objects to which a group belongs.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -219,7 +219,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of lifecycle policies for this group. Read-only. Nullable.
+        /// Retrieves a list of groupLifecyclePolicy objects to which a group belongs.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GroupLifecyclePoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -260,7 +260,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies {
             }
             return requestInfo;
         }
-        /// <summary>The collection of lifecycle policies for this group. Read-only. Nullable.</summary>
+        /// <summary>Retrieves a list of groupLifecyclePolicy objects to which a group belongs.</summary>
         public class GroupLifecyclePoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

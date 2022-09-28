@@ -28,10 +28,12 @@ namespace ApiSdk.Communications.Calls {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new CallItemRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAddLargeGalleryViewCommand());
             command.AddCommand(builder.BuildAnswerCommand());
             command.AddCommand(builder.BuildAudioRoutingGroupsCommand());
             command.AddCommand(builder.BuildCancelMediaProcessingCommand());
             command.AddCommand(builder.BuildChangeScreenSharingRoleCommand());
+            command.AddCommand(builder.BuildContentSharingSessionsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildKeepAliveCommand());
@@ -56,11 +58,11 @@ namespace ApiSdk.Communications.Calls {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to calls for communications
+        /// Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to calls for communications";
+            command.Description = "Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -248,7 +250,7 @@ namespace ApiSdk.Communications.Calls {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to calls for communications
+        /// Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

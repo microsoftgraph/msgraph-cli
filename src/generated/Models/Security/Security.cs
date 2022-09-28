@@ -32,10 +32,10 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"alerts", n => { Alerts = n.GetCollectionOfObjectValues<ApiSdk.Models.Alert>(ApiSdk.Models.Alert.CreateFromDiscriminatorValue).ToList(); } },
+                {"alerts", n => { Alerts = n.GetCollectionOfObjectValues<ApiSdk.Models.Alert>(ApiSdk.Models.Alert.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"cases", n => { Cases = n.GetObjectValue<CasesRoot>(CasesRoot.CreateFromDiscriminatorValue); } },
-                {"secureScoreControlProfiles", n => { SecureScoreControlProfiles = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlProfile>(ApiSdk.Models.SecureScoreControlProfile.CreateFromDiscriminatorValue).ToList(); } },
-                {"secureScores", n => { SecureScores = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScore>(ApiSdk.Models.SecureScore.CreateFromDiscriminatorValue).ToList(); } },
+                {"secureScoreControlProfiles", n => { SecureScoreControlProfiles = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlProfile>(ApiSdk.Models.SecureScoreControlProfile.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"secureScores", n => { SecureScores = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScore>(ApiSdk.Models.SecureScore.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

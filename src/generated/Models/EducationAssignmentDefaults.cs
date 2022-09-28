@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
         /// <summary>Default Teams channel to which notifications will be sent. Default value is null.</summary>
         public string NotificationChannelUrl { get; set; }
         /// <summary>
-        /// Instantiates a new EducationAssignmentDefaults and sets the default values.
+        /// Instantiates a new educationAssignmentDefaults and sets the default values.
         /// </summary>
         public EducationAssignmentDefaults() : base() {
             OdataType = "#microsoft.graph.educationAssignmentDefaults";

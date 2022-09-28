@@ -98,11 +98,11 @@ namespace ApiSdk.Planner.Plans.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of tasks in the plan.
+        /// Retrieve a list of plannerTask objects associated with a plannerPlan object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Collection of tasks in the plan.";
+            command.Description = "Retrieve a list of plannerTask objects associated with a plannerPlan object.";
             // Create options for all the parameters
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
             };
@@ -221,7 +221,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of tasks in the plan.
+        /// Retrieve a list of plannerTask objects associated with a plannerPlan object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TasksRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -262,7 +262,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Collection of tasks in the plan.</summary>
+        /// <summary>Retrieve a list of plannerTask objects associated with a plannerPlan object.</summary>
         public class TasksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

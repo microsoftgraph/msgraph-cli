@@ -96,11 +96,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return command;
         }
         /// <summary>
-        /// A list of pending user consent requests. Supports $filter (eq).
+        /// Retrieve a collection of userConsentRequest objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A list of pending user consent requests. Supports $filter (eq).";
+            command.Description = "Retrieve a collection of userConsentRequest objects and their properties.";
             // Create options for all the parameters
             var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
             };
@@ -219,7 +219,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A list of pending user consent requests. Supports $filter (eq).
+        /// Retrieve a collection of userConsentRequest objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UserConsentRequestsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -268,7 +268,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>A list of pending user consent requests. Supports $filter (eq).</summary>
+        /// <summary>Retrieve a collection of userConsentRequest objects and their properties.</summary>
         public class UserConsentRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

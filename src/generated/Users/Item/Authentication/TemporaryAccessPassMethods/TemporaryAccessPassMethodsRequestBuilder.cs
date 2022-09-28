@@ -29,7 +29,6 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods {
             var builder = new TemporaryAccessPassAuthenticationMethodItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         public Command BuildCountCommand() {
@@ -39,11 +38,11 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to temporaryAccessPassMethods for users
+        /// Create a new temporaryAccessPassAuthenticationMethod object on a user. A user can only have one Temporary Access Pass that&apos;s usable within its specified lifetime. If the user requires a new Temporary Access Pass while the current Temporary Access Pass is valid, the admin can create a new Temporary Access Pass for the user, the previous Temporary Access Pass will be deleted, and a new Temporary Access Pass will be created.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to temporaryAccessPassMethods for users";
+            command.Description = "Create a new temporaryAccessPassAuthenticationMethod object on a user. A user can only have one Temporary Access Pass that's usable within its specified lifetime. If the user requires a new Temporary Access Pass while the current Temporary Access Pass is valid, the admin can create a new Temporary Access Pass for the user, the previous Temporary Access Pass will be deleted, and a new Temporary Access Pass will be created.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -94,11 +93,11 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods {
             return command;
         }
         /// <summary>
-        /// Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.
+        /// Retrieve a list of a user&apos;s temporaryAccessPassAuthenticationMethod objects and their properties. This API will only return a single object in the collection as a user can have only one Temporary Access Pass method.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.";
+            command.Description = "Retrieve a list of a user's temporaryAccessPassAuthenticationMethod objects and their properties. This API will only return a single object in the collection as a user can have only one Temporary Access Pass method.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -217,7 +216,7 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.
+        /// Retrieve a list of a user&apos;s temporaryAccessPassAuthenticationMethod objects and their properties. This API will only return a single object in the collection as a user can have only one Temporary Access Pass method.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TemporaryAccessPassMethodsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +236,7 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to temporaryAccessPassMethods for users
+        /// Create a new temporaryAccessPassAuthenticationMethod object on a user. A user can only have one Temporary Access Pass that&apos;s usable within its specified lifetime. If the user requires a new Temporary Access Pass while the current Temporary Access Pass is valid, the admin can create a new Temporary Access Pass for the user, the previous Temporary Access Pass will be deleted, and a new Temporary Access Pass will be created.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +257,7 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods {
             }
             return requestInfo;
         }
-        /// <summary>Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.</summary>
+        /// <summary>Retrieve a list of a user&apos;s temporaryAccessPassAuthenticationMethod objects and their properties. This API will only return a single object in the collection as a user can have only one Temporary Access Pass method.</summary>
         public class TemporaryAccessPassMethodsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

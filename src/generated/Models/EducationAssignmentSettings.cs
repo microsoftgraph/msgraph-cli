@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether turn-in celebration animation will be shown. A value of true indicates that the animation will not be shown. Default value is false.</summary>
         public bool? SubmissionAnimationDisabled { get; set; }
         /// <summary>
-        /// Instantiates a new EducationAssignmentSettings and sets the default values.
+        /// Instantiates a new educationAssignmentSettings and sets the default values.
         /// </summary>
         public EducationAssignmentSettings() : base() {
             OdataType = "#microsoft.graph.educationAssignmentSettings";

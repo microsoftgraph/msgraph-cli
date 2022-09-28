@@ -95,11 +95,11 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods {
             return command;
         }
         /// <summary>
-        /// Represents the Windows Hello for Business authentication method registered to a user for authentication.
+        /// Get a list of the windowsHelloForBusinessAuthenticationMethod objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents the Windows Hello for Business authentication method registered to a user for authentication.";
+            command.Description = "Get a list of the windowsHelloForBusinessAuthenticationMethod objects and their properties.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents the Windows Hello for Business authentication method registered to a user for authentication.
+        /// Get a list of the windowsHelloForBusinessAuthenticationMethod objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<WindowsHelloForBusinessMethodsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -259,7 +259,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods {
             }
             return requestInfo;
         }
-        /// <summary>Represents the Windows Hello for Business authentication method registered to a user for authentication.</summary>
+        /// <summary>Get a list of the windowsHelloForBusinessAuthenticationMethod objects and their properties.</summary>
         public class WindowsHelloForBusinessMethodsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

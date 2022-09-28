@@ -1,7 +1,7 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Teams.Item.Channels.Item.CompleteMigration;
-using ApiSdk.Teams.Item.Channels.Item.DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalName;
+using ApiSdk.Teams.Item.Channels.Item.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName;
 using ApiSdk.Teams.Item.Channels.Item.FilesFolder;
 using ApiSdk.Teams.Item.Channels.Item.Members;
 using ApiSdk.Teams.Item.Channels.Item.Messages;
@@ -187,10 +187,28 @@ namespace ApiSdk.Teams.Item.Channels.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
                 var channelId = invocationContext.ParseResult.GetValueForOption(channelIdOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
@@ -203,8 +221,11 @@ namespace ApiSdk.Teams.Item.Channels.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
             return command;
         }
@@ -301,6 +322,7 @@ namespace ApiSdk.Teams.Item.Channels.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new ChannelItemRequestBuilderPatchRequestConfiguration();
@@ -313,8 +335,8 @@ namespace ApiSdk.Teams.Item.Channels.Item {
         /// <summary>
         /// Provides operations to call the doesUserHaveAccess method.
         /// </summary>
-        public DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalNameRequestBuilder DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalName() {
-            return new DoesUserHaveAccessWithUserIdWithTenantIdWithUserPrincipalNameRequestBuilder(PathParameters, RequestAdapter);
+        public DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName() {
+            return new DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class ChannelItemRequestBuilderDeleteRequestConfiguration {

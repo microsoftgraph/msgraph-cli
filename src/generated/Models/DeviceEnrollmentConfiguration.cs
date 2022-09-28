@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>The Base Class of Device Enrollment Configuration</summary>
     public class DeviceEnrollmentConfiguration : Entity, IParsable {
         /// <summary>The list of group assignments for the device configuration profile</summary>
         public List<EnrollmentConfigurationAssignment> Assignments { get; set; }
@@ -21,7 +22,7 @@ namespace ApiSdk.Models {
         /// <summary>The version of the device enrollment configuration</summary>
         public int? Version { get; set; }
         /// <summary>
-        /// Instantiates a new DeviceEnrollmentConfiguration and sets the default values.
+        /// Instantiates a new deviceEnrollmentConfiguration and sets the default values.
         /// </summary>
         public DeviceEnrollmentConfiguration() : base() {
             OdataType = "#microsoft.graph.deviceEnrollmentConfiguration";
@@ -32,8 +33,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new DeviceEnrollmentConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.deviceEnrollmentLimitConfiguration" => new DeviceEnrollmentLimitConfiguration(),
                 "#microsoft.graph.deviceEnrollmentPlatformRestrictionsConfiguration" => new DeviceEnrollmentPlatformRestrictionsConfiguration(),
@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"assignments", n => { Assignments = n.GetCollectionOfObjectValues<EnrollmentConfigurationAssignment>(EnrollmentConfigurationAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"assignments", n => { Assignments = n.GetCollectionOfObjectValues<EnrollmentConfigurationAssignment>(EnrollmentConfigurationAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },

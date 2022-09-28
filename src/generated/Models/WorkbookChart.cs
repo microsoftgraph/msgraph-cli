@@ -56,7 +56,7 @@ namespace ApiSdk.Models {
                 {"left", n => { Left = n.GetDoubleValue(); } },
                 {"legend", n => { Legend = n.GetObjectValue<WorkbookChartLegend>(WorkbookChartLegend.CreateFromDiscriminatorValue); } },
                 {"name", n => { Name = n.GetStringValue(); } },
-                {"series", n => { Series = n.GetCollectionOfObjectValues<WorkbookChartSeries>(WorkbookChartSeries.CreateFromDiscriminatorValue).ToList(); } },
+                {"series", n => { Series = n.GetCollectionOfObjectValues<WorkbookChartSeries>(WorkbookChartSeries.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"title", n => { Title = n.GetObjectValue<WorkbookChartTitle>(WorkbookChartTitle.CreateFromDiscriminatorValue); } },
                 {"top", n => { Top = n.GetDoubleValue(); } },
                 {"width", n => { Width = n.GetDoubleValue(); } },

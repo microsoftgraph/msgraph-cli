@@ -94,11 +94,11 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             return command;
         }
         /// <summary>
-        /// The activity related to user risk level change
+        /// Read the properties and relationships of a riskyUserHistoryItem object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The activity related to user risk level change";
+            command.Description = "Read the properties and relationships of a riskyUserHistoryItem object.";
             // Create options for all the parameters
             var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The activity related to user risk level change
+        /// Read the properties and relationships of a riskyUserHistoryItem object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<HistoryRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             }
             return requestInfo;
         }
-        /// <summary>The activity related to user risk level change</summary>
+        /// <summary>Read the properties and relationships of a riskyUserHistoryItem object.</summary>
         public class HistoryRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -22,11 +22,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.EstimateStati
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action estimateStatistics
+        /// Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium).
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action estimateStatistics";
+            command.Description = "Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium).";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.EstimateStati
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action estimateStatistics
+        /// Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium).
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<EstimateStatisticsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

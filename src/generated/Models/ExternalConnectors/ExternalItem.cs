@@ -31,7 +31,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"acl", n => { Acl = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.Acl>(ApiSdk.Models.ExternalConnectors.Acl.CreateFromDiscriminatorValue).ToList(); } },
+                {"acl", n => { Acl = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.Acl>(ApiSdk.Models.ExternalConnectors.Acl.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"content", n => { Content = n.GetObjectValue<ExternalItemContent>(ExternalItemContent.CreateFromDiscriminatorValue); } },
                 {"properties", n => { Properties = n.GetObjectValue<ApiSdk.Models.ExternalConnectors.Properties>(ApiSdk.Models.ExternalConnectors.Properties.CreateFromDiscriminatorValue); } },
             };

@@ -30,7 +30,7 @@ namespace ApiSdk.Drive.Root.GetActivitiesByIntervalWithStartDateTimeWithEndDateT
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<ItemActivityStat>(ItemActivityStat.CreateFromDiscriminatorValue).ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfObjectValues<ItemActivityStat>(ItemActivityStat.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

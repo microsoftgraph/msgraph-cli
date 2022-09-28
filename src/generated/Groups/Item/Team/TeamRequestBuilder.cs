@@ -12,6 +12,7 @@ using ApiSdk.Groups.Item.Team.Photo;
 using ApiSdk.Groups.Item.Team.PrimaryChannel;
 using ApiSdk.Groups.Item.Team.Schedule;
 using ApiSdk.Groups.Item.Team.SendActivityNotification;
+using ApiSdk.Groups.Item.Team.Tags;
 using ApiSdk.Groups.Item.Team.Template;
 using ApiSdk.Groups.Item.Team.Unarchive;
 using ApiSdk.Models;
@@ -209,11 +210,11 @@ namespace ApiSdk.Groups.Item.Team {
             return command;
         }
         /// <summary>
-        /// Update the navigation property team in groups
+        /// Create a new team under a group. In order to create a team, the group must have a least one owner. If the group was created less than 15 minutes ago, it&apos;s possible for the Create team call to fail with a 404 error code due to replication delays. The recommended pattern is to retry the Create team call three times, with a 10 second delay between calls.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property team in groups";
+            command.Description = "Create a new team under a group. In order to create a team, the group must have a least one owner. If the group was created less than 15 minutes ago, it's possible for the Create team call to fail with a 404 error code due to replication delays. The recommended pattern is to retry the Create team call three times, with a 10 second delay between calls.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -223,9 +224,27 @@ namespace ApiSdk.Groups.Item.Team {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
@@ -237,8 +256,11 @@ namespace ApiSdk.Groups.Item.Team {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
             return command;
         }
@@ -289,6 +311,15 @@ namespace ApiSdk.Groups.Item.Team {
             var command = new Command("send-activity-notification");
             var builder = new SendActivityNotificationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        public Command BuildTagsCommand() {
+            var command = new Command("tags");
+            var builder = new TagsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildTemplateCommand() {
@@ -355,7 +386,7 @@ namespace ApiSdk.Groups.Item.Team {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property team in groups
+        /// Create a new team under a group. In order to create a team, the group must have a least one owner. If the group was created less than 15 minutes ago, it&apos;s possible for the Create team call to fail with a 404 error code due to replication delays. The recommended pattern is to retry the Create team call three times, with a 10 second delay between calls.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -366,6 +397,7 @@ namespace ApiSdk.Groups.Item.Team {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new TeamRequestBuilderPatchRequestConfiguration();

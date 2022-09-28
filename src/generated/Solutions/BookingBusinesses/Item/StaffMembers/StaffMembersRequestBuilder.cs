@@ -39,11 +39,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to staffMembers for solutions
+        /// Create a new bookingStaffMember in the specified bookingBusiness.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to staffMembers for solutions";
+            command.Description = "Create a new bookingStaffMember in the specified bookingBusiness.";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers {
             return command;
         }
         /// <summary>
-        /// All the staff members that provide services in this business. Read-only. Nullable.
+        /// Get a list of bookingStaffMember objects in the specified bookingBusiness.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All the staff members that provide services in this business. Read-only. Nullable.";
+            command.Description = "Get a list of bookingStaffMember objects in the specified bookingBusiness.";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// All the staff members that provide services in this business. Read-only. Nullable.
+        /// Get a list of bookingStaffMember objects in the specified bookingBusiness.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<StaffMembersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +237,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to staffMembers for solutions
+        /// Create a new bookingStaffMember in the specified bookingBusiness.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers {
             }
             return requestInfo;
         }
-        /// <summary>All the staff members that provide services in this business. Read-only. Nullable.</summary>
+        /// <summary>Get a list of bookingStaffMember objects in the specified bookingBusiness.</summary>
         public class StaffMembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

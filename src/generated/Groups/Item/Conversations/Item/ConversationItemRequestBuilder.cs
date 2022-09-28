@@ -121,46 +121,6 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             });
             return command;
         }
-        /// <summary>
-        /// Update the navigation property conversations in groups
-        /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
-            command.Description = "Update the navigation property conversations in groups";
-            // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
-            };
-            groupIdOption.IsRequired = true;
-            command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
-            };
-            conversationIdOption.IsRequired = true;
-            command.AddOption(conversationIdOption);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (invocationContext) => {
-                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
-                var conversationId = invocationContext.ParseResult.GetValueForOption(conversationIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Conversation>(Conversation.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
-                });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("conversation%2Did", conversationId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
         public Command BuildThreadsCommand() {
             var command = new Command("threads");
             var builder = new ThreadsRequestBuilder(PathParameters, RequestAdapter);
@@ -221,27 +181,6 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             }
             return requestInfo;
         }
-        /// <summary>
-        /// Update the navigation property conversations in groups
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreatePatchRequestInformation(Conversation body, Action<ConversationItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new ConversationItemRequestBuilderPatchRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
         /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class ConversationItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
@@ -274,20 +213,6 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             /// Instantiates a new ConversationItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ConversationItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class ConversationItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new ConversationItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public ConversationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }

@@ -46,11 +46,11 @@ namespace ApiSdk.Chats.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to members for chats
+        /// Add a conversationMember to a chat.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to members for chats";
+            command.Description = "Add a conversationMember to a chat.";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -101,11 +101,11 @@ namespace ApiSdk.Chats.Item.Members {
             return command;
         }
         /// <summary>
-        /// A collection of all the members in the chat. Nullable.
+        /// List all conversation members in a chat.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of all the members in the chat. Nullable.";
+            command.Description = "List all conversation members in a chat.";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -224,7 +224,7 @@ namespace ApiSdk.Chats.Item.Members {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of all the members in the chat. Nullable.
+        /// List all conversation members in a chat.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MembersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -244,7 +244,7 @@ namespace ApiSdk.Chats.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to members for chats
+        /// Add a conversationMember to a chat.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -265,7 +265,7 @@ namespace ApiSdk.Chats.Item.Members {
             }
             return requestInfo;
         }
-        /// <summary>A collection of all the members in the chat. Nullable.</summary>
+        /// <summary>List all conversation members in a chat.</summary>
         public class MembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

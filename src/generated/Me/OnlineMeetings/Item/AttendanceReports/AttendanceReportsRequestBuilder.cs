@@ -95,11 +95,11 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports {
             return command;
         }
         /// <summary>
-        /// The attendance reports of an online meeting. Read-only.
+        /// Get a list of meetingAttendanceReport objects for an onlineMeeting. Each time an online meeting ends, an attendance report is generated for that session.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The attendance reports of an online meeting. Read-only.";
+            command.Description = "Get a list of meetingAttendanceReport objects for an onlineMeeting. Each time an online meeting ends, an attendance report is generated for that session.";
             // Create options for all the parameters
             var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The attendance reports of an online meeting. Read-only.
+        /// Get a list of meetingAttendanceReport objects for an onlineMeeting. Each time an online meeting ends, an attendance report is generated for that session.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AttendanceReportsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -259,7 +259,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports {
             }
             return requestInfo;
         }
-        /// <summary>The attendance reports of an online meeting. Read-only.</summary>
+        /// <summary>Get a list of meetingAttendanceReport objects for an onlineMeeting. Each time an online meeting ends, an attendance report is generated for that session.</summary>
         public class AttendanceReportsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

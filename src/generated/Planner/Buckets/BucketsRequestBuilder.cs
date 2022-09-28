@@ -40,11 +40,11 @@ namespace ApiSdk.Planner.Buckets {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to buckets for planner
+        /// Use this API to create a new **plannerBucket**.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to buckets for planner";
+            command.Description = "Use this API to create a new **plannerBucket**.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -89,11 +89,11 @@ namespace ApiSdk.Planner.Buckets {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified buckets
+        /// Retrieve a list of **plannerbucket** objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified buckets";
+            command.Description = "Retrieve a list of **plannerbucket** objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Planner.Buckets {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified buckets
+        /// Retrieve a list of **plannerbucket** objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<BucketsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -226,7 +226,7 @@ namespace ApiSdk.Planner.Buckets {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to buckets for planner
+        /// Use this API to create a new **plannerBucket**.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.Planner.Buckets {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Returns a collection of the specified buckets</summary>
+        /// <summary>Retrieve a list of **plannerbucket** objects.</summary>
         public class BucketsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

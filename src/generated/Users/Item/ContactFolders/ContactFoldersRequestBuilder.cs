@@ -44,11 +44,11 @@ namespace ApiSdk.Users.Item.ContactFolders {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to contactFolders for users
+        /// Create a new contactFolder under the user&apos;s default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to contactFolders for users";
+            command.Description = "Create a new contactFolder under the user's default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -99,11 +99,11 @@ namespace ApiSdk.Users.Item.ContactFolders {
             return command;
         }
         /// <summary>
-        /// The user&apos;s contacts folders. Read-only. Nullable.
+        /// Get the contact folder collection in the default Contacts folder of the signed-in user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The user's contacts folders. Read-only. Nullable.";
+            command.Description = "Get the contact folder collection in the default Contacts folder of the signed-in user.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.Users.Item.ContactFolders {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user&apos;s contacts folders. Read-only. Nullable.
+        /// Get the contact folder collection in the default Contacts folder of the signed-in user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ContactFoldersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -229,7 +229,7 @@ namespace ApiSdk.Users.Item.ContactFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to contactFolders for users
+        /// Create a new contactFolder under the user&apos;s default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -256,7 +256,7 @@ namespace ApiSdk.Users.Item.ContactFolders {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The user&apos;s contacts folders. Read-only. Nullable.</summary>
+        /// <summary>Get the contact folder collection in the default Contacts folder of the signed-in user.</summary>
         public class ContactFoldersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

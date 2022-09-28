@@ -41,11 +41,11 @@ namespace ApiSdk.Groups.Item.Threads {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to threads for groups
+        /// Start a new group conversation by first creating a thread. A new conversation, conversation thread, and post are created in the group.Use reply thread or reply post to further post to that thread. Note: You can also start a new thread in an existing conversation.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to threads for groups";
+            command.Description = "Start a new group conversation by first creating a thread. A new conversation, conversation thread, and post are created in the group.Use reply thread or reply post to further post to that thread. Note: You can also start a new thread in an existing conversation.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -96,11 +96,11 @@ namespace ApiSdk.Groups.Item.Threads {
             return command;
         }
         /// <summary>
-        /// The group&apos;s conversation threads. Nullable.
+        /// Get all the threads of a group.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The group's conversation threads. Nullable.";
+            command.Description = "Get all the threads of a group.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Groups.Item.Threads {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The group&apos;s conversation threads. Nullable.
+        /// Get all the threads of a group.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ThreadsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -226,7 +226,7 @@ namespace ApiSdk.Groups.Item.Threads {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to threads for groups
+        /// Start a new group conversation by first creating a thread. A new conversation, conversation thread, and post are created in the group.Use reply thread or reply post to further post to that thread. Note: You can also start a new thread in an existing conversation.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.Groups.Item.Threads {
             }
             return requestInfo;
         }
-        /// <summary>The group&apos;s conversation threads. Nullable.</summary>
+        /// <summary>Get all the threads of a group.</summary>
         public class ThreadsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

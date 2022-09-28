@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members.Add {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<ActionResultPart>(ActionResultPart.CreateFromDiscriminatorValue).ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfObjectValues<ActionResultPart>(ActionResultPart.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

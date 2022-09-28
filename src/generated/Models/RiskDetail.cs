@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public enum RiskDetail {
         None,
         AdminGeneratedTemporaryPassword,
@@ -13,5 +13,6 @@ namespace ApiSdk.Models {
         Hidden,
         AdminConfirmedUserCompromised,
         UnknownFutureValue,
+        M365DAdminDismissedDetection,
     }
 }

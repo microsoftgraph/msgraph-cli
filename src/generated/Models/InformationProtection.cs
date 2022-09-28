@@ -29,7 +29,7 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"bitlocker", n => { Bitlocker = n.GetObjectValue<ApiSdk.Models.Bitlocker>(ApiSdk.Models.Bitlocker.CreateFromDiscriminatorValue); } },
-                {"threatAssessmentRequests", n => { ThreatAssessmentRequests = n.GetCollectionOfObjectValues<ThreatAssessmentRequest>(ThreatAssessmentRequest.CreateFromDiscriminatorValue).ToList(); } },
+                {"threatAssessmentRequests", n => { ThreatAssessmentRequests = n.GetCollectionOfObjectValues<ThreatAssessmentRequest>(ThreatAssessmentRequest.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

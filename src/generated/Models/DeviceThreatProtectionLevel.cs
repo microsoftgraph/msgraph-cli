@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
+    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
     public enum DeviceThreatProtectionLevel {
         /// <summary>Default Value. Do not use.</summary>
         Unavailable,

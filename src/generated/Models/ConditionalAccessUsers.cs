@@ -41,12 +41,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"excludeGroups", n => { ExcludeGroups = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"excludeRoles", n => { ExcludeRoles = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"excludeUsers", n => { ExcludeUsers = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"includeGroups", n => { IncludeGroups = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"includeRoles", n => { IncludeRoles = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"includeUsers", n => { IncludeUsers = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"excludeGroups", n => { ExcludeGroups = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"excludeRoles", n => { ExcludeRoles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"excludeUsers", n => { ExcludeUsers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"includeGroups", n => { IncludeGroups = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"includeRoles", n => { IncludeRoles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"includeUsers", n => { IncludeUsers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }

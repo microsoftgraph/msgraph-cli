@@ -33,13 +33,11 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances {
             command.AddCommand(builder.BuildCalendarCommand());
             command.AddCommand(builder.BuildCancelCommand());
             command.AddCommand(builder.BuildDeclineCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildDismissReminderCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
             command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildSnoozeReminderCommand());
             command.AddCommand(builder.BuildTentativelyAcceptCommand());
@@ -52,72 +50,11 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to instances for users
-        /// </summary>
-        public Command BuildCreateCommand() {
-            var command = new Command("create");
-            command.Description = "Create new navigation property to instances for users";
-            // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
-            };
-            userIdOption.IsRequired = true;
-            command.AddOption(userIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
-            };
-            eventIdOption.IsRequired = true;
-            command.AddOption(eventIdOption);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (invocationContext) => {
-                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
-                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
-                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Event>(Event.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
-                });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("event%2Did", eventId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            });
-            return command;
-        }
-        /// <summary>
-        /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
+        /// Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.";
+            command.Description = "Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -229,7 +166,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
+        /// Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<InstancesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -249,34 +186,12 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to instances for users
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreatePostRequestInformation(Event body, Action<InstancesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new InstancesRequestBuilderPostRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.</summary>
+        /// <summary>Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.</summary>
         public class InstancesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
@@ -309,20 +224,6 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances {
             /// Instantiates a new instancesRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public InstancesRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class InstancesRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new instancesRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public InstancesRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }

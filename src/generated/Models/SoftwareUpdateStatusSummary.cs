@@ -36,7 +36,7 @@ namespace ApiSdk.Models {
         /// <summary>Number of unknown users.</summary>
         public int? UnknownUserCount { get; set; }
         /// <summary>
-        /// Instantiates a new SoftwareUpdateStatusSummary and sets the default values.
+        /// Instantiates a new softwareUpdateStatusSummary and sets the default values.
         /// </summary>
         public SoftwareUpdateStatusSummary() : base() {
             OdataType = "#microsoft.graph.softwareUpdateStatusSummary";

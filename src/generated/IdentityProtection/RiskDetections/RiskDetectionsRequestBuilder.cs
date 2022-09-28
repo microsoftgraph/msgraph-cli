@@ -88,11 +88,11 @@ namespace ApiSdk.IdentityProtection.RiskDetections {
             return command;
         }
         /// <summary>
-        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
+        /// Get a list of the riskDetection objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Risk detection in Azure AD Identity Protection and the associated information about the detection.";
+            command.Description = "Get a list of the riskDetection objects and their properties.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
+        /// Get a list of the riskDetection objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RiskDetectionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections {
             }
             return requestInfo;
         }
-        /// <summary>Risk detection in Azure AD Identity Protection and the associated information about the detection.</summary>
+        /// <summary>Get a list of the riskDetection objects and their properties.</summary>
         public class RiskDetectionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

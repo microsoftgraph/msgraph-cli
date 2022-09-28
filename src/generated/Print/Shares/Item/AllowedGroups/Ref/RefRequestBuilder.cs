@@ -23,11 +23,11 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The groups whose users have access to print using the printer.
+        /// Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The groups whose users have access to print using the printer.";
+            command.Description = "Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.";
             // Create options for all the parameters
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
             };
@@ -166,7 +166,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The groups whose users have access to print using the printer.
+        /// Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RefRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -206,7 +206,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
             }
             return requestInfo;
         }
-        /// <summary>The groups whose users have access to print using the printer.</summary>
+        /// <summary>Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.</summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

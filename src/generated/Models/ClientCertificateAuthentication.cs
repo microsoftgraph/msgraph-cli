@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"certificateList", n => { CertificateList = n.GetCollectionOfObjectValues<Pkcs12CertificateInformation>(Pkcs12CertificateInformation.CreateFromDiscriminatorValue).ToList(); } },
+                {"certificateList", n => { CertificateList = n.GetCollectionOfObjectValues<Pkcs12CertificateInformation>(Pkcs12CertificateInformation.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

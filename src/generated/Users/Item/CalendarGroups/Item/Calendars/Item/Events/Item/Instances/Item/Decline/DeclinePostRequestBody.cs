@@ -34,9 +34,9 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"comment", n => { Comment = n.GetStringValue(); } },
-                {"proposedNewTime", n => { ProposedNewTime = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
-                {"sendResponse", n => { SendResponse = n.GetBoolValue(); } },
+                {"Comment", n => { Comment = n.GetStringValue(); } },
+                {"ProposedNewTime", n => { ProposedNewTime = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
+                {"SendResponse", n => { SendResponse = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -45,9 +45,9 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("comment", Comment);
-            writer.WriteObjectValue<TimeSlot>("proposedNewTime", ProposedNewTime);
-            writer.WriteBoolValue("sendResponse", SendResponse);
+            writer.WriteStringValue("Comment", Comment);
+            writer.WriteObjectValue<TimeSlot>("ProposedNewTime", ProposedNewTime);
+            writer.WriteBoolValue("SendResponse", SendResponse);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

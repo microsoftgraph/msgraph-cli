@@ -35,7 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"activityDomain", n => { ActivityDomain = n.GetEnumValue<ActivityDomain>(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"timeSlots", n => { TimeSlots = n.GetCollectionOfObjectValues<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue).ToList(); } },
+                {"timeSlots", n => { TimeSlots = n.GetCollectionOfObjectValues<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

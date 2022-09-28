@@ -43,9 +43,9 @@ namespace ApiSdk.Models {
                 {"isDefault", n => { IsDefault = n.GetBoolValue(); } },
                 {"isShared", n => { IsShared = n.GetBoolValue(); } },
                 {"links", n => { Links = n.GetObjectValue<NotebookLinks>(NotebookLinks.CreateFromDiscriminatorValue); } },
-                {"sectionGroups", n => { SectionGroups = n.GetCollectionOfObjectValues<SectionGroup>(SectionGroup.CreateFromDiscriminatorValue).ToList(); } },
+                {"sectionGroups", n => { SectionGroups = n.GetCollectionOfObjectValues<SectionGroup>(SectionGroup.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"sectionGroupsUrl", n => { SectionGroupsUrl = n.GetStringValue(); } },
-                {"sections", n => { Sections = n.GetCollectionOfObjectValues<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue).ToList(); } },
+                {"sections", n => { Sections = n.GetCollectionOfObjectValues<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"sectionsUrl", n => { SectionsUrl = n.GetStringValue(); } },
                 {"userRole", n => { UserRole = n.GetEnumValue<OnenoteUserRole>(); } },
             };

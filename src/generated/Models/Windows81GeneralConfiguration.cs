@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to Block the user from adding email accounts to the device that are not associated with a Microsoft account.</summary>
         public bool? AccountsBlockAddingNonMicrosoftAccountEmail { get; set; }
         /// <summary>Value indicating whether this policy only applies to Windows 8.1. This property is read-only.</summary>
-        public bool? ApplyOnlyToWindows81 { get; set; }
+        public bool? ApplyOnlyToWindows81 { get; private set; }
         /// <summary>Indicates whether or not to block auto fill.</summary>
         public bool? BrowserBlockAutofill { get; set; }
         /// <summary>Indicates whether or not to block automatic detection of Intranet sites.</summary>
@@ -133,7 +133,6 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("accountsBlockAddingNonMicrosoftAccountEmail", AccountsBlockAddingNonMicrosoftAccountEmail);
-            writer.WriteBoolValue("applyOnlyToWindows81", ApplyOnlyToWindows81);
             writer.WriteBoolValue("browserBlockAutofill", BrowserBlockAutofill);
             writer.WriteBoolValue("browserBlockAutomaticDetectionOfIntranetSites", BrowserBlockAutomaticDetectionOfIntranetSites);
             writer.WriteBoolValue("browserBlockEnterpriseModeAccess", BrowserBlockEnterpriseModeAccess);

@@ -89,11 +89,11 @@ namespace ApiSdk.Print.Services {
             return command;
         }
         /// <summary>
-        /// The list of available Universal Print service endpoints.
+        /// Retrieve a list of **printService** objects that represent the services available to your tenant.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of available Universal Print service endpoints.";
+            command.Description = "Retrieve a list of **printService** objects that represent the services available to your tenant.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Print.Services {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The list of available Universal Print service endpoints.
+        /// Retrieve a list of **printService** objects that represent the services available to your tenant.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ServicesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -247,7 +247,7 @@ namespace ApiSdk.Print.Services {
             }
             return requestInfo;
         }
-        /// <summary>The list of available Universal Print service endpoints.</summary>
+        /// <summary>Retrieve a list of **printService** objects that represent the services available to your tenant.</summary>
         public class ServicesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

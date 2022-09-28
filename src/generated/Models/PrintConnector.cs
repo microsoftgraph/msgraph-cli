@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class PrintConnector : Entity, IParsable {
         /// <summary>The connector&apos;s version.</summary>
         public string AppVersion { get; set; }
@@ -18,7 +19,7 @@ namespace ApiSdk.Models {
         /// <summary>The DateTimeOffset when the connector was registered.</summary>
         public DateTimeOffset? RegisteredDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new PrintConnector and sets the default values.
+        /// Instantiates a new printConnector and sets the default values.
         /// </summary>
         public PrintConnector() : base() {
             OdataType = "#microsoft.graph.printConnector";

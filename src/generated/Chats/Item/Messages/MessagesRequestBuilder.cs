@@ -42,11 +42,11 @@ namespace ApiSdk.Chats.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to messages for chats
+        /// Send a new chatMessage in the specified chat. This API can&apos;t create a new chat; you must use the list chats method to retrieve the ID of an existing chat before you can create a chat message.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to messages for chats";
+            command.Description = "Send a new chatMessage in the specified chat. This API can't create a new chat; you must use the list chats method to retrieve the ID of an existing chat before you can create a chat message.";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -97,11 +97,11 @@ namespace ApiSdk.Chats.Item.Messages {
             return command;
         }
         /// <summary>
-        /// A collection of all the messages in the chat. Nullable.
+        /// Retrieve the list of messages in a chat.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of all the messages in the chat. Nullable.";
+            command.Description = "Retrieve the list of messages in a chat.";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -220,7 +220,7 @@ namespace ApiSdk.Chats.Item.Messages {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of all the messages in the chat. Nullable.
+        /// Retrieve the list of messages in a chat.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MessagesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -240,7 +240,7 @@ namespace ApiSdk.Chats.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to messages for chats
+        /// Send a new chatMessage in the specified chat. This API can&apos;t create a new chat; you must use the list chats method to retrieve the ID of an existing chat before you can create a chat message.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -267,7 +267,7 @@ namespace ApiSdk.Chats.Item.Messages {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>A collection of all the messages in the chat. Nullable.</summary>
+        /// <summary>Retrieve the list of messages in a chat.</summary>
         public class MessagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

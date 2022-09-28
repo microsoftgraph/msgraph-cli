@@ -22,11 +22,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action setOrder
+        /// Set the order of identityUserFlowAttributeAssignments being collected within a user flow.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setOrder";
+            command.Description = "Set the order of identityUserFlowAttributeAssignments being collected within a user flow.";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
@@ -69,7 +69,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action setOrder
+        /// Set the order of identityUserFlowAttributeAssignments being collected within a user flow.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

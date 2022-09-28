@@ -35,7 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"actionType", n => { ActionType = n.GetEnumValue<DeviceComplianceActionType>(); } },
                 {"gracePeriodHours", n => { GracePeriodHours = n.GetIntValue(); } },
-                {"notificationMessageCCList", n => { NotificationMessageCCList = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"notificationMessageCCList", n => { NotificationMessageCCList = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"notificationTemplateId", n => { NotificationTemplateId = n.GetStringValue(); } },
             };
         }

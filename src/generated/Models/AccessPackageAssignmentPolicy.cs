@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class AccessPackageAssignmentPolicy : Entity, IParsable {
         /// <summary>Access package containing this policy. Read-only.</summary>
         public ApiSdk.Models.AccessPackage AccessPackage { get; set; }
         /// <summary>Principals that can be assigned the access package through this policy. The possible values are: notSpecified, specificDirectoryUsers, specificConnectedOrganizationUsers, specificDirectoryServicePrincipals, allMemberUsers, allDirectoryUsers, allDirectoryServicePrincipals, allConfiguredConnectedOrganizationUsers, allExternalUsers, unknownFutureValue.</summary>
         public ApiSdk.Models.AllowedTargetScope? AllowedTargetScope { get; set; }
-        /// <summary>The automaticRequestSettings property</summary>
+        /// <summary>This property is only present for an auto assignment policy; if absent, this is a request-based policy.</summary>
         public AccessPackageAutomaticRequestSettings AutomaticRequestSettings { get; set; }
         /// <summary>Catalog of the access package containing this policy. Read-only.</summary>
         public AccessPackageCatalog Catalog { get; set; }
@@ -63,7 +63,7 @@ namespace ApiSdk.Models {
                 {"requestApprovalSettings", n => { RequestApprovalSettings = n.GetObjectValue<AccessPackageAssignmentApprovalSettings>(AccessPackageAssignmentApprovalSettings.CreateFromDiscriminatorValue); } },
                 {"requestorSettings", n => { RequestorSettings = n.GetObjectValue<AccessPackageAssignmentRequestorSettings>(AccessPackageAssignmentRequestorSettings.CreateFromDiscriminatorValue); } },
                 {"reviewSettings", n => { ReviewSettings = n.GetObjectValue<AccessPackageAssignmentReviewSettings>(AccessPackageAssignmentReviewSettings.CreateFromDiscriminatorValue); } },
-                {"specificAllowedTargets", n => { SpecificAllowedTargets = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue).ToList(); } },
+                {"specificAllowedTargets", n => { SpecificAllowedTargets = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

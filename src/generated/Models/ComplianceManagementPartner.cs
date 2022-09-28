@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Compliance management partner for all platforms</summary>
     public class ComplianceManagementPartner : Entity, IParsable {
         /// <summary>User groups which enroll Android devices through partner.</summary>
         public List<ComplianceManagementPartnerAssignment> AndroidEnrollmentAssignments { get; set; }
@@ -24,7 +25,7 @@ namespace ApiSdk.Models {
         /// <summary>Partner state of this tenant.</summary>
         public DeviceManagementPartnerTenantState? PartnerState { get; set; }
         /// <summary>
-        /// Instantiates a new ComplianceManagementPartner and sets the default values.
+        /// Instantiates a new complianceManagementPartner and sets the default values.
         /// </summary>
         public ComplianceManagementPartner() : base() {
             OdataType = "#microsoft.graph.complianceManagementPartner";
@@ -42,13 +43,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"androidEnrollmentAssignments", n => { AndroidEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"androidEnrollmentAssignments", n => { AndroidEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"androidOnboarded", n => { AndroidOnboarded = n.GetBoolValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"iosEnrollmentAssignments", n => { IosEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"iosEnrollmentAssignments", n => { IosEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"iosOnboarded", n => { IosOnboarded = n.GetBoolValue(); } },
                 {"lastHeartbeatDateTime", n => { LastHeartbeatDateTime = n.GetDateTimeOffsetValue(); } },
-                {"macOsEnrollmentAssignments", n => { MacOsEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"macOsEnrollmentAssignments", n => { MacOsEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"macOsOnboarded", n => { MacOsOnboarded = n.GetBoolValue(); } },
                 {"partnerState", n => { PartnerState = n.GetEnumValue<DeviceManagementPartnerTenantState>(); } },
             };

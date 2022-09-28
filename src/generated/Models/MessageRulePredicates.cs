@@ -89,12 +89,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"bodyContains", n => { BodyContains = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"bodyOrSubjectContains", n => { BodyOrSubjectContains = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"categories", n => { Categories = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"fromAddresses", n => { FromAddresses = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"bodyContains", n => { BodyContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"bodyOrSubjectContains", n => { BodyOrSubjectContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"categories", n => { Categories = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"fromAddresses", n => { FromAddresses = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"hasAttachments", n => { HasAttachments = n.GetBoolValue(); } },
-                {"headerContains", n => { HeaderContains = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"headerContains", n => { HeaderContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"importance", n => { Importance = n.GetEnumValue<Importance>(); } },
                 {"isApprovalRequest", n => { IsApprovalRequest = n.GetBoolValue(); } },
                 {"isAutomaticForward", n => { IsAutomaticForward = n.GetBoolValue(); } },
@@ -110,15 +110,15 @@ namespace ApiSdk.Models {
                 {"messageActionFlag", n => { MessageActionFlag = n.GetEnumValue<MessageActionFlag>(); } },
                 {"notSentToMe", n => { NotSentToMe = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"recipientContains", n => { RecipientContains = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"senderContains", n => { SenderContains = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"recipientContains", n => { RecipientContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"senderContains", n => { SenderContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"sensitivity", n => { Sensitivity = n.GetEnumValue<Sensitivity>(); } },
                 {"sentCcMe", n => { SentCcMe = n.GetBoolValue(); } },
                 {"sentOnlyToMe", n => { SentOnlyToMe = n.GetBoolValue(); } },
-                {"sentToAddresses", n => { SentToAddresses = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"sentToAddresses", n => { SentToAddresses = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"sentToMe", n => { SentToMe = n.GetBoolValue(); } },
                 {"sentToOrCcMe", n => { SentToOrCcMe = n.GetBoolValue(); } },
-                {"subjectContains", n => { SubjectContains = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"subjectContains", n => { SubjectContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"withinSizeRange", n => { WithinSizeRange = n.GetObjectValue<SizeRange>(SizeRange.CreateFromDiscriminatorValue); } },
             };
         }

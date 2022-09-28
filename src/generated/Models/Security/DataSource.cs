@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Security {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class DataSource : Entity, IParsable {
         /// <summary>The user who created the dataSource.</summary>
         public ApiSdk.Models.IdentitySet CreatedBy { get; set; }
@@ -27,8 +27,7 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public static new DataSource CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.security.siteSource" => new SiteSource(),
                 "#microsoft.graph.security.unifiedGroupSource" => new UnifiedGroupSource(),

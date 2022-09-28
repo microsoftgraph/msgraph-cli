@@ -30,7 +30,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.Attachments.Cre
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"attachmentItem", n => { AttachmentItem = n.GetObjectValue<ApiSdk.Models.AttachmentItem>(ApiSdk.Models.AttachmentItem.CreateFromDiscriminatorValue); } },
+                {"AttachmentItem", n => { AttachmentItem = n.GetObjectValue<ApiSdk.Models.AttachmentItem>(ApiSdk.Models.AttachmentItem.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -39,7 +39,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.Attachments.Cre
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ApiSdk.Models.AttachmentItem>("attachmentItem", AttachmentItem);
+            writer.WriteObjectValue<ApiSdk.Models.AttachmentItem>("AttachmentItem", AttachmentItem);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

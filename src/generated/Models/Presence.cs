@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the cloudCommunications singleton.</summary>
     public class Presence : Entity, IParsable {
         /// <summary>The supplemental information to a user&apos;s availability. Possible values are Available, Away, BeRightBack, Busy, DoNotDisturb, InACall, InAConferenceCall, Inactive, InAMeeting, Offline, OffWork, OutOfOffice, PresenceUnknown, Presenting, UrgentInterruptionsOnly.</summary>
         public string Activity { get; set; }
         /// <summary>The base presence information for a user. Possible values are Available, AvailableIdle,  Away, BeRightBack, Busy, BusyIdle, DoNotDisturb, Offline, PresenceUnknown</summary>
         public string Availability { get; set; }
         /// <summary>
-        /// Instantiates a new Presence and sets the default values.
+        /// Instantiates a new presence and sets the default values.
         /// </summary>
         public Presence() : base() {
             OdataType = "#microsoft.graph.presence";

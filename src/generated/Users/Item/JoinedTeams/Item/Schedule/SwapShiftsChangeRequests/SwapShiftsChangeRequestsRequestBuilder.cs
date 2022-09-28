@@ -39,11 +39,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to swapShiftsChangeRequests for users
+        /// Create an instance of a swapShiftsChangeRequest object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to swapShiftsChangeRequests for users";
+            command.Description = "Create an instance of a swapShiftsChangeRequest object.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -100,11 +100,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests {
             return command;
         }
         /// <summary>
-        /// Get swapShiftsChangeRequests from users
+        /// Retrieve a list of swapShiftsChangeRequest objects in the team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get swapShiftsChangeRequests from users";
+            command.Description = "Retrieve a list of swapShiftsChangeRequest objects in the team.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -229,7 +229,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get swapShiftsChangeRequests from users
+        /// Retrieve a list of swapShiftsChangeRequest objects in the team.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SwapShiftsChangeRequestsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -249,7 +249,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to swapShiftsChangeRequests for users
+        /// Create an instance of a swapShiftsChangeRequest object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -270,7 +270,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests {
             }
             return requestInfo;
         }
-        /// <summary>Get swapShiftsChangeRequests from users</summary>
+        /// <summary>Retrieve a list of swapShiftsChangeRequest objects in the team.</summary>
         public class SwapShiftsChangeRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

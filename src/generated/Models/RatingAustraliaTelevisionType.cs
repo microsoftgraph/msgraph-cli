@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public enum RatingAustraliaTelevisionType {
         /// <summary>Default value, allow all TV shows content</summary>
         AllAllowed,

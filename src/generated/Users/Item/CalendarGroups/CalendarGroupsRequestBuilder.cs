@@ -40,11 +40,11 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to calendarGroups for users
+        /// Use this API to create a new CalendarGroup.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to calendarGroups for users";
+            command.Description = "Use this API to create a new CalendarGroup.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -95,11 +95,11 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return command;
         }
         /// <summary>
-        /// The user&apos;s calendar groups. Read-only. Nullable.
+        /// Get the user&apos;s calendar groups.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The user's calendar groups. Read-only. Nullable.";
+            command.Description = "Get the user's calendar groups.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user&apos;s calendar groups. Read-only. Nullable.
+        /// Get the user&apos;s calendar groups.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CalendarGroupsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -225,7 +225,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to calendarGroups for users
+        /// Use this API to create a new CalendarGroup.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -246,7 +246,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             }
             return requestInfo;
         }
-        /// <summary>The user&apos;s calendar groups. Read-only. Nullable.</summary>
+        /// <summary>Get the user&apos;s calendar groups.</summary>
         public class CalendarGroupsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

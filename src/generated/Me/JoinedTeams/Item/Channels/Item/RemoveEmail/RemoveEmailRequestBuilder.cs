@@ -22,11 +22,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.RemoveEmail {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action removeEmail
+        /// Remove the email address of a channel. You can remove an email address only if it was provisioned using the provisionEmail method or through the Microsoft Teams client.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action removeEmail";
+            command.Description = "Remove the email address of a channel. You can remove an email address only if it was provisioned using the provisionEmail method or through the Microsoft Teams client.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.RemoveEmail {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action removeEmail
+        /// Remove the email address of a channel. You can remove an email address only if it was provisioned using the provisionEmail method or through the Microsoft Teams client.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<RemoveEmailRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

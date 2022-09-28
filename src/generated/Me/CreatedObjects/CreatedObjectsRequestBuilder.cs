@@ -39,11 +39,11 @@ namespace ApiSdk.Me.CreatedObjects {
             return command;
         }
         /// <summary>
-        /// Directory objects that were created by the user. Read-only. Nullable.
+        /// Get a list of directory objects that were created by the user. This API returns only those directory objects that were created by a user who isn&apos;t in any administrator role; otherwise, it returns an empty object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Directory objects that were created by the user. Read-only. Nullable.";
+            command.Description = "Get a list of directory objects that were created by the user. This API returns only those directory objects that were created by a user who isn't in any administrator role; otherwise, it returns an empty object.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -163,7 +163,7 @@ namespace ApiSdk.Me.CreatedObjects {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Directory objects that were created by the user. Read-only. Nullable.
+        /// Get a list of directory objects that were created by the user. This API returns only those directory objects that were created by a user who isn&apos;t in any administrator role; otherwise, it returns an empty object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CreatedObjectsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -182,7 +182,7 @@ namespace ApiSdk.Me.CreatedObjects {
             }
             return requestInfo;
         }
-        /// <summary>Directory objects that were created by the user. Read-only. Nullable.</summary>
+        /// <summary>Get a list of directory objects that were created by the user. This API returns only those directory objects that were created by a user who isn&apos;t in any administrator role; otherwise, it returns an empty object.</summary>
         public class CreatedObjectsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

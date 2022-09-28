@@ -23,11 +23,11 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The underlying administrativeUnit for this school.
+        /// Get a list of **administrativeUnits** associated with an educationSchool object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The underlying administrativeUnit for this school.";
+            command.Description = "Get a list of **administrativeUnits** associated with an educationSchool object.";
             // Create options for all the parameters
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The underlying administrativeUnit for this school.
+        /// Get a list of **administrativeUnits** associated with an educationSchool object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AdministrativeUnitRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
             }
             return requestInfo;
         }
-        /// <summary>The underlying administrativeUnit for this school.</summary>
+        /// <summary>Get a list of **administrativeUnits** associated with an educationSchool object.</summary>
         public class AdministrativeUnitRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

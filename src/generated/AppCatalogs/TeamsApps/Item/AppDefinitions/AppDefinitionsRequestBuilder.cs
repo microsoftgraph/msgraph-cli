@@ -40,11 +40,11 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to appDefinitions for appCatalogs
+        /// Update an app previously published to the Microsoft Teams app catalog. To update an app, the **distributionMethod** property for the app must be set to `organization`. This API specifically updates an app published to your organization&apos;s app catalog (the tenant app catalog).
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to appDefinitions for appCatalogs";
+            command.Description = "Update an app previously published to the Microsoft Teams app catalog. To update an app, the **distributionMethod** property for the app must be set to `organization`. This API specifically updates an app published to your organization's app catalog (the tenant app catalog).";
             // Create options for all the parameters
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
             };
@@ -238,7 +238,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to appDefinitions for appCatalogs
+        /// Update an app previously published to the Microsoft Teams app catalog. To update an app, the **distributionMethod** property for the app must be set to `organization`. This API specifically updates an app published to your organization&apos;s app catalog (the tenant app catalog).
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

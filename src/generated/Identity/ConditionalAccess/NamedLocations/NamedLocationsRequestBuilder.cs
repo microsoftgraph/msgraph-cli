@@ -39,11 +39,11 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to namedLocations for identity
+        /// Create a new namedLocation object. Named locations can be either ipNamedLocation or countryNamedLocation objects.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to namedLocations for identity";
+            command.Description = "Create a new namedLocation object. Named locations can be either ipNamedLocation or countryNamedLocation objects.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -88,11 +88,11 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified named locations.
+        /// Get a list of namedLocation objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified named locations.";
+            command.Description = "Get a list of namedLocation objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified named locations.
+        /// Get a list of namedLocation objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<NamedLocationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -225,7 +225,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to namedLocations for identity
+        /// Create a new namedLocation object. Named locations can be either ipNamedLocation or countryNamedLocation objects.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -246,7 +246,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Returns a collection of the specified named locations.</summary>
+        /// <summary>Get a list of namedLocation objects.</summary>
         public class NamedLocationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

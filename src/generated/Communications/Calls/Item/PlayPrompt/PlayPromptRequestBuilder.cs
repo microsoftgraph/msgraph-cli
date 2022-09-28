@@ -23,11 +23,11 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action playPrompt
+        /// Play a prompt in the call. For more information about how to handle operations, see commsOperation
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action playPrompt";
+            command.Description = "Play a prompt in the call. For more information about how to handle operations, see commsOperation";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };
@@ -91,7 +91,7 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action playPrompt
+        /// Play a prompt in the call. For more information about how to handle operations, see commsOperation
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

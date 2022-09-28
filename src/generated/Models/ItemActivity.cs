@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
+    /// <summary>Casts the previous resource to group.</summary>
     public class ItemActivity : Entity, IParsable {
         /// <summary>An item was accessed.</summary>
         public AccessAction Access { get; set; }

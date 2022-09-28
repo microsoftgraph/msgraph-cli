@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
+    /// <summary>Casts the previous resource to group.</summary>
     public class GroupSetting : Entity, IParsable {
         /// <summary>Display name of this group of settings, which comes from the associated template.</summary>
         public string DisplayName { get; set; }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"templateId", n => { TemplateId = n.GetStringValue(); } },
-                {"values", n => { Values = n.GetCollectionOfObjectValues<SettingValue>(SettingValue.CreateFromDiscriminatorValue).ToList(); } },
+                {"values", n => { Values = n.GetCollectionOfObjectValues<SettingValue>(SettingValue.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

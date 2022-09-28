@@ -94,11 +94,11 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests {
             return command;
         }
         /// <summary>
-        /// Get timeOffRequests from teams
+        /// Retrieve a list of timeOffRequest objects in the team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get timeOffRequests from teams";
+            command.Description = "Retrieve a list of timeOffRequest objects in the team.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -210,7 +210,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get timeOffRequests from teams
+        /// Retrieve a list of timeOffRequest objects in the team.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TimeOffRequestsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -251,7 +251,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests {
             }
             return requestInfo;
         }
-        /// <summary>Get timeOffRequests from teams</summary>
+        /// <summary>Retrieve a list of timeOffRequest objects in the team.</summary>
         public class TimeOffRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

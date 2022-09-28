@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"enabledRules", n => { EnabledRules = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"enabledRules", n => { EnabledRules = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

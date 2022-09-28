@@ -33,7 +33,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"availabilityItems", n => { AvailabilityItems = n.GetCollectionOfObjectValues<AvailabilityItem>(AvailabilityItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"availabilityItems", n => { AvailabilityItems = n.GetCollectionOfObjectValues<AvailabilityItem>(AvailabilityItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"staffId", n => { StaffId = n.GetStringValue(); } },
             };

@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Items.Item.Permissions.Item.Grant {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Permission>(ApiSdk.Models.Permission.CreateFromDiscriminatorValue).ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Permission>(ApiSdk.Models.Permission.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

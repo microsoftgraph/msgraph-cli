@@ -22,11 +22,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action applyTags
+        /// Apply tags to files in an eDiscovery review set. For details, see Tag documents in a review set in eDiscovery.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action applyTags";
+            command.Description = "Apply tags to files in an eDiscovery review set. For details, see Tag documents in a review set in eDiscovery.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -81,7 +81,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action applyTags
+        /// Apply tags to files in an eDiscovery review set. For details, see Tag documents in a review set in eDiscovery.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

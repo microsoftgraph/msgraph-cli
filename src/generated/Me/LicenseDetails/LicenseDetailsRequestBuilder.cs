@@ -88,11 +88,11 @@ namespace ApiSdk.Me.LicenseDetails {
             return command;
         }
         /// <summary>
-        /// A collection of this user&apos;s license details. Read-only.
+        /// Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of this user's license details. Read-only.";
+            command.Description = "Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Me.LicenseDetails {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of this user&apos;s license details. Read-only.
+        /// Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<LicenseDetailsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Me.LicenseDetails {
             }
             return requestInfo;
         }
-        /// <summary>A collection of this user&apos;s license details. Read-only.</summary>
+        /// <summary>Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.</summary>
         public class LicenseDetailsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

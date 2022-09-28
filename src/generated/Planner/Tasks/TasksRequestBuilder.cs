@@ -43,11 +43,11 @@ namespace ApiSdk.Planner.Tasks {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to tasks for planner
+        /// Create a new **plannerTask**.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to tasks for planner";
+            command.Description = "Create a new **plannerTask**.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -92,11 +92,11 @@ namespace ApiSdk.Planner.Tasks {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified tasks
+        /// Retrieve a list of **plannertask** objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified tasks";
+            command.Description = "Retrieve a list of **plannertask** objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.Planner.Tasks {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified tasks
+        /// Retrieve a list of **plannertask** objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TasksRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -229,7 +229,7 @@ namespace ApiSdk.Planner.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to tasks for planner
+        /// Create a new **plannerTask**.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -250,7 +250,7 @@ namespace ApiSdk.Planner.Tasks {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Returns a collection of the specified tasks</summary>
+        /// <summary>Retrieve a list of **plannertask** objects.</summary>
         public class TasksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

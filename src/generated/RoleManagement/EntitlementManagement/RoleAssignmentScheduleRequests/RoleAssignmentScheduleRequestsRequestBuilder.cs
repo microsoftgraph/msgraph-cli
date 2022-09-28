@@ -47,11 +47,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             return command;
         }
         /// <summary>
-        /// Create new navigation property to roleAssignmentScheduleRequests for roleManagement
+        /// In PIM, carry out the following operations through the unifiedRoleAssignmentScheduleRequest object:+ Request active and persistent role assignments for a principal, with or without expiry dates.+ Activate, deactivate, extend, or renew an eligible role assignment for a principal. To call this API to update, renew, and extend assignments for yourself, you must have multi-factor authentication (MFA) enforced, and running the query in a session in which they were challenged for MFA. See Enable per-user Azure AD Multi-Factor Authentication to secure sign-in events.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to roleAssignmentScheduleRequests for roleManagement";
+            command.Description = "In PIM, carry out the following operations through the unifiedRoleAssignmentScheduleRequest object:+ Request active and persistent role assignments for a principal, with or without expiry dates.+ Activate, deactivate, extend, or renew an eligible role assignment for a principal. To call this API to update, renew, and extend assignments for yourself, you must have multi-factor authentication (MFA) enforced, and running the query in a session in which they were challenged for MFA. See Enable per-user Azure AD Multi-Factor Authentication to secure sign-in events.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -96,11 +96,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             return command;
         }
         /// <summary>
-        /// Requests for active role assignments to principals through PIM.
+        /// Retrieve the requests for active role assignments to principals. The active assignments include those made through assignments and activation requests, and directly through the role assignments API. The role assignments can be permanently active with or without an expiry date, or temporarily active after user activation of eligible assignments.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Requests for active role assignments to principals through PIM.";
+            command.Description = "Retrieve the requests for active role assignments to principals. The active assignments include those made through assignments and activation requests, and directly through the role assignments API. The role assignments can be permanently active with or without an expiry date, or temporarily active after user activation of eligible assignments.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -213,7 +213,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Requests for active role assignments to principals through PIM.
+        /// Retrieve the requests for active role assignments to principals. The active assignments include those made through assignments and activation requests, and directly through the role assignments API. The role assignments can be permanently active with or without an expiry date, or temporarily active after user activation of eligible assignments.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RoleAssignmentScheduleRequestsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -233,7 +233,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to roleAssignmentScheduleRequests for roleManagement
+        /// In PIM, carry out the following operations through the unifiedRoleAssignmentScheduleRequest object:+ Request active and persistent role assignments for a principal, with or without expiry dates.+ Activate, deactivate, extend, or renew an eligible role assignment for a principal. To call this API to update, renew, and extend assignments for yourself, you must have multi-factor authentication (MFA) enforced, and running the query in a session in which they were challenged for MFA. See Enable per-user Azure AD Multi-Factor Authentication to secure sign-in events.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -262,7 +262,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>Requests for active role assignments to principals through PIM.</summary>
+        /// <summary>Retrieve the requests for active role assignments to principals. The active assignments include those made through assignments and activation requests, and directly through the role assignments API. The role assignments can be permanently active with or without an expiry date, or temporarily active after user activation of eligible assignments.</summary>
         public class RoleAssignmentScheduleRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

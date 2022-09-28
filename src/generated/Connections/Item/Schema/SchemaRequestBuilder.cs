@@ -55,11 +55,11 @@ namespace ApiSdk.Connections.Item.Schema {
             return command;
         }
         /// <summary>
-        /// Get schema from connections
+        /// Read the properties and relationships of a schema object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get schema from connections";
+            command.Description = "Read the properties and relationships of a schema object.";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
             };
@@ -130,9 +130,27 @@ namespace ApiSdk.Connections.Item.Schema {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var externalConnectionId = invocationContext.ParseResult.GetValueForOption(externalConnectionIdOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
@@ -144,8 +162,11 @@ namespace ApiSdk.Connections.Item.Schema {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
             return command;
         }
@@ -181,7 +202,7 @@ namespace ApiSdk.Connections.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Get schema from connections
+        /// Read the properties and relationships of a schema object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SchemaRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -212,6 +233,7 @@ namespace ApiSdk.Connections.Item.Schema {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new SchemaRequestBuilderPatchRequestConfiguration();
@@ -235,7 +257,7 @@ namespace ApiSdk.Connections.Item.Schema {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Get schema from connections</summary>
+        /// <summary>Read the properties and relationships of a schema object.</summary>
         public class SchemaRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

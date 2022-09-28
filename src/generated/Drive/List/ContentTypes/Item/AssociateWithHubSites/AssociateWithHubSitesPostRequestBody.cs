@@ -31,7 +31,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"hubSiteUrls", n => { HubSiteUrls = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"hubSiteUrls", n => { HubSiteUrls = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"propagateToExistingLists", n => { PropagateToExistingLists = n.GetBoolValue(); } },
             };
         }

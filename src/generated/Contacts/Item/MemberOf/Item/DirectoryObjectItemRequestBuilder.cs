@@ -55,6 +55,10 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
+            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
+            };
+            consistencyLevelOption.IsRequired = false;
+            command.AddOption(consistencyLevelOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -81,6 +85,7 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
             command.SetHandler(async (invocationContext) => {
                 var orgContactId = invocationContext.ParseResult.GetValueForOption(orgContactIdOption);
                 var directoryObjectId = invocationContext.ParseResult.GetValueForOption(directoryObjectIdOption);
+                var consistencyLevel = invocationContext.ParseResult.GetValueForOption(consistencyLevelOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
@@ -95,6 +100,7 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
                 });
                 requestInfo.PathParameters.Add("orgContact%2Did", orgContactId);
                 requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
+                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

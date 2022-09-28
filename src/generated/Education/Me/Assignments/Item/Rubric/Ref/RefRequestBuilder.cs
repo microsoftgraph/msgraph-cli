@@ -55,11 +55,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Rubric.Ref {
             return command;
         }
         /// <summary>
-        /// When set, the grading rubric attached to this assignment.
+        /// Get the educationRubric object attached to an educationAssignment, if one exists.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "When set, the grading rubric attached to this assignment.";
+            command.Description = "Get the educationRubric object attached to an educationAssignment, if one exists.";
             // Create options for all the parameters
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
@@ -148,7 +148,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Rubric.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// When set, the grading rubric attached to this assignment.
+        /// Get the educationRubric object attached to an educationAssignment, if one exists.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RefRequestBuilderGetRequestConfiguration> requestConfiguration = default) {

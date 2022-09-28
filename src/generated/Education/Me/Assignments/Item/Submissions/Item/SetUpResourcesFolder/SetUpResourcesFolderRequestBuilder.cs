@@ -23,11 +23,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.SetUpResourcesFo
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action setUpResourcesFolder
+        /// Trigger the creation of the SharePoint resource folder where all file-based resources (Word, Excel, and so on) should be uploaded for a given submission. Note that files must be located in this folder in order to be added as resources. Only a student in the class can determine what files to upload in a given submission-level resource folder. 
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setUpResourcesFolder";
+            command.Description = "Trigger the creation of the SharePoint resource folder where all file-based resources (Word, Excel, and so on) should be uploaded for a given submission. Note that files must be located in this folder in order to be added as resources. Only a student in the class can determine what files to upload in a given submission-level resource folder. ";
             // Create options for all the parameters
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
@@ -89,7 +89,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.SetUpResourcesFo
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action setUpResourcesFolder
+        /// Trigger the creation of the SharePoint resource folder where all file-based resources (Word, Excel, and so on) should be uploaded for a given submission. Note that files must be located in this folder in order to be added as resources. Only a student in the class can determine what files to upload in a given submission-level resource folder. 
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<SetUpResourcesFolderRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

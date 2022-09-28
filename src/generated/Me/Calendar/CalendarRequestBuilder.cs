@@ -51,34 +51,7 @@ namespace ApiSdk.Me.Calendar {
             var builder = new CalendarViewRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Delete navigation property calendar for me
-        /// </summary>
-        public Command BuildDeleteCommand() {
-            var command = new Command("delete");
-            command.Description = "Delete navigation property calendar for me";
-            // Create options for all the parameters
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
-            };
-            ifMatchOption.IsRequired = false;
-            command.AddOption(ifMatchOption);
-            command.SetHandler(async (invocationContext) => {
-                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
-                });
-                requestInfo.Headers["If-Match"] = ifMatch;
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
             return command;
         }
         public Command BuildEventsCommand() {
@@ -91,11 +64,11 @@ namespace ApiSdk.Me.Calendar {
             return command;
         }
         /// <summary>
-        /// The user&apos;s primary calendar. Read-only.
+        /// Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user's primary calendar. Read-only.";
+            command.Description = "Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -154,18 +127,36 @@ namespace ApiSdk.Me.Calendar {
             return command;
         }
         /// <summary>
-        /// Update the navigation property calendar in me
+        /// Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property calendar in me";
+            command.Description = "Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
@@ -176,8 +167,11 @@ namespace ApiSdk.Me.Calendar {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
             return command;
         }
@@ -204,25 +198,7 @@ namespace ApiSdk.Me.Calendar {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property calendar for me
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<CalendarRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.DELETE,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new CalendarRequestBuilderDeleteRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>
-        /// The user&apos;s primary calendar. Read-only.
+        /// Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CalendarRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -242,7 +218,7 @@ namespace ApiSdk.Me.Calendar {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property calendar in me
+        /// Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -253,6 +229,7 @@ namespace ApiSdk.Me.Calendar {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new CalendarRequestBuilderPatchRequestConfiguration();
@@ -262,21 +239,7 @@ namespace ApiSdk.Me.Calendar {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class CalendarRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new calendarRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public CalendarRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>The user&apos;s primary calendar. Read-only.</summary>
+        /// <summary>Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:</summary>
         public class CalendarRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
             [QueryParameter("%24select")]

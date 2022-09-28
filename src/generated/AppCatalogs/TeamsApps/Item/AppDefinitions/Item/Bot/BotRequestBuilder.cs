@@ -61,11 +61,11 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             return command;
         }
         /// <summary>
-        /// The details of the bot specified in the Teams app manifest.
+        /// Get the bot associated with a specific definition of the  TeamsApp.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The details of the bot specified in the Teams app manifest.";
+            command.Description = "Get the bot associated with a specific definition of the  TeamsApp.";
             // Create options for all the parameters
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
             };
@@ -146,10 +146,28 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var teamsAppId = invocationContext.ParseResult.GetValueForOption(teamsAppIdOption);
                 var teamsAppDefinitionId = invocationContext.ParseResult.GetValueForOption(teamsAppDefinitionIdOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
@@ -162,8 +180,11 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
             return command;
         }
@@ -199,7 +220,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             return requestInfo;
         }
         /// <summary>
-        /// The details of the bot specified in the Teams app manifest.
+        /// Get the bot associated with a specific definition of the  TeamsApp.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<BotRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -230,6 +251,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new BotRequestBuilderPatchRequestConfiguration();
@@ -253,7 +275,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The details of the bot specified in the Teams app manifest.</summary>
+        /// <summary>Get the bot associated with a specific definition of the  TeamsApp.</summary>
         public class BotRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

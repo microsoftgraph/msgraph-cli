@@ -39,11 +39,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             return command;
         }
         /// <summary>
-        /// Create new navigation property to additionalSources for security
+        /// Create a new additional source associated with an eDiscovery search.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to additionalSources for security";
+            command.Description = "Create a new additional source associated with an eDiscovery search.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -100,11 +100,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             return command;
         }
         /// <summary>
-        /// Adds an additional source to the eDiscovery search.
+        /// Get the list of additional sources associated with an eDiscovery search.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Adds an additional source to the eDiscovery search.";
+            command.Description = "Get the list of additional sources associated with an eDiscovery search.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -229,7 +229,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Adds an additional source to the eDiscovery search.
+        /// Get the list of additional sources associated with an eDiscovery search.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AdditionalSourcesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -249,7 +249,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to additionalSources for security
+        /// Create a new additional source associated with an eDiscovery search.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -270,7 +270,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             }
             return requestInfo;
         }
-        /// <summary>Adds an additional source to the eDiscovery search.</summary>
+        /// <summary>Get the list of additional sources associated with an eDiscovery search.</summary>
         public class AdditionalSourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

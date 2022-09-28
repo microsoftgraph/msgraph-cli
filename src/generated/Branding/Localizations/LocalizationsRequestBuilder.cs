@@ -42,11 +42,11 @@ namespace ApiSdk.Branding.Localizations {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to localizations for branding
+        /// Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn&apos;t exist. The default branding is created only once. It&apos;s loaded when a localized branding isn&apos;t configured for the user&apos;s browser language. To retrieve the default branding, see Get branding.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to localizations for branding";
+            command.Description = "Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn't exist. The default branding is created only once. It's loaded when a localized branding isn't configured for the user's browser language. To retrieve the default branding, see Get branding.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -91,11 +91,11 @@ namespace ApiSdk.Branding.Localizations {
             return command;
         }
         /// <summary>
-        /// Add different branding based on a locale.
+        /// Retrieve all localization branding objects, including the default branding.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Add different branding based on a locale.";
+            command.Description = "Retrieve all localization branding objects, including the default branding.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -208,7 +208,7 @@ namespace ApiSdk.Branding.Localizations {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Add different branding based on a locale.
+        /// Retrieve all localization branding objects, including the default branding.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<LocalizationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -228,7 +228,7 @@ namespace ApiSdk.Branding.Localizations {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to localizations for branding
+        /// Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn&apos;t exist. The default branding is created only once. It&apos;s loaded when a localized branding isn&apos;t configured for the user&apos;s browser language. To retrieve the default branding, see Get branding.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -249,7 +249,7 @@ namespace ApiSdk.Branding.Localizations {
             }
             return requestInfo;
         }
-        /// <summary>Add different branding based on a locale.</summary>
+        /// <summary>Retrieve all localization branding objects, including the default branding.</summary>
         public class LocalizationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

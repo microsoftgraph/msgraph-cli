@@ -42,11 +42,11 @@ namespace ApiSdk.Me.Todo.Lists {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to lists for me
+        /// Create a new lists object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to lists for me";
+            command.Description = "Create a new lists object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -91,11 +91,11 @@ namespace ApiSdk.Me.Todo.Lists {
             return command;
         }
         /// <summary>
-        /// The task lists in the users mailbox.
+        /// Get a list of the todoTaskList objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The task lists in the users mailbox.";
+            command.Description = "Get a list of the todoTaskList objects and their properties.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -208,7 +208,7 @@ namespace ApiSdk.Me.Todo.Lists {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The task lists in the users mailbox.
+        /// Get a list of the todoTaskList objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ListsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -228,7 +228,7 @@ namespace ApiSdk.Me.Todo.Lists {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to lists for me
+        /// Create a new lists object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -255,7 +255,7 @@ namespace ApiSdk.Me.Todo.Lists {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The task lists in the users mailbox.</summary>
+        /// <summary>Get a list of the todoTaskList objects and their properties.</summary>
         public class ListsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

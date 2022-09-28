@@ -5,26 +5,25 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class ScheduleChangeRequest : ChangeTrackedEntity, IParsable {
         /// <summary>The assignedTo property</summary>
         public ScheduleChangeRequestActor? AssignedTo { get; set; }
         /// <summary>The managerActionDateTime property</summary>
-        public DateTimeOffset? ManagerActionDateTime { get; set; }
+        public DateTimeOffset? ManagerActionDateTime { get; private set; }
         /// <summary>The managerActionMessage property</summary>
         public string ManagerActionMessage { get; set; }
         /// <summary>The managerUserId property</summary>
-        public string ManagerUserId { get; set; }
+        public string ManagerUserId { get; private set; }
         /// <summary>The senderDateTime property</summary>
-        public DateTimeOffset? SenderDateTime { get; set; }
+        public DateTimeOffset? SenderDateTime { get; private set; }
         /// <summary>The senderMessage property</summary>
         public string SenderMessage { get; set; }
         /// <summary>The senderUserId property</summary>
-        public string SenderUserId { get; set; }
+        public string SenderUserId { get; private set; }
         /// <summary>The state property</summary>
         public ScheduleChangeState? State { get; set; }
         /// <summary>
-        /// Instantiates a new scheduleChangeRequest and sets the default values.
+        /// Instantiates a new ScheduleChangeRequest and sets the default values.
         /// </summary>
         public ScheduleChangeRequest() : base() {
             OdataType = "#microsoft.graph.scheduleChangeRequest";
@@ -35,8 +34,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ScheduleChangeRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.offerShiftRequest" => new OfferShiftRequest(),
                 "#microsoft.graph.openShiftChangeRequest" => new OpenShiftChangeRequest(),
@@ -68,12 +66,8 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteEnumValue<ScheduleChangeRequestActor>("assignedTo", AssignedTo);
-            writer.WriteDateTimeOffsetValue("managerActionDateTime", ManagerActionDateTime);
             writer.WriteStringValue("managerActionMessage", ManagerActionMessage);
-            writer.WriteStringValue("managerUserId", ManagerUserId);
-            writer.WriteDateTimeOffsetValue("senderDateTime", SenderDateTime);
             writer.WriteStringValue("senderMessage", SenderMessage);
-            writer.WriteStringValue("senderUserId", SenderUserId);
             writer.WriteEnumValue<ScheduleChangeState>("state", State);
         }
     }

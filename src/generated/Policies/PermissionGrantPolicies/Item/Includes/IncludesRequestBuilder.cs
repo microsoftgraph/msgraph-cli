@@ -39,11 +39,11 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to includes for policies
+        /// Add conditions under which a permission grant event is *included* in a permission grant policy. You do this by adding a permissionGrantConditionSet to the **includes** collection of a  permissionGrantPolicy.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to includes for policies";
+            command.Description = "Add conditions under which a permission grant event is *included* in a permission grant policy. You do this by adding a permissionGrantConditionSet to the **includes** collection of a  permissionGrantPolicy.";
             // Create options for all the parameters
             var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes {
             return command;
         }
         /// <summary>
-        /// Condition sets which are included in this permission grant policy. Automatically expanded on GET.
+        /// Retrieve the condition sets which are *included* in a permissionGrantPolicy.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Condition sets which are included in this permission grant policy. Automatically expanded on GET.";
+            command.Description = "Retrieve the condition sets which are *included* in a permissionGrantPolicy.";
             // Create options for all the parameters
             var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Condition sets which are included in this permission grant policy. Automatically expanded on GET.
+        /// Retrieve the condition sets which are *included* in a permissionGrantPolicy.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IncludesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +237,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to includes for policies
+        /// Add conditions under which a permission grant event is *included* in a permission grant policy. You do this by adding a permissionGrantConditionSet to the **includes** collection of a  permissionGrantPolicy.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes {
             }
             return requestInfo;
         }
-        /// <summary>Condition sets which are included in this permission grant policy. Automatically expanded on GET.</summary>
+        /// <summary>Retrieve the condition sets which are *included* in a permissionGrantPolicy.</summary>
         public class IncludesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

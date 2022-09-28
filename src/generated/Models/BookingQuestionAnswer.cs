@@ -45,12 +45,12 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"answer", n => { Answer = n.GetStringValue(); } },
                 {"answerInputType", n => { AnswerInputType = n.GetEnumValue<AnswerInputType>(); } },
-                {"answerOptions", n => { AnswerOptions = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"answerOptions", n => { AnswerOptions = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"isRequired", n => { IsRequired = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"question", n => { Question = n.GetStringValue(); } },
                 {"questionId", n => { QuestionId = n.GetStringValue(); } },
-                {"selectedOptions", n => { SelectedOptions = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"selectedOptions", n => { SelectedOptions = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

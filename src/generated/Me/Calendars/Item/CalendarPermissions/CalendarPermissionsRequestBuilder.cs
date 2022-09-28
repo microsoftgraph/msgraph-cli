@@ -39,11 +39,11 @@ namespace ApiSdk.Me.Calendars.Item.CalendarPermissions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to calendarPermissions for me
+        /// Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to calendarPermissions for me";
+            command.Description = "Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.";
             // Create options for all the parameters
             var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
             };
@@ -224,7 +224,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarPermissions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to calendarPermissions for me
+        /// Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

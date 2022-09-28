@@ -22,11 +22,11 @@ namespace ApiSdk.Groups.Item.Drives.Item.Items.Item.Checkout {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action checkout
+        /// Check out a **driveItem** resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action checkout";
+            command.Description = "Check out a **driveItem** resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -73,7 +73,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.Items.Item.Checkout {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action checkout
+        /// Check out a **driveItem** resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<CheckoutRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

@@ -22,11 +22,11 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods.Item.DisableSmsSignIn {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action disableSmsSignIn
+        /// Disable SMS sign-in for an existing `mobile` phone number registered to a user. The number will no longer be available for SMS sign-in, which can prevent your user from signing in.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action disableSmsSignIn";
+            command.Description = "Disable SMS sign-in for an existing `mobile` phone number registered to a user. The number will no longer be available for SMS sign-in, which can prevent your user from signing in.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods.Item.DisableSmsSignIn {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action disableSmsSignIn
+        /// Disable SMS sign-in for an existing `mobile` phone number registered to a user. The number will no longer be available for SMS sign-in, which can prevent your user from signing in.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<DisableSmsSignInRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

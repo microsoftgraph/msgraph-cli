@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"assignedByGroup", n => { AssignedByGroup = n.GetStringValue(); } },
-                {"disabledPlans", n => { DisabledPlans = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"disabledPlans", n => { DisabledPlans = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"error", n => { Error = n.GetStringValue(); } },
                 {"lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },

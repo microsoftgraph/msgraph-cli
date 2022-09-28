@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationOrganization : Entity, IParsable {
         /// <summary>Organization description.</summary>
         public string Description { get; set; }
@@ -27,8 +27,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new EducationOrganization CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.educationSchool" => new EducationSchool(),
                 _ => new EducationOrganization(),

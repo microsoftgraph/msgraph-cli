@@ -95,11 +95,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
             return command;
         }
         /// <summary>
-        /// The set of appointments of this business in a specified date range. Read-only. Nullable.
+        /// Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The set of appointments of this business in a specified date range. Read-only. Nullable.";
+            command.Description = "Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The set of appointments of this business in a specified date range. Read-only. Nullable.
+        /// Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CalendarViewRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -259,7 +259,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
             }
             return requestInfo;
         }
-        /// <summary>The set of appointments of this business in a specified date range. Read-only. Nullable.</summary>
+        /// <summary>Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.</summary>
         public class CalendarViewRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

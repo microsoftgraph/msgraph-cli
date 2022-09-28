@@ -88,11 +88,11 @@ namespace ApiSdk.Solutions.BookingCurrencies {
             return command;
         }
         /// <summary>
-        /// Get bookingCurrencies from solutions
+        /// Get a list of bookingCurrency objects available to a Microsoft Bookings business.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get bookingCurrencies from solutions";
+            command.Description = "Get a list of bookingCurrency objects available to a Microsoft Bookings business.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Solutions.BookingCurrencies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get bookingCurrencies from solutions
+        /// Get a list of bookingCurrency objects available to a Microsoft Bookings business.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<BookingCurrenciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Solutions.BookingCurrencies {
             }
             return requestInfo;
         }
-        /// <summary>Get bookingCurrencies from solutions</summary>
+        /// <summary>Get a list of bookingCurrency objects available to a Microsoft Bookings business.</summary>
         public class BookingCurrenciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

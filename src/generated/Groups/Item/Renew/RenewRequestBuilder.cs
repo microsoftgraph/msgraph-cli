@@ -22,11 +22,11 @@ namespace ApiSdk.Groups.Item.Renew {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action renew
+        /// Renews a group&apos;s expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action renew";
+            command.Description = "Renews a group's expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Groups.Item.Renew {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action renew
+        /// Renews a group&apos;s expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<RenewRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

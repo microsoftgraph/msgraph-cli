@@ -22,8 +22,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new IdentityUserFlow CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.b2xIdentityUserFlow" => new B2xIdentityUserFlow(),
                 _ => new IdentityUserFlow(),

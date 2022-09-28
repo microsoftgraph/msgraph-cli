@@ -38,11 +38,11 @@ namespace ApiSdk.Drives.Item.Root.Children {
             return command;
         }
         /// <summary>
-        /// Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.
+        /// Return a collection of DriveItems in the **children** relationship of a DriveItem. DriveItems with a non-null **folder** or **package** facet can have one or more child DriveItems.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.";
+            command.Description = "Return a collection of DriveItems in the **children** relationship of a DriveItem. DriveItems with a non-null **folder** or **package** facet can have one or more child DriveItems.";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -161,7 +161,7 @@ namespace ApiSdk.Drives.Item.Root.Children {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.
+        /// Return a collection of DriveItems in the **children** relationship of a DriveItem. DriveItems with a non-null **folder** or **package** facet can have one or more child DriveItems.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChildrenRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -180,7 +180,7 @@ namespace ApiSdk.Drives.Item.Root.Children {
             }
             return requestInfo;
         }
-        /// <summary>Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.</summary>
+        /// <summary>Return a collection of DriveItems in the **children** relationship of a DriveItem. DriveItems with a non-null **folder** or **package** facet can have one or more child DriveItems.</summary>
         public class ChildrenRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

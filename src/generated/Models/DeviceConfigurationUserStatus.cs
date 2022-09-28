@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class DeviceConfigurationUserStatus : Entity, IParsable {
         /// <summary>Devices count for that user.</summary>
         public int? DevicesCount { get; set; }

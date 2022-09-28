@@ -39,11 +39,11 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to extensionProperties for applications
+        /// Create a new directory extension definition, represented by an extensionProperty object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to extensionProperties for applications";
+            command.Description = "Create a new directory extension definition, represented by an extensionProperty object.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).
+        /// Retrieve the list of directory extension definitions, represented by extensionProperty objects on an application.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).";
+            command.Description = "Retrieve the list of directory extension definitions, represented by extensionProperty objects on an application.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).
+        /// Retrieve the list of directory extension definitions, represented by extensionProperty objects on an application.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ExtensionPropertiesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +237,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to extensionProperties for applications
+        /// Create a new directory extension definition, represented by an extensionProperty object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).</summary>
+        /// <summary>Retrieve the list of directory extension definitions, represented by extensionProperty objects on an application.</summary>
         public class ExtensionPropertiesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

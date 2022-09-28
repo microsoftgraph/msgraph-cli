@@ -39,11 +39,11 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to workforceIntegrations for teamwork
+        /// Create a new workforceIntegration object.You can set up which entities you want to receive Shifts synchronous change notifications on and set entities to configure filtering by WFM rules eligibility for, including swap requests.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to workforceIntegrations for teamwork";
+            command.Description = "Create a new workforceIntegration object.You can set up which entities you want to receive Shifts synchronous change notifications on and set entities to configure filtering by WFM rules eligibility for, including swap requests.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -88,11 +88,11 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             return command;
         }
         /// <summary>
-        /// Get workforceIntegrations from teamwork
+        /// Retrieve a list of workforceIntegration objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get workforceIntegrations from teamwork";
+            command.Description = "Retrieve a list of workforceIntegration objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get workforceIntegrations from teamwork
+        /// Retrieve a list of workforceIntegration objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<WorkforceIntegrationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -225,7 +225,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to workforceIntegrations for teamwork
+        /// Create a new workforceIntegration object.You can set up which entities you want to receive Shifts synchronous change notifications on and set entities to configure filtering by WFM rules eligibility for, including swap requests.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -246,7 +246,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             }
             return requestInfo;
         }
-        /// <summary>Get workforceIntegrations from teamwork</summary>
+        /// <summary>Retrieve a list of workforceIntegration objects.</summary>
         public class WorkforceIntegrationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

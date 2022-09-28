@@ -34,9 +34,9 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"inputIds", n => { InputIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"sourceIdType", n => { SourceIdType = n.GetEnumValue<ExchangeIdFormat>(); } },
-                {"targetIdType", n => { TargetIdType = n.GetEnumValue<ExchangeIdFormat>(); } },
+                {"InputIds", n => { InputIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"SourceIdType", n => { SourceIdType = n.GetEnumValue<ExchangeIdFormat>(); } },
+                {"TargetIdType", n => { TargetIdType = n.GetEnumValue<ExchangeIdFormat>(); } },
             };
         }
         /// <summary>
@@ -45,9 +45,9 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("inputIds", InputIds);
-            writer.WriteEnumValue<ExchangeIdFormat>("sourceIdType", SourceIdType);
-            writer.WriteEnumValue<ExchangeIdFormat>("targetIdType", TargetIdType);
+            writer.WriteCollectionOfPrimitiveValues<string>("InputIds", InputIds);
+            writer.WriteEnumValue<ExchangeIdFormat>("SourceIdType", SourceIdType);
+            writer.WriteEnumValue<ExchangeIdFormat>("TargetIdType", TargetIdType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

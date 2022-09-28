@@ -89,11 +89,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews {
             return command;
         }
         /// <summary>
-        /// A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve the serviceHealth resources from the **healthOverviews** navigation property. This operation provides the health report of all subscribed services for a tenant.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.";
+            command.Description = "Retrieve the serviceHealth resources from the **healthOverviews** navigation property. This operation provides the health report of all subscribed services for a tenant.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve the serviceHealth resources from the **healthOverviews** navigation property. This operation provides the health report of all subscribed services for a tenant.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<HealthOverviewsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -247,7 +247,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews {
             }
             return requestInfo;
         }
-        /// <summary>A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.</summary>
+        /// <summary>Retrieve the serviceHealth resources from the **healthOverviews** navigation property. This operation provides the health report of all subscribed services for a tenant.</summary>
         public class HealthOverviewsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

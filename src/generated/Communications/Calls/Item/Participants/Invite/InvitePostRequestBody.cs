@@ -33,7 +33,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Invite {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"clientContext", n => { ClientContext = n.GetStringValue(); } },
-                {"participants", n => { Participants = n.GetCollectionOfObjectValues<InvitationParticipantInfo>(InvitationParticipantInfo.CreateFromDiscriminatorValue).ToList(); } },
+                {"participants", n => { Participants = n.GetCollectionOfObjectValues<InvitationParticipantInfo>(InvitationParticipantInfo.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

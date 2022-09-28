@@ -26,8 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new MobileLobApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.androidLobApp" => new AndroidLobApp(),
                 "#microsoft.graph.iosLobApp" => new IosLobApp(),
@@ -43,7 +42,7 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"committedContentVersion", n => { CommittedContentVersion = n.GetStringValue(); } },
-                {"contentVersions", n => { ContentVersions = n.GetCollectionOfObjectValues<MobileAppContent>(MobileAppContent.CreateFromDiscriminatorValue).ToList(); } },
+                {"contentVersions", n => { ContentVersions = n.GetCollectionOfObjectValues<MobileAppContent>(MobileAppContent.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"fileName", n => { FileName = n.GetStringValue(); } },
                 {"size", n => { Size = n.GetLongValue(); } },
             };

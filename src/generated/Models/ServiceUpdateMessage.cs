@@ -47,15 +47,15 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"actionRequiredByDateTime", n => { ActionRequiredByDateTime = n.GetDateTimeOffsetValue(); } },
-                {"attachments", n => { Attachments = n.GetCollectionOfObjectValues<ServiceAnnouncementAttachment>(ServiceAnnouncementAttachment.CreateFromDiscriminatorValue).ToList(); } },
+                {"attachments", n => { Attachments = n.GetCollectionOfObjectValues<ServiceAnnouncementAttachment>(ServiceAnnouncementAttachment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"attachmentsArchive", n => { AttachmentsArchive = n.GetByteArrayValue(); } },
                 {"body", n => { Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
                 {"category", n => { Category = n.GetEnumValue<ServiceUpdateCategory>(); } },
                 {"hasAttachments", n => { HasAttachments = n.GetBoolValue(); } },
                 {"isMajorChange", n => { IsMajorChange = n.GetBoolValue(); } },
-                {"services", n => { Services = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"services", n => { Services = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"severity", n => { Severity = n.GetEnumValue<ServiceUpdateSeverity>(); } },
-                {"tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"viewPoint", n => { ViewPoint = n.GetObjectValue<ServiceUpdateMessageViewpoint>(ServiceUpdateMessageViewpoint.CreateFromDiscriminatorValue); } },
             };
         }

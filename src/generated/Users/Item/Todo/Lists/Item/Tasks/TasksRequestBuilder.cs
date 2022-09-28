@@ -45,11 +45,11 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to tasks for users
+        /// Create a new task object in a specified todoTaskList.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to tasks for users";
+            command.Description = "Create a new task object in a specified todoTaskList.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -106,11 +106,11 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// The tasks in this task list. Read-only. Nullable.
+        /// Get the **todoTask** resources from the **tasks** navigation property of a specified todoTaskList.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The tasks in this task list. Read-only. Nullable.";
+            command.Description = "Get the **todoTask** resources from the **tasks** navigation property of a specified todoTaskList.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -235,7 +235,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The tasks in this task list. Read-only. Nullable.
+        /// Get the **todoTask** resources from the **tasks** navigation property of a specified todoTaskList.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TasksRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -255,7 +255,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to tasks for users
+        /// Create a new task object in a specified todoTaskList.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -282,7 +282,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The tasks in this task list. Read-only. Nullable.</summary>
+        /// <summary>Get the **todoTask** resources from the **tasks** navigation property of a specified todoTaskList.</summary>
         public class TasksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

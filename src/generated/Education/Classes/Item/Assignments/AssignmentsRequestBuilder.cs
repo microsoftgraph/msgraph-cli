@@ -46,11 +46,11 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to assignments for education
+        /// Create a new assignment.  Only teachers in a class can create an assignment. Assignments start in the Draft state, which means that students will not see the assignment until publication.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to assignments for education";
+            command.Description = "Create a new assignment.  Only teachers in a class can create an assignment. Assignments start in the Draft state, which means that students will not see the assignment until publication.";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
@@ -101,11 +101,11 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// All assignments associated with this class. Nullable.
+        /// Retrieve a list of assignment objects.  A teacher or an application executing with application permissions can see all assignment objects for the class. Students can only see assignments that are assigned to them.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All assignments associated with this class. Nullable.";
+            command.Description = "Retrieve a list of assignment objects.  A teacher or an application executing with application permissions can see all assignment objects for the class. Students can only see assignments that are assigned to them.";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
@@ -224,7 +224,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// All assignments associated with this class. Nullable.
+        /// Retrieve a list of assignment objects.  A teacher or an application executing with application permissions can see all assignment objects for the class. Students can only see assignments that are assigned to them.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AssignmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -244,7 +244,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to assignments for education
+        /// Create a new assignment.  Only teachers in a class can create an assignment. Assignments start in the Draft state, which means that students will not see the assignment until publication.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -271,7 +271,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>All assignments associated with this class. Nullable.</summary>
+        /// <summary>Retrieve a list of assignment objects.  A teacher or an application executing with application permissions can see all assignment objects for the class. Students can only see assignments that are assigned to them.</summary>
         public class AssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

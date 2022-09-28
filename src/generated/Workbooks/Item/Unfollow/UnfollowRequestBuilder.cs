@@ -22,11 +22,11 @@ namespace ApiSdk.Workbooks.Item.Unfollow {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action unfollow
+        /// Unfollow a driveItem.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action unfollow";
+            command.Description = "Unfollow a driveItem.";
             // Create options for all the parameters
             var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Workbooks.Item.Unfollow {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action unfollow
+        /// Unfollow a driveItem.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<UnfollowRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

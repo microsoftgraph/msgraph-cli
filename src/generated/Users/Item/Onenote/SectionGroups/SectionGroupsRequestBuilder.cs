@@ -98,11 +98,11 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups {
             return command;
         }
         /// <summary>
-        /// The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// Retrieve a list of sectionGroup objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
+            command.Description = "Retrieve a list of sectionGroup objects.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -221,7 +221,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// Retrieve a list of sectionGroup objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SectionGroupsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -262,7 +262,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups {
             }
             return requestInfo;
         }
-        /// <summary>The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.</summary>
+        /// <summary>Retrieve a list of sectionGroup objects.</summary>
         public class SectionGroupsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

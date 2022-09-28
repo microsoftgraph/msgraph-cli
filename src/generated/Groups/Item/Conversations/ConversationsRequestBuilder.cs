@@ -29,7 +29,6 @@ namespace ApiSdk.Groups.Item.Conversations {
             var builder = new ConversationItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildThreadsCommand());
             return command;
         }
@@ -40,11 +39,11 @@ namespace ApiSdk.Groups.Item.Conversations {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to conversations for groups
+        /// Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to conversations for groups";
+            command.Description = "Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -95,11 +94,11 @@ namespace ApiSdk.Groups.Item.Conversations {
             return command;
         }
         /// <summary>
-        /// The group&apos;s conversations.
+        /// Retrieve the list of conversations in this group.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The group's conversations.";
+            command.Description = "Retrieve the list of conversations in this group.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -211,7 +210,7 @@ namespace ApiSdk.Groups.Item.Conversations {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The group&apos;s conversations.
+        /// Retrieve the list of conversations in this group.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ConversationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -231,7 +230,7 @@ namespace ApiSdk.Groups.Item.Conversations {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to conversations for groups
+        /// Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -252,7 +251,7 @@ namespace ApiSdk.Groups.Item.Conversations {
             }
             return requestInfo;
         }
-        /// <summary>The group&apos;s conversations.</summary>
+        /// <summary>Retrieve the list of conversations in this group.</summary>
         public class ConversationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

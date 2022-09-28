@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         /// <summary>Host device type</summary>
         public string DeviceType { get; set; }
         /// <summary>Zero or more reasons an app registration is flagged. E.g. app running on rooted device</summary>
-        public List<string> FlaggedReasons { get; set; }
+        public List<ManagedAppFlaggedReason?> FlaggedReasons { get; set; }
         /// <summary>Zero or more policies admin intended for the app as of now.</summary>
         public List<ManagedAppPolicy> IntendedPolicies { get; set; }
         /// <summary>Date and time of last the app synced with management service.</summary>
@@ -49,8 +49,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ManagedAppRegistration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.androidManagedAppRegistration" => new AndroidManagedAppRegistration(),
                 "#microsoft.graph.iosManagedAppRegistration" => new IosManagedAppRegistration(),
@@ -64,16 +63,16 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"appIdentifier", n => { AppIdentifier = n.GetObjectValue<MobileAppIdentifier>(MobileAppIdentifier.CreateFromDiscriminatorValue); } },
                 {"applicationVersion", n => { ApplicationVersion = n.GetStringValue(); } },
-                {"appliedPolicies", n => { AppliedPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"appliedPolicies", n => { AppliedPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"deviceName", n => { DeviceName = n.GetStringValue(); } },
                 {"deviceTag", n => { DeviceTag = n.GetStringValue(); } },
                 {"deviceType", n => { DeviceType = n.GetStringValue(); } },
-                {"flaggedReasons", n => { FlaggedReasons = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"intendedPolicies", n => { IntendedPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"flaggedReasons", n => { FlaggedReasons = n.GetCollectionOfEnumValues<ManagedAppFlaggedReason>()?.ToList(); } },
+                {"intendedPolicies", n => { IntendedPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"lastSyncDateTime", n => { LastSyncDateTime = n.GetDateTimeOffsetValue(); } },
                 {"managementSdkVersion", n => { ManagementSdkVersion = n.GetStringValue(); } },
-                {"operations", n => { Operations = n.GetCollectionOfObjectValues<ManagedAppOperation>(ManagedAppOperation.CreateFromDiscriminatorValue).ToList(); } },
+                {"operations", n => { Operations = n.GetCollectionOfObjectValues<ManagedAppOperation>(ManagedAppOperation.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"platformVersion", n => { PlatformVersion = n.GetStringValue(); } },
                 {"userId", n => { UserId = n.GetStringValue(); } },
                 {"version", n => { Version = n.GetStringValue(); } },
@@ -93,7 +92,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("deviceName", DeviceName);
             writer.WriteStringValue("deviceTag", DeviceTag);
             writer.WriteStringValue("deviceType", DeviceType);
-            writer.WriteCollectionOfPrimitiveValues<string>("flaggedReasons", FlaggedReasons);
+            writer.WriteCollectionOfEnumValues<ManagedAppFlaggedReason>("flaggedReasons", FlaggedReasons);
             writer.WriteCollectionOfObjectValues<ManagedAppPolicy>("intendedPolicies", IntendedPolicies);
             writer.WriteDateTimeOffsetValue("lastSyncDateTime", LastSyncDateTime);
             writer.WriteStringValue("managementSdkVersion", ManagementSdkVersion);

@@ -68,8 +68,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new WindowsInformationProtection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.mdmWindowsInformationProtectionPolicy" => new MdmWindowsInformationProtectionPolicy(),
                 "#microsoft.graph.windowsInformationProtectionPolicy" => new WindowsInformationProtectionPolicy(),
@@ -81,31 +80,31 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"assignments", n => { Assignments = n.GetCollectionOfObjectValues<TargetedManagedAppPolicyAssignment>(TargetedManagedAppPolicyAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"assignments", n => { Assignments = n.GetCollectionOfObjectValues<TargetedManagedAppPolicyAssignment>(TargetedManagedAppPolicyAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"azureRightsManagementServicesAllowed", n => { AzureRightsManagementServicesAllowed = n.GetBoolValue(); } },
                 {"dataRecoveryCertificate", n => { DataRecoveryCertificate = n.GetObjectValue<WindowsInformationProtectionDataRecoveryCertificate>(WindowsInformationProtectionDataRecoveryCertificate.CreateFromDiscriminatorValue); } },
                 {"enforcementLevel", n => { EnforcementLevel = n.GetEnumValue<WindowsInformationProtectionEnforcementLevel>(); } },
                 {"enterpriseDomain", n => { EnterpriseDomain = n.GetStringValue(); } },
-                {"enterpriseInternalProxyServers", n => { EnterpriseInternalProxyServers = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
-                {"enterpriseIPRanges", n => { EnterpriseIPRanges = n.GetCollectionOfObjectValues<WindowsInformationProtectionIPRangeCollection>(WindowsInformationProtectionIPRangeCollection.CreateFromDiscriminatorValue).ToList(); } },
+                {"enterpriseInternalProxyServers", n => { EnterpriseInternalProxyServers = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"enterpriseIPRanges", n => { EnterpriseIPRanges = n.GetCollectionOfObjectValues<WindowsInformationProtectionIPRangeCollection>(WindowsInformationProtectionIPRangeCollection.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"enterpriseIPRangesAreAuthoritative", n => { EnterpriseIPRangesAreAuthoritative = n.GetBoolValue(); } },
-                {"enterpriseNetworkDomainNames", n => { EnterpriseNetworkDomainNames = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
-                {"enterpriseProtectedDomainNames", n => { EnterpriseProtectedDomainNames = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
-                {"enterpriseProxiedDomains", n => { EnterpriseProxiedDomains = n.GetCollectionOfObjectValues<WindowsInformationProtectionProxiedDomainCollection>(WindowsInformationProtectionProxiedDomainCollection.CreateFromDiscriminatorValue).ToList(); } },
-                {"enterpriseProxyServers", n => { EnterpriseProxyServers = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
+                {"enterpriseNetworkDomainNames", n => { EnterpriseNetworkDomainNames = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"enterpriseProtectedDomainNames", n => { EnterpriseProtectedDomainNames = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"enterpriseProxiedDomains", n => { EnterpriseProxiedDomains = n.GetCollectionOfObjectValues<WindowsInformationProtectionProxiedDomainCollection>(WindowsInformationProtectionProxiedDomainCollection.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"enterpriseProxyServers", n => { EnterpriseProxyServers = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"enterpriseProxyServersAreAuthoritative", n => { EnterpriseProxyServersAreAuthoritative = n.GetBoolValue(); } },
-                {"exemptAppLockerFiles", n => { ExemptAppLockerFiles = n.GetCollectionOfObjectValues<WindowsInformationProtectionAppLockerFile>(WindowsInformationProtectionAppLockerFile.CreateFromDiscriminatorValue).ToList(); } },
-                {"exemptApps", n => { ExemptApps = n.GetCollectionOfObjectValues<WindowsInformationProtectionApp>(WindowsInformationProtectionApp.CreateFromDiscriminatorValue).ToList(); } },
+                {"exemptAppLockerFiles", n => { ExemptAppLockerFiles = n.GetCollectionOfObjectValues<WindowsInformationProtectionAppLockerFile>(WindowsInformationProtectionAppLockerFile.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"exemptApps", n => { ExemptApps = n.GetCollectionOfObjectValues<WindowsInformationProtectionApp>(WindowsInformationProtectionApp.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"iconsVisible", n => { IconsVisible = n.GetBoolValue(); } },
                 {"indexingEncryptedStoresOrItemsBlocked", n => { IndexingEncryptedStoresOrItemsBlocked = n.GetBoolValue(); } },
                 {"isAssigned", n => { IsAssigned = n.GetBoolValue(); } },
-                {"neutralDomainResources", n => { NeutralDomainResources = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
-                {"protectedAppLockerFiles", n => { ProtectedAppLockerFiles = n.GetCollectionOfObjectValues<WindowsInformationProtectionAppLockerFile>(WindowsInformationProtectionAppLockerFile.CreateFromDiscriminatorValue).ToList(); } },
-                {"protectedApps", n => { ProtectedApps = n.GetCollectionOfObjectValues<WindowsInformationProtectionApp>(WindowsInformationProtectionApp.CreateFromDiscriminatorValue).ToList(); } },
+                {"neutralDomainResources", n => { NeutralDomainResources = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"protectedAppLockerFiles", n => { ProtectedAppLockerFiles = n.GetCollectionOfObjectValues<WindowsInformationProtectionAppLockerFile>(WindowsInformationProtectionAppLockerFile.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"protectedApps", n => { ProtectedApps = n.GetCollectionOfObjectValues<WindowsInformationProtectionApp>(WindowsInformationProtectionApp.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"protectionUnderLockConfigRequired", n => { ProtectionUnderLockConfigRequired = n.GetBoolValue(); } },
                 {"revokeOnUnenrollDisabled", n => { RevokeOnUnenrollDisabled = n.GetBoolValue(); } },
                 {"rightsManagementServicesTemplateId", n => { RightsManagementServicesTemplateId = n.GetStringValue(); } },
-                {"smbAutoEncryptedFileExtensions", n => { SmbAutoEncryptedFileExtensions = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
+                {"smbAutoEncryptedFileExtensions", n => { SmbAutoEncryptedFileExtensions = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

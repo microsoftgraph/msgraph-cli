@@ -43,7 +43,7 @@ namespace ApiSdk.Models {
                 {"minimumCount", n => { MinimumCount = n.GetIntValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"prefixFilter", n => { PrefixFilter = n.GetStringValue(); } },
-                {"ranges", n => { Ranges = n.GetCollectionOfObjectValues<BucketAggregationRange>(BucketAggregationRange.CreateFromDiscriminatorValue).ToList(); } },
+                {"ranges", n => { Ranges = n.GetCollectionOfObjectValues<BucketAggregationRange>(BucketAggregationRange.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"sortBy", n => { SortBy = n.GetEnumValue<BucketAggregationSortProperty>(); } },
             };
         }

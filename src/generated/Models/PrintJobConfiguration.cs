@@ -20,7 +20,7 @@ namespace ApiSdk.Models {
         /// <summary>The orientation to use when feeding media into the printer. Valid values are described in the following table. Read-only.</summary>
         public PrinterFeedOrientation? FeedOrientation { get; set; }
         /// <summary>Finishing processes to use when printing.</summary>
-        public List<string> Finishings { get; set; }
+        public List<PrintFinishing?> Finishings { get; set; }
         /// <summary>The fitPdfToPage property</summary>
         public bool? FitPdfToPage { get; set; }
         /// <summary>The input bin (tray) to use when printing. See the printer&apos;s capabilities for a list of supported input bins.</summary>
@@ -73,7 +73,7 @@ namespace ApiSdk.Models {
                 {"dpi", n => { Dpi = n.GetIntValue(); } },
                 {"duplexMode", n => { DuplexMode = n.GetEnumValue<PrintDuplexMode>(); } },
                 {"feedOrientation", n => { FeedOrientation = n.GetEnumValue<PrinterFeedOrientation>(); } },
-                {"finishings", n => { Finishings = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"finishings", n => { Finishings = n.GetCollectionOfEnumValues<PrintFinishing>()?.ToList(); } },
                 {"fitPdfToPage", n => { FitPdfToPage = n.GetBoolValue(); } },
                 {"inputBin", n => { InputBin = n.GetStringValue(); } },
                 {"margin", n => { Margin = n.GetObjectValue<PrintMargin>(PrintMargin.CreateFromDiscriminatorValue); } },
@@ -83,7 +83,7 @@ namespace ApiSdk.Models {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"orientation", n => { Orientation = n.GetEnumValue<PrintOrientation>(); } },
                 {"outputBin", n => { OutputBin = n.GetStringValue(); } },
-                {"pageRanges", n => { PageRanges = n.GetCollectionOfObjectValues<IntegerRange>(IntegerRange.CreateFromDiscriminatorValue).ToList(); } },
+                {"pageRanges", n => { PageRanges = n.GetCollectionOfObjectValues<IntegerRange>(IntegerRange.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"pagesPerSheet", n => { PagesPerSheet = n.GetIntValue(); } },
                 {"quality", n => { Quality = n.GetEnumValue<PrintQuality>(); } },
                 {"scaling", n => { Scaling = n.GetEnumValue<PrintScaling>(); } },
@@ -101,7 +101,7 @@ namespace ApiSdk.Models {
             writer.WriteIntValue("dpi", Dpi);
             writer.WriteEnumValue<PrintDuplexMode>("duplexMode", DuplexMode);
             writer.WriteEnumValue<PrinterFeedOrientation>("feedOrientation", FeedOrientation);
-            writer.WriteCollectionOfPrimitiveValues<string>("finishings", Finishings);
+            writer.WriteCollectionOfEnumValues<PrintFinishing>("finishings", Finishings);
             writer.WriteBoolValue("fitPdfToPage", FitPdfToPage);
             writer.WriteStringValue("inputBin", InputBin);
             writer.WriteObjectValue<PrintMargin>("margin", Margin);

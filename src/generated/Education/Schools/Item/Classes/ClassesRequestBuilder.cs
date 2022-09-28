@@ -38,11 +38,11 @@ namespace ApiSdk.Education.Schools.Item.Classes {
             return command;
         }
         /// <summary>
-        /// Classes taught at the school. Nullable.
+        /// Get the educationClass resources owned by an educationSchool.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Classes taught at the school. Nullable.";
+            command.Description = "Get the educationClass resources owned by an educationSchool.";
             // Create options for all the parameters
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
             };
@@ -168,7 +168,7 @@ namespace ApiSdk.Education.Schools.Item.Classes {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Classes taught at the school. Nullable.
+        /// Get the educationClass resources owned by an educationSchool.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ClassesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -187,7 +187,7 @@ namespace ApiSdk.Education.Schools.Item.Classes {
             }
             return requestInfo;
         }
-        /// <summary>Classes taught at the school. Nullable.</summary>
+        /// <summary>Get the educationClass resources owned by an educationSchool.</summary>
         public class ClassesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

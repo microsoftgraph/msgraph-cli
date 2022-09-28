@@ -23,11 +23,11 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable
+        /// Users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable";
+            command.Description = "Users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -160,7 +160,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable
+        /// Users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RefRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -200,7 +200,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
             }
             return requestInfo;
         }
-        /// <summary>The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable</summary>
+        /// <summary>Users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.</summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"subjectRightsRequests", n => { SubjectRightsRequests = n.GetCollectionOfObjectValues<SubjectRightsRequest>(SubjectRightsRequest.CreateFromDiscriminatorValue).ToList(); } },
+                {"subjectRightsRequests", n => { SubjectRightsRequests = n.GetCollectionOfObjectValues<SubjectRightsRequest>(SubjectRightsRequest.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

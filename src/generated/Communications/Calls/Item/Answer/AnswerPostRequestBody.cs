@@ -8,7 +8,7 @@ namespace ApiSdk.Communications.Calls.Item.Answer {
     /// <summary>Provides operations to call the answer method.</summary>
     public class AnswerPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>The acceptedModalities property</summary>
-        public List<string> AcceptedModalities { get; set; }
+        public List<Modality?> AcceptedModalities { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The callbackUri property</summary>
@@ -38,7 +38,7 @@ namespace ApiSdk.Communications.Calls.Item.Answer {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"acceptedModalities", n => { AcceptedModalities = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"acceptedModalities", n => { AcceptedModalities = n.GetCollectionOfEnumValues<Modality>()?.ToList(); } },
                 {"callbackUri", n => { CallbackUri = n.GetStringValue(); } },
                 {"callOptions", n => { CallOptions = n.GetObjectValue<IncomingCallOptions>(IncomingCallOptions.CreateFromDiscriminatorValue); } },
                 {"mediaConfig", n => { MediaConfig = n.GetObjectValue<ApiSdk.Models.MediaConfig>(ApiSdk.Models.MediaConfig.CreateFromDiscriminatorValue); } },
@@ -51,7 +51,7 @@ namespace ApiSdk.Communications.Calls.Item.Answer {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("acceptedModalities", AcceptedModalities);
+            writer.WriteCollectionOfEnumValues<Modality>("acceptedModalities", AcceptedModalities);
             writer.WriteStringValue("callbackUri", CallbackUri);
             writer.WriteObjectValue<IncomingCallOptions>("callOptions", CallOptions);
             writer.WriteObjectValue<ApiSdk.Models.MediaConfig>("mediaConfig", MediaConfig);

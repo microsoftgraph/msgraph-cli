@@ -27,7 +27,6 @@ namespace ApiSdk.Me.Authentication.Methods {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new AuthenticationMethodItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildResetPasswordCommand());

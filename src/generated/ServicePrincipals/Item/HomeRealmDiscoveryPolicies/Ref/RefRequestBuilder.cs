@@ -23,11 +23,11 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.
+        /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.";
+            command.Description = "List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -166,7 +166,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.
+        /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RefRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -206,7 +206,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
             }
             return requestInfo;
         }
-        /// <summary>The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.</summary>
+        /// <summary>List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.</summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             command.AddCommand(builder.BuildCatalogCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         public Command BuildCountCommand() {
@@ -41,11 +41,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to assignmentPolicies for identityGovernance
+        /// In Azure AD entitlement management, create a new accessPackageAssignmentPolicy object.  The request will include a reference to the accessPackage that will contain this policy, which must already exist.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to assignmentPolicies for identityGovernance";
+            command.Description = "In Azure AD entitlement management, create a new accessPackageAssignmentPolicy object.  The request will include a reference to the accessPackage that will contain this policy, which must already exist.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -90,11 +90,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             return command;
         }
         /// <summary>
-        /// Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
+        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including `$expand=accessPackageAssignmentPolicies` as a query parameter.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.";
+            command.Description = "In Azure AD entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including `$expand=accessPackageAssignmentPolicies` as a query parameter.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -207,7 +207,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
+        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including `$expand=accessPackageAssignmentPolicies` as a query parameter.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AssignmentPoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -227,7 +227,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to assignmentPolicies for identityGovernance
+        /// In Azure AD entitlement management, create a new accessPackageAssignmentPolicy object.  The request will include a reference to the accessPackage that will contain this policy, which must already exist.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -248,7 +248,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             }
             return requestInfo;
         }
-        /// <summary>Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.</summary>
+        /// <summary>In Azure AD entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including `$expand=accessPackageAssignmentPolicies` as a query parameter.</summary>
         public class AssignmentPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

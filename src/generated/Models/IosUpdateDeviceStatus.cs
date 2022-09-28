@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
     public class IosUpdateDeviceStatus : Entity, IParsable {
         /// <summary>The DateTime when device compliance grace period expires</summary>
         public DateTimeOffset? ComplianceGracePeriodExpirationDateTime { get; set; }
@@ -28,7 +29,7 @@ namespace ApiSdk.Models {
         /// <summary>UserPrincipalName.</summary>
         public string UserPrincipalName { get; set; }
         /// <summary>
-        /// Instantiates a new IosUpdateDeviceStatus and sets the default values.
+        /// Instantiates a new iosUpdateDeviceStatus and sets the default values.
         /// </summary>
         public IosUpdateDeviceStatus() : base() {
             OdataType = "#microsoft.graph.iosUpdateDeviceStatus";

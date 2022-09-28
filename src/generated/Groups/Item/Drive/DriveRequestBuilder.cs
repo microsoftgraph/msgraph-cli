@@ -23,11 +23,11 @@ namespace ApiSdk.Groups.Item.Drive {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The group&apos;s default drive. Read-only.
+        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The group's default drive. Read-only.";
+            command.Description = "Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Groups.Item.Drive {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The group&apos;s default drive. Read-only.
+        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DriveRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.Groups.Item.Drive {
             }
             return requestInfo;
         }
-        /// <summary>The group&apos;s default drive. Read-only.</summary>
+        /// <summary>Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.</summary>
         public class DriveRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

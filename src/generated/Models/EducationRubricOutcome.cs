@@ -32,10 +32,10 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"publishedRubricQualityFeedback", n => { PublishedRubricQualityFeedback = n.GetCollectionOfObjectValues<RubricQualityFeedbackModel>(RubricQualityFeedbackModel.CreateFromDiscriminatorValue).ToList(); } },
-                {"publishedRubricQualitySelectedLevels", n => { PublishedRubricQualitySelectedLevels = n.GetCollectionOfObjectValues<RubricQualitySelectedColumnModel>(RubricQualitySelectedColumnModel.CreateFromDiscriminatorValue).ToList(); } },
-                {"rubricQualityFeedback", n => { RubricQualityFeedback = n.GetCollectionOfObjectValues<RubricQualityFeedbackModel>(RubricQualityFeedbackModel.CreateFromDiscriminatorValue).ToList(); } },
-                {"rubricQualitySelectedLevels", n => { RubricQualitySelectedLevels = n.GetCollectionOfObjectValues<RubricQualitySelectedColumnModel>(RubricQualitySelectedColumnModel.CreateFromDiscriminatorValue).ToList(); } },
+                {"publishedRubricQualityFeedback", n => { PublishedRubricQualityFeedback = n.GetCollectionOfObjectValues<RubricQualityFeedbackModel>(RubricQualityFeedbackModel.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"publishedRubricQualitySelectedLevels", n => { PublishedRubricQualitySelectedLevels = n.GetCollectionOfObjectValues<RubricQualitySelectedColumnModel>(RubricQualitySelectedColumnModel.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"rubricQualityFeedback", n => { RubricQualityFeedback = n.GetCollectionOfObjectValues<RubricQualityFeedbackModel>(RubricQualityFeedbackModel.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"rubricQualitySelectedLevels", n => { RubricQualitySelectedLevels = n.GetCollectionOfObjectValues<RubricQualitySelectedColumnModel>(RubricQualitySelectedColumnModel.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

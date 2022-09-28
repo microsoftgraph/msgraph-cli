@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"availability", n => { Availability = n.GetCollectionOfObjectValues<ShiftAvailability>(ShiftAvailability.CreateFromDiscriminatorValue).ToList(); } },
+                {"availability", n => { Availability = n.GetCollectionOfObjectValues<ShiftAvailability>(ShiftAvailability.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

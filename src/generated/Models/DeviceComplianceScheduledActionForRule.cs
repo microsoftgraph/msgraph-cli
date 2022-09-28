@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"ruleName", n => { RuleName = n.GetStringValue(); } },
-                {"scheduledActionConfigurations", n => { ScheduledActionConfigurations = n.GetCollectionOfObjectValues<DeviceComplianceActionItem>(DeviceComplianceActionItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"scheduledActionConfigurations", n => { ScheduledActionConfigurations = n.GetCollectionOfObjectValues<DeviceComplianceActionItem>(DeviceComplianceActionItem.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

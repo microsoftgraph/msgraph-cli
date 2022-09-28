@@ -37,11 +37,11 @@ namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants {
             return command;
         }
         /// <summary>
-        /// Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.
+        /// Retrieve a list of oAuth2PermissionGrant entities, representing delegated permissions granted to the service principal (representing the client application) to access an API on behalf of a user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.";
+            command.Description = "Retrieve a list of oAuth2PermissionGrant entities, representing delegated permissions granted to the service principal (representing the client application) to access an API on behalf of a user.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -160,7 +160,7 @@ namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.
+        /// Retrieve a list of oAuth2PermissionGrant entities, representing delegated permissions granted to the service principal (representing the client application) to access an API on behalf of a user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<Oauth2PermissionGrantsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -179,7 +179,7 @@ namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants {
             }
             return requestInfo;
         }
-        /// <summary>Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.</summary>
+        /// <summary>Retrieve a list of oAuth2PermissionGrant entities, representing delegated permissions granted to the service principal (representing the client application) to access an API on behalf of a user.</summary>
         public class Oauth2PermissionGrantsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -24,8 +24,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static EdgeSearchEngineBase CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.edgeSearchEngine" => new EdgeSearchEngine(),
                 "#microsoft.graph.edgeSearchEngineCustom" => new EdgeSearchEngineCustom(),

@@ -100,11 +100,11 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories {
             return command;
         }
         /// <summary>
-        /// When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
+        /// List all the categories associated with an assignment.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "When set, enables users to easily find assignments of a given type.  Read-only. Nullable.";
+            command.Description = "List all the categories associated with an assignment.";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
@@ -236,7 +236,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
+        /// List all the categories associated with an assignment.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CategoriesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -283,7 +283,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>When set, enables users to easily find assignments of a given type.  Read-only. Nullable.</summary>
+        /// <summary>List all the categories associated with an assignment.</summary>
         public class CategoriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

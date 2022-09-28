@@ -95,11 +95,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Tabs {
             return command;
         }
         /// <summary>
-        /// A collection of all the tabs in the channel. A navigation property.
+        /// Retrieve the list of tabs in the specified channel within a team. 
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of all the tabs in the channel. A navigation property.";
+            command.Description = "Retrieve the list of tabs in the specified channel within a team. ";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Tabs {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of all the tabs in the channel. A navigation property.
+        /// Retrieve the list of tabs in the specified channel within a team. 
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TabsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -259,7 +259,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Tabs {
             }
             return requestInfo;
         }
-        /// <summary>A collection of all the tabs in the channel. A navigation property.</summary>
+        /// <summary>Retrieve the list of tabs in the specified channel within a team. </summary>
         public class TabsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

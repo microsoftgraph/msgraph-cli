@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of contract entities.</summary>
     public class Contract : DirectoryObject, IParsable {
         /// <summary>Type of contract. Possible values are:  SyndicationPartner, BreadthPartner, ResellerPartner. See more in the table below.</summary>
         public string ContractType { get; set; }
@@ -14,7 +15,7 @@ namespace ApiSdk.Models {
         /// <summary>A copy of the customer tenant&apos;s display name. The copy is made when the partnership with the customer is established. It is not automatically updated if the customer tenant&apos;s display name changes.</summary>
         public string DisplayName { get; set; }
         /// <summary>
-        /// Instantiates a new Contract and sets the default values.
+        /// Instantiates a new contract and sets the default values.
         /// </summary>
         public Contract() : base() {
             OdataType = "#microsoft.graph.contract";

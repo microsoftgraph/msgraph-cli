@@ -90,11 +90,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return command;
         }
         /// <summary>
-        /// A collection of userConsentRequest objects for a specific application.
+        /// Retrieve appConsentRequest objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of userConsentRequest objects for a specific application.";
+            command.Description = "Retrieve appConsentRequest objects and their properties.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -207,7 +207,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of userConsentRequest objects for a specific application.
+        /// Retrieve appConsentRequest objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AppConsentRequestsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -256,7 +256,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>A collection of userConsentRequest objects for a specific application.</summary>
+        /// <summary>Retrieve appConsentRequest objects and their properties.</summary>
         public class AppConsentRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

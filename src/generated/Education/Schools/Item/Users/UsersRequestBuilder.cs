@@ -38,11 +38,11 @@ namespace ApiSdk.Education.Schools.Item.Users {
             return command;
         }
         /// <summary>
-        /// Users in the school. Nullable.
+        /// Get the educationUser resources associated with an educationSchool.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Users in the school. Nullable.";
+            command.Description = "Get the educationUser resources associated with an educationSchool.";
             // Create options for all the parameters
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
             };
@@ -168,7 +168,7 @@ namespace ApiSdk.Education.Schools.Item.Users {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Users in the school. Nullable.
+        /// Get the educationUser resources associated with an educationSchool.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UsersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -187,7 +187,7 @@ namespace ApiSdk.Education.Schools.Item.Users {
             }
             return requestInfo;
         }
-        /// <summary>Users in the school. Nullable.</summary>
+        /// <summary>Get the educationUser resources associated with an educationSchool.</summary>
         public class UsersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

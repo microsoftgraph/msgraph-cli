@@ -112,11 +112,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.HostedC
             return command;
         }
         /// <summary>
-        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
+        /// Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
+            command.Description = "Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -253,7 +253,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.HostedC
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
+        /// Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<HostedContentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -294,7 +294,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.HostedC
             }
             return requestInfo;
         }
-        /// <summary>Content in a message hosted by Microsoft Teams - for example, images or code snippets.</summary>
+        /// <summary>Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content</summary>
         public class HostedContentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

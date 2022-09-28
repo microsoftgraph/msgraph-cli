@@ -22,11 +22,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Prevents the general public from seeing the scheduling page of this business.
+        /// Make the scheduling page of this business not available to external customers. Set the **isPublished** property to `false`, and the **publicUrl** property to `null`.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Prevents the general public from seeing the scheduling page of this business.";
+            command.Description = "Make the scheduling page of this business not available to external customers. Set the **isPublished** property to `false`, and the **publicUrl** property to `null`.";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Prevents the general public from seeing the scheduling page of this business.
+        /// Make the scheduling page of this business not available to external customers. Set the **isPublished** property to `false`, and the **publicUrl** property to `null`.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<UnpublishRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

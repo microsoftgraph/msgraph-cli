@@ -7,7 +7,7 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class ManagedAppProtection : ManagedAppPolicy, IParsable {
         /// <summary>Data storage locations where a user may store managed data.</summary>
-        public List<string> AllowedDataStorageLocations { get; set; }
+        public List<ManagedAppDataStorageLocation?> AllowedDataStorageLocations { get; set; }
         /// <summary>Data can be transferred from/to these classes of apps</summary>
         public ManagedAppDataTransferLevel? AllowedInboundDataTransferSources { get; set; }
         /// <summary>Represents the level to which the device&apos;s clipboard may be shared between apps</summary>
@@ -72,8 +72,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new ManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.androidManagedAppProtection" => new AndroidManagedAppProtection(),
                 "#microsoft.graph.defaultManagedAppProtection" => new DefaultManagedAppProtection(),
@@ -87,7 +86,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"allowedDataStorageLocations", n => { AllowedDataStorageLocations = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"allowedDataStorageLocations", n => { AllowedDataStorageLocations = n.GetCollectionOfEnumValues<ManagedAppDataStorageLocation>()?.ToList(); } },
                 {"allowedInboundDataTransferSources", n => { AllowedInboundDataTransferSources = n.GetEnumValue<ManagedAppDataTransferLevel>(); } },
                 {"allowedOutboundClipboardSharingLevel", n => { AllowedOutboundClipboardSharingLevel = n.GetEnumValue<ManagedAppClipboardSharingLevel>(); } },
                 {"allowedOutboundDataTransferDestinations", n => { AllowedOutboundDataTransferDestinations = n.GetEnumValue<ManagedAppDataTransferLevel>(); } },
@@ -123,7 +122,7 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfPrimitiveValues<string>("allowedDataStorageLocations", AllowedDataStorageLocations);
+            writer.WriteCollectionOfEnumValues<ManagedAppDataStorageLocation>("allowedDataStorageLocations", AllowedDataStorageLocations);
             writer.WriteEnumValue<ManagedAppDataTransferLevel>("allowedInboundDataTransferSources", AllowedInboundDataTransferSources);
             writer.WriteEnumValue<ManagedAppClipboardSharingLevel>("allowedOutboundClipboardSharingLevel", AllowedOutboundClipboardSharingLevel);
             writer.WriteEnumValue<ManagedAppDataTransferLevel>("allowedOutboundDataTransferDestinations", AllowedOutboundDataTransferDestinations);

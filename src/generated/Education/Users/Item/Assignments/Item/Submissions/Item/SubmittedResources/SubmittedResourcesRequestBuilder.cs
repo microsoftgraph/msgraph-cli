@@ -106,11 +106,11 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submitte
             return command;
         }
         /// <summary>
-        /// Get submittedResources from education
+        /// List the educationSubmissionResource objects that have officially been submitted for grading.  The student who owns the submission cannot change the submitted list without resubmitting the assignment. This is a wrapper around the real resource and can contain a pointer back to the actual assignment resource if this resource was copied from the assignment.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get submittedResources from education";
+            command.Description = "List the educationSubmissionResource objects that have officially been submitted for grading.  The student who owns the submission cannot change the submitted list without resubmitting the assignment. This is a wrapper around the real resource and can contain a pointer back to the actual assignment resource if this resource was copied from the assignment.";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
@@ -241,7 +241,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submitte
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get submittedResources from education
+        /// List the educationSubmissionResource objects that have officially been submitted for grading.  The student who owns the submission cannot change the submitted list without resubmitting the assignment. This is a wrapper around the real resource and can contain a pointer back to the actual assignment resource if this resource was copied from the assignment.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SubmittedResourcesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -282,7 +282,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submitte
             }
             return requestInfo;
         }
-        /// <summary>Get submittedResources from education</summary>
+        /// <summary>List the educationSubmissionResource objects that have officially been submitted for grading.  The student who owns the submission cannot change the submitted list without resubmitting the assignment. This is a wrapper around the real resource and can contain a pointer back to the actual assignment resource if this resource was copied from the assignment.</summary>
         public class SubmittedResourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -94,11 +94,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Acceptances {
             return command;
         }
         /// <summary>
-        /// Read-only. Information about acceptances of this agreement.
+        /// Get the details about the acceptance records for a specific agreement.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Information about acceptances of this agreement.";
+            command.Description = "Get the details about the acceptance records for a specific agreement.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Acceptances {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Information about acceptances of this agreement.
+        /// Get the details about the acceptance records for a specific agreement.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AcceptancesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Acceptances {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Information about acceptances of this agreement.</summary>
+        /// <summary>Get the details about the acceptance records for a specific agreement.</summary>
         public class AcceptancesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

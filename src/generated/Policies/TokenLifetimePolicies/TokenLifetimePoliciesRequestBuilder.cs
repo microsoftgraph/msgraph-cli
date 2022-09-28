@@ -39,11 +39,11 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to tokenLifetimePolicies for policies
+        /// Create a new tokenLifetimePolicy object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to tokenLifetimePolicies for policies";
+            command.Description = "Create a new tokenLifetimePolicy object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -88,11 +88,11 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
             return command;
         }
         /// <summary>
-        /// The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.
+        /// Get a list of tokenLifetimePolicy objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.";
+            command.Description = "Get a list of tokenLifetimePolicy objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.
+        /// Get a list of tokenLifetimePolicy objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TokenLifetimePoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -225,7 +225,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to tokenLifetimePolicies for policies
+        /// Create a new tokenLifetimePolicy object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -246,7 +246,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
             }
             return requestInfo;
         }
-        /// <summary>The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.</summary>
+        /// <summary>Get a list of tokenLifetimePolicy objects.</summary>
         public class TokenLifetimePoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

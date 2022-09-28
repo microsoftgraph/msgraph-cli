@@ -23,11 +23,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Operation entity that represents the latest indexing for the custodian.
+        /// Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Operation entity that represents the latest indexing for the custodian.";
+            command.Description = "Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -103,7 +103,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Operation entity that represents the latest indexing for the custodian.
+        /// Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<LastIndexOperationRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -122,7 +122,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
             }
             return requestInfo;
         }
-        /// <summary>Operation entity that represents the latest indexing for the custodian.</summary>
+        /// <summary>Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.</summary>
         public class LastIndexOperationRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

@@ -40,11 +40,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to columns for groups
+        /// Create a column for a [site][site] with a request that specifies a [columnDefinition][columnDefinition].
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to columns for groups";
+            command.Description = "Create a column for a [site][site] with a request that specifies a [columnDefinition][columnDefinition].";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -101,11 +101,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
             return command;
         }
         /// <summary>
-        /// The collection of column definitions reusable across lists under this site.
+        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [site][site].
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of column definitions reusable across lists under this site.";
+            command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [site][site].";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -230,7 +230,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of column definitions reusable across lists under this site.
+        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [site][site].
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ColumnsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -250,7 +250,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to columns for groups
+        /// Create a column for a [site][site] with a request that specifies a [columnDefinition][columnDefinition].
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -271,7 +271,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
             }
             return requestInfo;
         }
-        /// <summary>The collection of column definitions reusable across lists under this site.</summary>
+        /// <summary>Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [site][site].</summary>
         public class ColumnsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

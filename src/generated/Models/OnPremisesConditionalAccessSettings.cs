@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         /// <summary>Override the default access rule when allowing a device to ensure access is granted.</summary>
         public bool? OverrideDefaultRule { get; set; }
         /// <summary>
-        /// Instantiates a new OnPremisesConditionalAccessSettings and sets the default values.
+        /// Instantiates a new onPremisesConditionalAccessSettings and sets the default values.
         /// </summary>
         public OnPremisesConditionalAccessSettings() : base() {
             OdataType = "#microsoft.graph.onPremisesConditionalAccessSettings";
@@ -33,8 +33,8 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"enabled", n => { Enabled = n.GetBoolValue(); } },
-                {"excludedGroups", n => { ExcludedGroups = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"includedGroups", n => { IncludedGroups = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"excludedGroups", n => { ExcludedGroups = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"includedGroups", n => { IncludedGroups = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"overrideDefaultRule", n => { OverrideDefaultRule = n.GetBoolValue(); } },
             };
         }

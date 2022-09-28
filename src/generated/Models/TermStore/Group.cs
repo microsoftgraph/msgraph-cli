@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.TermStore {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Casts the previous resource to group.</summary>
     public class Group : Entity, IParsable {
         /// <summary>Date and time of the group creation. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -14,7 +14,7 @@ namespace ApiSdk.Models.TermStore {
         public string DisplayName { get; set; }
         /// <summary>ID of the parent site of this group.</summary>
         public string ParentSiteId { get; set; }
-        /// <summary>Returns the type of the group. Possible values are global, system, and siteCollection.</summary>
+        /// <summary>Returns the type of the group. Possible values are: global, system, and siteCollection.</summary>
         public TermGroupScope? Scope { get; set; }
         /// <summary>All sets under the group in a term [store].</summary>
         public List<Set> Sets { get; set; }
@@ -42,7 +42,7 @@ namespace ApiSdk.Models.TermStore {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"parentSiteId", n => { ParentSiteId = n.GetStringValue(); } },
                 {"scope", n => { Scope = n.GetEnumValue<TermGroupScope>(); } },
-                {"sets", n => { Sets = n.GetCollectionOfObjectValues<Set>(Set.CreateFromDiscriminatorValue).ToList(); } },
+                {"sets", n => { Sets = n.GetCollectionOfObjectValues<Set>(Set.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

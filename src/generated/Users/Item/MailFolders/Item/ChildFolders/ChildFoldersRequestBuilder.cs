@@ -46,11 +46,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to childFolders for users
+        /// Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to childFolders for users";
+            command.Description = "Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -107,11 +107,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// The collection of child folders in the mailFolder.
+        /// Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of child folders in the mailFolder.";
+            command.Description = "Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -230,7 +230,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of child folders in the mailFolder.
+        /// Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChildFoldersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -250,7 +250,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to childFolders for users
+        /// Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -277,7 +277,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The collection of child folders in the mailFolder.</summary>
+        /// <summary>Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.</summary>
         public class ChildFoldersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -90,11 +90,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             return command;
         }
         /// <summary>
-        /// Instances for active role assignments.
+        /// Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Instances for active role assignments.";
+            command.Description = "Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -207,7 +207,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instances for active role assignments.
+        /// Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RoleAssignmentScheduleInstancesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -256,7 +256,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>Instances for active role assignments.</summary>
+        /// <summary>Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.</summary>
         public class RoleAssignmentScheduleInstancesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

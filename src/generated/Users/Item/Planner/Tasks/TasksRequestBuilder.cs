@@ -98,11 +98,11 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Retrieve a list of **plannertask** objects assigned to a User.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
+            command.Description = "Retrieve a list of **plannertask** objects assigned to a User.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -221,7 +221,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Retrieve a list of **plannertask** objects assigned to a User.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TasksRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -262,7 +262,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Returns the plannerPlans shared with the user.</summary>
+        /// <summary>Retrieve a list of **plannertask** objects assigned to a User.</summary>
         public class TasksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

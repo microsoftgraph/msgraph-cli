@@ -37,11 +37,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item.SectionGroups
             return command;
         }
         /// <summary>
-        /// The section groups in the section. Read-only. Nullable.
+        /// Retrieve a list of section groups from the specified section group.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The section groups in the section. Read-only. Nullable.";
+            command.Description = "Retrieve a list of section groups from the specified section group.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -172,7 +172,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item.SectionGroups
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The section groups in the section. Read-only. Nullable.
+        /// Retrieve a list of section groups from the specified section group.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SectionGroupsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -191,7 +191,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item.SectionGroups
             }
             return requestInfo;
         }
-        /// <summary>The section groups in the section. Read-only. Nullable.</summary>
+        /// <summary>Retrieve a list of section groups from the specified section group.</summary>
         public class SectionGroupsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

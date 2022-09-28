@@ -43,11 +43,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to accessPackages for identityGovernance
+        /// Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to accessPackages for identityGovernance";
+            command.Description = "Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -92,11 +92,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             return command;
         }
         /// <summary>
-        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
+        /// Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.";
+            command.Description = "Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
+        /// Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AccessPackagesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -229,7 +229,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to accessPackages for identityGovernance
+        /// Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.</summary>
+        /// <summary>Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.</summary>
         public class AccessPackagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

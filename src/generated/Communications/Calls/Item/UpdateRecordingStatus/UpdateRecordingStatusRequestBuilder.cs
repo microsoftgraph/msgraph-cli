@@ -23,11 +23,11 @@ namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action updateRecordingStatus
+        /// Update the application&apos;s recording status associated with a call. This requires the use of the Teams policy-based recording solution.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action updateRecordingStatus";
+            command.Description = "Update the application's recording status associated with a call. This requires the use of the Teams policy-based recording solution.";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };
@@ -91,7 +91,7 @@ namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action updateRecordingStatus
+        /// Update the application&apos;s recording status associated with a call. This requires the use of the Teams policy-based recording solution.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

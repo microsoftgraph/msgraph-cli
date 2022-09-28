@@ -49,7 +49,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"compliantDeviceCount", n => { CompliantDeviceCount = n.GetIntValue(); } },
                 {"conflictDeviceCount", n => { ConflictDeviceCount = n.GetIntValue(); } },
-                {"deviceComplianceSettingStates", n => { DeviceComplianceSettingStates = n.GetCollectionOfObjectValues<DeviceComplianceSettingState>(DeviceComplianceSettingState.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceComplianceSettingStates", n => { DeviceComplianceSettingStates = n.GetCollectionOfObjectValues<DeviceComplianceSettingState>(DeviceComplianceSettingState.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"errorDeviceCount", n => { ErrorDeviceCount = n.GetIntValue(); } },
                 {"nonCompliantDeviceCount", n => { NonCompliantDeviceCount = n.GetIntValue(); } },
                 {"notApplicableDeviceCount", n => { NotApplicableDeviceCount = n.GetIntValue(); } },

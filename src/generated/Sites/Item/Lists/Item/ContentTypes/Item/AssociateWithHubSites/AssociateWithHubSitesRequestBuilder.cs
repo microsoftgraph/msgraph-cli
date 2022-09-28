@@ -22,11 +22,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWithHubSites {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action associateWithHubSites
+        /// Associate a published [content type][contentType] present in a content type hub with a list of hub sites.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action associateWithHubSites";
+            command.Description = "Associate a published [content type][contentType] present in a content type hub with a list of hub sites.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -81,7 +81,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWithHubSites {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action associateWithHubSites
+        /// Associate a published [content type][contentType] present in a content type hub with a list of hub sites.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

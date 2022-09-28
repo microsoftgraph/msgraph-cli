@@ -22,11 +22,11 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item.EnableSmsSignIn {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action enableSmsSignIn
+        /// Enable SMS sign-in for an existing `mobile` phone number registered to a user. To be successfully enabled:
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action enableSmsSignIn";
+            command.Description = "Enable SMS sign-in for an existing `mobile` phone number registered to a user. To be successfully enabled:";
             // Create options for all the parameters
             var phoneAuthenticationMethodIdOption = new Option<string>("--phone-authentication-method-id", description: "key: id of phoneAuthenticationMethod") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item.EnableSmsSignIn {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action enableSmsSignIn
+        /// Enable SMS sign-in for an existing `mobile` phone number registered to a user. To be successfully enabled:
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<EnableSmsSignInRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

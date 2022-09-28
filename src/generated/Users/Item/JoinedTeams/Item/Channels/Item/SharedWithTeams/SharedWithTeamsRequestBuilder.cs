@@ -107,11 +107,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams {
             return command;
         }
         /// <summary>
-        /// A collection of teams with which a channel is shared.
+        /// Get the list of teams that has been shared a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of teams with which a channel is shared.";
+            command.Description = "Get the list of teams that has been shared a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -242,7 +242,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of teams with which a channel is shared.
+        /// Get the list of teams that has been shared a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SharedWithTeamsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -283,7 +283,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams {
             }
             return requestInfo;
         }
-        /// <summary>A collection of teams with which a channel is shared.</summary>
+        /// <summary>Get the list of teams that has been shared a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.</summary>
         public class SharedWithTeamsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

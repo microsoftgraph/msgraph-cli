@@ -23,11 +23,11 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Copy {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action copy
+        /// Copy a message to a folder within the user&apos;s mailbox.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action copy";
+            command.Description = "Copy a message to a folder within the user's mailbox.";
             // Create options for all the parameters
             var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };
@@ -103,7 +103,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Copy {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action copy
+        /// Copy a message to a folder within the user&apos;s mailbox.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

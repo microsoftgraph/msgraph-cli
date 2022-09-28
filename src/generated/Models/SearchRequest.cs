@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         /// <summary>The enableTopResults property</summary>
         public bool? EnableTopResults { get; set; }
         /// <summary>The entityTypes property</summary>
-        public List<string> EntityTypes { get; set; }
+        public List<EntityType?> EntityTypes { get; set; }
         /// <summary>The fields property</summary>
         public List<string> Fields { get; set; }
         /// <summary>The from property</summary>
@@ -53,19 +53,19 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"aggregationFilters", n => { AggregationFilters = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"aggregations", n => { Aggregations = n.GetCollectionOfObjectValues<AggregationOption>(AggregationOption.CreateFromDiscriminatorValue).ToList(); } },
-                {"contentSources", n => { ContentSources = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"aggregationFilters", n => { AggregationFilters = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"aggregations", n => { Aggregations = n.GetCollectionOfObjectValues<AggregationOption>(AggregationOption.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"contentSources", n => { ContentSources = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"enableTopResults", n => { EnableTopResults = n.GetBoolValue(); } },
-                {"entityTypes", n => { EntityTypes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"fields", n => { Fields = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"entityTypes", n => { EntityTypes = n.GetCollectionOfEnumValues<EntityType>()?.ToList(); } },
+                {"fields", n => { Fields = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"from", n => { From = n.GetIntValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"query", n => { Query = n.GetObjectValue<SearchQuery>(SearchQuery.CreateFromDiscriminatorValue); } },
                 {"queryAlterationOptions", n => { QueryAlterationOptions = n.GetObjectValue<SearchAlterationOptions>(SearchAlterationOptions.CreateFromDiscriminatorValue); } },
                 {"resultTemplateOptions", n => { ResultTemplateOptions = n.GetObjectValue<ResultTemplateOption>(ResultTemplateOption.CreateFromDiscriminatorValue); } },
                 {"size", n => { Size = n.GetIntValue(); } },
-                {"sortProperties", n => { SortProperties = n.GetCollectionOfObjectValues<SortProperty>(SortProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"sortProperties", n => { SortProperties = n.GetCollectionOfObjectValues<SortProperty>(SortProperty.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -78,7 +78,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<AggregationOption>("aggregations", Aggregations);
             writer.WriteCollectionOfPrimitiveValues<string>("contentSources", ContentSources);
             writer.WriteBoolValue("enableTopResults", EnableTopResults);
-            writer.WriteCollectionOfPrimitiveValues<string>("entityTypes", EntityTypes);
+            writer.WriteCollectionOfEnumValues<EntityType>("entityTypes", EntityTypes);
             writer.WriteCollectionOfPrimitiveValues<string>("fields", Fields);
             writer.WriteIntValue("from", From);
             writer.WriteStringValue("@odata.type", OdataType);

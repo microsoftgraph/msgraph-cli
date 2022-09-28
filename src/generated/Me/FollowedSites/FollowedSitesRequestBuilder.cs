@@ -37,11 +37,11 @@ namespace ApiSdk.Me.FollowedSites {
             return command;
         }
         /// <summary>
-        /// Get followedSites from me
+        /// List the sites that have been followed by the signed in user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get followedSites from me";
+            command.Description = "List the sites that have been followed by the signed in user.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -154,7 +154,7 @@ namespace ApiSdk.Me.FollowedSites {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get followedSites from me
+        /// List the sites that have been followed by the signed in user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<FollowedSitesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -173,7 +173,7 @@ namespace ApiSdk.Me.FollowedSites {
             }
             return requestInfo;
         }
-        /// <summary>Get followedSites from me</summary>
+        /// <summary>List the sites that have been followed by the signed in user.</summary>
         public class FollowedSitesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

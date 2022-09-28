@@ -22,11 +22,11 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action setVerifiedPublisher
+        /// Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setVerifiedPublisher";
+            command.Description = "Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -69,7 +69,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action setVerifiedPublisher
+        /// Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

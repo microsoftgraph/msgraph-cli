@@ -40,11 +40,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to roleDefinitions for roleManagement
+        /// Create a new custom unifiedRoleDefinition object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to roleDefinitions for roleManagement";
+            command.Description = "Create a new custom unifiedRoleDefinition object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -89,11 +89,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions {
             return command;
         }
         /// <summary>
-        /// Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.
+        /// Get a list of unifiedRoleDefinition objects for the provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.";
+            command.Description = "Get a list of unifiedRoleDefinition objects for the provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.
+        /// Get a list of unifiedRoleDefinition objects for the provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RoleDefinitionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -226,7 +226,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to roleDefinitions for roleManagement
+        /// Create a new custom unifiedRoleDefinition object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions {
             }
             return requestInfo;
         }
-        /// <summary>Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.</summary>
+        /// <summary>Get a list of unifiedRoleDefinition objects for the provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)</summary>
         public class RoleDefinitionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

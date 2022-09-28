@@ -39,11 +39,11 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to openShiftChangeRequests for teams
+        /// Create instance of an openShiftChangeRequest object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to openShiftChangeRequests for teams";
+            command.Description = "Create instance of an openShiftChangeRequest object.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
             return command;
         }
         /// <summary>
-        /// Get openShiftChangeRequests from teams
+        /// Retrieve a list of openShiftChangeRequest objects in a team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get openShiftChangeRequests from teams";
+            command.Description = "Retrieve a list of openShiftChangeRequest objects in a team.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get openShiftChangeRequests from teams
+        /// Retrieve a list of openShiftChangeRequest objects in a team.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OpenShiftChangeRequestsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +237,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to openShiftChangeRequests for teams
+        /// Create instance of an openShiftChangeRequest object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
             }
             return requestInfo;
         }
-        /// <summary>Get openShiftChangeRequests from teams</summary>
+        /// <summary>Retrieve a list of openShiftChangeRequest objects in a team.</summary>
         public class OpenShiftChangeRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

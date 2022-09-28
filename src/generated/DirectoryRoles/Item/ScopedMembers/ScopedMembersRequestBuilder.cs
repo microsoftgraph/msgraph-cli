@@ -94,11 +94,11 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
             return command;
         }
         /// <summary>
-        /// Members of this directory role that are scoped to administrative units. Read-only. Nullable.
+        /// Retrieve a list of scopedRoleMembership objects for a directory role.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Members of this directory role that are scoped to administrative units. Read-only. Nullable.";
+            command.Description = "Retrieve a list of scopedRoleMembership objects for a directory role.";
             // Create options for all the parameters
             var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Members of this directory role that are scoped to administrative units. Read-only. Nullable.
+        /// Retrieve a list of scopedRoleMembership objects for a directory role.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ScopedMembersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
             }
             return requestInfo;
         }
-        /// <summary>Members of this directory role that are scoped to administrative units. Read-only. Nullable.</summary>
+        /// <summary>Retrieve a list of scopedRoleMembership objects for a directory role.</summary>
         public class ScopedMembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

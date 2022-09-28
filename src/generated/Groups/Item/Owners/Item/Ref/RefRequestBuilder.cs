@@ -73,7 +73,7 @@ namespace ApiSdk.Groups.Item.Owners.Item.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group%2Did}/owners/{directoryObject%2Did}/$ref{?%40id}";
+            UrlTemplate = "{+baseurl}/groups/{group%2Did}/owners/{directoryObject%2Did}/$ref{?%40id*}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;

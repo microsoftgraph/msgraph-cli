@@ -23,11 +23,11 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Users in the school. Nullable.
+        /// Get the educationUser resources associated with an educationSchool.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Users in the school. Nullable.";
+            command.Description = "Get the educationUser resources associated with an educationSchool.";
             // Create options for all the parameters
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
             };
@@ -166,7 +166,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Users in the school. Nullable.
+        /// Get the educationUser resources associated with an educationSchool.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RefRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -206,7 +206,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             }
             return requestInfo;
         }
-        /// <summary>Users in the school. Nullable.</summary>
+        /// <summary>Get the educationUser resources associated with an educationSchool.</summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

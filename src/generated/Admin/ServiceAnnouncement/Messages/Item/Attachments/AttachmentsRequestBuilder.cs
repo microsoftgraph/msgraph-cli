@@ -95,11 +95,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// A collection of serviceAnnouncementAttachments.
+        /// Get the list of attachments associated with a service message.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of serviceAnnouncementAttachments.";
+            command.Description = "Get the list of attachments associated with a service message.";
             // Create options for all the parameters
             var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of serviceAnnouncementAttachments.
+        /// Get the list of attachments associated with a service message.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AttachmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -259,7 +259,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments {
             }
             return requestInfo;
         }
-        /// <summary>A collection of serviceAnnouncementAttachments.</summary>
+        /// <summary>Get the list of attachments associated with a service message.</summary>
         public class AttachmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

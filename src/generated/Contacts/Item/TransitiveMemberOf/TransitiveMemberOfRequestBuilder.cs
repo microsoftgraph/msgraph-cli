@@ -80,6 +80,10 @@ namespace ApiSdk.Contacts.Item.TransitiveMemberOf {
             };
             orgContactIdOption.IsRequired = true;
             command.AddOption(orgContactIdOption);
+            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
+            };
+            consistencyLevelOption.IsRequired = false;
+            command.AddOption(consistencyLevelOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -132,6 +136,7 @@ namespace ApiSdk.Contacts.Item.TransitiveMemberOf {
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
                 var orgContactId = invocationContext.ParseResult.GetValueForOption(orgContactIdOption);
+                var consistencyLevel = invocationContext.ParseResult.GetValueForOption(consistencyLevelOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -159,6 +164,7 @@ namespace ApiSdk.Contacts.Item.TransitiveMemberOf {
                     q.QueryParameters.Expand = expand;
                 });
                 requestInfo.PathParameters.Add("orgContact%2Did", orgContactId);
+                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

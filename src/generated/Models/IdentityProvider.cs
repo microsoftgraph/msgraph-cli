@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class IdentityProvider : Entity, IParsable {
         /// <summary>The client ID for the application. This is the client ID obtained when registering the application with the identity provider. Required. Not nullable.</summary>
         public string ClientId { get; set; }
@@ -14,7 +15,7 @@ namespace ApiSdk.Models {
         /// <summary>The identity provider type is a required field. For B2B scenario: Google, Facebook. For B2C scenario: Microsoft, Google, Amazon, LinkedIn, Facebook, GitHub, Twitter, Weibo, QQ, WeChat, OpenIDConnect. Not nullable.</summary>
         public string Type { get; set; }
         /// <summary>
-        /// Instantiates a new IdentityProvider and sets the default values.
+        /// Instantiates a new identityProvider and sets the default values.
         /// </summary>
         public IdentityProvider() : base() {
             OdataType = "#microsoft.graph.identityProvider";

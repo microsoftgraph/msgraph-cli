@@ -6,9 +6,9 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class EducationRubric : Entity, IParsable {
         /// <summary>The user who created this resource.</summary>
-        public IdentitySet CreatedBy { get; set; }
+        public IdentitySet CreatedBy { get; private set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
-        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; private set; }
         /// <summary>The description of this rubric.</summary>
         public EducationItemBody Description { get; set; }
         /// <summary>The name of this rubric.</summary>
@@ -16,15 +16,15 @@ namespace ApiSdk.Models {
         /// <summary>The grading type of this rubric -- null for a no-points rubric, or educationAssignmentPointsGradeType for a points rubric.</summary>
         public EducationAssignmentGradeType Grading { get; set; }
         /// <summary>The last user to modify the resource.</summary>
-        public IdentitySet LastModifiedBy { get; set; }
+        public IdentitySet LastModifiedBy { get; private set; }
         /// <summary>Moment in time when the resource was last modified.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; private set; }
         /// <summary>The collection of levels making up this rubric.</summary>
         public List<RubricLevel> Levels { get; set; }
         /// <summary>The collection of qualities making up this rubric.</summary>
         public List<RubricQuality> Qualities { get; set; }
         /// <summary>
-        /// Instantiates a new EducationRubric and sets the default values.
+        /// Instantiates a new educationRubric and sets the default values.
         /// </summary>
         public EducationRubric() : base() {
             OdataType = "#microsoft.graph.educationRubric";
@@ -49,8 +49,8 @@ namespace ApiSdk.Models {
                 {"grading", n => { Grading = n.GetObjectValue<EducationAssignmentGradeType>(EducationAssignmentGradeType.CreateFromDiscriminatorValue); } },
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"levels", n => { Levels = n.GetCollectionOfObjectValues<RubricLevel>(RubricLevel.CreateFromDiscriminatorValue).ToList(); } },
-                {"qualities", n => { Qualities = n.GetCollectionOfObjectValues<RubricQuality>(RubricQuality.CreateFromDiscriminatorValue).ToList(); } },
+                {"levels", n => { Levels = n.GetCollectionOfObjectValues<RubricLevel>(RubricLevel.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"qualities", n => { Qualities = n.GetCollectionOfObjectValues<RubricQuality>(RubricQuality.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -60,13 +60,9 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
-            writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<EducationItemBody>("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteObjectValue<EducationAssignmentGradeType>("grading", Grading);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
-            writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteCollectionOfObjectValues<RubricLevel>("levels", Levels);
             writer.WriteCollectionOfObjectValues<RubricQuality>("qualities", Qualities);
         }

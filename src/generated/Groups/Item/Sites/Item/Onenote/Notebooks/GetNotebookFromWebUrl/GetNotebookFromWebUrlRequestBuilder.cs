@@ -23,11 +23,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl 
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action getNotebookFromWebUrl
+        /// Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action getNotebookFromWebUrl";
+            command.Description = "Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl 
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action getNotebookFromWebUrl
+        /// Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

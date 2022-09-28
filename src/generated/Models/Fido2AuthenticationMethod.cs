@@ -37,7 +37,7 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"aaGuid", n => { AaGuid = n.GetStringValue(); } },
-                {"attestationCertificates", n => { AttestationCertificates = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"attestationCertificates", n => { AttestationCertificates = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"attestationLevel", n => { AttestationLevel = n.GetEnumValue<AttestationLevel>(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },

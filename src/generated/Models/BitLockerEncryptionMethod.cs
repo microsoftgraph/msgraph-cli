@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public enum BitLockerEncryptionMethod {
         /// <summary>AES-CBC 128-bit.</summary>
         AesCbc128,

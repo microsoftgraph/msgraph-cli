@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         /// <summary>True if the printer supports collating when printing muliple copies of a multi-page document; false otherwise.</summary>
         public bool? Collation { get; set; }
         /// <summary>The color modes supported by the printer. Valid values are described in the following table.</summary>
-        public List<string> ColorModes { get; set; }
+        public List<PrintColorMode?> ColorModes { get; set; }
         /// <summary>A list of supported content (MIME) types that the printer supports. It is not guaranteed that the Universal Print service supports printing all of these MIME types.</summary>
         public List<string> ContentTypes { get; set; }
         /// <summary>The range of copies per job supported by the printer.</summary>
@@ -20,11 +20,11 @@ namespace ApiSdk.Models {
         /// <summary>The list of print resolutions in DPI that are supported by the printer.</summary>
         public List<int?> Dpis { get; set; }
         /// <summary>The list of duplex modes that are supported by the printer. Valid values are described in the following table.</summary>
-        public List<string> DuplexModes { get; set; }
+        public List<PrintDuplexMode?> DuplexModes { get; set; }
         /// <summary>The list of feed orientations that are supported by the printer.</summary>
-        public List<string> FeedOrientations { get; set; }
+        public List<PrinterFeedOrientation?> FeedOrientations { get; set; }
         /// <summary>Finishing processes the printer supports for a printed document.</summary>
-        public List<string> Finishings { get; set; }
+        public List<PrintFinishing?> Finishings { get; set; }
         /// <summary>Supported input bins for the printer.</summary>
         public List<string> InputBins { get; set; }
         /// <summary>True if color printing is supported by the printer; false otherwise. Read-only.</summary>
@@ -40,21 +40,21 @@ namespace ApiSdk.Models {
         /// <summary>The media types supported by the printer.</summary>
         public List<string> MediaTypes { get; set; }
         /// <summary>The presentation directions supported by the printer. Supported values are described in the following table.</summary>
-        public List<string> MultipageLayouts { get; set; }
+        public List<PrintMultipageLayout?> MultipageLayouts { get; set; }
         /// <summary>The OdataType property</summary>
         public string OdataType { get; set; }
         /// <summary>The print orientations supported by the printer. Valid values are described in the following table.</summary>
-        public List<string> Orientations { get; set; }
+        public List<PrintOrientation?> Orientations { get; set; }
         /// <summary>The printer&apos;s supported output bins (trays).</summary>
         public List<string> OutputBins { get; set; }
         /// <summary>Supported number of Input Pages to impose upon a single Impression.</summary>
         public List<int?> PagesPerSheet { get; set; }
         /// <summary>The print qualities supported by the printer.</summary>
-        public List<string> Qualities { get; set; }
+        public List<PrintQuality?> Qualities { get; set; }
         /// <summary>A list of supported right margins(in microns) for the printer.</summary>
         public List<int?> RightMargins { get; set; }
         /// <summary>Supported print scalings.</summary>
-        public List<string> Scalings { get; set; }
+        public List<PrintScaling?> Scalings { get; set; }
         /// <summary>True if the printer supports scaling PDF pages to match the print media size; false otherwise.</summary>
         public bool? SupportsFitPdfToPage { get; set; }
         /// <summary>A list of supported top margins(in microns) for the printer.</summary>
@@ -79,32 +79,32 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"bottomMargins", n => { BottomMargins = n.GetCollectionOfPrimitiveValues<int?>().ToList(); } },
+                {"bottomMargins", n => { BottomMargins = n.GetCollectionOfPrimitiveValues<int?>()?.ToList(); } },
                 {"collation", n => { Collation = n.GetBoolValue(); } },
-                {"colorModes", n => { ColorModes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"contentTypes", n => { ContentTypes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"colorModes", n => { ColorModes = n.GetCollectionOfEnumValues<PrintColorMode>()?.ToList(); } },
+                {"contentTypes", n => { ContentTypes = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"copiesPerJob", n => { CopiesPerJob = n.GetObjectValue<IntegerRange>(IntegerRange.CreateFromDiscriminatorValue); } },
-                {"dpis", n => { Dpis = n.GetCollectionOfPrimitiveValues<int?>().ToList(); } },
-                {"duplexModes", n => { DuplexModes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"feedOrientations", n => { FeedOrientations = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"finishings", n => { Finishings = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"inputBins", n => { InputBins = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"dpis", n => { Dpis = n.GetCollectionOfPrimitiveValues<int?>()?.ToList(); } },
+                {"duplexModes", n => { DuplexModes = n.GetCollectionOfEnumValues<PrintDuplexMode>()?.ToList(); } },
+                {"feedOrientations", n => { FeedOrientations = n.GetCollectionOfEnumValues<PrinterFeedOrientation>()?.ToList(); } },
+                {"finishings", n => { Finishings = n.GetCollectionOfEnumValues<PrintFinishing>()?.ToList(); } },
+                {"inputBins", n => { InputBins = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"isColorPrintingSupported", n => { IsColorPrintingSupported = n.GetBoolValue(); } },
                 {"isPageRangeSupported", n => { IsPageRangeSupported = n.GetBoolValue(); } },
-                {"leftMargins", n => { LeftMargins = n.GetCollectionOfPrimitiveValues<int?>().ToList(); } },
-                {"mediaColors", n => { MediaColors = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"mediaSizes", n => { MediaSizes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"mediaTypes", n => { MediaTypes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"multipageLayouts", n => { MultipageLayouts = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"leftMargins", n => { LeftMargins = n.GetCollectionOfPrimitiveValues<int?>()?.ToList(); } },
+                {"mediaColors", n => { MediaColors = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"mediaSizes", n => { MediaSizes = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"mediaTypes", n => { MediaTypes = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"multipageLayouts", n => { MultipageLayouts = n.GetCollectionOfEnumValues<PrintMultipageLayout>()?.ToList(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"orientations", n => { Orientations = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"outputBins", n => { OutputBins = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"pagesPerSheet", n => { PagesPerSheet = n.GetCollectionOfPrimitiveValues<int?>().ToList(); } },
-                {"qualities", n => { Qualities = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"rightMargins", n => { RightMargins = n.GetCollectionOfPrimitiveValues<int?>().ToList(); } },
-                {"scalings", n => { Scalings = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"orientations", n => { Orientations = n.GetCollectionOfEnumValues<PrintOrientation>()?.ToList(); } },
+                {"outputBins", n => { OutputBins = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"pagesPerSheet", n => { PagesPerSheet = n.GetCollectionOfPrimitiveValues<int?>()?.ToList(); } },
+                {"qualities", n => { Qualities = n.GetCollectionOfEnumValues<PrintQuality>()?.ToList(); } },
+                {"rightMargins", n => { RightMargins = n.GetCollectionOfPrimitiveValues<int?>()?.ToList(); } },
+                {"scalings", n => { Scalings = n.GetCollectionOfEnumValues<PrintScaling>()?.ToList(); } },
                 {"supportsFitPdfToPage", n => { SupportsFitPdfToPage = n.GetBoolValue(); } },
-                {"topMargins", n => { TopMargins = n.GetCollectionOfPrimitiveValues<int?>().ToList(); } },
+                {"topMargins", n => { TopMargins = n.GetCollectionOfPrimitiveValues<int?>()?.ToList(); } },
             };
         }
         /// <summary>
@@ -115,13 +115,13 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<int?>("bottomMargins", BottomMargins);
             writer.WriteBoolValue("collation", Collation);
-            writer.WriteCollectionOfPrimitiveValues<string>("colorModes", ColorModes);
+            writer.WriteCollectionOfEnumValues<PrintColorMode>("colorModes", ColorModes);
             writer.WriteCollectionOfPrimitiveValues<string>("contentTypes", ContentTypes);
             writer.WriteObjectValue<IntegerRange>("copiesPerJob", CopiesPerJob);
             writer.WriteCollectionOfPrimitiveValues<int?>("dpis", Dpis);
-            writer.WriteCollectionOfPrimitiveValues<string>("duplexModes", DuplexModes);
-            writer.WriteCollectionOfPrimitiveValues<string>("feedOrientations", FeedOrientations);
-            writer.WriteCollectionOfPrimitiveValues<string>("finishings", Finishings);
+            writer.WriteCollectionOfEnumValues<PrintDuplexMode>("duplexModes", DuplexModes);
+            writer.WriteCollectionOfEnumValues<PrinterFeedOrientation>("feedOrientations", FeedOrientations);
+            writer.WriteCollectionOfEnumValues<PrintFinishing>("finishings", Finishings);
             writer.WriteCollectionOfPrimitiveValues<string>("inputBins", InputBins);
             writer.WriteBoolValue("isColorPrintingSupported", IsColorPrintingSupported);
             writer.WriteBoolValue("isPageRangeSupported", IsPageRangeSupported);
@@ -129,14 +129,14 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfPrimitiveValues<string>("mediaColors", MediaColors);
             writer.WriteCollectionOfPrimitiveValues<string>("mediaSizes", MediaSizes);
             writer.WriteCollectionOfPrimitiveValues<string>("mediaTypes", MediaTypes);
-            writer.WriteCollectionOfPrimitiveValues<string>("multipageLayouts", MultipageLayouts);
+            writer.WriteCollectionOfEnumValues<PrintMultipageLayout>("multipageLayouts", MultipageLayouts);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfPrimitiveValues<string>("orientations", Orientations);
+            writer.WriteCollectionOfEnumValues<PrintOrientation>("orientations", Orientations);
             writer.WriteCollectionOfPrimitiveValues<string>("outputBins", OutputBins);
             writer.WriteCollectionOfPrimitiveValues<int?>("pagesPerSheet", PagesPerSheet);
-            writer.WriteCollectionOfPrimitiveValues<string>("qualities", Qualities);
+            writer.WriteCollectionOfEnumValues<PrintQuality>("qualities", Qualities);
             writer.WriteCollectionOfPrimitiveValues<int?>("rightMargins", RightMargins);
-            writer.WriteCollectionOfPrimitiveValues<string>("scalings", Scalings);
+            writer.WriteCollectionOfEnumValues<PrintScaling>("scalings", Scalings);
             writer.WriteBoolValue("supportsFitPdfToPage", SupportsFitPdfToPage);
             writer.WriteCollectionOfPrimitiveValues<int?>("topMargins", TopMargins);
             writer.WriteAdditionalData(AdditionalData);

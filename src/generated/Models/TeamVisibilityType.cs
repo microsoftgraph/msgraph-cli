@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
+    /// <summary>Casts the previous resource to group.</summary>
     public enum TeamVisibilityType {
         Private,
         Public,

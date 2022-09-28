@@ -22,11 +22,11 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action restoreFactoryDefaults
+        /// Restore a printer&apos;s default settings to the values specified by the manufacturer.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action restoreFactoryDefaults";
+            command.Description = "Restore a printer's default settings to the values specified by the manufacturer.";
             // Create options for all the parameters
             var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action restoreFactoryDefaults
+        /// Restore a printer&apos;s default settings to the values specified by the manufacturer.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<RestoreFactoryDefaultsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

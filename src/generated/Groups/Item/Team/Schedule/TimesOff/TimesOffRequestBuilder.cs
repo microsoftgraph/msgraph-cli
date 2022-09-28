@@ -39,11 +39,11 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to timesOff for groups
+        /// Create a new timeOff instance in a schedule.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to timesOff for groups";
+            command.Description = "Create a new timeOff instance in a schedule.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff {
             return command;
         }
         /// <summary>
-        /// The instances of times off in the schedule.
+        /// Get the list of timeOff instances in a schedule.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The instances of times off in the schedule.";
+            command.Description = "Get the list of timeOff instances in a schedule.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -210,7 +210,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The instances of times off in the schedule.
+        /// Get the list of timeOff instances in a schedule.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TimesOffRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -230,7 +230,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to timesOff for groups
+        /// Create a new timeOff instance in a schedule.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -251,7 +251,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff {
             }
             return requestInfo;
         }
-        /// <summary>The instances of times off in the schedule.</summary>
+        /// <summary>Get the list of timeOff instances in a schedule.</summary>
         public class TimesOffRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

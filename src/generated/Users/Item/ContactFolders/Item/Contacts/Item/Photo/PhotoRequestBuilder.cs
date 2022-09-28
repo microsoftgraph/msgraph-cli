@@ -31,50 +31,6 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo {
             return command;
         }
         /// <summary>
-        /// Delete navigation property photo for users
-        /// </summary>
-        public Command BuildDeleteCommand() {
-            var command = new Command("delete");
-            command.Description = "Delete navigation property photo for users";
-            // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
-            };
-            userIdOption.IsRequired = true;
-            command.AddOption(userIdOption);
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
-            };
-            contactFolderIdOption.IsRequired = true;
-            command.AddOption(contactFolderIdOption);
-            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
-            };
-            contactIdOption.IsRequired = true;
-            command.AddOption(contactIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
-            };
-            ifMatchOption.IsRequired = false;
-            command.AddOption(ifMatchOption);
-            command.SetHandler(async (invocationContext) => {
-                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
-                var contactFolderId = invocationContext.ParseResult.GetValueForOption(contactFolderIdOption);
-                var contactId = invocationContext.ParseResult.GetValueForOption(contactIdOption);
-                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
-                });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
-                requestInfo.PathParameters.Add("contact%2Did", contactId);
-                requestInfo.Headers["If-Match"] = ifMatch;
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
-        /// <summary>
         /// Optional contact picture. You can get or set a photo for a contact.
         /// </summary>
         public Command BuildGetCommand() {
@@ -163,11 +119,29 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var contactFolderId = invocationContext.ParseResult.GetValueForOption(contactFolderIdOption);
                 var contactId = invocationContext.ParseResult.GetValueForOption(contactIdOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
@@ -181,8 +155,11 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
             return command;
         }
@@ -198,24 +175,6 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Delete navigation property photo for users
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<PhotoRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.DELETE,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new PhotoRequestBuilderDeleteRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
         }
         /// <summary>
         /// Optional contact picture. You can get or set a photo for a contact.
@@ -249,6 +208,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new PhotoRequestBuilderPatchRequestConfiguration();
@@ -257,20 +217,6 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo {
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class PhotoRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new photoRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public PhotoRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
         }
         /// <summary>Optional contact picture. You can get or set a photo for a contact.</summary>
         public class PhotoRequestBuilderGetQueryParameters {

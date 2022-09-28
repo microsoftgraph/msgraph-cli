@@ -8,11 +8,11 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>URL that shows certification details for the application.</summary>
-        public string CertificationDetailsUrl { get; set; }
+        public string CertificationDetailsUrl { get; private set; }
         /// <summary>The timestamp when the current certification for the application will expire.</summary>
         public DateTimeOffset? CertificationExpirationDateTime { get; set; }
         /// <summary>Indicates whether the application is certified by Microsoft.</summary>
-        public bool? IsCertifiedByMicrosoft { get; set; }
+        public bool? IsCertifiedByMicrosoft { get; private set; }
         /// <summary>Indicates whether the application has been self-attested by the application developer or the publisher.</summary>
         public bool? IsPublisherAttested { get; set; }
         /// <summary>The timestamp when the certification for the application was most recently added or updated.</summary>
@@ -53,9 +53,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("certificationDetailsUrl", CertificationDetailsUrl);
             writer.WriteDateTimeOffsetValue("certificationExpirationDateTime", CertificationExpirationDateTime);
-            writer.WriteBoolValue("isCertifiedByMicrosoft", IsCertifiedByMicrosoft);
             writer.WriteBoolValue("isPublisherAttested", IsPublisherAttested);
             writer.WriteDateTimeOffsetValue("lastCertificationDateTime", LastCertificationDateTime);
             writer.WriteStringValue("@odata.type", OdataType);

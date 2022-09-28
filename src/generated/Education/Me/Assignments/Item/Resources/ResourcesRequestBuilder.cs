@@ -39,11 +39,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to resources for education
+        /// Create an assignment resource. You can create the following types of assignment resources: Every resource has an @odata.type property to indicate which type of resource is being created. 
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to resources for education";
+            command.Description = "Create an assignment resource. You can create the following types of assignment resources: Every resource has an @odata.type property to indicate which type of resource is being created. ";
             // Create options for all the parameters
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
             return command;
         }
         /// <summary>
-        /// Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
+        /// Get all the educationAssignmentResource objects associated with an assignment.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.";
+            command.Description = "Get all the educationAssignmentResource objects associated with an assignment.";
             // Create options for all the parameters
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
+        /// Get all the educationAssignmentResource objects associated with an assignment.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ResourcesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +237,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to resources for education
+        /// Create an assignment resource. You can create the following types of assignment resources: Every resource has an @odata.type property to indicate which type of resource is being created. 
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
             }
             return requestInfo;
         }
-        /// <summary>Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.</summary>
+        /// <summary>Get all the educationAssignmentResource objects associated with an assignment.</summary>
         public class ResourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

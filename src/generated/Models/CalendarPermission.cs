@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class CalendarPermission : Entity, IParsable {
         /// <summary>List of allowed sharing or delegating permission levels for the calendar. Possible values are: none, freeBusyRead, limitedRead, read, write, delegateWithoutPrivateEventAccess, delegateWithPrivateEventAccess, custom.</summary>
-        public List<string> AllowedRoles { get; set; }
+        public List<CalendarRoleType?> AllowedRoles { get; set; }
         /// <summary>Represents a sharee or delegate who has access to the calendar. For the &apos;My Organization&apos; sharee, the address property is null. Read-only.</summary>
         public ApiSdk.Models.EmailAddress EmailAddress { get; set; }
         /// <summary>True if the user in context (sharee or delegate) is inside the same organization as the calendar owner.</summary>
@@ -35,7 +35,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"allowedRoles", n => { AllowedRoles = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"allowedRoles", n => { AllowedRoles = n.GetCollectionOfEnumValues<CalendarRoleType>()?.ToList(); } },
                 {"emailAddress", n => { EmailAddress = n.GetObjectValue<ApiSdk.Models.EmailAddress>(ApiSdk.Models.EmailAddress.CreateFromDiscriminatorValue); } },
                 {"isInsideOrganization", n => { IsInsideOrganization = n.GetBoolValue(); } },
                 {"isRemovable", n => { IsRemovable = n.GetBoolValue(); } },
@@ -49,7 +49,7 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfPrimitiveValues<string>("allowedRoles", AllowedRoles);
+            writer.WriteCollectionOfEnumValues<CalendarRoleType>("allowedRoles", AllowedRoles);
             writer.WriteObjectValue<ApiSdk.Models.EmailAddress>("emailAddress", EmailAddress);
             writer.WriteBoolValue("isInsideOrganization", IsInsideOrganization);
             writer.WriteBoolValue("isRemovable", IsRemovable);

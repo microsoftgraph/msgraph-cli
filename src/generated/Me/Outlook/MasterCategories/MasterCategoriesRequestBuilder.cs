@@ -39,11 +39,11 @@ namespace ApiSdk.Me.Outlook.MasterCategories {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to masterCategories for me
+        /// Create an outlookCategory object in the user&apos;s master list of categories.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to masterCategories for me";
+            command.Description = "Create an outlookCategory object in the user's master list of categories.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -88,11 +88,11 @@ namespace ApiSdk.Me.Outlook.MasterCategories {
             return command;
         }
         /// <summary>
-        /// A list of categories defined for the user.
+        /// Get all the categories that have been defined for the user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A list of categories defined for the user.";
+            command.Description = "Get all the categories that have been defined for the user.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -192,7 +192,7 @@ namespace ApiSdk.Me.Outlook.MasterCategories {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A list of categories defined for the user.
+        /// Get all the categories that have been defined for the user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MasterCategoriesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -212,7 +212,7 @@ namespace ApiSdk.Me.Outlook.MasterCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to masterCategories for me
+        /// Create an outlookCategory object in the user&apos;s master list of categories.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -233,7 +233,7 @@ namespace ApiSdk.Me.Outlook.MasterCategories {
             }
             return requestInfo;
         }
-        /// <summary>A list of categories defined for the user.</summary>
+        /// <summary>Get all the categories that have been defined for the user.</summary>
         public class MasterCategoriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

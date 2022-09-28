@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Windows Information Protection AppLearning Summary entity.</summary>
     public class WindowsInformationProtectionAppLearningSummary : Entity, IParsable {
         /// <summary>Application Name</summary>
         public string ApplicationName { get; set; }
@@ -12,7 +13,7 @@ namespace ApiSdk.Models {
         /// <summary>Device Count</summary>
         public int? DeviceCount { get; set; }
         /// <summary>
-        /// Instantiates a new WindowsInformationProtectionAppLearningSummary and sets the default values.
+        /// Instantiates a new windowsInformationProtectionAppLearningSummary and sets the default values.
         /// </summary>
         public WindowsInformationProtectionAppLearningSummary() : base() {
             OdataType = "#microsoft.graph.windowsInformationProtectionAppLearningSummary";

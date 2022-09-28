@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class UnifiedRoleManagementPolicy : Entity, IParsable {
         /// <summary>Description for the policy.</summary>
         public string Description { get; set; }
@@ -24,7 +25,7 @@ namespace ApiSdk.Models {
         /// <summary>The type of the scope where the policy is created. One of Directory, DirectoryRole. Required.</summary>
         public string ScopeType { get; set; }
         /// <summary>
-        /// Instantiates a new UnifiedRoleManagementPolicy and sets the default values.
+        /// Instantiates a new unifiedRoleManagementPolicy and sets the default values.
         /// </summary>
         public UnifiedRoleManagementPolicy() : base() {
             OdataType = "#microsoft.graph.unifiedRoleManagementPolicy";
@@ -44,11 +45,11 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"effectiveRules", n => { EffectiveRules = n.GetCollectionOfObjectValues<UnifiedRoleManagementPolicyRule>(UnifiedRoleManagementPolicyRule.CreateFromDiscriminatorValue).ToList(); } },
+                {"effectiveRules", n => { EffectiveRules = n.GetCollectionOfObjectValues<UnifiedRoleManagementPolicyRule>(UnifiedRoleManagementPolicyRule.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"isOrganizationDefault", n => { IsOrganizationDefault = n.GetBoolValue(); } },
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"rules", n => { Rules = n.GetCollectionOfObjectValues<UnifiedRoleManagementPolicyRule>(UnifiedRoleManagementPolicyRule.CreateFromDiscriminatorValue).ToList(); } },
+                {"rules", n => { Rules = n.GetCollectionOfObjectValues<UnifiedRoleManagementPolicyRule>(UnifiedRoleManagementPolicyRule.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"scopeId", n => { ScopeId = n.GetStringValue(); } },
                 {"scopeType", n => { ScopeType = n.GetStringValue(); } },
             };

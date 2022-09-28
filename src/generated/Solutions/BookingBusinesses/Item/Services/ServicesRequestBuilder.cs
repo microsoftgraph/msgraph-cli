@@ -39,11 +39,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Services {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to services for solutions
+        /// Create a new bookingService for the specified bookingBusiness.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to services for solutions";
+            command.Description = "Create a new bookingService for the specified bookingBusiness.";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Services {
             return command;
         }
         /// <summary>
-        /// All the services offered by this business. Read-only. Nullable.
+        /// Get a list of bookingService objects in the specified bookingBusiness.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All the services offered by this business. Read-only. Nullable.";
+            command.Description = "Get a list of bookingService objects in the specified bookingBusiness.";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Services {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// All the services offered by this business. Read-only. Nullable.
+        /// Get a list of bookingService objects in the specified bookingBusiness.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ServicesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +237,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Services {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to services for solutions
+        /// Create a new bookingService for the specified bookingBusiness.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Services {
             }
             return requestInfo;
         }
-        /// <summary>All the services offered by this business. Read-only. Nullable.</summary>
+        /// <summary>Get a list of bookingService objects in the specified bookingBusiness.</summary>
         public class ServicesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -31,7 +31,6 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments {
             command.AddCommand(builder.BuildContentCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         public Command BuildCountCommand() {

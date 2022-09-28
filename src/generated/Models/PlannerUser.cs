@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         /// <summary>Read-only. Nullable. Returns the plannerPlans shared with the user.</summary>
         public List<PlannerTask> Tasks { get; set; }
         /// <summary>
-        /// Instantiates a new PlannerUser and sets the default values.
+        /// Instantiates a new plannerUser and sets the default values.
         /// </summary>
         public PlannerUser() : base() {
             OdataType = "#microsoft.graph.plannerUser";
@@ -28,8 +28,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"plans", n => { Plans = n.GetCollectionOfObjectValues<PlannerPlan>(PlannerPlan.CreateFromDiscriminatorValue).ToList(); } },
-                {"tasks", n => { Tasks = n.GetCollectionOfObjectValues<PlannerTask>(PlannerTask.CreateFromDiscriminatorValue).ToList(); } },
+                {"plans", n => { Plans = n.GetCollectionOfObjectValues<PlannerPlan>(PlannerPlan.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"tasks", n => { Tasks = n.GetCollectionOfObjectValues<PlannerTask>(PlannerTask.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

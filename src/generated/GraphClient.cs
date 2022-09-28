@@ -19,7 +19,7 @@ using ApiSdk.DataPolicyOperations;
 using ApiSdk.DeviceAppManagement;
 using ApiSdk.DeviceManagement;
 using ApiSdk.Devices;
-using ApiSdk.Directory;
+using ApiSdk.DirectoryNamespace;
 using ApiSdk.DirectoryObjects;
 using ApiSdk.DirectoryRoles;
 using ApiSdk.DirectoryRoleTemplates;
@@ -152,7 +152,6 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildProvisioningCommand());
-            command.AddCommand(builder.BuildRestrictedSignInsCommand());
             command.AddCommand(builder.BuildSignInsCommand());
             return command;
         }

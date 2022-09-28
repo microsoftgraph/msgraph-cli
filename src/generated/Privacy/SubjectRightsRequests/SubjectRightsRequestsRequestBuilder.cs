@@ -41,11 +41,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to subjectRightsRequests for privacy
+        /// Create a new subjectRightsRequest object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to subjectRightsRequests for privacy";
+            command.Description = "Create a new subjectRightsRequest object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -90,11 +90,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             return command;
         }
         /// <summary>
-        /// Get subjectRightsRequests from privacy
+        /// Get a list of subjectRightsRequest objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get subjectRightsRequests from privacy";
+            command.Description = "Get a list of subjectRightsRequest objects and their properties.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -207,7 +207,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get subjectRightsRequests from privacy
+        /// Get a list of subjectRightsRequest objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SubjectRightsRequestsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -227,7 +227,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to subjectRightsRequests for privacy
+        /// Create a new subjectRightsRequest object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -248,7 +248,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             }
             return requestInfo;
         }
-        /// <summary>Get subjectRightsRequests from privacy</summary>
+        /// <summary>Get a list of subjectRightsRequest objects and their properties.</summary>
         public class SubjectRightsRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -23,11 +23,11 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.Copy
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action copyToSectionGroup
+        /// For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action copyToSectionGroup";
+            command.Description = "For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.";
             // Create options for all the parameters
             var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
             };
@@ -103,7 +103,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.Copy
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action copyToSectionGroup
+        /// For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

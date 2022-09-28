@@ -5,9 +5,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Booking entities that provide a display name.</summary>
     public class BookingCustomerBase : Entity, IParsable {
         /// <summary>
-        /// Instantiates a new BookingCustomerBase and sets the default values.
+        /// Instantiates a new bookingCustomerBase and sets the default values.
         /// </summary>
         public BookingCustomerBase() : base() {
             OdataType = "#microsoft.graph.bookingCustomerBase";
@@ -18,8 +19,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new BookingCustomerBase CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.bookingCustomer" => new BookingCustomer(),
                 _ => new BookingCustomerBase(),

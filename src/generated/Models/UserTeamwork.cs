@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         /// <summary>The apps installed in the personal scope of this user.</summary>
         public List<UserScopeTeamsAppInstallation> InstalledApps { get; set; }
         /// <summary>
-        /// Instantiates a new UserTeamwork and sets the default values.
+        /// Instantiates a new userTeamwork and sets the default values.
         /// </summary>
         public UserTeamwork() : base() {
             OdataType = "#microsoft.graph.userTeamwork";
@@ -28,8 +28,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"associatedTeams", n => { AssociatedTeams = n.GetCollectionOfObjectValues<AssociatedTeamInfo>(AssociatedTeamInfo.CreateFromDiscriminatorValue).ToList(); } },
-                {"installedApps", n => { InstalledApps = n.GetCollectionOfObjectValues<UserScopeTeamsAppInstallation>(UserScopeTeamsAppInstallation.CreateFromDiscriminatorValue).ToList(); } },
+                {"associatedTeams", n => { AssociatedTeams = n.GetCollectionOfObjectValues<AssociatedTeamInfo>(AssociatedTeamInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"installedApps", n => { InstalledApps = n.GetCollectionOfObjectValues<UserScopeTeamsAppInstallation>(UserScopeTeamsAppInstallation.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

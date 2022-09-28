@@ -88,11 +88,11 @@ namespace ApiSdk.Security.SecureScores {
             return command;
         }
         /// <summary>
-        /// Get secureScores from security
+        /// Retrieve a list of secureScore objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get secureScores from security";
+            command.Description = "Retrieve a list of secureScore objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Security.SecureScores {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get secureScores from security
+        /// Retrieve a list of secureScore objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SecureScoresRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Security.SecureScores {
             }
             return requestInfo;
         }
-        /// <summary>Get secureScores from security</summary>
+        /// <summary>Retrieve a list of secureScore objects.</summary>
         public class SecureScoresRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

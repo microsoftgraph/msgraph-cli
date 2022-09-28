@@ -69,38 +69,6 @@ namespace ApiSdk.Me.CalendarView.Item {
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
-        /// <summary>
-        /// Delete navigation property calendarView for me
-        /// </summary>
-        public Command BuildDeleteCommand() {
-            var command = new Command("delete");
-            command.Description = "Delete navigation property calendarView for me";
-            // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
-            };
-            eventIdOption.IsRequired = true;
-            command.AddOption(eventIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
-            };
-            ifMatchOption.IsRequired = false;
-            command.AddOption(ifMatchOption);
-            command.SetHandler(async (invocationContext) => {
-                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
-                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
-                });
-                requestInfo.PathParameters.Add("event%2Did", eventId);
-                requestInfo.Headers["If-Match"] = ifMatch;
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
         public Command BuildDismissReminderCommand() {
             var command = new Command("dismiss-reminder");
             var builder = new DismissReminderRequestBuilder(PathParameters, RequestAdapter);
@@ -193,7 +161,6 @@ namespace ApiSdk.Me.CalendarView.Item {
             var builder = new InstancesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -204,40 +171,6 @@ namespace ApiSdk.Me.CalendarView.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Update the navigation property calendarView in me
-        /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
-            command.Description = "Update the navigation property calendarView in me";
-            // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
-            };
-            eventIdOption.IsRequired = true;
-            command.AddOption(eventIdOption);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (invocationContext) => {
-                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Event>(Event.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
-                });
-                requestInfo.PathParameters.Add("event%2Did", eventId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {
@@ -269,28 +202,10 @@ namespace ApiSdk.Me.CalendarView.Item {
         public EventItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/calendarView/{event%2Did}{?startDateTime,endDateTime,%24select}";
+            UrlTemplate = "{+baseurl}/me/calendarView/{event%2Did}{?startDateTime*,endDateTime*,%24select}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Delete navigation property calendarView for me
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<EventItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.DELETE,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new EventItemRequestBuilderDeleteRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only. Nullable.
@@ -311,41 +226,6 @@ namespace ApiSdk.Me.CalendarView.Item {
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Update the navigation property calendarView in me
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreatePatchRequestInformation(Event body, Action<EventItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new EventItemRequestBuilderPatchRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class EventItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new EventItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public EventItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
         }
         /// <summary>The calendar view for the calendar. Read-only. Nullable.</summary>
         public class EventItemRequestBuilderGetQueryParameters {
@@ -369,20 +249,6 @@ namespace ApiSdk.Me.CalendarView.Item {
             /// Instantiates a new EventItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EventItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class EventItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new EventItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public EventItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }

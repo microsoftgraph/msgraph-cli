@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates if Excel wraps the text in the object. A null value indicates that the entire range doesn&apos;t have uniform wrap setting</summary>
         public bool? WrapText { get; set; }
         /// <summary>
-        /// Instantiates a new WorkbookRangeFormat and sets the default values.
+        /// Instantiates a new workbookRangeFormat and sets the default values.
         /// </summary>
         public WorkbookRangeFormat() : base() {
             OdataType = "#microsoft.graph.workbookRangeFormat";
@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"borders", n => { Borders = n.GetCollectionOfObjectValues<WorkbookRangeBorder>(WorkbookRangeBorder.CreateFromDiscriminatorValue).ToList(); } },
+                {"borders", n => { Borders = n.GetCollectionOfObjectValues<WorkbookRangeBorder>(WorkbookRangeBorder.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"columnWidth", n => { ColumnWidth = n.GetDoubleValue(); } },
                 {"fill", n => { Fill = n.GetObjectValue<WorkbookRangeFill>(WorkbookRangeFill.CreateFromDiscriminatorValue); } },
                 {"font", n => { Font = n.GetObjectValue<WorkbookRangeFont>(WorkbookRangeFont.CreateFromDiscriminatorValue); } },

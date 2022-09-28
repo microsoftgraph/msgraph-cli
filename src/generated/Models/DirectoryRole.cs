@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of directoryRole entities.</summary>
     public class DirectoryRole : DirectoryObject, IParsable {
         /// <summary>The description for the directory role. Read-only. Supports $filter (eq), $search, $select.</summary>
         public string Description { get; set; }
@@ -16,7 +17,7 @@ namespace ApiSdk.Models {
         /// <summary>Members of this directory role that are scoped to administrative units. Read-only. Nullable.</summary>
         public List<ScopedRoleMembership> ScopedMembers { get; set; }
         /// <summary>
-        /// Instantiates a new DirectoryRole and sets the default values.
+        /// Instantiates a new directoryRole and sets the default values.
         /// </summary>
         public DirectoryRole() : base() {
             OdataType = "#microsoft.graph.directoryRole";
@@ -36,9 +37,9 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"members", n => { Members = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"members", n => { Members = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"roleTemplateId", n => { RoleTemplateId = n.GetStringValue(); } },
-                {"scopedMembers", n => { ScopedMembers = n.GetCollectionOfObjectValues<ScopedRoleMembership>(ScopedRoleMembership.CreateFromDiscriminatorValue).ToList(); } },
+                {"scopedMembers", n => { ScopedMembers = n.GetCollectionOfObjectValues<ScopedRoleMembership>(ScopedRoleMembership.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

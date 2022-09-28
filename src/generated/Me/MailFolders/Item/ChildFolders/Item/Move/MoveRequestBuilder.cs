@@ -23,11 +23,11 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Move {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action move
+        /// Move a mailfolder and its contents to another mailfolder.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action move";
+            command.Description = "Move a mailfolder and its contents to another mailfolder.";
             // Create options for all the parameters
             var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Move {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action move
+        /// Move a mailfolder and its contents to another mailfolder.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

@@ -42,11 +42,11 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to installedApps for me
+        /// Install a teamsApp to the specified chat.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to installedApps for me";
+            command.Description = "Install a teamsApp to the specified chat.";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -97,11 +97,11 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps {
             return command;
         }
         /// <summary>
-        /// A collection of all the apps in the chat. Nullable.
+        /// List all app installations within a chat.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of all the apps in the chat. Nullable.";
+            command.Description = "List all app installations within a chat.";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -220,7 +220,7 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of all the apps in the chat. Nullable.
+        /// List all app installations within a chat.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<InstalledAppsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -240,7 +240,7 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to installedApps for me
+        /// Install a teamsApp to the specified chat.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -261,7 +261,7 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps {
             }
             return requestInfo;
         }
-        /// <summary>A collection of all the apps in the chat. Nullable.</summary>
+        /// <summary>List all app installations within a chat.</summary>
         public class InstalledAppsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

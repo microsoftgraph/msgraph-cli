@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>The sign in name of the SharePoint identity.</summary>
         public string LoginName { get; set; }
         /// <summary>
-        /// Instantiates a new SharePointIdentity and sets the default values.
+        /// Instantiates a new sharePointIdentity and sets the default values.
         /// </summary>
         public SharePointIdentity() : base() {
             OdataType = "#microsoft.graph.sharePointIdentity";

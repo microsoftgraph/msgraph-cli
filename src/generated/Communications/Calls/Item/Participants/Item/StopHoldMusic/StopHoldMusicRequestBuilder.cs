@@ -23,11 +23,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action stopHoldMusic
+        /// Reincorporate a participant previously put on hold to the call.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action stopHoldMusic";
+            command.Description = "Reincorporate a participant previously put on hold to the call.";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action stopHoldMusic
+        /// Reincorporate a participant previously put on hold to the call.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

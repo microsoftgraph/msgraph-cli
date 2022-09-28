@@ -102,11 +102,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions {
             return command;
         }
         /// <summary>
-        /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
+        /// List all the submissions associated with an assignment.  A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they are associated with.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
+            command.Description = "List all the submissions associated with an assignment.  A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they are associated with.";
             // Create options for all the parameters
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
@@ -225,7 +225,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
+        /// List all the submissions associated with an assignment.  A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they are associated with.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SubmissionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -266,7 +266,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions {
             }
             return requestInfo;
         }
-        /// <summary>Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.</summary>
+        /// <summary>List all the submissions associated with an assignment.  A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they are associated with.</summary>
         public class SubmissionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

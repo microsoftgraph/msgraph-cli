@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class PrintOperation : Entity, IParsable {
         /// <summary>The DateTimeOffset when the operation was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The status property</summary>
         public PrintOperationStatus Status { get; set; }
         /// <summary>
-        /// Instantiates a new PrintOperation and sets the default values.
+        /// Instantiates a new printOperation and sets the default values.
         /// </summary>
         public PrintOperation() : base() {
             OdataType = "#microsoft.graph.printOperation";
@@ -22,8 +23,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new PrintOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.printerCreateOperation" => new PrinterCreateOperation(),
                 _ => new PrintOperation(),

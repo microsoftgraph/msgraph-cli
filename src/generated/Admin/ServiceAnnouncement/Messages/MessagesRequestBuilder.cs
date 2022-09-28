@@ -108,11 +108,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
             return command;
         }
         /// <summary>
-        /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve the serviceUpdateMessage resources from the **messages** navigation property. This operation retrieves all service update messages that exist for the tenant.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.";
+            command.Description = "Retrieve the serviceUpdateMessage resources from the **messages** navigation property. This operation retrieves all service update messages that exist for the tenant.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -249,7 +249,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve the serviceUpdateMessage resources from the **messages** navigation property. This operation retrieves all service update messages that exist for the tenant.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MessagesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -290,7 +290,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
             }
             return requestInfo;
         }
-        /// <summary>A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.</summary>
+        /// <summary>Retrieve the serviceUpdateMessage resources from the **messages** navigation property. This operation retrieves all service update messages that exist for the tenant.</summary>
         public class MessagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>The windowsAutopilotDeviceIdentity resource represents a Windows Autopilot Device.</summary>
     public class WindowsAutopilotDeviceIdentity : Entity, IParsable {
         /// <summary>Addressable user name.</summary>
         public string AddressableUserName { get; set; }
@@ -38,7 +39,7 @@ namespace ApiSdk.Models {
         /// <summary>User Principal Name.</summary>
         public string UserPrincipalName { get; set; }
         /// <summary>
-        /// Instantiates a new WindowsAutopilotDeviceIdentity and sets the default values.
+        /// Instantiates a new windowsAutopilotDeviceIdentity and sets the default values.
         /// </summary>
         public WindowsAutopilotDeviceIdentity() : base() {
             OdataType = "#microsoft.graph.windowsAutopilotDeviceIdentity";

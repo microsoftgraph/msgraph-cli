@@ -45,11 +45,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to lists for groups
+        /// Create a new [list][] in a [site][].
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to lists for groups";
+            command.Description = "Create a new [list][] in a [site][].";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -106,11 +106,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
             return command;
         }
         /// <summary>
-        /// The collection of lists under this site.
+        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include `system` in your `$select` statement.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of lists under this site.";
+            command.Description = "Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include `system` in your `$select` statement.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -235,7 +235,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of lists under this site.
+        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include `system` in your `$select` statement.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ListsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -255,7 +255,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to lists for groups
+        /// Create a new [list][] in a [site][].
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -276,7 +276,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
             }
             return requestInfo;
         }
-        /// <summary>The collection of lists under this site.</summary>
+        /// <summary>Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include `system` in your `$select` statement.</summary>
         public class ListsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class UsedInsight : Entity, IParsable {
         /// <summary>Information about when the item was last viewed or modified by the user. Read only.</summary>
         public UsageDetails LastUsed { get; set; }
         /// <summary>Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.</summary>
         public Entity Resource { get; set; }
         /// <summary>Reference properties of the used document, such as the url and type of the document. Read-only</summary>
-        public ApiSdk.Models.ResourceReference ResourceReference { get; set; }
+        public ApiSdk.Models.ResourceReference ResourceReference { get; private set; }
         /// <summary>Properties that you can use to visualize the document in your experience. Read-only</summary>
-        public ApiSdk.Models.ResourceVisualization ResourceVisualization { get; set; }
+        public ApiSdk.Models.ResourceVisualization ResourceVisualization { get; private set; }
         /// <summary>
         /// Instantiates a new usedInsight and sets the default values.
         /// </summary>
@@ -48,8 +48,6 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteObjectValue<UsageDetails>("lastUsed", LastUsed);
             writer.WriteObjectValue<Entity>("resource", Resource);
-            writer.WriteObjectValue<ApiSdk.Models.ResourceReference>("resourceReference", ResourceReference);
-            writer.WriteObjectValue<ApiSdk.Models.ResourceVisualization>("resourceVisualization", ResourceVisualization);
         }
     }
 }

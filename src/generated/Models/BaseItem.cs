@@ -40,8 +40,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new BaseItem CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.drive" => new Drive(),
                 "#microsoft.graph.driveItem" => new DriveItem(),

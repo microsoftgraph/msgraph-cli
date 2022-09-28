@@ -22,11 +22,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action favorite
+        /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action favorite";
+            command.Description = "Change the status of a list of serviceUpdateMessages to favorite for the signed in user.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -84,7 +84,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action favorite
+        /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

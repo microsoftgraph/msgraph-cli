@@ -46,11 +46,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to members for users
+        /// Add a new conversationMember to a team.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to members for users";
+            command.Description = "Add a new conversationMember to a team.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -107,11 +107,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members {
             return command;
         }
         /// <summary>
-        /// Members and owners of the team.
+        /// Get the conversationMember collection of a team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Members and owners of the team.";
+            command.Description = "Get the conversationMember collection of a team.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -236,7 +236,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Members and owners of the team.
+        /// Get the conversationMember collection of a team.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MembersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -256,7 +256,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to members for users
+        /// Add a new conversationMember to a team.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -277,7 +277,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members {
             }
             return requestInfo;
         }
-        /// <summary>Members and owners of the team.</summary>
+        /// <summary>Get the conversationMember collection of a team.</summary>
         public class MembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
         public string AppId { get; set; }
         /// <summary>Unique identifier of the applicationTemplate. Supports $filter (eq, not, ne).</summary>
         public string ApplicationTemplateId { get; set; }
-        /// <summary>The collection of roles assigned to the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.</summary>
+        /// <summary>The collection of roles defined for the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.</summary>
         public List<AppRole> AppRoles { get; set; }
         /// <summary>Specifies the certification status of the application.</summary>
         public ApiSdk.Models.Certification Certification { get; set; }
@@ -21,6 +21,8 @@ namespace ApiSdk.Models {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Supports $filter (eq when counting empty collections). Read-only.</summary>
         public DirectoryObject CreatedOnBehalfOf { get; set; }
+        /// <summary>The defaultRedirectUri property</summary>
+        public string DefaultRedirectUri { get; set; }
         /// <summary>Free text field to provide a description of the application object to end users. The maximum allowed size is 1024 characters. Supports $filter (eq, ne, not, ge, le, startsWith) and $search.</summary>
         public string Description { get; set; }
         /// <summary>Specifies whether Microsoft has disabled the registered application. Possible values are: null (default value), NotDisabled, and DisabledDueToViolationOfServicesAgreement (reasons may include suspicious, abusive, or malicious activity, or a violation of the Microsoft Services Agreement).  Supports $filter (eq, ne, not).</summary>
@@ -29,7 +31,7 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
         /// <summary>Read-only. Nullable. Supports $expand and $filter (eq and ne when counting empty collections and only with advanced query parameters).</summary>
         public List<ExtensionProperty> ExtensionProperties { get; set; }
-        /// <summary>Federated identities for applications. Supports $expand and $filter (eq when counting empty collections).</summary>
+        /// <summary>Federated identities for applications. Supports $expand and $filter (startsWith, and eq, ne when counting empty collections and only with advanced query parameters).</summary>
         public List<FederatedIdentityCredential> FederatedIdentityCredentials { get; set; }
         /// <summary>Configures the groups claim issued in a user or OAuth 2.0 access token that the application expects. To set this attribute, use one of the following valid string values: None, SecurityGroup (for security groups and Azure AD roles), All (this gets all of the security groups, distribution groups, and Azure AD directory roles that the signed-in user is a member of).</summary>
         public string GroupMembershipClaims { get; set; }
@@ -86,7 +88,7 @@ namespace ApiSdk.Models {
         /// <summary>Specifies settings for a web application.</summary>
         public WebApplication Web { get; set; }
         /// <summary>
-        /// Instantiates a new Application and sets the default values.
+        /// Instantiates a new application and sets the default values.
         /// </summary>
         public Application() : base() {
             OdataType = "#microsoft.graph.application";
@@ -104,44 +106,45 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"addIns", n => { AddIns = n.GetCollectionOfObjectValues<AddIn>(AddIn.CreateFromDiscriminatorValue).ToList(); } },
+                {"addIns", n => { AddIns = n.GetCollectionOfObjectValues<AddIn>(AddIn.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"api", n => { Api = n.GetObjectValue<ApiApplication>(ApiApplication.CreateFromDiscriminatorValue); } },
                 {"appId", n => { AppId = n.GetStringValue(); } },
                 {"applicationTemplateId", n => { ApplicationTemplateId = n.GetStringValue(); } },
-                {"appRoles", n => { AppRoles = n.GetCollectionOfObjectValues<AppRole>(AppRole.CreateFromDiscriminatorValue).ToList(); } },
+                {"appRoles", n => { AppRoles = n.GetCollectionOfObjectValues<AppRole>(AppRole.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"certification", n => { Certification = n.GetObjectValue<ApiSdk.Models.Certification>(ApiSdk.Models.Certification.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"createdOnBehalfOf", n => { CreatedOnBehalfOf = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
+                {"defaultRedirectUri", n => { DefaultRedirectUri = n.GetStringValue(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"disabledByMicrosoftStatus", n => { DisabledByMicrosoftStatus = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"extensionProperties", n => { ExtensionProperties = n.GetCollectionOfObjectValues<ExtensionProperty>(ExtensionProperty.CreateFromDiscriminatorValue).ToList(); } },
-                {"federatedIdentityCredentials", n => { FederatedIdentityCredentials = n.GetCollectionOfObjectValues<FederatedIdentityCredential>(FederatedIdentityCredential.CreateFromDiscriminatorValue).ToList(); } },
+                {"extensionProperties", n => { ExtensionProperties = n.GetCollectionOfObjectValues<ExtensionProperty>(ExtensionProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"federatedIdentityCredentials", n => { FederatedIdentityCredentials = n.GetCollectionOfObjectValues<FederatedIdentityCredential>(FederatedIdentityCredential.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"groupMembershipClaims", n => { GroupMembershipClaims = n.GetStringValue(); } },
-                {"homeRealmDiscoveryPolicies", n => { HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<HomeRealmDiscoveryPolicy>(HomeRealmDiscoveryPolicy.CreateFromDiscriminatorValue).ToList(); } },
-                {"identifierUris", n => { IdentifierUris = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"homeRealmDiscoveryPolicies", n => { HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<HomeRealmDiscoveryPolicy>(HomeRealmDiscoveryPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"identifierUris", n => { IdentifierUris = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"info", n => { Info = n.GetObjectValue<InformationalUrl>(InformationalUrl.CreateFromDiscriminatorValue); } },
                 {"isDeviceOnlyAuthSupported", n => { IsDeviceOnlyAuthSupported = n.GetBoolValue(); } },
                 {"isFallbackPublicClient", n => { IsFallbackPublicClient = n.GetBoolValue(); } },
-                {"keyCredentials", n => { KeyCredentials = n.GetCollectionOfObjectValues<KeyCredential>(KeyCredential.CreateFromDiscriminatorValue).ToList(); } },
+                {"keyCredentials", n => { KeyCredentials = n.GetCollectionOfObjectValues<KeyCredential>(KeyCredential.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"logo", n => { Logo = n.GetByteArrayValue(); } },
                 {"notes", n => { Notes = n.GetStringValue(); } },
                 {"oauth2RequirePostResponse", n => { Oauth2RequirePostResponse = n.GetBoolValue(); } },
                 {"optionalClaims", n => { OptionalClaims = n.GetObjectValue<ApiSdk.Models.OptionalClaims>(ApiSdk.Models.OptionalClaims.CreateFromDiscriminatorValue); } },
-                {"owners", n => { Owners = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"owners", n => { Owners = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"parentalControlSettings", n => { ParentalControlSettings = n.GetObjectValue<ApiSdk.Models.ParentalControlSettings>(ApiSdk.Models.ParentalControlSettings.CreateFromDiscriminatorValue); } },
-                {"passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<PasswordCredential>(PasswordCredential.CreateFromDiscriminatorValue).ToList(); } },
+                {"passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<PasswordCredential>(PasswordCredential.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"publicClient", n => { PublicClient = n.GetObjectValue<PublicClientApplication>(PublicClientApplication.CreateFromDiscriminatorValue); } },
                 {"publisherDomain", n => { PublisherDomain = n.GetStringValue(); } },
-                {"requiredResourceAccess", n => { RequiredResourceAccess = n.GetCollectionOfObjectValues<ApiSdk.Models.RequiredResourceAccess>(ApiSdk.Models.RequiredResourceAccess.CreateFromDiscriminatorValue).ToList(); } },
+                {"requiredResourceAccess", n => { RequiredResourceAccess = n.GetCollectionOfObjectValues<ApiSdk.Models.RequiredResourceAccess>(ApiSdk.Models.RequiredResourceAccess.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"samlMetadataUrl", n => { SamlMetadataUrl = n.GetStringValue(); } },
                 {"serviceManagementReference", n => { ServiceManagementReference = n.GetStringValue(); } },
                 {"signInAudience", n => { SignInAudience = n.GetStringValue(); } },
                 {"spa", n => { Spa = n.GetObjectValue<SpaApplication>(SpaApplication.CreateFromDiscriminatorValue); } },
-                {"tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"tokenEncryptionKeyId", n => { TokenEncryptionKeyId = n.GetStringValue(); } },
-                {"tokenIssuancePolicies", n => { TokenIssuancePolicies = n.GetCollectionOfObjectValues<TokenIssuancePolicy>(TokenIssuancePolicy.CreateFromDiscriminatorValue).ToList(); } },
-                {"tokenLifetimePolicies", n => { TokenLifetimePolicies = n.GetCollectionOfObjectValues<TokenLifetimePolicy>(TokenLifetimePolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"tokenIssuancePolicies", n => { TokenIssuancePolicies = n.GetCollectionOfObjectValues<TokenIssuancePolicy>(TokenIssuancePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"tokenLifetimePolicies", n => { TokenLifetimePolicies = n.GetCollectionOfObjectValues<TokenLifetimePolicy>(TokenLifetimePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"verifiedPublisher", n => { VerifiedPublisher = n.GetObjectValue<ApiSdk.Models.VerifiedPublisher>(ApiSdk.Models.VerifiedPublisher.CreateFromDiscriminatorValue); } },
                 {"web", n => { Web = n.GetObjectValue<WebApplication>(WebApplication.CreateFromDiscriminatorValue); } },
             };
@@ -161,6 +164,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<ApiSdk.Models.Certification>("certification", Certification);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<DirectoryObject>("createdOnBehalfOf", CreatedOnBehalfOf);
+            writer.WriteStringValue("defaultRedirectUri", DefaultRedirectUri);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("disabledByMicrosoftStatus", DisabledByMicrosoftStatus);
             writer.WriteStringValue("displayName", DisplayName);

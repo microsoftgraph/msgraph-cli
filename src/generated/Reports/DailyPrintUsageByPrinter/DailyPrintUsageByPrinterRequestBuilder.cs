@@ -88,11 +88,11 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter {
             return command;
         }
         /// <summary>
-        /// Get dailyPrintUsageByPrinter from reports
+        /// Retrieve a list of daily print usage summaries, grouped by printer.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get dailyPrintUsageByPrinter from reports";
+            command.Description = "Retrieve a list of daily print usage summaries, grouped by printer.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get dailyPrintUsageByPrinter from reports
+        /// Retrieve a list of daily print usage summaries, grouped by printer.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DailyPrintUsageByPrinterRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter {
             }
             return requestInfo;
         }
-        /// <summary>Get dailyPrintUsageByPrinter from reports</summary>
+        /// <summary>Retrieve a list of daily print usage summaries, grouped by printer.</summary>
         public class DailyPrintUsageByPrinterRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -37,11 +37,11 @@ namespace ApiSdk.Print.Printers.Item.Connectors {
             return command;
         }
         /// <summary>
-        /// The connectors that are associated with the printer.
+        /// Retrieve a list of printConnectors associated with the printer.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The connectors that are associated with the printer.";
+            command.Description = "Retrieve a list of printConnectors associated with the printer.";
             // Create options for all the parameters
             var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
             };
@@ -160,7 +160,7 @@ namespace ApiSdk.Print.Printers.Item.Connectors {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The connectors that are associated with the printer.
+        /// Retrieve a list of printConnectors associated with the printer.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ConnectorsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -179,7 +179,7 @@ namespace ApiSdk.Print.Printers.Item.Connectors {
             }
             return requestInfo;
         }
-        /// <summary>The connectors that are associated with the printer.</summary>
+        /// <summary>Retrieve a list of printConnectors associated with the printer.</summary>
         public class ConnectorsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

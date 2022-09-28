@@ -57,7 +57,7 @@ namespace ApiSdk.Models {
                 {"deviceDescription", n => { DeviceDescription = n.GetStringValue(); } },
                 {"deviceName", n => { DeviceName = n.GetStringValue(); } },
                 {"mediaLegId", n => { MediaLegId = n.GetStringValue(); } },
-                {"mediaQualityList", n => { MediaQualityList = n.GetCollectionOfObjectValues<TeleconferenceDeviceMediaQuality>(TeleconferenceDeviceMediaQuality.CreateFromDiscriminatorValue).ToList(); } },
+                {"mediaQualityList", n => { MediaQualityList = n.GetCollectionOfObjectValues<TeleconferenceDeviceMediaQuality>(TeleconferenceDeviceMediaQuality.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"participantId", n => { ParticipantId = n.GetStringValue(); } },
             };

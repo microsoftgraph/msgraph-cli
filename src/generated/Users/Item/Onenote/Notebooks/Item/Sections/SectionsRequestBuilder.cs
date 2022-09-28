@@ -44,11 +44,11 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to sections for users
+        /// Create a new onenoteSection in the specified notebook.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to sections for users";
+            command.Description = "Create a new onenoteSection in the specified notebook.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -105,11 +105,11 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections {
             return command;
         }
         /// <summary>
-        /// The sections in the notebook. Read-only. Nullable.
+        /// Retrieve a list of onenoteSection objects from the specified notebook.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The sections in the notebook. Read-only. Nullable.";
+            command.Description = "Retrieve a list of onenoteSection objects from the specified notebook.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -234,7 +234,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The sections in the notebook. Read-only. Nullable.
+        /// Retrieve a list of onenoteSection objects from the specified notebook.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SectionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -254,7 +254,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to sections for users
+        /// Create a new onenoteSection in the specified notebook.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -275,7 +275,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections {
             }
             return requestInfo;
         }
-        /// <summary>The sections in the notebook. Read-only. Nullable.</summary>
+        /// <summary>Retrieve a list of onenoteSection objects from the specified notebook.</summary>
         public class SectionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -42,11 +42,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to installedApps for me
+        /// Install an app to the specified team.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to installedApps for me";
+            command.Description = "Install an app to the specified team.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -97,11 +97,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps {
             return command;
         }
         /// <summary>
-        /// The apps installed in this team.
+        /// Retrieve a list of apps installed in the specified team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The apps installed in this team.";
+            command.Description = "Retrieve a list of apps installed in the specified team.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -220,7 +220,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The apps installed in this team.
+        /// Retrieve a list of apps installed in the specified team.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<InstalledAppsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -240,7 +240,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to installedApps for me
+        /// Install an app to the specified team.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -261,7 +261,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps {
             }
             return requestInfo;
         }
-        /// <summary>The apps installed in this team.</summary>
+        /// <summary>Retrieve a list of apps installed in the specified team.</summary>
         public class InstalledAppsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

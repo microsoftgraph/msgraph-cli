@@ -7,25 +7,25 @@ namespace ApiSdk.Models {
     /// <summary>Devices that are managed or pre-enrolled through Intune</summary>
     public class ManagedDevice : Entity, IParsable {
         /// <summary>Code that allows the Activation Lock on a device to be bypassed. This property is read-only.</summary>
-        public string ActivationLockBypassCode { get; set; }
+        public string ActivationLockBypassCode { get; private set; }
         /// <summary>Android security patch level. This property is read-only.</summary>
-        public string AndroidSecurityPatchLevel { get; set; }
+        public string AndroidSecurityPatchLevel { get; private set; }
         /// <summary>The unique identifier for the Azure Active Directory device. Read only. This property is read-only.</summary>
-        public string AzureADDeviceId { get; set; }
+        public string AzureADDeviceId { get; private set; }
         /// <summary>Whether the device is Azure Active Directory registered. This property is read-only.</summary>
-        public bool? AzureADRegistered { get; set; }
+        public bool? AzureADRegistered { get; private set; }
         /// <summary>The DateTime when device compliance grace period expires. This property is read-only.</summary>
-        public DateTimeOffset? ComplianceGracePeriodExpirationDateTime { get; set; }
+        public DateTimeOffset? ComplianceGracePeriodExpirationDateTime { get; private set; }
         /// <summary>Compliance state.</summary>
         public ApiSdk.Models.ComplianceState? ComplianceState { get; set; }
         /// <summary>ConfigrMgr client enabled features. This property is read-only.</summary>
-        public ApiSdk.Models.ConfigurationManagerClientEnabledFeatures ConfigurationManagerClientEnabledFeatures { get; set; }
+        public ApiSdk.Models.ConfigurationManagerClientEnabledFeatures ConfigurationManagerClientEnabledFeatures { get; private set; }
         /// <summary>List of ComplexType deviceActionResult objects. This property is read-only.</summary>
-        public List<DeviceActionResult> DeviceActionResults { get; set; }
+        public List<DeviceActionResult> DeviceActionResults { get; private set; }
         /// <summary>Device category</summary>
         public ApiSdk.Models.DeviceCategory DeviceCategory { get; set; }
         /// <summary>Device category display name. This property is read-only.</summary>
-        public string DeviceCategoryDisplayName { get; set; }
+        public string DeviceCategoryDisplayName { get; private set; }
         /// <summary>Device compliance policy states for this device.</summary>
         public List<DeviceCompliancePolicyState> DeviceCompliancePolicyStates { get; set; }
         /// <summary>Device configuration states for this device.</summary>
@@ -33,43 +33,43 @@ namespace ApiSdk.Models {
         /// <summary>Possible ways of adding a mobile device to management.</summary>
         public ApiSdk.Models.DeviceEnrollmentType? DeviceEnrollmentType { get; set; }
         /// <summary>The device health attestation state. This property is read-only.</summary>
-        public ApiSdk.Models.DeviceHealthAttestationState DeviceHealthAttestationState { get; set; }
+        public ApiSdk.Models.DeviceHealthAttestationState DeviceHealthAttestationState { get; private set; }
         /// <summary>Name of the device. This property is read-only.</summary>
-        public string DeviceName { get; set; }
+        public string DeviceName { get; private set; }
         /// <summary>Device registration status.</summary>
         public ApiSdk.Models.DeviceRegistrationState? DeviceRegistrationState { get; set; }
         /// <summary>Whether the device is Exchange ActiveSync activated. This property is read-only.</summary>
-        public bool? EasActivated { get; set; }
+        public bool? EasActivated { get; private set; }
         /// <summary>Exchange ActivationSync activation time of the device. This property is read-only.</summary>
-        public DateTimeOffset? EasActivationDateTime { get; set; }
+        public DateTimeOffset? EasActivationDateTime { get; private set; }
         /// <summary>Exchange ActiveSync Id of the device. This property is read-only.</summary>
-        public string EasDeviceId { get; set; }
+        public string EasDeviceId { get; private set; }
         /// <summary>Email(s) for the user associated with the device. This property is read-only.</summary>
-        public string EmailAddress { get; set; }
+        public string EmailAddress { get; private set; }
         /// <summary>Enrollment time of the device. This property is read-only.</summary>
-        public DateTimeOffset? EnrolledDateTime { get; set; }
+        public DateTimeOffset? EnrolledDateTime { get; private set; }
         /// <summary>Ethernet MAC. This property is read-only.</summary>
-        public string EthernetMacAddress { get; set; }
+        public string EthernetMacAddress { get; private set; }
         /// <summary>Device Exchange Access State.</summary>
         public DeviceManagementExchangeAccessState? ExchangeAccessState { get; set; }
         /// <summary>Device Exchange Access State Reason.</summary>
         public DeviceManagementExchangeAccessStateReason? ExchangeAccessStateReason { get; set; }
         /// <summary>Last time the device contacted Exchange. This property is read-only.</summary>
-        public DateTimeOffset? ExchangeLastSuccessfulSyncDateTime { get; set; }
+        public DateTimeOffset? ExchangeLastSuccessfulSyncDateTime { get; private set; }
         /// <summary>Free Storage in Bytes. This property is read-only.</summary>
-        public long? FreeStorageSpaceInBytes { get; set; }
+        public long? FreeStorageSpaceInBytes { get; private set; }
         /// <summary>Integrated Circuit Card Identifier, it is A SIM card&apos;s unique identification number. This property is read-only.</summary>
-        public string Iccid { get; set; }
+        public string Iccid { get; private set; }
         /// <summary>IMEI. This property is read-only.</summary>
-        public string Imei { get; set; }
+        public string Imei { get; private set; }
         /// <summary>Device encryption status. This property is read-only.</summary>
-        public bool? IsEncrypted { get; set; }
+        public bool? IsEncrypted { get; private set; }
         /// <summary>Device supervised status. This property is read-only.</summary>
-        public bool? IsSupervised { get; set; }
+        public bool? IsSupervised { get; private set; }
         /// <summary>whether the device is jail broken or rooted. This property is read-only.</summary>
-        public string JailBroken { get; set; }
+        public string JailBroken { get; private set; }
         /// <summary>The date and time that the device last completed a successful sync with Intune. This property is read-only.</summary>
-        public DateTimeOffset? LastSyncDateTime { get; set; }
+        public DateTimeOffset? LastSyncDateTime { get; private set; }
         /// <summary>Automatically generated name to identify a device. Can be overwritten to a user friendly name.</summary>
         public string ManagedDeviceName { get; set; }
         /// <summary>Owner type of device.</summary>
@@ -77,43 +77,43 @@ namespace ApiSdk.Models {
         /// <summary>The managementAgent property</summary>
         public ManagementAgentType? ManagementAgent { get; set; }
         /// <summary>Manufacturer of the device. This property is read-only.</summary>
-        public string Manufacturer { get; set; }
+        public string Manufacturer { get; private set; }
         /// <summary>MEID. This property is read-only.</summary>
-        public string Meid { get; set; }
+        public string Meid { get; private set; }
         /// <summary>Model of the device. This property is read-only.</summary>
-        public string Model { get; set; }
+        public string Model { get; private set; }
         /// <summary>Notes on the device created by IT Admin</summary>
         public string Notes { get; set; }
         /// <summary>Operating system of the device. Windows, iOS, etc. This property is read-only.</summary>
-        public string OperatingSystem { get; set; }
+        public string OperatingSystem { get; private set; }
         /// <summary>Operating system version of the device. This property is read-only.</summary>
-        public string OsVersion { get; set; }
+        public string OsVersion { get; private set; }
         /// <summary>Available health states for the Device Health API</summary>
         public ManagedDevicePartnerReportedHealthState? PartnerReportedThreatState { get; set; }
         /// <summary>Phone number of the device. This property is read-only.</summary>
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; private set; }
         /// <summary>Total Memory in Bytes. This property is read-only.</summary>
-        public long? PhysicalMemoryInBytes { get; set; }
+        public long? PhysicalMemoryInBytes { get; private set; }
         /// <summary>An error string that identifies issues when creating Remote Assistance session objects. This property is read-only.</summary>
-        public string RemoteAssistanceSessionErrorDetails { get; set; }
+        public string RemoteAssistanceSessionErrorDetails { get; private set; }
         /// <summary>Url that allows a Remote Assistance session to be established with the device. This property is read-only.</summary>
-        public string RemoteAssistanceSessionUrl { get; set; }
+        public string RemoteAssistanceSessionUrl { get; private set; }
         /// <summary>SerialNumber. This property is read-only.</summary>
-        public string SerialNumber { get; set; }
+        public string SerialNumber { get; private set; }
         /// <summary>Subscriber Carrier. This property is read-only.</summary>
-        public string SubscriberCarrier { get; set; }
+        public string SubscriberCarrier { get; private set; }
         /// <summary>Total Storage in Bytes. This property is read-only.</summary>
-        public long? TotalStorageSpaceInBytes { get; set; }
+        public long? TotalStorageSpaceInBytes { get; private set; }
         /// <summary>Unique Device Identifier for iOS and macOS devices. This property is read-only.</summary>
-        public string Udid { get; set; }
+        public string Udid { get; private set; }
         /// <summary>User display name. This property is read-only.</summary>
-        public string UserDisplayName { get; set; }
+        public string UserDisplayName { get; private set; }
         /// <summary>Unique Identifier for the user associated with the device. This property is read-only.</summary>
-        public string UserId { get; set; }
+        public string UserId { get; private set; }
         /// <summary>Device user principal name. This property is read-only.</summary>
-        public string UserPrincipalName { get; set; }
+        public string UserPrincipalName { get; private set; }
         /// <summary>Wi-Fi MAC. This property is read-only.</summary>
-        public string WiFiMacAddress { get; set; }
+        public string WiFiMacAddress { get; private set; }
         /// <summary>
         /// Instantiates a new managedDevice and sets the default values.
         /// </summary>
@@ -140,11 +140,11 @@ namespace ApiSdk.Models {
                 {"complianceGracePeriodExpirationDateTime", n => { ComplianceGracePeriodExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"complianceState", n => { ComplianceState = n.GetEnumValue<ComplianceState>(); } },
                 {"configurationManagerClientEnabledFeatures", n => { ConfigurationManagerClientEnabledFeatures = n.GetObjectValue<ApiSdk.Models.ConfigurationManagerClientEnabledFeatures>(ApiSdk.Models.ConfigurationManagerClientEnabledFeatures.CreateFromDiscriminatorValue); } },
-                {"deviceActionResults", n => { DeviceActionResults = n.GetCollectionOfObjectValues<DeviceActionResult>(DeviceActionResult.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceActionResults", n => { DeviceActionResults = n.GetCollectionOfObjectValues<DeviceActionResult>(DeviceActionResult.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"deviceCategory", n => { DeviceCategory = n.GetObjectValue<ApiSdk.Models.DeviceCategory>(ApiSdk.Models.DeviceCategory.CreateFromDiscriminatorValue); } },
                 {"deviceCategoryDisplayName", n => { DeviceCategoryDisplayName = n.GetStringValue(); } },
-                {"deviceCompliancePolicyStates", n => { DeviceCompliancePolicyStates = n.GetCollectionOfObjectValues<DeviceCompliancePolicyState>(DeviceCompliancePolicyState.CreateFromDiscriminatorValue).ToList(); } },
-                {"deviceConfigurationStates", n => { DeviceConfigurationStates = n.GetCollectionOfObjectValues<DeviceConfigurationState>(DeviceConfigurationState.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceCompliancePolicyStates", n => { DeviceCompliancePolicyStates = n.GetCollectionOfObjectValues<DeviceCompliancePolicyState>(DeviceCompliancePolicyState.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"deviceConfigurationStates", n => { DeviceConfigurationStates = n.GetCollectionOfObjectValues<DeviceConfigurationState>(DeviceConfigurationState.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"deviceEnrollmentType", n => { DeviceEnrollmentType = n.GetEnumValue<DeviceEnrollmentType>(); } },
                 {"deviceHealthAttestationState", n => { DeviceHealthAttestationState = n.GetObjectValue<ApiSdk.Models.DeviceHealthAttestationState>(ApiSdk.Models.DeviceHealthAttestationState.CreateFromDiscriminatorValue); } },
                 {"deviceName", n => { DeviceName = n.GetStringValue(); } },
@@ -196,60 +196,19 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteStringValue("activationLockBypassCode", ActivationLockBypassCode);
-            writer.WriteStringValue("androidSecurityPatchLevel", AndroidSecurityPatchLevel);
-            writer.WriteStringValue("azureADDeviceId", AzureADDeviceId);
-            writer.WriteBoolValue("azureADRegistered", AzureADRegistered);
-            writer.WriteDateTimeOffsetValue("complianceGracePeriodExpirationDateTime", ComplianceGracePeriodExpirationDateTime);
             writer.WriteEnumValue<ComplianceState>("complianceState", ComplianceState);
-            writer.WriteObjectValue<ApiSdk.Models.ConfigurationManagerClientEnabledFeatures>("configurationManagerClientEnabledFeatures", ConfigurationManagerClientEnabledFeatures);
-            writer.WriteCollectionOfObjectValues<DeviceActionResult>("deviceActionResults", DeviceActionResults);
             writer.WriteObjectValue<ApiSdk.Models.DeviceCategory>("deviceCategory", DeviceCategory);
-            writer.WriteStringValue("deviceCategoryDisplayName", DeviceCategoryDisplayName);
             writer.WriteCollectionOfObjectValues<DeviceCompliancePolicyState>("deviceCompliancePolicyStates", DeviceCompliancePolicyStates);
             writer.WriteCollectionOfObjectValues<DeviceConfigurationState>("deviceConfigurationStates", DeviceConfigurationStates);
             writer.WriteEnumValue<DeviceEnrollmentType>("deviceEnrollmentType", DeviceEnrollmentType);
-            writer.WriteObjectValue<ApiSdk.Models.DeviceHealthAttestationState>("deviceHealthAttestationState", DeviceHealthAttestationState);
-            writer.WriteStringValue("deviceName", DeviceName);
             writer.WriteEnumValue<DeviceRegistrationState>("deviceRegistrationState", DeviceRegistrationState);
-            writer.WriteBoolValue("easActivated", EasActivated);
-            writer.WriteDateTimeOffsetValue("easActivationDateTime", EasActivationDateTime);
-            writer.WriteStringValue("easDeviceId", EasDeviceId);
-            writer.WriteStringValue("emailAddress", EmailAddress);
-            writer.WriteDateTimeOffsetValue("enrolledDateTime", EnrolledDateTime);
-            writer.WriteStringValue("ethernetMacAddress", EthernetMacAddress);
             writer.WriteEnumValue<DeviceManagementExchangeAccessState>("exchangeAccessState", ExchangeAccessState);
             writer.WriteEnumValue<DeviceManagementExchangeAccessStateReason>("exchangeAccessStateReason", ExchangeAccessStateReason);
-            writer.WriteDateTimeOffsetValue("exchangeLastSuccessfulSyncDateTime", ExchangeLastSuccessfulSyncDateTime);
-            writer.WriteLongValue("freeStorageSpaceInBytes", FreeStorageSpaceInBytes);
-            writer.WriteStringValue("iccid", Iccid);
-            writer.WriteStringValue("imei", Imei);
-            writer.WriteBoolValue("isEncrypted", IsEncrypted);
-            writer.WriteBoolValue("isSupervised", IsSupervised);
-            writer.WriteStringValue("jailBroken", JailBroken);
-            writer.WriteDateTimeOffsetValue("lastSyncDateTime", LastSyncDateTime);
             writer.WriteStringValue("managedDeviceName", ManagedDeviceName);
             writer.WriteEnumValue<ManagedDeviceOwnerType>("managedDeviceOwnerType", ManagedDeviceOwnerType);
             writer.WriteEnumValue<ManagementAgentType>("managementAgent", ManagementAgent);
-            writer.WriteStringValue("manufacturer", Manufacturer);
-            writer.WriteStringValue("meid", Meid);
-            writer.WriteStringValue("model", Model);
             writer.WriteStringValue("notes", Notes);
-            writer.WriteStringValue("operatingSystem", OperatingSystem);
-            writer.WriteStringValue("osVersion", OsVersion);
             writer.WriteEnumValue<ManagedDevicePartnerReportedHealthState>("partnerReportedThreatState", PartnerReportedThreatState);
-            writer.WriteStringValue("phoneNumber", PhoneNumber);
-            writer.WriteLongValue("physicalMemoryInBytes", PhysicalMemoryInBytes);
-            writer.WriteStringValue("remoteAssistanceSessionErrorDetails", RemoteAssistanceSessionErrorDetails);
-            writer.WriteStringValue("remoteAssistanceSessionUrl", RemoteAssistanceSessionUrl);
-            writer.WriteStringValue("serialNumber", SerialNumber);
-            writer.WriteStringValue("subscriberCarrier", SubscriberCarrier);
-            writer.WriteLongValue("totalStorageSpaceInBytes", TotalStorageSpaceInBytes);
-            writer.WriteStringValue("udid", Udid);
-            writer.WriteStringValue("userDisplayName", UserDisplayName);
-            writer.WriteStringValue("userId", UserId);
-            writer.WriteStringValue("userPrincipalName", UserPrincipalName);
-            writer.WriteStringValue("wiFiMacAddress", WiFiMacAddress);
         }
     }
 }

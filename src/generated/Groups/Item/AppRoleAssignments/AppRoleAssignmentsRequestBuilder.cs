@@ -39,11 +39,11 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to appRoleAssignments for groups
+        /// Use this API to assign an app role to a group. All direct members of the group will be considered assigned. To grant an app role assignment to a group, you need three identifiers: Additional licenses might be required to use a group to manage access to applications.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to appRoleAssignments for groups";
+            command.Description = "Use this API to assign an app role to a group. All direct members of the group will be considered assigned. To grant an app role assignment to a group, you need three identifiers: Additional licenses might be required to use a group to manage access to applications.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -104,6 +104,10 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
+            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
+            };
+            consistencyLevelOption.IsRequired = false;
+            command.AddOption(consistencyLevelOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -156,6 +160,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var consistencyLevel = invocationContext.ParseResult.GetValueForOption(consistencyLevelOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -183,6 +188,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
                     q.QueryParameters.Expand = expand;
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -237,7 +243,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to appRoleAssignments for groups
+        /// Use this API to assign an app role to a group. All direct members of the group will be considered assigned. To grant an app role assignment to a group, you need three identifiers: Additional licenses might be required to use a group to manage access to applications.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

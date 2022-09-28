@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Windows Information Protection Network learning Summary entity.</summary>
     public class WindowsInformationProtectionNetworkLearningSummary : Entity, IParsable {
         /// <summary>Device Count</summary>
         public int? DeviceCount { get; set; }
         /// <summary>Website url</summary>
         public string Url { get; set; }
         /// <summary>
-        /// Instantiates a new WindowsInformationProtectionNetworkLearningSummary and sets the default values.
+        /// Instantiates a new windowsInformationProtectionNetworkLearningSummary and sets the default values.
         /// </summary>
         public WindowsInformationProtectionNetworkLearningSummary() : base() {
             OdataType = "#microsoft.graph.windowsInformationProtectionNetworkLearningSummary";

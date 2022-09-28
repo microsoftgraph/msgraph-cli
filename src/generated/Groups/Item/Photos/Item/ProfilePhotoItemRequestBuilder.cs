@@ -31,44 +31,6 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property photos for groups
-        /// </summary>
-        public Command BuildDeleteCommand() {
-            var command = new Command("delete");
-            command.Description = "Delete navigation property photos for groups";
-            // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
-            };
-            groupIdOption.IsRequired = true;
-            command.AddOption(groupIdOption);
-            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "key: id of profilePhoto") {
-            };
-            profilePhotoIdOption.IsRequired = true;
-            command.AddOption(profilePhotoIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
-            };
-            ifMatchOption.IsRequired = false;
-            command.AddOption(ifMatchOption);
-            command.SetHandler(async (invocationContext) => {
-                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
-                var profilePhotoId = invocationContext.ParseResult.GetValueForOption(profilePhotoIdOption);
-                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
-                });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("profilePhoto%2Did", profilePhotoId);
-                requestInfo.Headers["If-Match"] = ifMatch;
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
-        /// <summary>
         /// The profile photos owned by the group. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
@@ -129,46 +91,6 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property photos in groups
-        /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
-            command.Description = "Update the navigation property photos in groups";
-            // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
-            };
-            groupIdOption.IsRequired = true;
-            command.AddOption(groupIdOption);
-            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "key: id of profilePhoto") {
-            };
-            profilePhotoIdOption.IsRequired = true;
-            command.AddOption(profilePhotoIdOption);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (invocationContext) => {
-                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
-                var profilePhotoId = invocationContext.ParseResult.GetValueForOption(profilePhotoIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ProfilePhoto>(ProfilePhoto.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
-                });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("profilePhoto%2Did", profilePhotoId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new ProfilePhotoItemRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
@@ -180,24 +102,6 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Delete navigation property photos for groups
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<ProfilePhotoItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.DELETE,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new ProfilePhotoItemRequestBuilderDeleteRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
         }
         /// <summary>
         /// The profile photos owned by the group. Read-only. Nullable.
@@ -219,41 +123,6 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             }
             return requestInfo;
         }
-        /// <summary>
-        /// Update the navigation property photos in groups
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ProfilePhoto body, Action<ProfilePhotoItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new ProfilePhotoItemRequestBuilderPatchRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class ProfilePhotoItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new ProfilePhotoItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public ProfilePhotoItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
         /// <summary>The profile photos owned by the group. Read-only. Nullable.</summary>
         public class ProfilePhotoItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
@@ -272,20 +141,6 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             /// Instantiates a new ProfilePhotoItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public ProfilePhotoItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class ProfilePhotoItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new ProfilePhotoItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public ProfilePhotoItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }

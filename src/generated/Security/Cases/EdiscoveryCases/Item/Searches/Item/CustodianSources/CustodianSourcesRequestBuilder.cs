@@ -37,11 +37,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
             return command;
         }
         /// <summary>
-        /// Custodian sources that are included in the eDiscovery search.
+        /// Get the list of custodial data sources associated with an eDiscovery search.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Custodian sources that are included in the eDiscovery search.";
+            command.Description = "Get the list of custodial data sources associated with an eDiscovery search.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -166,7 +166,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Custodian sources that are included in the eDiscovery search.
+        /// Get the list of custodial data sources associated with an eDiscovery search.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CustodianSourcesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -185,7 +185,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
             }
             return requestInfo;
         }
-        /// <summary>Custodian sources that are included in the eDiscovery search.</summary>
+        /// <summary>Get the list of custodial data sources associated with an eDiscovery search.</summary>
         public class CustodianSourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

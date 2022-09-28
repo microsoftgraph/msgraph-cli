@@ -115,11 +115,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Ite
             return command;
         }
         /// <summary>
-        /// Indicates which terms have been pinned or reused directly under the set.
+        /// Get the different relation of a [term] or [set] from the relations navigation property.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Indicates which terms have been pinned or reused directly under the set.";
+            command.Description = "Get the different relation of a [term] or [set] from the relations navigation property.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -256,7 +256,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Ite
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Indicates which terms have been pinned or reused directly under the set.
+        /// Get the different relation of a [term] or [set] from the relations navigation property.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RelationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -297,7 +297,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Ite
             }
             return requestInfo;
         }
-        /// <summary>Indicates which terms have been pinned or reused directly under the set.</summary>
+        /// <summary>Get the different relation of a [term] or [set] from the relations navigation property.</summary>
         public class RelationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -22,11 +22,11 @@ namespace ApiSdk.Users.Item.Drives.Item.List.Items.Item.DocumentSetVersions.Item
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action restore
+        /// Restore a document set version.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action restore";
+            command.Description = "Restore a document set version.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -79,7 +79,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.Items.Item.DocumentSetVersions.Item
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action restore
+        /// Restore a document set version.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<RestoreRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

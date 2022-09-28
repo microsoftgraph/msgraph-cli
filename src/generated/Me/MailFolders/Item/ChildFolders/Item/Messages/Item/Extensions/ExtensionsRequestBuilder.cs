@@ -39,11 +39,11 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Extensions 
             return command;
         }
         /// <summary>
-        /// Create new navigation property to extensions for me
+        /// Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to extensions for me";
+            command.Description = "Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.";
             // Create options for all the parameters
             var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };
@@ -255,7 +255,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Extensions 
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to extensions for me
+        /// Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

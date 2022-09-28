@@ -47,11 +47,11 @@ namespace ApiSdk.Me.MailFolders {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to mailFolders for me
+        /// Use this API to create a new mail folder in the root folder of the user&apos;s mailbox. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to mailFolders for me";
+            command.Description = "Use this API to create a new mail folder in the root folder of the user's mailbox. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -96,11 +96,11 @@ namespace ApiSdk.Me.MailFolders {
             return command;
         }
         /// <summary>
-        /// The user&apos;s mail folders. Read-only. Nullable.
+        /// Get the mail folder collection directly under the root folder of the signed-in user. The returned collection includes any mail search folders directly under the root. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The user's mail folders. Read-only. Nullable.";
+            command.Description = "Get the mail folder collection directly under the root folder of the signed-in user. The returned collection includes any mail search folders directly under the root. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -200,7 +200,7 @@ namespace ApiSdk.Me.MailFolders {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user&apos;s mail folders. Read-only. Nullable.
+        /// Get the mail folder collection directly under the root folder of the signed-in user. The returned collection includes any mail search folders directly under the root. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MailFoldersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -220,7 +220,7 @@ namespace ApiSdk.Me.MailFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to mailFolders for me
+        /// Use this API to create a new mail folder in the root folder of the user&apos;s mailbox. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.Me.MailFolders {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The user&apos;s mail folders. Read-only. Nullable.</summary>
+        /// <summary>Get the mail folder collection directly under the root folder of the signed-in user. The returned collection includes any mail search folders directly under the root. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.</summary>
         public class MailFoldersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

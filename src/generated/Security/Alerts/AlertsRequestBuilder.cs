@@ -27,7 +27,6 @@ namespace ApiSdk.Security.Alerts {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new AlertItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -88,11 +87,11 @@ namespace ApiSdk.Security.Alerts {
             return command;
         }
         /// <summary>
-        /// Get alerts from security
+        /// Retrieve a list of alert objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get alerts from security";
+            command.Description = "Retrieve a list of alert objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +204,7 @@ namespace ApiSdk.Security.Alerts {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get alerts from security
+        /// Retrieve a list of alert objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AlertsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +245,7 @@ namespace ApiSdk.Security.Alerts {
             }
             return requestInfo;
         }
-        /// <summary>Get alerts from security</summary>
+        /// <summary>Retrieve a list of alert objects.</summary>
         public class AlertsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

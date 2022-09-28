@@ -23,11 +23,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.SetUpResourcesFolder {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action setUpResourcesFolder
+        /// Create a SharePoint folder to upload files for a given educationAssignment.  The teacher determines the resources to upload in the assignment&apos;s folder. 
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setUpResourcesFolder";
+            command.Description = "Create a SharePoint folder to upload files for a given educationAssignment.  The teacher determines the resources to upload in the assignment's folder. ";
             // Create options for all the parameters
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
@@ -83,7 +83,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.SetUpResourcesFolder {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action setUpResourcesFolder
+        /// Create a SharePoint folder to upload files for a given educationAssignment.  The teacher determines the resources to upload in the assignment&apos;s folder. 
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<SetUpResourcesFolderRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

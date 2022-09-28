@@ -23,11 +23,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action startHoldMusic
+        /// Put a participant on hold and play music in the background.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action startHoldMusic";
+            command.Description = "Put a participant on hold and play music in the background.";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action startHoldMusic
+        /// Put a participant on hold and play music in the background.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

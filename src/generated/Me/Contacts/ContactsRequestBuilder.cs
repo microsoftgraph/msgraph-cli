@@ -44,11 +44,11 @@ namespace ApiSdk.Me.Contacts {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to contacts for me
+        /// Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to contacts for me";
+            command.Description = "Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -93,11 +93,11 @@ namespace ApiSdk.Me.Contacts {
             return command;
         }
         /// <summary>
-        /// The user&apos;s contacts. Read-only. Nullable.
+        /// Get a contact collection from the default contacts folder of the signed-in user. There are two scenarios where an app can get contacts in another user&apos;s contact folder:
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The user's contacts. Read-only. Nullable.";
+            command.Description = "Get a contact collection from the default contacts folder of the signed-in user. There are two scenarios where an app can get contacts in another user's contact folder:";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -203,7 +203,7 @@ namespace ApiSdk.Me.Contacts {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user&apos;s contacts. Read-only. Nullable.
+        /// Get a contact collection from the default contacts folder of the signed-in user. There are two scenarios where an app can get contacts in another user&apos;s contact folder:
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ContactsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -223,7 +223,7 @@ namespace ApiSdk.Me.Contacts {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to contacts for me
+        /// Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -250,7 +250,7 @@ namespace ApiSdk.Me.Contacts {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The user&apos;s contacts. Read-only. Nullable.</summary>
+        /// <summary>Get a contact collection from the default contacts folder of the signed-in user. There are two scenarios where an app can get contacts in another user&apos;s contact folder:</summary>
         public class ContactsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

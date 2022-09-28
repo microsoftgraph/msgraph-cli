@@ -104,11 +104,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets {
             return command;
         }
         /// <summary>
-        /// Collection of all sets available in the term store.
+        /// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Collection of all sets available in the term store.";
+            command.Description = "Collection of all sets available in the term store. This relationship can only be used to load a specific term set.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -233,7 +233,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Collection of all sets available in the term store.
+        /// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SetsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -274,7 +274,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets {
             }
             return requestInfo;
         }
-        /// <summary>Collection of all sets available in the term store.</summary>
+        /// <summary>Collection of all sets available in the term store. This relationship can only be used to load a specific term set.</summary>
         public class SetsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

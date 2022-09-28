@@ -39,11 +39,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UserSources
             return command;
         }
         /// <summary>
-        /// Create new navigation property to userSources for security
+        /// Create a new userSource object associated with an eDiscovery custodian.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to userSources for security";
+            command.Description = "Create a new userSource object associated with an eDiscovery custodian.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -100,11 +100,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UserSources
             return command;
         }
         /// <summary>
-        /// Data source entity for a the custodian. This is the container for a custodian&apos;s mailbox and OneDrive for Business site.
+        /// Get a list of the userSource objects associated with an ediscoveryCustodian.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.";
+            command.Description = "Get a list of the userSource objects associated with an ediscoveryCustodian.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -229,7 +229,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UserSources
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Data source entity for a the custodian. This is the container for a custodian&apos;s mailbox and OneDrive for Business site.
+        /// Get a list of the userSource objects associated with an ediscoveryCustodian.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UserSourcesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -249,7 +249,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UserSources
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to userSources for security
+        /// Create a new userSource object associated with an eDiscovery custodian.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -270,7 +270,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UserSources
             }
             return requestInfo;
         }
-        /// <summary>Data source entity for a the custodian. This is the container for a custodian&apos;s mailbox and OneDrive for Business site.</summary>
+        /// <summary>Get a list of the userSource objects associated with an ediscoveryCustodian.</summary>
         public class UserSourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

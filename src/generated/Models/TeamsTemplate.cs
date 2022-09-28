@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class TeamsTemplate : Entity, IParsable {
         /// <summary>
         /// Instantiates a new teamsTemplate and sets the default values.

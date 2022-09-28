@@ -21,7 +21,7 @@ namespace ApiSdk.Models {
         public string Justification { get; set; }
         /// <summary>The principal that&apos;s getting a role eligibility through the request. Supports $expand.</summary>
         public DirectoryObject Principal { get; set; }
-        /// <summary>Identifier of the principal that has been granted the role eligibility. Supports $filter (eq, ne).</summary>
+        /// <summary>Identifier of the principal that has been granted the role eligibility. Can be a user or a role-assignable group. You can grant only active assignments service principals.Supports $filter (eq, ne).</summary>
         public string PrincipalId { get; set; }
         /// <summary>Detailed information for the unifiedRoleDefinition object that is referenced through the roleDefinitionId property. Supports $expand.</summary>
         public UnifiedRoleDefinition RoleDefinition { get; set; }

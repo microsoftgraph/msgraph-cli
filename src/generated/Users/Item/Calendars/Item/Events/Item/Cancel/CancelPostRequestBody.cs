@@ -29,7 +29,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Cancel {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"comment", n => { Comment = n.GetStringValue(); } },
+                {"Comment", n => { Comment = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -38,7 +38,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Cancel {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("comment", Comment);
+            writer.WriteStringValue("Comment", Comment);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

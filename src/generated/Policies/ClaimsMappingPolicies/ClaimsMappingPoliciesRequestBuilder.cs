@@ -39,11 +39,11 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to claimsMappingPolicies for policies
+        /// Create a new claimsMappingPolicy object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to claimsMappingPolicies for policies";
+            command.Description = "Create a new claimsMappingPolicy object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -88,11 +88,11 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             return command;
         }
         /// <summary>
-        /// The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
+        /// Get a list of claimsMappingPolicy objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.";
+            command.Description = "Get a list of claimsMappingPolicy objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
+        /// Get a list of claimsMappingPolicy objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ClaimsMappingPoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -225,7 +225,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to claimsMappingPolicies for policies
+        /// Create a new claimsMappingPolicy object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -246,7 +246,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             }
             return requestInfo;
         }
-        /// <summary>The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.</summary>
+        /// <summary>Get a list of claimsMappingPolicy objects.</summary>
         public class ClaimsMappingPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
