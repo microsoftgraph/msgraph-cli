@@ -39,11 +39,11 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to federatedIdentityCredentials for applications
+        /// Create a new federatedIdentityCredential object for an application. By configuring a trust relationship between your Azure AD application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to federatedIdentityCredentials for applications";
+            command.Description = "Create a new federatedIdentityCredential object for an application. By configuring a trust relationship between your Azure AD application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials {
             return command;
         }
         /// <summary>
-        /// Federated identities for applications. Supports $expand and $filter (eq when counting empty collections).
+        /// Get a list of the federatedIdentityCredential objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Federated identities for applications. Supports $expand and $filter (eq when counting empty collections).";
+            command.Description = "Get a list of the federatedIdentityCredential objects and their properties.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Federated identities for applications. Supports $expand and $filter (eq when counting empty collections).
+        /// Get a list of the federatedIdentityCredential objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<FederatedIdentityCredentialsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +237,7 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to federatedIdentityCredentials for applications
+        /// Create a new federatedIdentityCredential object for an application. By configuring a trust relationship between your Azure AD application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials {
             }
             return requestInfo;
         }
-        /// <summary>Federated identities for applications. Supports $expand and $filter (eq when counting empty collections).</summary>
+        /// <summary>Get a list of the federatedIdentityCredential objects and their properties.</summary>
         public class FederatedIdentityCredentialsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

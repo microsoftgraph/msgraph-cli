@@ -94,11 +94,11 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods {
             return command;
         }
         /// <summary>
-        /// The software OATH TOTP applications registered to a user for authentication.
+        /// Retrieve a list of a user&apos;s software OATH token authentication method objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The software OATH TOTP applications registered to a user for authentication.";
+            command.Description = "Retrieve a list of a user's software OATH token authentication method objects and their properties.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The software OATH TOTP applications registered to a user for authentication.
+        /// Retrieve a list of a user&apos;s software OATH token authentication method objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SoftwareOathMethodsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods {
             }
             return requestInfo;
         }
-        /// <summary>The software OATH TOTP applications registered to a user for authentication.</summary>
+        /// <summary>Retrieve a list of a user&apos;s software OATH token authentication method objects and their properties.</summary>
         public class SoftwareOathMethodsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

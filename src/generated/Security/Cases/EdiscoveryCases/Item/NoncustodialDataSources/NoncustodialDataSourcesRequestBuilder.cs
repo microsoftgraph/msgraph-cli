@@ -53,11 +53,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to noncustodialDataSources for security
+        /// Create a new ediscoveryNoncustodialDataSource object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to noncustodialDataSources for security";
+            command.Description = "Create a new ediscoveryNoncustodialDataSource object.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -257,7 +257,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to noncustodialDataSources for security
+        /// Create a new ediscoveryNoncustodialDataSource object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

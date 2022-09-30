@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class RiskyUser : Entity, IParsable {
         /// <summary>The activity related to user risk level change</summary>
         public List<RiskyUserHistoryItem> History { get; set; }
@@ -25,7 +26,7 @@ namespace ApiSdk.Models {
         /// <summary>Risky user principal name.</summary>
         public string UserPrincipalName { get; set; }
         /// <summary>
-        /// Instantiates a new RiskyUser and sets the default values.
+        /// Instantiates a new riskyUser and sets the default values.
         /// </summary>
         public RiskyUser() : base() {
             OdataType = "#microsoft.graph.riskyUser";
@@ -36,8 +37,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new RiskyUser CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.riskyUserHistoryItem" => new RiskyUserHistoryItem(),
                 _ => new RiskyUser(),
@@ -48,7 +48,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"history", n => { History = n.GetCollectionOfObjectValues<RiskyUserHistoryItem>(RiskyUserHistoryItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"history", n => { History = n.GetCollectionOfObjectValues<RiskyUserHistoryItem>(RiskyUserHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"isDeleted", n => { IsDeleted = n.GetBoolValue(); } },
                 {"isProcessing", n => { IsProcessing = n.GetBoolValue(); } },
                 {"riskDetail", n => { RiskDetail = n.GetEnumValue<RiskDetail>(); } },

@@ -22,11 +22,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Publish {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action publish
+        /// Publishes a [contentType][] present in the content type hub site.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action publish";
+            command.Description = "Publishes a [contentType][] present in the content type hub site.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -79,7 +79,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Publish {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action publish
+        /// Publishes a [contentType][] present in the content type hub site.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<PublishRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

@@ -42,11 +42,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to userAttributeAssignments for identity
+        /// Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to userAttributeAssignments for identity";
+            command.Description = "Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
@@ -97,11 +97,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return command;
         }
         /// <summary>
-        /// The user attribute assignments included in the user flow.
+        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The user attribute assignments included in the user flow.";
+            command.Description = "Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
@@ -226,7 +226,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user attribute assignments included in the user flow.
+        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UserAttributeAssignmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to userAttributeAssignments for identity
+        /// Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -273,7 +273,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
         public GetOrderRequestBuilder GetOrder() {
             return new GetOrderRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The user attribute assignments included in the user flow.</summary>
+        /// <summary>Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.</summary>
         public class UserAttributeAssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

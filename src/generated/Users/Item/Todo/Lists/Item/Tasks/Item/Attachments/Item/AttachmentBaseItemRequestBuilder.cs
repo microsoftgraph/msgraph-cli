@@ -153,58 +153,6 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property attachments in users
-        /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
-            command.Description = "Update the navigation property attachments in users";
-            // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
-            };
-            userIdOption.IsRequired = true;
-            command.AddOption(userIdOption);
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
-            };
-            todoTaskListIdOption.IsRequired = true;
-            command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
-            };
-            todoTaskIdOption.IsRequired = true;
-            command.AddOption(todoTaskIdOption);
-            var attachmentBaseIdOption = new Option<string>("--attachment-base-id", description: "key: id of attachmentBase") {
-            };
-            attachmentBaseIdOption.IsRequired = true;
-            command.AddOption(attachmentBaseIdOption);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (invocationContext) => {
-                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
-                var todoTaskListId = invocationContext.ParseResult.GetValueForOption(todoTaskListIdOption);
-                var todoTaskId = invocationContext.ParseResult.GetValueForOption(todoTaskIdOption);
-                var attachmentBaseId = invocationContext.ParseResult.GetValueForOption(attachmentBaseIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AttachmentBase>(AttachmentBase.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
-                });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
-                requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
-                requestInfo.PathParameters.Add("attachmentBase%2Did", attachmentBaseId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new AttachmentBaseItemRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
@@ -255,27 +203,6 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             }
             return requestInfo;
         }
-        /// <summary>
-        /// Update the navigation property attachments in users
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreatePatchRequestInformation(AttachmentBase body, Action<AttachmentBaseItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new AttachmentBaseItemRequestBuilderPatchRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
         /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class AttachmentBaseItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
@@ -308,20 +235,6 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             /// Instantiates a new AttachmentBaseItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AttachmentBaseItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class AttachmentBaseItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new AttachmentBaseItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public AttachmentBaseItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }

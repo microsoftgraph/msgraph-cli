@@ -39,11 +39,11 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to delegatedPermissionClassifications for servicePrincipals
+        /// Classify a delegated permission by adding a delegatedPermissionClassification to the servicePrincipal representing the API.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to delegatedPermissionClassifications for servicePrincipals";
+            command.Description = "Classify a delegated permission by adding a delegatedPermissionClassification to the servicePrincipal representing the API.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             return command;
         }
         /// <summary>
-        /// Get delegatedPermissionClassifications from servicePrincipals
+        /// Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get delegatedPermissionClassifications from servicePrincipals";
+            command.Description = "Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get delegatedPermissionClassifications from servicePrincipals
+        /// Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DelegatedPermissionClassificationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +237,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to delegatedPermissionClassifications for servicePrincipals
+        /// Classify a delegated permission by adding a delegatedPermissionClassification to the servicePrincipal representing the API.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             }
             return requestInfo;
         }
-        /// <summary>Get delegatedPermissionClassifications from servicePrincipals</summary>
+        /// <summary>Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.</summary>
         public class DelegatedPermissionClassificationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

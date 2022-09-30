@@ -26,11 +26,11 @@ namespace ApiSdk.Models {
         /// <summary>The email address for the business.</summary>
         public string Email { get; set; }
         /// <summary>The scheduling page has been made available to external customers. Use the publish and unpublish actions to set this property. Read-only.</summary>
-        public bool? IsPublished { get; set; }
+        public bool? IsPublished { get; private set; }
         /// <summary>The telephone number for the business. The phone property, together with address and webSiteUrl, appear in the footer of a business scheduling page.</summary>
         public string Phone { get; set; }
         /// <summary>The URL for the scheduling page, which is set after you publish or unpublish the page. Read-only.</summary>
-        public string PublicUrl { get; set; }
+        public string PublicUrl { get; private set; }
         /// <summary>Specifies how bookings can be created for this business.</summary>
         public BookingSchedulingPolicy SchedulingPolicy { get; set; }
         /// <summary>All the services offered by this business. Read-only. Nullable.</summary>
@@ -59,12 +59,12 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"address", n => { Address = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
-                {"appointments", n => { Appointments = n.GetCollectionOfObjectValues<BookingAppointment>(BookingAppointment.CreateFromDiscriminatorValue).ToList(); } },
-                {"businessHours", n => { BusinessHours = n.GetCollectionOfObjectValues<BookingWorkHours>(BookingWorkHours.CreateFromDiscriminatorValue).ToList(); } },
+                {"appointments", n => { Appointments = n.GetCollectionOfObjectValues<BookingAppointment>(BookingAppointment.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"businessHours", n => { BusinessHours = n.GetCollectionOfObjectValues<BookingWorkHours>(BookingWorkHours.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"businessType", n => { BusinessType = n.GetStringValue(); } },
-                {"calendarView", n => { CalendarView = n.GetCollectionOfObjectValues<BookingAppointment>(BookingAppointment.CreateFromDiscriminatorValue).ToList(); } },
-                {"customers", n => { Customers = n.GetCollectionOfObjectValues<BookingCustomerBase>(BookingCustomerBase.CreateFromDiscriminatorValue).ToList(); } },
-                {"customQuestions", n => { CustomQuestions = n.GetCollectionOfObjectValues<BookingCustomQuestion>(BookingCustomQuestion.CreateFromDiscriminatorValue).ToList(); } },
+                {"calendarView", n => { CalendarView = n.GetCollectionOfObjectValues<BookingAppointment>(BookingAppointment.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"customers", n => { Customers = n.GetCollectionOfObjectValues<BookingCustomerBase>(BookingCustomerBase.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"customQuestions", n => { CustomQuestions = n.GetCollectionOfObjectValues<BookingCustomQuestion>(BookingCustomQuestion.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"defaultCurrencyIso", n => { DefaultCurrencyIso = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"email", n => { Email = n.GetStringValue(); } },
@@ -72,8 +72,8 @@ namespace ApiSdk.Models {
                 {"phone", n => { Phone = n.GetStringValue(); } },
                 {"publicUrl", n => { PublicUrl = n.GetStringValue(); } },
                 {"schedulingPolicy", n => { SchedulingPolicy = n.GetObjectValue<BookingSchedulingPolicy>(BookingSchedulingPolicy.CreateFromDiscriminatorValue); } },
-                {"services", n => { Services = n.GetCollectionOfObjectValues<BookingService>(BookingService.CreateFromDiscriminatorValue).ToList(); } },
-                {"staffMembers", n => { StaffMembers = n.GetCollectionOfObjectValues<BookingStaffMemberBase>(BookingStaffMemberBase.CreateFromDiscriminatorValue).ToList(); } },
+                {"services", n => { Services = n.GetCollectionOfObjectValues<BookingService>(BookingService.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"staffMembers", n => { StaffMembers = n.GetCollectionOfObjectValues<BookingStaffMemberBase>(BookingStaffMemberBase.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"webSiteUrl", n => { WebSiteUrl = n.GetStringValue(); } },
             };
         }
@@ -94,9 +94,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("defaultCurrencyIso", DefaultCurrencyIso);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("email", Email);
-            writer.WriteBoolValue("isPublished", IsPublished);
             writer.WriteStringValue("phone", Phone);
-            writer.WriteStringValue("publicUrl", PublicUrl);
             writer.WriteObjectValue<BookingSchedulingPolicy>("schedulingPolicy", SchedulingPolicy);
             writer.WriteCollectionOfObjectValues<BookingService>("services", Services);
             writer.WriteCollectionOfObjectValues<BookingStaffMemberBase>("staffMembers", StaffMembers);

@@ -88,11 +88,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues {
             return command;
         }
         /// <summary>
-        /// A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.";
+            command.Description = "Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IssuesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues {
             }
             return requestInfo;
         }
-        /// <summary>A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.</summary>
+        /// <summary>Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.</summary>
         public class IssuesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -1,5 +1,5 @@
 namespace ApiSdk.Models.TermStore {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Casts the previous resource to group.</summary>
     public enum RelationType {
         Pin,
         Reuse,

@@ -39,11 +39,11 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to rubrics for education
+        /// Create a new educationRubric object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to rubrics for education";
+            command.Description = "Create a new educationRubric object.";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
             return command;
         }
         /// <summary>
-        /// When set, the grading rubric attached to the assignment.
+        /// Retrieve a list of educationRubric objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "When set, the grading rubric attached to the assignment.";
+            command.Description = "Retrieve a list of educationRubric objects.";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// When set, the grading rubric attached to the assignment.
+        /// Retrieve a list of educationRubric objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RubricsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +237,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to rubrics for education
+        /// Create a new educationRubric object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
             }
             return requestInfo;
         }
-        /// <summary>When set, the grading rubric attached to the assignment.</summary>
+        /// <summary>Retrieve a list of educationRubric objects.</summary>
         public class RubricsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

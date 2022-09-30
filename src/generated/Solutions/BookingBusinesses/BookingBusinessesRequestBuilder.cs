@@ -48,11 +48,11 @@ namespace ApiSdk.Solutions.BookingBusinesses {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to bookingBusinesses for solutions
+        /// Create a new Microsoft Bookings business in a tenant. This is the first step in setting up a Bookings business where you must specify the business display name. You can include other information such as business address, web site address, and scheduling policy, or set that information later by updating the **bookingBusiness**.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to bookingBusinesses for solutions";
+            command.Description = "Create a new Microsoft Bookings business in a tenant. This is the first step in setting up a Bookings business where you must specify the business display name. You can include other information such as business address, web site address, and scheduling policy, or set that information later by updating the **bookingBusiness**.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -97,11 +97,11 @@ namespace ApiSdk.Solutions.BookingBusinesses {
             return command;
         }
         /// <summary>
-        /// Get bookingBusinesses from solutions
+        /// Get a collection of bookingBusiness objects that has been created for the tenant. This operation returns only the **id** and **displayName** of each Microsoft Bookings business in the collection. For performance considerations, it does not return other properties. You can get the other properties of a Bookings business by specifying its **id** in a GET operation.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get bookingBusinesses from solutions";
+            command.Description = "Get a collection of bookingBusiness objects that has been created for the tenant. This operation returns only the **id** and **displayName** of each Microsoft Bookings business in the collection. For performance considerations, it does not return other properties. You can get the other properties of a Bookings business by specifying its **id** in a GET operation.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -214,7 +214,7 @@ namespace ApiSdk.Solutions.BookingBusinesses {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get bookingBusinesses from solutions
+        /// Get a collection of bookingBusiness objects that has been created for the tenant. This operation returns only the **id** and **displayName** of each Microsoft Bookings business in the collection. For performance considerations, it does not return other properties. You can get the other properties of a Bookings business by specifying its **id** in a GET operation.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<BookingBusinessesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -234,7 +234,7 @@ namespace ApiSdk.Solutions.BookingBusinesses {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to bookingBusinesses for solutions
+        /// Create a new Microsoft Bookings business in a tenant. This is the first step in setting up a Bookings business where you must specify the business display name. You can include other information such as business address, web site address, and scheduling policy, or set that information later by updating the **bookingBusiness**.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -255,7 +255,7 @@ namespace ApiSdk.Solutions.BookingBusinesses {
             }
             return requestInfo;
         }
-        /// <summary>Get bookingBusinesses from solutions</summary>
+        /// <summary>Get a collection of bookingBusiness objects that has been created for the tenant. This operation returns only the **id** and **displayName** of each Microsoft Bookings business in the collection. For performance considerations, it does not return other properties. You can get the other properties of a Bookings business by specifying its **id** in a GET operation.</summary>
         public class BookingBusinessesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

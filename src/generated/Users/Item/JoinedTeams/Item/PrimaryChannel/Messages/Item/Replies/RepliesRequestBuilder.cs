@@ -41,11 +41,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replie
             return command;
         }
         /// <summary>
-        /// Create new navigation property to replies for users
+        /// Create a new reply to a chatMessage in a specified channel.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to replies for users";
+            command.Description = "Create a new reply to a chatMessage in a specified channel.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -108,11 +108,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replie
             return command;
         }
         /// <summary>
-        /// Replies for a specified message. Supports $expand for channel messages.
+        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Replies for a specified message. Supports $expand for channel messages.";
+            command.Description = "List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -243,7 +243,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replie
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Replies for a specified message. Supports $expand for channel messages.
+        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RepliesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -263,7 +263,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replie
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to replies for users
+        /// Create a new reply to a chatMessage in a specified channel.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -290,7 +290,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replie
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>Replies for a specified message. Supports $expand for channel messages.</summary>
+        /// <summary>List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.</summary>
         public class RepliesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

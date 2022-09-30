@@ -10,6 +10,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The hideBotAfterEscalation property</summary>
         public bool? HideBotAfterEscalation { get; set; }
+        /// <summary>The isContentSharingNotificationEnabled property</summary>
+        public bool? IsContentSharingNotificationEnabled { get; set; }
         /// <summary>The OdataType property</summary>
         public string OdataType { get; set; }
         /// <summary>
@@ -25,8 +27,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static CallOptions CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.incomingCallOptions" => new IncomingCallOptions(),
                 "#microsoft.graph.outgoingCallOptions" => new OutgoingCallOptions(),
@@ -39,6 +40,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"hideBotAfterEscalation", n => { HideBotAfterEscalation = n.GetBoolValue(); } },
+                {"isContentSharingNotificationEnabled", n => { IsContentSharingNotificationEnabled = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -49,6 +51,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("hideBotAfterEscalation", HideBotAfterEscalation);
+            writer.WriteBoolValue("isContentSharingNotificationEnabled", IsContentSharingNotificationEnabled);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

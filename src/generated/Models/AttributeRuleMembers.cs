@@ -5,9 +5,9 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class AttributeRuleMembers : SubjectSet, IParsable {
-        /// <summary>The description property</summary>
+        /// <summary>A description of the membership rule.</summary>
         public string Description { get; set; }
-        /// <summary>The membershipRule property</summary>
+        /// <summary>Determines the allowed target users for this policy. For more information about the syntax of the membership rule, see Membership Rules syntax.</summary>
         public string MembershipRule { get; set; }
         /// <summary>
         /// Instantiates a new AttributeRuleMembers and sets the default values.

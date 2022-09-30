@@ -23,11 +23,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopy {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action addCopy
+        /// Add a copy of a [content type][contentType] from a [site][site] to a [list][list].
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action addCopy";
+            command.Description = "Add a copy of a [content type][contentType] from a [site][site] to a [list][list].";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopy {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action addCopy
+        /// Add a copy of a [content type][contentType] from a [site][site] to a [list][list].
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

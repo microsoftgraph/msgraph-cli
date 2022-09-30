@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
+    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationSubmissionResource : Entity, IParsable {
         /// <summary>Pointer to the assignment from which this resource was copied. If this is null, the student uploaded the resource.</summary>
         public string AssignmentResourceUrl { get; set; }

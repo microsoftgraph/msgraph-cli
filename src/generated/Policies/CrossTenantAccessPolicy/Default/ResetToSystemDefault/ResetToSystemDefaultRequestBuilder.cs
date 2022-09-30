@@ -22,11 +22,11 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action resetToSystemDefault
+        /// Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action resetToSystemDefault";
+            command.Description = "Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.";
             // Create options for all the parameters
             command.SetHandler(async (invocationContext) => {
                 var cancellationToken = invocationContext.GetCancellationToken();
@@ -55,7 +55,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action resetToSystemDefault
+        /// Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<ResetToSystemDefaultRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

@@ -96,11 +96,11 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
+        /// Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
+            command.Description = "Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.";
             // Create options for all the parameters
             var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "key: id of printTaskDefinition") {
             };
@@ -219,7 +219,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
+        /// Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TasksRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -260,7 +260,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
             }
             return requestInfo;
         }
-        /// <summary>A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.</summary>
+        /// <summary>Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.</summary>
         public class TasksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

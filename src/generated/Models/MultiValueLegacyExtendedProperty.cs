@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class MultiValueLegacyExtendedProperty : Entity, IParsable {
         /// <summary>A collection of property values.</summary>
         public List<string> Value { get; set; }
@@ -27,7 +27,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"value", n => { Value = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

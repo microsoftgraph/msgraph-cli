@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class ProvisioningObjectSummary : Entity, IParsable {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? ActivityDateTime { get; set; }
@@ -38,7 +39,7 @@ namespace ApiSdk.Models {
         /// <summary>Unique Azure AD tenant ID.</summary>
         public string TenantId { get; set; }
         /// <summary>
-        /// Instantiates a new ProvisioningObjectSummary and sets the default values.
+        /// Instantiates a new provisioningObjectSummary and sets the default values.
         /// </summary>
         public ProvisioningObjectSummary() : base() {
             OdataType = "#microsoft.graph.provisioningObjectSummary";
@@ -62,10 +63,10 @@ namespace ApiSdk.Models {
                 {"durationInMilliseconds", n => { DurationInMilliseconds = n.GetIntValue(); } },
                 {"initiatedBy", n => { InitiatedBy = n.GetObjectValue<Initiator>(Initiator.CreateFromDiscriminatorValue); } },
                 {"jobId", n => { JobId = n.GetStringValue(); } },
-                {"modifiedProperties", n => { ModifiedProperties = n.GetCollectionOfObjectValues<ModifiedProperty>(ModifiedProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"modifiedProperties", n => { ModifiedProperties = n.GetCollectionOfObjectValues<ModifiedProperty>(ModifiedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"provisioningAction", n => { ProvisioningAction = n.GetEnumValue<ProvisioningAction>(); } },
                 {"provisioningStatusInfo", n => { ProvisioningStatusInfo = n.GetObjectValue<ApiSdk.Models.ProvisioningStatusInfo>(ApiSdk.Models.ProvisioningStatusInfo.CreateFromDiscriminatorValue); } },
-                {"provisioningSteps", n => { ProvisioningSteps = n.GetCollectionOfObjectValues<ProvisioningStep>(ProvisioningStep.CreateFromDiscriminatorValue).ToList(); } },
+                {"provisioningSteps", n => { ProvisioningSteps = n.GetCollectionOfObjectValues<ProvisioningStep>(ProvisioningStep.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"servicePrincipal", n => { ServicePrincipal = n.GetObjectValue<ProvisioningServicePrincipal>(ProvisioningServicePrincipal.CreateFromDiscriminatorValue); } },
                 {"sourceIdentity", n => { SourceIdentity = n.GetObjectValue<ProvisionedIdentity>(ProvisionedIdentity.CreateFromDiscriminatorValue); } },
                 {"sourceSystem", n => { SourceSystem = n.GetObjectValue<ProvisioningSystem>(ProvisioningSystem.CreateFromDiscriminatorValue); } },

@@ -37,11 +37,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// The identity providers included in the user flow.
+        /// Get the identity providers in a b2xIdentityUserFlow object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The identity providers included in the user flow.";
+            command.Description = "Get the identity providers in a b2xIdentityUserFlow object.";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
@@ -160,7 +160,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The identity providers included in the user flow.
+        /// Get the identity providers in a b2xIdentityUserFlow object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IdentityProvidersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -179,7 +179,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
             }
             return requestInfo;
         }
-        /// <summary>The identity providers included in the user flow.</summary>
+        /// <summary>Get the identity providers in a b2xIdentityUserFlow object.</summary>
         public class IdentityProvidersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

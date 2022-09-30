@@ -23,11 +23,11 @@ namespace ApiSdk.Drive.Root.Copy {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action copy
+        /// Asynchronously creates a copy of an [driveItem][item-resource] (including any children), under a new parent item or with a new name.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action copy";
+            command.Description = "Asynchronously creates a copy of an [driveItem][item-resource] (including any children), under a new parent item or with a new name.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -85,7 +85,7 @@ namespace ApiSdk.Drive.Root.Copy {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action copy
+        /// Asynchronously creates a copy of an [driveItem][item-resource] (including any children), under a new parent item or with a new name.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

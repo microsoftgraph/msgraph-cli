@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>telecomExpenseManagementPartner resources represent the metadata and status of a given TEM service. Once your organization has onboarded with a partner, the partner can be enabled or disabled to switch TEM functionality on or off.</summary>
     public class TelecomExpenseManagementPartner : Entity, IParsable {
         /// <summary>Whether the partner&apos;s AAD app has been authorized to access Intune.</summary>
         public bool? AppAuthorized { get; set; }
@@ -16,7 +17,7 @@ namespace ApiSdk.Models {
         /// <summary>URL of the TEM partner&apos;s administrative control panel, where an administrator can configure their TEM service.</summary>
         public string Url { get; set; }
         /// <summary>
-        /// Instantiates a new TelecomExpenseManagementPartner and sets the default values.
+        /// Instantiates a new telecomExpenseManagementPartner and sets the default values.
         /// </summary>
         public TelecomExpenseManagementPartner() : base() {
             OdataType = "#microsoft.graph.telecomExpenseManagementPartner";

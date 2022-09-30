@@ -45,9 +45,9 @@ namespace ApiSdk.Models {
                 {"dialinUrl", n => { DialinUrl = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"tollFreeNumber", n => { TollFreeNumber = n.GetStringValue(); } },
-                {"tollFreeNumbers", n => { TollFreeNumbers = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"tollFreeNumbers", n => { TollFreeNumbers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"tollNumber", n => { TollNumber = n.GetStringValue(); } },
-                {"tollNumbers", n => { TollNumbers = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"tollNumbers", n => { TollNumbers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

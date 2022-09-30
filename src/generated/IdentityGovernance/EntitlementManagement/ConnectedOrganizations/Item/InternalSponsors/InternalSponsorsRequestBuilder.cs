@@ -108,11 +108,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Get internalSponsors from identityGovernance
+        /// Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get internalSponsors from identityGovernance";
+            command.Description = "Retrieve a list of a connectedOrganization's internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.";
             // Create options for all the parameters
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
             };
@@ -244,7 +244,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get internalSponsors from identityGovernance
+        /// Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<InternalSponsorsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -285,7 +285,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             }
             return requestInfo;
         }
-        /// <summary>Get internalSponsors from identityGovernance</summary>
+        /// <summary>Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.</summary>
         public class InternalSponsorsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

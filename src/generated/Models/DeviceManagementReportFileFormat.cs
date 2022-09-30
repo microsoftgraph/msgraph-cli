@@ -1,9 +1,13 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
+    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
     public enum DeviceManagementReportFileFormat {
         /// <summary>CSV Format</summary>
         Csv,
-        /// <summary>Portable Document Format</summary>
+        /// <summary>PDF Format</summary>
         Pdf,
+        /// <summary>JSON Format</summary>
+        Json,
+        /// <summary>Evolvable enumeration sentinel value. Do not use.</summary>
+        UnknownFutureValue,
     }
 }

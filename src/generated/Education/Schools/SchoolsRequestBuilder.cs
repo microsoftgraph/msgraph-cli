@@ -43,11 +43,11 @@ namespace ApiSdk.Education.Schools {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to schools for education
+        /// Create a new educationSchool object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to schools for education";
+            command.Description = "Create a new educationSchool object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -92,11 +92,11 @@ namespace ApiSdk.Education.Schools {
             return command;
         }
         /// <summary>
-        /// Get schools from education
+        /// Get a list of the educationSchool objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get schools from education";
+            command.Description = "Get a list of the educationSchool objects and their properties.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.Education.Schools {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get schools from education
+        /// Get a list of the educationSchool objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SchoolsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -229,7 +229,7 @@ namespace ApiSdk.Education.Schools {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to schools for education
+        /// Create a new educationSchool object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -256,7 +256,7 @@ namespace ApiSdk.Education.Schools {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>Get schools from education</summary>
+        /// <summary>Get a list of the educationSchool objects and their properties.</summary>
         public class SchoolsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -22,11 +22,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefau
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action copyToDefaultContentLocation
+        /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action copyToDefaultContentLocation";
+            command.Description = "Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -87,7 +87,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefau
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action copyToDefaultContentLocation
+        /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

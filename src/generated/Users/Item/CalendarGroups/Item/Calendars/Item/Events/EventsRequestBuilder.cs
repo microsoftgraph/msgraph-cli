@@ -53,11 +53,11 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to events for users
+        /// Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. 
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to events for users";
+            command.Description = "Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. ";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -120,11 +120,11 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
             return command;
         }
         /// <summary>
-        /// The events in the calendar. Navigation property. Read-only.
+        /// Retrieve a list of events in a calendar.  The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The events in the calendar. Navigation property. Read-only.";
+            command.Description = "Retrieve a list of events in a calendar.  The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -242,7 +242,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The events in the calendar. Navigation property. Read-only.
+        /// Retrieve a list of events in a calendar.  The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<EventsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -262,7 +262,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to events for users
+        /// Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. 
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -289,7 +289,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The events in the calendar. Navigation property. Read-only.</summary>
+        /// <summary>Retrieve a list of events in a calendar.  The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event.</summary>
         public class EventsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -37,11 +37,11 @@ namespace ApiSdk.Print.Printers.Item.Shares {
             return command;
         }
         /// <summary>
-        /// The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.
+        /// Retrieve a list of printer shares associated with the printer.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.";
+            command.Description = "Retrieve a list of printer shares associated with the printer.";
             // Create options for all the parameters
             var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
             };
@@ -160,7 +160,7 @@ namespace ApiSdk.Print.Printers.Item.Shares {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.
+        /// Retrieve a list of printer shares associated with the printer.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SharesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -179,7 +179,7 @@ namespace ApiSdk.Print.Printers.Item.Shares {
             }
             return requestInfo;
         }
-        /// <summary>The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.</summary>
+        /// <summary>Retrieve a list of printer shares associated with the printer.</summary>
         public class SharesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

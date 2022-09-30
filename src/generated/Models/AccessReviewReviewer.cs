@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class AccessReviewReviewer : Entity, IParsable {
         /// <summary>The date when the reviewer was added for the access review.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -12,7 +13,7 @@ namespace ApiSdk.Models {
         /// <summary>User principal name of the reviewer.</summary>
         public string UserPrincipalName { get; set; }
         /// <summary>
-        /// Instantiates a new AccessReviewReviewer and sets the default values.
+        /// Instantiates a new accessReviewReviewer and sets the default values.
         /// </summary>
         public AccessReviewReviewer() : base() {
             OdataType = "#microsoft.graph.accessReviewReviewer";

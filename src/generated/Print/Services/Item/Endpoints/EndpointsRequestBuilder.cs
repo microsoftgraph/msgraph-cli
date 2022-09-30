@@ -94,11 +94,11 @@ namespace ApiSdk.Print.Services.Item.Endpoints {
             return command;
         }
         /// <summary>
-        /// Endpoints that can be used to access the service. Read-only. Nullable.
+        /// Retrieve a list of endpoints exposed by a print service.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Endpoints that can be used to access the service. Read-only. Nullable.";
+            command.Description = "Retrieve a list of endpoints exposed by a print service.";
             // Create options for all the parameters
             var printServiceIdOption = new Option<string>("--print-service-id", description: "key: id of printService") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Endpoints that can be used to access the service. Read-only. Nullable.
+        /// Retrieve a list of endpoints exposed by a print service.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<EndpointsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints {
             }
             return requestInfo;
         }
-        /// <summary>Endpoints that can be used to access the service. Read-only. Nullable.</summary>
+        /// <summary>Retrieve a list of endpoints exposed by a print service.</summary>
         public class EndpointsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

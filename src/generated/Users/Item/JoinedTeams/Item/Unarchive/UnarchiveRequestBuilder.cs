@@ -22,11 +22,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Unarchive {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action unarchive
+        /// Restore an archived team. This restores users&apos; ability to send messages and edit the team, abiding by tenant and team settings. Teams are archived using the archive API. Unarchiving is an async operation. A team is unarchived once the async operation completes successfully, which may occur subsequent to a response from this API.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action unarchive";
+            command.Description = "Restore an archived team. This restores users' ability to send messages and edit the team, abiding by tenant and team settings. Teams are archived using the archive API. Unarchiving is an async operation. A team is unarchived once the async operation completes successfully, which may occur subsequent to a response from this API.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Unarchive {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action unarchive
+        /// Restore an archived team. This restores users&apos; ability to send messages and edit the team, abiding by tenant and team settings. Teams are archived using the archive API. Unarchiving is an async operation. A team is unarchived once the async operation completes successfully, which may occur subsequent to a response from this API.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<UnarchiveRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

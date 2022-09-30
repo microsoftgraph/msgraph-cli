@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
         /// <summary>The removeAccessWhenTargetLeavesAllowedTargets property</summary>
         public bool? RemoveAccessWhenTargetLeavesAllowedTargets { get; set; }
-        /// <summary>The requestAccessForAllowedTargets property</summary>
+        /// <summary>If set to true, automatic assignments will be created for targets in the allowed target scope.</summary>
         public bool? RequestAccessForAllowedTargets { get; set; }
         /// <summary>
         /// Instantiates a new accessPackageAutomaticRequestSettings and sets the default values.

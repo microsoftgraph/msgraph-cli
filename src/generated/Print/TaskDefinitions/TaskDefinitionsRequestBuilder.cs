@@ -40,11 +40,11 @@ namespace ApiSdk.Print.TaskDefinitions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to taskDefinitions for print
+        /// Create a new task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to taskDefinitions for print";
+            command.Description = "Create a new task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -89,11 +89,11 @@ namespace ApiSdk.Print.TaskDefinitions {
             return command;
         }
         /// <summary>
-        /// List of abstract definition for a task that can be triggered when various events occur within Universal Print.
+        /// Retrieve a list of task definitions that the requesting app defined in the tenant. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List of abstract definition for a task that can be triggered when various events occur within Universal Print.";
+            command.Description = "Retrieve a list of task definitions that the requesting app defined in the tenant. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Print.TaskDefinitions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// List of abstract definition for a task that can be triggered when various events occur within Universal Print.
+        /// Retrieve a list of task definitions that the requesting app defined in the tenant. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TaskDefinitionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -226,7 +226,7 @@ namespace ApiSdk.Print.TaskDefinitions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to taskDefinitions for print
+        /// Create a new task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.Print.TaskDefinitions {
             }
             return requestInfo;
         }
-        /// <summary>List of abstract definition for a task that can be triggered when various events occur within Universal Print.</summary>
+        /// <summary>Retrieve a list of task definitions that the requesting app defined in the tenant. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.</summary>
         public class TaskDefinitionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

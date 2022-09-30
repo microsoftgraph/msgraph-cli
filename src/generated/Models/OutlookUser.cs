@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>A list of categories defined for the user.</summary>
         public List<OutlookCategory> MasterCategories { get; set; }
         /// <summary>
-        /// Instantiates a new OutlookUser and sets the default values.
+        /// Instantiates a new outlookUser and sets the default values.
         /// </summary>
         public OutlookUser() : base() {
             OdataType = "#microsoft.graph.outlookUser";
@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"masterCategories", n => { MasterCategories = n.GetCollectionOfObjectValues<OutlookCategory>(OutlookCategory.CreateFromDiscriminatorValue).ToList(); } },
+                {"masterCategories", n => { MasterCategories = n.GetCollectionOfObjectValues<OutlookCategory>(OutlookCategory.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

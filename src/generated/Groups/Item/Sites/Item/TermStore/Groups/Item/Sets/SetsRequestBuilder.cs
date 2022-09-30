@@ -110,11 +110,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets {
             return command;
         }
         /// <summary>
-        /// All sets under the group in a term [store].
+        /// Get a list of the set objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All sets under the group in a term [store].";
+            command.Description = "Get a list of the set objects and their properties.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -245,7 +245,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// All sets under the group in a term [store].
+        /// Get a list of the set objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SetsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -286,7 +286,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets {
             }
             return requestInfo;
         }
-        /// <summary>All sets under the group in a term [store].</summary>
+        /// <summary>Get a list of the set objects and their properties.</summary>
         public class SetsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

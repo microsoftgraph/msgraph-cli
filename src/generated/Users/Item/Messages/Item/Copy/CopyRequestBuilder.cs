@@ -23,11 +23,11 @@ namespace ApiSdk.Users.Item.Messages.Item.Copy {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action copy
+        /// Copy a message to a folder within the user&apos;s mailbox.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action copy";
+            command.Description = "Copy a message to a folder within the user's mailbox.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Users.Item.Messages.Item.Copy {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action copy
+        /// Copy a message to a folder within the user&apos;s mailbox.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

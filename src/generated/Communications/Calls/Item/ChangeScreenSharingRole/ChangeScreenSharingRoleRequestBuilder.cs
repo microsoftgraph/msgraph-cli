@@ -22,11 +22,11 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action changeScreenSharingRole
+        /// Allow applications to share screen content with the participants of a group call.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action changeScreenSharingRole";
+            command.Description = "Allow applications to share screen content with the participants of a group call.";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };
@@ -69,7 +69,7 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action changeScreenSharingRole
+        /// Allow applications to share screen content with the participants of a group call.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

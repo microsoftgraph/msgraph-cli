@@ -59,11 +59,11 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
             return command;
         }
         /// <summary>
-        /// The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).
+        /// Read the properties and relationships of an authenticationMethodsPolicy object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).";
+            command.Description = "Read the properties and relationships of an authenticationMethodsPolicy object.";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -114,18 +114,36 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
             return command;
         }
         /// <summary>
-        /// Update the navigation property authenticationMethodsPolicy in policies
+        /// Update the properties of an authenticationMethodsPolicy object.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property authenticationMethodsPolicy in policies";
+            command.Description = "Update the properties of an authenticationMethodsPolicy object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
@@ -136,8 +154,11 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
             return command;
         }
@@ -173,7 +194,7 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).
+        /// Read the properties and relationships of an authenticationMethodsPolicy object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AuthenticationMethodsPolicyRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -193,7 +214,7 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property authenticationMethodsPolicy in policies
+        /// Update the properties of an authenticationMethodsPolicy object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -204,6 +225,7 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new AuthenticationMethodsPolicyRequestBuilderPatchRequestConfiguration();
@@ -227,7 +249,7 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).</summary>
+        /// <summary>Read the properties and relationships of an authenticationMethodsPolicy object.</summary>
         public class AuthenticationMethodsPolicyRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

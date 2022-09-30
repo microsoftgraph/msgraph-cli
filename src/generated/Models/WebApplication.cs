@@ -17,6 +17,8 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
         /// <summary>Specifies the URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent.</summary>
         public List<string> RedirectUris { get; set; }
+        /// <summary>The redirectUriSettings property</summary>
+        public List<ApiSdk.Models.RedirectUriSettings> RedirectUriSettings { get; set; }
         /// <summary>
         /// Instantiates a new webApplication and sets the default values.
         /// </summary>
@@ -41,7 +43,8 @@ namespace ApiSdk.Models {
                 {"implicitGrantSettings", n => { ImplicitGrantSettings = n.GetObjectValue<ApiSdk.Models.ImplicitGrantSettings>(ApiSdk.Models.ImplicitGrantSettings.CreateFromDiscriminatorValue); } },
                 {"logoutUrl", n => { LogoutUrl = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"redirectUris", n => { RedirectUris = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"redirectUris", n => { RedirectUris = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"redirectUriSettings", n => { RedirectUriSettings = n.GetCollectionOfObjectValues<ApiSdk.Models.RedirectUriSettings>(ApiSdk.Models.RedirectUriSettings.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -55,6 +58,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("logoutUrl", LogoutUrl);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfPrimitiveValues<string>("redirectUris", RedirectUris);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RedirectUriSettings>("redirectUriSettings", RedirectUriSettings);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

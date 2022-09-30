@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Represents a particular service offered by a booking business.</summary>
     public class BookingService : Entity, IParsable {
         /// <summary>Additional information that is sent to the customer when an appointment is confirmed.</summary>
         public string AdditionalInformation { get; set; }
@@ -42,9 +43,9 @@ namespace ApiSdk.Models {
         /// <summary>Represents those staff members who provide this service.</summary>
         public List<string> StaffMemberIds { get; set; }
         /// <summary>The URL a customer uses to access the service.</summary>
-        public string WebUrl { get; set; }
+        public string WebUrl { get; private set; }
         /// <summary>
-        /// Instantiates a new BookingService and sets the default values.
+        /// Instantiates a new bookingService and sets the default values.
         /// </summary>
         public BookingService() : base() {
             OdataType = "#microsoft.graph.bookingService";
@@ -63,12 +64,12 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"additionalInformation", n => { AdditionalInformation = n.GetStringValue(); } },
-                {"customQuestions", n => { CustomQuestions = n.GetCollectionOfObjectValues<BookingQuestionAssignment>(BookingQuestionAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"customQuestions", n => { CustomQuestions = n.GetCollectionOfObjectValues<BookingQuestionAssignment>(BookingQuestionAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"defaultDuration", n => { DefaultDuration = n.GetTimeSpanValue(); } },
                 {"defaultLocation", n => { DefaultLocation = n.GetObjectValue<Location>(Location.CreateFromDiscriminatorValue); } },
                 {"defaultPrice", n => { DefaultPrice = n.GetDoubleValue(); } },
                 {"defaultPriceType", n => { DefaultPriceType = n.GetEnumValue<BookingPriceType>(); } },
-                {"defaultReminders", n => { DefaultReminders = n.GetCollectionOfObjectValues<BookingReminder>(BookingReminder.CreateFromDiscriminatorValue).ToList(); } },
+                {"defaultReminders", n => { DefaultReminders = n.GetCollectionOfObjectValues<BookingReminder>(BookingReminder.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"isHiddenFromCustomers", n => { IsHiddenFromCustomers = n.GetBoolValue(); } },
@@ -79,7 +80,7 @@ namespace ApiSdk.Models {
                 {"preBuffer", n => { PreBuffer = n.GetTimeSpanValue(); } },
                 {"schedulingPolicy", n => { SchedulingPolicy = n.GetObjectValue<BookingSchedulingPolicy>(BookingSchedulingPolicy.CreateFromDiscriminatorValue); } },
                 {"smsNotificationsEnabled", n => { SmsNotificationsEnabled = n.GetBoolValue(); } },
-                {"staffMemberIds", n => { StaffMemberIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"staffMemberIds", n => { StaffMemberIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"webUrl", n => { WebUrl = n.GetStringValue(); } },
             };
         }
@@ -108,7 +109,6 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<BookingSchedulingPolicy>("schedulingPolicy", SchedulingPolicy);
             writer.WriteBoolValue("smsNotificationsEnabled", SmsNotificationsEnabled);
             writer.WriteCollectionOfPrimitiveValues<string>("staffMemberIds", StaffMemberIds);
-            writer.WriteStringValue("webUrl", WebUrl);
         }
     }
 }

@@ -88,11 +88,11 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter {
             return command;
         }
         /// <summary>
-        /// Get monthlyPrintUsageByPrinter from reports
+        /// Retrieve a list of monthly print usage summaries, grouped by printer.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get monthlyPrintUsageByPrinter from reports";
+            command.Description = "Retrieve a list of monthly print usage summaries, grouped by printer.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get monthlyPrintUsageByPrinter from reports
+        /// Retrieve a list of monthly print usage summaries, grouped by printer.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MonthlyPrintUsageByPrinterRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter {
             }
             return requestInfo;
         }
-        /// <summary>Get monthlyPrintUsageByPrinter from reports</summary>
+        /// <summary>Retrieve a list of monthly print usage summaries, grouped by printer.</summary>
         public class MonthlyPrintUsageByPrinterRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

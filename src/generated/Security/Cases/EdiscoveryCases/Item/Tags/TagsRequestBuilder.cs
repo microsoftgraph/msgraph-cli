@@ -48,11 +48,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to tags for security
+        /// Create a new ediscoveryReviewTag object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to tags for security";
+            command.Description = "Create a new ediscoveryReviewTag object.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -103,11 +103,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             return command;
         }
         /// <summary>
-        /// Returns a list of ediscoveryReviewTag objects associated to this case.
+        /// Get a list of eDiscoveryReviewTag objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Returns a list of ediscoveryReviewTag objects associated to this case.";
+            command.Description = "Get a list of eDiscoveryReviewTag objects and their properties.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -226,7 +226,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Returns a list of ediscoveryReviewTag objects associated to this case.
+        /// Get a list of eDiscoveryReviewTag objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TagsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to tags for security
+        /// Create a new ediscoveryReviewTag object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -267,7 +267,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             }
             return requestInfo;
         }
-        /// <summary>Returns a list of ediscoveryReviewTag objects associated to this case.</summary>
+        /// <summary>Get a list of eDiscoveryReviewTag objects and their properties.</summary>
         public class TagsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -30,7 +30,7 @@ namespace ApiSdk.Devices.Delta {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Device>(ApiSdk.Models.Device.CreateFromDiscriminatorValue).ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Device>(ApiSdk.Models.Device.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

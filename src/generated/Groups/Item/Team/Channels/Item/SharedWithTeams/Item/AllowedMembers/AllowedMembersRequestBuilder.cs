@@ -37,11 +37,11 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.SharedWithTeams.Item.AllowedMemb
             return command;
         }
         /// <summary>
-        /// A collection of team members who have access to the shared channel.
+        /// Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of team members who have access to the shared channel.";
+            command.Description = "Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -172,7 +172,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.SharedWithTeams.Item.AllowedMemb
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of team members who have access to the shared channel.
+        /// Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AllowedMembersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -191,7 +191,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.SharedWithTeams.Item.AllowedMemb
             }
             return requestInfo;
         }
-        /// <summary>A collection of team members who have access to the shared channel.</summary>
+        /// <summary>Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant</summary>
         public class AllowedMembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

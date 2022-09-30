@@ -94,11 +94,11 @@ namespace ApiSdk.Groups.Item.Team.Schedule.OpenShifts {
             return command;
         }
         /// <summary>
-        /// Get openShifts from groups
+        /// List openShift objects in a team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get openShifts from groups";
+            command.Description = "List openShift objects in a team.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.OpenShifts {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get openShifts from groups
+        /// List openShift objects in a team.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OpenShiftsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.OpenShifts {
             }
             return requestInfo;
         }
-        /// <summary>Get openShifts from groups</summary>
+        /// <summary>List openShift objects in a team.</summary>
         public class OpenShiftsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

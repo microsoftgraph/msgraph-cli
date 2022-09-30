@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
+    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationOutcome : Entity, IParsable {
         /// <summary>The individual who updated the resource.</summary>
         public IdentitySet LastModifiedBy { get; set; }
@@ -23,8 +23,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new EducationOutcome CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.educationFeedbackOutcome" => new EducationFeedbackOutcome(),
                 "#microsoft.graph.educationPointsOutcome" => new EducationPointsOutcome(),

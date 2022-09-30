@@ -30,7 +30,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<StaffAvailabilityItem>(StaffAvailabilityItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfObjectValues<StaffAvailabilityItem>(StaffAvailabilityItem.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

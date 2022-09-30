@@ -39,11 +39,11 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to appRoleAssignments for servicePrincipals
+        /// Assign an app role to a client service principal. App roles that are assigned to service principals are also known as application permissions. Application permissions can be granted directly with app role assignments, or through a consent experience. To grant an app role assignment to a client service principal, you need three identifiers:
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to appRoleAssignments for servicePrincipals";
+            command.Description = "Assign an app role to a client service principal. App roles that are assigned to service principals are also known as application permissions. Application permissions can be granted directly with app role assignments, or through a consent experience. To grant an app role assignment to a client service principal, you need three identifiers:";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -104,6 +104,10 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
+            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
+            };
+            consistencyLevelOption.IsRequired = false;
+            command.AddOption(consistencyLevelOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -156,6 +160,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
                 var servicePrincipalId = invocationContext.ParseResult.GetValueForOption(servicePrincipalIdOption);
+                var consistencyLevel = invocationContext.ParseResult.GetValueForOption(consistencyLevelOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -183,6 +188,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
                     q.QueryParameters.Expand = expand;
                 });
                 requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -237,7 +243,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to appRoleAssignments for servicePrincipals
+        /// Assign an app role to a client service principal. App roles that are assigned to service principals are also known as application permissions. Application permissions can be granted directly with app role assignments, or through a consent experience. To grant an app role assignment to a client service principal, you need three identifiers:
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

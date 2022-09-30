@@ -42,11 +42,11 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to children for sites
+        /// Create a new term object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to children for sites";
+            command.Description = "Create a new term object.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -103,11 +103,11 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children {
             return command;
         }
         /// <summary>
-        /// Children terms of set in term [store].
+        /// Get the first level children of a [set] or [term] resource using the children navigation property.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Children terms of set in term [store].";
+            command.Description = "Get the first level children of a [set] or [term] resource using the children navigation property.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -232,7 +232,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Children terms of set in term [store].
+        /// Get the first level children of a [set] or [term] resource using the children navigation property.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChildrenRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -252,7 +252,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to children for sites
+        /// Create a new term object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -273,7 +273,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children {
             }
             return requestInfo;
         }
-        /// <summary>Children terms of set in term [store].</summary>
+        /// <summary>Get the first level children of a [set] or [term] resource using the children navigation property.</summary>
         public class ChildrenRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

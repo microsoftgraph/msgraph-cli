@@ -41,11 +41,11 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to phoneMethods for users
+        /// Add a new phone authentication method for a user. A user may only have one phone of each type, captured in the **phoneType** property. This means, for example, adding a `mobile` phone to a user with a preexisting `mobile` phone will fail. Additionally, a user must always have a `mobile` phone before adding an `alternateMobile` phone. Adding a phone number makes it available for use in both Azure multi-factor authentication (MFA) and self-service password reset (SSPR), if enabled. Additionally, if a user is enabled by policy to use SMS sign-in and a `mobile` number is added, the system will attempt to register the number for use in that system.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to phoneMethods for users";
+            command.Description = "Add a new phone authentication method for a user. A user may only have one phone of each type, captured in the **phoneType** property. This means, for example, adding a `mobile` phone to a user with a preexisting `mobile` phone will fail. Additionally, a user must always have a `mobile` phone before adding an `alternateMobile` phone. Adding a phone number makes it available for use in both Azure multi-factor authentication (MFA) and self-service password reset (SSPR), if enabled. Additionally, if a user is enabled by policy to use SMS sign-in and a `mobile` number is added, the system will attempt to register the number for use in that system.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -96,11 +96,11 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
             return command;
         }
         /// <summary>
-        /// The phone numbers registered to a user for authentication.
+        /// Retrieve a list of phone authentication method objects for a user. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Azure AD and B2B users, but not B2C users.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The phone numbers registered to a user for authentication.";
+            command.Description = "Retrieve a list of phone authentication method objects for a user. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Azure AD and B2B users, but not B2C users.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -219,7 +219,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The phone numbers registered to a user for authentication.
+        /// Retrieve a list of phone authentication method objects for a user. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Azure AD and B2B users, but not B2C users.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PhoneMethodsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -239,7 +239,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to phoneMethods for users
+        /// Add a new phone authentication method for a user. A user may only have one phone of each type, captured in the **phoneType** property. This means, for example, adding a `mobile` phone to a user with a preexisting `mobile` phone will fail. Additionally, a user must always have a `mobile` phone before adding an `alternateMobile` phone. Adding a phone number makes it available for use in both Azure multi-factor authentication (MFA) and self-service password reset (SSPR), if enabled. Additionally, if a user is enabled by policy to use SMS sign-in and a `mobile` number is added, the system will attempt to register the number for use in that system.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -260,7 +260,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
             }
             return requestInfo;
         }
-        /// <summary>The phone numbers registered to a user for authentication.</summary>
+        /// <summary>Retrieve a list of phone authentication method objects for a user. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Azure AD and B2B users, but not B2C users.</summary>
         public class PhoneMethodsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

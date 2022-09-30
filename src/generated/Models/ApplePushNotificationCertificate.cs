@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         /// <summary>Not yet documented</summary>
         public string Certificate { get; set; }
         /// <summary>Certificate serial number. This property is read-only.</summary>
-        public string CertificateSerialNumber { get; set; }
+        public string CertificateSerialNumber { get; private set; }
         /// <summary>The expiration date and time for Apple push notification certificate.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
         /// <summary>Last modified date and time for Apple push notification certificate.</summary>
@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
         /// <summary>Topic Id.</summary>
         public string TopicIdentifier { get; set; }
         /// <summary>
-        /// Instantiates a new ApplePushNotificationCertificate and sets the default values.
+        /// Instantiates a new applePushNotificationCertificate and sets the default values.
         /// </summary>
         public ApplePushNotificationCertificate() : base() {
             OdataType = "#microsoft.graph.applePushNotificationCertificate";
@@ -53,7 +53,6 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteStringValue("appleIdentifier", AppleIdentifier);
             writer.WriteStringValue("certificate", Certificate);
-            writer.WriteStringValue("certificateSerialNumber", CertificateSerialNumber);
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("topicIdentifier", TopicIdentifier);

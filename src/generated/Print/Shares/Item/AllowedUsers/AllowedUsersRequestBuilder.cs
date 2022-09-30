@@ -38,11 +38,11 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             return command;
         }
         /// <summary>
-        /// The users who have access to print using the printer.
+        /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The users who have access to print using the printer.";
+            command.Description = "Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.";
             // Create options for all the parameters
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
             };
@@ -168,7 +168,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The users who have access to print using the printer.
+        /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AllowedUsersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -187,7 +187,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             }
             return requestInfo;
         }
-        /// <summary>The users who have access to print using the printer.</summary>
+        /// <summary>Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.</summary>
         public class AllowedUsersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

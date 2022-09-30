@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class UnifiedRoleAssignmentScheduleInstance : UnifiedRoleScheduleInstanceBase, IParsable {
         /// <summary>If the request is from an eligible administrator to activate a role, this parameter will show the related eligible assignment for that activation. Otherwise, it is null. Supports $expand.</summary>
         public UnifiedRoleEligibilityScheduleInstance ActivatedUsing { get; set; }
@@ -21,7 +20,7 @@ namespace ApiSdk.Models {
         /// <summary>When this instance starts.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new unifiedRoleAssignmentScheduleInstance and sets the default values.
+        /// Instantiates a new UnifiedRoleAssignmentScheduleInstance and sets the default values.
         /// </summary>
         public UnifiedRoleAssignmentScheduleInstance() : base() {
             OdataType = "#microsoft.graph.unifiedRoleAssignmentScheduleInstance";

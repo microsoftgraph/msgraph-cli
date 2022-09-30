@@ -55,11 +55,11 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             return command;
         }
         /// <summary>
-        /// Specifies class-level defaults respected by new assignments created in the class.
+        /// Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each **assignment** creation if they don&apos;t want the default behaviors.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Specifies class-level defaults respected by new assignments created in the class.";
+            command.Description = "Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each **assignment** creation if they don't want the default behaviors.";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
@@ -116,11 +116,11 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             return command;
         }
         /// <summary>
-        /// Update the navigation property assignmentDefaults in education
+        /// Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property assignmentDefaults in education";
+            command.Description = "Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
@@ -130,9 +130,27 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var educationClassId = invocationContext.ParseResult.GetValueForOption(educationClassIdOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
@@ -144,8 +162,11 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
             return command;
         }
@@ -181,7 +202,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             return requestInfo;
         }
         /// <summary>
-        /// Specifies class-level defaults respected by new assignments created in the class.
+        /// Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each **assignment** creation if they don&apos;t want the default behaviors.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AssignmentDefaultsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -201,7 +222,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property assignmentDefaults in education
+        /// Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -212,6 +233,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new AssignmentDefaultsRequestBuilderPatchRequestConfiguration();
@@ -235,7 +257,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Specifies class-level defaults respected by new assignments created in the class.</summary>
+        /// <summary>Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each **assignment** creation if they don&apos;t want the default behaviors.</summary>
         public class AssignmentDefaultsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

@@ -11,7 +11,7 @@ namespace ApiSdk.Models {
         /// <summary>Active Hours Start (active hours mean the time window when updates install should not happen)</summary>
         public Time? ActiveHoursStart { get; set; }
         /// <summary>Days in week for which active hours are configured. This collection can contain a maximum of 7 elements.</summary>
-        public List<string> ScheduledInstallDays { get; set; }
+        public List<DayOfWeek?> ScheduledInstallDays { get; set; }
         /// <summary>UTC Time Offset indicated in minutes</summary>
         public int? UtcTimeOffsetInMinutes { get; set; }
         /// <summary>
@@ -35,7 +35,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"activeHoursEnd", n => { ActiveHoursEnd = n.GetTimeValue(); } },
                 {"activeHoursStart", n => { ActiveHoursStart = n.GetTimeValue(); } },
-                {"scheduledInstallDays", n => { ScheduledInstallDays = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"scheduledInstallDays", n => { ScheduledInstallDays = n.GetCollectionOfEnumValues<DayOfWeek>()?.ToList(); } },
                 {"utcTimeOffsetInMinutes", n => { UtcTimeOffsetInMinutes = n.GetIntValue(); } },
             };
         }
@@ -48,7 +48,7 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteTimeValue("activeHoursEnd", ActiveHoursEnd);
             writer.WriteTimeValue("activeHoursStart", ActiveHoursStart);
-            writer.WriteCollectionOfPrimitiveValues<string>("scheduledInstallDays", ScheduledInstallDays);
+            writer.WriteCollectionOfEnumValues<DayOfWeek>("scheduledInstallDays", ScheduledInstallDays);
             writer.WriteIntValue("utcTimeOffsetInMinutes", UtcTimeOffsetInMinutes);
         }
     }

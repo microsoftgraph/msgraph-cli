@@ -40,11 +40,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to files for identityGovernance
+        /// Create a new localized agreement file.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to files for identityGovernance";
+            command.Description = "Create a new localized agreement file.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
             };
@@ -238,7 +238,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to files for identityGovernance
+        /// Create a new localized agreement file.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

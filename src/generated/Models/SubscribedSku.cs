@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
                 {"capabilityStatus", n => { CapabilityStatus = n.GetStringValue(); } },
                 {"consumedUnits", n => { ConsumedUnits = n.GetIntValue(); } },
                 {"prepaidUnits", n => { PrepaidUnits = n.GetObjectValue<LicenseUnitsDetail>(LicenseUnitsDetail.CreateFromDiscriminatorValue); } },
-                {"servicePlans", n => { ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>(ServicePlanInfo.CreateFromDiscriminatorValue).ToList(); } },
+                {"servicePlans", n => { ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>(ServicePlanInfo.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"skuId", n => { SkuId = n.GetStringValue(); } },
                 {"skuPartNumber", n => { SkuPartNumber = n.GetStringValue(); } },
             };

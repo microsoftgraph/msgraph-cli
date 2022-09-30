@@ -40,11 +40,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to catalogs for identityGovernance
+        /// Create a new accessPackageCatalog object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to catalogs for identityGovernance";
+            command.Description = "Create a new accessPackageCatalog object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -89,11 +89,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs {
             return command;
         }
         /// <summary>
-        /// A container for access packages.
+        /// Retrieve a list of accessPackageCatalog objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A container for access packages.";
+            command.Description = "Retrieve a list of accessPackageCatalog objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A container for access packages.
+        /// Retrieve a list of accessPackageCatalog objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CatalogsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -226,7 +226,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to catalogs for identityGovernance
+        /// Create a new accessPackageCatalog object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs {
             }
             return requestInfo;
         }
-        /// <summary>A container for access packages.</summary>
+        /// <summary>Retrieve a list of accessPackageCatalog objects.</summary>
         public class CatalogsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

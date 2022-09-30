@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Imported windows autopilot devices.</summary>
     public class ImportedWindowsAutopilotDeviceIdentity : Entity, IParsable {
         /// <summary>UPN of the user the device will be assigned</summary>
         public string AssignedUserPrincipalName { get; set; }
@@ -20,7 +21,7 @@ namespace ApiSdk.Models {
         /// <summary>Current state of the imported device.</summary>
         public ImportedWindowsAutopilotDeviceIdentityState State { get; set; }
         /// <summary>
-        /// Instantiates a new ImportedWindowsAutopilotDeviceIdentity and sets the default values.
+        /// Instantiates a new importedWindowsAutopilotDeviceIdentity and sets the default values.
         /// </summary>
         public ImportedWindowsAutopilotDeviceIdentity() : base() {
             OdataType = "#microsoft.graph.importedWindowsAutopilotDeviceIdentity";

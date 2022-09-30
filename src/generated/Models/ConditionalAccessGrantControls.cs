@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>List of values of built-in controls required by the policy. Possible values: block, mfa, compliantDevice, domainJoinedDevice, approvedApplication, compliantApplication, passwordChange, unknownFutureValue.</summary>
-        public List<string> BuiltInControls { get; set; }
+        public List<ConditionalAccessGrantControl?> BuiltInControls { get; set; }
         /// <summary>List of custom controls IDs required by the policy. For more information, see Custom controls.</summary>
         public List<string> CustomAuthenticationFactors { get; set; }
         /// <summary>The OdataType property</summary>
@@ -37,11 +37,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"builtInControls", n => { BuiltInControls = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"customAuthenticationFactors", n => { CustomAuthenticationFactors = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"builtInControls", n => { BuiltInControls = n.GetCollectionOfEnumValues<ConditionalAccessGrantControl>()?.ToList(); } },
+                {"customAuthenticationFactors", n => { CustomAuthenticationFactors = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operator", n => { Operator = n.GetStringValue(); } },
-                {"termsOfUse", n => { TermsOfUse = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"termsOfUse", n => { TermsOfUse = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>
@@ -50,7 +50,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("builtInControls", BuiltInControls);
+            writer.WriteCollectionOfEnumValues<ConditionalAccessGrantControl>("builtInControls", BuiltInControls);
             writer.WriteCollectionOfPrimitiveValues<string>("customAuthenticationFactors", CustomAuthenticationFactors);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("operator", Operator);

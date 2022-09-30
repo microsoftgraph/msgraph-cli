@@ -54,11 +54,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to messages for users
+        /// Use this API to create a new Message in a mailfolder.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to messages for users";
+            command.Description = "Use this API to create a new Message in a mailfolder.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Message>(Message.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
@@ -115,11 +115,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             return command;
         }
         /// <summary>
-        /// The collection of messages in the mailFolder.
+        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of messages in the mailFolder.";
+            command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -244,7 +244,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of messages in the mailFolder.
+        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MessagesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -264,11 +264,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to messages for users
+        /// Use this API to create a new Message in a mailfolder.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Message body, Action<MessagesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation CreatePostRequestInformation(ApiSdk.Models.Message body, Action<MessagesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -291,7 +291,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The collection of messages in the mailFolder.</summary>
+        /// <summary>Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.</summary>
         public class MessagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

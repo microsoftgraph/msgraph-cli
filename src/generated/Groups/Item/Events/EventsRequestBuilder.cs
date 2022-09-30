@@ -53,11 +53,11 @@ namespace ApiSdk.Groups.Item.Events {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to events for groups
+        /// Use this API to create a new event.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to events for groups";
+            command.Description = "Use this API to create a new event.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -108,11 +108,11 @@ namespace ApiSdk.Groups.Item.Events {
             return command;
         }
         /// <summary>
-        /// The group&apos;s calendar events.
+        /// Retrieve a list of event objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The group's calendar events.";
+            command.Description = "Retrieve a list of event objects.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.Groups.Item.Events {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The group&apos;s calendar events.
+        /// Retrieve a list of event objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<EventsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -238,7 +238,7 @@ namespace ApiSdk.Groups.Item.Events {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to events for groups
+        /// Use this API to create a new event.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -265,7 +265,7 @@ namespace ApiSdk.Groups.Item.Events {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The group&apos;s calendar events.</summary>
+        /// <summary>Retrieve a list of event objects.</summary>
         public class EventsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

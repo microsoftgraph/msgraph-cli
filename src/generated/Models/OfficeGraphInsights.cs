@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         /// <summary>Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.</summary>
         public List<UsedInsight> Used { get; set; }
         /// <summary>
-        /// Instantiates a new OfficeGraphInsights and sets the default values.
+        /// Instantiates a new officeGraphInsights and sets the default values.
         /// </summary>
         public OfficeGraphInsights() : base() {
             OdataType = "#microsoft.graph.officeGraphInsights";
@@ -30,9 +30,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"shared", n => { Shared = n.GetCollectionOfObjectValues<SharedInsight>(SharedInsight.CreateFromDiscriminatorValue).ToList(); } },
-                {"trending", n => { Trending = n.GetCollectionOfObjectValues<ApiSdk.Models.Trending>(ApiSdk.Models.Trending.CreateFromDiscriminatorValue).ToList(); } },
-                {"used", n => { Used = n.GetCollectionOfObjectValues<UsedInsight>(UsedInsight.CreateFromDiscriminatorValue).ToList(); } },
+                {"shared", n => { Shared = n.GetCollectionOfObjectValues<SharedInsight>(SharedInsight.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"trending", n => { Trending = n.GetCollectionOfObjectValues<ApiSdk.Models.Trending>(ApiSdk.Models.Trending.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"used", n => { Used = n.GetCollectionOfObjectValues<UsedInsight>(UsedInsight.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

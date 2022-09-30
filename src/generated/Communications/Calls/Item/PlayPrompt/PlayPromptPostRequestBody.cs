@@ -33,7 +33,7 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"clientContext", n => { ClientContext = n.GetStringValue(); } },
-                {"prompts", n => { Prompts = n.GetCollectionOfObjectValues<Prompt>(Prompt.CreateFromDiscriminatorValue).ToList(); } },
+                {"prompts", n => { Prompts = n.GetCollectionOfObjectValues<Prompt>(Prompt.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

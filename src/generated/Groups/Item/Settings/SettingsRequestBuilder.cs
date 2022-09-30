@@ -39,11 +39,11 @@ namespace ApiSdk.Groups.Item.Settings {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to settings for groups
+        /// Create a new setting based on the templates available in groupSettingTemplates. These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups. The template named `Group.Unified` can be used to configure tenant-wide Microsoft 365 group settings, while the template named `Group.Unified.Guest` can be used to configure group-specific settings.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to settings for groups";
+            command.Description = "Create a new setting based on the templates available in groupSettingTemplates. These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups. The template named `Group.Unified` can be used to configure tenant-wide Microsoft 365 group settings, while the template named `Group.Unified.Guest` can be used to configure group-specific settings.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.Groups.Item.Settings {
             return command;
         }
         /// <summary>
-        /// Settings that can govern this group&apos;s behavior, like whether members can invite guest users to the group. Nullable.
+        /// Retrieve a list of tenant-level or group-specific group settings objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.";
+            command.Description = "Retrieve a list of tenant-level or group-specific group settings objects.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Groups.Item.Settings {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Settings that can govern this group&apos;s behavior, like whether members can invite guest users to the group. Nullable.
+        /// Retrieve a list of tenant-level or group-specific group settings objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SettingsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +237,7 @@ namespace ApiSdk.Groups.Item.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to settings for groups
+        /// Create a new setting based on the templates available in groupSettingTemplates. These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups. The template named `Group.Unified` can be used to configure tenant-wide Microsoft 365 group settings, while the template named `Group.Unified.Guest` can be used to configure group-specific settings.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.Groups.Item.Settings {
             }
             return requestInfo;
         }
-        /// <summary>Settings that can govern this group&apos;s behavior, like whether members can invite guest users to the group. Nullable.</summary>
+        /// <summary>Retrieve a list of tenant-level or group-specific group settings objects.</summary>
         public class SettingsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

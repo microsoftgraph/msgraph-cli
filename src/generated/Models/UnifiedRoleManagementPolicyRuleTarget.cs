@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
         /// <summary>The OdataType property</summary>
         public string OdataType { get; set; }
         /// <summary>The role management operations that are the target of the policy rule. Allowed values are: All, Activate, Deactivate, Assign, Update, Remove, Extend, Renew.</summary>
-        public List<string> Operations { get; set; }
+        public List<UnifiedRoleManagementPolicyRuleTargetOperations?> Operations { get; set; }
         /// <summary>The targetObjects property</summary>
         public List<DirectoryObject> TargetObjects { get; set; }
         /// <summary>
@@ -42,12 +42,12 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"caller", n => { Caller = n.GetStringValue(); } },
-                {"enforcedSettings", n => { EnforcedSettings = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"inheritableSettings", n => { InheritableSettings = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"enforcedSettings", n => { EnforcedSettings = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"inheritableSettings", n => { InheritableSettings = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"level", n => { Level = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"operations", n => { Operations = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"targetObjects", n => { TargetObjects = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"operations", n => { Operations = n.GetCollectionOfEnumValues<UnifiedRoleManagementPolicyRuleTargetOperations>()?.ToList(); } },
+                {"targetObjects", n => { TargetObjects = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfPrimitiveValues<string>("inheritableSettings", InheritableSettings);
             writer.WriteStringValue("level", Level);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfPrimitiveValues<string>("operations", Operations);
+            writer.WriteCollectionOfEnumValues<UnifiedRoleManagementPolicyRuleTargetOperations>("operations", Operations);
             writer.WriteCollectionOfObjectValues<DirectoryObject>("targetObjects", TargetObjects);
             writer.WriteAdditionalData(AdditionalData);
         }

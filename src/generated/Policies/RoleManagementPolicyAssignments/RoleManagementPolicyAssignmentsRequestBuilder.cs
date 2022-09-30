@@ -89,11 +89,11 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
             return command;
         }
         /// <summary>
-        /// The assignment of a role management policy to a role definition object.
+        /// Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The assignment of a role management policy to a role definition object.";
+            command.Description = "Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The assignment of a role management policy to a role definition object.
+        /// Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RoleManagementPolicyAssignmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -247,7 +247,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
             }
             return requestInfo;
         }
-        /// <summary>The assignment of a role management policy to a role definition object.</summary>
+        /// <summary>Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.</summary>
         public class RoleManagementPolicyAssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

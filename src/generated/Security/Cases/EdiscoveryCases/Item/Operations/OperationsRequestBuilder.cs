@@ -94,11 +94,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations {
             return command;
         }
         /// <summary>
-        /// Returns a list of case caseOperation objects for this case.
+        /// Get a list of the caseOperation objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Returns a list of case caseOperation objects for this case.";
+            command.Description = "Get a list of the caseOperation objects and their properties.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Returns a list of case caseOperation objects for this case.
+        /// Get a list of the caseOperation objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OperationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations {
             }
             return requestInfo;
         }
-        /// <summary>Returns a list of case caseOperation objects for this case.</summary>
+        /// <summary>Get a list of the caseOperation objects and their properties.</summary>
         public class OperationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

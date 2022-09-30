@@ -48,11 +48,11 @@ namespace ApiSdk.Groups.Item.Team.Channels {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to channels for groups
+        /// Create a new channel in a team, as specified in the request body.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to channels for groups";
+            command.Description = "Create a new channel in a team, as specified in the request body.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -103,11 +103,11 @@ namespace ApiSdk.Groups.Item.Team.Channels {
             return command;
         }
         /// <summary>
-        /// The collection of channels and messages associated with the team.
+        /// Retrieve the list of channels in this team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of channels and messages associated with the team.";
+            command.Description = "Retrieve the list of channels in this team.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -226,7 +226,7 @@ namespace ApiSdk.Groups.Item.Team.Channels {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of channels and messages associated with the team.
+        /// Retrieve the list of channels in this team.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChannelsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Groups.Item.Team.Channels {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to channels for groups
+        /// Create a new channel in a team, as specified in the request body.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -273,7 +273,7 @@ namespace ApiSdk.Groups.Item.Team.Channels {
         public GetAllMessagesRequestBuilder GetAllMessages() {
             return new GetAllMessagesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The collection of channels and messages associated with the team.</summary>
+        /// <summary>Retrieve the list of channels in this team.</summary>
         public class ChannelsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

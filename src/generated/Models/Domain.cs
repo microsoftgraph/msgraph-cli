@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Domain : Entity, IParsable {
         /// <summary>Indicates the configured authentication type for the domain. The value is either Managed or Federated. Managed indicates a cloud managed domain where Azure AD performs user authentication. Federated indicates authentication is federated with an identity provider such as the tenant&apos;s on-premises Active Directory via Active Directory Federation Services. This property is read-only and is not nullable.</summary>
         public string AuthenticationType { get; set; }
@@ -40,7 +41,7 @@ namespace ApiSdk.Models {
         /// <summary>DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable. Supports $expand.</summary>
         public List<DomainDnsRecord> VerificationDnsRecords { get; set; }
         /// <summary>
-        /// Instantiates a new Domain and sets the default values.
+        /// Instantiates a new domain and sets the default values.
         /// </summary>
         public Domain() : base() {
             OdataType = "#microsoft.graph.domain";
@@ -60,8 +61,8 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"authenticationType", n => { AuthenticationType = n.GetStringValue(); } },
                 {"availabilityStatus", n => { AvailabilityStatus = n.GetStringValue(); } },
-                {"domainNameReferences", n => { DomainNameReferences = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
-                {"federationConfiguration", n => { FederationConfiguration = n.GetCollectionOfObjectValues<InternalDomainFederation>(InternalDomainFederation.CreateFromDiscriminatorValue).ToList(); } },
+                {"domainNameReferences", n => { DomainNameReferences = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"federationConfiguration", n => { FederationConfiguration = n.GetCollectionOfObjectValues<InternalDomainFederation>(InternalDomainFederation.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"isAdminManaged", n => { IsAdminManaged = n.GetBoolValue(); } },
                 {"isDefault", n => { IsDefault = n.GetBoolValue(); } },
                 {"isInitial", n => { IsInitial = n.GetBoolValue(); } },
@@ -71,10 +72,10 @@ namespace ApiSdk.Models {
                 {"model", n => { Model = n.GetStringValue(); } },
                 {"passwordNotificationWindowInDays", n => { PasswordNotificationWindowInDays = n.GetIntValue(); } },
                 {"passwordValidityPeriodInDays", n => { PasswordValidityPeriodInDays = n.GetIntValue(); } },
-                {"serviceConfigurationRecords", n => { ServiceConfigurationRecords = n.GetCollectionOfObjectValues<DomainDnsRecord>(DomainDnsRecord.CreateFromDiscriminatorValue).ToList(); } },
+                {"serviceConfigurationRecords", n => { ServiceConfigurationRecords = n.GetCollectionOfObjectValues<DomainDnsRecord>(DomainDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"state", n => { State = n.GetObjectValue<DomainState>(DomainState.CreateFromDiscriminatorValue); } },
-                {"supportedServices", n => { SupportedServices = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"verificationDnsRecords", n => { VerificationDnsRecords = n.GetCollectionOfObjectValues<DomainDnsRecord>(DomainDnsRecord.CreateFromDiscriminatorValue).ToList(); } },
+                {"supportedServices", n => { SupportedServices = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"verificationDnsRecords", n => { VerificationDnsRecords = n.GetCollectionOfObjectValues<DomainDnsRecord>(DomainDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

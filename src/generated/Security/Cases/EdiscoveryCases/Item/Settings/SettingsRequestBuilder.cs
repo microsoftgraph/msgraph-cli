@@ -56,11 +56,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             return command;
         }
         /// <summary>
-        /// Returns a list of eDIscoverySettings objects in the case.
+        /// Read the properties and relationships of an ediscoveryCaseSettings object.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Returns a list of eDIscoverySettings objects in the case.";
+            command.Description = "Read the properties and relationships of an ediscoveryCaseSettings object.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -117,11 +117,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             return command;
         }
         /// <summary>
-        /// Update the navigation property settings in security
+        /// Update the properties of an ediscoveryCaseSettings object.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property settings in security";
+            command.Description = "Update the properties of an ediscoveryCaseSettings object.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -131,9 +131,27 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var ediscoveryCaseId = invocationContext.ParseResult.GetValueForOption(ediscoveryCaseIdOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
@@ -145,8 +163,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
             return command;
         }
@@ -188,7 +209,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Returns a list of eDIscoverySettings objects in the case.
+        /// Read the properties and relationships of an ediscoveryCaseSettings object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SettingsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -208,7 +229,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property settings in security
+        /// Update the properties of an ediscoveryCaseSettings object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -219,6 +240,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new SettingsRequestBuilderPatchRequestConfiguration();
@@ -242,7 +264,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
                 Headers = new Dictionary<string, string>();
             }
         }
-        /// <summary>Returns a list of eDIscoverySettings objects in the case.</summary>
+        /// <summary>Read the properties and relationships of an ediscoveryCaseSettings object.</summary>
         public class SettingsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

@@ -23,11 +23,11 @@ namespace ApiSdk.Applications.Item.AddPassword {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action addPassword
+        /// Adds a strong password or secret to an application.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action addPassword";
+            command.Description = "Adds a strong password or secret to an application.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Applications.Item.AddPassword {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<PasswordCredentialPostRequestBody>(PasswordCredentialPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<AddPasswordPostRequestBody>(AddPasswordPostRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("application%2Did", applicationId);
@@ -91,11 +91,11 @@ namespace ApiSdk.Applications.Item.AddPassword {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action addPassword
+        /// Adds a strong password or secret to an application.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(PasswordCredentialPostRequestBody body, Action<AddPasswordRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation CreatePostRequestInformation(AddPasswordPostRequestBody body, Action<AddPasswordRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,

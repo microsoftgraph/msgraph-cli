@@ -40,11 +40,11 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to groups for sites
+        /// Create a new group object in a term store.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to groups for sites";
+            command.Description = "Create a new group object in a term store.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -101,11 +101,11 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups {
             return command;
         }
         /// <summary>
-        /// Collection of all groups available in the term store.
+        /// Get a list of group objects in a term store.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Collection of all groups available in the term store.";
+            command.Description = "Get a list of group objects in a term store.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -230,7 +230,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Collection of all groups available in the term store.
+        /// Get a list of group objects in a term store.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GroupsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -250,7 +250,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to groups for sites
+        /// Create a new group object in a term store.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -271,7 +271,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups {
             }
             return requestInfo;
         }
-        /// <summary>Collection of all groups available in the term store.</summary>
+        /// <summary>Get a list of group objects in a term store.</summary>
         public class GroupsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

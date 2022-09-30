@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
     public enum DeviceRegistrationState {
         /// <summary>The device is not registered.</summary>
         NotRegistered,

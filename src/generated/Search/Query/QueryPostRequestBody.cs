@@ -30,7 +30,7 @@ namespace ApiSdk.Search.Query {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"requests", n => { Requests = n.GetCollectionOfObjectValues<SearchRequest>(SearchRequest.CreateFromDiscriminatorValue).ToList(); } },
+                {"requests", n => { Requests = n.GetCollectionOfObjectValues<SearchRequest>(SearchRequest.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

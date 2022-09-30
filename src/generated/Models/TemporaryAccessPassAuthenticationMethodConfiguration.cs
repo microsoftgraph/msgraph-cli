@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"defaultLength", n => { DefaultLength = n.GetIntValue(); } },
                 {"defaultLifetimeInMinutes", n => { DefaultLifetimeInMinutes = n.GetIntValue(); } },
-                {"includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<AuthenticationMethodTarget>(AuthenticationMethodTarget.CreateFromDiscriminatorValue).ToList(); } },
+                {"includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<AuthenticationMethodTarget>(AuthenticationMethodTarget.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"isUsableOnce", n => { IsUsableOnce = n.GetBoolValue(); } },
                 {"maximumLifetimeInMinutes", n => { MaximumLifetimeInMinutes = n.GetIntValue(); } },
                 {"minimumLifetimeInMinutes", n => { MinimumLifetimeInMinutes = n.GetIntValue(); } },

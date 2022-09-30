@@ -38,11 +38,11 @@ namespace ApiSdk.Users.Item.Drives.Item.Bundles {
             return command;
         }
         /// <summary>
-        /// Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
+        /// Get a list of all the [bundles][bundle] in a user&apos;s drive.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.";
+            command.Description = "Get a list of all the [bundles][bundle] in a user's drive.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -167,7 +167,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Bundles {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
+        /// Get a list of all the [bundles][bundle] in a user&apos;s drive.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<BundlesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -186,7 +186,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Bundles {
             }
             return requestInfo;
         }
-        /// <summary>Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.</summary>
+        /// <summary>Get a list of all the [bundles][bundle] in a user&apos;s drive.</summary>
         public class BundlesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

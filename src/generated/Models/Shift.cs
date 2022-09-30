@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class Shift : ChangeTrackedEntity, IParsable {
         /// <summary>The draft version of this shift that is viewable by managers. Required.</summary>
         public ShiftItem DraftShift { get; set; }
@@ -15,7 +14,7 @@ namespace ApiSdk.Models {
         /// <summary>ID of the user assigned to the shift. Required.</summary>
         public string UserId { get; set; }
         /// <summary>
-        /// Instantiates a new shift and sets the default values.
+        /// Instantiates a new Shift and sets the default values.
         /// </summary>
         public Shift() : base() {
             OdataType = "#microsoft.graph.shift";

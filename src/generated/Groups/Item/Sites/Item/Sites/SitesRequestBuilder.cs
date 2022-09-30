@@ -37,11 +37,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Sites {
             return command;
         }
         /// <summary>
-        /// The collection of the sub-sites under this site.
+        /// Get a collection of subsites defined for a [site][].
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of the sub-sites under this site.";
+            command.Description = "Get a collection of subsites defined for a [site][].";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -166,7 +166,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Sites {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of the sub-sites under this site.
+        /// Get a collection of subsites defined for a [site][].
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SitesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -185,7 +185,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Sites {
             }
             return requestInfo;
         }
-        /// <summary>The collection of the sub-sites under this site.</summary>
+        /// <summary>Get a collection of subsites defined for a [site][].</summary>
         public class SitesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

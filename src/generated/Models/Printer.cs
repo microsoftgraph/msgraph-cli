@@ -20,7 +20,7 @@ namespace ApiSdk.Models {
         /// <summary>A list of task triggers that are associated with the printer.</summary>
         public List<PrintTaskTrigger> TaskTriggers { get; set; }
         /// <summary>
-        /// Instantiates a new printer and sets the default values.
+        /// Instantiates a new Printer and sets the default values.
         /// </summary>
         public Printer() : base() {
             OdataType = "#microsoft.graph.printer";
@@ -38,13 +38,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"connectors", n => { Connectors = n.GetCollectionOfObjectValues<PrintConnector>(PrintConnector.CreateFromDiscriminatorValue).ToList(); } },
+                {"connectors", n => { Connectors = n.GetCollectionOfObjectValues<PrintConnector>(PrintConnector.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"hasPhysicalDevice", n => { HasPhysicalDevice = n.GetBoolValue(); } },
                 {"isShared", n => { IsShared = n.GetBoolValue(); } },
                 {"lastSeenDateTime", n => { LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
                 {"registeredDateTime", n => { RegisteredDateTime = n.GetDateTimeOffsetValue(); } },
-                {"shares", n => { Shares = n.GetCollectionOfObjectValues<PrinterShare>(PrinterShare.CreateFromDiscriminatorValue).ToList(); } },
-                {"taskTriggers", n => { TaskTriggers = n.GetCollectionOfObjectValues<PrintTaskTrigger>(PrintTaskTrigger.CreateFromDiscriminatorValue).ToList(); } },
+                {"shares", n => { Shares = n.GetCollectionOfObjectValues<PrinterShare>(PrinterShare.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"taskTriggers", n => { TaskTriggers = n.GetCollectionOfObjectValues<PrintTaskTrigger>(PrintTaskTrigger.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

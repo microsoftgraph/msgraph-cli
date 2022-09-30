@@ -23,11 +23,11 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Return {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action return
+        /// Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from &apos;submitted&apos; to &apos;returned&apos; and indicates that feedback is provided or grading is done. This action can only be done by the teacher.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action return";
+            command.Description = "Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from 'submitted' to 'returned' and indicates that feedback is provided or grading is done. This action can only be done by the teacher.";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
@@ -95,7 +95,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Return {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action return
+        /// Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from &apos;submitted&apos; to &apos;returned&apos; and indicates that feedback is provided or grading is done. This action can only be done by the teacher.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<ReturnRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

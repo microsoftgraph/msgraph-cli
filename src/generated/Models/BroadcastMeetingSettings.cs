@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Defines who can join the Teams live event. Possible values are listed in the following table.</summary>
         public BroadcastMeetingAudience? AllowedAudience { get; set; }
+        /// <summary>Caption settings of a Teams live event.</summary>
+        public BroadcastMeetingCaptionSettings Captions { get; set; }
         /// <summary>Indicates whether attendee report is enabled for this Teams live event. Default value is false.</summary>
         public bool? IsAttendeeReportEnabled { get; set; }
         /// <summary>Indicates whether Q&amp;A is enabled for this Teams live event. Default value is false.</summary>
@@ -40,6 +42,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"allowedAudience", n => { AllowedAudience = n.GetEnumValue<BroadcastMeetingAudience>(); } },
+                {"captions", n => { Captions = n.GetObjectValue<BroadcastMeetingCaptionSettings>(BroadcastMeetingCaptionSettings.CreateFromDiscriminatorValue); } },
                 {"isAttendeeReportEnabled", n => { IsAttendeeReportEnabled = n.GetBoolValue(); } },
                 {"isQuestionAndAnswerEnabled", n => { IsQuestionAndAnswerEnabled = n.GetBoolValue(); } },
                 {"isRecordingEnabled", n => { IsRecordingEnabled = n.GetBoolValue(); } },
@@ -54,6 +57,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<BroadcastMeetingAudience>("allowedAudience", AllowedAudience);
+            writer.WriteObjectValue<BroadcastMeetingCaptionSettings>("captions", Captions);
             writer.WriteBoolValue("isAttendeeReportEnabled", IsAttendeeReportEnabled);
             writer.WriteBoolValue("isQuestionAndAnswerEnabled", IsQuestionAndAnswerEnabled);
             writer.WriteBoolValue("isRecordingEnabled", IsRecordingEnabled);

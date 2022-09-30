@@ -81,6 +81,10 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);
+            var consistencyLevelOption = new Option<string>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
+            };
+            consistencyLevelOption.IsRequired = false;
+            command.AddOption(consistencyLevelOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -133,6 +137,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
                 var directoryRoleId = invocationContext.ParseResult.GetValueForOption(directoryRoleIdOption);
+                var consistencyLevel = invocationContext.ParseResult.GetValueForOption(consistencyLevelOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -160,6 +165,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
                     q.QueryParameters.Expand = expand;
                 });
                 requestInfo.PathParameters.Add("directoryRole%2Did", directoryRoleId);
+                requestInfo.Headers["ConsistencyLevel"] = consistencyLevel;
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

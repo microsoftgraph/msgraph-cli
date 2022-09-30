@@ -29,8 +29,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static Entity CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.aadUserConversationMember" => new AadUserConversationMember(),
                 "#microsoft.graph.accessPackage" => new AccessPackage(),
@@ -49,6 +48,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.accessReviewStage" => new AccessReviewStage(),
                 "#microsoft.graph.activityBasedTimeoutPolicy" => new ActivityBasedTimeoutPolicy(),
                 "#microsoft.graph.activityHistoryItem" => new ActivityHistoryItem(),
+                "#microsoft.graph.addLargeGalleryViewOperation" => new AddLargeGalleryViewOperation(),
                 "#microsoft.graph.adminConsentRequestPolicy" => new AdminConsentRequestPolicy(),
                 "#microsoft.graph.administrativeUnit" => new AdministrativeUnit(),
                 "#microsoft.graph.agreement" => new Agreement(),
@@ -137,6 +137,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.connectedOrganization" => new ConnectedOrganization(),
                 "#microsoft.graph.contact" => new Contact(),
                 "#microsoft.graph.contactFolder" => new ContactFolder(),
+                "#microsoft.graph.contentSharingSession" => new ContentSharingSession(),
                 "#microsoft.graph.contentType" => new ContentType(),
                 "#microsoft.graph.contract" => new Contract(),
                 "#microsoft.graph.conversation" => new Conversation(),
@@ -385,6 +386,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.permissionGrantPolicy" => new PermissionGrantPolicy(),
                 "#microsoft.graph.person" => new Person(),
                 "#microsoft.graph.phoneAuthenticationMethod" => new PhoneAuthenticationMethod(),
+                "#microsoft.graph.pinnedChatMessageInfo" => new PinnedChatMessageInfo(),
                 "#microsoft.graph.place" => new Place(),
                 "#microsoft.graph.planner" => new Planner(),
                 "#microsoft.graph.plannerAssignedToTaskBoardTaskFormat" => new PlannerAssignedToTaskBoardTaskFormat(),
@@ -428,7 +430,6 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.request" => new Request(),
                 "#microsoft.graph.resourceOperation" => new ResourceOperation(),
                 "#microsoft.graph.resourceSpecificPermissionGrant" => new ResourceSpecificPermissionGrant(),
-                "#microsoft.graph.restrictedSignIn" => new RestrictedSignIn(),
                 "#microsoft.graph.richLongRunningOperation" => new RichLongRunningOperation(),
                 "#microsoft.graph.riskDetection" => new RiskDetection(),
                 "#microsoft.graph.riskyUser" => new RiskyUser(),
@@ -516,6 +517,8 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.teamwork" => new Teamwork(),
                 "#microsoft.graph.teamworkBot" => new TeamworkBot(),
                 "#microsoft.graph.teamworkHostedContent" => new TeamworkHostedContent(),
+                "#microsoft.graph.teamworkTag" => new TeamworkTag(),
+                "#microsoft.graph.teamworkTagMember" => new TeamworkTagMember(),
                 "#microsoft.graph.telecomExpenseManagementPartner" => new TelecomExpenseManagementPartner(),
                 "#microsoft.graph.temporaryAccessPassAuthenticationMethod" => new TemporaryAccessPassAuthenticationMethod(),
                 "#microsoft.graph.temporaryAccessPassAuthenticationMethodConfiguration" => new TemporaryAccessPassAuthenticationMethodConfiguration(),
@@ -646,6 +649,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.workbookWorksheet" => new WorkbookWorksheet(),
                 "#microsoft.graph.workbookWorksheetProtection" => new WorkbookWorksheetProtection(),
                 "#microsoft.graph.workforceIntegration" => new WorkforceIntegration(),
+                "#microsoft.graph.x509CertificateAuthenticationMethodConfiguration" => new X509CertificateAuthenticationMethodConfiguration(),
                 _ => new Entity(),
             };
         }

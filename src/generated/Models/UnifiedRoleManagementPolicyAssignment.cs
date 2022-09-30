@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class UnifiedRoleManagementPolicyAssignment : Entity, IParsable {
         /// <summary>The policy that&apos;s associated with a policy assignment. Supports $expand and a nested $expand of the rules and effectiveRules relationships for the policy.</summary>
         public UnifiedRoleManagementPolicy Policy { get; set; }
@@ -16,7 +17,7 @@ namespace ApiSdk.Models {
         /// <summary>The type of the scope where the policy is assigned. One of Directory, DirectoryRole. Required.</summary>
         public string ScopeType { get; set; }
         /// <summary>
-        /// Instantiates a new UnifiedRoleManagementPolicyAssignment and sets the default values.
+        /// Instantiates a new unifiedRoleManagementPolicyAssignment and sets the default values.
         /// </summary>
         public UnifiedRoleManagementPolicyAssignment() : base() {
             OdataType = "#microsoft.graph.unifiedRoleManagementPolicyAssignment";

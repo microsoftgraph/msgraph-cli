@@ -37,11 +37,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.AllChannels {
             return command;
         }
         /// <summary>
-        /// List of channels either hosted in or shared with the team (incoming channels).
+        /// Get the list of channels either in this team or shared with this team (incoming channels).
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List of channels either hosted in or shared with the team (incoming channels).";
+            command.Description = "Get the list of channels either in this team or shared with this team (incoming channels).";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -166,7 +166,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.AllChannels {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// List of channels either hosted in or shared with the team (incoming channels).
+        /// Get the list of channels either in this team or shared with this team (incoming channels).
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AllChannelsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -185,7 +185,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.AllChannels {
             }
             return requestInfo;
         }
-        /// <summary>List of channels either hosted in or shared with the team (incoming channels).</summary>
+        /// <summary>Get the list of channels either in this team or shared with this team (incoming channels).</summary>
         public class AllChannelsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

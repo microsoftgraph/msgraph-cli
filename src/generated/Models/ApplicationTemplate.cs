@@ -5,9 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     /// <summary>Provides operations to manage the collection of applicationTemplate entities.</summary>
-    public class ApplicationTemplate : Entity, IAdditionalDataHolder, IParsable {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
+    public class ApplicationTemplate : Entity, IParsable {
         /// <summary>The list of categories for the application. Supported values can be: Collaboration, Business Management, Consumer, Content management, CRM, Data services, Developer services, E-commerce, Education, ERP, Finance, Health, Human resources, IT infrastructure, Mail, Management, Marketing, Media, Productivity, Project management, Telecommunications, Tools, Travel, and Web design &amp; hosting.</summary>
         public List<string> Categories { get; set; }
         /// <summary>A description of the application.</summary>
@@ -28,7 +26,6 @@ namespace ApiSdk.Models {
         /// Instantiates a new applicationTemplate and sets the default values.
         /// </summary>
         public ApplicationTemplate() : base() {
-            AdditionalData = new Dictionary<string, object>();
             OdataType = "#microsoft.graph.applicationTemplate";
         }
         /// <summary>
@@ -44,14 +41,14 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"categories", n => { Categories = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"categories", n => { Categories = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"homePageUrl", n => { HomePageUrl = n.GetStringValue(); } },
                 {"logoUrl", n => { LogoUrl = n.GetStringValue(); } },
                 {"publisher", n => { Publisher = n.GetStringValue(); } },
-                {"supportedProvisioningTypes", n => { SupportedProvisioningTypes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"supportedSingleSignOnModes", n => { SupportedSingleSignOnModes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"supportedProvisioningTypes", n => { SupportedProvisioningTypes = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"supportedSingleSignOnModes", n => { SupportedSingleSignOnModes = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>
@@ -69,7 +66,6 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("publisher", Publisher);
             writer.WriteCollectionOfPrimitiveValues<string>("supportedProvisioningTypes", SupportedProvisioningTypes);
             writer.WriteCollectionOfPrimitiveValues<string>("supportedSingleSignOnModes", SupportedSingleSignOnModes);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

@@ -39,11 +39,11 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to federationConfiguration for domains
+        /// Create a new internalDomainFederation object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to federationConfiguration for domains";
+            command.Description = "Create a new internalDomainFederation object.";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };
@@ -237,7 +237,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to federationConfiguration for domains
+        /// Create a new internalDomainFederation object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

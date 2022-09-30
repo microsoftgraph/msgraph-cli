@@ -23,11 +23,11 @@ namespace ApiSdk.Education.Users.Item.User {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The directory user that corresponds to this user.
+        /// Retrieve the simple directory **user** that corresponds to this **educationUser**.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The directory user that corresponds to this user.";
+            command.Description = "Retrieve the simple directory **user** that corresponds to this **educationUser**.";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
@@ -97,7 +97,7 @@ namespace ApiSdk.Education.Users.Item.User {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The directory user that corresponds to this user.
+        /// Retrieve the simple directory **user** that corresponds to this **educationUser**.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UserRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -116,7 +116,7 @@ namespace ApiSdk.Education.Users.Item.User {
             }
             return requestInfo;
         }
-        /// <summary>The directory user that corresponds to this user.</summary>
+        /// <summary>Retrieve the simple directory **user** that corresponds to this **educationUser**.</summary>
         public class UserRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

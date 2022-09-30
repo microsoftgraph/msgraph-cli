@@ -38,11 +38,11 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
             return command;
         }
         /// <summary>
-        /// The claimsMappingPolicies assigned to this service principal. Supports $expand.
+        /// List the claimsMappingPolicy objects that are assigned to a servicePrincipal.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The claimsMappingPolicies assigned to this service principal. Supports $expand.";
+            command.Description = "List the claimsMappingPolicy objects that are assigned to a servicePrincipal.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -168,7 +168,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The claimsMappingPolicies assigned to this service principal. Supports $expand.
+        /// List the claimsMappingPolicy objects that are assigned to a servicePrincipal.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ClaimsMappingPoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -187,7 +187,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
             }
             return requestInfo;
         }
-        /// <summary>The claimsMappingPolicies assigned to this service principal. Supports $expand.</summary>
+        /// <summary>List the claimsMappingPolicy objects that are assigned to a servicePrincipal.</summary>
         public class ClaimsMappingPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

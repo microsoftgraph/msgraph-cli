@@ -27,7 +27,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"teamsApps", n => { TeamsApps = n.GetCollectionOfObjectValues<TeamsApp>(TeamsApp.CreateFromDiscriminatorValue).ToList(); } },
+                {"teamsApps", n => { TeamsApps = n.GetCollectionOfObjectValues<TeamsApp>(TeamsApp.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

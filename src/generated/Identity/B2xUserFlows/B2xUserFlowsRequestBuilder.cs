@@ -43,11 +43,11 @@ namespace ApiSdk.Identity.B2xUserFlows {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to b2xUserFlows for identity
+        /// Create a new b2xIdentityUserFlow object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to b2xUserFlows for identity";
+            command.Description = "Create a new b2xIdentityUserFlow object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -92,11 +92,11 @@ namespace ApiSdk.Identity.B2xUserFlows {
             return command;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Retrieve a list of b2xIdentityUserFlow objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
+            command.Description = "Retrieve a list of b2xIdentityUserFlow objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.Identity.B2xUserFlows {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Retrieve a list of b2xIdentityUserFlow objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<B2xUserFlowsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -229,7 +229,7 @@ namespace ApiSdk.Identity.B2xUserFlows {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to b2xUserFlows for identity
+        /// Create a new b2xIdentityUserFlow object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -250,7 +250,7 @@ namespace ApiSdk.Identity.B2xUserFlows {
             }
             return requestInfo;
         }
-        /// <summary>Represents entry point for B2X/self-service sign-up identity userflows.</summary>
+        /// <summary>Retrieve a list of b2xIdentityUserFlow objects.</summary>
         public class B2xUserFlowsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

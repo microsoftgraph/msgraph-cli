@@ -100,11 +100,11 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item.AttendanceRecords
             return command;
         }
         /// <summary>
-        /// List of attendance records of an attendance report. Read-only.
+        /// Get a list of attendanceRecord objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List of attendance records of an attendance report. Read-only.";
+            command.Description = "Get a list of attendanceRecord objects and their properties.";
             // Create options for all the parameters
             var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
             };
@@ -229,7 +229,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item.AttendanceRecords
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// List of attendance records of an attendance report. Read-only.
+        /// Get a list of attendanceRecord objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AttendanceRecordsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -270,7 +270,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item.AttendanceRecords
             }
             return requestInfo;
         }
-        /// <summary>List of attendance records of an attendance report. Read-only.</summary>
+        /// <summary>Get a list of attendanceRecord objects and their properties.</summary>
         public class AttendanceRecordsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -8,9 +8,9 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.</summary>
-        public List<string> ExcludePlatforms { get; set; }
+        public List<ConditionalAccessDevicePlatform?> ExcludePlatforms { get; set; }
         /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.</summary>
-        public List<string> IncludePlatforms { get; set; }
+        public List<ConditionalAccessDevicePlatform?> IncludePlatforms { get; set; }
         /// <summary>The OdataType property</summary>
         public string OdataType { get; set; }
         /// <summary>
@@ -33,8 +33,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"excludePlatforms", n => { ExcludePlatforms = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"includePlatforms", n => { IncludePlatforms = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"excludePlatforms", n => { ExcludePlatforms = n.GetCollectionOfEnumValues<ConditionalAccessDevicePlatform>()?.ToList(); } },
+                {"includePlatforms", n => { IncludePlatforms = n.GetCollectionOfEnumValues<ConditionalAccessDevicePlatform>()?.ToList(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -44,8 +44,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("excludePlatforms", ExcludePlatforms);
-            writer.WriteCollectionOfPrimitiveValues<string>("includePlatforms", IncludePlatforms);
+            writer.WriteCollectionOfEnumValues<ConditionalAccessDevicePlatform>("excludePlatforms", ExcludePlatforms);
+            writer.WriteCollectionOfEnumValues<ConditionalAccessDevicePlatform>("includePlatforms", IncludePlatforms);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

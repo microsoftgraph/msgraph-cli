@@ -103,11 +103,11 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             return command;
         }
         /// <summary>
-        /// Users that are flagged as at-risk by Azure AD Identity Protection.
+        /// Get a list of the riskyUser objects and their properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Users that are flagged as at-risk by Azure AD Identity Protection.";
+            command.Description = "Get a list of the riskyUser objects and their properties.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -220,7 +220,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Users that are flagged as at-risk by Azure AD Identity Protection.
+        /// Get a list of the riskyUser objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RiskyUsersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -261,7 +261,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             }
             return requestInfo;
         }
-        /// <summary>Users that are flagged as at-risk by Azure AD Identity Protection.</summary>
+        /// <summary>Get a list of the riskyUser objects and their properties.</summary>
         public class RiskyUsersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class Person : Entity, IParsable {
         /// <summary>The person&apos;s birthday.</summary>
         public string Birthday { get; set; }
@@ -44,7 +45,7 @@ namespace ApiSdk.Models {
         /// <summary>The phonetic Japanese name of the person&apos;s company.</summary>
         public string YomiCompany { get; set; }
         /// <summary>
-        /// Instantiates a new Person and sets the default values.
+        /// Instantiates a new person and sets the default values.
         /// </summary>
         public Person() : base() {
             OdataType = "#microsoft.graph.person";
@@ -73,13 +74,13 @@ namespace ApiSdk.Models {
                 {"officeLocation", n => { OfficeLocation = n.GetStringValue(); } },
                 {"personNotes", n => { PersonNotes = n.GetStringValue(); } },
                 {"personType", n => { PersonType = n.GetObjectValue<ApiSdk.Models.PersonType>(ApiSdk.Models.PersonType.CreateFromDiscriminatorValue); } },
-                {"phones", n => { Phones = n.GetCollectionOfObjectValues<Phone>(Phone.CreateFromDiscriminatorValue).ToList(); } },
-                {"postalAddresses", n => { PostalAddresses = n.GetCollectionOfObjectValues<Location>(Location.CreateFromDiscriminatorValue).ToList(); } },
+                {"phones", n => { Phones = n.GetCollectionOfObjectValues<Phone>(Phone.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"postalAddresses", n => { PostalAddresses = n.GetCollectionOfObjectValues<Location>(Location.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"profession", n => { Profession = n.GetStringValue(); } },
-                {"scoredEmailAddresses", n => { ScoredEmailAddresses = n.GetCollectionOfObjectValues<ScoredEmailAddress>(ScoredEmailAddress.CreateFromDiscriminatorValue).ToList(); } },
+                {"scoredEmailAddresses", n => { ScoredEmailAddresses = n.GetCollectionOfObjectValues<ScoredEmailAddress>(ScoredEmailAddress.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"surname", n => { Surname = n.GetStringValue(); } },
                 {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
-                {"websites", n => { Websites = n.GetCollectionOfObjectValues<Website>(Website.CreateFromDiscriminatorValue).ToList(); } },
+                {"websites", n => { Websites = n.GetCollectionOfObjectValues<Website>(Website.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"yomiCompany", n => { YomiCompany = n.GetStringValue(); } },
             };
         }

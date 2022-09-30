@@ -38,11 +38,11 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies {
             return command;
         }
         /// <summary>
-        /// Get tokenIssuancePolicies from applications
+        /// List the tokenIssuancePolicy objects that are assigned to an application.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get tokenIssuancePolicies from applications";
+            command.Description = "List the tokenIssuancePolicy objects that are assigned to an application.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -168,7 +168,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get tokenIssuancePolicies from applications
+        /// List the tokenIssuancePolicy objects that are assigned to an application.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TokenIssuancePoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -187,7 +187,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies {
             }
             return requestInfo;
         }
-        /// <summary>Get tokenIssuancePolicies from applications</summary>
+        /// <summary>List the tokenIssuancePolicy objects that are assigned to an application.</summary>
         public class TokenIssuancePoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

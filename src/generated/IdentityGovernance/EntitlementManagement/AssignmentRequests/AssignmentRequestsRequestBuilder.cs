@@ -45,11 +45,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to assignmentRequests for identityGovernance
+        /// In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to assignmentRequests for identityGovernance";
+            command.Description = "In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return command;
         }
         /// <summary>
-        /// Access package assignment requests created by or on behalf of a subject.
+        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Access package assignment requests created by or on behalf of a subject.";
+            command.Description = "In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -211,7 +211,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Access package assignment requests created by or on behalf of a subject.
+        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AssignmentRequestsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -231,7 +231,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to assignmentRequests for identityGovernance
+        /// In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -260,7 +260,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>Access package assignment requests created by or on behalf of a subject.</summary>
+        /// <summary>In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.</summary>
         public class AssignmentRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

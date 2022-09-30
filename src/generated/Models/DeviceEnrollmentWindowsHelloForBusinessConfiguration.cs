@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class DeviceEnrollmentWindowsHelloForBusinessConfiguration : DeviceEnrollmentConfiguration, IParsable {
-        /// <summary>The enhancedBiometricsState property</summary>
+        /// <summary>Possible values of a property</summary>
         public Enablement? EnhancedBiometricsState { get; set; }
         /// <summary>Controls the period of time (in days) that a PIN can be used before the system requires the user to change it. This must be set between 0 and 730, inclusive. If set to 0, the user&apos;s PIN will never expire</summary>
         public int? PinExpirationInDays { get; set; }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
         public bool? RemotePassportEnabled { get; set; }
         /// <summary>Controls whether to require a Trusted Platform Module (TPM) for provisioning Windows Hello for Business. A TPM provides an additional security benefit in that data stored on it cannot be used on other devices. If set to False, all devices can provision Windows Hello for Business even if there is not a usable TPM.</summary>
         public bool? SecurityDeviceRequired { get; set; }
-        /// <summary>The state property</summary>
+        /// <summary>Possible values of a property</summary>
         public Enablement? State { get; set; }
         /// <summary>Controls the use of biometric gestures, such as face and fingerprint, as an alternative to the Windows Hello for Business PIN.  If set to False, biometric gestures are not allowed. Users must still configure a PIN as a backup in case of failures.</summary>
         public bool? UnlockWithBiometricsEnabled { get; set; }

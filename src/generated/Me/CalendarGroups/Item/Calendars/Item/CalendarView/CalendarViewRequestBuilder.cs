@@ -33,14 +33,12 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView {
             command.AddCommand(builder.BuildCalendarCommand());
             command.AddCommand(builder.BuildCancelCommand());
             command.AddCommand(builder.BuildDeclineCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildDismissReminderCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
             command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstancesCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildSnoozeReminderCommand());
             command.AddCommand(builder.BuildTentativelyAcceptCommand());
@@ -53,72 +51,11 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to calendarView for me
-        /// </summary>
-        public Command BuildCreateCommand() {
-            var command = new Command("create");
-            command.Description = "Create new navigation property to calendarView for me";
-            // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
-            };
-            calendarGroupIdOption.IsRequired = true;
-            command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
-            };
-            calendarIdOption.IsRequired = true;
-            command.AddOption(calendarIdOption);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (invocationContext) => {
-                var calendarGroupId = invocationContext.ParseResult.GetValueForOption(calendarGroupIdOption);
-                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
-                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Event>(Event.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
-                });
-                requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
-                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            });
-            return command;
-        }
-        /// <summary>
-        /// The calendar view for the calendar. Navigation property. Read-only.
+        /// Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user&apos;s default calendar `(../me/calendarview)` or some other calendar of the user&apos;s.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
+            command.Description = "Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user's default calendar `(../me/calendarview)` or some other calendar of the user's.";
             // Create options for all the parameters
             var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
             };
@@ -230,7 +167,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The calendar view for the calendar. Navigation property. Read-only.
+        /// Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user&apos;s default calendar `(../me/calendarview)` or some other calendar of the user&apos;s.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CalendarViewRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -250,34 +187,12 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to calendarView for me
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreatePostRequestInformation(Event body, Action<CalendarViewRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new CalendarViewRequestBuilderPostRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The calendar view for the calendar. Navigation property. Read-only.</summary>
+        /// <summary>Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user&apos;s default calendar `(../me/calendarview)` or some other calendar of the user&apos;s.</summary>
         public class CalendarViewRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
@@ -310,20 +225,6 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView {
             /// Instantiates a new calendarViewRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public CalendarViewRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class CalendarViewRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new calendarViewRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public CalendarViewRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }

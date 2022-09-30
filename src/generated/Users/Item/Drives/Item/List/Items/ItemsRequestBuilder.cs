@@ -44,11 +44,11 @@ namespace ApiSdk.Users.Item.Drives.Item.List.Items {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to items for users
+        /// Create a new [listItem][] in a [list][].
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to items for users";
+            command.Description = "Create a new [listItem][] in a [list][].";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -105,11 +105,11 @@ namespace ApiSdk.Users.Item.Drives.Item.List.Items {
             return command;
         }
         /// <summary>
-        /// All items contained in the list.
+        /// Get the collection of [items][item] in a [list][].
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All items contained in the list.";
+            command.Description = "Get the collection of [items][item] in a [list][].";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -234,7 +234,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.Items {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// All items contained in the list.
+        /// Get the collection of [items][item] in a [list][].
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ItemsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -254,7 +254,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to items for users
+        /// Create a new [listItem][] in a [list][].
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -275,7 +275,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.Items {
             }
             return requestInfo;
         }
-        /// <summary>All items contained in the list.</summary>
+        /// <summary>Get the collection of [items][item] in a [list][].</summary>
         public class ItemsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

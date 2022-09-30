@@ -37,11 +37,11 @@ namespace ApiSdk.Me.Oauth2PermissionGrants {
             return command;
         }
         /// <summary>
-        /// Get oauth2PermissionGrants from me
+        /// Retrieve a list of oAuth2PermissionGrant entities, which represent delegated permissions granted to enable a client application to access an API on behalf of the user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get oauth2PermissionGrants from me";
+            command.Description = "Retrieve a list of oAuth2PermissionGrant entities, which represent delegated permissions granted to enable a client application to access an API on behalf of the user.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -154,7 +154,7 @@ namespace ApiSdk.Me.Oauth2PermissionGrants {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get oauth2PermissionGrants from me
+        /// Retrieve a list of oAuth2PermissionGrant entities, which represent delegated permissions granted to enable a client application to access an API on behalf of the user.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<Oauth2PermissionGrantsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -173,7 +173,7 @@ namespace ApiSdk.Me.Oauth2PermissionGrants {
             }
             return requestInfo;
         }
-        /// <summary>Get oauth2PermissionGrants from me</summary>
+        /// <summary>Retrieve a list of oAuth2PermissionGrant entities, which represent delegated permissions granted to enable a client application to access an API on behalf of the user.</summary>
         public class Oauth2PermissionGrantsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

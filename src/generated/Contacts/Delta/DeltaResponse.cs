@@ -30,7 +30,7 @@ namespace ApiSdk.Contacts.Delta {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.OrgContact>(ApiSdk.Models.OrgContact.CreateFromDiscriminatorValue).ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.OrgContact>(ApiSdk.Models.OrgContact.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

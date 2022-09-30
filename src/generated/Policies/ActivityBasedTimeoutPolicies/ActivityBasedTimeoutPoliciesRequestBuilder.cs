@@ -39,11 +39,11 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to activityBasedTimeoutPolicies for policies
+        /// Create a new activityBasedTimeoutPolicy object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to activityBasedTimeoutPolicies for policies";
+            command.Description = "Create a new activityBasedTimeoutPolicy object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -88,11 +88,11 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies {
             return command;
         }
         /// <summary>
-        /// The policy that controls the idle time out for web sessions for applications.
+        /// Get a list of activityBasedTimeoutPolicy objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The policy that controls the idle time out for web sessions for applications.";
+            command.Description = "Get a list of activityBasedTimeoutPolicy objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The policy that controls the idle time out for web sessions for applications.
+        /// Get a list of activityBasedTimeoutPolicy objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ActivityBasedTimeoutPoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -225,7 +225,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to activityBasedTimeoutPolicies for policies
+        /// Create a new activityBasedTimeoutPolicy object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -246,7 +246,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies {
             }
             return requestInfo;
         }
-        /// <summary>The policy that controls the idle time out for web sessions for applications.</summary>
+        /// <summary>Get a list of activityBasedTimeoutPolicy objects.</summary>
         public class ActivityBasedTimeoutPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -43,11 +43,11 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to sectionGroups for me
+        /// Create a new section group in the specified notebook.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to sectionGroups for me";
+            command.Description = "Create a new section group in the specified notebook.";
             // Create options for all the parameters
             var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
             };
@@ -98,11 +98,11 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups {
             return command;
         }
         /// <summary>
-        /// The section groups in the notebook. Read-only. Nullable.
+        /// Retrieve a list of section groups from the specified notebook.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The section groups in the notebook. Read-only. Nullable.";
+            command.Description = "Retrieve a list of section groups from the specified notebook.";
             // Create options for all the parameters
             var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
             };
@@ -221,7 +221,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The section groups in the notebook. Read-only. Nullable.
+        /// Retrieve a list of section groups from the specified notebook.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SectionGroupsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -241,7 +241,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to sectionGroups for me
+        /// Create a new section group in the specified notebook.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -262,7 +262,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups {
             }
             return requestInfo;
         }
-        /// <summary>The section groups in the notebook. Read-only. Nullable.</summary>
+        /// <summary>Retrieve a list of section groups from the specified notebook.</summary>
         public class SectionGroupsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

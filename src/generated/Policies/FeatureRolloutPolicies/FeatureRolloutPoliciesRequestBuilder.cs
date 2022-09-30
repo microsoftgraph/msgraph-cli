@@ -40,11 +40,11 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to featureRolloutPolicies for policies
+        /// Create a new featureRolloutPolicy object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to featureRolloutPolicies for policies";
+            command.Description = "Create a new featureRolloutPolicy object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -89,11 +89,11 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             return command;
         }
         /// <summary>
-        /// The feature rollout policy associated with a directory object.
+        /// Retrieve a list of featureRolloutPolicy objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The feature rollout policy associated with a directory object.";
+            command.Description = "Retrieve a list of featureRolloutPolicy objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The feature rollout policy associated with a directory object.
+        /// Retrieve a list of featureRolloutPolicy objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<FeatureRolloutPoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -226,7 +226,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to featureRolloutPolicies for policies
+        /// Create a new featureRolloutPolicy object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             }
             return requestInfo;
         }
-        /// <summary>The feature rollout policy associated with a directory object.</summary>
+        /// <summary>Retrieve a list of featureRolloutPolicy objects.</summary>
         public class FeatureRolloutPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -41,7 +41,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"caller", n => { Caller = n.GetObjectValue<Endpoint>(Endpoint.CreateFromDiscriminatorValue); } },
                 {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 {"failureInfo", n => { FailureInfo = n.GetObjectValue<ApiSdk.Models.CallRecords.FailureInfo>(ApiSdk.Models.CallRecords.FailureInfo.CreateFromDiscriminatorValue); } },
-                {"media", n => { Media = n.GetCollectionOfObjectValues<ApiSdk.Models.CallRecords.Media>(ApiSdk.Models.CallRecords.Media.CreateFromDiscriminatorValue).ToList(); } },
+                {"media", n => { Media = n.GetCollectionOfObjectValues<ApiSdk.Models.CallRecords.Media>(ApiSdk.Models.CallRecords.Media.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }

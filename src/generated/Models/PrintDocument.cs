@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class PrintDocument : Entity, IParsable {
         /// <summary>The document&apos;s content (MIME) type. Read-only.</summary>
         public string ContentType { get; set; }
@@ -12,7 +13,7 @@ namespace ApiSdk.Models {
         /// <summary>The document&apos;s size in bytes. Read-only.</summary>
         public long? Size { get; set; }
         /// <summary>
-        /// Instantiates a new PrintDocument and sets the default values.
+        /// Instantiates a new printDocument and sets the default values.
         /// </summary>
         public PrintDocument() : base() {
             OdataType = "#microsoft.graph.printDocument";

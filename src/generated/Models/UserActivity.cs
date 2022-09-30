@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class UserActivity : Entity, IParsable {
         /// <summary>Required. URL used to launch the activity in the best native experience represented by the appId. Might launch a web-based app if no native app exists.</summary>
         public string ActivationUrl { get; set; }
@@ -34,7 +35,7 @@ namespace ApiSdk.Models {
         /// <summary>The visualElements property</summary>
         public VisualInfo VisualElements { get; set; }
         /// <summary>
-        /// Instantiates a new UserActivity and sets the default values.
+        /// Instantiates a new userActivity and sets the default values.
         /// </summary>
         public UserActivity() : base() {
             OdataType = "#microsoft.graph.userActivity";
@@ -61,7 +62,7 @@ namespace ApiSdk.Models {
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"fallbackUrl", n => { FallbackUrl = n.GetStringValue(); } },
-                {"historyItems", n => { HistoryItems = n.GetCollectionOfObjectValues<ActivityHistoryItem>(ActivityHistoryItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"historyItems", n => { HistoryItems = n.GetCollectionOfObjectValues<ActivityHistoryItem>(ActivityHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"status", n => { Status = n.GetEnumValue<Status>(); } },
                 {"userTimezone", n => { UserTimezone = n.GetStringValue(); } },

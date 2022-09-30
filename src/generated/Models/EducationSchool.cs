@@ -54,7 +54,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"address", n => { Address = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
                 {"administrativeUnit", n => { AdministrativeUnit = n.GetObjectValue<ApiSdk.Models.AdministrativeUnit>(ApiSdk.Models.AdministrativeUnit.CreateFromDiscriminatorValue); } },
-                {"classes", n => { Classes = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue).ToList(); } },
+                {"classes", n => { Classes = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"externalId", n => { ExternalId = n.GetStringValue(); } },
                 {"externalPrincipalId", n => { ExternalPrincipalId = n.GetStringValue(); } },
@@ -65,7 +65,7 @@ namespace ApiSdk.Models {
                 {"principalEmail", n => { PrincipalEmail = n.GetStringValue(); } },
                 {"principalName", n => { PrincipalName = n.GetStringValue(); } },
                 {"schoolNumber", n => { SchoolNumber = n.GetStringValue(); } },
-                {"users", n => { Users = n.GetCollectionOfObjectValues<EducationUser>(EducationUser.CreateFromDiscriminatorValue).ToList(); } },
+                {"users", n => { Users = n.GetCollectionOfObjectValues<EducationUser>(EducationUser.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

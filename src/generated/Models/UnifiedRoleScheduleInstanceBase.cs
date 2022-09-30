@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class UnifiedRoleScheduleInstanceBase : Entity, IParsable {
         /// <summary>Read-only property with details of the app-specific scope when the assignment or role eligibility is scoped to an app. Nullable.</summary>
         public ApiSdk.Models.AppScope AppScope { get; set; }
@@ -23,7 +24,7 @@ namespace ApiSdk.Models {
         /// <summary>Identifier of the unifiedRoleDefinition object that is being assigned to the principal or that the principal is eligible for.</summary>
         public string RoleDefinitionId { get; set; }
         /// <summary>
-        /// Instantiates a new UnifiedRoleScheduleInstanceBase and sets the default values.
+        /// Instantiates a new unifiedRoleScheduleInstanceBase and sets the default values.
         /// </summary>
         public UnifiedRoleScheduleInstanceBase() : base() {
             OdataType = "#microsoft.graph.unifiedRoleScheduleInstanceBase";
@@ -34,8 +35,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new UnifiedRoleScheduleInstanceBase CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.unifiedRoleAssignmentScheduleInstance" => new UnifiedRoleAssignmentScheduleInstance(),
                 "#microsoft.graph.unifiedRoleEligibilityScheduleInstance" => new UnifiedRoleEligibilityScheduleInstance(),

@@ -43,11 +43,11 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to childFolders for me
+        /// Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user&apos;s default contact folder.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to childFolders for me";
+            command.Description = "Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user's default contact folder.";
             // Create options for all the parameters
             var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
             };
@@ -98,11 +98,11 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// The collection of child folders in the folder. Navigation property. Read-only. Nullable.
+        /// Get a collection of child folders under the specified contact folder.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of child folders in the folder. Navigation property. Read-only. Nullable.";
+            command.Description = "Get a collection of child folders under the specified contact folder.";
             // Create options for all the parameters
             var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
             };
@@ -215,7 +215,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of child folders in the folder. Navigation property. Read-only. Nullable.
+        /// Get a collection of child folders under the specified contact folder.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChildFoldersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -235,7 +235,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to childFolders for me
+        /// Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user&apos;s default contact folder.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -262,7 +262,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The collection of child folders in the folder. Navigation property. Read-only. Nullable.</summary>
+        /// <summary>Get a collection of child folders under the specified contact folder.</summary>
         public class ChildFoldersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

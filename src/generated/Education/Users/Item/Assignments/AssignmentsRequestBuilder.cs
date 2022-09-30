@@ -101,11 +101,11 @@ namespace ApiSdk.Education.Users.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// Assignments belonging to the user.
+        /// Returns a list of educationAssignment assigned to a educationUser for all classes.  This method allows a caller to find all the **assignments** belonging to a student or a teacher in a single call rather than having to request **assignments** from each **class**. The **assignment** list contains what is needed to get the detailed information for the **assignment** from within the **class** namespace. Use the methods defined for the **assignment** for all other operations.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Assignments belonging to the user.";
+            command.Description = "Returns a list of educationAssignment assigned to a educationUser for all classes.  This method allows a caller to find all the **assignments** belonging to a student or a teacher in a single call rather than having to request **assignments** from each **class**. The **assignment** list contains what is needed to get the detailed information for the **assignment** from within the **class** namespace. Use the methods defined for the **assignment** for all other operations.";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
@@ -224,7 +224,7 @@ namespace ApiSdk.Education.Users.Item.Assignments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Assignments belonging to the user.
+        /// Returns a list of educationAssignment assigned to a educationUser for all classes.  This method allows a caller to find all the **assignments** belonging to a student or a teacher in a single call rather than having to request **assignments** from each **class**. The **assignment** list contains what is needed to get the detailed information for the **assignment** from within the **class** namespace. Use the methods defined for the **assignment** for all other operations.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AssignmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -271,7 +271,7 @@ namespace ApiSdk.Education.Users.Item.Assignments {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>Assignments belonging to the user.</summary>
+        /// <summary>Returns a list of educationAssignment assigned to a educationUser for all classes.  This method allows a caller to find all the **assignments** belonging to a student or a teacher in a single call rather than having to request **assignments** from each **class**. The **assignment** list contains what is needed to get the detailed information for the **assignment** from within the **class** namespace. Use the methods defined for the **assignment** for all other operations.</summary>
         public class AssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

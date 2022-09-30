@@ -40,10 +40,10 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"acceptMappedClaims", n => { AcceptMappedClaims = n.GetBoolValue(); } },
-                {"knownClientApplications", n => { KnownClientApplications = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"oauth2PermissionScopes", n => { Oauth2PermissionScopes = n.GetCollectionOfObjectValues<PermissionScope>(PermissionScope.CreateFromDiscriminatorValue).ToList(); } },
+                {"knownClientApplications", n => { KnownClientApplications = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"oauth2PermissionScopes", n => { Oauth2PermissionScopes = n.GetCollectionOfObjectValues<PermissionScope>(PermissionScope.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"preAuthorizedApplications", n => { PreAuthorizedApplications = n.GetCollectionOfObjectValues<PreAuthorizedApplication>(PreAuthorizedApplication.CreateFromDiscriminatorValue).ToList(); } },
+                {"preAuthorizedApplications", n => { PreAuthorizedApplications = n.GetCollectionOfObjectValues<PreAuthorizedApplication>(PreAuthorizedApplication.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"requestedAccessTokenVersion", n => { RequestedAccessTokenVersion = n.GetIntValue(); } },
             };
         }

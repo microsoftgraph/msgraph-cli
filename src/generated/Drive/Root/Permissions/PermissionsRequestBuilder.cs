@@ -89,11 +89,11 @@ namespace ApiSdk.Drive.Root.Permissions {
             return command;
         }
         /// <summary>
-        /// The set of permissions for the item. Read-only. Nullable.
+        /// List the effective sharing permissions on a driveItem.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The set of permissions for the item. Read-only. Nullable.";
+            command.Description = "List the effective sharing permissions on a driveItem.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Drive.Root.Permissions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The set of permissions for the item. Read-only. Nullable.
+        /// List the effective sharing permissions on a driveItem.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PermissionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -247,7 +247,7 @@ namespace ApiSdk.Drive.Root.Permissions {
             }
             return requestInfo;
         }
-        /// <summary>The set of permissions for the item. Read-only. Nullable.</summary>
+        /// <summary>List the effective sharing permissions on a driveItem.</summary>
         public class PermissionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -40,11 +40,11 @@ namespace ApiSdk.Chats.Item.Tabs {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to tabs for chats
+        /// Add (pin) a tab to the specified chat. The corresponding app must already be installed in the chat.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to tabs for chats";
+            command.Description = "Add (pin) a tab to the specified chat. The corresponding app must already be installed in the chat.";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -95,11 +95,11 @@ namespace ApiSdk.Chats.Item.Tabs {
             return command;
         }
         /// <summary>
-        /// A collection of all the tabs in the chat. Nullable.
+        /// Retrieve the list of tabs in the specified chat.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of all the tabs in the chat. Nullable.";
+            command.Description = "Retrieve the list of tabs in the specified chat.";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.Chats.Item.Tabs {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of all the tabs in the chat. Nullable.
+        /// Retrieve the list of tabs in the specified chat.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TabsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -238,7 +238,7 @@ namespace ApiSdk.Chats.Item.Tabs {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to tabs for chats
+        /// Add (pin) a tab to the specified chat. The corresponding app must already be installed in the chat.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -259,7 +259,7 @@ namespace ApiSdk.Chats.Item.Tabs {
             }
             return requestInfo;
         }
-        /// <summary>A collection of all the tabs in the chat. Nullable.</summary>
+        /// <summary>Retrieve the list of tabs in the specified chat.</summary>
         public class TabsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -22,11 +22,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.ResetToDefault {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action resetToDefault
+        /// Reset a caseSettings object to the default values.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action resetToDefault";
+            command.Description = "Reset a caseSettings object to the default values.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.ResetToDefault {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action resetToDefault
+        /// Reset a caseSettings object to the default values.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<ResetToDefaultRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

@@ -100,11 +100,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests {
             return command;
         }
         /// <summary>
-        /// Get offerShiftRequests from users
+        /// Retrieve the properties and relationships of all offerShiftRequest objects in a team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get offerShiftRequests from users";
+            command.Description = "Retrieve the properties and relationships of all offerShiftRequest objects in a team.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -229,7 +229,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get offerShiftRequests from users
+        /// Retrieve the properties and relationships of all offerShiftRequest objects in a team.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OfferShiftRequestsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -270,7 +270,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests {
             }
             return requestInfo;
         }
-        /// <summary>Get offerShiftRequests from users</summary>
+        /// <summary>Retrieve the properties and relationships of all offerShiftRequest objects in a team.</summary>
         public class OfferShiftRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -39,11 +39,11 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.MessageRules {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to messageRules for me
+        /// Create a messageRule object by specifying a set of conditions and actions.  Outlook carries out those actions if an incoming message in the user&apos;s Inbox meets the specified conditions.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to messageRules for me";
+            command.Description = "Create a messageRule object by specifying a set of conditions and actions.  Outlook carries out those actions if an incoming message in the user's Inbox meets the specified conditions.";
             // Create options for all the parameters
             var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };
@@ -100,11 +100,11 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.MessageRules {
             return command;
         }
         /// <summary>
-        /// The collection of rules that apply to the user&apos;s Inbox folder.
+        /// Get all the messageRule objects defined for the user&apos;s inbox.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of rules that apply to the user's Inbox folder.";
+            command.Description = "Get all the messageRule objects defined for the user's inbox.";
             // Create options for all the parameters
             var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };
@@ -216,7 +216,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.MessageRules {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of rules that apply to the user&apos;s Inbox folder.
+        /// Get all the messageRule objects defined for the user&apos;s inbox.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MessageRulesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -236,7 +236,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.MessageRules {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to messageRules for me
+        /// Create a messageRule object by specifying a set of conditions and actions.  Outlook carries out those actions if an incoming message in the user&apos;s Inbox meets the specified conditions.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -257,7 +257,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.MessageRules {
             }
             return requestInfo;
         }
-        /// <summary>The collection of rules that apply to the user&apos;s Inbox folder.</summary>
+        /// <summary>Get all the messageRule objects defined for the user&apos;s inbox.</summary>
         public class MessageRulesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

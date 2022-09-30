@@ -39,11 +39,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to shifts for users
+        /// Create a new shift instance in a schedule.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to shifts for users";
+            command.Description = "Create a new shift instance in a schedule.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -100,11 +100,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
             return command;
         }
         /// <summary>
-        /// The shifts in the schedule.
+        /// Get the list of shift instances in a schedule.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The shifts in the schedule.";
+            command.Description = "Get the list of shift instances in a schedule.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -222,7 +222,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The shifts in the schedule.
+        /// Get the list of shift instances in a schedule.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ShiftsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -242,7 +242,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to shifts for users
+        /// Create a new shift instance in a schedule.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -263,7 +263,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
             }
             return requestInfo;
         }
-        /// <summary>The shifts in the schedule.</summary>
+        /// <summary>Get the list of shift instances in a schedule.</summary>
         public class ShiftsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

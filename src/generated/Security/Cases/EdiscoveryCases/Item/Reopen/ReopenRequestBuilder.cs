@@ -22,11 +22,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Reopen {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action reopen
+        /// Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action reopen";
+            command.Description = "Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Reopen {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action reopen
+        /// Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<ReopenRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

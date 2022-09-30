@@ -94,11 +94,11 @@ namespace ApiSdk.Groups.Item.Team.Schedule.OfferShiftRequests {
             return command;
         }
         /// <summary>
-        /// Get offerShiftRequests from groups
+        /// Retrieve the properties and relationships of all offerShiftRequest objects in a team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get offerShiftRequests from groups";
+            command.Description = "Retrieve the properties and relationships of all offerShiftRequest objects in a team.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.OfferShiftRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get offerShiftRequests from groups
+        /// Retrieve the properties and relationships of all offerShiftRequest objects in a team.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OfferShiftRequestsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +258,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.OfferShiftRequests {
             }
             return requestInfo;
         }
-        /// <summary>Get offerShiftRequests from groups</summary>
+        /// <summary>Retrieve the properties and relationships of all offerShiftRequest objects in a team.</summary>
         public class OfferShiftRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

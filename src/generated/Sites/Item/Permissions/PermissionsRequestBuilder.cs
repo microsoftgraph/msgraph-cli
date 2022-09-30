@@ -40,11 +40,11 @@ namespace ApiSdk.Sites.Item.Permissions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to permissions for sites
+        /// Create a new permission object on a site.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to permissions for sites";
+            command.Description = "Create a new permission object on a site.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -95,11 +95,11 @@ namespace ApiSdk.Sites.Item.Permissions {
             return command;
         }
         /// <summary>
-        /// The permissions associated with the site. Nullable.
+        /// Get the permission resources from the permissions navigation property on a site.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The permissions associated with the site. Nullable.";
+            command.Description = "Get the permission resources from the permissions navigation property on a site.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -218,7 +218,7 @@ namespace ApiSdk.Sites.Item.Permissions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The permissions associated with the site. Nullable.
+        /// Get the permission resources from the permissions navigation property on a site.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PermissionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -238,7 +238,7 @@ namespace ApiSdk.Sites.Item.Permissions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to permissions for sites
+        /// Create a new permission object on a site.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -259,7 +259,7 @@ namespace ApiSdk.Sites.Item.Permissions {
             }
             return requestInfo;
         }
-        /// <summary>The permissions associated with the site. Nullable.</summary>
+        /// <summary>Get the permission resources from the permissions navigation property on a site.</summary>
         public class PermissionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

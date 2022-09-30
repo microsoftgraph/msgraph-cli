@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         /// <summary>The date and time the file was last shared. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? SharedDateTime { get; set; }
         /// <summary>The sharingReference property</summary>
-        public ResourceReference SharingReference { get; set; }
+        public ResourceReference SharingReference { get; private set; }
         /// <summary>The subject with which the document was shared.</summary>
         public string SharingSubject { get; set; }
         /// <summary>Determines the way the document was shared, can be by a &apos;Link&apos;, &apos;Attachment&apos;, &apos;Group&apos;, &apos;Site&apos;.</summary>
@@ -56,7 +56,6 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<InsightIdentity>("sharedBy", SharedBy);
             writer.WriteDateTimeOffsetValue("sharedDateTime", SharedDateTime);
-            writer.WriteObjectValue<ResourceReference>("sharingReference", SharingReference);
             writer.WriteStringValue("sharingSubject", SharingSubject);
             writer.WriteStringValue("sharingType", SharingType);
             writer.WriteAdditionalData(AdditionalData);

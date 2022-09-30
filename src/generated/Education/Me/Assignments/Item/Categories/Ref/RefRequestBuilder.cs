@@ -23,11 +23,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
+        /// List all the categories associated with an assignment.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "When set, enables users to easily find assignments of a given type.  Read-only. Nullable.";
+            command.Description = "List all the categories associated with an assignment.";
             // Create options for all the parameters
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
@@ -166,7 +166,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
+        /// List all the categories associated with an assignment.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RefRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -206,7 +206,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Ref {
             }
             return requestInfo;
         }
-        /// <summary>When set, enables users to easily find assignments of a given type.  Read-only. Nullable.</summary>
+        /// <summary>List all the categories associated with an assignment.</summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -44,11 +44,11 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to notebooks for sites
+        /// Create a new OneNote notebook.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to notebooks for sites";
+            command.Description = "Create a new OneNote notebook.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -105,11 +105,11 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks {
             return command;
         }
         /// <summary>
-        /// The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
+        /// Retrieve a list of notebook objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.";
+            command.Description = "Retrieve a list of notebook objects.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -228,7 +228,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
+        /// Retrieve a list of notebook objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<NotebooksRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -248,7 +248,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to notebooks for sites
+        /// Create a new OneNote notebook.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -277,7 +277,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks {
             _ = includePersonalNotebooks ?? throw new ArgumentNullException(nameof(includePersonalNotebooks));
             return new GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(PathParameters, RequestAdapter, includePersonalNotebooks);
         }
-        /// <summary>The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.</summary>
+        /// <summary>Retrieve a list of notebook objects.</summary>
         public class NotebooksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

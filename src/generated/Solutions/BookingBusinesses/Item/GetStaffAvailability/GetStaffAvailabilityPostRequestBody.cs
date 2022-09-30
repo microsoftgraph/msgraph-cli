@@ -35,7 +35,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"endDateTime", n => { EndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                {"staffIds", n => { StaffIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"staffIds", n => { StaffIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"startDateTime", n => { StartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }

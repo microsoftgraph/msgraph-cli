@@ -39,11 +39,11 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to homeRealmDiscoveryPolicies for policies
+        /// Create a new homeRealmDiscoveryPolicy object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to homeRealmDiscoveryPolicies for policies";
+            command.Description = "Create a new homeRealmDiscoveryPolicy object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -88,11 +88,11 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies {
             return command;
         }
         /// <summary>
-        /// The policy to control Azure AD authentication behavior for federated users.
+        /// Get a list of homeRealmDiscoveryPolicy objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The policy to control Azure AD authentication behavior for federated users.";
+            command.Description = "Get a list of homeRealmDiscoveryPolicy objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The policy to control Azure AD authentication behavior for federated users.
+        /// Get a list of homeRealmDiscoveryPolicy objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<HomeRealmDiscoveryPoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -225,7 +225,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to homeRealmDiscoveryPolicies for policies
+        /// Create a new homeRealmDiscoveryPolicy object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -246,7 +246,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies {
             }
             return requestInfo;
         }
-        /// <summary>The policy to control Azure AD authentication behavior for federated users.</summary>
+        /// <summary>Get a list of homeRealmDiscoveryPolicy objects.</summary>
         public class HomeRealmDiscoveryPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to call the instantiate method.</summary>
     public class Endpoint : DirectoryObject, IParsable {
         /// <summary>The capability property</summary>
         public string Capability { get; set; }
@@ -16,7 +17,7 @@ namespace ApiSdk.Models {
         /// <summary>The uri property</summary>
         public string Uri { get; set; }
         /// <summary>
-        /// Instantiates a new Endpoint and sets the default values.
+        /// Instantiates a new endpoint and sets the default values.
         /// </summary>
         public Endpoint() : base() {
             OdataType = "#microsoft.graph.endpoint";

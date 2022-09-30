@@ -23,11 +23,11 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submit {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action submit
+        /// Indicate that a student is done with the work and is ready to hand in the assignment.  This method changes the status of the submission from `working` to `submitted`. During the submit process, all the resources are copied to the **submittedResources** bucket. The teacher will be looking at the submitted resources list for grading. A teacher can also submit a student&apos;s assignment on their behalf.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action submit";
+            command.Description = "Indicate that a student is done with the work and is ready to hand in the assignment.  This method changes the status of the submission from `working` to `submitted`. During the submit process, all the resources are copied to the **submittedResources** bucket. The teacher will be looking at the submitted resources list for grading. A teacher can also submit a student's assignment on their behalf.";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
@@ -95,7 +95,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submit {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action submit
+        /// Indicate that a student is done with the work and is ready to hand in the assignment.  This method changes the status of the submission from `working` to `submitted`. During the submit process, all the resources are copied to the **submittedResources** bucket. The teacher will be looking at the submitted resources list for grading. A teacher can also submit a student&apos;s assignment on their behalf.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<SubmitRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

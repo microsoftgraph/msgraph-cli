@@ -36,9 +36,9 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"owner", n => { Owner = n.GetStringValue(); } },
-                {"properties", n => { Properties = n.GetCollectionOfObjectValues<ExtensionSchemaProperty>(ExtensionSchemaProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"properties", n => { Properties = n.GetCollectionOfObjectValues<ExtensionSchemaProperty>(ExtensionSchemaProperty.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"status", n => { Status = n.GetStringValue(); } },
-                {"targetTypes", n => { TargetTypes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"targetTypes", n => { TargetTypes = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

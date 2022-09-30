@@ -104,11 +104,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             return command;
         }
         /// <summary>
-        /// Get participants from communications
+        /// Retrieve a list of participant objects in the call.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get participants from communications";
+            command.Description = "Retrieve a list of participant objects in the call.";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };
@@ -227,7 +227,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get participants from communications
+        /// Retrieve a list of participant objects in the call.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ParticipantsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -268,7 +268,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             }
             return requestInfo;
         }
-        /// <summary>Get participants from communications</summary>
+        /// <summary>Retrieve a list of participant objects in the call.</summary>
         public class ParticipantsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

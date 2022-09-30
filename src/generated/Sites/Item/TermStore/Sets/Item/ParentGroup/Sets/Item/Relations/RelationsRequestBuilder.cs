@@ -109,11 +109,11 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Relations 
             return command;
         }
         /// <summary>
-        /// Indicates which terms have been pinned or reused directly under the set.
+        /// Get the different relation of a [term] or [set] from the relations navigation property.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Indicates which terms have been pinned or reused directly under the set.";
+            command.Description = "Get the different relation of a [term] or [set] from the relations navigation property.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -244,7 +244,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Relations 
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Indicates which terms have been pinned or reused directly under the set.
+        /// Get the different relation of a [term] or [set] from the relations navigation property.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RelationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -285,7 +285,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Relations 
             }
             return requestInfo;
         }
-        /// <summary>Indicates which terms have been pinned or reused directly under the set.</summary>
+        /// <summary>Get the different relation of a [term] or [set] from the relations navigation property.</summary>
         public class RelationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

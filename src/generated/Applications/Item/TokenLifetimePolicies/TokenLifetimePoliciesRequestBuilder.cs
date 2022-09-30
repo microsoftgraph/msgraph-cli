@@ -38,11 +38,11 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies {
             return command;
         }
         /// <summary>
-        /// Get tokenLifetimePolicies from applications
+        /// List the tokenLifetimePolicy objects that are assigned to an application.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get tokenLifetimePolicies from applications";
+            command.Description = "List the tokenLifetimePolicy objects that are assigned to an application.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -168,7 +168,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get tokenLifetimePolicies from applications
+        /// List the tokenLifetimePolicy objects that are assigned to an application.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TokenLifetimePoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -187,7 +187,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies {
             }
             return requestInfo;
         }
-        /// <summary>Get tokenLifetimePolicies from applications</summary>
+        /// <summary>List the tokenLifetimePolicy objects that are assigned to an application.</summary>
         public class TokenLifetimePoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

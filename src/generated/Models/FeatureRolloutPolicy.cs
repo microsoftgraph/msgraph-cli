@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class FeatureRolloutPolicy : Entity, IParsable {
         /// <summary>Nullable. Specifies a list of directoryObjects that feature is enabled for.</summary>
         public List<DirectoryObject> AppliesTo { get; set; }
@@ -18,7 +19,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether the feature rollout is enabled.</summary>
         public bool? IsEnabled { get; set; }
         /// <summary>
-        /// Instantiates a new FeatureRolloutPolicy and sets the default values.
+        /// Instantiates a new featureRolloutPolicy and sets the default values.
         /// </summary>
         public FeatureRolloutPolicy() : base() {
             OdataType = "#microsoft.graph.featureRolloutPolicy";
@@ -36,7 +37,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"appliesTo", n => { AppliesTo = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"appliesTo", n => { AppliesTo = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"feature", n => { Feature = n.GetEnumValue<StagedFeatureName>(); } },

@@ -22,11 +22,11 @@ namespace ApiSdk.Applications.Item.RemovePassword {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action removePassword
+        /// Remove a password from an application.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action removePassword";
+            command.Description = "Remove a password from an application.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -69,7 +69,7 @@ namespace ApiSdk.Applications.Item.RemovePassword {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action removePassword
+        /// Remove a password from an application.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

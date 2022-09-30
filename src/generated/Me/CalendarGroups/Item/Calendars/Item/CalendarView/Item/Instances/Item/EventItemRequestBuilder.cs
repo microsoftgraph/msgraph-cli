@@ -68,56 +68,6 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
-        /// <summary>
-        /// Delete navigation property instances for me
-        /// </summary>
-        public Command BuildDeleteCommand() {
-            var command = new Command("delete");
-            command.Description = "Delete navigation property instances for me";
-            // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
-            };
-            calendarGroupIdOption.IsRequired = true;
-            command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
-            };
-            calendarIdOption.IsRequired = true;
-            command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
-            };
-            eventIdOption.IsRequired = true;
-            command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
-            };
-            eventId1Option.IsRequired = true;
-            command.AddOption(eventId1Option);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
-            };
-            ifMatchOption.IsRequired = false;
-            command.AddOption(ifMatchOption);
-            command.SetHandler(async (invocationContext) => {
-                var calendarGroupId = invocationContext.ParseResult.GetValueForOption(calendarGroupIdOption);
-                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
-                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
-                var eventId1 = invocationContext.ParseResult.GetValueForOption(eventId1Option);
-                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
-                });
-                requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
-                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
-                requestInfo.PathParameters.Add("event%2Did", eventId);
-                requestInfo.PathParameters.Add("event%2Did1", eventId1);
-                requestInfo.Headers["If-Match"] = ifMatch;
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
         public Command BuildDismissReminderCommand() {
             var command = new Command("dismiss-reminder");
             var builder = new DismissReminderRequestBuilder(PathParameters, RequestAdapter);
@@ -220,58 +170,6 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
-        /// <summary>
-        /// Update the navigation property instances in me
-        /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
-            command.Description = "Update the navigation property instances in me";
-            // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
-            };
-            calendarGroupIdOption.IsRequired = true;
-            command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
-            };
-            calendarIdOption.IsRequired = true;
-            command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
-            };
-            eventIdOption.IsRequired = true;
-            command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
-            };
-            eventId1Option.IsRequired = true;
-            command.AddOption(eventId1Option);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (invocationContext) => {
-                var calendarGroupId = invocationContext.ParseResult.GetValueForOption(calendarGroupIdOption);
-                var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
-                var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
-                var eventId1 = invocationContext.ParseResult.GetValueForOption(eventId1Option);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Event>(Event.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
-                });
-                requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
-                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
-                requestInfo.PathParameters.Add("event%2Did", eventId);
-                requestInfo.PathParameters.Add("event%2Did1", eventId1);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
@@ -307,24 +205,6 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property instances for me
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<EventItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.DELETE,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new EventItemRequestBuilderDeleteRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>
         /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -344,41 +224,6 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
             }
             return requestInfo;
         }
-        /// <summary>
-        /// Update the navigation property instances in me
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreatePatchRequestInformation(Event body, Action<EventItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new EventItemRequestBuilderPatchRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class EventItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new EventItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public EventItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
         /// <summary>The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.</summary>
         public class EventItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
@@ -397,20 +242,6 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
             /// Instantiates a new EventItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public EventItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class EventItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new EventItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public EventItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }

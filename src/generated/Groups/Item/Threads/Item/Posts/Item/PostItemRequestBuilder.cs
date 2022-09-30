@@ -39,50 +39,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
-        /// <summary>
-        /// Delete navigation property posts for groups
-        /// </summary>
-        public Command BuildDeleteCommand() {
-            var command = new Command("delete");
-            command.Description = "Delete navigation property posts for groups";
-            // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
-            };
-            groupIdOption.IsRequired = true;
-            command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
-            };
-            conversationThreadIdOption.IsRequired = true;
-            command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
-            };
-            postIdOption.IsRequired = true;
-            command.AddOption(postIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
-            };
-            ifMatchOption.IsRequired = false;
-            command.AddOption(ifMatchOption);
-            command.SetHandler(async (invocationContext) => {
-                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
-                var conversationThreadId = invocationContext.ParseResult.GetValueForOption(conversationThreadIdOption);
-                var postId = invocationContext.ParseResult.GetValueForOption(postIdOption);
-                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
-                });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
-                requestInfo.PathParameters.Add("post%2Did", postId);
-                requestInfo.Headers["If-Match"] = ifMatch;
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
             var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
@@ -175,7 +131,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             var command = new Command("in-reply-to");
             var builder = new InReplyToRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAttachmentsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
             command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -192,52 +147,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Update the navigation property posts in groups
-        /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
-            command.Description = "Update the navigation property posts in groups";
-            // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
-            };
-            groupIdOption.IsRequired = true;
-            command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
-            };
-            conversationThreadIdOption.IsRequired = true;
-            command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
-            };
-            postIdOption.IsRequired = true;
-            command.AddOption(postIdOption);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (invocationContext) => {
-                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
-                var conversationThreadId = invocationContext.ParseResult.GetValueForOption(conversationThreadIdOption);
-                var postId = invocationContext.ParseResult.GetValueForOption(postIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Post>(Post.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
-                });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
-                requestInfo.PathParameters.Add("post%2Did", postId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
             return command;
         }
         public Command BuildReplyCommand() {
@@ -269,24 +178,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property posts for groups
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<PostItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.DELETE,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new PostItemRequestBuilderDeleteRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>
         /// Get posts from groups
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -305,41 +196,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Update the navigation property posts in groups
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreatePatchRequestInformation(Post body, Action<PostItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new PostItemRequestBuilderPatchRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class PostItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new PostItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public PostItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
         }
         /// <summary>Get posts from groups</summary>
         public class PostItemRequestBuilderGetQueryParameters {
@@ -362,20 +218,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             /// Instantiates a new PostItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public PostItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class PostItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new PostItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public PostItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }

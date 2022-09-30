@@ -39,11 +39,11 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to partners for policies
+        /// Create a new partner configuration in a cross-tenant access policy.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to partners for policies";
+            command.Description = "Create a new partner configuration in a cross-tenant access policy.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -88,11 +88,11 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners {
             return command;
         }
         /// <summary>
-        /// Defines partner-specific configurations for external Azure Active Directory organizations.
+        /// Get a list of all partner configurations within a cross-tenant access policy.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Defines partner-specific configurations for external Azure Active Directory organizations.";
+            command.Description = "Get a list of all partner configurations within a cross-tenant access policy.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Defines partner-specific configurations for external Azure Active Directory organizations.
+        /// Get a list of all partner configurations within a cross-tenant access policy.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PartnersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -225,7 +225,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to partners for policies
+        /// Create a new partner configuration in a cross-tenant access policy.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -246,7 +246,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners {
             }
             return requestInfo;
         }
-        /// <summary>Defines partner-specific configurations for external Azure Active Directory organizations.</summary>
+        /// <summary>Get a list of all partner configurations within a cross-tenant access policy.</summary>
         public class PartnersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

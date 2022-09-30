@@ -38,11 +38,11 @@ namespace ApiSdk.Education.Classes.Item.Members {
             return command;
         }
         /// <summary>
-        /// All users in the class. Nullable.
+        /// Retrieves the educationUser members of an educationClass.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All users in the class. Nullable.";
+            command.Description = "Retrieves the educationUser members of an educationClass.";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
@@ -168,7 +168,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// All users in the class. Nullable.
+        /// Retrieves the educationUser members of an educationClass.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MembersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -187,7 +187,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
             }
             return requestInfo;
         }
-        /// <summary>All users in the class. Nullable.</summary>
+        /// <summary>Retrieves the educationUser members of an educationClass.</summary>
         public class MembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

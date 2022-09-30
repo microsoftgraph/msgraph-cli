@@ -22,11 +22,11 @@ namespace ApiSdk.Groups.Item.RemoveFavorite {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action removeFavorite
+        /// Remove the group from the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action removeFavorite";
+            command.Description = "Remove the group from the list of the current user's favorite groups. Supported for Microsoft 365 groups only.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Groups.Item.RemoveFavorite {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action removeFavorite
+        /// Remove the group from the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<RemoveFavoriteRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

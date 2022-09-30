@@ -18,9 +18,9 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether open shifts are enabled for the schedule.</summary>
         public bool? OpenShiftsEnabled { get; set; }
         /// <summary>The status of the schedule provisioning. The possible values are notStarted, running, completed, failed.</summary>
-        public OperationStatus? ProvisionStatus { get; set; }
+        public OperationStatus? ProvisionStatus { get; private set; }
         /// <summary>Additional information about why schedule provisioning failed.</summary>
-        public string ProvisionStatusCode { get; set; }
+        public string ProvisionStatusCode { get; private set; }
         /// <summary>The logical grouping of users in the schedule (usually by role).</summary>
         public List<SchedulingGroup> SchedulingGroups { get; set; }
         /// <summary>The shifts in the schedule.</summary>
@@ -63,24 +63,24 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"enabled", n => { Enabled = n.GetBoolValue(); } },
-                {"offerShiftRequests", n => { OfferShiftRequests = n.GetCollectionOfObjectValues<OfferShiftRequest>(OfferShiftRequest.CreateFromDiscriminatorValue).ToList(); } },
+                {"offerShiftRequests", n => { OfferShiftRequests = n.GetCollectionOfObjectValues<OfferShiftRequest>(OfferShiftRequest.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"offerShiftRequestsEnabled", n => { OfferShiftRequestsEnabled = n.GetBoolValue(); } },
-                {"openShiftChangeRequests", n => { OpenShiftChangeRequests = n.GetCollectionOfObjectValues<OpenShiftChangeRequest>(OpenShiftChangeRequest.CreateFromDiscriminatorValue).ToList(); } },
-                {"openShifts", n => { OpenShifts = n.GetCollectionOfObjectValues<OpenShift>(OpenShift.CreateFromDiscriminatorValue).ToList(); } },
+                {"openShiftChangeRequests", n => { OpenShiftChangeRequests = n.GetCollectionOfObjectValues<OpenShiftChangeRequest>(OpenShiftChangeRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"openShifts", n => { OpenShifts = n.GetCollectionOfObjectValues<OpenShift>(OpenShift.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"openShiftsEnabled", n => { OpenShiftsEnabled = n.GetBoolValue(); } },
                 {"provisionStatus", n => { ProvisionStatus = n.GetEnumValue<OperationStatus>(); } },
                 {"provisionStatusCode", n => { ProvisionStatusCode = n.GetStringValue(); } },
-                {"schedulingGroups", n => { SchedulingGroups = n.GetCollectionOfObjectValues<SchedulingGroup>(SchedulingGroup.CreateFromDiscriminatorValue).ToList(); } },
-                {"shifts", n => { Shifts = n.GetCollectionOfObjectValues<Shift>(Shift.CreateFromDiscriminatorValue).ToList(); } },
-                {"swapShiftsChangeRequests", n => { SwapShiftsChangeRequests = n.GetCollectionOfObjectValues<SwapShiftsChangeRequest>(SwapShiftsChangeRequest.CreateFromDiscriminatorValue).ToList(); } },
+                {"schedulingGroups", n => { SchedulingGroups = n.GetCollectionOfObjectValues<SchedulingGroup>(SchedulingGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"shifts", n => { Shifts = n.GetCollectionOfObjectValues<Shift>(Shift.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"swapShiftsChangeRequests", n => { SwapShiftsChangeRequests = n.GetCollectionOfObjectValues<SwapShiftsChangeRequest>(SwapShiftsChangeRequest.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"swapShiftsRequestsEnabled", n => { SwapShiftsRequestsEnabled = n.GetBoolValue(); } },
                 {"timeClockEnabled", n => { TimeClockEnabled = n.GetBoolValue(); } },
-                {"timeOffReasons", n => { TimeOffReasons = n.GetCollectionOfObjectValues<TimeOffReason>(TimeOffReason.CreateFromDiscriminatorValue).ToList(); } },
-                {"timeOffRequests", n => { TimeOffRequests = n.GetCollectionOfObjectValues<TimeOffRequest>(TimeOffRequest.CreateFromDiscriminatorValue).ToList(); } },
+                {"timeOffReasons", n => { TimeOffReasons = n.GetCollectionOfObjectValues<TimeOffReason>(TimeOffReason.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"timeOffRequests", n => { TimeOffRequests = n.GetCollectionOfObjectValues<TimeOffRequest>(TimeOffRequest.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"timeOffRequestsEnabled", n => { TimeOffRequestsEnabled = n.GetBoolValue(); } },
-                {"timesOff", n => { TimesOff = n.GetCollectionOfObjectValues<TimeOff>(TimeOff.CreateFromDiscriminatorValue).ToList(); } },
+                {"timesOff", n => { TimesOff = n.GetCollectionOfObjectValues<TimeOff>(TimeOff.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"timeZone", n => { TimeZone = n.GetStringValue(); } },
-                {"workforceIntegrationIds", n => { WorkforceIntegrationIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"workforceIntegrationIds", n => { WorkforceIntegrationIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>
@@ -96,8 +96,6 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<OpenShiftChangeRequest>("openShiftChangeRequests", OpenShiftChangeRequests);
             writer.WriteCollectionOfObjectValues<OpenShift>("openShifts", OpenShifts);
             writer.WriteBoolValue("openShiftsEnabled", OpenShiftsEnabled);
-            writer.WriteEnumValue<OperationStatus>("provisionStatus", ProvisionStatus);
-            writer.WriteStringValue("provisionStatusCode", ProvisionStatusCode);
             writer.WriteCollectionOfObjectValues<SchedulingGroup>("schedulingGroups", SchedulingGroups);
             writer.WriteCollectionOfObjectValues<Shift>("shifts", Shifts);
             writer.WriteCollectionOfObjectValues<SwapShiftsChangeRequest>("swapShiftsChangeRequests", SwapShiftsChangeRequests);

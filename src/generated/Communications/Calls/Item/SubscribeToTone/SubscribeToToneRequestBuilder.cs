@@ -23,11 +23,11 @@ namespace ApiSdk.Communications.Calls.Item.SubscribeToTone {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action subscribeToTone
+        /// Subscribe to DTMF (dual-tone multi-frequency signaling). This allows you to be notified when the user presses keys on a &apos;dialpad&apos;.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action subscribeToTone";
+            command.Description = "Subscribe to DTMF (dual-tone multi-frequency signaling). This allows you to be notified when the user presses keys on a 'dialpad'.";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };
@@ -91,7 +91,7 @@ namespace ApiSdk.Communications.Calls.Item.SubscribeToTone {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action subscribeToTone
+        /// Subscribe to DTMF (dual-tone multi-frequency signaling). This allows you to be notified when the user presses keys on a &apos;dialpad&apos;.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

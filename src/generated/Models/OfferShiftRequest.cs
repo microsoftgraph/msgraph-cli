@@ -7,7 +7,7 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class OfferShiftRequest : ScheduleChangeRequest, IParsable {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
-        public DateTimeOffset? RecipientActionDateTime { get; set; }
+        public DateTimeOffset? RecipientActionDateTime { get; private set; }
         /// <summary>Custom message sent by recipient of the offer shift request.</summary>
         public string RecipientActionMessage { get; set; }
         /// <summary>User ID of the recipient of the offer shift request.</summary>
@@ -26,8 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new OfferShiftRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.swapShiftsChangeRequest" => new SwapShiftsChangeRequest(),
                 _ => new OfferShiftRequest(),
@@ -51,7 +50,6 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteDateTimeOffsetValue("recipientActionDateTime", RecipientActionDateTime);
             writer.WriteStringValue("recipientActionMessage", RecipientActionMessage);
             writer.WriteStringValue("recipientUserId", RecipientUserId);
             writer.WriteStringValue("senderShiftId", SenderShiftId);

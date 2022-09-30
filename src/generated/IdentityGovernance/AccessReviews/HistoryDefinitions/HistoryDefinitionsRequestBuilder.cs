@@ -40,11 +40,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to historyDefinitions for identityGovernance
+        /// Create a new accessReviewHistoryDefinition object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to historyDefinitions for identityGovernance";
+            command.Description = "Create a new accessReviewHistoryDefinition object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -89,11 +89,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             return command;
         }
         /// <summary>
-        /// Represents a collection of access review history data and the scopes used to collect that data.
+        /// Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents a collection of access review history data and the scopes used to collect that data.";
+            command.Description = "Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents a collection of access review history data and the scopes used to collect that data.
+        /// Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<HistoryDefinitionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -226,7 +226,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to historyDefinitions for identityGovernance
+        /// Create a new accessReviewHistoryDefinition object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             }
             return requestInfo;
         }
-        /// <summary>Represents a collection of access review history data and the scopes used to collect that data.</summary>
+        /// <summary>Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.</summary>
         public class HistoryDefinitionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -39,11 +39,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to notes for privacy
+        /// Create a new authoredNote object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to notes for privacy";
+            command.Description = "Create a new authoredNote object.";
             // Create options for all the parameters
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
             };
@@ -94,11 +94,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return command;
         }
         /// <summary>
-        /// List of notes associcated with the request.
+        /// Get the list of authored notes assoicated with a subject rights request. 
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List of notes associcated with the request.";
+            command.Description = "Get the list of authored notes assoicated with a subject rights request. ";
             // Create options for all the parameters
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// List of notes associcated with the request.
+        /// Get the list of authored notes assoicated with a subject rights request. 
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<NotesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -237,7 +237,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to notes for privacy
+        /// Create a new authoredNote object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             }
             return requestInfo;
         }
-        /// <summary>List of notes associcated with the request.</summary>
+        /// <summary>Get the list of authored notes assoicated with a subject rights request. </summary>
         public class NotesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

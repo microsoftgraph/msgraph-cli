@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
         /// <summary>Specifies the version of this policy. When the policy is updated, this version is updated. Read-only.</summary>
         public int? Version { get; set; }
         /// <summary>
-        /// Instantiates a new AdminConsentRequestPolicy and sets the default values.
+        /// Instantiates a new adminConsentRequestPolicy and sets the default values.
         /// </summary>
         public AdminConsentRequestPolicy() : base() {
             OdataType = "#microsoft.graph.adminConsentRequestPolicy";
@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
                 {"notifyReviewers", n => { NotifyReviewers = n.GetBoolValue(); } },
                 {"remindersEnabled", n => { RemindersEnabled = n.GetBoolValue(); } },
                 {"requestDurationInDays", n => { RequestDurationInDays = n.GetIntValue(); } },
-                {"reviewers", n => { Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue).ToList(); } },
+                {"reviewers", n => { Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"version", n => { Version = n.GetIntValue(); } },
             };
         }

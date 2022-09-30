@@ -22,11 +22,11 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action setPresence
+        /// Set the state of a user&apos;s presence session as an application.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setPresence";
+            command.Description = "Set the state of a user's presence session as an application.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -69,7 +69,7 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action setPresence
+        /// Set the state of a user&apos;s presence session as an application.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

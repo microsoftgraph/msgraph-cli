@@ -18,7 +18,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// <summary>Specifies if the property is searchable. Only properties of type String or StringCollection can be searchable. Non-searchable properties are not added to the search index. Optional.</summary>
         public bool? IsSearchable { get; set; }
         /// <summary>Specifies one or more well-known tags added against a property. Labels help Microsoft Search understand the semantics of the data in the connection. Adding appropriate labels would result in an enhanced search experience (e.g. better relevance). The possible values are: title, url, createdBy, lastModifiedBy, authors, createdDateTime, lastModifiedDateTime, fileName, fileExtension, unknownFutureValue. Optional.</summary>
-        public List<string> Labels { get; set; }
+        public List<Label?> Labels { get; set; }
         /// <summary>The name of the property. Maximum 32 characters. Only alphanumeric characters allowed. For example, each string may not contain control characters, whitespace, or any of the following: :, ;, ,, (, ), [, ], {, }, %, $, +, !, *, =, &amp;, ?, @, #, /, ~, &apos;, &apos;, &lt;, &gt;, `, ^.  Required.</summary>
         public string Name { get; set; }
         /// <summary>The OdataType property</summary>
@@ -45,12 +45,12 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"aliases", n => { Aliases = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"aliases", n => { Aliases = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"isQueryable", n => { IsQueryable = n.GetBoolValue(); } },
                 {"isRefinable", n => { IsRefinable = n.GetBoolValue(); } },
                 {"isRetrievable", n => { IsRetrievable = n.GetBoolValue(); } },
                 {"isSearchable", n => { IsSearchable = n.GetBoolValue(); } },
-                {"labels", n => { Labels = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"labels", n => { Labels = n.GetCollectionOfEnumValues<Label>()?.ToList(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<PropertyType>(); } },
@@ -67,7 +67,7 @@ namespace ApiSdk.Models.ExternalConnectors {
             writer.WriteBoolValue("isRefinable", IsRefinable);
             writer.WriteBoolValue("isRetrievable", IsRetrievable);
             writer.WriteBoolValue("isSearchable", IsSearchable);
-            writer.WriteCollectionOfPrimitiveValues<string>("labels", Labels);
+            writer.WriteCollectionOfEnumValues<Label>("labels", Labels);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<PropertyType>("type", Type);

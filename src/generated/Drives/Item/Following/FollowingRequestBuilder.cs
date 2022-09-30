@@ -38,11 +38,11 @@ namespace ApiSdk.Drives.Item.Following {
             return command;
         }
         /// <summary>
-        /// The list of items the user is following. Only in OneDrive for Business.
+        /// List the items that have been followed by the signed in user.This collection includes items that are in the user&apos;s drive as well as items they have access to from other drives.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of items the user is following. Only in OneDrive for Business.";
+            command.Description = "List the items that have been followed by the signed in user.This collection includes items that are in the user's drive as well as items they have access to from other drives.";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -161,7 +161,7 @@ namespace ApiSdk.Drives.Item.Following {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The list of items the user is following. Only in OneDrive for Business.
+        /// List the items that have been followed by the signed in user.This collection includes items that are in the user&apos;s drive as well as items they have access to from other drives.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<FollowingRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -180,7 +180,7 @@ namespace ApiSdk.Drives.Item.Following {
             }
             return requestInfo;
         }
-        /// <summary>The list of items the user is following. Only in OneDrive for Business.</summary>
+        /// <summary>List the items that have been followed by the signed in user.This collection includes items that are in the user&apos;s drive as well as items they have access to from other drives.</summary>
         public class FollowingRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

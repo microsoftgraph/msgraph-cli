@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public enum RatingAppsType {
         /// <summary>Default value, allow all apps content</summary>
         AllAllowed,

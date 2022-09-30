@@ -23,11 +23,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Unsubmit {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action unsubmit
+        /// Indicate that a student wants to work on the submission of the assignment after it was turned in.  This method changes the status of the submission from `submitted` to `working`. During the submit process, all the resources are copied from **submittedResources** to  **workingResources**. The teacher will be looking at the working resources list for grading. A teacher can also unsubmit a student&apos;s assignment on their behalf.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action unsubmit";
+            command.Description = "Indicate that a student wants to work on the submission of the assignment after it was turned in.  This method changes the status of the submission from `submitted` to `working`. During the submit process, all the resources are copied from **submittedResources** to  **workingResources**. The teacher will be looking at the working resources list for grading. A teacher can also unsubmit a student's assignment on their behalf.";
             // Create options for all the parameters
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
@@ -89,7 +89,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Unsubmit {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action unsubmit
+        /// Indicate that a student wants to work on the submission of the assignment after it was turned in.  This method changes the status of the submission from `submitted` to `working`. During the submit process, all the resources are copied from **submittedResources** to  **workingResources**. The teacher will be looking at the working resources list for grading. A teacher can also unsubmit a student&apos;s assignment on their behalf.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<UnsubmitRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

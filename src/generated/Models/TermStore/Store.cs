@@ -11,7 +11,7 @@ namespace ApiSdk.Models.TermStore {
         public List<Group> Groups { get; set; }
         /// <summary>List of languages for the term store.</summary>
         public List<string> LanguageTags { get; set; }
-        /// <summary>Collection of all sets available in the term store.</summary>
+        /// <summary>Collection of all sets available in the term store. This relationship can only be used to load a specific term set.</summary>
         public List<Set> Sets { get; set; }
         /// <summary>
         /// Instantiates a new store and sets the default values.
@@ -33,9 +33,9 @@ namespace ApiSdk.Models.TermStore {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"defaultLanguageTag", n => { DefaultLanguageTag = n.GetStringValue(); } },
-                {"groups", n => { Groups = n.GetCollectionOfObjectValues<Group>(Group.CreateFromDiscriminatorValue).ToList(); } },
-                {"languageTags", n => { LanguageTags = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"sets", n => { Sets = n.GetCollectionOfObjectValues<Set>(Set.CreateFromDiscriminatorValue).ToList(); } },
+                {"groups", n => { Groups = n.GetCollectionOfObjectValues<Group>(Group.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"languageTags", n => { LanguageTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"sets", n => { Sets = n.GetCollectionOfObjectValues<Set>(Set.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

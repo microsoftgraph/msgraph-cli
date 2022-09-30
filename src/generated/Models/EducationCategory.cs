@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationCategory : Entity, IParsable {
         /// <summary>Unique identifier for the category.</summary>
         public string DisplayName { get; set; }
         /// <summary>
-        /// Instantiates a new EducationCategory and sets the default values.
+        /// Instantiates a new educationCategory and sets the default values.
         /// </summary>
         public EducationCategory() : base() {
             OdataType = "#microsoft.graph.educationCategory";

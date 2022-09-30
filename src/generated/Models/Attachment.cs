@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class Attachment : Entity, IParsable {
         /// <summary>The MIME type.</summary>
         public string ContentType { get; set; }
@@ -29,8 +29,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new Attachment CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.fileAttachment" => new FileAttachment(),
                 "#microsoft.graph.itemAttachment" => new ItemAttachment(),

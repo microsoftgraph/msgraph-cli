@@ -30,7 +30,6 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
             var builder = new AttachmentItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         public Command BuildCountCommand() {
@@ -40,11 +39,11 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to attachments for me
+        /// Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. 
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to attachments for me";
+            command.Description = "Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. ";
             // Create options for all the parameters
             var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
             };
@@ -101,11 +100,11 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// The fileAttachment and itemAttachment attachments for the message.
+        /// Retrieve a list of attachment objects attached to a message.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The fileAttachment and itemAttachment attachments for the message.";
+            command.Description = "Retrieve a list of attachment objects attached to a message.";
             // Create options for all the parameters
             var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
             };
@@ -218,7 +217,7 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The fileAttachment and itemAttachment attachments for the message.
+        /// Retrieve a list of attachment objects attached to a message.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AttachmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -238,7 +237,7 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to attachments for me
+        /// Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. 
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -259,7 +258,7 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
             }
             return requestInfo;
         }
-        /// <summary>The fileAttachment and itemAttachment attachments for the message.</summary>
+        /// <summary>Retrieve a list of attachment objects attached to a message.</summary>
         public class AttachmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

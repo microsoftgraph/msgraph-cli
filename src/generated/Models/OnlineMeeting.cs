@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the cloudCommunications singleton.</summary>
     public class OnlineMeeting : Entity, IParsable {
         /// <summary>Indicates whether attendees can turn on their camera.</summary>
         public bool? AllowAttendeeToEnableCamera { get; set; }
@@ -52,7 +53,7 @@ namespace ApiSdk.Models {
         /// <summary>The video teleconferencing ID. Read-only.</summary>
         public string VideoTeleconferenceId { get; set; }
         /// <summary>
-        /// Instantiates a new OnlineMeeting and sets the default values.
+        /// Instantiates a new onlineMeeting and sets the default values.
         /// </summary>
         public OnlineMeeting() : base() {
             OdataType = "#microsoft.graph.onlineMeeting";
@@ -75,7 +76,7 @@ namespace ApiSdk.Models {
                 {"allowedPresenters", n => { AllowedPresenters = n.GetEnumValue<OnlineMeetingPresenters>(); } },
                 {"allowMeetingChat", n => { AllowMeetingChat = n.GetEnumValue<MeetingChatMode>(); } },
                 {"allowTeamworkReactions", n => { AllowTeamworkReactions = n.GetBoolValue(); } },
-                {"attendanceReports", n => { AttendanceReports = n.GetCollectionOfObjectValues<MeetingAttendanceReport>(MeetingAttendanceReport.CreateFromDiscriminatorValue).ToList(); } },
+                {"attendanceReports", n => { AttendanceReports = n.GetCollectionOfObjectValues<MeetingAttendanceReport>(MeetingAttendanceReport.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"attendeeReport", n => { AttendeeReport = n.GetByteArrayValue(); } },
                 {"audioConferencing", n => { AudioConferencing = n.GetObjectValue<ApiSdk.Models.AudioConferencing>(ApiSdk.Models.AudioConferencing.CreateFromDiscriminatorValue); } },
                 {"broadcastSettings", n => { BroadcastSettings = n.GetObjectValue<BroadcastMeetingSettings>(BroadcastMeetingSettings.CreateFromDiscriminatorValue); } },

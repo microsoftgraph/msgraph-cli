@@ -39,11 +39,11 @@ namespace ApiSdk.Identity.UserFlowAttributes {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to userFlowAttributes for identity
+        /// Create a new identityUserFlowAttribute object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to userFlowAttributes for identity";
+            command.Description = "Create a new identityUserFlowAttribute object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -88,11 +88,11 @@ namespace ApiSdk.Identity.UserFlowAttributes {
             return command;
         }
         /// <summary>
-        /// Represents entry point for identity userflow attributes.
+        /// Retrieve a list of identityUserFlowAttribute objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents entry point for identity userflow attributes.";
+            command.Description = "Retrieve a list of identityUserFlowAttribute objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Identity.UserFlowAttributes {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents entry point for identity userflow attributes.
+        /// Retrieve a list of identityUserFlowAttribute objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UserFlowAttributesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -225,7 +225,7 @@ namespace ApiSdk.Identity.UserFlowAttributes {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to userFlowAttributes for identity
+        /// Create a new identityUserFlowAttribute object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -246,7 +246,7 @@ namespace ApiSdk.Identity.UserFlowAttributes {
             }
             return requestInfo;
         }
-        /// <summary>Represents entry point for identity userflow attributes.</summary>
+        /// <summary>Retrieve a list of identityUserFlowAttribute objects.</summary>
         public class UserFlowAttributesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

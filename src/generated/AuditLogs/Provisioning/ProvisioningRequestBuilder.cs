@@ -88,11 +88,11 @@ namespace ApiSdk.AuditLogs.Provisioning {
             return command;
         }
         /// <summary>
-        /// Get provisioning from auditLogs
+        /// Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. 
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get provisioning from auditLogs";
+            command.Description = "Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. ";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.AuditLogs.Provisioning {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get provisioning from auditLogs
+        /// Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. 
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ProvisioningRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.AuditLogs.Provisioning {
             }
             return requestInfo;
         }
-        /// <summary>Get provisioning from auditLogs</summary>
+        /// <summary>Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. </summary>
         public class ProvisioningRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

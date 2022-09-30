@@ -40,11 +40,11 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.Items.Item.DocumentSetVersions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to documentSetVersions for groups
+        /// Create a new version of a document set item in a list.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to documentSetVersions for groups";
+            command.Description = "Create a new version of a document set item in a list.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -107,11 +107,11 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.Items.Item.DocumentSetVersions {
             return command;
         }
         /// <summary>
-        /// Version information for a document set version created by a user.
+        /// Get a list of the versions of a document set item in a list.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Version information for a document set version created by a user.";
+            command.Description = "Get a list of the versions of a document set item in a list.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -242,7 +242,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.Items.Item.DocumentSetVersions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Version information for a document set version created by a user.
+        /// Get a list of the versions of a document set item in a list.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DocumentSetVersionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -262,7 +262,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.Items.Item.DocumentSetVersions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to documentSetVersions for groups
+        /// Create a new version of a document set item in a list.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -283,7 +283,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.Items.Item.DocumentSetVersions {
             }
             return requestInfo;
         }
-        /// <summary>Version information for a document set version created by a user.</summary>
+        /// <summary>Get a list of the versions of a document set item in a list.</summary>
         public class DocumentSetVersionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

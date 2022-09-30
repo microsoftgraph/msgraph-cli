@@ -41,11 +41,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to reviewSets for security
+        /// Create a new ediscoveryReviewSet object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to reviewSets for security";
+            command.Description = "Create a new ediscoveryReviewSet object.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -96,11 +96,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             return command;
         }
         /// <summary>
-        /// Returns a list of eDiscoveryReviewSet objects in the case.
+        /// Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Returns a list of eDiscoveryReviewSet objects in the case.";
+            command.Description = "Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -219,7 +219,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Returns a list of eDiscoveryReviewSet objects in the case.
+        /// Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ReviewSetsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -239,7 +239,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to reviewSets for security
+        /// Create a new ediscoveryReviewSet object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -260,7 +260,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             }
             return requestInfo;
         }
-        /// <summary>Returns a list of eDiscoveryReviewSet objects in the case.</summary>
+        /// <summary>Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.</summary>
         public class ReviewSetsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

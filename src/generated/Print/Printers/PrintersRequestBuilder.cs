@@ -50,11 +50,11 @@ namespace ApiSdk.Print.Printers {
             return command;
         }
         /// <summary>
-        /// The list of printers registered in the tenant.
+        /// Retrieve the list of **printers** that are registered in the tenant.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of printers registered in the tenant.";
+            command.Description = "Retrieve the list of **printers** that are registered in the tenant.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -167,7 +167,7 @@ namespace ApiSdk.Print.Printers {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The list of printers registered in the tenant.
+        /// Retrieve the list of **printers** that are registered in the tenant.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PrintersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -208,7 +208,7 @@ namespace ApiSdk.Print.Printers {
             }
             return requestInfo;
         }
-        /// <summary>The list of printers registered in the tenant.</summary>
+        /// <summary>Retrieve the list of **printers** that are registered in the tenant.</summary>
         public class PrintersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

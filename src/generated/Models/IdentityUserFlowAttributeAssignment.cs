@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class IdentityUserFlowAttributeAssignment : Entity, IParsable {
         /// <summary>The display name of the identityUserFlowAttribute within a user flow.</summary>
         public string DisplayName { get; set; }
@@ -18,7 +19,7 @@ namespace ApiSdk.Models {
         /// <summary>The userInputType property</summary>
         public IdentityUserFlowAttributeInputType? UserInputType { get; set; }
         /// <summary>
-        /// Instantiates a new IdentityUserFlowAttributeAssignment and sets the default values.
+        /// Instantiates a new identityUserFlowAttributeAssignment and sets the default values.
         /// </summary>
         public IdentityUserFlowAttributeAssignment() : base() {
             OdataType = "#microsoft.graph.identityUserFlowAttributeAssignment";
@@ -40,7 +41,7 @@ namespace ApiSdk.Models {
                 {"isOptional", n => { IsOptional = n.GetBoolValue(); } },
                 {"requiresVerification", n => { RequiresVerification = n.GetBoolValue(); } },
                 {"userAttribute", n => { UserAttribute = n.GetObjectValue<IdentityUserFlowAttribute>(IdentityUserFlowAttribute.CreateFromDiscriminatorValue); } },
-                {"userAttributeValues", n => { UserAttributeValues = n.GetCollectionOfObjectValues<UserAttributeValuesItem>(UserAttributeValuesItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"userAttributeValues", n => { UserAttributeValues = n.GetCollectionOfObjectValues<UserAttributeValuesItem>(UserAttributeValuesItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"userInputType", n => { UserInputType = n.GetEnumValue<IdentityUserFlowAttributeInputType>(); } },
             };
         }

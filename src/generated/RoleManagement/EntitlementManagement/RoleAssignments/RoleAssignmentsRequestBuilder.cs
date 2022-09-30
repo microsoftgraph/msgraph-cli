@@ -43,11 +43,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to roleAssignments for roleManagement
+        /// Create a new unifiedRoleAssignment object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to roleAssignments for roleManagement";
+            command.Description = "Create a new unifiedRoleAssignment object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -92,11 +92,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments {
             return command;
         }
         /// <summary>
-        /// Resource to grant access to users or groups.
+        /// Get a list of unifiedRoleAssignment objects for the RBAC provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Resource to grant access to users or groups.";
+            command.Description = "Get a list of unifiedRoleAssignment objects for the RBAC provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -209,7 +209,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Resource to grant access to users or groups.
+        /// Get a list of unifiedRoleAssignment objects for the RBAC provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RoleAssignmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -229,7 +229,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to roleAssignments for roleManagement
+        /// Create a new unifiedRoleAssignment object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -250,7 +250,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments {
             }
             return requestInfo;
         }
-        /// <summary>Resource to grant access to users or groups.</summary>
+        /// <summary>Get a list of unifiedRoleAssignment objects for the RBAC provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)</summary>
         public class RoleAssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class PlannerBucket : Entity, IParsable {
         /// <summary>Name of the bucket.</summary>
         public string Name { get; set; }
@@ -36,7 +36,7 @@ namespace ApiSdk.Models {
                 {"name", n => { Name = n.GetStringValue(); } },
                 {"orderHint", n => { OrderHint = n.GetStringValue(); } },
                 {"planId", n => { PlanId = n.GetStringValue(); } },
-                {"tasks", n => { Tasks = n.GetCollectionOfObjectValues<PlannerTask>(PlannerTask.CreateFromDiscriminatorValue).ToList(); } },
+                {"tasks", n => { Tasks = n.GetCollectionOfObjectValues<PlannerTask>(PlannerTask.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

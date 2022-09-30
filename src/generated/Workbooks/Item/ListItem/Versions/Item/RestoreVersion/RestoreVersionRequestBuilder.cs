@@ -22,11 +22,11 @@ namespace ApiSdk.Workbooks.Item.ListItem.Versions.Item.RestoreVersion {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action restoreVersion
+        /// Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action restoreVersion";
+            command.Description = "Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item.";
             // Create options for all the parameters
             var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.Workbooks.Item.ListItem.Versions.Item.RestoreVersion {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action restoreVersion
+        /// Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<RestoreVersionRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

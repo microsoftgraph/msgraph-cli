@@ -97,11 +97,11 @@ namespace ApiSdk.Groups.Item.Planner.Plans {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans owned by the group.
+        /// Retrieve a list of **plannerPlan** objects owned by a group object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Returns the plannerPlans owned by the group.";
+            command.Description = "Retrieve a list of **plannerPlan** objects owned by a group object.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -220,7 +220,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans owned by the group.
+        /// Retrieve a list of **plannerPlan** objects owned by a group object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<PlansRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -261,7 +261,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. Returns the plannerPlans owned by the group.</summary>
+        /// <summary>Retrieve a list of **plannerPlan** objects owned by a group object.</summary>
         public class PlansRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

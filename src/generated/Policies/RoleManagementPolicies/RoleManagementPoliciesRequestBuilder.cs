@@ -90,11 +90,11 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
             return command;
         }
         /// <summary>
-        /// Specifies the various policies associated with scopes and roles.
+        /// Get role management policies and their details.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Specifies the various policies associated with scopes and roles.";
+            command.Description = "Get role management policies and their details.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -207,7 +207,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Specifies the various policies associated with scopes and roles.
+        /// Get role management policies and their details.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RoleManagementPoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -248,7 +248,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
             }
             return requestInfo;
         }
-        /// <summary>Specifies the various policies associated with scopes and roles.</summary>
+        /// <summary>Get role management policies and their details.</summary>
         public class RoleManagementPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

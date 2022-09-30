@@ -90,11 +90,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// References to a directory or domain of another organization whose users can request access.
+        /// Retrieve a list of connectedOrganization objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "References to a directory or domain of another organization whose users can request access.";
+            command.Description = "Retrieve a list of connectedOrganization objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -207,7 +207,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// References to a directory or domain of another organization whose users can request access.
+        /// Retrieve a list of connectedOrganization objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ConnectedOrganizationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -248,7 +248,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             }
             return requestInfo;
         }
-        /// <summary>References to a directory or domain of another organization whose users can request access.</summary>
+        /// <summary>Retrieve a list of connectedOrganization objects.</summary>
         public class ConnectedOrganizationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -37,11 +37,11 @@ namespace ApiSdk.Education.Me.TaughtClasses {
             return command;
         }
         /// <summary>
-        /// Classes for which the user is a teacher.
+        /// Get the educationClass resources owned by an educationUser.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Classes for which the user is a teacher.";
+            command.Description = "Get the educationClass resources owned by an educationUser.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -154,7 +154,7 @@ namespace ApiSdk.Education.Me.TaughtClasses {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Classes for which the user is a teacher.
+        /// Get the educationClass resources owned by an educationUser.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TaughtClassesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -173,7 +173,7 @@ namespace ApiSdk.Education.Me.TaughtClasses {
             }
             return requestInfo;
         }
-        /// <summary>Classes for which the user is a teacher.</summary>
+        /// <summary>Get the educationClass resources owned by an educationUser.</summary>
         public class TaughtClassesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

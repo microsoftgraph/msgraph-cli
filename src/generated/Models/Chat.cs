@@ -20,6 +20,8 @@ namespace ApiSdk.Models {
         public List<ChatMessage> Messages { get; set; }
         /// <summary>Represents details about an online meeting. If the chat isn&apos;t associated with an online meeting, the property is empty. Read-only.</summary>
         public TeamworkOnlineMeetingInfo OnlineMeetingInfo { get; set; }
+        /// <summary>A collection of all the pinned messages in the chat. Nullable.</summary>
+        public List<PinnedChatMessageInfo> PinnedMessages { get; set; }
         /// <summary>A collection of all the tabs in the chat. Nullable.</summary>
         public List<TeamsTab> Tabs { get; set; }
         /// <summary>The identifier of the tenant in which the chat was created. Read-only.</summary>
@@ -49,12 +51,13 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"chatType", n => { ChatType = n.GetEnumValue<ChatType>(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"installedApps", n => { InstalledApps = n.GetCollectionOfObjectValues<TeamsAppInstallation>(TeamsAppInstallation.CreateFromDiscriminatorValue).ToList(); } },
+                {"installedApps", n => { InstalledApps = n.GetCollectionOfObjectValues<TeamsAppInstallation>(TeamsAppInstallation.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"members", n => { Members = n.GetCollectionOfObjectValues<ConversationMember>(ConversationMember.CreateFromDiscriminatorValue).ToList(); } },
-                {"messages", n => { Messages = n.GetCollectionOfObjectValues<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue).ToList(); } },
+                {"members", n => { Members = n.GetCollectionOfObjectValues<ConversationMember>(ConversationMember.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"messages", n => { Messages = n.GetCollectionOfObjectValues<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"onlineMeetingInfo", n => { OnlineMeetingInfo = n.GetObjectValue<TeamworkOnlineMeetingInfo>(TeamworkOnlineMeetingInfo.CreateFromDiscriminatorValue); } },
-                {"tabs", n => { Tabs = n.GetCollectionOfObjectValues<TeamsTab>(TeamsTab.CreateFromDiscriminatorValue).ToList(); } },
+                {"pinnedMessages", n => { PinnedMessages = n.GetCollectionOfObjectValues<PinnedChatMessageInfo>(PinnedChatMessageInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"tabs", n => { Tabs = n.GetCollectionOfObjectValues<TeamsTab>(TeamsTab.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"tenantId", n => { TenantId = n.GetStringValue(); } },
                 {"topic", n => { Topic = n.GetStringValue(); } },
                 {"webUrl", n => { WebUrl = n.GetStringValue(); } },
@@ -74,6 +77,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<ConversationMember>("members", Members);
             writer.WriteCollectionOfObjectValues<ChatMessage>("messages", Messages);
             writer.WriteObjectValue<TeamworkOnlineMeetingInfo>("onlineMeetingInfo", OnlineMeetingInfo);
+            writer.WriteCollectionOfObjectValues<PinnedChatMessageInfo>("pinnedMessages", PinnedMessages);
             writer.WriteCollectionOfObjectValues<TeamsTab>("tabs", Tabs);
             writer.WriteStringValue("tenantId", TenantId);
             writer.WriteStringValue("topic", Topic);

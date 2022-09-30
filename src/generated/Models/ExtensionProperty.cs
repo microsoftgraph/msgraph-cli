@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of authenticationMethodConfiguration entities.</summary>
+    /// <summary>Provides operations to call the instantiate method.</summary>
     public class ExtensionProperty : DirectoryObject, IParsable {
         /// <summary>Display name of the application object on which this extension property is defined. Read-only.</summary>
         public string AppDisplayName { get; set; }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models {
                 {"dataType", n => { DataType = n.GetStringValue(); } },
                 {"isSyncedFromOnPremises", n => { IsSyncedFromOnPremises = n.GetBoolValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
-                {"targetObjects", n => { TargetObjects = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"targetObjects", n => { TargetObjects = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

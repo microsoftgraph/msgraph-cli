@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class AccessReviewInstanceDecisionItem : Entity, IParsable {
         /// <summary>The identifier of the accessReviewInstance parent. Supports $select. Read-only.</summary>
         public string AccessReviewId { get; set; }
@@ -32,7 +33,7 @@ namespace ApiSdk.Models {
         /// <summary>The timestamp when the review decision occurred. Supports $select. Read-only.</summary>
         public DateTimeOffset? ReviewedDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new AccessReviewInstanceDecisionItem and sets the default values.
+        /// Instantiates a new accessReviewInstanceDecisionItem and sets the default values.
         /// </summary>
         public AccessReviewInstanceDecisionItem() : base() {
             OdataType = "#microsoft.graph.accessReviewInstanceDecisionItem";

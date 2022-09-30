@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public enum SafeSearchFilterType {
         /// <summary>User Defined, default value, no intent.</summary>
         UserDefined,

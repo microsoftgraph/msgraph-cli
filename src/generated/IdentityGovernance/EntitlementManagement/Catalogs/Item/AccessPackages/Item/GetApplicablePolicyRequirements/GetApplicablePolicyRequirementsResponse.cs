@@ -30,7 +30,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<AccessPackageAssignmentRequestRequirements>(AccessPackageAssignmentRequestRequirements.CreateFromDiscriminatorValue).ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfObjectValues<AccessPackageAssignmentRequestRequirements>(AccessPackageAssignmentRequestRequirements.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

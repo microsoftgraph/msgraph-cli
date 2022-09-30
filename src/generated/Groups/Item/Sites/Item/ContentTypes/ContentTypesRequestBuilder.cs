@@ -63,11 +63,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to contentTypes for groups
+        /// Create a new [contentType][] in a [site][].
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to contentTypes for groups";
+            command.Description = "Create a new [contentType][] in a [site][].";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -124,11 +124,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes {
             return command;
         }
         /// <summary>
-        /// The collection of content types defined for this site.
+        /// Get the collection of [contentType][contentType] resources in a [site][].
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of content types defined for this site.";
+            command.Description = "Get the collection of [contentType][contentType] resources in a [site][].";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -253,7 +253,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of content types defined for this site.
+        /// Get the collection of [contentType][contentType] resources in a [site][].
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ContentTypesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -273,7 +273,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to contentTypes for groups
+        /// Create a new [contentType][] in a [site][].
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -300,7 +300,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes {
         public GetCompatibleHubContentTypesRequestBuilder GetCompatibleHubContentTypes() {
             return new GetCompatibleHubContentTypesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The collection of content types defined for this site.</summary>
+        /// <summary>Get the collection of [contentType][contentType] resources in a [site][].</summary>
         public class ContentTypesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

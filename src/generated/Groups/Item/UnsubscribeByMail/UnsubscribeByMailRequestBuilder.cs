@@ -22,11 +22,11 @@ namespace ApiSdk.Groups.Item.UnsubscribeByMail {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action unsubscribeByMail
+        /// Calling this method will prevent the current user from receiving email notifications for this group about new posts, events, and files in that group. Supported for Microsoft 365 groups only.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action unsubscribeByMail";
+            command.Description = "Calling this method will prevent the current user from receiving email notifications for this group about new posts, events, and files in that group. Supported for Microsoft 365 groups only.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Groups.Item.UnsubscribeByMail {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action unsubscribeByMail
+        /// Calling this method will prevent the current user from receiving email notifications for this group about new posts, events, and files in that group. Supported for Microsoft 365 groups only.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<UnsubscribeByMailRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

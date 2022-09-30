@@ -44,11 +44,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             return command;
         }
         /// <summary>
-        /// Create new navigation property to sections for groups
+        /// Create a new onenoteSection in the specified section group.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to sections for groups";
+            command.Description = "Create a new onenoteSection in the specified section group.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -117,11 +117,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             return command;
         }
         /// <summary>
-        /// The sections in the section group. Read-only. Nullable.
+        /// Retrieve a list of onenoteSection objects from the specified section group.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The sections in the section group. Read-only. Nullable.";
+            command.Description = "Retrieve a list of onenoteSection objects from the specified section group.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -258,7 +258,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The sections in the section group. Read-only. Nullable.
+        /// Retrieve a list of onenoteSection objects from the specified section group.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<SectionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -278,7 +278,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to sections for groups
+        /// Create a new onenoteSection in the specified section group.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -299,7 +299,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             }
             return requestInfo;
         }
-        /// <summary>The sections in the section group. Read-only. Nullable.</summary>
+        /// <summary>Retrieve a list of onenoteSection objects from the specified section group.</summary>
         public class SectionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

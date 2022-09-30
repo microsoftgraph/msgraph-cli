@@ -42,11 +42,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to onlineMeetings for users
+        /// Create an online meeting on behalf of a user.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to onlineMeetings for users";
+            command.Description = "Create an online meeting on behalf of a user.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -103,11 +103,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
             return command;
         }
         /// <summary>
-        /// Get onlineMeetings from users
+        /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report is an online meeting artifact. For details, see Online meeting artifacts and permissions.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get onlineMeetings from users";
+            command.Description = "Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report is an online meeting artifact. For details, see Online meeting artifacts and permissions.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -226,7 +226,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get onlineMeetings from users
+        /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report is an online meeting artifact. For details, see Online meeting artifacts and permissions.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OnlineMeetingsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -246,7 +246,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to onlineMeetings for users
+        /// Create an online meeting on behalf of a user.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -267,7 +267,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
             }
             return requestInfo;
         }
-        /// <summary>Get onlineMeetings from users</summary>
+        /// <summary>Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report is an online meeting artifact. For details, see Online meeting artifacts and permissions.</summary>
         public class OnlineMeetingsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

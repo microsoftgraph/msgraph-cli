@@ -46,11 +46,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to members for users
+        /// Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to members for users";
+            command.Description = "Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -113,11 +113,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members {
             return command;
         }
         /// <summary>
-        /// A collection of membership records associated with the channel.
+        /// Retrieve a list of conversationMembers from a channel.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of membership records associated with the channel.";
+            command.Description = "Retrieve a list of conversationMembers from a channel.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -248,7 +248,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of membership records associated with the channel.
+        /// Retrieve a list of conversationMembers from a channel.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MembersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -268,7 +268,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to members for users
+        /// Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -289,7 +289,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members {
             }
             return requestInfo;
         }
-        /// <summary>A collection of membership records associated with the channel.</summary>
+        /// <summary>Retrieve a list of conversationMembers from a channel.</summary>
         public class MembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

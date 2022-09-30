@@ -39,11 +39,11 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to members for connections
+        /// Create an identity resource for a new member in an externalGroup.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to members for connections";
+            command.Description = "Create an identity resource for a new member in an externalGroup.";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
             };
@@ -249,7 +249,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to members for connections
+        /// Create an identity resource for a new member in an externalGroup.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

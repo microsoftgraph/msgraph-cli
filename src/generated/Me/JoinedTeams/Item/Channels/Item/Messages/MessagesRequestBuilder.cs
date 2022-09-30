@@ -42,11 +42,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to messages for me
+        /// Send a new chatMessage in the specified channel or a chat.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to messages for me";
+            command.Description = "Send a new chatMessage in the specified channel or a chat.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -103,11 +103,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages {
             return command;
         }
         /// <summary>
-        /// A collection of all the messages in the channel. A navigation property. Nullable.
+        /// Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API. 
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of all the messages in the channel. A navigation property. Nullable.";
+            command.Description = "Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API. ";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -232,7 +232,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of all the messages in the channel. A navigation property. Nullable.
+        /// Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API. 
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<MessagesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -252,7 +252,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to messages for me
+        /// Send a new chatMessage in the specified channel or a chat.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -279,7 +279,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages {
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>A collection of all the messages in the channel. A navigation property. Nullable.</summary>
+        /// <summary>Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API. </summary>
         public class MessagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

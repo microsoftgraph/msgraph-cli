@@ -37,11 +37,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.IncomingChannels {
             return command;
         }
         /// <summary>
-        /// List of channels shared with the team.
+        /// Get the list of incoming channels (channels shared with a team).
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List of channels shared with the team.";
+            command.Description = "Get the list of incoming channels (channels shared with a team).";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -160,7 +160,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.IncomingChannels {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// List of channels shared with the team.
+        /// Get the list of incoming channels (channels shared with a team).
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IncomingChannelsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -179,7 +179,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.IncomingChannels {
             }
             return requestInfo;
         }
-        /// <summary>List of channels shared with the team.</summary>
+        /// <summary>Get the list of incoming channels (channels shared with a team).</summary>
         public class IncomingChannelsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class WindowsPhone81GeneralConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Value indicating whether this policy only applies to Windows Phone 8.1. This property is read-only.</summary>
-        public bool? ApplyOnlyToWindowsPhone81 { get; set; }
+        public bool? ApplyOnlyToWindowsPhone81 { get; private set; }
         /// <summary>Indicates whether or not to block copy paste.</summary>
         public bool? AppsBlockCopyPaste { get; set; }
         /// <summary>Indicates whether or not to block bluetooth.</summary>
@@ -88,7 +88,7 @@ namespace ApiSdk.Models {
                 {"cameraBlocked", n => { CameraBlocked = n.GetBoolValue(); } },
                 {"cellularBlockWifiTethering", n => { CellularBlockWifiTethering = n.GetBoolValue(); } },
                 {"compliantAppListType", n => { CompliantAppListType = n.GetEnumValue<AppListType>(); } },
-                {"compliantAppsList", n => { CompliantAppsList = n.GetCollectionOfObjectValues<AppListItem>(AppListItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"compliantAppsList", n => { CompliantAppsList = n.GetCollectionOfObjectValues<AppListItem>(AppListItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"diagnosticDataBlockSubmission", n => { DiagnosticDataBlockSubmission = n.GetBoolValue(); } },
                 {"emailBlockAddingAccounts", n => { EmailBlockAddingAccounts = n.GetBoolValue(); } },
                 {"locationServicesBlocked", n => { LocationServicesBlocked = n.GetBoolValue(); } },
@@ -120,7 +120,6 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteBoolValue("applyOnlyToWindowsPhone81", ApplyOnlyToWindowsPhone81);
             writer.WriteBoolValue("appsBlockCopyPaste", AppsBlockCopyPaste);
             writer.WriteBoolValue("bluetoothBlocked", BluetoothBlocked);
             writer.WriteBoolValue("cameraBlocked", CameraBlocked);

@@ -128,46 +128,6 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property temporaryAccessPassMethods in users
-        /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
-            command.Description = "Update the navigation property temporaryAccessPassMethods in users";
-            // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
-            };
-            userIdOption.IsRequired = true;
-            command.AddOption(userIdOption);
-            var temporaryAccessPassAuthenticationMethodIdOption = new Option<string>("--temporary-access-pass-authentication-method-id", description: "key: id of temporaryAccessPassAuthenticationMethod") {
-            };
-            temporaryAccessPassAuthenticationMethodIdOption.IsRequired = true;
-            command.AddOption(temporaryAccessPassAuthenticationMethodIdOption);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            command.SetHandler(async (invocationContext) => {
-                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
-                var temporaryAccessPassAuthenticationMethodId = invocationContext.ParseResult.GetValueForOption(temporaryAccessPassAuthenticationMethodIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<TemporaryAccessPassAuthenticationMethod>(TemporaryAccessPassAuthenticationMethod.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
-                });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("temporaryAccessPassAuthenticationMethod%2Did", temporaryAccessPassAuthenticationMethodId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new TemporaryAccessPassAuthenticationMethodItemRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
@@ -218,27 +178,6 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods.Item {
             }
             return requestInfo;
         }
-        /// <summary>
-        /// Update the navigation property temporaryAccessPassMethods in users
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreatePatchRequestInformation(TemporaryAccessPassAuthenticationMethod body, Action<TemporaryAccessPassAuthenticationMethodItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new TemporaryAccessPassAuthenticationMethodItemRequestBuilderPatchRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
         /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class TemporaryAccessPassAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
@@ -274,20 +213,6 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods.Item {
             /// Instantiates a new TemporaryAccessPassAuthenticationMethodItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public TemporaryAccessPassAuthenticationMethodItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class TemporaryAccessPassAuthenticationMethodItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new TemporaryAccessPassAuthenticationMethodItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public TemporaryAccessPassAuthenticationMethodItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }

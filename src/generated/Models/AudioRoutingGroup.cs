@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the cloudCommunications singleton.</summary>
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class AudioRoutingGroup : Entity, IParsable {
         /// <summary>The receivers property</summary>
         public List<string> Receivers { get; set; }
@@ -31,9 +31,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"receivers", n => { Receivers = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"receivers", n => { Receivers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"routingMode", n => { RoutingMode = n.GetEnumValue<RoutingMode>(); } },
-                {"sources", n => { Sources = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"sources", n => { Sources = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

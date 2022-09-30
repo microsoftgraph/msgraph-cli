@@ -31,11 +31,11 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.FilesFolder {
             return command;
         }
         /// <summary>
-        /// Metadata for the location where the channel&apos;s files are stored.
+        /// Get the metadata for the location where the files of a channel are stored. 
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Metadata for the location where the channel's files are stored.";
+            command.Description = "Get the metadata for the location where the files of a channel are stored. ";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -111,7 +111,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.FilesFolder {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Metadata for the location where the channel&apos;s files are stored.
+        /// Get the metadata for the location where the files of a channel are stored. 
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<FilesFolderRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -130,7 +130,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.FilesFolder {
             }
             return requestInfo;
         }
-        /// <summary>Metadata for the location where the channel&apos;s files are stored.</summary>
+        /// <summary>Get the metadata for the location where the files of a channel are stored. </summary>
         public class FilesFolderRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

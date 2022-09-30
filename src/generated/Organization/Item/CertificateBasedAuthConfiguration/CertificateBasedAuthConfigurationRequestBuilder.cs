@@ -37,11 +37,11 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
             return command;
         }
         /// <summary>
-        /// Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
+        /// Get a list of certificateBasedAuthConfiguration objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.";
+            command.Description = "Get a list of certificateBasedAuthConfiguration objects.";
             // Create options for all the parameters
             var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
             };
@@ -160,7 +160,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
+        /// Get a list of certificateBasedAuthConfiguration objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CertificateBasedAuthConfigurationRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -179,7 +179,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
             }
             return requestInfo;
         }
-        /// <summary>Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.</summary>
+        /// <summary>Get a list of certificateBasedAuthConfiguration objects.</summary>
         public class CertificateBasedAuthConfigurationRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

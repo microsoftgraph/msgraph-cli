@@ -40,11 +40,11 @@ namespace ApiSdk.Identity.ApiConnectors {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to apiConnectors for identity
+        /// Create a new identityApiConnector object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to apiConnectors for identity";
+            command.Description = "Create a new identityApiConnector object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -89,11 +89,11 @@ namespace ApiSdk.Identity.ApiConnectors {
             return command;
         }
         /// <summary>
-        /// Represents entry point for API connectors.
+        /// Read the properties of an identityApiConnector object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents entry point for API connectors.";
+            command.Description = "Read the properties of an identityApiConnector object.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.Identity.ApiConnectors {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents entry point for API connectors.
+        /// Read the properties of an identityApiConnector object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ApiConnectorsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -226,7 +226,7 @@ namespace ApiSdk.Identity.ApiConnectors {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to apiConnectors for identity
+        /// Create a new identityApiConnector object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.Identity.ApiConnectors {
             }
             return requestInfo;
         }
-        /// <summary>Represents entry point for API connectors.</summary>
+        /// <summary>Read the properties of an identityApiConnector object.</summary>
         public class ApiConnectorsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

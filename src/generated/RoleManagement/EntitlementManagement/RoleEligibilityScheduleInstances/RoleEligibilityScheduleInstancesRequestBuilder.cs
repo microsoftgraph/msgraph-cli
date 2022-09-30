@@ -89,11 +89,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleIns
             return command;
         }
         /// <summary>
-        /// Instances for role eligibility requests.
+        /// Get the instances of role eligibilities.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Instances for role eligibility requests.";
+            command.Description = "Get the instances of role eligibilities.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -206,7 +206,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleIns
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instances for role eligibility requests.
+        /// Get the instances of role eligibilities.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RoleEligibilityScheduleInstancesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -255,7 +255,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleIns
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>Instances for role eligibility requests.</summary>
+        /// <summary>Get the instances of role eligibilities.</summary>
         public class RoleEligibilityScheduleInstancesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

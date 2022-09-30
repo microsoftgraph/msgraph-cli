@@ -22,11 +22,11 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action unsetVerifiedPublisher
+        /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action unsetVerifiedPublisher";
+            command.Description = "Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action unsetVerifiedPublisher
+        /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<UnsetVerifiedPublisherRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

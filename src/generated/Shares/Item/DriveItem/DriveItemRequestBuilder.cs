@@ -31,11 +31,11 @@ namespace ApiSdk.Shares.Item.DriveItem {
             return command;
         }
         /// <summary>
-        /// Used to access the underlying driveItem
+        /// Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Used to access the underlying driveItem";
+            command.Description = "Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.";
             // Create options for all the parameters
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
             };
@@ -105,7 +105,7 @@ namespace ApiSdk.Shares.Item.DriveItem {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Used to access the underlying driveItem
+        /// Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DriveItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -124,7 +124,7 @@ namespace ApiSdk.Shares.Item.DriveItem {
             }
             return requestInfo;
         }
-        /// <summary>Used to access the underlying driveItem</summary>
+        /// <summary>Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.</summary>
         public class DriveItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

@@ -64,7 +64,7 @@ namespace ApiSdk.Models {
                 {"maxMessageSize", n => { MaxMessageSize = n.GetIntValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"recipientScope", n => { RecipientScope = n.GetEnumValue<RecipientScopeType>(); } },
-                {"recipientSuggestions", n => { RecipientSuggestions = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"recipientSuggestions", n => { RecipientSuggestions = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"totalMemberCount", n => { TotalMemberCount = n.GetIntValue(); } },
             };
         }

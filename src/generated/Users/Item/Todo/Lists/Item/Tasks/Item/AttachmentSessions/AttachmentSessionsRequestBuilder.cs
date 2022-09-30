@@ -40,73 +40,6 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to attachmentSessions for users
-        /// </summary>
-        public Command BuildCreateCommand() {
-            var command = new Command("create");
-            command.Description = "Create new navigation property to attachmentSessions for users";
-            // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
-            };
-            userIdOption.IsRequired = true;
-            command.AddOption(userIdOption);
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
-            };
-            todoTaskListIdOption.IsRequired = true;
-            command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
-            };
-            todoTaskIdOption.IsRequired = true;
-            command.AddOption(todoTaskIdOption);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (invocationContext) => {
-                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
-                var todoTaskListId = invocationContext.ParseResult.GetValueForOption(todoTaskListIdOption);
-                var todoTaskId = invocationContext.ParseResult.GetValueForOption(todoTaskIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
-                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AttachmentSession>(AttachmentSession.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
-                });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
-                requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            });
-            return command;
-        }
-        /// <summary>
         /// Get attachmentSessions from users
         /// </summary>
         public Command BuildListCommand() {
@@ -248,28 +181,6 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions {
             }
             return requestInfo;
         }
-        /// <summary>
-        /// Create new navigation property to attachmentSessions for users
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreatePostRequestInformation(AttachmentSession body, Action<AttachmentSessionsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new AttachmentSessionsRequestBuilderPostRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
         /// <summary>Get attachmentSessions from users</summary>
         public class AttachmentSessionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
@@ -303,20 +214,6 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions {
             /// Instantiates a new attachmentSessionsRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public AttachmentSessionsRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class AttachmentSessionsRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new attachmentSessionsRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public AttachmentSessionsRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new Dictionary<string, string>();
             }

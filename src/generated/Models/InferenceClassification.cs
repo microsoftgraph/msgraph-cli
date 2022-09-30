@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.</summary>
         public List<InferenceClassificationOverride> Overrides { get; set; }
         /// <summary>
-        /// Instantiates a new InferenceClassification and sets the default values.
+        /// Instantiates a new inferenceClassification and sets the default values.
         /// </summary>
         public InferenceClassification() : base() {
             OdataType = "#microsoft.graph.inferenceClassification";
@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"overrides", n => { Overrides = n.GetCollectionOfObjectValues<InferenceClassificationOverride>(InferenceClassificationOverride.CreateFromDiscriminatorValue).ToList(); } },
+                {"overrides", n => { Overrides = n.GetCollectionOfObjectValues<InferenceClassificationOverride>(InferenceClassificationOverride.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

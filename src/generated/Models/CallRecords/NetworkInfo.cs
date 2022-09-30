@@ -98,7 +98,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"relayPort", n => { RelayPort = n.GetIntValue(); } },
                 {"sentQualityEventRatio", n => { SentQualityEventRatio = n.GetFloatValue(); } },
                 {"subnet", n => { Subnet = n.GetStringValue(); } },
-                {"traceRouteHops", n => { TraceRouteHops = n.GetCollectionOfObjectValues<TraceRouteHop>(TraceRouteHop.CreateFromDiscriminatorValue).ToList(); } },
+                {"traceRouteHops", n => { TraceRouteHops = n.GetCollectionOfObjectValues<TraceRouteHop>(TraceRouteHop.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"wifiBand", n => { WifiBand = n.GetEnumValue<WifiBand>(); } },
                 {"wifiBatteryCharge", n => { WifiBatteryCharge = n.GetIntValue(); } },
                 {"wifiChannel", n => { WifiChannel = n.GetIntValue(); } },

@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assign {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"mobileAppAssignments", n => { MobileAppAssignments = n.GetCollectionOfObjectValues<MobileAppAssignment>(MobileAppAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"mobileAppAssignments", n => { MobileAppAssignments = n.GetCollectionOfObjectValues<MobileAppAssignment>(MobileAppAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

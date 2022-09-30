@@ -23,11 +23,11 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action uploadClientCertificate
+        /// Upload a PKCS 12 format key (.pfx) to an API connector&apos;s authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action uploadClientCertificate";
+            command.Description = "Upload a PKCS 12 format key (.pfx) to an API connector's authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.";
             // Create options for all the parameters
             var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "key: id of identityApiConnector") {
             };
@@ -91,7 +91,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action uploadClientCertificate
+        /// Upload a PKCS 12 format key (.pfx) to an API connector&apos;s authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

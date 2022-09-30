@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         /// <summary>A human-readable description of the print job&apos;s current processing state. Read-only.</summary>
         public string Description { get; set; }
         /// <summary>Additional details for print job state. Valid values are described in the following table. Read-only.</summary>
-        public List<string> Details { get; set; }
+        public List<PrintJobStateDetail?> Details { get; set; }
         /// <summary>True if the job was acknowledged by a printer; false otherwise. Read-only.</summary>
         public bool? IsAcquiredByPrinter { get; set; }
         /// <summary>The OdataType property</summary>
@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"description", n => { Description = n.GetStringValue(); } },
-                {"details", n => { Details = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"details", n => { Details = n.GetCollectionOfEnumValues<PrintJobStateDetail>()?.ToList(); } },
                 {"isAcquiredByPrinter", n => { IsAcquiredByPrinter = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"state", n => { State = n.GetEnumValue<PrintJobProcessingState>(); } },
@@ -51,7 +51,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfPrimitiveValues<string>("details", Details);
+            writer.WriteCollectionOfEnumValues<PrintJobStateDetail>("details", Details);
             writer.WriteBoolValue("isAcquiredByPrinter", IsAcquiredByPrinter);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<PrintJobProcessingState>("state", State);

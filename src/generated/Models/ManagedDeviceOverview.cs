@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         /// <summary>The number of devices enrolled in MDM</summary>
         public int? MdmEnrolledCount { get; set; }
         /// <summary>
-        /// Instantiates a new ManagedDeviceOverview and sets the default values.
+        /// Instantiates a new managedDeviceOverview and sets the default values.
         /// </summary>
         public ManagedDeviceOverview() : base() {
             OdataType = "#microsoft.graph.managedDeviceOverview";

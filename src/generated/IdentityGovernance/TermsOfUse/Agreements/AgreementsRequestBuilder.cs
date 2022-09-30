@@ -42,11 +42,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to agreements for identityGovernance
+        /// Create a new agreement object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to agreements for identityGovernance";
+            command.Description = "Create a new agreement object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -91,11 +91,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return command;
         }
         /// <summary>
-        /// Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Azure Active Directory (Azure AD).
+        /// Retrieve a list of agreement objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).";
+            command.Description = "Retrieve a list of agreement objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -208,7 +208,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Azure Active Directory (Azure AD).
+        /// Retrieve a list of agreement objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AgreementsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -228,7 +228,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to agreements for identityGovernance
+        /// Create a new agreement object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -249,7 +249,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             }
             return requestInfo;
         }
-        /// <summary>Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Azure Active Directory (Azure AD).</summary>
+        /// <summary>Retrieve a list of agreement objects.</summary>
         public class AgreementsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

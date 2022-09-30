@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class Trending : Entity, IParsable {
         /// <summary>The lastModifiedDateTime property</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Used for navigating to the trending document.</summary>
         public Entity Resource { get; set; }
         /// <summary>Reference properties of the trending document, such as the url and type of the document.</summary>
-        public ApiSdk.Models.ResourceReference ResourceReference { get; set; }
+        public ApiSdk.Models.ResourceReference ResourceReference { get; private set; }
         /// <summary>Properties that you can use to visualize the document in your experience.</summary>
-        public ApiSdk.Models.ResourceVisualization ResourceVisualization { get; set; }
+        public ApiSdk.Models.ResourceVisualization ResourceVisualization { get; private set; }
         /// <summary>Value indicating how much the document is currently trending. The larger the number, the more the document is currently trending around the user (the more relevant it is). Returned documents are sorted by this value.</summary>
         public double? Weight { get; set; }
         /// <summary>
@@ -51,8 +51,6 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteObjectValue<Entity>("resource", Resource);
-            writer.WriteObjectValue<ApiSdk.Models.ResourceReference>("resourceReference", ResourceReference);
-            writer.WriteObjectValue<ApiSdk.Models.ResourceVisualization>("resourceVisualization", ResourceVisualization);
             writer.WriteDoubleValue("weight", Weight);
         }
     }

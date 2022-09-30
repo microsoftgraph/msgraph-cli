@@ -23,8 +23,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static IpRange CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.iPv4CidrRange" => new IPv4CidrRange(),
                 "#microsoft.graph.iPv4Range" => new IPv4Range(),

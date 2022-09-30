@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>The Role Assignment resource. Role assignments tie together a role definition with members and scopes. There can be one or more role assignments per role. This applies to custom and built-in roles.</summary>
     public class DeviceAndAppManagementRoleAssignment : RoleAssignment, IParsable {
         /// <summary>The list of ids of role member security groups. These are IDs from Azure Active Directory.</summary>
         public List<string> Members { get; set; }
         /// <summary>
-        /// Instantiates a new deviceAndAppManagementRoleAssignment and sets the default values.
+        /// Instantiates a new DeviceAndAppManagementRoleAssignment and sets the default values.
         /// </summary>
         public DeviceAndAppManagementRoleAssignment() : base() {
             OdataType = "#microsoft.graph.deviceAndAppManagementRoleAssignment";
@@ -27,7 +26,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"members", n => { Members = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"members", n => { Members = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

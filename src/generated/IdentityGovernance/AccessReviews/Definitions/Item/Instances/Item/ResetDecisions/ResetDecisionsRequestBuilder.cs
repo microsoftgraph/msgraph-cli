@@ -22,11 +22,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action resetDecisions
+        /// Resets all accessReviewInstanceDecisionItem objects on an accessReviewInstance to `notReviewed`.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action resetDecisions";
+            command.Description = "Resets all accessReviewInstanceDecisionItem objects on an accessReviewInstance to `notReviewed`.";
             // Create options for all the parameters
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action resetDecisions
+        /// Resets all accessReviewInstanceDecisionItem objects on an accessReviewInstance to `notReviewed`.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<ResetDecisionsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

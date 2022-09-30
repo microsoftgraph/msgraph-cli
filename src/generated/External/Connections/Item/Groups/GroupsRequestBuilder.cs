@@ -40,11 +40,11 @@ namespace ApiSdk.External.Connections.Item.Groups {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to groups for external
+        /// Create a new externalGroup object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to groups for external";
+            command.Description = "Create a new externalGroup object.";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
             };
@@ -238,7 +238,7 @@ namespace ApiSdk.External.Connections.Item.Groups {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to groups for external
+        /// Create a new externalGroup object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

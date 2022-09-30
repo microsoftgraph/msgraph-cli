@@ -41,11 +41,11 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to threads for groups
+        /// Create a new thread in the specified conversation.  A thread and post are created as specified. Use reply thread to further post to that thread. Or, if you get the post ID, you can also reply to that post in that thread. Note: You can also start a new conversation by first creating a thread.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to threads for groups";
+            command.Description = "Create a new thread in the specified conversation.  A thread and post are created as specified. Use reply thread to further post to that thread. Or, if you get the post ID, you can also reply to that post in that thread. Note: You can also start a new conversation by first creating a thread.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -102,11 +102,11 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
             return command;
         }
         /// <summary>
-        /// A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
+        /// Get all the threads in a group conversation. Note: You can also get all the threads of a group.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.";
+            command.Description = "Get all the threads in a group conversation. Note: You can also get all the threads of a group.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -225,7 +225,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
+        /// Get all the threads in a group conversation. Note: You can also get all the threads of a group.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ThreadsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -245,7 +245,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to threads for groups
+        /// Create a new thread in the specified conversation.  A thread and post are created as specified. Use reply thread to further post to that thread. Or, if you get the post ID, you can also reply to that post in that thread. Note: You can also start a new conversation by first creating a thread.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -266,7 +266,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
             }
             return requestInfo;
         }
-        /// <summary>A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.</summary>
+        /// <summary>Get all the threads in a group conversation. Note: You can also get all the threads of a group.</summary>
         public class ThreadsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

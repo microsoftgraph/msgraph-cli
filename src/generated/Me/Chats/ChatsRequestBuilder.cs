@@ -34,6 +34,7 @@ namespace ApiSdk.Me.Chats {
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildMessagesCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPinnedMessagesCommand());
             command.AddCommand(builder.BuildSendActivityNotificationCommand());
             command.AddCommand(builder.BuildTabsCommand());
             return command;
@@ -94,11 +95,11 @@ namespace ApiSdk.Me.Chats {
             return command;
         }
         /// <summary>
-        /// Get chats from me
+        /// Retrieve the list of chats that the user is part of.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get chats from me";
+            command.Description = "Retrieve the list of chats that the user is part of.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -211,7 +212,7 @@ namespace ApiSdk.Me.Chats {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get chats from me
+        /// Retrieve the list of chats that the user is part of.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<ChatsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -258,7 +259,7 @@ namespace ApiSdk.Me.Chats {
         public GetAllMessagesRequestBuilder GetAllMessages() {
             return new GetAllMessagesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>Get chats from me</summary>
+        /// <summary>Retrieve the list of chats that the user is part of.</summary>
         public class ChatsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

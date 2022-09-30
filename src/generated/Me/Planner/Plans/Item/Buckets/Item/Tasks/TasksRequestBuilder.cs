@@ -104,11 +104,11 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. The collection of tasks in the bucket.
+        /// Retrieve a list of **plannerTask** objects associated to a plannerBucket object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. The collection of tasks in the bucket.";
+            command.Description = "Retrieve a list of **plannerTask** objects associated to a plannerBucket object.";
             // Create options for all the parameters
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
             };
@@ -233,7 +233,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item.Tasks {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. The collection of tasks in the bucket.
+        /// Retrieve a list of **plannerTask** objects associated to a plannerBucket object.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TasksRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -274,7 +274,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item.Tasks {
             }
             return requestInfo;
         }
-        /// <summary>Read-only. Nullable. The collection of tasks in the bucket.</summary>
+        /// <summary>Retrieve a list of **plannerTask** objects associated to a plannerBucket object.</summary>
         public class TasksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

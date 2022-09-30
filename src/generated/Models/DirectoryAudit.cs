@@ -49,7 +49,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"activityDateTime", n => { ActivityDateTime = n.GetDateTimeOffsetValue(); } },
                 {"activityDisplayName", n => { ActivityDisplayName = n.GetStringValue(); } },
-                {"additionalDetails", n => { AdditionalDetails = n.GetCollectionOfObjectValues<KeyValue>(KeyValue.CreateFromDiscriminatorValue).ToList(); } },
+                {"additionalDetails", n => { AdditionalDetails = n.GetCollectionOfObjectValues<KeyValue>(KeyValue.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"category", n => { Category = n.GetStringValue(); } },
                 {"correlationId", n => { CorrelationId = n.GetStringValue(); } },
                 {"initiatedBy", n => { InitiatedBy = n.GetObjectValue<AuditActivityInitiator>(AuditActivityInitiator.CreateFromDiscriminatorValue); } },
@@ -57,7 +57,7 @@ namespace ApiSdk.Models {
                 {"operationType", n => { OperationType = n.GetStringValue(); } },
                 {"result", n => { Result = n.GetEnumValue<OperationResult>(); } },
                 {"resultReason", n => { ResultReason = n.GetStringValue(); } },
-                {"targetResources", n => { TargetResources = n.GetCollectionOfObjectValues<TargetResource>(TargetResource.CreateFromDiscriminatorValue).ToList(); } },
+                {"targetResources", n => { TargetResources = n.GetCollectionOfObjectValues<TargetResource>(TargetResource.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

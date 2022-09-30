@@ -21,7 +21,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// <summary>The schema property</summary>
         public ApiSdk.Models.ExternalConnectors.Schema Schema { get; set; }
         /// <summary>Indicates the current state of the connection. Possible values are: draft, ready, obsolete, limitExceeded, unknownFutureValue.</summary>
-        public ConnectionState? State { get; set; }
+        public ConnectionState? State { get; private set; }
         /// <summary>
         /// Instantiates a new externalConnection and sets the default values.
         /// </summary>
@@ -43,10 +43,10 @@ namespace ApiSdk.Models.ExternalConnectors {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"configuration", n => { Configuration = n.GetObjectValue<ApiSdk.Models.ExternalConnectors.Configuration>(ApiSdk.Models.ExternalConnectors.Configuration.CreateFromDiscriminatorValue); } },
                 {"description", n => { Description = n.GetStringValue(); } },
-                {"groups", n => { Groups = n.GetCollectionOfObjectValues<ExternalGroup>(ExternalGroup.CreateFromDiscriminatorValue).ToList(); } },
-                {"items", n => { Items = n.GetCollectionOfObjectValues<ExternalItem>(ExternalItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"groups", n => { Groups = n.GetCollectionOfObjectValues<ExternalGroup>(ExternalGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"items", n => { Items = n.GetCollectionOfObjectValues<ExternalItem>(ExternalItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
-                {"operations", n => { Operations = n.GetCollectionOfObjectValues<ConnectionOperation>(ConnectionOperation.CreateFromDiscriminatorValue).ToList(); } },
+                {"operations", n => { Operations = n.GetCollectionOfObjectValues<ConnectionOperation>(ConnectionOperation.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"schema", n => { Schema = n.GetObjectValue<ApiSdk.Models.ExternalConnectors.Schema>(ApiSdk.Models.ExternalConnectors.Schema.CreateFromDiscriminatorValue); } },
                 {"state", n => { State = n.GetEnumValue<ConnectionState>(); } },
             };
@@ -65,7 +65,6 @@ namespace ApiSdk.Models.ExternalConnectors {
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<ConnectionOperation>("operations", Operations);
             writer.WriteObjectValue<ApiSdk.Models.ExternalConnectors.Schema>("schema", Schema);
-            writer.WriteEnumValue<ConnectionState>("state", State);
         }
     }
 }

@@ -22,11 +22,11 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Invoke action snoozeReminder
+        /// Postpone a reminder for an event in a user calendar until a new time.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action snoozeReminder";
+            command.Description = "Postpone a reminder for an event in a user calendar until a new time.";
             // Create options for all the parameters
             var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
             };
@@ -87,7 +87,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Invoke action snoozeReminder
+        /// Postpone a reminder for an event in a user calendar until a new time.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>

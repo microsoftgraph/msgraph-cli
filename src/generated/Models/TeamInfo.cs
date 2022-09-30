@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
+    /// <summary>Casts the previous resource to group.</summary>
     public class TeamInfo : Entity, IParsable {
         /// <summary>The name of the team.</summary>
         public string DisplayName { get; set; }
@@ -25,8 +25,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public static new TeamInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            var mappingValueNode = parseNode.GetChildNode("@odata.type");
-            var mappingValue = mappingValueNode?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
                 "#microsoft.graph.associatedTeamInfo" => new AssociatedTeamInfo(),
                 "#microsoft.graph.sharedWithChannelTeamInfo" => new SharedWithChannelTeamInfo(),

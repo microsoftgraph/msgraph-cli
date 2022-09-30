@@ -61,7 +61,7 @@ namespace ApiSdk.Models {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"setting", n => { Setting = n.GetStringValue(); } },
                 {"settingName", n => { SettingName = n.GetStringValue(); } },
-                {"sources", n => { Sources = n.GetCollectionOfObjectValues<SettingSource>(SettingSource.CreateFromDiscriminatorValue).ToList(); } },
+                {"sources", n => { Sources = n.GetCollectionOfObjectValues<SettingSource>(SettingSource.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"state", n => { State = n.GetEnumValue<ComplianceStatus>(); } },
                 {"userEmail", n => { UserEmail = n.GetStringValue(); } },
                 {"userId", n => { UserId = n.GetStringValue(); } },

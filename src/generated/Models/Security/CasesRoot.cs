@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"ediscoveryCases", n => { EdiscoveryCases = n.GetCollectionOfObjectValues<EdiscoveryCase>(EdiscoveryCase.CreateFromDiscriminatorValue).ToList(); } },
+                {"ediscoveryCases", n => { EdiscoveryCases = n.GetCollectionOfObjectValues<EdiscoveryCase>(EdiscoveryCase.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

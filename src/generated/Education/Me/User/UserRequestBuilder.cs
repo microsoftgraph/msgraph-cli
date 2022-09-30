@@ -23,11 +23,11 @@ namespace ApiSdk.Education.Me.User {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The directory user that corresponds to this user.
+        /// Retrieve the simple directory **user** that corresponds to this **educationUser**.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The directory user that corresponds to this user.";
+            command.Description = "Retrieve the simple directory **user** that corresponds to this **educationUser**.";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -91,7 +91,7 @@ namespace ApiSdk.Education.Me.User {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The directory user that corresponds to this user.
+        /// Retrieve the simple directory **user** that corresponds to this **educationUser**.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<UserRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -110,7 +110,7 @@ namespace ApiSdk.Education.Me.User {
             }
             return requestInfo;
         }
-        /// <summary>The directory user that corresponds to this user.</summary>
+        /// <summary>Retrieve the simple directory **user** that corresponds to this **educationUser**.</summary>
         public class UserRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

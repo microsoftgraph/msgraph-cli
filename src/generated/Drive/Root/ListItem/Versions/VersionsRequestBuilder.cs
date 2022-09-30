@@ -90,11 +90,11 @@ namespace ApiSdk.Drive.Root.ListItem.Versions {
             return command;
         }
         /// <summary>
-        /// The list of previous versions of the list item.
+        /// SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of previous versions of the list item.";
+            command.Description = "SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -207,7 +207,7 @@ namespace ApiSdk.Drive.Root.ListItem.Versions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The list of previous versions of the list item.
+        /// SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<VersionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -248,7 +248,7 @@ namespace ApiSdk.Drive.Root.ListItem.Versions {
             }
             return requestInfo;
         }
-        /// <summary>The list of previous versions of the list item.</summary>
+        /// <summary>SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.</summary>
         public class VersionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

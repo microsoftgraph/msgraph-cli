@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
+    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class ChecklistItem : Entity, IParsable {
         /// <summary>The date and time when the checklistItem was finished.</summary>
         public DateTimeOffset? CheckedDateTime { get; set; }

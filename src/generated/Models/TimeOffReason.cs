@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class TimeOffReason : ChangeTrackedEntity, IParsable {
         /// <summary>The name of the timeOffReason. Required.</summary>
         public string DisplayName { get; set; }
@@ -13,7 +12,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether the timeOffReason can be used when creating new entities or updating existing ones. Required.</summary>
         public bool? IsActive { get; set; }
         /// <summary>
-        /// Instantiates a new timeOffReason and sets the default values.
+        /// Instantiates a new TimeOffReason and sets the default values.
         /// </summary>
         public TimeOffReason() : base() {
             OdataType = "#microsoft.graph.timeOffReason";

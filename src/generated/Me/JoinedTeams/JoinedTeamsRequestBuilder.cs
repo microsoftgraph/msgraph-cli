@@ -45,6 +45,7 @@ namespace ApiSdk.Me.JoinedTeams {
             command.AddCommand(builder.BuildPrimaryChannelCommand());
             command.AddCommand(builder.BuildScheduleCommand());
             command.AddCommand(builder.BuildSendActivityNotificationCommand());
+            command.AddCommand(builder.BuildTagsCommand());
             command.AddCommand(builder.BuildTemplateCommand());
             command.AddCommand(builder.BuildUnarchiveCommand());
             return command;
@@ -105,11 +106,11 @@ namespace ApiSdk.Me.JoinedTeams {
             return command;
         }
         /// <summary>
-        /// Get joinedTeams from me
+        /// Get the teams in Microsoft Teams that the user is a direct member of.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get joinedTeams from me";
+            command.Description = "Get the teams in Microsoft Teams that the user is a direct member of.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -222,7 +223,7 @@ namespace ApiSdk.Me.JoinedTeams {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get joinedTeams from me
+        /// Get the teams in Microsoft Teams that the user is a direct member of.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<JoinedTeamsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -269,7 +270,7 @@ namespace ApiSdk.Me.JoinedTeams {
         public GetAllMessagesRequestBuilder GetAllMessages() {
             return new GetAllMessagesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>Get joinedTeams from me</summary>
+        /// <summary>Get the teams in Microsoft Teams that the user is a direct member of.</summary>
         public class JoinedTeamsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

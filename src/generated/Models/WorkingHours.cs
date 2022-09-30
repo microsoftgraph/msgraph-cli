@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The days of the week on which the user works.</summary>
-        public List<string> DaysOfWeek { get; set; }
+        public List<DayOfWeek?> DaysOfWeek { get; set; }
         /// <summary>The time of the day that the user stops working.</summary>
         public Time? EndTime { get; set; }
         /// <summary>The OdataType property</summary>
@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"daysOfWeek", n => { DaysOfWeek = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"daysOfWeek", n => { DaysOfWeek = n.GetCollectionOfEnumValues<DayOfWeek>()?.ToList(); } },
                 {"endTime", n => { EndTime = n.GetTimeValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startTime", n => { StartTime = n.GetTimeValue(); } },
@@ -51,7 +51,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("daysOfWeek", DaysOfWeek);
+            writer.WriteCollectionOfEnumValues<DayOfWeek>("daysOfWeek", DaysOfWeek);
             writer.WriteTimeValue("endTime", EndTime);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteTimeValue("startTime", StartTime);

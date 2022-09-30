@@ -45,6 +45,7 @@ namespace ApiSdk.Teams {
             command.AddCommand(builder.BuildPrimaryChannelCommand());
             command.AddCommand(builder.BuildScheduleCommand());
             command.AddCommand(builder.BuildSendActivityNotificationCommand());
+            command.AddCommand(builder.BuildTagsCommand());
             command.AddCommand(builder.BuildTemplateCommand());
             command.AddCommand(builder.BuildUnarchiveCommand());
             return command;

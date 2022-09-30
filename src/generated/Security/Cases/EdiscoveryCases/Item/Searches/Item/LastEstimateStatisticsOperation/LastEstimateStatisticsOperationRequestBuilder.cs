@@ -23,11 +23,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateS
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The last estimate operation associated with the eDiscovery search.
+        /// Get the last  ediscoveryEstimateOperation objects and their properties.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The last estimate operation associated with the eDiscovery search.";
+            command.Description = "Get the last  ediscoveryEstimateOperation objects and their properties.";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -103,7 +103,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateS
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The last estimate operation associated with the eDiscovery search.
+        /// Get the last  ediscoveryEstimateOperation objects and their properties.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<LastEstimateStatisticsOperationRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -122,7 +122,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateS
             }
             return requestInfo;
         }
-        /// <summary>The last estimate operation associated with the eDiscovery search.</summary>
+        /// <summary>Get the last  ediscoveryEstimateOperation objects and their properties.</summary>
         public class LastEstimateStatisticsOperationRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
             [QueryParameter("%24expand")]

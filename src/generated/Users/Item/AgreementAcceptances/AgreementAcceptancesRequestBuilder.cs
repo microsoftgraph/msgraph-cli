@@ -37,11 +37,11 @@ namespace ApiSdk.Users.Item.AgreementAcceptances {
             return command;
         }
         /// <summary>
-        /// The user&apos;s terms of use acceptance statuses. Read-only. Nullable.
+        /// Retrieve the signed-in user&apos;s agreementAcceptance objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The user's terms of use acceptance statuses. Read-only. Nullable.";
+            command.Description = "Retrieve the signed-in user's agreementAcceptance objects.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -160,7 +160,7 @@ namespace ApiSdk.Users.Item.AgreementAcceptances {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user&apos;s terms of use acceptance statuses. Read-only. Nullable.
+        /// Retrieve the signed-in user&apos;s agreementAcceptance objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<AgreementAcceptancesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -179,7 +179,7 @@ namespace ApiSdk.Users.Item.AgreementAcceptances {
             }
             return requestInfo;
         }
-        /// <summary>The user&apos;s terms of use acceptance statuses. Read-only. Nullable.</summary>
+        /// <summary>Retrieve the signed-in user&apos;s agreementAcceptance objects.</summary>
         public class AgreementAcceptancesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

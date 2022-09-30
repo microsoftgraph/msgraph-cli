@@ -39,11 +39,11 @@ namespace ApiSdk.Me.InferenceClassification.Overrides {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to overrides for me
+        /// Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. **Note**
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to overrides for me";
+            command.Description = "Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. **Note**";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -88,11 +88,11 @@ namespace ApiSdk.Me.InferenceClassification.Overrides {
             return command;
         }
         /// <summary>
-        /// A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.
+        /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
+            command.Description = "Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -192,7 +192,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.
+        /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<OverridesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -212,7 +212,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to overrides for me
+        /// Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. **Note**
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -233,7 +233,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides {
             }
             return requestInfo;
         }
-        /// <summary>A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.</summary>
+        /// <summary>Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.</summary>
         public class OverridesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

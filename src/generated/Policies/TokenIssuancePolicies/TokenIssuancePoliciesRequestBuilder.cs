@@ -39,11 +39,11 @@ namespace ApiSdk.Policies.TokenIssuancePolicies {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to tokenIssuancePolicies for policies
+        /// Create a new tokenIssuancePolicy object.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to tokenIssuancePolicies for policies";
+            command.Description = "Create a new tokenIssuancePolicy object.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -88,11 +88,11 @@ namespace ApiSdk.Policies.TokenIssuancePolicies {
             return command;
         }
         /// <summary>
-        /// The policy that specifies the characteristics of SAML tokens issued by Azure AD.
+        /// Get a list of tokenIssuancePolicy objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The policy that specifies the characteristics of SAML tokens issued by Azure AD.";
+            command.Description = "Get a list of tokenIssuancePolicy objects.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -205,7 +205,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The policy that specifies the characteristics of SAML tokens issued by Azure AD.
+        /// Get a list of tokenIssuancePolicy objects.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<TokenIssuancePoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -225,7 +225,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to tokenIssuancePolicies for policies
+        /// Create a new tokenIssuancePolicy object.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -246,7 +246,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies {
             }
             return requestInfo;
         }
-        /// <summary>The policy that specifies the characteristics of SAML tokens issued by Azure AD.</summary>
+        /// <summary>Get a list of tokenIssuancePolicy objects.</summary>
         public class TokenIssuancePoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

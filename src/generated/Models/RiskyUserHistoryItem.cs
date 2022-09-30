@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class RiskyUserHistoryItem : RiskyUser, IParsable {
         /// <summary>The activity related to user risk level change.</summary>
         public RiskUserActivity Activity { get; set; }
@@ -12,7 +13,7 @@ namespace ApiSdk.Models {
         /// <summary>The id of the user.</summary>
         public string UserId { get; set; }
         /// <summary>
-        /// Instantiates a new RiskyUserHistoryItem and sets the default values.
+        /// Instantiates a new riskyUserHistoryItem and sets the default values.
         /// </summary>
         public RiskyUserHistoryItem() : base() {
             OdataType = "#microsoft.graph.riskyUserHistoryItem";

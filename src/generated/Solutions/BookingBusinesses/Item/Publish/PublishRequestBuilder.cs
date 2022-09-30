@@ -22,11 +22,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Publish {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Makes the scheduling page of this business available to the general public.
+        /// Make the scheduling page of a business available to external customers. Set the **isPublished** property to `true`, and the **publicUrl** property to the URL of the scheduling page.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Makes the scheduling page of this business available to the general public.";
+            command.Description = "Make the scheduling page of a business available to external customers. Set the **isPublished** property to `true`, and the **publicUrl** property to the URL of the scheduling page.";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Publish {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Makes the scheduling page of this business available to the general public.
+        /// Make the scheduling page of a business available to external customers. Set the **isPublished** property to `true`, and the **publicUrl** property to the URL of the scheduling page.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<PublishRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

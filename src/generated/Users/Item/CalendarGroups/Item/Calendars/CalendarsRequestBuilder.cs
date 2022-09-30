@@ -45,11 +45,11 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to calendars for users
+        /// Use this API to create a new calendar in a calendar group for a user.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to calendars for users";
+            command.Description = "Use this API to create a new calendar in a calendar group for a user.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -106,11 +106,11 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             return command;
         }
         /// <summary>
-        /// The calendars in the calendar group. Navigation property. Read-only. Nullable.
+        /// Retrieve a list of calendars belonging to a calendar group.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The calendars in the calendar group. Navigation property. Read-only. Nullable.";
+            command.Description = "Retrieve a list of calendars belonging to a calendar group.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -222,7 +222,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The calendars in the calendar group. Navigation property. Read-only. Nullable.
+        /// Retrieve a list of calendars belonging to a calendar group.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<CalendarsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -242,7 +242,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to calendars for users
+        /// Use this API to create a new calendar in a calendar group for a user.
         /// <param name="body"></param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
@@ -263,7 +263,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             }
             return requestInfo;
         }
-        /// <summary>The calendars in the calendar group. Navigation property. Read-only. Nullable.</summary>
+        /// <summary>Retrieve a list of calendars belonging to a calendar group.</summary>
         public class CalendarsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

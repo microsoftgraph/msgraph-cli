@@ -47,10 +47,10 @@ namespace ApiSdk.Drive.Root.Invite {
                 {"expirationDateTime", n => { ExpirationDateTime = n.GetStringValue(); } },
                 {"message", n => { Message = n.GetStringValue(); } },
                 {"password", n => { Password = n.GetStringValue(); } },
-                {"recipients", n => { Recipients = n.GetCollectionOfObjectValues<DriveRecipient>(DriveRecipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"recipients", n => { Recipients = n.GetCollectionOfObjectValues<DriveRecipient>(DriveRecipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"requireSignIn", n => { RequireSignIn = n.GetBoolValue(); } },
                 {"retainInheritedPermissions", n => { RetainInheritedPermissions = n.GetBoolValue(); } },
-                {"roles", n => { Roles = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"roles", n => { Roles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"sendInvitation", n => { SendInvitation = n.GetBoolValue(); } },
             };
         }

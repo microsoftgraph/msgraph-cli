@@ -12,11 +12,11 @@ namespace ApiSdk.Models {
         /// <summary>The time zone of the customer. For a list of possible values, see dateTimeTimeZone.</summary>
         public string CustomerTimeZone { get; set; }
         /// <summary>The length of the appointment, denoted in ISO8601 format.</summary>
-        public TimeSpan? Duration { get; set; }
+        public TimeSpan? Duration { get; private set; }
         /// <summary>The endDateTime property</summary>
         public DateTimeTimeZone EndDateTime { get; set; }
         /// <summary>The current number of customers in the appointment</summary>
-        public int? FilledAttendeesCount { get; set; }
+        public int? FilledAttendeesCount { get; private set; }
         /// <summary>If true, indicates that the appointment will be held online. Default value is false.</summary>
         public bool? IsLocationOnline { get; set; }
         /// <summary>The URL of the online meeting for the appointment.</summary>
@@ -71,7 +71,7 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"additionalInformation", n => { AdditionalInformation = n.GetStringValue(); } },
-                {"customers", n => { Customers = n.GetCollectionOfObjectValues<BookingCustomerInformationBase>(BookingCustomerInformationBase.CreateFromDiscriminatorValue).ToList(); } },
+                {"customers", n => { Customers = n.GetCollectionOfObjectValues<BookingCustomerInformationBase>(BookingCustomerInformationBase.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"customerTimeZone", n => { CustomerTimeZone = n.GetStringValue(); } },
                 {"duration", n => { Duration = n.GetTimeSpanValue(); } },
                 {"endDateTime", n => { EndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
@@ -84,14 +84,14 @@ namespace ApiSdk.Models {
                 {"preBuffer", n => { PreBuffer = n.GetTimeSpanValue(); } },
                 {"price", n => { Price = n.GetDoubleValue(); } },
                 {"priceType", n => { PriceType = n.GetEnumValue<BookingPriceType>(); } },
-                {"reminders", n => { Reminders = n.GetCollectionOfObjectValues<BookingReminder>(BookingReminder.CreateFromDiscriminatorValue).ToList(); } },
+                {"reminders", n => { Reminders = n.GetCollectionOfObjectValues<BookingReminder>(BookingReminder.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"selfServiceAppointmentId", n => { SelfServiceAppointmentId = n.GetStringValue(); } },
                 {"serviceId", n => { ServiceId = n.GetStringValue(); } },
                 {"serviceLocation", n => { ServiceLocation = n.GetObjectValue<Location>(Location.CreateFromDiscriminatorValue); } },
                 {"serviceName", n => { ServiceName = n.GetStringValue(); } },
                 {"serviceNotes", n => { ServiceNotes = n.GetStringValue(); } },
                 {"smsNotificationsEnabled", n => { SmsNotificationsEnabled = n.GetBoolValue(); } },
-                {"staffMemberIds", n => { StaffMemberIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"staffMemberIds", n => { StaffMemberIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"startDateTime", n => { StartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -105,9 +105,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("additionalInformation", AdditionalInformation);
             writer.WriteCollectionOfObjectValues<BookingCustomerInformationBase>("customers", Customers);
             writer.WriteStringValue("customerTimeZone", CustomerTimeZone);
-            writer.WriteTimeSpanValue("duration", Duration);
             writer.WriteObjectValue<DateTimeTimeZone>("endDateTime", EndDateTime);
-            writer.WriteIntValue("filledAttendeesCount", FilledAttendeesCount);
             writer.WriteBoolValue("isLocationOnline", IsLocationOnline);
             writer.WriteStringValue("joinWebUrl", JoinWebUrl);
             writer.WriteIntValue("maximumAttendeesCount", MaximumAttendeesCount);

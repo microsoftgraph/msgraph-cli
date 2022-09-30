@@ -4,16 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class SchedulingGroup : ChangeTrackedEntity, IParsable {
         /// <summary>The display name for the schedulingGroup. Required.</summary>
         public string DisplayName { get; set; }
         /// <summary>Indicates whether the schedulingGroup can be used when creating new entities or updating existing ones. Required.</summary>
-        public bool? IsActive { get; set; }
+        public bool? IsActive { get; private set; }
         /// <summary>The list of user IDs that are a member of the schedulingGroup. Required.</summary>
         public List<string> UserIds { get; set; }
         /// <summary>
-        /// Instantiates a new schedulingGroup and sets the default values.
+        /// Instantiates a new SchedulingGroup and sets the default values.
         /// </summary>
         public SchedulingGroup() : base() {
             OdataType = "#microsoft.graph.schedulingGroup";
@@ -33,7 +32,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"isActive", n => { IsActive = n.GetBoolValue(); } },
-                {"userIds", n => { UserIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"userIds", n => { UserIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>
@@ -44,7 +43,6 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteBoolValue("isActive", IsActive);
             writer.WriteCollectionOfPrimitiveValues<string>("userIds", UserIds);
         }
     }

@@ -36,7 +36,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"allowTextEntry", n => { AllowTextEntry = n.GetBoolValue(); } },
-                {"choices", n => { Choices = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"choices", n => { Choices = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"displayAs", n => { DisplayAs = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };

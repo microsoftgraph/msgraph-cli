@@ -90,11 +90,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules {
             return command;
         }
         /// <summary>
-        /// Schedules for active role assignment operations.
+        /// Get the schedules for active role assignment operations.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Schedules for active role assignment operations.";
+            command.Description = "Get the schedules for active role assignment operations.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -207,7 +207,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Schedules for active role assignment operations.
+        /// Get the schedules for active role assignment operations.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<RoleAssignmentSchedulesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -256,7 +256,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules {
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
-        /// <summary>Schedules for active role assignment operations.</summary>
+        /// <summary>Get the schedules for active role assignment operations.</summary>
         public class RoleAssignmentSchedulesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]

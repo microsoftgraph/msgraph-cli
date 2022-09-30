@@ -30,7 +30,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Reply {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"post", n => { Post = n.GetObjectValue<ApiSdk.Models.Post>(ApiSdk.Models.Post.CreateFromDiscriminatorValue); } },
+                {"Post", n => { Post = n.GetObjectValue<ApiSdk.Models.Post>(ApiSdk.Models.Post.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -39,7 +39,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Reply {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ApiSdk.Models.Post>("post", Post);
+            writer.WriteObjectValue<ApiSdk.Models.Post>("Post", Post);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -37,11 +37,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Drives {
             return command;
         }
         /// <summary>
-        /// The collection of drives (document libraries) under this site.
+        /// Retrieve the list of Drive resources available for a target User, Group, or Site.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of drives (document libraries) under this site.";
+            command.Description = "Retrieve the list of Drive resources available for a target User, Group, or Site.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -166,7 +166,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Drives {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of drives (document libraries) under this site.
+        /// Retrieve the list of Drive resources available for a target User, Group, or Site.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<DrivesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
@@ -185,7 +185,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Drives {
             }
             return requestInfo;
         }
-        /// <summary>The collection of drives (document libraries) under this site.</summary>
+        /// <summary>Retrieve the list of Drive resources available for a target User, Group, or Site.</summary>
         public class DrivesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
