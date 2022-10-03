@@ -149,6 +149,7 @@ namespace Microsoft.Graph.Cli
             }).ConfigureLogging((ctx, logBuilder) =>
             {
                 logBuilder.SetMinimumLevel(LogLevel.Warning);
+                logBuilder.AddFilter("Microsoft.Graph.Cli.Core.Http", LogLevel.Debug);
             });
 
         static void ConfigureAppConfiguration(IConfigurationBuilder builder)
