@@ -52,12 +52,12 @@ jobs:
   - job: build
     displayName: Build and publish
     dependsOn: test
-    variables:
-      MS_NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
-      MSGRAPH_NUGET_URL: https://nuget.pkg.github.com/microsoftgraph/index.json
-      PACKAGE_VERSION: ${{github.event.inputs.tag || github.ref_name || 'v0.1.0'}}
-      PACKAGE_ZIP_TEMPLATE: "msgraph-cli-{0}-{1}.zip"
-      OUTPUT_DIR: /tmp/publish
+    # variables:
+    #   MS_NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
+    #   MSGRAPH_NUGET_URL: https://nuget.pkg.github.com/microsoftgraph/index.json
+    #   PACKAGE_VERSION: ${{github.event.inputs.tag || github.ref_name || 'v0.1.0'}}
+    #   PACKAGE_ZIP_TEMPLATE: "msgraph-cli-{0}-{1}.zip"
+    #   OUTPUT_DIR: /tmp/publish
     # strategy:
     #   matrix:
     #     'Win x64':
