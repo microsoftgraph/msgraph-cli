@@ -580,3 +580,6 @@ tmp/
 
 # Exclude any matches under src/generated
 !src/generated/**
+
+# Exclude azure pipelines nuget config
+!.azure-pipelines/nuget.config

@@ -1,0 +1,91 @@
+name: Release CLI
+
+trigger:
+  branches:
+    include:
+      - refs/tags/v*
+
+pool:
+  name: Azure Pipelines
+  vmImage: ubuntu-latest
+
+variables:
+  - name: sourceRepository
+    value: 'microsoftgraph/msgraph-cli'
+  - name: repositoryConnection
+    value: 'GitHub - calebkiage'
+  - name: zipTemplate
+    value: msgraph-cli-win-x64-{0}.zip
+  - name: defaultTag
+    value: ${{parameters.tag}}
+  - name: buildPlatform
+    value: 'Any CPU'
+  - name: buildConfiguration
+    value: 'Release'
+  - name: outputDir
+    value: /tmp/publish
+  - name: msgraphNugetUrl
+    value: https://nuget.pkg.github.com/microsoftgraph/index.json
+
+parameters:
+  - name: tag
+    displayName: Tag
+    type: string
+    default: latest
+
+# test -> build-{matrix} -> sign -> upload
+#
+jobs:
+  - job: test
+    displayName: Test solution
+    steps:
+    # - task: UseDotNet@2
+    #   displayName: 'Use .NET 6'
+    #   inputs:
+    #     version: 6.x
+    # Run the Unit test
+    - task: DotNetCoreCLI@2
+      displayName: 'test'
+      inputs:
+        command: test
+        projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
+  - job: build
+    displayName: Build and publish
+    dependsOn: test
+    variables:
+      MS_NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
+      MSGRAPH_NUGET_URL: https://nuget.pkg.github.com/microsoftgraph/index.json
+      PACKAGE_VERSION: ${{github.event.inputs.tag || github.ref_name || 'v0.1.0'}}
+      PACKAGE_ZIP_TEMPLATE: "msgraph-cli-{0}-{1}.zip"
+      OUTPUT_DIR: /tmp/publish
+    # strategy:
+    #   matrix:
+    #     'Win x64':
+    #       rid: win-x64
+    #     'linux x64':
+    #       rid: linux-x64
+    #     'MacOS x64':
+    #       rid: osx-x64
+    #     'MacOS ARM':
+    #       rid: osx-arm64
+    steps:
+    # - task: UseDotNet@2
+    #   displayName: 'Use .NET 6'
+    #   inputs:
+    #     version: 6.x
+    # Authenticate nuget.exe, dotnet, and MSBuild with Azure Artifacts and optionally other repositories
+    - task: NuGetAuthenticate@1
+      inputs:
+        nuGetServiceConnections: GitHub Packages - Microsoft (Pull), GitHub Packages - Microsoft Graph (Pull)
+    - task: DotNetCoreCLI@2
+      displayName: Restore packages
+      inputs:
+        command: restore
+        projects: $(Build.SourcesDirectory)\msgraph-cli.sln
+    # - task: DotNetCoreCLI@2
+    #   displayName: 'test'
+    #   inputs:
+    #     command: publish
+    #     projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
+    #     arguments: '--runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)'
+    
