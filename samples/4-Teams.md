@@ -8,6 +8,13 @@ $body = ConvertTo-Json '{"displayName": $TeamName, "description": $TeamName, "ad
 mgc teams create --body $body
 ```
 
+CMD:
+
+```shell
+SET TeamName=2020 Interns
+mgc teams create --body "{""displayName"": %TeamName%, ""description"": %TeamName%, ""additionalProperties"": { ""template@odata.bind"": ""https://graph.microsoft.com/v1.0/teamsTemplates('standard')""}}"
+```
+
 Bash:
 
 ```sh
@@ -26,6 +33,12 @@ PowerShell:
 $InternsTeam = mgc groups list --filter "StartsWith(DisplayName, '$TeamName')" --query "value[?contains(resourceProvisioningOptions, 'Team')]"
 ```
 
+CMD:
+
+```shell
+mgc groups list --filter "StartsWith(DisplayName, '%TeamName%')" --query "value[?contains(resourceProvisioningOptions, 'Team')]"
+```
+
 Bash:
 
 ```sh
@@ -42,6 +55,12 @@ mgc teams item members create --team-id $InternsTeam.id --body '{"additionalProp
         "@odata.type": "#microsoft.graph.aadUserConversationMember",
         "user@odata.bind": "https://graph.microsoft.com/v1.0/users/" + $teamOwner.id
     }, "roles": ["owner"]}'
+```
+
+CMD:
+
+```shell
+mgc teams item members create --team-id %InternsTeamId% --body "{""additionalProperties"": {""@odata.type"": ""#microsoft.graph.aadUserConversationMember"",""user@odata.bind"": ""https://graph.microsoft.com/v1.0/users/%UserId%""}, ""roles"": [""owner""]}"
 ```
 
 Bash:
@@ -66,6 +85,13 @@ $body = ConvertTo-Json '{"body": {"content": "Welcome to Teams!"}}'
 mgc teams item channels item messages create --team-id $InternsTeam.id --channel-id $PrimaryChannel.id --body $body
 ```
 
+CMD:
+
+```shell
+mgc teams item primary-channel get --team-id %TeamId%
+mgc teams item channels item messages create --team-id %TeamId% --channel-id %PrimaryChannelId% --body "{""body"": {""content"": ""Welcome to Teams!""}}"
+```
+
 Bash:
 
 ```sh
@@ -79,6 +105,12 @@ PowerShell:
 
 ```powershell
 mgc groups delete --group-id $InternsTeam.id
+```
+
+CMD:
+
+```shell
+mgc groups delete --group-id %InternsTeamId%
 ```
 
 Bash:
