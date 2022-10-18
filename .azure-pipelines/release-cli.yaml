@@ -15,7 +15,7 @@ variables:
   - name: repositoryConnection
     value: 'GitHub - calebkiage'
   - name: zipTemplate
-    value: msgraph-cli-win-x64-{0}.zip
+    value: msgraph-cli-{0}-{1}.zip
   - name: defaultTag
     value: ${{parameters.tag}}
   - name: buildPlatform
@@ -23,9 +23,7 @@ variables:
   - name: buildConfiguration
     value: 'Release'
   - name: outputDir
-    value: /tmp/publish
-  - name: msgraphNugetUrl
-    value: https://nuget.pkg.github.com/microsoftgraph/index.json
+    value: $(Build.ArtifactStagingDirectory)/publish
 
 parameters:
   - name: tag
@@ -33,59 +31,145 @@ parameters:
     type: string
     default: latest
 
-# test -> build-{matrix} -> sign -> upload
+# test -> test -> build-{matrix} -> sign -> upload
 #
-jobs:
-  - job: test
-    displayName: Test solution
-    steps:
-    # - task: UseDotNet@2
-    #   displayName: 'Use .NET 6'
-    #   inputs:
-    #     version: 6.x
-    # Run the Unit test
-    - task: DotNetCoreCLI@2
-      displayName: 'test'
-      inputs:
-        command: test
-        projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
-  - job: build
-    displayName: Build and publish
-    dependsOn: test
-    # variables:
-    #   MS_NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
-    #   MSGRAPH_NUGET_URL: https://nuget.pkg.github.com/microsoftgraph/index.json
-    #   PACKAGE_VERSION: ${{github.event.inputs.tag || github.ref_name || 'v0.1.0'}}
-    #   PACKAGE_ZIP_TEMPLATE: "msgraph-cli-{0}-{1}.zip"
-    #   OUTPUT_DIR: /tmp/publish
-    # strategy:
-    #   matrix:
-    #     'Win x64':
-    #       rid: win-x64
-    #     'linux x64':
-    #       rid: linux-x64
-    #     'MacOS x64':
-    #       rid: osx-x64
-    #     'MacOS ARM':
-    #       rid: osx-arm64
-    steps:
-    # - task: UseDotNet@2
-    #   displayName: 'Use .NET 6'
-    #   inputs:
-    #     version: 6.x
-    # Authenticate nuget.exe, dotnet, and MSBuild with Azure Artifacts and optionally other repositories
-    - task: NuGetAuthenticate@1
-      inputs:
-        nuGetServiceConnections: GitHub Packages - Microsoft (Pull), GitHub Packages - Microsoft Graph (Pull)
-    - task: DotNetCoreCLI@2
-      displayName: Restore packages
-      inputs:
-        command: restore
-        projects: $(Build.SourcesDirectory)\msgraph-cli.sln
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'test'
-    #   inputs:
-    #     command: publish
-    #     projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
-    #     arguments: '--runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)'
+stages:
+  - stage: test
+    displayName: Run tests
+    jobs:
+      - job: source-scan
+        displayName: Source analysis tools (PoliCheck, CredScan)
+        dependsOn: []
+        steps:
+        # Run source code scan
+        - template: templates/compliance-checks.yaml
+          parameters:
+            scanSource: true
+
+      - job: test
+        displayName: Run tests
+        dependsOn: []
+        steps:
+        - task: UseDotNet@2
+          displayName: 'Use .NET 6'
+          inputs:
+            version: 6.x
+
+        # Restore NuGet packages (enables cache by default)
+        - template: templates/nuget-packages.yaml
+
+        # - task: DotNetCoreCLI@2
+        #   displayName: Run tests
+        #   inputs:
+        #     command: test
+        #     arguments: --no-restore
+        #     projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
+  - stage: build
+    displayName: Build CLI
+    dependsOn: [test]
+    jobs:
+      - job: build
+        displayName: Build and publish
+        # variables:
+        #   PACKAGE_VERSION: ${{github.event.inputs.tag || github.ref_name || 'v0.1.0'}}
+        #   PACKAGE_ZIP_TEMPLATE: "msgraph-cli-{0}-{1}.zip"
+        strategy:
+          matrix:
+            'Win x64':
+              rid: win-x64
+            'linux x64':
+              rid: linux-x64
+            'MacOS x64':
+              rid: osx-x64
+            'MacOS ARM':
+              rid: osx-arm64
+        steps:
+          - task: UseDotNet@2
+            displayName: 'Use .NET 6'
+            inputs:
+              version: 6.x
+
+          - template: templates/nuget-packages.yaml
+            parameters:
+              extraRestoreArgs: --runtime $(rid)
+
+          # - task: DeleteFiles@1
+          #   displayName: Delete any existing files in output dir
+          #   inputs:
+          #     SourceFolder: $(outputDir)
+          #     Contents: "*"
+          #     RemoveSourceFolder: false
+          # - task: DotNetCoreCLI@2
+          #   displayName: Publish package
+          #   inputs:
+          #     command: publish
+          #     projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
+          #     arguments: '--no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)'
+          - pwsh: |
+              Add-Content -Encoding utf8 -Path $(outputDir)/$(rid) -Value $(rid)-$(Agent.OS)
+          
+          - task: PublishPipelineArtifact@1
+            inputs:
+              artifact: build-output-$(rid)
+              path: $(outputDir)-$(rid)
+      - job: collect
+        dependsOn: [build]
+        steps:
+          - task: DownloadPipelineArtifact@2
+          - task: CopyFiles@2
+            inputs:
+              CleanTargetFolder: true
+              SourceFolder: $(Pipeline.Workspace)
+              Contents: "**/build-output-*/**"
+              TargetFolder: $(outputDir)
+              flattenFolders: false
+          - pwsh: Get-ChildItem -Path $(outputDir)
+          - publish: $(outputDir)
+            artifact: build-output
+  - stage: scan
+    displayName: Scan binaries
+    dependsOn: [build]
+    jobs:
+      - job: binary-scan
+        displayName: Binary analysis tools (Anti malware, BinSkim)
+        steps:
+          - download: current
+            artifact: build-output
+          - template: templates/compliance-checks.yaml
+            parameters:
+              scanBinary: true
+  - stage: sign
+    displayName: ESRP signing
+    dependsOn: [build]
+    jobs:
+      - job: esrp-sign-windows
+        dependsOn: []
+        displayName: ESRP Signing (Windows)
+        strategy:
+          matrix:
+            'Windows':
+              name: Windows
+            'MacOS':
+              name: MacOS
+        steps:
+          - download: current
+            artifact: build-output
+          - pwsh: |
+              echo "TODO: Sign Windows binaries"
+      - job: esrp-sign-osx
+        dependsOn: []
+        displayName: ESRP Signing (MacOS)
+        steps:
+          - download: current
+            artifact: build-output
+          - pwsh: |
+              echo "TODO: Sign MacOS binaries"
+  - stage: upload
+    dependsOn: [scan, sign]
+    jobs:
+      - job: upload
+        displayName: Upload binaries
+        steps:
+          - pwsh: |
+              echo "TODO: Upload"
     
