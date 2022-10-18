@@ -7,10 +7,9 @@ parameters:
     default: $(Pipeline.Workspace)/.nuget/packages
   - name: extraRestoreArgs
     type: "string"
-
-variables:
   - name: restoreArgs
-    value: --use-lock-file --locked-mode $(extraRestoreArgs)
+    type: "string"
+    default: --use-lock-file --locked-mode $(extraRestoreArgs)
 
 steps:
   - pwsh: |
