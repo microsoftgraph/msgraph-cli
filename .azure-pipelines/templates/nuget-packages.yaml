@@ -5,6 +5,9 @@ parameters:
   - name: restorePath
     type: "string"
     default: $(Pipeline.Workspace)/.nuget/packages
+  - name: vstsFeedName
+    type: "string"
+    default: "" # Format projectName/feedName for project scoped feeds, feedName for organization scoped feed
   - name: extraRestoreArgs
     type: "string"
     default:
@@ -32,6 +35,10 @@ steps:
       condition: ne(variables.CACHE_RESTORED, true)
       inputs:
         command: restore
+        ${{ gt(length(parameters.vstsFeedName), 0)) }}:
+          feedsToUse: select
+          feedRestore: ${{parameters.vstsFeedName}}
+        includeNuGetOrg: true
         workingDirectory: $(Build.SourcesDirectory)
         restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
         restoreDirectory: ${{parameters.restorePath}}
@@ -40,6 +47,10 @@ steps:
       displayName: Restore packages
       inputs:
         command: restore
+        ${{ gt(length(parameters.vstsFeedName), 0)) }}:
+          feedsToUse: select
+          feedRestore: ${{parameters.vstsFeedName}}
+        includeNuGetOrg: true
         workingDirectory: $(Build.SourcesDirectory)
         noCache: true
         restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}

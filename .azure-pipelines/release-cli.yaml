@@ -24,6 +24,8 @@ variables:
     value: 'Release'
   - name: outputDir
     value: $(Build.ArtifactStagingDirectory)/publish
+  - name: internalFeed
+    value: "Graph Developer Experiences/microsoft-graph-feed" # Format projectName/feedName
 
 parameters:
   - name: tag
@@ -52,6 +54,8 @@ stages:
 
         # Restore NuGet packages (enables cache by default)
         - template: templates/nuget-packages.yaml
+          parameters:
+            vstsFeedName: ${{variables.internalFeed}}
 
         # - task: DotNetCoreCLI@2
         #   displayName: Run tests
@@ -87,6 +91,7 @@ stages:
           - template: templates/nuget-packages.yaml
             parameters:
               extraRestoreArgs: --runtime $(rid)
+              vstsFeedName: ${{variables.internalFeed}}
 
           # - task: DeleteFiles@1
           #   displayName: Delete any existing files in output dir
