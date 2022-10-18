@@ -25,7 +25,7 @@ variables:
   - name: outputDir
     value: $(Build.ArtifactStagingDirectory)/publish
   - name: internalFeed
-    value: "Graph Developer Experiences/microsoft-graph-feed" # Format projectName/feedName
+    value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
 
 parameters:
   - name: tag
