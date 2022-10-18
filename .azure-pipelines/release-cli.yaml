@@ -127,17 +127,12 @@ stages:
           - publish: $(outputDir)
             artifact: build-output
   - stage: scan
-    displayName: Scan binaries
+    displayName: Scan binaries (Anti malware, BinSkim)
     dependsOn: [build]
     jobs:
-      - job: binary-scan
-        displayName: Binary analysis tools (Anti malware, BinSkim)
-        steps:
-          - download: current
-            artifact: build-output
-          - template: templates/compliance-checks.yaml
-            parameters:
-              scanBinary: true
+      - template: templates/compliance-checks.yaml
+        parameters:
+          scanBinary: true
   - stage: sign
     displayName: ESRP signing
     dependsOn: [build]
