@@ -103,7 +103,7 @@ stages:
           #     command: publish
           #     workingDirectory: $(Build.SourcesDirectory)
           #     arguments: '--no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)'
-          - pwsh: New-Item '$(outputDir)/$(rid)' -ItemType File -Value '$(rid)-$(Agent.OS)'
+          - pwsh: New-Item '$(outputDir)/$(rid)' -ItemType File -Value '$(rid)-$(Agent.OS)' -Force
           
           - task: PublishPipelineArtifact@1
             inputs:
