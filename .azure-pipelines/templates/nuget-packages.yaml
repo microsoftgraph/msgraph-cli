@@ -47,7 +47,7 @@ steps:
       displayName: Restore packages
       inputs:
         command: restore
-        ${{ gt(length(parameters.vstsFeedName), 0)) }}:
+        ${{ gt(length(parameters.vstsFeedName), 0) }}:
           feedsToUse: select
           feedRestore: ${{parameters.vstsFeedName}}
         includeNuGetOrg: true
