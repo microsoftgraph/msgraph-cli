@@ -72,17 +72,15 @@ jobs:
             AnalyzeEnvironment: false
             AnalyzeStatistics: true
 
-        - task: PublishSecurityAnalysisLogs@3
-          displayName: 'Publish Security Analysis Logs'
-          inputs:
-            ArtifactName: CodeAnalysisLogs
-            BinSkim: true
-            TargetPath: $(Build.ArtifactStagingDirectory)/security/logs
+      - task: PublishSecurityAnalysisLogs@3
+        displayName: 'Publish Security Analysis Logs'
+        inputs:
+          ArtifactName: CodeAnalysisLogs
+          AllTools: true
+          # TargetPath: $(Build.ArtifactStagingDirectory)/security/logs
 
-        - task: PostAnalysis@2
-          displayName: 'Post Analysis'
-          inputs:
-            GdnBreakAllTools: true
-        
-        # - publish: $(Build.ArtifactStagingDirectory)/security/logs
-        #   artifact: security-logs
+      - task: PostAnalysis@2
+        displayName: 'Post Analysis'
+        inputs:
+          GdnBreakAllTools: true
+

@@ -99,7 +99,7 @@ stages:
       - task: PublishSecurityAnalysisLogs@3
         displayName: 'Publish Security Analysis Logs'
         inputs:
-          ArtifactName: SecurityLogs
+          ArtifactName: CodeAnalysisLogs
 
       - task: PostAnalysis@1
         displayName: 'Post Analysis'
