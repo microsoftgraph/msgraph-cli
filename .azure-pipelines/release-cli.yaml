@@ -132,7 +132,7 @@ stages:
     displayName: ESRP signing
     dependsOn: [build]
     jobs:
-      - job: esrp-sign-windows
+      - job: esrpSignWindows
         dependsOn: []
         displayName: ESRP Signing (Windows)
         strategy:
@@ -146,7 +146,7 @@ stages:
             artifact: build-output
           - pwsh: |
               echo "TODO: Sign Windows binaries"
-      - job: esrp-sign-osx
+      - job: esrpSignOsx
         dependsOn: []
         displayName: ESRP Signing (MacOS)
         steps:
