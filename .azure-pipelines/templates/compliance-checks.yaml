@@ -6,7 +6,7 @@ parameters:
     type: boolean
     default: false
   - name: buildOutputArtifact
-    type: "string"
+    type: string
     default: ""
 
 jobs:
@@ -20,9 +20,7 @@ jobs:
           Write-Verbose -Verbose "scanBinary = '${{parameters.scanBinary}}'"
           Write-Verbose -Verbose "buildOutputArtifact = '${{parameters.buildOutputArtifact}}'"
           Write-Verbose -Verbose 'Agent OS = $(Agent.OS)'
-      - ${{ if gt(length(parameters.buildOutputArtifact), 0) }}:
-        - download: current
-          artifact: ${{parameters.buildOutputArtifact}}
+
       - task: UseDotNet@2
         displayName: 'Use .NET 6'
         inputs:
@@ -46,6 +44,9 @@ jobs:
             verboseOutput: true
 
       - ${{ if and(eq(parameters.scanBinary, true), gt(length(parameters.buildOutputArtifact), 0)) }}:
+        - download: current
+          artifact: ${{parameters.buildOutputArtifact}}
+
         - task: AntiMalware@3
           displayName: 'Run MpCmdRun.exe - Product Binaries'
           inputs:
