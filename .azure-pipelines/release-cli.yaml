@@ -103,8 +103,7 @@ stages:
           #     command: publish
           #     workingDirectory: $(Build.SourcesDirectory)
           #     arguments: '--no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)'
-          - pwsh: |
-              Add-Content -Encoding utf8 -Path '$(outputDir)/$(rid)' -Value '$(rid)-$(Agent.OS)'
+          - pwsh: New-Item '$(outputDir)/$(rid)' -ItemType File -Value '$(rid)-$(Agent.OS)'
           
           - task: PublishPipelineArtifact@1
             inputs:
@@ -132,15 +131,6 @@ stages:
       - template: templates/compliance-checks.yaml
         parameters:
           scanSource: true
-
-  - stage: scan
-    displayName: Scan binaries (Anti malware, BinSkim)
-    dependsOn: [build, srcScan]
-    jobs:
-    - template: templates/compliance-checks.yaml
-      parameters:
-        scanBinary: true
-        buildOutputArtifact: build-output
   - stage: sign
     displayName: ESRP signing
     dependsOn: [build]
@@ -167,6 +157,15 @@ stages:
             artifact: build-output
           - pwsh: |
               echo "TODO: Sign MacOS binaries"
+  - stage: scan
+    displayName: Scan binaries (Anti malware, BinSkim)
+    dependsOn: [build, srcScan]
+    jobs:
+    - template: templates/compliance-checks.yaml
+      parameters:
+        scanBinary: true
+        buildOutputArtifact: build-output
+
   - stage: upload
     dependsOn: [scan, sign]
     jobs:
