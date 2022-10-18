@@ -33,16 +33,20 @@ parameters:
     type: string
     default: latest
 
-# test -> test -> build-{matrix} -> sign -> upload
-#
+#                   
+# test -> build -> | sign |
+#                  |------| -> upload
+# srcScan -------> | scan |
 stages:
-  - stage: test
-    displayName: Run tests
+  - stage: srcScan
+    displayName: Scan source code
     jobs:
       - template: templates/compliance-checks.yaml
         parameters:
           scanSource: true
-
+  - stage: test
+    displayName: Run tests
+    jobs:
       - job: test
         displayName: Run tests
         dependsOn: []
@@ -128,7 +132,7 @@ stages:
             artifact: build-output
   - stage: scan
     displayName: Scan binaries (Anti malware, BinSkim)
-    dependsOn: [build]
+    dependsOn: [build, srcScan]
     jobs:
     - template: templates/compliance-checks.yaml
       parameters:
