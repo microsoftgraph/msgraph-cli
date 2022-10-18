@@ -101,7 +101,7 @@ stages:
           #     projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
           #     arguments: '--no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)'
           - pwsh: |
-              Add-Content -Encoding utf8 -Path $(outputDir)/$(rid) -Value $(rid)-$(Agent.OS)
+              Add-Content -Encoding utf8 -Path '$(outputDir)/$(rid)' -Value '$(rid)-$(Agent.OS)'
           
           - task: PublishPipelineArtifact@1
             inputs:
@@ -118,7 +118,7 @@ stages:
               Contents: "**/build-output-*/**"
               TargetFolder: $(outputDir)
               flattenFolders: false
-          - pwsh: Get-ChildItem -Path $(outputDir)
+          - pwsh: Get-ChildItem -Path '$(outputDir)'
           - publish: $(outputDir)
             artifact: build-output
   - stage: scan
