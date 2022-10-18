@@ -9,16 +9,11 @@ parameters:
     type: "string"
     default:
 
-variables:
-  - name: RESTORE_ARGS
-    value: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
-
 steps:
   - pwsh: |
       Write-Verbose "useCache = '${{parameters.useCache}}'"
       Write-Verbose "restorePath = '${{parameters.restorePath}}'"
       Write-Verbose "extraRestoreArgs = '${{parameters.extraRestoreArgs}}'"
-      Write-Verbose "RESTORE_ARGS = '${{variables.RESTORE_ARGS}}'"
 
   - task: UseDotNet@2
     displayName: 'Use .NET 6'
@@ -38,7 +33,7 @@ steps:
       inputs:
         command: restore
         workingDirectory: $(Build.SourcesDirectory)
-        restoreArguments: ${{RESTORE_ARGS}}
+        restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
         restoreDirectory: ${{parameters.restorePath}}
   - ${{ else }}:
     - task: DotNetCoreCLI@2
@@ -47,4 +42,4 @@ steps:
         command: restore
         workingDirectory: $(Build.SourcesDirectory)
         noCache: true
-        restoreArguments: $(RESTORE_ARGS)
+        restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
