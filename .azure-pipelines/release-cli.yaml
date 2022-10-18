@@ -55,12 +55,14 @@ stages:
           parameters:
             vstsFeedName: ${{variables.internalFeed}}
 
-        # - task: DotNetCoreCLI@2
-        #   displayName: Run tests
-        #   inputs:
-        #     command: test
-        #     workingDirectory: $(Build.SourcesDirectory)
-        #     arguments: --no-restore
+        - task: DotNetCoreCLI@2
+          displayName: Run tests
+          # TODO: Enable
+          enabled: false
+          inputs:
+            command: test
+            workingDirectory: $(Build.SourcesDirectory)
+            arguments: --no-restore
   - stage: build
     displayName: Build CLI
     dependsOn: [test]
@@ -91,27 +93,28 @@ stages:
               extraRestoreArgs: --runtime $(rid)
               vstsFeedName: ${{variables.internalFeed}}
 
-          # - task: DeleteFiles@1
-          #   displayName: Delete any existing files in output dir
-          #   inputs:
-          #     SourceFolder: $(outputDir)
-          #     Contents: "*"
-          #     RemoveSourceFolder: false
-          # - task: DotNetCoreCLI@2
-          #   displayName: Publish package
-          #   inputs:
-          #     command: publish
-          #     workingDirectory: $(Build.SourcesDirectory)
-          #     arguments: '--no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)'
-          - pwsh: New-Item '$(outputDir)/$(rid)' -ItemType File -Value '$(rid)-$(Agent.OS)' -Force
+          - task: DotNetCoreCLI@2
+            displayName: Publish package
+            # TODO: Enable
+            enabled: false
+            inputs:
+              command: publish
+              workingDirectory: $(Build.SourcesDirectory)
+              arguments: '--no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)'
+          - pwsh: |
+              New-Item '$(outputDir)-$(rid)' -ItemType Directory
+              New-Item '$(outputDir)-$(rid)' -Value '$(rid)-$(Agent.OS)'
+            # TODO: Disable
+            enabled: true
           
           - task: PublishPipelineArtifact@1
             inputs:
               artifact: build-output-$(rid)
-              path: $(outputDir)/$(rid)
+              path: $(outputDir)-$(rid)
       - job: collect
         dependsOn: [build]
         steps:
+          - checkout: none
           - task: DownloadPipelineArtifact@2
           - task: CopyFiles@2
             inputs:
@@ -138,21 +141,17 @@ stages:
       - job: esrpSignWindows
         dependsOn: []
         displayName: ESRP Signing (Windows)
-        strategy:
-          matrix:
-            'Windows':
-              name: Windows
-            'MacOS':
-              name: MacOS
         steps:
+          - checkout: none
           - download: current
             artifact: build-output
           - pwsh: |
               echo "TODO: Sign Windows binaries"
-      - job: esrpSignOsx
+      - job: esrpSignMacOS
         dependsOn: []
         displayName: ESRP Signing (MacOS)
         steps:
+          - checkout: none
           - download: current
             artifact: build-output
           - pwsh: |
@@ -172,6 +171,7 @@ stages:
       - job: upload
         displayName: Upload binaries
         steps:
+          - checkout: none
           - pwsh: |
               echo "TODO: Upload"
     

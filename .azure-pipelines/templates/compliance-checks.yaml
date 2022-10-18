@@ -25,10 +25,14 @@ jobs:
         displayName: 'Use .NET 6'
         inputs:
           version: 6.x
+      
+      - ${{ if ne(parameters.scanSource, true) }}:
+        - checkout: none
 
       - ${{ if eq(parameters.scanSource, true) }}:
         - task: PoliCheck@2
           displayName: 'Run PoliCheck'
+          # TODO: Enable
           enabled: false
           inputs:
             result: poli_result_src.xml
@@ -38,6 +42,7 @@ jobs:
 
         - task: CredScan@3
           displayName: 'Run CredScan'
+          # TODO: Enable
           enabled: false
           inputs:
             scanFolder: '$(Build.SourcesDirectory)\src'
@@ -48,12 +53,12 @@ jobs:
         - download: current
           artifact: ${{parameters.buildOutputArtifact}}
 
-        - task: AntiMalware@3
+        - task: AntiMalware@4
           displayName: 'Run MpCmdRun.exe - Product Binaries'
           inputs:
             FileDirPath: $(Pipeline.Workspace)/${{parameters.buildOutputArtifact}}
-            TreatSignatureUpdateFailureAs: Warning
-            TreatStaleSignatureAs: Error
+            # TreatSignatureUpdateFailureAs: Warning
+            # TreatStaleSignatureAs: Error
 
         - task: BinSkim@4
           displayName: 'Run BinSkim - Product Binaries'
