@@ -76,7 +76,7 @@ stages:
           matrix:
             'Win x64':
               rid: win-x64
-            'linux x64':
+            'Linux x64':
               rid: linux-x64
             'MacOS x64':
               rid: osx-x64
