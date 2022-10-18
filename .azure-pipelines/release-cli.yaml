@@ -57,8 +57,8 @@ stages:
         #   displayName: Run tests
         #   inputs:
         #     command: test
+        #     workingDirectory: $(Build.SourcesDirectory)
         #     arguments: --no-restore
-        #     projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
   - stage: build
     displayName: Build CLI
     dependsOn: [test]
@@ -98,7 +98,7 @@ stages:
           #   displayName: Publish package
           #   inputs:
           #     command: publish
-          #     projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
+          #     workingDirectory: $(Build.SourcesDirectory)
           #     arguments: '--no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)'
           - pwsh: |
               Add-Content -Encoding utf8 -Path '$(outputDir)/$(rid)' -Value '$(rid)-$(Agent.OS)'

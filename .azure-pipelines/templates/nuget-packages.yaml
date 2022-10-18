@@ -32,14 +32,14 @@ steps:
       condition: ne(variables.CACHE_RESTORED, true)
       inputs:
         command: restore
+        workingDirectory: $(Build.SourcesDirectory)
         restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
         restoreDirectory: ${{parameters.restorePath}}
-        projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
   - ${{ else }}:
     - task: DotNetCoreCLI@2
       displayName: Restore packages
       inputs:
         command: restore
+        workingDirectory: $(Build.SourcesDirectory)
         noCache: true
         restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
-        projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
