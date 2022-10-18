@@ -40,16 +40,17 @@ parameters:
 stages:
   - stage: srcScan
     displayName: Scan source code
+    dependsOn: []
     jobs:
       - template: templates/compliance-checks.yaml
         parameters:
           scanSource: true
   - stage: test
     displayName: Run tests
+    dependsOn: []
     jobs:
       - job: test
         displayName: Run tests
-        dependsOn: []
         steps:
         - task: UseDotNet@2
           displayName: 'Use .NET 6'
