@@ -108,7 +108,7 @@ stages:
           - task: PublishPipelineArtifact@1
             inputs:
               artifact: build-output-$(rid)
-              path: $(outputDir)-$(rid)
+              path: $(outputDir)/$(rid)
       - job: collect
         dependsOn: [build]
         steps:
