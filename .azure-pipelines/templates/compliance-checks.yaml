@@ -16,12 +16,12 @@ jobs:
       vmImage: windows-latest
     steps:
       - pwsh: |
-          Write-Verbose -Verbose "scanSource = '$(scanSource)'"
-          Write-Verbose -Verbose "scanBinary = '$(scanSource)'"
-          Write-Verbose -Verbose "buildOutputArtifact = '$(buildOutputArtifact)'"
-          Write-Verbose -Verbose "Agent OS = '$(Agent.OS)'"
+          Write-Verbose -Verbose "scanSource = '${{parameters.scanSource}}'"
+          Write-Verbose -Verbose "scanBinary = '${{parameters.scanBinary}}'"
+          Write-Verbose -Verbose "buildOutputArtifact = '${{parameters.buildOutputArtifact}}'"
+          Write-Verbose -Verbose 'Agent OS = $(Agent.OS)'
       - download: current
-        artifact: $(buildOutputArtifact)
+        artifact: ${{parameters.buildOutputArtifact}}
       - task: UseDotNet@2
         displayName: 'Use .NET 6'
         inputs:
@@ -48,7 +48,7 @@ jobs:
         - task: AntiMalware@3
           displayName: 'Run MpCmdRun.exe - Product Binaries'
           inputs:
-            FileDirPath: $(Pipeline.Workspace)/$(buildOutputArtifact)
+            FileDirPath: $(Pipeline.Workspace)/${{parameters.buildOutputArtifact}}
             TreatSignatureUpdateFailureAs: Warning
             TreatStaleSignatureAs: Error
 
@@ -57,7 +57,7 @@ jobs:
           inputs:
             InputType: Basic
             TargetPattern: guardianGlob
-            AnalyzeTargetGlob: '$(Pipeline.Workspace)\$(buildOutputArtifact)\**.dll;$(Pipeline.Workspace)\$(buildOutputArtifact)\**.exe;'
+            AnalyzeTargetGlob: '$(Pipeline.Workspace)\${{parameters.buildOutputArtifact}}\**.dll;$(Pipeline.Workspace)\${{parameters.buildOutputArtifact}}\**.exe;'
             AnalyzeIgnorePdbLoadError: false
             AnalyzeVerbose: true
             AnalyzeHashes: true
