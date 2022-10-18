@@ -35,7 +35,7 @@ steps:
       condition: ne(variables.CACHE_RESTORED, true)
       inputs:
         command: restore
-        ${{ gt(length(parameters.vstsFeedName), 0) }}:
+        ${{ if gt(length(parameters.vstsFeedName), 0) }}:
           feedsToUse: select
           feedRestore: ${{parameters.vstsFeedName}}
         includeNuGetOrg: true
@@ -47,7 +47,7 @@ steps:
       displayName: Restore packages
       inputs:
         command: restore
-        ${{ gt(length(parameters.vstsFeedName), 0) }}:
+        ${{ if gt(length(parameters.vstsFeedName), 0) }}:
           feedsToUse: select
           feedRestore: ${{parameters.vstsFeedName}}
         includeNuGetOrg: true
