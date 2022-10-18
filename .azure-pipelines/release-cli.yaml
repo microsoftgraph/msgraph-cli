@@ -38,13 +38,6 @@ parameters:
 #                  |------| -> upload
 # srcScan -------> | scan |
 stages:
-  - stage: srcScan
-    displayName: Scan source code
-    dependsOn: []
-    jobs:
-      - template: templates/compliance-checks.yaml
-        parameters:
-          scanSource: true
   - stage: test
     displayName: Run tests
     dependsOn: []
@@ -131,6 +124,15 @@ stages:
           - pwsh: Get-ChildItem -Path '$(outputDir)'
           - publish: $(outputDir)
             artifact: build-output
+
+  - stage: srcScan
+    displayName: Scan source code
+    dependsOn: []
+    jobs:
+      - template: templates/compliance-checks.yaml
+        parameters:
+          scanSource: true
+
   - stage: scan
     displayName: Scan binaries (Anti malware, BinSkim)
     dependsOn: [build, srcScan]

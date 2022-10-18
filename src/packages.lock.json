@@ -87,7 +87,7 @@
         "type": "Direct",
         "requested": "[0.1.4-preview.4, )",
         "resolved": "0.1.4-preview.4",
-        "contentHash": "w+r9tnXdlj3h8cTi6XlKRGQMATwfMk2aKXVUvHYHufQZNLkbUCx0umUT1EaAlgfvGLkiGrEbQAwVw2hKW9FVKA==",
+        "contentHash": "IdqW+0ud5GFekWJsO+3lxYwXPBOBGuG7BmJEbunQ9auCaLhFIRtzVtgyBgFi1joeeh74DMhqkIAE/eyjuXMuaw==",
         "dependencies": {
           "Azure.Identity": "1.7.0",
           "JmesPath.Net": "1.0.205",
