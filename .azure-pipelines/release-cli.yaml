@@ -37,14 +37,9 @@ stages:
   - stage: test
     displayName: Run tests
     jobs:
-      - job: source-scan
-        displayName: Source analysis tools (PoliCheck, CredScan)
-        dependsOn: []
-        steps:
-        # Run source code scan
-        - template: templates/compliance-checks.yaml
-          parameters:
-            scanSource: true
+      - template: templates/compliance-checks.yaml
+        parameters:
+          scanSource: true
 
       - job: test
         displayName: Run tests
@@ -130,9 +125,9 @@ stages:
     displayName: Scan binaries (Anti malware, BinSkim)
     dependsOn: [build]
     jobs:
-      - template: templates/compliance-checks.yaml
-        parameters:
-          scanBinary: true
+    - template: templates/compliance-checks.yaml
+      parameters:
+        scanBinary: true
   - stage: sign
     displayName: ESRP signing
     dependsOn: [build]
