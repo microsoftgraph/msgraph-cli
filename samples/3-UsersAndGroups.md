@@ -35,6 +35,12 @@ $body = ConvertTo-Json '{"officeLocation": "NewLocation"}'
 mgc users item patch --user-id <UserId> --body $body
 ```
 
+CMD:
+
+```sh
+mgc users item patch --user-id <UserId> --body "{""officeLocation"": ""NewLocation""}"
+```
+
 Bash:
 
 ```sh
@@ -86,6 +92,12 @@ $body = ConvertTo-Json '{"displayName": "PowerFam", "mailEnabled": false, "mailN
 mgc groups create --body $body
 ```
 
+CMD:
+
+```sh
+mgc groups create --body "{""displayName"": ""PowerFam"", ""mailEnabled"": false, ""mailNickName"": ""powerfam"", ""securityEnabled"": true}"
+```
+
 Bash:
 
 ```sh
@@ -106,6 +118,12 @@ PowerShell:
 $body = ConvertTo-Json '{"displayName": "Bob Brown", "accountEnabled": true, "passwordProfile": {"password": "password"},\
         "mailNickname": "Bob.Brown", "userPrincipalName": "bob.brown@{tenantdomain}"}'
 mgc users create --body $body
+```
+
+CMD:
+
+```shell
+mgc users create --body "{""displayName"": ""Bob Brown"", ""accountEnabled"": true, ""passwordProfile"": {""password"": ""password""}, ""mailNickname"": ""Bob.Brown"", ""userPrincipalName"": ""bob.brown@{tenantdomain}""}"
 ```
 
 Bash:
