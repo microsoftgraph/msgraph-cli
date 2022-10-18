@@ -29,6 +29,7 @@ jobs:
       - ${{ if eq(parameters.scanSource, true) }}:
         - task: PoliCheck@2
           displayName: 'Run PoliCheck'
+          enabled: false
           inputs:
             result: poli_result_src.xml
             targetArgument: $(Build.SourcesDirectory)/src
@@ -37,6 +38,7 @@ jobs:
 
         - task: CredScan@3
           displayName: 'Run CredScan'
+          enabled: false
           inputs:
             scanFolder: '$(Build.SourcesDirectory)\src'
             debugMode: false
