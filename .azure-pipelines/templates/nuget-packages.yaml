@@ -7,16 +7,12 @@ parameters:
     default: $(Pipeline.Workspace)/.nuget/packages
   - name: extraRestoreArgs
     type: "string"
-  - name: restoreArgs
-    type: "string"
-    default: --use-lock-file --locked-mode $(extraRestoreArgs)
 
 steps:
   - pwsh: |
       Write-Verbose -Verbose "useCache = '$(useCache)'"
       Write-Verbose -Verbose "restorePath = '$(restorePath)'"
       Write-Verbose -Verbose "extraRestoreArgs = '$(extraRestoreArgs)'"
-      Write-Verbose -Verbose "restoreArgs = '$(restoreArgs)'"
 
   - task: UseDotNet@2
     displayName: 'Use .NET 6'
@@ -28,14 +24,14 @@ steps:
       displayName: 'NuGet Cache'
       inputs:
         key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
-        path: '$(NUGET_PACKAGES)'
+        path: '$(restorePath)'
         cacheHitVar: 'CACHE_RESTORED'
     - task: DotNetCoreCLI@2
       displayName: Restore packages
       condition: ne(variables.CACHE_RESTORED, true)
       inputs:
         command: restore
-        restoreArguments: $(restoreArgs)
+        restoreArguments: --use-lock-file --locked-mode $(extraRestoreArgs)
         restoreDirectory: $(restorePath)
         projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
   - ${{ else }}:
@@ -44,5 +40,5 @@ steps:
       inputs:
         command: restore
         noCache: true
-        restoreArguments: $(restoreArgs)
+        restoreArguments: --use-lock-file --locked-mode $(extraRestoreArgs)
         projects: '$(Build.SourcesDirectory)\msgraph-cli.sln'
