@@ -163,7 +163,6 @@ stages:
     - template: templates/compliance-checks.yaml
       parameters:
         scanBinary: true
-        buildOutputArtifact: build-output
 
   - stage: upload
     dependsOn: [scan, sign]

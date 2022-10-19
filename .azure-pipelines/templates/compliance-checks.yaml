@@ -5,9 +5,6 @@ parameters:
   - name: 'scanBinary'
     type: boolean
     default: false
-  - name: buildOutputArtifact
-    type: string
-    default: ""
 
 jobs:
   - job:
@@ -18,7 +15,6 @@ jobs:
       - pwsh: |
           Write-Verbose -Verbose "scanSource = '${{parameters.scanSource}}'"
           Write-Verbose -Verbose "scanBinary = '${{parameters.scanBinary}}'"
-          Write-Verbose -Verbose "buildOutputArtifact = '${{parameters.buildOutputArtifact}}'"
           Write-Verbose -Verbose 'Agent OS = $(Agent.OS)'
 
       - task: UseDotNet@2
@@ -49,22 +45,25 @@ jobs:
             debugMode: false
             verboseOutput: true
 
-      - ${{ if and(eq(parameters.scanBinary, true), gt(length(parameters.buildOutputArtifact), 0)) }}:
+      - ${{ if eq(parameters.scanBinary, true) }}:
         - download: current
-          artifact: ${{parameters.buildOutputArtifact}}
+
+        - pwsh: Get-ChildItem $(Pipeline.Workspace)
 
         - task: AntiMalware@4
           displayName: 'Run MpCmdRun.exe - Product Binaries'
+          # TODO: Enable
+          enabled: false
           inputs:
-            FileDirPath: $(Pipeline.Workspace)/${{parameters.buildOutputArtifact}}
-            # TreatSignatureUpdateFailureAs: Warning
-            # TreatStaleSignatureAs: Error
+            FileDirPath: $(Pipeline.Workspace)
 
         - task: BinSkim@4
           displayName: 'Run BinSkim - Product Binaries'
+          # TODO: Enable
+          enabled: false
           inputs:
             InputType: Basic
-            AnalyzeTargetGlob: '$(Pipeline.Workspace)\${{parameters.buildOutputArtifact}}\**.dll;$(Pipeline.Workspace)\${{parameters.buildOutputArtifact}}\**.exe;'
+            AnalyzeTargetGlob: '$(Pipeline.Workspace)\**.dll;$(Pipeline.Workspace)\**.exe;'
             AnalyzeIgnorePdbLoadError: false
             AnalyzeVerbose: true
             AnalyzeHashes: true
@@ -73,13 +72,16 @@ jobs:
 
       - task: PublishSecurityAnalysisLogs@3
         displayName: 'Publish Security Analysis Logs'
+        # TODO: Enable
+        enabled: false
         inputs:
           ArtifactName: CodeAnalysisLogs
           AllTools: true
-          # TargetPath: $(Build.ArtifactStagingDirectory)/security/logs
 
       - task: PostAnalysis@2
         displayName: 'Post Analysis'
+        # TODO: Enable
+        enabled: false
         inputs:
           GdnBreakAllTools: true
 
