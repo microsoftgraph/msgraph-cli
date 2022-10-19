@@ -64,7 +64,6 @@ jobs:
           displayName: 'Run BinSkim - Product Binaries'
           inputs:
             InputType: Basic
-            TargetPattern: guardianGlob
             AnalyzeTargetGlob: '$(Pipeline.Workspace)\${{parameters.buildOutputArtifact}}\**.dll;$(Pipeline.Workspace)\${{parameters.buildOutputArtifact}}\**.exe;'
             AnalyzeIgnorePdbLoadError: false
             AnalyzeVerbose: true
