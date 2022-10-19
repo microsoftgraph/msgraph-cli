@@ -103,7 +103,7 @@ stages:
               arguments: '--no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)'
           - pwsh: |
               New-Item '$(outputDir)-$(rid)' -ItemType Directory
-              New-Item '$(outputDir)-$(rid)' -Value '$(rid)-$(Agent.OS)'
+              New-Item '$(outputDir)-$(rid)' -Name output.txt  -Value '$(rid) on $(Agent.OS) runner'
             # TODO: Disable
             enabled: true
           
