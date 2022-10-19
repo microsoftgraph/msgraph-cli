@@ -1,0 +1,23 @@
+parameters:
+  - name: "signOutputPath"
+    default: "$(Build.ArtifactStagingDirectory)\\signed"
+  - name: "displayName"
+    default: "ESRP Signing"
+
+steps:
+- pwsh: |
+    if ($null -eq $env:ESRP_TEMPLATE_CUSTOM_JSON)
+    {
+      Write-Error "ESRP_TEMPLATE_CUSTOM_JSON variable must be set!"
+    }
+
+    [string] $VariableName = "EsrpJson"
+    $vstsCommandString = "vso[task.setvariable variable=$VariableName]$env:ESRP_TEMPLATE_CUSTOM_JSON"
+    Write-Verbose -Message ("sending " + $vstsCommandString) -Verbose
+    Write-Host "##$vstsCommandString"
+
+    $vstsCommandString = "vso[task.setvariable variable=GDN_CODESIGN_TARGETDIRECTORY]${{ parameters.signOutputPath }}"
+    Write-Verbose -Message ("sending " + $vstsCommandString) -Verbose
+    Write-Host "##$vstsCommandString"
+  displayName: ${{ parameters.displayName }} - Generate custom signing JSON
+  condition: and(succeeded(), eq(variables['ESRP_TEMPLATE_SHOULD_SIGN'], 'True'))

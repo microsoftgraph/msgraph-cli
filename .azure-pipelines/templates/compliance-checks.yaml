@@ -46,7 +46,9 @@ jobs:
             verboseOutput: true
 
       - ${{ if eq(parameters.scanBinary, true) }}:
-        - download: current
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            path: $(Pipeline.Workspace)/artifacts
 
         - pwsh: Get-ChildItem $(Pipeline.Workspace)
 

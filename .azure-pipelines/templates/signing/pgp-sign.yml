@@ -1,0 +1,42 @@
+parameters:
+  - name: "signOutputPath"
+    default: "$(Build.ArtifactStagingDirectory)\\signed"
+  - name: "pattern"
+    default: "*.rpm,*.deb"
+  - name: "certificateId"
+    default: "CP-450778-Pgp"
+  - name: "displayName"
+    default: "ESRP Signing"
+
+steps:
+
+- pwsh: |
+    [string] $CertificateId = "${{ parameters.certificateId }}"
+    Write-Verbose "CertificateId - $CertificateId" -Verbose
+
+    [string] $VariableName = "EsrpJson"
+
+    [string] $SigningServer = '$(SigningServer)'
+    Write-Verbose "SigningServer - $SigningServer" -Verbose
+
+    $esrp = @(@{
+    keyCode = $CertificateId
+    operationSetCode = "LinuxSign"
+    toolName = "sign"
+    toolVersion = "1.0"
+    })
+
+    $vstsCommandString = "vso[task.setvariable variable=$VariableName][$($esrp | ConvertTo-Json -Compress)]"
+    Write-Verbose -Message ("sending " + $vstsCommandString) -Verbose
+    Write-Host "##$vstsCommandString"
+
+    $vstsCommandString = "vso[task.setvariable variable=GDN_CODESIGN_TARGETDIRECTORY]${{ parameters.signOutputPath }}"
+    Write-Verbose -Message ("sending " + $vstsCommandString) -Verbose
+    Write-Host "##$vstsCommandString"
+  displayName: ${{ parameters.displayName }} - Generate PGP signing JSON
+  condition: |
+    and(
+      succeeded(),
+      eq(variables['ESRP_TEMPLATE_SHOULD_SIGN'], 'True'),
+      eq(variables['ESRP_TEMPLATE_USE_PGP'], 'True')
+    )

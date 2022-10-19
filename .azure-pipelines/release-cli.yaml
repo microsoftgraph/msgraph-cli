@@ -24,6 +24,8 @@ variables:
     value: 'Release'
   - name: outputDir
     value: $(Build.ArtifactStagingDirectory)/publish
+  - name: artifactsDownloadLocation
+    value: $(Pipeline.Workspace)/artifacts
   - name: internalFeed
     value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
 
@@ -111,21 +113,6 @@ stages:
             inputs:
               artifact: build-output-$(rid)
               path: $(outputDir)-$(rid)
-      # - job: collect
-      #   dependsOn: [build]
-      #   steps:
-      #     - checkout: none
-      #     - task: DownloadPipelineArtifact@2
-      #     - task: CopyFiles@2
-      #       inputs:
-      #         CleanTargetFolder: true
-      #         SourceFolder: $(Pipeline.Workspace)
-      #         Contents: "**/build-output-*/**"
-      #         TargetFolder: $(outputDir)
-      #         flattenFolders: false
-      #     - pwsh: Get-ChildItem -Path '$(outputDir)'
-      #     - publish: $(outputDir)
-      #       artifact: build-output
 
   - stage: srcScan
     displayName: Scan source code
@@ -143,18 +130,24 @@ stages:
         displayName: ESRP Signing (Windows)
         steps:
           - checkout: none
-          - download: current
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              patterns: build-output-win*/**
+              path: $(artifactsDownloadLocation)
           - pwsh: |
-              Get-ChildItem $(Pipeline.Workspace)
+              Get-ChildItem $(artifactsDownloadLocation)
               echo "TODO: Sign Windows binaries"
       - job: esrpSignMacOS
         dependsOn: []
         displayName: ESRP Signing (MacOS)
         steps:
           - checkout: none
-          - download: current
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              patterns: build-output-osx*/**
+              path: $(artifactsDownloadLocation)
           - pwsh: |
-              Get-ChildItem $(Pipeline.Workspace)
+              Get-ChildItem $(artifactsDownloadLocation)
               echo "TODO: Sign MacOS binaries"
   - stage: scan
     displayName: Scan binaries (Anti malware, BinSkim)
