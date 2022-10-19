@@ -9,6 +9,8 @@ parameters:
 jobs:
   - job:
     displayName: Analysis tools
+    variables:
+      artifactsDownloadLocation: $(Pipeline.Workspace)/artifacts
     pool:
       vmImage: windows-latest
     steps:
@@ -48,16 +50,16 @@ jobs:
       - ${{ if eq(parameters.scanBinary, true) }}:
         - task: DownloadPipelineArtifact@2
           inputs:
-            path: $(Pipeline.Workspace)/artifacts
+            path: $(artifactsDownloadLocation)
 
-        - pwsh: Get-ChildItem $(Pipeline.Workspace)
+        - pwsh: Get-ChildItem $(artifactsDownloadLocation) -Recurse
 
         - task: AntiMalware@4
           displayName: 'Run MpCmdRun.exe - Product Binaries'
           # TODO: Enable
           enabled: false
           inputs:
-            FileDirPath: $(Pipeline.Workspace)
+            FileDirPath: $(artifactsDownloadLocation)
 
         - task: BinSkim@4
           displayName: 'Run BinSkim - Product Binaries'
@@ -65,7 +67,7 @@ jobs:
           enabled: false
           inputs:
             InputType: Basic
-            AnalyzeTargetGlob: '$(Pipeline.Workspace)\**.dll;$(Pipeline.Workspace)\**.exe;'
+            AnalyzeTargetGlob: '$(artifactsDownloadLocation)\**.dll;$(artifactsDownloadLocation)\**.exe;'
             AnalyzeIgnorePdbLoadError: false
             AnalyzeVerbose: true
             AnalyzeHashes: true
