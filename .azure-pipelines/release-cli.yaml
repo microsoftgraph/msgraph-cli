@@ -111,21 +111,21 @@ stages:
             inputs:
               artifact: build-output-$(rid)
               path: $(outputDir)-$(rid)
-      - job: collect
-        dependsOn: [build]
-        steps:
-          - checkout: none
-          - task: DownloadPipelineArtifact@2
-          - task: CopyFiles@2
-            inputs:
-              CleanTargetFolder: true
-              SourceFolder: $(Pipeline.Workspace)
-              Contents: "**/build-output-*/**"
-              TargetFolder: $(outputDir)
-              flattenFolders: false
-          - pwsh: Get-ChildItem -Path '$(outputDir)'
-          - publish: $(outputDir)
-            artifact: build-output
+      # - job: collect
+      #   dependsOn: [build]
+      #   steps:
+      #     - checkout: none
+      #     - task: DownloadPipelineArtifact@2
+      #     - task: CopyFiles@2
+      #       inputs:
+      #         CleanTargetFolder: true
+      #         SourceFolder: $(Pipeline.Workspace)
+      #         Contents: "**/build-output-*/**"
+      #         TargetFolder: $(outputDir)
+      #         flattenFolders: false
+      #     - pwsh: Get-ChildItem -Path '$(outputDir)'
+      #     - publish: $(outputDir)
+      #       artifact: build-output
 
   - stage: srcScan
     displayName: Scan source code
@@ -144,8 +144,8 @@ stages:
         steps:
           - checkout: none
           - download: current
-            artifact: build-output
           - pwsh: |
+              Get-ChildItem $(Pipeline.Workspace)
               echo "TODO: Sign Windows binaries"
       - job: esrpSignMacOS
         dependsOn: []
@@ -153,8 +153,8 @@ stages:
         steps:
           - checkout: none
           - download: current
-            artifact: build-output
           - pwsh: |
+              Get-ChildItem $(Pipeline.Workspace)
               echo "TODO: Sign MacOS binaries"
   - stage: scan
     displayName: Scan binaries (Anti malware, BinSkim)
