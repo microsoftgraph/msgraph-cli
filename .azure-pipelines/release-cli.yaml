@@ -116,13 +116,20 @@ stages:
 
   - stage: srcScan
     displayName: Scan source code
+    pool:
+      vmImage: windows-latest
     dependsOn: []
     jobs:
-      - template: templates/compliance-checks.yaml
-        parameters:
-          scanSource: true
+      - job: scan
+        displayName: Scanning source
+        steps:
+          - template: templates/compliance-checks.yaml
+            parameters:
+              scanSource: true
   - stage: sign
     displayName: ESRP signing
+    pool:
+      vmImage: windows-latest
     dependsOn: [build]
     jobs:
       - job: esrpSignWindows
@@ -132,10 +139,10 @@ stages:
           - checkout: none
           - task: DownloadPipelineArtifact@2
             inputs:
-              patterns: build-output-win*/**
+              patterns: build-output-win*/**/*
               path: $(artifactsDownloadLocation)
           - pwsh: |
-              Get-ChildItem $(artifactsDownloadLocation)
+              Get-ChildItem $(artifactsDownloadLocation) -Recurse
               echo "TODO: Sign Windows binaries"
       - job: esrpSignMacOS
         dependsOn: []
@@ -144,18 +151,23 @@ stages:
           - checkout: none
           - task: DownloadPipelineArtifact@2
             inputs:
-              patterns: build-output-osx*/**
+              patterns: build-output-osx*/**/*
               path: $(artifactsDownloadLocation)
           - pwsh: |
-              Get-ChildItem $(artifactsDownloadLocation)
+              Get-ChildItem $(artifactsDownloadLocation) -Recurse
               echo "TODO: Sign MacOS binaries"
-  - stage: scan
+  - stage: binaryScan
     displayName: Scan binaries (Anti malware, BinSkim)
     dependsOn: [build, srcScan]
+    pool:
+      vmImage: windows-latest
     jobs:
-    - template: templates/compliance-checks.yaml
-      parameters:
-        scanBinary: true
+      - job: scan
+        steps:
+          - template: templates/compliance-checks.yaml
+            parameters:
+              artifactsDownloadLocation: $(artifactsDownloadLocation)
+              scanBinary: true
 
   - stage: upload
     dependsOn: [scan, sign]

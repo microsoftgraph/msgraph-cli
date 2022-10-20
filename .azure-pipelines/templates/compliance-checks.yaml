@@ -5,87 +5,93 @@ parameters:
   - name: 'scanBinary'
     type: boolean
     default: false
+  - name: 'artifactsDownloadLocation'
+    default: ''
 
-jobs:
-  - job:
-    displayName: Analysis tools
-    variables:
-      artifactsDownloadLocation: $(Pipeline.Workspace)/artifacts
-    pool:
-      vmImage: windows-latest
-    steps:
-      - pwsh: |
-          Write-Verbose -Verbose "scanSource = '${{parameters.scanSource}}'"
-          Write-Verbose -Verbose "scanBinary = '${{parameters.scanBinary}}'"
-          Write-Verbose -Verbose 'Agent OS = $(Agent.OS)'
+steps:
+  - pwsh: |
+      Write-Verbose -Verbose "scanSource = '${{parameters.scanSource}}'"
+      Write-Verbose -Verbose "scanBinary = '${{parameters.scanBinary}}'"
+      Write-Verbose -Verbose 'Agent OS = $(Agent.OS)'
 
-      - task: UseDotNet@2
-        displayName: 'Use .NET 6'
-        inputs:
-          version: 6.x
-      
-      - ${{ if ne(parameters.scanSource, true) }}:
-        - checkout: none
+  - task: UseDotNet@2
+    displayName: 'Use .NET 6'
+    inputs:
+      version: 6.x
+  
+  - ${{ if ne(parameters.scanSource, true) }}:
+    - checkout: none
 
-      - ${{ if eq(parameters.scanSource, true) }}:
-        - task: PoliCheck@2
-          displayName: 'Run PoliCheck'
-          # TODO: Enable
-          enabled: false
-          inputs:
-            result: poli_result_src.xml
-            targetArgument: $(Build.SourcesDirectory)/src
-            optionsSEV: "1|2"
-            optionsPE: 2
+  - ${{ if eq(parameters.scanSource, true) }}:
+    - task: PoliCheck@2
+      displayName: 'Run PoliCheck - Source code scan'
+      # TODO: Enable
+      enabled: false
+      inputs:
+        result: poli_result_src.xml
+        targetArgument: $(Build.SourcesDirectory)/src
+        optionsSEV: "1|2"
+        optionsPE: 2
 
-        - task: CredScan@3
-          displayName: 'Run CredScan'
-          # TODO: Enable
-          enabled: false
-          inputs:
-            scanFolder: '$(Build.SourcesDirectory)\src'
-            debugMode: false
-            verboseOutput: true
+    - task: CredScan@3
+      displayName: 'Run CredScan - Source code scan'
+      # TODO: Enable
+      enabled: false
+      inputs:
+        scanFolder: '$(Build.SourcesDirectory)\src'
+        debugMode: false
+        verboseOutput: true
 
-      - ${{ if eq(parameters.scanBinary, true) }}:
-        - task: DownloadPipelineArtifact@2
-          inputs:
-            path: $(artifactsDownloadLocation)
+  - ${{ if eq(parameters.scanBinary, true) }}:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
+          path: $(artifactsDownloadLocation)
 
-        - pwsh: Get-ChildItem $(artifactsDownloadLocation) -Recurse
+    - ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
+      - pwsh: Get-ChildItem $(artifactsDownloadLocation) -Recurse
+    - ${{ else }}:
+      - pwsh: Get-ChildItem $(Pipeline.Workspace)
 
-        - task: AntiMalware@4
-          displayName: 'Run MpCmdRun.exe - Product Binaries'
-          # TODO: Enable
-          enabled: false
-          inputs:
-            FileDirPath: $(artifactsDownloadLocation)
 
-        - task: BinSkim@4
-          displayName: 'Run BinSkim - Product Binaries'
-          # TODO: Enable
-          enabled: false
-          inputs:
-            InputType: Basic
-            AnalyzeTargetGlob: '$(artifactsDownloadLocation)\**.dll;$(artifactsDownloadLocation)\**.exe;'
-            AnalyzeIgnorePdbLoadError: false
-            AnalyzeVerbose: true
-            AnalyzeHashes: true
-            AnalyzeEnvironment: false
-            AnalyzeStatistics: true
+    - task: AntiMalware@4
+      displayName: 'Run MpCmdRun.exe - Product Binaries'
+      # TODO: Enable
+      enabled: false
+      inputs:
+        ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
+          FileDirPath: $(artifactsDownloadLocation)
+        ${{ else }}:
+          FileDirPath: $(Pipeline.Workspace)
 
-      - task: PublishSecurityAnalysisLogs@3
-        displayName: 'Publish Security Analysis Logs'
-        # TODO: Enable
-        enabled: false
-        inputs:
-          ArtifactName: CodeAnalysisLogs
-          AllTools: true
 
-      - task: PostAnalysis@2
-        displayName: 'Post Analysis'
-        # TODO: Enable
-        enabled: false
-        inputs:
-          GdnBreakAllTools: true
+    - task: BinSkim@4
+      displayName: 'Run BinSkim - Product Binaries'
+      # TODO: Enable
+      enabled: false
+      inputs:
+        InputType: Basic
+        ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
+          AnalyzeTargetGlob: '$(artifactsDownloadLocation)\**.dll;$(artifactsDownloadLocation)\**.exe;'
+        ${{ else }}:
+          AnalyzeTargetGlob: '$(Pipeline.Workspace)\**.dll;$(Pipeline.Workspace)\**.exe;'
+        AnalyzeIgnorePdbLoadError: false
+        AnalyzeVerbose: true
+        AnalyzeHashes: true
+        AnalyzeEnvironment: false
+        AnalyzeStatistics: true
 
+  - task: PublishSecurityAnalysisLogs@3
+    displayName: 'Publish Security Analysis Logs'
+    # TODO: Enable
+    enabled: false
+    inputs:
+      ArtifactName: CodeAnalysisLogs
+      AllTools: true
+
+  - task: PostAnalysis@2
+    displayName: 'Post Analysis'
+    # TODO: Enable
+    enabled: false
+    inputs:
+      GdnBreakAllTools: true
