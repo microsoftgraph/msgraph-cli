@@ -68,7 +68,7 @@ steps:
     - task: BinSkim@4
       displayName: 'Run BinSkim - Product Binaries'
       # TODO: Enable
-      enabled: false
+      enabled: true
       inputs:
         InputType: Basic
         ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
