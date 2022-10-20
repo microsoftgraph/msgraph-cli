@@ -14,9 +14,9 @@ parameters:
 
 steps:
   - pwsh: |
-      Write-Verbose "useCache = '${{parameters.useCache}}'"
-      Write-Verbose "restorePath = '${{parameters.restorePath}}'"
-      Write-Verbose "extraRestoreArgs = '${{parameters.extraRestoreArgs}}'"
+      Write-Verbose -Verbose "useCache = '${{parameters.useCache}}'"
+      Write-Verbose -Verbose "restorePath = '${{parameters.restorePath}}'"
+      Write-Verbose -Verbose "extraRestoreArgs = '${{parameters.extraRestoreArgs}}'"
 
   - task: UseDotNet@2
     displayName: 'Use .NET 6'

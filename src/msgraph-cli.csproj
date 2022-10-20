@@ -6,11 +6,15 @@
     <RootNamespace>Microsoft.Graph.Cli</RootNamespace>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <AssemblyName>mgc</AssemblyName>
+    <Version>0.1.0-preview.7</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>false</SelfContained>
     <PublishReadyToRun>true</PublishReadyToRun>
-    <AssemblyName>mgc</AssemblyName>
-    <Version>0.1.0-preview.7</Version>
+    <RuntimeIdentifiers>win-x64;linux-x64;osx-x64;osx-arm64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -20,7 +20,7 @@ steps:
   - ${{ if eq(parameters.scanSource, true) }}:
     - task: PoliCheck@2
       displayName: 'Run PoliCheck - Source code scan'
-      enabled: true
+      enabled: false
       inputs:
         termTypeT: 0001aCustom
         termTypeTCustom: 9
