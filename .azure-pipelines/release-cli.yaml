@@ -85,6 +85,8 @@ stages:
             'MacOS ARM':
               rid: osx-arm64
               agentImage: macos-latest
+        pool:
+          vmImage: $(agentImage)
         steps:
           - task: UseDotNet@2
             displayName: 'Use .NET 6'
