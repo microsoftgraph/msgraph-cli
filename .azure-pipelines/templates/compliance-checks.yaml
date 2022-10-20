@@ -78,7 +78,6 @@ steps:
         AnalyzeIgnorePdbLoadError: false
         AnalyzeVerbose: true
         AnalyzeHashes: true
-        AnalyzeEnvironment: false
         AnalyzeStatistics: true
 
   - task: PublishSecurityAnalysisLogs@3
