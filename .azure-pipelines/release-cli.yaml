@@ -170,7 +170,7 @@ stages:
               scanBinary: true
 
   - stage: upload
-    dependsOn: [scan, sign]
+    dependsOn: [binaryScan, sign]
     jobs:
       - job: upload
         displayName: Upload binaries
