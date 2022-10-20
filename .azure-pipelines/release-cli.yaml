@@ -26,6 +26,7 @@ variables:
     value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
   - name: signingServiceName
     value: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
+  - group: ESRP
 
 parameters:
   - name: tag
