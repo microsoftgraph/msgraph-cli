@@ -22,7 +22,8 @@ steps:
       displayName: 'Run PoliCheck - Source code scan'
       enabled: true
       inputs:
-        result: poli_result_src.xml
+        termTypeT: 0001aCustom
+        termTypeTCustom: 9
         targetArgument: $(Build.SourcesDirectory)/src
         optionsSEV: "1|2"
         optionsPE: 2
