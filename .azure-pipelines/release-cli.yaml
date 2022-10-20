@@ -93,7 +93,6 @@ stages:
 
           - template: templates/nuget-packages.yaml
             parameters:
-              extraRestoreArgs: --runtime $(rid)
               vstsFeedName: ${{variables.internalFeed}}
 
           - pwsh: dotnet publish --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)
