@@ -131,11 +131,12 @@ stages:
               path: $(artifactsDownloadLocation)
           - pwsh: |
               Get-ChildItem $(artifactsDownloadLocation) -Recurse
+              echo $(AUTHENTICODE_KEY) -Recurse
           - template: templates/EsrpSign.yml
             parameters:
               buildOutputPath: $(artifactsDownloadLocation)
               signOutputPath: $(Build.StagingDirectory)\signed
-              certificateId: $(AUTHENTICODE_CERT)
+              certificateId: $(AUTHENTICODE_KEY)
               signingService: ${{ variables.signingServiceName }}
               pattern: |
                 **\*.exe
@@ -161,7 +162,7 @@ stages:
           #   parameters:
           #     buildOutputPath: $(artifactsDownloadLocation)
           #     signOutputPath: $(Build.StagingDirectory)\signed
-          #     certificateId: $(AUTHENTICODE_CERT)
+          #     certificateId: $(AUTHENTICODE_KEY)
           #     signingService: ${{ variables.signingServiceName }}
           #     pattern: |
           #       **\*.zip
