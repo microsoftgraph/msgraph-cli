@@ -14,19 +14,13 @@ steps:
       Write-Verbose -Verbose "scanBinary = '${{parameters.scanBinary}}'"
       Write-Verbose -Verbose 'Agent OS = $(Agent.OS)'
 
-  - task: UseDotNet@2
-    displayName: 'Use .NET 6'
-    inputs:
-      version: 6.x
-  
   - ${{ if ne(parameters.scanSource, true) }}:
     - checkout: none
 
   - ${{ if eq(parameters.scanSource, true) }}:
     - task: PoliCheck@2
       displayName: 'Run PoliCheck - Source code scan'
-      # TODO: Enable
-      enabled: false
+      enabled: true
       inputs:
         result: poli_result_src.xml
         targetArgument: $(Build.SourcesDirectory)/src
@@ -35,8 +29,7 @@ steps:
 
     - task: CredScan@3
       displayName: 'Run CredScan - Source code scan'
-      # TODO: Enable
-      enabled: false
+      enabled: true
       inputs:
         scanFolder: '$(Build.SourcesDirectory)\src'
         debugMode: false
@@ -56,8 +49,7 @@ steps:
 
     - task: AntiMalware@4
       displayName: 'Run MpCmdRun.exe - Product Binaries'
-      # TODO: Enable
-      enabled: false
+      enabled: true
       inputs:
         ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
           FileDirPath: $(artifactsDownloadLocation)
@@ -67,7 +59,6 @@ steps:
 
     - task: BinSkim@4
       displayName: 'Run BinSkim - Product Binaries'
-      # TODO: Enable
       enabled: true
       inputs:
         InputType: Basic
@@ -82,15 +73,13 @@ steps:
 
   - task: PublishSecurityAnalysisLogs@3
     displayName: 'Publish Security Analysis Logs'
-    # TODO: Enable
-    enabled: false
+    enabled: true
     inputs:
       ArtifactName: CodeAnalysisLogs
       AllTools: true
 
   - task: PostAnalysis@2
     displayName: 'Post Analysis'
-    # TODO: Enable
-    enabled: false
+    enabled: true
     inputs:
       GdnBreakAllTools: true

@@ -11,7 +11,7 @@ parameters:
     type: boolean
     default: false
   - name: "signingService"
-    default: "pwshSigning"
+    default: "signingServiceConnection"
   - name: "shouldSign"
     default: "auto"
   - name: OutputMode

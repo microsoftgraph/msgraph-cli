@@ -16,10 +16,6 @@ variables:
     value: 'GitHub - calebkiage'
   - name: zipTemplate
     value: msgraph-cli-{0}-{1}.zip
-  - name: defaultTag
-    value: ${{parameters.tag}}
-  - name: buildPlatform
-    value: 'Any CPU'
   - name: buildConfiguration
     value: 'Release'
   - name: outputDir
@@ -59,8 +55,7 @@ stages:
 
         - task: DotNetCoreCLI@2
           displayName: Run tests
-          # TODO: Enable
-          enabled: false
+          enabled: true
           inputs:
             command: test
             workingDirectory: $(Build.SourcesDirectory)
@@ -78,12 +73,16 @@ stages:
           matrix:
             'Win x64':
               rid: win-x64
+              agentImage: windows-latest
             'Linux x64':
               rid: linux-x64
+              agentImage: ubuntu-latest
             'MacOS x64':
               rid: osx-x64
+              agentImage: macos-latest
             'MacOS ARM':
               rid: osx-arm64
+              agentImage: macos-latest
         steps:
           - task: UseDotNet@2
             displayName: 'Use .NET 6'
@@ -97,19 +96,16 @@ stages:
 
           - task: DotNetCoreCLI@2
             displayName: Publish package
-            # TODO: Enable
-            enabled: false
+            enabled: true
             inputs:
               command: publish
               workingDirectory: $(Build.SourcesDirectory)
               arguments: '--no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)'
-          - pwsh: |
-              New-Item '$(outputDir)-$(rid)' -ItemType Directory
-              New-Item '$(outputDir)-$(rid)' -Name output.txt -Value '$(rid) on $(Agent.OS) runner'
-              New-Item '$(outputDir)-$(rid)' -Name output.dll -Value '$(rid) on $(Agent.OS) runner'
-            # TODO: Disable
-            enabled: true
-          
+          - pwsh: $(outputDir)-$(rid)/mgc -h
+            displayName: Test package
+
+          - pwsh: Get-ChildItem $(outputDir)-* -Recurse
+
           - task: PublishPipelineArtifact@1
             inputs:
               artifact: build-output-$(rid)
@@ -144,7 +140,17 @@ stages:
               path: $(artifactsDownloadLocation)
           - pwsh: |
               Get-ChildItem $(artifactsDownloadLocation) -Recurse
-              echo "TODO: Sign Windows binaries"
+          - template: templates/EsrpSign.yml
+            parameters:
+              buildOutputPath: $(artifactsDownloadLocation)
+              signOutputPath: $(Build.StagingDirectory)\signed
+              certificateId: $(AUTHENTICODE_CERT)
+              pattern: |
+                **\*.exe
+                **\*.dll
+              useMinimatch: true
+              shouldSign: true
+              displayName: Sign Windows packages
       - job: esrpSignMacOS
         dependsOn: []
         displayName: ESRP Signing (MacOS)
@@ -156,7 +162,16 @@ stages:
               path: $(artifactsDownloadLocation)
           - pwsh: |
               Get-ChildItem $(artifactsDownloadLocation) -Recurse
-              echo "TODO: Sign MacOS binaries"
+          # - template: templates/EsrpSign.yml
+          #   parameters:
+          #     buildOutputPath: $(artifactsDownloadLocation)
+          #     signOutputPath: $(Build.StagingDirectory)\signed
+          #     certificateId: $(AUTHENTICODE_CERT)
+          #     pattern: |
+          #       **\*.zip
+          #     useMinimatch: true
+          #     shouldSign: true
+          #     displayName: Sign MacOS packages
   - stage: binaryScan
     displayName: Scan binaries (Anti malware, BinSkim)
     dependsOn: [build, srcScan]
