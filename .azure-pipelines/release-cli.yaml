@@ -81,10 +81,10 @@ stages:
               agentImage: ubuntu-latest
             'MacOS x64':
               rid: osx-x64
-              agentImage: macos-latest
+              agentImage: macos-11
             'MacOS ARM':
               rid: osx-arm64
-              agentImage: macos-latest
+              agentImage: "" # There's no VM image for arm64
         pool:
           vmImage: $(agentImage)
         steps:
@@ -102,6 +102,7 @@ stages:
 
           - pwsh: $(outputDir)-$(rid)/mgc -h
             displayName: Test package
+            condition: gt(length($(agentImage)), 0)
 
           - pwsh: Get-ChildItem $(outputDir)-* -Recurse
 
