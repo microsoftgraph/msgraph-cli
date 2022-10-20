@@ -32,7 +32,6 @@ steps:
         cacheHitVar: 'CACHE_RESTORED'
     - task: DotNetCoreCLI@2
       displayName: Restore packages
-      condition: ne(variables.CACHE_RESTORED, true)
       inputs:
         command: restore
         ${{ if gt(length(parameters.vstsFeedName), 0) }}:
