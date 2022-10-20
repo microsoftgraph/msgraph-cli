@@ -24,6 +24,8 @@ variables:
     value: $(Pipeline.Workspace)/artifacts
   - name: internalFeed
     value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
+  - name: signingServiceName
+    value: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
 
 parameters:
   - name: tag
@@ -145,6 +147,7 @@ stages:
               buildOutputPath: $(artifactsDownloadLocation)
               signOutputPath: $(Build.StagingDirectory)\signed
               certificateId: $(AUTHENTICODE_CERT)
+              signingService: ${{ variables.signingServiceName }}
               pattern: |
                 **\*.exe
                 **\*.dll
@@ -167,6 +170,7 @@ stages:
           #     buildOutputPath: $(artifactsDownloadLocation)
           #     signOutputPath: $(Build.StagingDirectory)\signed
           #     certificateId: $(AUTHENTICODE_CERT)
+          #     signingService: ${{ variables.signingServiceName }}
           #     pattern: |
           #       **\*.zip
           #     useMinimatch: true
