@@ -96,14 +96,9 @@ stages:
               extraRestoreArgs: --runtime $(rid)
               vstsFeedName: ${{variables.internalFeed}}
 
-          - task: DotNetCoreCLI@2
-            displayName: Publish package
-            enabled: true
-            inputs:
-              custom: publish
-              command: custom
-              workingDirectory: $(Build.SourcesDirectory)
-              arguments: '--no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)'
+          - pwsh: dotnet publish --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)
+            workingDirectory: $(Build.SourcesDirectory)
+
           - pwsh: $(outputDir)-$(rid)/mgc -h
             displayName: Test package
 
