@@ -100,7 +100,8 @@ stages:
             displayName: Publish package
             enabled: true
             inputs:
-              command: publish
+              custom: publish
+              command: custom
               workingDirectory: $(Build.SourcesDirectory)
               arguments: '--no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)'
           - pwsh: $(outputDir)-$(rid)/mgc -h
