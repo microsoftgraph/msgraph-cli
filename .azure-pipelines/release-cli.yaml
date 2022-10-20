@@ -75,18 +75,12 @@ stages:
           matrix:
             'Win x64':
               rid: win-x64
-              agentImage: windows-latest
             'Linux x64':
               rid: linux-x64
-              agentImage: ubuntu-latest
             'MacOS x64':
               rid: osx-x64
-              agentImage: macos-11
             'MacOS ARM':
               rid: osx-arm64
-              agentImage: "" # There's no VM image for arm64
-        pool:
-          vmImage: $(agentImage)
         steps:
           - task: UseDotNet@2
             displayName: 'Use .NET 6'
@@ -99,10 +93,6 @@ stages:
 
           - pwsh: dotnet publish --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)
             workingDirectory: $(Build.SourcesDirectory)
-
-          - pwsh: $(outputDir)-$(rid)/mgc -h
-            displayName: Test package
-            condition: gt(length($(agentImage)), 0)
 
           - pwsh: Get-ChildItem $(outputDir)-* -Recurse
 
