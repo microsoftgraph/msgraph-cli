@@ -155,6 +155,9 @@ stages:
               useMinimatch: true
               shouldSign: true
               displayName: Sign Windows packages
+          - pwsh: |
+              Get-ChildItem $(Build.StagingDirectory)\signed -Recurse
+              Get-ChildItem '$(Build.StagingDirectory)\signed\*.md' | Foreach-Object { Get-Content $_.FullName }
       - job: esrpSignMacOS
         dependsOn: []
         displayName: ESRP Signing (MacOS)
