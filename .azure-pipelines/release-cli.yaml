@@ -143,7 +143,7 @@ stages:
                 **\*.dll
               useMinimatch: true
               shouldSign: true
-              shouldVerify: true
+              verifySignature: true
               alwaysCopy: true
               displayName: Sign Windows packages
           - pwsh: |
