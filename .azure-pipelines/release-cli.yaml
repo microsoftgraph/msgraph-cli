@@ -143,6 +143,8 @@ stages:
                 **\*.dll
               useMinimatch: true
               shouldSign: true
+              shouldVerify: true
+              alwaysCopy: true
               displayName: Sign Windows packages
           - pwsh: |
               Get-ChildItem $(Build.StagingDirectory)\signed -Recurse
