@@ -25,7 +25,7 @@ variables:
   - name: internalFeed
     value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
   - name: versionString
-    value: $[ coalesce(parameters.tag, Build.SourceBranch, v0.1.0) ]
+    value: $[ coalesce('${{parameters.tag}}', '$(Build.SourceBranch)', 'v0.1.0') ]
   - group: ESRP
 
 parameters:
@@ -156,6 +156,8 @@ stages:
               rid: osx-x64
             'MacOS ARM':
               rid: osx-arm64
+        variables:
+          certificateId: $(certificateId)
         steps:
           - checkout: none
           - task: DownloadPipelineArtifact@2
