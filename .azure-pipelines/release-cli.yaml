@@ -113,7 +113,7 @@ stages:
               # Ensure output directory exists
               New-Item $outputLocation -ItemType Directory -Force
               Compress-Archive -Path $(outputDir)/* -DestinationPath $outputLocation/$zipName
-              Remove-Item '$(outputDir)'
+              Remove-Item '$(outputDir)/*'
             name: compress
 
           - task: PublishPipelineArtifact@1
