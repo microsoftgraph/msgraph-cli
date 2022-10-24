@@ -167,7 +167,7 @@ stages:
               $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
               Expand-Archive -Path '$(artifactsDownloadLocation)/$(zipName)'
               Remove-Item '$(artifactsDownloadLocation)/$(zipName)'
-          - ${{ if gt(length(variables.certificateId), 0) }}:
+          - ${{ if gt(length(certificateId), 0) }}:
             - template: templates/EsrpSign.yml
               parameters:
                 buildOutputPath: $(artifactsDownloadLocation)/*
