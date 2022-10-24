@@ -165,14 +165,14 @@ stages:
               path: $(artifactsDownloadLocation)/$(rid)
           - pwsh: |
               # Get the archive name
-              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
-              Expand-Archive -Path '$(artifactsDownloadLocation)/'+$zipName
-              Remove-Item '$(artifactsDownloadLocation)/'+$zipName
+              $zipName = '${{variables.zipTemplate}}' -f '$(rid)','$(version)'
+              Expand-Archive -Path '$(artifactsDownloadLocation)/$(rid)/'+$zipName
+              Remove-Item '$(artifactsDownloadLocation)/$(rid)/'+$zipName
           - ${{ if gt(length('$(certificateId)'), 0) }}:
             - template: templates/EsrpSign.yml
               parameters:
-                buildOutputPath: $(artifactsDownloadLocation)/*
-                signOutputPath: $(Build.StagingDirectory)\signed\original
+                buildOutputPath: $(artifactsDownloadLocation)/$(rid)*
+                signOutputPath: $(Build.StagingDirectory)/signed/output
                 certificateId: '$(certificateId)'
                 signingService: "${{variables.signingServiceName}}"
                 pattern: '$(pattern)'
@@ -182,15 +182,15 @@ stages:
                 alwaysCopy: true
                 displayName: Sign packages
             - pwsh: |
-                $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
-                Compress-Archive -Path '$(Build.StagingDirectory)\signed\original\*' -DestinationPath ..\$zipName
-                Remove-Item '$(Build.StagingDirectory)\signed\original' -Force
+                $zipName = '${{variables.zipTemplate}}' -f '$(rid)','$(version)'
+                Compress-Archive -Path '$(Build.StagingDirectory)/signed/output/*' -DestinationPath ../$zipName
+                Remove-Item '$(Build.StagingDirectory)/signed/original' -Force
               displayName: Compress signed files
 
             - task: PublishPipelineArtifact@1
               inputs:
                 artifact: sign-output-$(rid)
-                path: $(Build.StagingDirectory)\signed
+                path: $(Build.StagingDirectory)/signed/*
 
       # - job: esrpSignMacOS
       #   dependsOn: []
