@@ -156,8 +156,6 @@ stages:
               rid: osx-x64
             'MacOS ARM':
               rid: osx-arm64
-        variables:
-          certificateId: $(certificateId)
         steps:
           - checkout: none
           - task: DownloadPipelineArtifact@2
@@ -174,9 +172,9 @@ stages:
               parameters:
                 buildOutputPath: $(artifactsDownloadLocation)/*
                 signOutputPath: $(Build.StagingDirectory)\signed\original
-                certificateId: $(certificateId)
-                signingService: $(signingServiceName)
-                pattern: $(pattern)
+                certificateId: '$(certificateId)'
+                signingService: '$(signingServiceName)'
+                pattern: '$(pattern)'
                 useMinimatch: true
                 shouldSign: true
                 verifySignature: true
