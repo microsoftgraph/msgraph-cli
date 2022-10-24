@@ -32,6 +32,7 @@ parameters:
   - name: tag
     displayName: Tag
     type: string
+    default:
 
 #                   
 # test -> build -> | sign |
@@ -71,7 +72,7 @@ stages:
         steps:
           - pwsh: |
               # Get the version
-              $version = '${{variables.versionString}}'
+              $version = '$(versionString)'
               $version = $version.TrimStart('refs/tags/').TrimStart('v')
               # Export version for use later
               Write-Host "##vso[task.setvariable variable=versionVar;isOutput=true]$version"
