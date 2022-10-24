@@ -166,8 +166,8 @@ stages:
           - pwsh: |
               # Get the archive name
               $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
-              Expand-Archive -Path '$(artifactsDownloadLocation)/$(zipName)'
-              Remove-Item '$(artifactsDownloadLocation)/$(zipName)'
+              Expand-Archive -Path '$(artifactsDownloadLocation)/'+$zipName
+              Remove-Item '$(artifactsDownloadLocation)/'+$zipName
           - ${{ if gt(length('$(certificateId)'), 0) }}:
             - template: templates/EsrpSign.yml
               parameters:
