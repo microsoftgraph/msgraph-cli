@@ -24,8 +24,8 @@ variables:
     value: $(Pipeline.Workspace)/artifacts
   - name: internalFeed
     value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
-  - name: signingServiceName
-    value: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
+  - name: versionString
+    value: $[ coalesce(parameters.tag, Build.SourceBranch, v0.1.0) ]
   - group: ESRP
 
 parameters:
@@ -67,14 +67,23 @@ stages:
     displayName: Build CLI
     dependsOn: [test]
     jobs:
+      - job: prepare
+        displayName: Prepare build
+        steps:
+          - pwsh: |
+              # Get the version
+              $version = '${{variables.versionString}}'.TrimStart('refs/tags/').TrimStart('v')
+              # Export version for use later
+              Write-Host "##vso[task.setvariable variable=versionVar;isOutput=true]$version"
+            name: version
       - job: build
+        dependsOn: [prepare]
         displayName: Build and publish
-        # variables:
-        #   PACKAGE_VERSION: ${{github.event.inputs.tag || github.ref_name || 'v0.1.0'}}
-        #   PACKAGE_ZIP_TEMPLATE: "msgraph-cli-{0}-{1}.zip"
+        variables:
+          version: $[ dependencies.prepare.outputs['version.versionVar'] ]
         strategy:
           matrix:
-            'Win x64':
+            'Windows x64':
               rid: win-x64
             'Linux x64':
               rid: linux-x64
@@ -92,10 +101,19 @@ stages:
             parameters:
               vstsFeedName: ${{variables.internalFeed}}
 
-          - pwsh: dotnet publish --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)-$(rid)
+          - pwsh: dotnet publish --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
             workingDirectory: $(Build.SourcesDirectory)
 
-          - pwsh: Get-ChildItem $(outputDir)-* -Recurse
+          - pwsh: |
+              # Get the archive name
+              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
+
+              $outputLocation = '$(outputDir)-$(rid)'
+              # Ensure output directory exists
+              New-Item $outputLocation -ItemType Directory -Force
+              Compress-Archive -Path $(outputDir)/* -DestinationPath $outputLocation/$zipName
+              Remove-Item '$(outputDir)'
+            name: compress
 
           - task: PublishPipelineArtifact@1
             inputs:
@@ -119,58 +137,82 @@ stages:
     pool:
       vmImage: windows-latest
     dependsOn: [build]
+    variables:
+      version: $[ stageDependencies.build.prepare.outputs['version.versionVar'] ]
     jobs:
-      - job: esrpSignWindows
+      - job: esrpSign
         dependsOn: []
-        displayName: ESRP Signing (Windows)
-        steps:
-          - checkout: none
-          - task: DownloadPipelineArtifact@2
-            inputs:
-              patterns: build-output-win*/**/*
-              path: $(artifactsDownloadLocation)
-          - pwsh: |
-              Get-ChildItem $(artifactsDownloadLocation) -Recurse
-              echo $(AUTHENTICODE_KEY) -Recurse
-          - template: templates/EsrpSign.yml
-            parameters:
-              buildOutputPath: $(artifactsDownloadLocation)
-              signOutputPath: $(Build.StagingDirectory)\signed
+        displayName: ESRP Signing
+        strategy:
+          matrix:
+            'Windows x64':
+              rid: win-x64
               certificateId: $(AUTHENTICODE_KEY)
-              signingService: ${{ variables.signingServiceName }}
+              signingServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
               pattern: |
                 **\*.exe
                 **\*.dll
-              useMinimatch: true
-              shouldSign: true
-              verifySignature: true
-              alwaysCopy: true
-              displayName: Sign Windows packages
-          - pwsh: |
-              Get-ChildItem $(Build.StagingDirectory)\signed -Recurse
-              Get-ChildItem '$(Build.StagingDirectory)\signed\*.md' | Foreach-Object { Get-Content $_.FullName }
-      - job: esrpSignMacOS
-        dependsOn: []
-        displayName: ESRP Signing (MacOS)
+            'MacOS x64':
+              rid: osx-x64
+            'MacOS ARM':
+              rid: osx-arm64
         steps:
           - checkout: none
           - task: DownloadPipelineArtifact@2
             inputs:
-              patterns: build-output-osx*/**/*
-              path: $(artifactsDownloadLocation)
+              patterns: build-output-$(rid)/**/*
+              path: $(artifactsDownloadLocation)/$(rid)
           - pwsh: |
-              Get-ChildItem $(artifactsDownloadLocation) -Recurse
-          # - template: templates/EsrpSign.yml
-          #   parameters:
-          #     buildOutputPath: $(artifactsDownloadLocation)
-          #     signOutputPath: $(Build.StagingDirectory)\signed
-          #     certificateId: $(AUTHENTICODE_KEY)
-          #     signingService: ${{ variables.signingServiceName }}
-          #     pattern: |
-          #       **\*.zip
-          #     useMinimatch: true
-          #     shouldSign: true
-          #     displayName: Sign MacOS packages
+              # Get the archive name
+              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
+              Expand-Archive -Path '$(artifactsDownloadLocation)/$(zipName)'
+              Remove-Item '$(artifactsDownloadLocation)/$(zipName)'
+          - ${{ if gt(length(certificateId), 0) }}:
+            - template: templates/EsrpSign.yml
+              parameters:
+                buildOutputPath: $(artifactsDownloadLocation)/*
+                signOutputPath: $(Build.StagingDirectory)\signed\original
+                certificateId: $(certificateId)
+                signingService: $(signingServiceName)
+                pattern: $(pattern)
+                useMinimatch: true
+                shouldSign: true
+                verifySignature: true
+                alwaysCopy: true
+                displayName: Sign packages
+            - pwsh: |
+                $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
+                Compress-Archive -Path '$(Build.StagingDirectory)\signed\original\*' -DestinationPath ..\$zipName
+                Remove-Item '$(Build.StagingDirectory)\signed\original' -Force
+              displayName: Compress signed files
+
+            - task: PublishPipelineArtifact@1
+              inputs:
+                artifact: sign-output-$(rid)
+                path: $(Build.StagingDirectory)\signed
+
+      # - job: esrpSignMacOS
+      #   dependsOn: []
+      #   displayName: ESRP Signing (MacOS)
+      #   steps:
+      #     - checkout: none
+      #     - task: DownloadPipelineArtifact@2
+      #       inputs:
+      #         patterns: build-output-osx*/**/*
+      #         path: $(artifactsDownloadLocation)
+      #     - pwsh: |
+      #         Get-ChildItem $(artifactsDownloadLocation) -Recurse
+      #     - template: templates/EsrpSign.yml
+      #       parameters:
+      #         buildOutputPath: $(artifactsDownloadLocation)
+      #         signOutputPath: $(Build.StagingDirectory)\signed
+      #         certificateId: $(AUTHENTICODE_KEY)
+      #         signingService: ${{ variables.signingServiceName }}
+      #         pattern: |
+      #           **\*.zip
+      #         useMinimatch: true
+      #         shouldSign: true
+      #         displayName: Sign MacOS packages
   - stage: binaryScan
     displayName: Scan binaries (Anti malware, BinSkim)
     dependsOn: [build, srcScan]
