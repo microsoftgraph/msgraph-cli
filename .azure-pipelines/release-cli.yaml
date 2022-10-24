@@ -173,7 +173,7 @@ stages:
                 buildOutputPath: $(artifactsDownloadLocation)/*
                 signOutputPath: $(Build.StagingDirectory)\signed\original
                 certificateId: '$(certificateId)'
-                signingService: "${{signingServiceName}}"
+                signingService: "${{variables.signingServiceName}}"
                 pattern: '$(pattern)'
                 useMinimatch: true
                 shouldSign: true
