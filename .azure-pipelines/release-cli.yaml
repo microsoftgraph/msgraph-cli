@@ -169,17 +169,18 @@ stages:
               path: $(artifactsDownloadLocation)/$(rid)
           - pwsh: |
               # Get the archive name
-              Get-ChildItem $(artifactsDownloadLocation)/$(rid)/
+              $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath 'build-output-$(rid)'
+              Get-ChildItem $downloadDir
               $zipName = '${{variables.zipTemplate}}' -f '$(rid)','$(version)'
-              $zipPath = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath "$zipName"
+              $zipPath = Join-Path -Path $downloadDir -ChildPath $zipName
               Write-Host $zipPath
-              Expand-Archive -Path $zipPath
-              Get-ChildItem $(artifactsDownloadLocation)/$(rid)/
+              Expand-Archive -Path $zipPath -DestinationPath '../'
+              Get-ChildItem $downloadDir
               Remove-Item $zipPath
             displayName: Extract zip
           - template: templates/EsrpSign.yml
             parameters:
-              buildOutputPath: $(artifactsDownloadLocation)/$(rid)*
+              buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
               signOutputPath: $(Build.StagingDirectory)/signed/output
               certificateId: '$(certificateId)'
               signingService: "${{variables.signingServiceName}}"
