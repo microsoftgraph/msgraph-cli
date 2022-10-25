@@ -160,6 +160,8 @@ stages:
             'MacOS ARM':
               rid: osx-arm64
           maxParallel: 2
+        variables:
+          certificateId: $[ certificateId ]
         steps:
           - checkout: none
           - ${{ if gt(length(variables.certificateId), 0) }}:
