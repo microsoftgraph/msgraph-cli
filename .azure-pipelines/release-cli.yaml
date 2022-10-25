@@ -150,7 +150,7 @@ stages:
           matrix:
             'Windows x64':
               rid: win-x64
-              certificateId: "$(AUTHENTICODE_KEY)"
+              certificateId: "${{variables.AUTHENTICODE_KEY}}"
               signingServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
               pattern: |
                 **\*.exe
@@ -160,7 +160,7 @@ stages:
             'MacOS ARM':
               rid: osx-arm64
           maxParallel: 2
-        condition: gt(length('$(certificateId)'), 0)
+        condition: gt(length(variables.certificateId), 0)
         steps:
           - checkout: none
           - task: DownloadPipelineArtifact@2
