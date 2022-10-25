@@ -164,6 +164,8 @@ stages:
           certificateIdVar: $(certificateId)
         steps:
           - checkout: none
+          - pwsh: |
+              Write-Host '$(certificateIdVar)'
           - ${{ if gt(length(variables.certificateIdVar), 0) }}:
             - task: DownloadPipelineArtifact@2
               inputs:
