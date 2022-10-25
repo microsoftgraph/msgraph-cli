@@ -166,10 +166,12 @@ stages:
           - pwsh: |
               # Get the archive name
               $zipName = '${{variables.zipTemplate}}' -f '$(rid)','$(version)'
-              Write-Host "Zip name: $zipName"
-              Write-Host '$(artifactsDownloadLocation)/$(rid)/'+"$zipName"
-              Expand-Archive -Path '$(artifactsDownloadLocation)/$(rid)/'+"$zipName"
-              Remove-Item '$(artifactsDownloadLocation)/$(rid)/'+"$zipName"
+              $zipPath = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath "$zipName"
+              Write-Host $zipPath
+              Expand-Archive -Path $zipPath
+              Get-ChildItem $(artifactsDownloadLocation)/$(rid)/
+              Remove-Item $zipPath
+            displayName: Extract zip
           - ${{ if gt(length('$(certificateId)'), 0) }}:
             - template: templates/EsrpSign.yml
               parameters:
@@ -192,7 +194,7 @@ stages:
             - task: PublishPipelineArtifact@1
               inputs:
                 artifact: sign-output-$(rid)
-                path: $(Build.StagingDirectory)/signed/*
+                path: $(Build.StagingDirectory)/signed
 
       # - job: esrpSignMacOS
       #   dependsOn: []
