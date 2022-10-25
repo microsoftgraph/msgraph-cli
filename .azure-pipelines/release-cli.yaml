@@ -161,7 +161,7 @@ stages:
               rid: osx-arm64
           maxParallel: 2
         variables:
-          certificateIdVar: $(certificateId)
+          certificateIdVar: $[ certificateId ]
         steps:
           - checkout: none
           - pwsh: |
