@@ -161,10 +161,10 @@ stages:
               rid: osx-arm64
           maxParallel: 2
         variables:
-          certificateId: $[ certificateId ]
+          certificateIdVar: $(certificateId)
         steps:
           - checkout: none
-          - ${{ if gt(length(variables.certificateId), 0) }}:
+          - ${{ if gt(length(variables.certificateIdVar), 0) }}:
             - task: DownloadPipelineArtifact@2
               inputs:
                 patterns: build-output-$(rid)/**/*
@@ -184,7 +184,7 @@ stages:
               parameters:
                 buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
                 signOutputPath: $(Build.StagingDirectory)/signed/output
-                certificateId: '$(certificateId)'
+                certificateId: '$(certificateIdVar)'
                 signingService: "${{variables.signingServiceName}}"
                 pattern: '$(pattern)'
                 useMinimatch: true
