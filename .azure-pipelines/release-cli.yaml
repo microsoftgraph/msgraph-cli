@@ -92,6 +92,7 @@ stages:
               rid: osx-x64
             'MacOS ARM':
               rid: osx-arm64
+          maxParallel: 2
         steps:
           - task: UseDotNet@2
             displayName: 'Use .NET 6'
@@ -104,6 +105,7 @@ stages:
 
           - pwsh: dotnet publish --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
             workingDirectory: $(Build.SourcesDirectory)
+            displayName: DotNet publish
 
           - pwsh: |
               # Get the archive name
@@ -114,7 +116,7 @@ stages:
               New-Item $outputLocation -ItemType Directory -Force
               Compress-Archive -Path $(outputDir)/* -DestinationPath $outputLocation/$zipName
               Remove-Item '$(outputDir)/*'
-            name: compress
+            displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
             inputs:
@@ -157,6 +159,8 @@ stages:
               rid: osx-x64
             'MacOS ARM':
               rid: osx-arm64
+          maxParallel: 2
+        condition: gt(length('$(certificateId)'), 0)
         steps:
           - checkout: none
           - task: DownloadPipelineArtifact@2
@@ -165,6 +169,7 @@ stages:
               path: $(artifactsDownloadLocation)/$(rid)
           - pwsh: |
               # Get the archive name
+              Get-ChildItem $(artifactsDownloadLocation)/$(rid)/
               $zipName = '${{variables.zipTemplate}}' -f '$(rid)','$(version)'
               $zipPath = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath "$zipName"
               Write-Host $zipPath
@@ -172,29 +177,28 @@ stages:
               Get-ChildItem $(artifactsDownloadLocation)/$(rid)/
               Remove-Item $zipPath
             displayName: Extract zip
-          - ${{ if gt(length('$(certificateId)'), 0) }}:
-            - template: templates/EsrpSign.yml
-              parameters:
-                buildOutputPath: $(artifactsDownloadLocation)/$(rid)*
-                signOutputPath: $(Build.StagingDirectory)/signed/output
-                certificateId: '$(certificateId)'
-                signingService: "${{variables.signingServiceName}}"
-                pattern: '$(pattern)'
-                useMinimatch: true
-                shouldSign: true
-                verifySignature: true
-                alwaysCopy: true
-                displayName: Sign packages
-            - pwsh: |
-                $zipName = '${{variables.zipTemplate}}' -f '$(rid)','$(version)'
-                Compress-Archive -Path '$(Build.StagingDirectory)/signed/output/*' -DestinationPath ../$zipName
-                Remove-Item '$(Build.StagingDirectory)/signed/original' -Force
-              displayName: Compress signed files
+          - template: templates/EsrpSign.yml
+            parameters:
+              buildOutputPath: $(artifactsDownloadLocation)/$(rid)*
+              signOutputPath: $(Build.StagingDirectory)/signed/output
+              certificateId: '$(certificateId)'
+              signingService: "${{variables.signingServiceName}}"
+              pattern: '$(pattern)'
+              useMinimatch: true
+              shouldSign: true
+              verifySignature: true
+              alwaysCopy: true
+              displayName: Sign packages
+          - pwsh: |
+              $zipName = '${{variables.zipTemplate}}' -f '$(rid)','$(version)'
+              Compress-Archive -Path '$(Build.StagingDirectory)/signed/output/*' -DestinationPath ../$zipName
+              Remove-Item '$(Build.StagingDirectory)/signed/original' -Force
+            displayName: Compress signed files
 
-            - task: PublishPipelineArtifact@1
-              inputs:
-                artifact: sign-output-$(rid)
-                path: $(Build.StagingDirectory)/signed
+          - task: PublishPipelineArtifact@1
+            inputs:
+              artifact: sign-output-$(rid)
+              path: $(Build.StagingDirectory)/signed
 
       # - job: esrpSignMacOS
       #   dependsOn: []
