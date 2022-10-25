@@ -160,46 +160,46 @@ stages:
             'MacOS ARM':
               rid: osx-arm64
           maxParallel: 2
-        condition: gt(length(variables.certificateId), 0)
         steps:
           - checkout: none
-          - task: DownloadPipelineArtifact@2
-            inputs:
-              patterns: build-output-$(rid)/**/*
-              path: $(artifactsDownloadLocation)/$(rid)
-          - pwsh: |
-              # Get the archive name
-              $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath 'build-output-$(rid)'
-              Get-ChildItem $downloadDir
-              $zipName = '${{variables.zipTemplate}}' -f '$(rid)','$(version)'
-              $zipPath = Join-Path -Path $downloadDir -ChildPath $zipName
-              Write-Host $zipPath
-              Expand-Archive -Path $zipPath -DestinationPath '../'
-              Get-ChildItem $downloadDir
-              Remove-Item $zipPath
-            displayName: Extract zip
-          - template: templates/EsrpSign.yml
-            parameters:
-              buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
-              signOutputPath: $(Build.StagingDirectory)/signed/output
-              certificateId: '$(certificateId)'
-              signingService: "${{variables.signingServiceName}}"
-              pattern: '$(pattern)'
-              useMinimatch: true
-              shouldSign: true
-              verifySignature: true
-              alwaysCopy: true
-              displayName: Sign packages
-          - pwsh: |
-              $zipName = '${{variables.zipTemplate}}' -f '$(rid)','$(version)'
-              Compress-Archive -Path '$(Build.StagingDirectory)/signed/output/*' -DestinationPath ../$zipName
-              Remove-Item '$(Build.StagingDirectory)/signed/original' -Force
-            displayName: Compress signed files
+          - ${{ if gt(length(variables.certificateId), 0) }}:
+            - task: DownloadPipelineArtifact@2
+              inputs:
+                patterns: build-output-$(rid)/**/*
+                path: $(artifactsDownloadLocation)/$(rid)
+            - pwsh: |
+                # Get the archive name
+                $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath 'build-output-$(rid)'
+                Get-ChildItem $downloadDir
+                $zipName = '${{variables.zipTemplate}}' -f '$(rid)','$(version)'
+                $zipPath = Join-Path -Path $downloadDir -ChildPath $zipName
+                Write-Host $zipPath
+                Expand-Archive -Path $zipPath -DestinationPath '../'
+                Get-ChildItem $downloadDir
+                Remove-Item $zipPath
+              displayName: Extract zip
+            - template: templates/EsrpSign.yml
+              parameters:
+                buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
+                signOutputPath: $(Build.StagingDirectory)/signed/output
+                certificateId: '$(certificateId)'
+                signingService: "${{variables.signingServiceName}}"
+                pattern: '$(pattern)'
+                useMinimatch: true
+                shouldSign: true
+                verifySignature: true
+                alwaysCopy: true
+                displayName: Sign packages
+            - pwsh: |
+                $zipName = '${{variables.zipTemplate}}' -f '$(rid)','$(version)'
+                Compress-Archive -Path '$(Build.StagingDirectory)/signed/output/*' -DestinationPath ../$zipName
+                Remove-Item '$(Build.StagingDirectory)/signed/original' -Force
+              displayName: Compress signed files
 
-          - task: PublishPipelineArtifact@1
-            inputs:
-              artifact: sign-output-$(rid)
-              path: $(Build.StagingDirectory)/signed
+            - task: PublishPipelineArtifact@1
+              inputs:
+                artifact: sign-output-$(rid)
+                path: $(Build.StagingDirectory)/signed
 
       # - job: esrpSignMacOS
       #   dependsOn: []
