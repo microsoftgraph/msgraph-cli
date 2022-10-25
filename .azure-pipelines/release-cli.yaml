@@ -150,7 +150,7 @@ stages:
           matrix:
             'Windows x64':
               rid: win-x64
-              certificateId: "${{variables.AUTHENTICODE_KEY}}"
+              certificateId: $(AUTHENTICODE_KEY)
               signingServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
               pattern: |
                 **\*.exe
