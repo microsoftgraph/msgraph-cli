@@ -165,6 +165,8 @@ stages:
               pattern: |
                 **\*
           maxParallel: 2
+        variables:
+          - name:
         steps:
           - checkout: none
           - task: DownloadPipelineArtifact@2
@@ -172,7 +174,7 @@ stages:
               patterns: build-output-$(rid)/**/*
               path: $(artifactsDownloadLocation)/$(rid)
           - pwsh: |
-              Write-Host 'CertId: ${{variables.certificateId}}\nService Name: ${{variables.signingServiceName}}'
+              Write-Host 'CertId: $(certificateId)\nService Name: $(signingServiceName)'
               # Get the archive name
               $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath 'build-output-$(rid)'
               Get-ChildItem $downloadDir
@@ -187,8 +189,8 @@ stages:
             parameters:
               buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
               signOutputPath: $(Build.StagingDirectory)/signed/output
-              certificateId: '${{variables.certificateId}}'
-              signingService: '${{variables.signingServiceName}}'
+              certificateId: '$(certificateId)'
+              signingService: '$(signingServiceName)'
               pattern: '$(pattern)'
               useMinimatch: true
               shouldSign: true
