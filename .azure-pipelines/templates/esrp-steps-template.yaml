@@ -36,7 +36,7 @@ steps:
         Get-ChildItem $downloadDir
         Remove-Item $zipPath
       displayName: Extract zip
-    - template: templates/EsrpSign.yml
+    - template: EsrpSign.yml
       parameters:
         buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
         signOutputPath: $(Build.StagingDirectory)/signed/output
