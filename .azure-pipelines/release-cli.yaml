@@ -172,6 +172,7 @@ stages:
               patterns: build-output-$(rid)/**/*
               path: $(artifactsDownloadLocation)/$(rid)
           - pwsh: |
+              Write-Host 'CertId: ${{variables.certificateId}}\nService Name: ${{variables.signingServiceName}}'
               # Get the archive name
               $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath 'build-output-$(rid)'
               Get-ChildItem $downloadDir
