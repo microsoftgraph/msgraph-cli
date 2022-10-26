@@ -84,13 +84,13 @@ stages:
           version: $[ dependencies.prepare.outputs['version.versionVar'] ]
         strategy:
           matrix:
-            'Windows x64':
+            'Windows-x64':
               rid: win-x64
-            'Linux x64':
+            'Linux-x64':
               rid: linux-x64
-            'MacOS x64':
+            'MacOS-x64':
               rid: osx-x64
-            'MacOS ARM':
+            'MacOS-ARM':
               rid: osx-arm64
           maxParallel: 2
         steps:
@@ -148,7 +148,7 @@ stages:
         displayName: ESRP Signing
         strategy:
           matrix:
-            'Windows x64':
+            'Windows-x64':
               rid: win-x64
               certificateId: $(AUTHENTICODE_KEY)
               signingServiceName: microsoftgraph ESRP CodeSign DLL and NuGet (AKV)
@@ -156,9 +156,9 @@ stages:
                 **\*.exe
                 **\*.dll
             # Uncomment to run MacOS x64 signing
-            # 'MacOS x64':
+            # 'MacOS-x64':
             #   rid: osx-x64
-            'MacOS ARM':
+            'MacOS-ARM':
               rid: osx-arm64
               certificateId: CP-401337-Apple
               signingServiceName: Graph Preview ESRP Mac Signing (Developer Certificate)
@@ -188,7 +188,7 @@ stages:
               buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
               signOutputPath: $(Build.StagingDirectory)/signed/output
               certificateId: $(certificateId)
-              signingService: microsoftgraph ESRP CodeSign DLL and NuGet (AKV)
+              signingService: $[ variables.signingServiceName ]
               pattern: $(pattern)
               useMinimatch: true
               shouldSign: true
