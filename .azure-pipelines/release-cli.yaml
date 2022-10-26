@@ -165,6 +165,8 @@ stages:
               pattern: |
                 **\*
           maxParallel: 2
+        variables:
+          signingService: $(signingServiceName)
         steps:
           - checkout: none
           - task: DownloadPipelineArtifact@2
@@ -172,7 +174,7 @@ stages:
               patterns: build-output-$(rid)/**/*
               path: $(artifactsDownloadLocation)/$(rid)
           - pwsh: |
-              Write-Host 'CertId: $(certificateId)\nService Name: $(signingServiceName)'
+              Write-Host 'CertId: $(certificateId)\nService Name: $(signingService)'
               # Get the archive name
               $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath 'build-output-$(rid)'
               Get-ChildItem $downloadDir
@@ -188,7 +190,7 @@ stages:
               buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
               signOutputPath: $(Build.StagingDirectory)/signed/output
               certificateId: $(certificateId)
-              signingService: $[ variables.signingServiceName ]
+              signingService: $[ variables.signingService ]
               pattern: $(pattern)
               useMinimatch: true
               shouldSign: true
@@ -206,28 +208,6 @@ stages:
               artifact: sign-output-$(rid)
               path: $(Build.StagingDirectory)/signed
 
-      # - job: esrpSignMacOS
-      #   dependsOn: []
-      #   displayName: ESRP Signing (MacOS)
-      #   steps:
-      #     - checkout: none
-      #     - task: DownloadPipelineArtifact@2
-      #       inputs:
-      #         patterns: build-output-osx*/**/*
-      #         path: $(artifactsDownloadLocation)
-      #     - pwsh: |
-      #         Get-ChildItem $(artifactsDownloadLocation) -Recurse
-      #     - template: templates/EsrpSign.yml
-      #       parameters:
-      #         buildOutputPath: $(artifactsDownloadLocation)
-      #         signOutputPath: $(Build.StagingDirectory)\signed
-      #         certificateId: $(AUTHENTICODE_KEY)
-      #         signingService: ${{ variables.signingServiceName }}
-      #         pattern: |
-      #           **\*.zip
-      #         useMinimatch: true
-      #         shouldSign: true
-      #         displayName: Sign MacOS packages
   - stage: binaryScan
     displayName: Scan binaries (Anti malware, BinSkim)
     dependsOn: [build, srcScan]
