@@ -150,14 +150,15 @@ stages:
           - template: templates/esrp-steps-template.yaml
             parameters:
               rid: win-x64
-              certificateId: $[ variables.AUTHENTICODE_KEY ]
+              certificateId: ​​CP-230012
+              signingServiceName: microsoftgraph ESRP CodeSign DLL and NuGet (AKV)
               pattern: |
                 **\*.exe
                 **\*.dll
               artifactsDownloadLocation: ${{ variables.artifactsDownloadLocation }}
               version: ${{ variables.version }}
               zipTemplate: ${{ variables.zipTemplate }}
-
+              
       - job: esrpSignMac
         dependsOn: []
         displayName: ESRP Signing (MacOS arm64)
@@ -166,6 +167,7 @@ stages:
             parameters:
               rid: osx-arm64
               certificateId: CP-401337-Apple
+              signingServiceName: microsoftgraph ESRP CodeSign DLL and NuGet (AKV)
               pattern: |
                 **\*
               artifactsDownloadLocation: ${{ variables.artifactsDownloadLocation }}
