@@ -165,8 +165,6 @@ stages:
               pattern: |
                 **\*
           maxParallel: 2
-        variables:
-          - name:
         steps:
           - checkout: none
           - task: DownloadPipelineArtifact@2
