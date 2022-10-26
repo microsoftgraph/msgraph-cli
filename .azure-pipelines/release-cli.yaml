@@ -149,7 +149,6 @@ stages:
         variables:
           rid: win-x64
           certificateId: $[ variables.AUTHENTICODE_KEY ]
-          signingServiceName: microsoftgraph ESRP CodeSign DLL and NuGet (AKV)
           pattern: |
             **\*.exe
             **\*.dll
@@ -160,7 +159,7 @@ stages:
               patterns: build-output-$(rid)/**/*
               path: $(artifactsDownloadLocation)/$(rid)
           - pwsh: |
-              Write-Host 'CertId: $(certificateId)\nService Name: $(signingServiceName)'
+              Write-Host 'CertId: $(certificateId)'
               # Get the archive name
               $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath 'build-output-$(rid)'
               Get-ChildItem $downloadDir
@@ -176,7 +175,7 @@ stages:
               buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
               signOutputPath: $(Build.StagingDirectory)/signed/output
               certificateId: $(certificateId)
-              signingService: $(signingServiceName)
+              signingService: microsoftgraph ESRP CodeSign DLL and NuGet (AKV)
               pattern: $(pattern)
               useMinimatch: true
               shouldSign: true
@@ -200,7 +199,6 @@ stages:
         variables:
           rid: osx-arm64
           certificateId: CP-401337-Apple
-          signingServiceName: Graph Preview ESRP Mac Signing (Developer Certificate)
           pattern: |
             **\*
         steps:
@@ -210,7 +208,7 @@ stages:
               patterns: build-output-$(rid)/**/*
               path: $(artifactsDownloadLocation)/$(rid)
           - pwsh: |
-              Write-Host 'CertId: $(certificateId)\nService Name: $(signingService)'
+              Write-Host 'CertId: $(certificateId)'
               # Get the archive name
               $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath 'build-output-$(rid)'
               Get-ChildItem $downloadDir
@@ -226,7 +224,7 @@ stages:
               buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
               signOutputPath: $(Build.StagingDirectory)/signed/output
               certificateId: $(certificateId)
-              signingService: $(signingService)
+              signingService: Graph Preview ESRP Mac Signing (Developer Certificate)
               pattern: $(pattern)
               useMinimatch: true
               shouldSign: true
