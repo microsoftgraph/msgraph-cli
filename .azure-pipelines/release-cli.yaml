@@ -192,7 +192,7 @@ stages:
                 buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
                 signOutputPath: $(Build.StagingDirectory)/signed/output
                 certificateId: $(certificateId)
-                signingService: $(signingService)
+                signingService: $(SIGNING_SERVICE_NAME)
                 pattern: $(pattern)
                 useMinimatch: true
                 shouldSign: true
