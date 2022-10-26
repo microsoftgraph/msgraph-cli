@@ -27,7 +27,7 @@ steps:
       Write-Verbose -Verbose "zipTemplate = '${{ parameters.zipTemplate }}'"
       Write-Verbose -Verbose "artifactsDownloadLocation = '${{ parameters.artifactsDownloadLocation }}'"
       Write-Verbose -Verbose "version = '${{ parameters.version }}'"
-  - ${{ if and(gt(length(parameters.certificateId), 0), contains(certificateId, 'CP')) }}:
+  - ${{ if and(gt(length(parameters.certificateId), 0), contains(parameters.certificateId, 'CP')) }}:
     - task: DownloadPipelineArtifact@2
       inputs:
         patterns: build-output-$(rid)/**/*

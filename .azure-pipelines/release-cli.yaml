@@ -150,7 +150,7 @@ stages:
           - template: templates/esrp-steps-template.yaml
             parameters:
               rid: win-x64
-              certificateId: $(AUTHENTICODE_KEY)
+              certificateId: $[ variables.AUTHENTICODE_KEY ]
               pattern: |
                 **\*.exe
                 **\*.dll
