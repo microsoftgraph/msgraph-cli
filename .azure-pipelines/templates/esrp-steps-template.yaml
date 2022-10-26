@@ -1,0 +1,60 @@
+parameters:
+  - name: rid
+    type: string
+    default:
+  - name: certificateId
+    type: string
+    default:
+  - name: pattern
+    type: string
+    default:
+  - name: zipTemplate
+    type: string
+    default:
+  - name: artifactsDownloadLocation
+    type: string
+    default:
+  - name: version
+    type: string
+    default:
+
+steps:
+  - checkout: none
+  - ${{ if and(gt(length(parameters.certificateId), 0), contains(parameters.certificateId, 'CP')) }}:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        patterns: build-output-$(rid)/**/*
+        path: $(artifactsDownloadLocation)/$(rid)
+    - pwsh: |
+        # Get the archive name
+        $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath 'build-output-$(rid)'
+        Get-ChildItem $downloadDir
+        $zipName = '${{parameters.zipTemplate}}' -f '$(rid)','$(version)'
+        $zipPath = Join-Path -Path $downloadDir -ChildPath $zipName
+        Write-Host $zipPath
+        Expand-Archive -Path $zipPath -DestinationPath '../'
+        Get-ChildItem $downloadDir
+        Remove-Item $zipPath
+      displayName: Extract zip
+    - template: templates/EsrpSign.yml
+      parameters:
+        buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
+        signOutputPath: $(Build.StagingDirectory)/signed/output
+        certificateId: $(certificateId)
+        signingService: Graph Preview ESRP Mac Signing (Developer Certificate)
+        pattern: $(pattern)
+        useMinimatch: true
+        shouldSign: true
+        verifySignature: true
+        alwaysCopy: true
+        displayName: Sign packages
+    - pwsh: |
+        $zipName = '${{parameters.zipTemplate}}' -f '$(rid)','$(version)'
+        Compress-Archive -Path '$(Build.StagingDirectory)/signed/output/*' -DestinationPath ../$zipName
+        Remove-Item '$(Build.StagingDirectory)/signed/original' -Force
+      displayName: Compress signed files
+
+    - task: PublishPipelineArtifact@1
+      inputs:
+        artifact: sign-output-$(rid)
+        path: $(Build.StagingDirectory)/signed
