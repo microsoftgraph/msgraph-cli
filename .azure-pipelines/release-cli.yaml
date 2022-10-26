@@ -188,7 +188,7 @@ stages:
               buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
               signOutputPath: $(Build.StagingDirectory)/signed/output
               certificateId: $(certificateId)
-              signingService: $(signingServiceName)
+              signingService: microsoftgraph ESRP CodeSign DLL and NuGet (AKV)
               pattern: $(pattern)
               useMinimatch: true
               shouldSign: true
