@@ -5,6 +5,9 @@ parameters:
   - name: certificateId
     type: string
     default:
+  - name: signingServiceName
+    type: string
+    default:
   - name: pattern
     type: string
     default:
@@ -23,6 +26,7 @@ steps:
   - pwsh: |
       Write-Verbose -Verbose "rid = '${{ parameters.rid }}'"
       Write-Verbose -Verbose "certificateId = '${{ parameters.certificateId }}'"
+      Write-Verbose -Verbose "signingServiceName = '${{ parameters.signingServiceName }}'"
       Write-Verbose -Verbose "pattern = '${{ parameters.pattern }}'"
       Write-Verbose -Verbose "zipTemplate = '${{ parameters.zipTemplate }}'"
       Write-Verbose -Verbose "artifactsDownloadLocation = '${{ parameters.artifactsDownloadLocation }}'"
