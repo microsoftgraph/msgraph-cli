@@ -45,11 +45,11 @@ steps:
     - ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
       - pwsh: |
           Get-ChildItem $(artifactsDownloadLocation) -Recurse
-          Expand-Archive $(artifactsDownloadLocation)/build-output-*/*.zip
+          Get-Item $(artifactsDownloadLocation)/build-output-*/*.zip | ForEach-Object { Expand-Archive $_.FullName }
     - ${{ else }}:
       - pwsh: |
           Get-ChildItem $(Pipeline.Workspace)
-          Expand-Archive $(Pipeline.Workspace)/build-output-*/*.zip
+          Get-Item $(Pipeline.Workspace)/build-output-*/*.zip | ForEach-Object { Expand-Archive $_.FullName }
 
 
     - task: AntiMalware@4
