@@ -15,7 +15,7 @@ jobs:
         with:
           submodules: true
       - name: Setup .NET Core SDK 6
-        uses: actions/setup-dotnet@v3.0.2
+        uses: actions/setup-dotnet@v3.0.3
         with:
           dotnet-version: 6.x
       - name: Add NuGet kiota source
