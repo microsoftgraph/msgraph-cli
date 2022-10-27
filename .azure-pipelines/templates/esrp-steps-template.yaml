@@ -30,7 +30,7 @@ steps:
       Write-Verbose -Verbose "pattern = '${{ parameters.pattern }}'"
       Write-Verbose -Verbose "zipTemplate = '${{ parameters.zipTemplate }}'"
       Write-Verbose -Verbose "artifactsDownloadLocation = '${{ parameters.artifactsDownloadLocation }}'"
-      Write-Verbose -Verbose "version = '${{ parameters.version }}'"
+      Write-Verbose -Verbose "version = '$(version)'"
   - ${{ if and(gt(length(parameters.certificateId), 0), contains(parameters.certificateId, 'CP')) }}:
     - task: DownloadPipelineArtifact@2
       inputs:
@@ -40,7 +40,7 @@ steps:
         # Get the archive name
         $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/${{parameters.rid}}/' -ChildPath 'build-output-${{parameters.rid}}'
         Get-ChildItem $downloadDir
-        $zipName = '${{parameters.zipTemplate}}' -f '${{parameters.rid}}','${{parameters.version}}'
+        $zipName = '${{parameters.zipTemplate}}' -f '${{parameters.rid}}','$(version)'
         $zipPath = Join-Path -Path $downloadDir -ChildPath $zipName
         Write-Host $zipPath
         Expand-Archive -Path $zipPath -DestinationPath '../'
@@ -60,7 +60,7 @@ steps:
         alwaysCopy: true
         displayName: Sign packages
     - pwsh: |
-        $zipName = '${{parameters.zipTemplate}}' -f '${{parameters.rid}}','${{parameters.version}}'
+        $zipName = '${{parameters.zipTemplate}}' -f '${{parameters.rid}}','$(version)'
         Compress-Archive -Path '$(Build.StagingDirectory)/signed/output/*' -DestinationPath ../$zipName
         Remove-Item '$(Build.StagingDirectory)/signed/original' -Force
       displayName: Compress signed files
