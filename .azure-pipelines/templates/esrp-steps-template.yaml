@@ -34,13 +34,13 @@ steps:
   - ${{ if and(gt(length(parameters.certificateId), 0), contains(parameters.certificateId, 'CP')) }}:
     - task: DownloadPipelineArtifact@2
       inputs:
-        patterns: build-output-$(rid)/**/*
-        path: $(artifactsDownloadLocation)/$(rid)
+        patterns: build-output-${{parameters.rid}}/**/*
+        path: $(artifactsDownloadLocation)/${{parameters.rid}}
     - pwsh: |
         # Get the archive name
-        $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath 'build-output-$(rid)'
+        $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/${{parameters.rid}}/' -ChildPath 'build-output-${{parameters.rid}}'
         Get-ChildItem $downloadDir
-        $zipName = '${{parameters.zipTemplate}}' -f '$(rid)','$(version)'
+        $zipName = '${{parameters.zipTemplate}}' -f '${{parameters.rid}}','${{parameters.version}}'
         $zipPath = Join-Path -Path $downloadDir -ChildPath $zipName
         Write-Host $zipPath
         Expand-Archive -Path $zipPath -DestinationPath '../'
@@ -49,7 +49,7 @@ steps:
       displayName: Extract zip
     - template: EsrpSign.yml
       parameters:
-        buildOutputPath: $(artifactsDownloadLocation)/$(rid)/*
+        buildOutputPath: $(artifactsDownloadLocation)/${{parameters.rid}}/*
         signOutputPath: $(Build.StagingDirectory)/signed/output
         certificateId: $(certificateId)
         signingService: Graph Preview ESRP Mac Signing (Developer Certificate)
@@ -60,12 +60,12 @@ steps:
         alwaysCopy: true
         displayName: Sign packages
     - pwsh: |
-        $zipName = '${{parameters.zipTemplate}}' -f '$(rid)','$(version)'
+        $zipName = '${{parameters.zipTemplate}}' -f '${{parameters.rid}}','${{parameters.version}}'
         Compress-Archive -Path '$(Build.StagingDirectory)/signed/output/*' -DestinationPath ../$zipName
         Remove-Item '$(Build.StagingDirectory)/signed/original' -Force
       displayName: Compress signed files
 
     - task: PublishPipelineArtifact@1
       inputs:
-        artifact: sign-output-$(rid)
+        artifact: sign-output-${{parameters.rid}}
         path: $(Build.StagingDirectory)/signed
