@@ -43,9 +43,13 @@ steps:
           path: $(artifactsDownloadLocation)
 
     - ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
-      - pwsh: Get-ChildItem $(artifactsDownloadLocation) -Recurse
+      - pwsh: |
+          Get-ChildItem $(artifactsDownloadLocation) -Recurse
+          Expand-Archive $(artifactsDownloadLocation)/build-output-*/*.zip
     - ${{ else }}:
-      - pwsh: Get-ChildItem $(Pipeline.Workspace)
+      - pwsh: |
+          Get-ChildItem $(Pipeline.Workspace)
+          Expand-Archive $(Pipeline.Workspace)/build-output-*/*.zip
 
 
     - task: AntiMalware@4
