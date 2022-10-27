@@ -51,7 +51,7 @@ steps:
       parameters:
         buildOutputPath: $(artifactsDownloadLocation)/${{parameters.rid}}/*
         signOutputPath: $(Build.StagingDirectory)/signed/output
-        certificateId: $(certificateId)
+        certificateId: "`$(certificateId)"
         signingService: Graph Preview ESRP Mac Signing (Developer Certificate)
         pattern: $(pattern)
         useMinimatch: true
