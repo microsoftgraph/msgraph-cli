@@ -92,7 +92,7 @@ stages:
               rid: osx-x64
             'MacOS-ARM':
               rid: osx-arm64
-          maxParallel: 2
+          # maxParallel: 2
         steps:
           - task: UseDotNet@2
             displayName: 'Use .NET 6'
