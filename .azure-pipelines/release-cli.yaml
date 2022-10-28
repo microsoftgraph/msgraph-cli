@@ -168,7 +168,7 @@ stages:
               Write-Verbose -Verbose "pattern = '`$(pattern)'"
               Write-Verbose -Verbose "zipTemplate = '`$(zipTemplate)'"
               Write-Verbose -Verbose "artifactsDownloadLocation = '`$(artifactsDownloadLocation)'"
-              Write-Verbose -Verbose "version = '`${{ variables.version }}'"
+              Write-Verbose -Verbose "version = '`$(version)'"
               $rid = '`$(rid)'
               $shouldSign = '`$(sign)'
               $shouldNotarize = '`$(notarize)'
@@ -184,7 +184,7 @@ stages:
               # Get the archive name
               $downloadDir = Join-Path -Path '$(artifactsDownloadLocation)/$(rid)/' -ChildPath 'build-output-$(rid)'
               Get-ChildItem $downloadDir
-              $zipName = '$(zipTemplate)' -f '$(rid)','${{ variables.version }}'
+              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
               $zipPath = Join-Path -Path $downloadDir -ChildPath $zipName
               Write-Host $zipPath
               Expand-Archive -Path $zipPath -DestinationPath '../'
@@ -271,7 +271,7 @@ stages:
           #   condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True'))
 
           - pwsh: |
-              $zipName = '$(zipTemplate)' -f '$(rid)','${{ variables.version }}'
+              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
               Compress-Archive -Path '$(Build.StagingDirectory)/signed/output/*' -DestinationPath ../$zipName
               Remove-Item '$(Build.StagingDirectory)/signed/original' -Force
             displayName: Compress signed files
