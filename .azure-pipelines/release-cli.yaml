@@ -161,17 +161,17 @@ stages:
                 **\*.zip
             'MacOS-ARM':
               rid: osx-arm64
-        displayName: ESRP Signing (Windows x64)
+        displayName: ESRP Signing
         steps:
           - pwsh: |
-              Write-Verbose -Verbose "signingServiceName = '$(signingServiceName)'"
-              Write-Verbose -Verbose "pattern = '$(pattern)'"
-              Write-Verbose -Verbose "zipTemplate = '$(zipTemplate)'"
-              Write-Verbose -Verbose "artifactsDownloadLocation = '$(artifactsDownloadLocation)'"
-              Write-Verbose -Verbose "version = '$(version)'"
-              $rid = '$(rid)'
-              $shouldSign = '$(sign)'
-              $shouldNotarize = '$(notarize)'
+              Write-Verbose -Verbose "signingServiceName = '`$(signingServiceName)'"
+              Write-Verbose -Verbose "pattern = '`$(pattern)'"
+              Write-Verbose -Verbose "zipTemplate = '`$(zipTemplate)'"
+              Write-Verbose -Verbose "artifactsDownloadLocation = '`$(artifactsDownloadLocation)'"
+              Write-Verbose -Verbose "version = '`$(version)'"
+              $rid = '`$(rid)'
+              $shouldSign = '`$(sign)'
+              $shouldNotarize = '`$(notarize)'
               Write-Host ##vso[task.setvariable variable=RUNTIME_ID]$rid
               Write-Host ##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign
               Write-Host ##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize
@@ -192,83 +192,83 @@ stages:
               Remove-Item $zipPath
             displayName: Extract zip
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
-          - task: EsrpCodeSigning@2
-            displayName: 'ESRP CodeSigning'
-            inputs:
-              ConnectedServiceName: 'microsoftgraph ESRP CodeSign DLL and NuGet (AKV)'
-              FolderPath: $(artifactsDownloadLocation)/$(rid)/build-output-$(rid)
-              signConfigType: inlineSignParams
-              UseMinimatch: true
-              Pattern: $(pattern)
-              inlineOperation: |
-                [
-                    {
-                        "keyCode": "CP-230012",
-                        "operationSetCode": "SigntoolSign",
-                        "parameters": {
-                          "OpusName" : "Microsoft",
-                          "OpusInfo" : "http://www.microsoft.com",
-                          "FileDigest" : "/fd \"SHA256\"",
-                          "PageHash" : "/NPH",
-                          "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
-                        },
-                        "toolName": "sign",
-                        "toolVersion": "1.0"
-                    },
-                    {
-                        "keyCode": "CP-230012",
-                        "operationSetCode": "SigntoolVerify",
-                        "parameters": {},
-                        "toolName": "sign",
-                        "toolVersion": "1.0"
-                    }
-                ]
-              SessionTimeout: 20
-            condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'win'), eq(variables['SHOULD_SIGN'], 'True'))
-          - task: EsrpCodeSigning@2
-            displayName: 'ESRP CodeSigning'
-            inputs:
-              ConnectedServiceName: 'microsoftgraph ESRP CodeSign DLL and NuGet (AKV)'
-              FolderPath: $(artifactsDownloadLocation)/$(rid)/build-output-$(rid)
-              signConfigType: inlineSignParams
-              UseMinimatch: true
-              Pattern: $(pattern)
-              inlineOperation: |
-                [
-                    {
-                        "keyCode": "CP-401337-Apple",
-                        "OperationCode": "MacAppDeveloperSign",
-                        "Parameters": {
-                          "Hardening": "--options=runtime"
-                        },
-                        "ToolName": "sign",
-                        "ToolVersion": "1.0
-                    },
-                ]
-              SessionTimeout: 20
-            condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'), eq(variables['SHOULD_SIGN'], 'True'))
-          - task: EsrpCodeSigning@2
-            displayName: 'ESRP CodeSigning'
-            inputs:
-              ConnectedServiceName: 'microsoftgraph ESRP CodeSign DLL and NuGet (AKV)'
-              FolderPath: $(artifactsDownloadLocation)/$(rid)/build-output-$(rid)
-              signConfigType: inlineSignParams
-              UseMinimatch: true
-              Pattern: $(pattern)
-              inlineOperation: |
-                [
-                    {
-                        "keyCode": "CP-401337-Apple",
-                        "OperationCode": "MacAppNotarize",
-                        "Parameters": {
-                          "BundleId": "com.microsoft.microsoftgraphcli"
-                        },
-                        "ToolName": "sign",
-                        "ToolVersion": "1.0
-                    },
-                ]
-              SessionTimeout: 20
-            condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True'))
+          # - task: EsrpCodeSigning@2
+          #   displayName: 'ESRP CodeSigning'
+          #   inputs:
+          #     ConnectedServiceName: 'microsoftgraph ESRP CodeSign DLL and NuGet (AKV)'
+          #     FolderPath: $(artifactsDownloadLocation)/$(rid)/build-output-$(rid)
+          #     signConfigType: inlineSignParams
+          #     UseMinimatch: true
+          #     Pattern: $(pattern)
+          #     inlineOperation: |
+          #       [
+          #           {
+          #               "keyCode": "CP-230012",
+          #               "operationSetCode": "SigntoolSign",
+          #               "parameters": {
+          #                 "OpusName" : "Microsoft",
+          #                 "OpusInfo" : "http://www.microsoft.com",
+          #                 "FileDigest" : "/fd \"SHA256\"",
+          #                 "PageHash" : "/NPH",
+          #                 "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+          #               },
+          #               "toolName": "sign",
+          #               "toolVersion": "1.0"
+          #           },
+          #           {
+          #               "keyCode": "CP-230012",
+          #               "operationSetCode": "SigntoolVerify",
+          #               "parameters": {},
+          #               "toolName": "sign",
+          #               "toolVersion": "1.0"
+          #           }
+          #       ]
+          #     SessionTimeout: 20
+          #   condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'win'), eq(variables['SHOULD_SIGN'], 'True'))
+          # - task: EsrpCodeSigning@2
+          #   displayName: 'ESRP CodeSigning'
+          #   inputs:
+          #     ConnectedServiceName: 'microsoftgraph ESRP CodeSign DLL and NuGet (AKV)'
+          #     FolderPath: $(artifactsDownloadLocation)/$(rid)/build-output-$(rid)
+          #     signConfigType: inlineSignParams
+          #     UseMinimatch: true
+          #     Pattern: $(pattern)
+          #     inlineOperation: |
+          #       [
+          #           {
+          #               "keyCode": "CP-401337-Apple",
+          #               "OperationCode": "MacAppDeveloperSign",
+          #               "Parameters": {
+          #                 "Hardening": "--options=runtime"
+          #               },
+          #               "ToolName": "sign",
+          #               "ToolVersion": "1.0
+          #           },
+          #       ]
+          #     SessionTimeout: 20
+          #   condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'), eq(variables['SHOULD_SIGN'], 'True'))
+          # - task: EsrpCodeSigning@2
+          #   displayName: 'ESRP CodeSigning'
+          #   inputs:
+          #     ConnectedServiceName: 'microsoftgraph ESRP CodeSign DLL and NuGet (AKV)'
+          #     FolderPath: $(artifactsDownloadLocation)/$(rid)/build-output-$(rid)
+          #     signConfigType: inlineSignParams
+          #     UseMinimatch: true
+          #     Pattern: $(pattern)
+          #     inlineOperation: |
+          #       [
+          #           {
+          #               "keyCode": "CP-401337-Apple",
+          #               "OperationCode": "MacAppNotarize",
+          #               "Parameters": {
+          #                 "BundleId": "com.microsoft.microsoftgraphcli"
+          #               },
+          #               "ToolName": "sign",
+          #               "ToolVersion": "1.0
+          #           },
+          #       ]
+          #     SessionTimeout: 20
+          #   condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True'))
 
           - pwsh: |
               $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
