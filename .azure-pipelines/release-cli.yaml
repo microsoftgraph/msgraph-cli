@@ -272,7 +272,7 @@ stages:
               Pattern: $(pattern)
               inlineOperation: $(inlineNotarizeOperation)
               SessionTimeout: 20
-            condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), eq(variables['SHOULD_SIGN'], 'True'))
+            condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), eq(variables['SHOULD_SIGN'], 'True'))
 
           - pwsh: |
               $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
