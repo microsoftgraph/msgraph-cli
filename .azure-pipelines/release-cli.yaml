@@ -169,6 +169,8 @@ stages:
               Write-Verbose -Verbose "zipTemplate = '`$(zipTemplate)'"
               Write-Verbose -Verbose "artifactsDownloadLocation = '`$(artifactsDownloadLocation)'"
               Write-Verbose -Verbose "version = '`$(version)'"
+              Write-Verbose -Verbose "sign = '`$(sign)'"
+              Write-Verbose -Verbose "notarize = '`$(notarize)'"
               $rid = '`$(rid)'
               $shouldSign = '`$(sign)'
               $shouldNotarize = '`$(notarize)'
@@ -270,12 +272,12 @@ stages:
           #     SessionTimeout: 20
           #   condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True'))
 
-          - pwsh: |
-              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
-              Compress-Archive -Path '$(Build.StagingDirectory)/signed/output/*' -DestinationPath ../$zipName
-              Remove-Item '$(Build.StagingDirectory)/signed/original' -Force
-            displayName: Compress signed files
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+          # - pwsh: |
+          #     $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
+          #     Compress-Archive -Path '$(Build.StagingDirectory)/signed/output/*' -DestinationPath ../$zipName
+          #     Remove-Item '$(Build.StagingDirectory)/signed/original' -Force
+          #   displayName: Compress signed files
+          #   condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
           - task: PublishPipelineArtifact@1
             inputs:
