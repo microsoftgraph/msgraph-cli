@@ -247,7 +247,8 @@ stages:
               $extractPath = Join-Path -Path $downloadDir -ChildPath ../artifacts
               Expand-Archive -Path $zipPath -DestinationPath $extractPath
               Get-ChildItem $extractPath
-              Remove-Item $downloadDir
+              # -Force so there's no confirmation
+              Remove-Item $downloadDir -Force
             displayName: Extract zip
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
           - task: EsrpCodeSigning@2
