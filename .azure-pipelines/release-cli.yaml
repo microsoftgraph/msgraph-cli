@@ -174,9 +174,9 @@ stages:
               $rid = '$(rid)'
               $shouldSign = '$(sign)'
               $shouldNotarize = '$(notarize)'
-              Write-Host ##vso[task.setvariable variable=RUNTIME_ID]$rid
-              Write-Host ##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign
-              Write-Host ##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize
+              Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
+              Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
+              Write-Host "##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize"
           - task: DownloadPipelineArtifact@2
             inputs:
               patterns: build-output-$(rid)/**/*
