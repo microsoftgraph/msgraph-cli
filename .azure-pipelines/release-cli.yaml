@@ -211,7 +211,7 @@ stages:
               inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
             'MacOS-ARM':
               rid: osx-arm64
-              sign: true
+              sign: false
               pattern: |
                 **\mgc
               inlineSignOperation: ${{ variables.macSignOp }}
@@ -284,6 +284,7 @@ stages:
               Move-Item -Path '$(artifactsDownloadLocation)/$(rid)/artifacts/*.md' -Destination ../
               Compress-Archive -Path '$(artifactsDownloadLocation)/$(rid)/artifacts/*' -DestinationPath ../$zipName
               Remove-Item '$(artifactsDownloadLocation)/$(rid)/artifacts' -Recurse -Force
+              Get-ChildItem '$(artifactsDownloadLocation)/$(rid)' -Recurse
             displayName: Compress signed files
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
