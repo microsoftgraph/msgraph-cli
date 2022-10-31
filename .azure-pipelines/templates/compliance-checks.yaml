@@ -44,11 +44,11 @@ steps:
 
     - ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
       - pwsh: |
-          Get-ChildItem $(artifactsDownloadLocation)/build-output-*/*.zip | ForEach-Object { Write-Host "Extracting $_.FullName" } { Expand-Archive $_.FullName }
+          Get-ChildItem $(artifactsDownloadLocation)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive $_.FullName }
           Get-ChildItem $(artifactsDownloadLocation)/build-output-* -Recurse
     - ${{ else }}:
       - pwsh: |
-          Get-ChildItem $(Pipeline.Workspace)/build-output-*/*.zip | ForEach-Object { Write-Host "Extracting $_.FullName" } { Expand-Archive $_.FullName }
+          Get-ChildItem $(Pipeline.Workspace)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive $_.FullName }
           Get-ChildItem $(Pipeline.Workspace)/build-output-* -Recurse
 
 
