@@ -155,8 +155,8 @@ stages:
                       "Hardening": "--options=runtime"
                     },
                     "ToolName": "sign",
-                    "ToolVersion": "1.0
-                },
+                    "ToolVersion": "1.0"
+                }
             ]
           macNotarizeOp: |
             [
@@ -167,8 +167,8 @@ stages:
                       "BundleId": "com.microsoft.microsoftgraphcli"
                     },
                     "ToolName": "sign",
-                    "ToolVersion": "1.0
-                },
+                    "ToolVersion": "1.0"
+                }
             ]
         strategy:
           matrix:
@@ -201,6 +201,7 @@ stages:
                     "ToolVersion": "1.0"
                   }
                 ]
+              inlineNotarizeOperation: ""
             'MacOS-x64':
               rid: osx-x64
               sign: false
