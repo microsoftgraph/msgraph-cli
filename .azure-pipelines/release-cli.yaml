@@ -244,9 +244,10 @@ stages:
               $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
               $zipPath = Join-Path -Path $downloadDir -ChildPath $zipName
               Write-Host $zipPath
-              Expand-Archive -Path $zipPath -DestinationPath '../'
-              Get-ChildItem $downloadDir
-              Remove-Item $zipPath
+              $extractPath = Join-Path -Path $downloadDir -ChildPath ../artifacts
+              Expand-Archive -Path $zipPath -DestinationPath $extractPath
+              Get-ChildItem $extractPath
+              Remove-Item $downloadDir
             displayName: Extract zip
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
           - task: EsrpCodeSigning@2
@@ -254,10 +255,11 @@ stages:
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(artifactsDownloadLocation)/$(rid)/build-output-$(rid)
+              FolderPath: $(artifactsDownloadLocation)/$(rid)/artifacts
               signConfigType: inlineSignParams
               UseMinimatch: true
-              Pattern: $(pattern)
+              Pattern: |
+                $(pattern)
               inlineOperation: $(inlineSignOperation)
               SessionTimeout: 20
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
@@ -266,26 +268,27 @@ stages:
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(artifactsDownloadLocation)/$(rid)/build-output-$(rid)
+              FolderPath: $(artifactsDownloadLocation)/$(rid)/artifacts
               signConfigType: inlineSignParams
               UseMinimatch: true
-              Pattern: $(pattern)
+              Pattern: |
+                $(pattern)
               inlineOperation: $(inlineNotarizeOperation)
               SessionTimeout: 20
             condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), eq(variables['SHOULD_SIGN'], 'True'))
 
           - pwsh: |
               $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
-              Move-Item -Path ./*.md -Destination ../
-              Compress-Archive -Path '$(artifactsDownloadLocation)/$(rid)/build-output-$(rid)/*' -DestinationPath ../$zipName
-              Remove-Item '$(artifactsDownloadLocation)/$(rid)/build-output-$(rid)' -Force
+              Move-Item -Path '$(artifactsDownloadLocation)/$(rid)/artifacts/*.md' -Destination ../
+              Compress-Archive -Path '$(artifactsDownloadLocation)/$(rid)/artifacts/*' -DestinationPath ../$zipName
+              Remove-Item '$(artifactsDownloadLocation)/$(rid)/artifacts' -Force
             displayName: Compress signed files
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
           - task: PublishPipelineArtifact@1
             inputs:
               artifact: sign-output-$(rid)
-              path: $(Build.StagingDirectory)/signed
+              path: $(artifactsDownloadLocation)/$(rid)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
   - stage: binaryScan
