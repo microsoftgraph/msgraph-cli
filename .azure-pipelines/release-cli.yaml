@@ -175,7 +175,6 @@ stages:
             'Windows-x64':
               rid: win-x64
               sign: true
-              signingServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
               pattern: |
                 **\*.exe
                 **\*.dll
@@ -205,7 +204,6 @@ stages:
             'MacOS-x64':
               rid: osx-x64
               sign: false
-              signingServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
               pattern: |
                 **\*.zip
               inlineSignOperation: ${{ variables.macSignOp }}
@@ -213,7 +211,6 @@ stages:
             'MacOS-ARM':
               rid: osx-arm64
               sign: true
-              signingServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
               pattern: |
                 **\mgc
               inlineSignOperation: ${{ variables.macSignOp }}
@@ -221,7 +218,6 @@ stages:
         displayName: ESRP Signing
         steps:
           - pwsh: |
-              Write-Verbose -Verbose 'signingServiceName = ''$(signingServiceName)'''
               Write-Verbose -Verbose 'pattern = ''$(pattern)'''
               Write-Verbose -Verbose 'zipTemplate = ''$(zipTemplate)'''
               Write-Verbose -Verbose 'artifactsDownloadLocation = ''$(artifactsDownloadLocation)'''
@@ -255,7 +251,8 @@ stages:
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning'
             inputs:
-              ConnectedServiceName: $(signingServiceName)
+              # Pipeline validation can't expand service name from matrix variables
+              ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
               FolderPath: $(artifactsDownloadLocation)/$(rid)/build-output-$(rid)
               signConfigType: inlineSignParams
               UseMinimatch: true
@@ -266,7 +263,8 @@ stages:
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning'
             inputs:
-              ConnectedServiceName: $(signingServiceName)
+              # Pipeline validation can't expand service name from matrix variables
+              ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
               FolderPath: $(artifactsDownloadLocation)/$(rid)/build-output-$(rid)
               signConfigType: inlineSignParams
               UseMinimatch: true
