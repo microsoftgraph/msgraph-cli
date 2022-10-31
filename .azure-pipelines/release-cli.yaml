@@ -164,16 +164,16 @@ stages:
         displayName: ESRP Signing
         steps:
           - pwsh: |
-              Write-Verbose -Verbose "signingServiceName = '`$(signingServiceName)'"
-              Write-Verbose -Verbose "pattern = '`$(pattern)'"
-              Write-Verbose -Verbose "zipTemplate = '`$(zipTemplate)'"
-              Write-Verbose -Verbose "artifactsDownloadLocation = '`$(artifactsDownloadLocation)'"
-              Write-Verbose -Verbose "version = '`$(version)'"
-              Write-Verbose -Verbose "sign = '`$(sign)'"
-              Write-Verbose -Verbose "notarize = '`$(notarize)'"
-              $rid = '`$(rid)'
-              $shouldSign = '`$(sign)'
-              $shouldNotarize = '`$(notarize)'
+              Write-Verbose -Verbose 'signingServiceName = ''$(signingServiceName)'''
+              Write-Verbose -Verbose 'pattern = ''$(pattern)'''
+              Write-Verbose -Verbose 'zipTemplate = ''$(zipTemplate)'''
+              Write-Verbose -Verbose 'artifactsDownloadLocation = ''$(artifactsDownloadLocation)'''
+              Write-Verbose -Verbose 'version = ''$(version)'''
+              Write-Verbose -Verbose 'sign = ''$(sign)'''
+              Write-Verbose -Verbose 'notarize = ''$(notarize)'''
+              $rid = '$(rid)'
+              $shouldSign = '$(sign)'
+              $shouldNotarize = '$(notarize)'
               Write-Host ##vso[task.setvariable variable=RUNTIME_ID]$rid
               Write-Host ##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign
               Write-Host ##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize
