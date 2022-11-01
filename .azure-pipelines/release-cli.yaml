@@ -5,6 +5,18 @@ trigger:
     include:
       - refs/tags/v*
 
+pr:
+  branches:
+    include:
+      - main
+
+# resources:
+#   repositories:
+#     - repository: MyGitHubRepo
+#       type: github
+#       endpoint: microsoftgraph (16)
+#       name: microsoftgraph/msgraph-cli
+
 pool:
   name: Azure Pipelines
   vmImage: ubuntu-latest
@@ -25,15 +37,15 @@ variables:
   - name: internalFeed
     value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
   - name: versionString
-    # value: $[ coalesce('$(Build.SourceBranchName)', 'latest') ]
-    value: $[ coalesce(replace('${{parameters.tag}}', 'none', ''), '$(Build.SourceBranchName)', 'v0.1.0') ]
+    value: $[ coalesce('$(Build.SourceBranchName)', 'latest') ]
+    # value: $[ coalesce(replace('${{parameters.tag}}', 'none', ''), '$(Build.SourceBranchName)', 'v0.1.0') ]
   - group: ESRP
 
-parameters:
-  - name: tag
-    displayName: Tag
-    type: string
-    default: none
+# parameters:
+#   - name: tag
+#     displayName: Tag
+#     type: string
+#     default: none
 
 #                   
 # test -> build -> | sign |
@@ -47,8 +59,6 @@ stages:
       - job: test
         displayName: Run tests
         steps:
-        - checkout: git://self@refs/tags/${{parameters.tag}}
-          condition: and(succeeded(), ne('${{parameters.tag}}', 'none'))
         - task: UseDotNet@2
           displayName: 'Use .NET 6'
           inputs:
@@ -138,6 +148,7 @@ stages:
           - template: templates/compliance-checks.yaml
             parameters:
               scanSource: true
+
   - stage: sign
     displayName: ESRP signing
     pool:
@@ -145,6 +156,7 @@ stages:
     dependsOn: [build]
     variables:
       version: $[ stageDependencies.build.prepare.outputs['version.versionVar'] ]
+    condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
     jobs:
       - job: esrpSign
         dependsOn: []
@@ -302,6 +314,7 @@ stages:
     dependsOn: [build, srcScan]
     pool:
       vmImage: windows-latest
+    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('$(System.PullRequest.TargetBranch)', 'refs/tags/main')))
     jobs:
       - job: scan
         displayName: Scanning binaries
@@ -313,7 +326,8 @@ stages:
 
   - stage: upload
     dependsOn: [binaryScan, sign]
-    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), startsWith('${{parameters.tag}}', 'v')))
+    condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
+    # condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), startsWith('${{parameters.tag}}', 'v')))
     jobs:
       - job: upload
         displayName: Upload binaries
