@@ -44,11 +44,11 @@ steps:
 
     - ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
       - pwsh: |
-          Get-ChildItem $(artifactsDownloadLocation)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive -Path "$($_.FullName)" -PassThru }
+          Get-ChildItem $(artifactsDownloadLocation)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive -LiteralPath "$($_.FullName)" -PassThru }, { Remove-Item "$($_.FullName)" }
           Get-ChildItem $(artifactsDownloadLocation)/build-output-* -Recurse
     - ${{ else }}:
       - pwsh: |
-          Get-ChildItem $(Pipeline.Workspace)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive -Path "$($_.FullName)" -PassThru }
+          Get-ChildItem $(Pipeline.Workspace)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive -LiteralPath "$($_.FullName)" -PassThru }, { Remove-Item "$($_.FullName)" }
           Get-ChildItem $(Pipeline.Workspace)/build-output-* -Recurse
 
 
@@ -68,12 +68,13 @@ steps:
       inputs:
         InputType: Basic
         ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
-          AnalyzeTargetGlob: '$(artifactsDownloadLocation)\**.dll;$(artifactsDownloadLocation)\**.exe;'
+          AnalyzeTargetGlob: '$(artifactsDownloadLocation)\*.dll;$(artifactsDownloadLocation)\*.exe;'
         ${{ else }}:
-          AnalyzeTargetGlob: '$(Pipeline.Workspace)\**.dll;$(Pipeline.Workspace)\**.exe;'
+          AnalyzeTargetGlob: '$(Pipeline.Workspace)\*.dll;$(Pipeline.Workspace)\*.exe;'
         AnalyzeIgnorePdbLoadError: false
         AnalyzeVerbose: true
         AnalyzeHashes: true
+        AnalyzeRecurse: true
         AnalyzeStatistics: true
 
   - task: PublishSecurityAnalysisLogs@3
