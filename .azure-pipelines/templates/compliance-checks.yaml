@@ -70,9 +70,9 @@ steps:
       inputs:
         InputType: Basic
         ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
-          AnalyzeTargetGlob: '$(artifactsDownloadLocation)\*.dll;$(artifactsDownloadLocation)\*.exe;'
+          AnalyzeTargetGlob: '$(artifactsDownloadLocation)\**.dll;$(artifactsDownloadLocation)\**.exe;'
         ${{ else }}:
-          AnalyzeTargetGlob: '$(Pipeline.Workspace)\*.dll;$(Pipeline.Workspace)\*.exe;'
+          AnalyzeTargetGlob: '$(Pipeline.Workspace)\**.dll;$(Pipeline.Workspace)\**.exe;'
         AnalyzeIgnorePdbLoadError: false
         AnalyzeVerbose: true
         AnalyzeHashes: true
