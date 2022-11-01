@@ -25,14 +25,15 @@ variables:
   - name: internalFeed
     value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
   - name: versionString
-    value: $[ coalesce('${{parameters.tag}}', '$(Build.SourceBranch)', 'v0.1.0') ]
+    # value: $[ coalesce('$(Build.SourceBranchName)', 'latest') ]
+    value: $[ coalesce(replace('${{parameters.tag}}', 'none', ''), '$(Build.SourceBranchName)', 'v0.1.0') ]
   - group: ESRP
 
 parameters:
   - name: tag
     displayName: Tag
     type: string
-    default:
+    default: none
 
 #                   
 # test -> build -> | sign |
@@ -46,6 +47,8 @@ stages:
       - job: test
         displayName: Run tests
         steps:
+        - checkout: git://self@refs/tags/${{parameters.tag}}
+          condition: and(succeeded(), ne('${{parameters.tag}}', 'none'))
         - task: UseDotNet@2
           displayName: 'Use .NET 6'
           inputs:
@@ -310,6 +313,7 @@ stages:
 
   - stage: upload
     dependsOn: [binaryScan, sign]
+    condition: and(succeeded(), or(startsWith(Build.SourceBranch, 'refs/tags/v'), startsWith(parameters.tag, 'v')))
     jobs:
       - job: upload
         displayName: Upload binaries
