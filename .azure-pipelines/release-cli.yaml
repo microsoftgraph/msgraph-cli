@@ -313,7 +313,7 @@ stages:
 
   - stage: upload
     dependsOn: [binaryScan, sign]
-    condition: and(succeeded(), or(startsWith(Build.SourceBranch, 'refs/tags/v'), startsWith(parameters.tag, 'v')))
+    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), startsWith('${{parameters.tag}}', 'v')))
     jobs:
       - job: upload
         displayName: Upload binaries
