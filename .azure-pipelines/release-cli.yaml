@@ -274,10 +274,6 @@ stages:
               $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
               Write-Host "Moving $downloadDir to $extractPath"
               Move-Item -Path $downloadDir -Destination $extractPath
-
-              # -Force so there's no confirmation
-              # -Recurse so the child items warning isn't shown
-              Remove-Item $downloadDir -Recurse -Force
               Get-ChildItem $extractPath -Recurse
             displayName: Move zip
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
