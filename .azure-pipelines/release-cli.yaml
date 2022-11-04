@@ -228,7 +228,7 @@ stages:
               rid: osx-arm64
               sign: true
               pattern: |
-                **\mgc
+                **\*.zip
               inlineSignOperation: ${{ variables.macSignOp }}
               inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
         displayName: ESRP Signing
@@ -315,7 +315,6 @@ stages:
 
           - pwsh: |
               Move-Item -Path '$(WORKING_DIR)/artifacts' -Destination ../
-              Remove-Item '$(WORKING_DIR)/artifacts' -Recurse -Force
               Get-ChildItem '$(WORKING_DIR)' -Recurse
             displayName: Move signed files
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
