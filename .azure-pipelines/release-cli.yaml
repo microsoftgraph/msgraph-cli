@@ -156,7 +156,7 @@ stages:
     dependsOn: [build]
     variables:
       version: $[ stageDependencies.build.prepare.outputs['version.versionVar'] ]
-    condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
+    # condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
     jobs:
       - job: esrpSign
         dependsOn: []
@@ -226,7 +226,7 @@ stages:
               inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
             'MacOS-ARM':
               rid: osx-arm64
-              sign: false
+              sign: true
               pattern: |
                 **\mgc
               inlineSignOperation: ${{ variables.macSignOp }}
