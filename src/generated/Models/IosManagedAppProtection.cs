@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Policy used to configure detailed management settings targeted to specific security groups and for a specified set of apps on an iOS device
+    /// </summary>
     public class IosManagedAppProtection : TargetedManagedAppProtection, IParsable {
         /// <summary>Represents the level to which app data is encrypted for managed apps</summary>
         public ManagedAppDataEncryptionType? AppDataEncryptionType { get; set; }
@@ -44,7 +47,7 @@ namespace ApiSdk.Models {
         public string MinimumRequiredSdkVersion { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new IosManagedAppProtection and sets the default values.
+        /// Instantiates a new iosManagedAppProtection and sets the default values.
         /// </summary>
         public IosManagedAppProtection() : base() {
             OdataType = "#microsoft.graph.iosManagedAppProtection";

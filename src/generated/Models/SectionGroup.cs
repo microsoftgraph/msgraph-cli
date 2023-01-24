@@ -54,7 +54,7 @@ namespace ApiSdk.Models {
         public string SectionsUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new sectionGroup and sets the default values.
+        /// Instantiates a new SectionGroup and sets the default values.
         /// </summary>
         public SectionGroup() : base() {
             OdataType = "#microsoft.graph.sectionGroup";

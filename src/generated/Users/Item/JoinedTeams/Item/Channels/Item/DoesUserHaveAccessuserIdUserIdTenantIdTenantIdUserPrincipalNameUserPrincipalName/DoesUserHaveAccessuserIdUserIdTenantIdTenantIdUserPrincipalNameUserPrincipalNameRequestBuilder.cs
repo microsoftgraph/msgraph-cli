@@ -81,7 +81,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.DoesUserHaveAccessuse
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
-                    if (!string.IsNullOrEmpty(userIdQuery)) q.QueryParameters.UserId-query = userIdQuery;
+                    if (!string.IsNullOrEmpty(userIdQuery)) q.QueryParameters.UserId = userIdQuery;
                     if (!string.IsNullOrEmpty(tenantId)) q.QueryParameters.TenantId = tenantId;
                     if (!string.IsNullOrEmpty(userPrincipalName)) q.QueryParameters.UserPrincipalName = userPrincipalName;
                 });
