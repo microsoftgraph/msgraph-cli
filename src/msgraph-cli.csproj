@@ -22,16 +22,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.8.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Graph.Cli.Core" Version="0.1.4-preview.4" />
-    <PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.0.0-rc.3" />
-    <PackageReference Include="Microsoft.Kiota.Authentication.Azure" Version="1.0.0-rc.3" />
-    <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.0.0-rc.5" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.0.0-rc.2" />
+    <PackageReference Include="Microsoft.Graph.Cli.Core" Version="0.1.5-preview.1" />
     <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22272.1" />
   </ItemGroup>
 </Project>
