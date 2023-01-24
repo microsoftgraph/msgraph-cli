@@ -4,16 +4,39 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Domain : Entity, IParsable {
         /// <summary>Indicates the configured authentication type for the domain. The value is either Managed or Federated. Managed indicates a cloud managed domain where Azure AD performs user authentication. Federated indicates authentication is federated with an identity provider such as the tenant&apos;s on-premises Active Directory via Active Directory Federation Services. This property is read-only and is not nullable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AuthenticationType { get; set; }
+#nullable restore
+#else
         public string AuthenticationType { get; set; }
+#endif
         /// <summary>This property is always null except when the verify action is used. When the verify action is used, a domain entity is returned in the response. The availabilityStatus property of the domain entity in the response is either AvailableImmediately or EmailVerifiedDomainTakeoverScheduled.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AvailabilityStatus { get; set; }
+#nullable restore
+#else
         public string AvailabilityStatus { get; set; }
+#endif
         /// <summary>The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DirectoryObject>? DomainNameReferences { get; set; }
+#nullable restore
+#else
         public List<DirectoryObject> DomainNameReferences { get; set; }
+#endif
         /// <summary>Domain settings configured by a customer when federated with Azure AD. Supports $expand.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<InternalDomainFederation>? FederationConfiguration { get; set; }
+#nullable restore
+#else
         public List<InternalDomainFederation> FederationConfiguration { get; set; }
+#endif
         /// <summary>The value of the property is false if the DNS record management of the domain has been delegated to Microsoft 365. Otherwise, the value is true. Not nullable</summary>
         public bool? IsAdminManaged { get; set; }
         /// <summary>true if this is the default domain that is used for user creation. There is only one default domain per company. Not nullable</summary>
@@ -25,31 +48,61 @@ namespace ApiSdk.Models {
         /// <summary>true if the domain has completed domain ownership verification. Not nullable</summary>
         public bool? IsVerified { get; set; }
         /// <summary>The manufacturer property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Manufacturer { get; set; }
+#nullable restore
+#else
         public string Manufacturer { get; set; }
+#endif
         /// <summary>The model property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Model { get; set; }
+#nullable restore
+#else
         public string Model { get; set; }
+#endif
         /// <summary>Specifies the number of days before a user receives notification that their password will expire. If the property is not set, a default value of 14 days will be used.</summary>
         public int? PasswordNotificationWindowInDays { get; set; }
         /// <summary>Specifies the length of time that a password is valid before it must be changed. If the property is not set, a default value of 90 days will be used.</summary>
         public int? PasswordValidityPeriodInDays { get; set; }
         /// <summary>DNS records the customer adds to the DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable. Supports $expand.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DomainDnsRecord>? ServiceConfigurationRecords { get; set; }
+#nullable restore
+#else
         public List<DomainDnsRecord> ServiceConfigurationRecords { get; set; }
+#endif
         /// <summary>Status of asynchronous operations scheduled for the domain.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DomainState? State { get; set; }
+#nullable restore
+#else
         public DomainState State { get; set; }
+#endif
         /// <summary>The capabilities assigned to the domain. Can include 0, 1 or more of following values: Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune. The values which you can add/remove using Graph API include: Email, OfficeCommunicationsOnline, Yammer. Not nullable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? SupportedServices { get; set; }
+#nullable restore
+#else
         public List<string> SupportedServices { get; set; }
+#endif
         /// <summary>DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable. Supports $expand.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DomainDnsRecord>? VerificationDnsRecords { get; set; }
+#nullable restore
+#else
         public List<DomainDnsRecord> VerificationDnsRecords { get; set; }
-        /// <summary>
-        /// Instantiates a new domain and sets the default values.
-        /// </summary>
-        public Domain() : base() {
-            OdataType = "#microsoft.graph.domain";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Domain CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Domain();
@@ -80,8 +133,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

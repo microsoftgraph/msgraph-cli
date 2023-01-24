@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Type of managed browser</summary>
     public enum ManagedBrowserType {
         /// <summary>Not configured</summary>
         NotConfigured,

@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Possible ways of adding a mobile device to management.</summary>
     public enum DeviceEnrollmentType {
         /// <summary>Default value, enrollment type was not collected.</summary>
         Unknown,

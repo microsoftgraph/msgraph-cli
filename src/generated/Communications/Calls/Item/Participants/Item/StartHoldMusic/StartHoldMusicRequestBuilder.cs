@@ -14,7 +14,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
-    /// <summary>Provides operations to call the startHoldMusic method.</summary>
+    /// <summary>
+    /// Provides operations to call the startHoldMusic method.
+    /// </summary>
     public class StartHoldMusicRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -24,6 +26,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Put a participant on hold and play music in the background.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/participant-startholdmusic?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -37,7 +40,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
             };
             participantIdOption.IsRequired = true;
             command.AddOption(participantIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -67,7 +70,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<StartHoldMusicPostRequestBody>(StartHoldMusicPostRequestBody.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("call%2Did", callId);
                 requestInfo.PathParameters.Add("participant%2Did", participantId);
@@ -85,9 +88,9 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
         }
         /// <summary>
         /// Instantiates a new StartHoldMusicRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public StartHoldMusicRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -98,10 +101,16 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
         }
         /// <summary>
         /// Put a participant on hold and play music in the background.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(StartHoldMusicPostRequestBody body, Action<StartHoldMusicRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(StartHoldMusicPostRequestBody body, Action<StartHoldMusicRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(StartHoldMusicPostRequestBody body, Action<StartHoldMusicRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -118,10 +127,12 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class StartHoldMusicRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -129,7 +140,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
             /// </summary>
             public StartHoldMusicRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

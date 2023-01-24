@@ -10,7 +10,13 @@ namespace ApiSdk.Models {
         /// <summary>Whether this is the default Content Type</summary>
         public bool? Default { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Specifies the position in which the Content Type appears in the selection UI.</summary>
         public int? Position { get; set; }
         /// <summary>
@@ -18,12 +24,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public ContentTypeOrder() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.contentTypeOrder";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static ContentTypeOrder CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ContentTypeOrder();
@@ -40,8 +45,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("default", Default);

@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Indicates the operating system / platform of the discovered application.  Some possible values are Windows, iOS, macOS. The default value is unknown (0).</summary>
     public enum DetectedAppPlatformType {
         /// <summary>Default. Set to unknown when platform cannot be determined.</summary>
         Unknown,

@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Contains rule types for Win32 LOB apps.</summary>
     public enum Win32LobAppRuleType {
         /// <summary>Detection rule.</summary>
         Detection,

@@ -12,11 +12,29 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to block the YouTube app.</summary>
         public bool? AppsBlockYouTube { get; set; }
         /// <summary>List of apps to be hidden on the KNOX device. This collection can contain a maximum of 500 elements.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppListItem>? AppsHideList { get; set; }
+#nullable restore
+#else
         public List<AppListItem> AppsHideList { get; set; }
+#endif
         /// <summary>List of apps which can be installed on the KNOX device. This collection can contain a maximum of 500 elements.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppListItem>? AppsInstallAllowList { get; set; }
+#nullable restore
+#else
         public List<AppListItem> AppsInstallAllowList { get; set; }
+#endif
         /// <summary>List of apps which are blocked from being launched on the KNOX device. This collection can contain a maximum of 500 elements.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppListItem>? AppsLaunchBlockList { get; set; }
+#nullable restore
+#else
         public List<AppListItem> AppsLaunchBlockList { get; set; }
+#endif
         /// <summary>Indicates whether or not to block Bluetooth.</summary>
         public bool? BluetoothBlocked { get; set; }
         /// <summary>Indicates whether or not to block the use of the camera.</summary>
@@ -32,7 +50,13 @@ namespace ApiSdk.Models {
         /// <summary>Possible values of the compliance app list.</summary>
         public AppListType? CompliantAppListType { get; set; }
         /// <summary>List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppListItem>? CompliantAppsList { get; set; }
+#nullable restore
+#else
         public List<AppListItem> CompliantAppsList { get; set; }
+#endif
         /// <summary>Indicates whether or not to allow device sharing mode.</summary>
         public bool? DeviceSharingAllowed { get; set; }
         /// <summary>Indicates whether or not to block diagnostic data submission.</summary>
@@ -44,7 +68,13 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to block the Google Play store.</summary>
         public bool? GooglePlayStoreBlocked { get; set; }
         /// <summary>A list of apps that will be allowed to run when the device is in Kiosk Mode. This collection can contain a maximum of 500 elements.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppListItem>? KioskModeApps { get; set; }
+#nullable restore
+#else
         public List<AppListItem> KioskModeApps { get; set; }
+#endif
         /// <summary>Indicates whether or not to block the screen sleep button while in Kiosk Mode.</summary>
         public bool? KioskModeBlockSleepButton { get; set; }
         /// <summary>Indicates whether or not to block the volume buttons while in Kiosk Mode.</summary>
@@ -109,8 +139,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new AndroidGeneralDeviceConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AndroidGeneralDeviceConfiguration();
@@ -172,8 +202,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

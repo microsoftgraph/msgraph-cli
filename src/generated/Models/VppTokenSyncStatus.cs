@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Possible sync statuses associated with an Apple Volume Purchase Program token.</summary>
     public enum VppTokenSyncStatus {
         /// <summary>Default status.</summary>
         None,

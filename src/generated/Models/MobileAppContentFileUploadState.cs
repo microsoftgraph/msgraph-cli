@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Contains properties for upload request states.</summary>
     public enum MobileAppContentFileUploadState {
         Success,
         TransientError,

@@ -8,17 +8,47 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The title of the album for this audio file.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Album { get; set; }
+#nullable restore
+#else
         public string Album { get; set; }
+#endif
         /// <summary>The artist named on the album for the audio file.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AlbumArtist { get; set; }
+#nullable restore
+#else
         public string AlbumArtist { get; set; }
+#endif
         /// <summary>The performing artist for the audio file.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Artist { get; set; }
+#nullable restore
+#else
         public string Artist { get; set; }
+#endif
         /// <summary>Bitrate expressed in kbps.</summary>
         public long? Bitrate { get; set; }
         /// <summary>The name of the composer of the audio file.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Composers { get; set; }
+#nullable restore
+#else
         public string Composers { get; set; }
+#endif
         /// <summary>Copyright information for the audio file.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Copyright { get; set; }
+#nullable restore
+#else
         public string Copyright { get; set; }
+#endif
         /// <summary>The number of the disc this audio file came from.</summary>
         public int? Disc { get; set; }
         /// <summary>The total number of discs in this album.</summary>
@@ -26,15 +56,33 @@ namespace ApiSdk.Models {
         /// <summary>Duration of the audio file, expressed in milliseconds</summary>
         public long? Duration { get; set; }
         /// <summary>The genre of this audio file.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Genre { get; set; }
+#nullable restore
+#else
         public string Genre { get; set; }
+#endif
         /// <summary>Indicates if the file is protected with digital rights management.</summary>
         public bool? HasDrm { get; set; }
         /// <summary>Indicates if the file is encoded with a variable bitrate.</summary>
         public bool? IsVariableBitrate { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The title of the audio file.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Title { get; set; }
+#nullable restore
+#else
         public string Title { get; set; }
+#endif
         /// <summary>The number of the track on the original disc for this audio file.</summary>
         public int? Track { get; set; }
         /// <summary>The total number of tracks on the original disc for this audio file.</summary>
@@ -46,12 +94,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public Audio() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.audio";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Audio CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Audio();
@@ -82,8 +129,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("album", Album);

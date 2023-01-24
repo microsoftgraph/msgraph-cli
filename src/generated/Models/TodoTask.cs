@@ -4,28 +4,75 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class TodoTask : Entity, IParsable {
         /// <summary>The attachments property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AttachmentBase>? Attachments { get; set; }
+#nullable restore
+#else
         public List<AttachmentBase> Attachments { get; set; }
+#endif
         /// <summary>The attachmentSessions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AttachmentSession>? AttachmentSessions { get; set; }
+#nullable restore
+#else
         public List<AttachmentSession> AttachmentSessions { get; set; }
+#endif
         /// <summary>The task body that typically contains information about the task.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemBody? Body { get; set; }
+#nullable restore
+#else
         public ItemBody Body { get; set; }
+#endif
         /// <summary>The date and time when the task body was last modified. By default, it is in UTC. You can provide a custom time zone in the request header. The property value uses ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2020 would look like this: &apos;2020-01-01T00:00:00Z&apos;.</summary>
         public DateTimeOffset? BodyLastModifiedDateTime { get; set; }
         /// <summary>The categories associated with the task. Each category corresponds to the displayName property of an outlookCategory that the user has defined.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Categories { get; set; }
+#nullable restore
+#else
         public List<string> Categories { get; set; }
+#endif
         /// <summary>A collection of checklistItems linked to a task.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ChecklistItem>? ChecklistItems { get; set; }
+#nullable restore
+#else
         public List<ChecklistItem> ChecklistItems { get; set; }
+#endif
         /// <summary>The date and time in the specified time zone that the task was finished.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeTimeZone? CompletedDateTime { get; set; }
+#nullable restore
+#else
         public DateTimeTimeZone CompletedDateTime { get; set; }
+#endif
         /// <summary>The date and time when the task was created. By default, it is in UTC. You can provide a custom time zone in the request header. The property value uses ISO 8601 format. For example, midnight UTC on Jan 1, 2020 would look like this: &apos;2020-01-01T00:00:00Z&apos;.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The date and time in the specified time zone that the task is to be finished.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeTimeZone? DueDateTime { get; set; }
+#nullable restore
+#else
         public DateTimeTimeZone DueDateTime { get; set; }
+#endif
         /// <summary>The collection of open extensions defined for the task. Nullable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Extension>? Extensions { get; set; }
+#nullable restore
+#else
         public List<Extension> Extensions { get; set; }
+#endif
         /// <summary>The hasAttachments property</summary>
         public bool? HasAttachments { get; set; }
         /// <summary>The importance property</summary>
@@ -35,27 +82,51 @@ namespace ApiSdk.Models {
         /// <summary>The date and time when the task was last modified. By default, it is in UTC. You can provide a custom time zone in the request header. The property value uses ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2020 would look like this: &apos;2020-01-01T00:00:00Z&apos;.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>A collection of resources linked to the task.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<LinkedResource>? LinkedResources { get; set; }
+#nullable restore
+#else
         public List<LinkedResource> LinkedResources { get; set; }
+#endif
         /// <summary>The recurrence pattern for the task.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public PatternedRecurrence? Recurrence { get; set; }
+#nullable restore
+#else
         public PatternedRecurrence Recurrence { get; set; }
+#endif
         /// <summary>The date and time in the specified time zone for a reminder alert of the task to occur.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeTimeZone? ReminderDateTime { get; set; }
+#nullable restore
+#else
         public DateTimeTimeZone ReminderDateTime { get; set; }
+#endif
         /// <summary>The startDateTime property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeTimeZone? StartDateTime { get; set; }
+#nullable restore
+#else
         public DateTimeTimeZone StartDateTime { get; set; }
+#endif
         /// <summary>The status property</summary>
         public TaskStatus? Status { get; set; }
         /// <summary>A brief description of the task.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Title { get; set; }
+#nullable restore
+#else
         public string Title { get; set; }
-        /// <summary>
-        /// Instantiates a new todoTask and sets the default values.
-        /// </summary>
-        public TodoTask() : base() {
-            OdataType = "#microsoft.graph.todoTask";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new TodoTask CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TodoTask();
@@ -89,8 +160,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

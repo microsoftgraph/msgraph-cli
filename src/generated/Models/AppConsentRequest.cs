@@ -4,26 +4,43 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class AppConsentRequest : Entity, IParsable {
         /// <summary>The display name of the app for which consent is requested. Required. Supports $filter (eq only) and $orderby.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AppDisplayName { get; set; }
+#nullable restore
+#else
         public string AppDisplayName { get; set; }
+#endif
         /// <summary>The identifier of the application. Required. Supports $filter (eq only) and $orderby.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AppId { get; set; }
+#nullable restore
+#else
         public string AppId { get; set; }
+#endif
         /// <summary>A list of pending scopes waiting for approval. Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppConsentRequestScope>? PendingScopes { get; set; }
+#nullable restore
+#else
         public List<AppConsentRequestScope> PendingScopes { get; set; }
+#endif
         /// <summary>A list of pending user consent requests. Supports $filter (eq).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UserConsentRequest>? UserConsentRequests { get; set; }
+#nullable restore
+#else
         public List<UserConsentRequest> UserConsentRequests { get; set; }
-        /// <summary>
-        /// Instantiates a new appConsentRequest and sets the default values.
-        /// </summary>
-        public AppConsentRequest() : base() {
-            OdataType = "#microsoft.graph.appConsentRequest";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new AppConsentRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AppConsentRequest();
@@ -41,8 +58,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

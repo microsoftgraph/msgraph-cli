@@ -14,7 +14,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.SubscribedSkus.Item {
-    /// <summary>Provides operations to manage the collection of subscribedSku entities.</summary>
+    /// <summary>
+    /// Provides operations to manage the collection of subscribedSku entities.
+    /// </summary>
     public class SubscribedSkuItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,17 +25,18 @@ namespace ApiSdk.SubscribedSkus.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from subscribedSkus
+        /// Delete entity from subscribedSkus by key (id)
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from subscribedSkus";
+            command.Description = "Delete entity from subscribedSkus by key (id)";
             // Create options for all the parameters
             var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
             };
             subscribedSkuIdOption.IsRequired = true;
             command.AddOption(subscribedSkuIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -41,10 +44,10 @@ namespace ApiSdk.SubscribedSkus.Item {
                 var subscribedSkuId = invocationContext.ParseResult.GetValueForOption(subscribedSkuIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("subscribedSku%2Did", subscribedSkuId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -55,11 +58,12 @@ namespace ApiSdk.SubscribedSkus.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from subscribedSkus by key
+        /// Get a specific commercial subscription that an organization has acquired.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subscribedsku-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from subscribedSkus by key";
+            command.Description = "Get a specific commercial subscription that an organization has acquired.";
             // Create options for all the parameters
             var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
             };
@@ -92,7 +96,7 @@ namespace ApiSdk.SubscribedSkus.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
                 requestInfo.PathParameters.Add("subscribedSku%2Did", subscribedSkuId);
@@ -109,17 +113,17 @@ namespace ApiSdk.SubscribedSkus.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in subscribedSkus
+        /// Update entity in subscribedSkus by key (id)
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in subscribedSkus";
+            command.Description = "Update entity in subscribedSkus by key (id)";
             // Create options for all the parameters
             var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
             };
             subscribedSkuIdOption.IsRequired = true;
             command.AddOption(subscribedSkuIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -148,7 +152,7 @@ namespace ApiSdk.SubscribedSkus.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SubscribedSku>(SubscribedSku.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("subscribedSku%2Did", subscribedSkuId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -165,9 +169,9 @@ namespace ApiSdk.SubscribedSkus.Item {
         }
         /// <summary>
         /// Instantiates a new SubscribedSkuItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public SubscribedSkuItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -177,10 +181,16 @@ namespace ApiSdk.SubscribedSkus.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from subscribedSkus
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Delete entity from subscribedSkus by key (id)
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<SubscribedSkuItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<SubscribedSkuItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<SubscribedSkuItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -195,10 +205,16 @@ namespace ApiSdk.SubscribedSkus.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from subscribedSkus by key
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Get a specific commercial subscription that an organization has acquired.
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<SubscribedSkuItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<SubscribedSkuItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<SubscribedSkuItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -215,11 +231,17 @@ namespace ApiSdk.SubscribedSkus.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in subscribedSkus
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Update entity in subscribedSkus by key (id)
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(SubscribedSku body, Action<SubscribedSkuItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(SubscribedSku body, Action<SubscribedSkuItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(SubscribedSku body, Action<SubscribedSkuItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -236,10 +258,12 @@ namespace ApiSdk.SubscribedSkus.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class SubscribedSkuItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -247,19 +271,30 @@ namespace ApiSdk.SubscribedSkus.Item {
             /// </summary>
             public SubscribedSkuItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Get entity from subscribedSkus by key</summary>
+        /// <summary>
+        /// Get a specific commercial subscription that an organization has acquired.
+        /// </summary>
         public class SubscribedSkuItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class SubscribedSkuItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -269,13 +304,15 @@ namespace ApiSdk.SubscribedSkus.Item {
             /// </summary>
             public SubscribedSkuItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class SubscribedSkuItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -283,7 +320,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             /// </summary>
             public SubscribedSkuItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

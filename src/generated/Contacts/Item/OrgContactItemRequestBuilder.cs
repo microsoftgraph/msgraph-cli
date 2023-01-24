@@ -23,7 +23,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Contacts.Item {
-    /// <summary>Provides operations to manage the collection of orgContact entities.</summary>
+    /// <summary>
+    /// Provides operations to manage the collection of orgContact entities.
+    /// </summary>
     public class OrgContactItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -31,30 +33,39 @@ namespace ApiSdk.Contacts.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
         public Command BuildCheckMemberGroupsCommand() {
             var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
         public Command BuildCheckMemberObjectsCommand() {
             var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
-        /// Delete entity from contacts
+        /// Delete entity from contacts by key (id)
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from contacts";
+            command.Description = "Delete entity from contacts by key (id)";
             // Create options for all the parameters
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
             command.AddOption(orgContactIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -62,10 +73,10 @@ namespace ApiSdk.Contacts.Item {
                 var orgContactId = invocationContext.ParseResult.GetValueForOption(orgContactIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("orgContact%2Did", orgContactId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -75,8 +86,12 @@ namespace ApiSdk.Contacts.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the directReports property of the microsoft.graph.orgContact entity.
+        /// </summary>
         public Command BuildDirectReportsCommand() {
             var command = new Command("direct-reports");
+            command.Description = "Provides operations to manage the directReports property of the microsoft.graph.orgContact entity.";
             var builder = new DirectReportsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -87,6 +102,7 @@ namespace ApiSdk.Contacts.Item {
         }
         /// <summary>
         /// Get the properties and relationships of an organizational contact.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/orgcontact-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -129,7 +145,7 @@ namespace ApiSdk.Contacts.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -146,26 +162,42 @@ namespace ApiSdk.Contacts.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getMemberGroups method.
+        /// </summary>
         public Command BuildGetMemberGroupsCommand() {
             var command = new Command("get-member-groups");
+            command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getMemberObjects method.
+        /// </summary>
         public Command BuildGetMemberObjectsCommand() {
             var command = new Command("get-member-objects");
+            command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the manager property of the microsoft.graph.orgContact entity.
+        /// </summary>
         public Command BuildManagerCommand() {
             var command = new Command("manager");
+            command.Description = "Provides operations to manage the manager property of the microsoft.graph.orgContact entity.";
             var builder = new ManagerRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the memberOf property of the microsoft.graph.orgContact entity.
+        /// </summary>
         public Command BuildMemberOfCommand() {
             var command = new Command("member-of");
+            command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.orgContact entity.";
             var builder = new MemberOfRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildApplicationCommand());
             command.AddCommand(builder.BuildCommand());
@@ -179,17 +211,17 @@ namespace ApiSdk.Contacts.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in contacts
+        /// Update entity in contacts by key (id)
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in contacts";
+            command.Description = "Update entity in contacts by key (id)";
             // Create options for all the parameters
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
             command.AddOption(orgContactIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -218,7 +250,7 @@ namespace ApiSdk.Contacts.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.OrgContact>(ApiSdk.Models.OrgContact.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("orgContact%2Did", orgContactId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -233,14 +265,22 @@ namespace ApiSdk.Contacts.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
         public Command BuildRestoreCommand() {
             var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.orgContact entity.
+        /// </summary>
         public Command BuildTransitiveMemberOfCommand() {
             var command = new Command("transitive-member-of");
+            command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.orgContact entity.";
             var builder = new TransitiveMemberOfRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildApplicationCommand());
             command.AddCommand(builder.BuildCommand());
@@ -255,9 +295,9 @@ namespace ApiSdk.Contacts.Item {
         }
         /// <summary>
         /// Instantiates a new OrgContactItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public OrgContactItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -267,10 +307,16 @@ namespace ApiSdk.Contacts.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from contacts
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Delete entity from contacts by key (id)
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<OrgContactItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<OrgContactItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<OrgContactItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -286,9 +332,15 @@ namespace ApiSdk.Contacts.Item {
         }
         /// <summary>
         /// Get the properties and relationships of an organizational contact.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<OrgContactItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<OrgContactItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<OrgContactItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -305,11 +357,17 @@ namespace ApiSdk.Contacts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in contacts
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Update entity in contacts by key (id)
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.OrgContact body, Action<OrgContactItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.OrgContact body, Action<OrgContactItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.OrgContact body, Action<OrgContactItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -326,10 +384,12 @@ namespace ApiSdk.Contacts.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class OrgContactItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -337,22 +397,40 @@ namespace ApiSdk.Contacts.Item {
             /// </summary>
             public OrgContactItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Get the properties and relationships of an organizational contact.</summary>
+        /// <summary>
+        /// Get the properties and relationships of an organizational contact.
+        /// </summary>
         public class OrgContactItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class OrgContactItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -362,13 +440,15 @@ namespace ApiSdk.Contacts.Item {
             /// </summary>
             public OrgContactItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class OrgContactItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -376,7 +456,7 @@ namespace ApiSdk.Contacts.Item {
             /// </summary>
             public OrgContactItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

@@ -8,35 +8,101 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The createdBy property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CreatedBy { get; set; }
+#nullable restore
+#else
         public string CreatedBy { get; set; }
+#endif
         /// <summary>The createdByIdentity property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public IdentitySet? CreatedByIdentity { get; set; }
+#nullable restore
+#else
         public IdentitySet CreatedByIdentity { get; set; }
+#endif
         /// <summary>The createdTime property</summary>
         public DateTimeOffset? CreatedTime { get; set; }
         /// <summary>The id property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Id { get; set; }
+#nullable restore
+#else
         public string Id { get; set; }
+#endif
         /// <summary>The isDefault property</summary>
         public bool? IsDefault { get; set; }
         /// <summary>The isShared property</summary>
         public bool? IsShared { get; set; }
         /// <summary>The lastModifiedBy property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LastModifiedBy { get; set; }
+#nullable restore
+#else
         public string LastModifiedBy { get; set; }
+#endif
         /// <summary>The lastModifiedByIdentity property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public IdentitySet? LastModifiedByIdentity { get; set; }
+#nullable restore
+#else
         public IdentitySet LastModifiedByIdentity { get; set; }
+#endif
         /// <summary>The lastModifiedTime property</summary>
         public DateTimeOffset? LastModifiedTime { get; set; }
         /// <summary>The links property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public NotebookLinks? Links { get; set; }
+#nullable restore
+#else
         public NotebookLinks Links { get; set; }
+#endif
         /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
         public string Name { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The sectionGroupsUrl property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SectionGroupsUrl { get; set; }
+#nullable restore
+#else
         public string SectionGroupsUrl { get; set; }
+#endif
         /// <summary>The sectionsUrl property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SectionsUrl { get; set; }
+#nullable restore
+#else
         public string SectionsUrl { get; set; }
+#endif
         /// <summary>The self property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Self { get; set; }
+#nullable restore
+#else
         public string Self { get; set; }
+#endif
         /// <summary>The userRole property</summary>
         public OnenoteUserRole? UserRole { get; set; }
         /// <summary>
@@ -44,12 +110,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public CopyNotebookModel() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.CopyNotebookModel";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static CopyNotebookModel CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CopyNotebookModel();
@@ -79,8 +144,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("createdBy", CreatedBy);

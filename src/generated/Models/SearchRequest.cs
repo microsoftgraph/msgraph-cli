@@ -8,42 +8,101 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The aggregationFilters property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AggregationFilters { get; set; }
+#nullable restore
+#else
         public List<string> AggregationFilters { get; set; }
+#endif
         /// <summary>The aggregations property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AggregationOption>? Aggregations { get; set; }
+#nullable restore
+#else
         public List<AggregationOption> Aggregations { get; set; }
+#endif
         /// <summary>The contentSources property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? ContentSources { get; set; }
+#nullable restore
+#else
         public List<string> ContentSources { get; set; }
+#endif
         /// <summary>The enableTopResults property</summary>
         public bool? EnableTopResults { get; set; }
         /// <summary>The entityTypes property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<EntityType?>? EntityTypes { get; set; }
+#nullable restore
+#else
         public List<EntityType?> EntityTypes { get; set; }
+#endif
         /// <summary>The fields property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Fields { get; set; }
+#nullable restore
+#else
         public List<string> Fields { get; set; }
+#endif
         /// <summary>The from property</summary>
         public int? From { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The query property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public SearchQuery? Query { get; set; }
+#nullable restore
+#else
         public SearchQuery Query { get; set; }
+#endif
         /// <summary>The queryAlterationOptions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public SearchAlterationOptions? QueryAlterationOptions { get; set; }
+#nullable restore
+#else
         public SearchAlterationOptions QueryAlterationOptions { get; set; }
+#endif
         /// <summary>The resultTemplateOptions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ResultTemplateOption? ResultTemplateOptions { get; set; }
+#nullable restore
+#else
         public ResultTemplateOption ResultTemplateOptions { get; set; }
+#endif
         /// <summary>The size property</summary>
         public int? Size { get; set; }
         /// <summary>The sortProperties property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<SortProperty>? SortProperties { get; set; }
+#nullable restore
+#else
         public List<SortProperty> SortProperties { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new searchRequest and sets the default values.
         /// </summary>
         public SearchRequest() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.searchRequest";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static SearchRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SearchRequest();
@@ -70,8 +129,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("aggregationFilters", AggregationFilters);

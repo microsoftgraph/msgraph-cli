@@ -8,68 +8,223 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The label associated with Category 1</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category1 { get; set; }
+#nullable restore
+#else
         public string Category1 { get; set; }
+#endif
         /// <summary>The label associated with Category 10</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category10 { get; set; }
+#nullable restore
+#else
         public string Category10 { get; set; }
+#endif
         /// <summary>The label associated with Category 11</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category11 { get; set; }
+#nullable restore
+#else
         public string Category11 { get; set; }
+#endif
         /// <summary>The label associated with Category 12</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category12 { get; set; }
+#nullable restore
+#else
         public string Category12 { get; set; }
+#endif
         /// <summary>The label associated with Category 13</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category13 { get; set; }
+#nullable restore
+#else
         public string Category13 { get; set; }
+#endif
         /// <summary>The label associated with Category 14</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category14 { get; set; }
+#nullable restore
+#else
         public string Category14 { get; set; }
+#endif
         /// <summary>The label associated with Category 15</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category15 { get; set; }
+#nullable restore
+#else
         public string Category15 { get; set; }
+#endif
         /// <summary>The label associated with Category 16</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category16 { get; set; }
+#nullable restore
+#else
         public string Category16 { get; set; }
+#endif
         /// <summary>The label associated with Category 17</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category17 { get; set; }
+#nullable restore
+#else
         public string Category17 { get; set; }
+#endif
         /// <summary>The label associated with Category 18</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category18 { get; set; }
+#nullable restore
+#else
         public string Category18 { get; set; }
+#endif
         /// <summary>The label associated with Category 19</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category19 { get; set; }
+#nullable restore
+#else
         public string Category19 { get; set; }
+#endif
         /// <summary>The label associated with Category 2</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category2 { get; set; }
+#nullable restore
+#else
         public string Category2 { get; set; }
+#endif
         /// <summary>The label associated with Category 20</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category20 { get; set; }
+#nullable restore
+#else
         public string Category20 { get; set; }
+#endif
         /// <summary>The label associated with Category 21</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category21 { get; set; }
+#nullable restore
+#else
         public string Category21 { get; set; }
+#endif
         /// <summary>The label associated with Category 22</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category22 { get; set; }
+#nullable restore
+#else
         public string Category22 { get; set; }
+#endif
         /// <summary>The label associated with Category 23</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category23 { get; set; }
+#nullable restore
+#else
         public string Category23 { get; set; }
+#endif
         /// <summary>The label associated with Category 24</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category24 { get; set; }
+#nullable restore
+#else
         public string Category24 { get; set; }
+#endif
         /// <summary>The label associated with Category 25</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category25 { get; set; }
+#nullable restore
+#else
         public string Category25 { get; set; }
+#endif
         /// <summary>The label associated with Category 3</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category3 { get; set; }
+#nullable restore
+#else
         public string Category3 { get; set; }
+#endif
         /// <summary>The label associated with Category 4</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category4 { get; set; }
+#nullable restore
+#else
         public string Category4 { get; set; }
+#endif
         /// <summary>The label associated with Category 5</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category5 { get; set; }
+#nullable restore
+#else
         public string Category5 { get; set; }
+#endif
         /// <summary>The label associated with Category 6</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category6 { get; set; }
+#nullable restore
+#else
         public string Category6 { get; set; }
+#endif
         /// <summary>The label associated with Category 7</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category7 { get; set; }
+#nullable restore
+#else
         public string Category7 { get; set; }
+#endif
         /// <summary>The label associated with Category 8</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category8 { get; set; }
+#nullable restore
+#else
         public string Category8 { get; set; }
+#endif
         /// <summary>The label associated with Category 9</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category9 { get; set; }
+#nullable restore
+#else
         public string Category9 { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new plannerCategoryDescriptions and sets the default values.
         /// </summary>
         public PlannerCategoryDescriptions() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.plannerCategoryDescriptions";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static PlannerCategoryDescriptions CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PlannerCategoryDescriptions();
@@ -109,8 +264,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("category1", Category1);

@@ -6,7 +6,13 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class Fido2KeyRestrictions : IAdditionalDataHolder, IParsable {
         /// <summary>A collection of Authenticator Attestation GUIDs. AADGUIDs define key types and manufacturers.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AaGuids { get; set; }
+#nullable restore
+#else
         public List<string> AaGuids { get; set; }
+#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Enforcement type. Possible values are: allow, block.</summary>
@@ -14,18 +20,23 @@ namespace ApiSdk.Models {
         /// <summary>Determines if the configured key enforcement is enabled.</summary>
         public bool? IsEnforced { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new fido2KeyRestrictions and sets the default values.
         /// </summary>
         public Fido2KeyRestrictions() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.fido2KeyRestrictions";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Fido2KeyRestrictions CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Fido2KeyRestrictions();
@@ -43,8 +54,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("aaGuids", AaGuids);

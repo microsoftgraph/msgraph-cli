@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>SharedPC Account Manager Policy. Only applies when the account manager is enabled.</summary>
+    /// <summary>
+    /// SharedPC Account Manager Policy. Only applies when the account manager is enabled.
+    /// </summary>
     public class SharedPCAccountManagerPolicy : IAdditionalDataHolder, IParsable {
         /// <summary>Possible values for when accounts are deleted on a shared PC.</summary>
         public SharedPCAccountDeletionPolicyType? AccountDeletionPolicy { get; set; }
@@ -15,7 +17,13 @@ namespace ApiSdk.Models {
         /// <summary>Specifies when the accounts will start being deleted when they have not been logged on during the specified period, given as number of days. Only applies when AccountDeletionPolicy is DiskSpaceThreshold or DiskSpaceThresholdOrInactiveThreshold.</summary>
         public int? InactiveThresholdDays { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Sets the percentage of disk space remaining on a PC before cached accounts will be deleted to free disk space. Accounts that have been inactive the longest will be deleted first. Only applies when AccountDeletionPolicy is DiskSpaceThresholdOrInactiveThreshold. Valid values 0 to 100</summary>
         public int? RemoveAccountsBelowDiskFreePercentage { get; set; }
         /// <summary>
@@ -23,12 +31,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public SharedPCAccountManagerPolicy() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.sharedPCAccountManagerPolicy";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static SharedPCAccountManagerPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SharedPCAccountManagerPolicy();
@@ -47,8 +54,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<SharedPCAccountDeletionPolicyType>("accountDeletionPolicy", AccountDeletionPolicy);

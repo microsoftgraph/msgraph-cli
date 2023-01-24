@@ -23,7 +23,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
-    /// <summary>Provides operations to manage the ediscoveryCases property of the microsoft.graph.security.casesRoot entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the ediscoveryCases property of the microsoft.graph.security.casesRoot entity.
+    /// </summary>
     public class EdiscoveryCaseItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -31,14 +33,22 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the close method.
+        /// </summary>
         public Command BuildCloseCommand() {
             var command = new Command("close");
+            command.Description = "Provides operations to call the close method.";
             var builder = new CloseRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.
+        /// </summary>
         public Command BuildCustodiansCommand() {
             var command = new Command("custodians");
+            command.Description = "Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new CustodiansRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildApplyHoldCommand());
             command.AddCommand(builder.BuildCommand());
@@ -59,7 +69,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -67,10 +78,10 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                 var ediscoveryCaseId = invocationContext.ParseResult.GetValueForOption(ediscoveryCaseIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -124,7 +135,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -141,8 +152,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
+        /// </summary>
         public Command BuildNoncustodialDataSourcesCommand() {
             var command = new Command("noncustodial-data-sources");
+            command.Description = "Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new NoncustodialDataSourcesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildApplyHoldCommand());
             command.AddCommand(builder.BuildCommand());
@@ -152,8 +167,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             command.AddCommand(builder.BuildRemoveHoldCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the operations property of the microsoft.graph.security.ediscoveryCase entity.
+        /// </summary>
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
+            command.Description = "Provides operations to manage the operations property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new OperationsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -172,7 +191,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -201,7 +220,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EdiscoveryCase>(EdiscoveryCase.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -216,14 +235,22 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the reopen method.
+        /// </summary>
         public Command BuildReopenCommand() {
             var command = new Command("reopen");
+            command.Description = "Provides operations to call the reopen method.";
             var builder = new ReopenRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the reviewSets property of the microsoft.graph.security.ediscoveryCase entity.
+        /// </summary>
         public Command BuildReviewSetsCommand() {
             var command = new Command("review-sets");
+            command.Description = "Provides operations to manage the reviewSets property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new ReviewSetsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -231,8 +258,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the searches property of the microsoft.graph.security.ediscoveryCase entity.
+        /// </summary>
         public Command BuildSearchesCommand() {
             var command = new Command("searches");
+            command.Description = "Provides operations to manage the searches property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new SearchesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -240,8 +271,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the settings property of the microsoft.graph.security.ediscoveryCase entity.
+        /// </summary>
         public Command BuildSettingsCommand() {
             var command = new Command("settings");
+            command.Description = "Provides operations to manage the settings property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new SettingsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -249,8 +284,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             command.AddCommand(builder.BuildResetToDefaultCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.
+        /// </summary>
         public Command BuildTagsCommand() {
             var command = new Command("tags");
+            command.Description = "Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new TagsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -260,9 +299,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         }
         /// <summary>
         /// Instantiates a new EdiscoveryCaseItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public EdiscoveryCaseItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -273,9 +312,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         }
         /// <summary>
         /// Delete navigation property ediscoveryCases for security
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<EdiscoveryCaseItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<EdiscoveryCaseItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<EdiscoveryCaseItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -291,9 +336,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         }
         /// <summary>
         /// Get ediscoveryCases from security
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<EdiscoveryCaseItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<EdiscoveryCaseItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<EdiscoveryCaseItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -311,10 +362,16 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         }
         /// <summary>
         /// Update the navigation property ediscoveryCases in security
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(EdiscoveryCase body, Action<EdiscoveryCaseItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(EdiscoveryCase body, Action<EdiscoveryCaseItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(EdiscoveryCase body, Action<EdiscoveryCaseItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -331,10 +388,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class EdiscoveryCaseItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -342,22 +401,40 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             /// </summary>
             public EdiscoveryCaseItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Get ediscoveryCases from security</summary>
+        /// <summary>
+        /// Get ediscoveryCases from security
+        /// </summary>
         public class EdiscoveryCaseItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class EdiscoveryCaseItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -367,13 +444,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             /// </summary>
             public EdiscoveryCaseItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class EdiscoveryCaseItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -381,7 +460,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             /// </summary>
             public EdiscoveryCaseItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

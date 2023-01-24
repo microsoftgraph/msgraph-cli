@@ -6,13 +6,31 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class WindowsMobileMSI : MobileLobApp, IParsable {
         /// <summary>The command line.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CommandLine { get; set; }
+#nullable restore
+#else
         public string CommandLine { get; set; }
+#endif
         /// <summary>A boolean to control whether the app&apos;s version will be used to detect the app after it is installed on a device. Set this to true for Windows Mobile MSI Line of Business (LoB) apps that use a self update feature.</summary>
         public bool? IgnoreVersionDetection { get; set; }
         /// <summary>The product code.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ProductCode { get; set; }
+#nullable restore
+#else
         public string ProductCode { get; set; }
+#endif
         /// <summary>The product version of Windows Mobile MSI Line of Business (LoB) app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ProductVersion { get; set; }
+#nullable restore
+#else
         public string ProductVersion { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new WindowsMobileMSI and sets the default values.
         /// </summary>
@@ -21,8 +39,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new WindowsMobileMSI CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WindowsMobileMSI();
@@ -40,8 +58,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

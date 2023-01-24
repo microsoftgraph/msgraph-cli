@@ -8,30 +8,59 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The assignedByGroup property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AssignedByGroup { get; set; }
+#nullable restore
+#else
         public string AssignedByGroup { get; set; }
+#endif
         /// <summary>The disabledPlans property</summary>
-        public List<string> DisabledPlans { get; set; }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Guid?>? DisabledPlans { get; set; }
+#nullable restore
+#else
+        public List<Guid?> DisabledPlans { get; set; }
+#endif
         /// <summary>The error property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Error { get; set; }
+#nullable restore
+#else
         public string Error { get; set; }
+#endif
         /// <summary>The lastUpdatedDateTime property</summary>
         public DateTimeOffset? LastUpdatedDateTime { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The skuId property</summary>
-        public string SkuId { get; set; }
+        public Guid? SkuId { get; set; }
         /// <summary>The state property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? State { get; set; }
+#nullable restore
+#else
         public string State { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new licenseAssignmentState and sets the default values.
         /// </summary>
         public LicenseAssignmentState() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.licenseAssignmentState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static LicenseAssignmentState CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new LicenseAssignmentState();
@@ -42,26 +71,26 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"assignedByGroup", n => { AssignedByGroup = n.GetStringValue(); } },
-                {"disabledPlans", n => { DisabledPlans = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"disabledPlans", n => { DisabledPlans = n.GetCollectionOfPrimitiveValues<Guid?>()?.ToList(); } },
                 {"error", n => { Error = n.GetStringValue(); } },
                 {"lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"skuId", n => { SkuId = n.GetStringValue(); } },
+                {"skuId", n => { SkuId = n.GetGuidValue(); } },
                 {"state", n => { State = n.GetStringValue(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("assignedByGroup", AssignedByGroup);
-            writer.WriteCollectionOfPrimitiveValues<string>("disabledPlans", DisabledPlans);
+            writer.WriteCollectionOfPrimitiveValues<Guid?>("disabledPlans", DisabledPlans);
             writer.WriteStringValue("error", Error);
             writer.WriteDateTimeOffsetValue("lastUpdatedDateTime", LastUpdatedDateTime);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteStringValue("skuId", SkuId);
+            writer.WriteGuidValue("skuId", SkuId);
             writer.WriteStringValue("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }

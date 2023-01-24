@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApplePushNotificationCertificateSigningRequest {
-    /// <summary>Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.</summary>
+    /// <summary>
+    /// Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.
+    /// </summary>
     public class DownloadApplePushNotificationCertificateSigningRequestRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -48,7 +50,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -64,9 +66,9 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
         }
         /// <summary>
         /// Instantiates a new DownloadApplePushNotificationCertificateSigningRequestRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -77,9 +79,15 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
         }
         /// <summary>
         /// Download Apple push notification certificate signing request
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<DownloadApplePushNotificationCertificateSigningRequestRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<DownloadApplePushNotificationCertificateSigningRequestRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<DownloadApplePushNotificationCertificateSigningRequestRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -94,10 +102,12 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DownloadApplePushNotificationCertificateSigningRequestRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -105,7 +115,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
             /// </summary>
             public DownloadApplePushNotificationCertificateSigningRequestRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

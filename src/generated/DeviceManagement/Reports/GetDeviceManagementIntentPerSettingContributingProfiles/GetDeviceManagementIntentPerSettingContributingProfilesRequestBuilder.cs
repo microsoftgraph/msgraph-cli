@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingContributingProfiles {
-    /// <summary>Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.</summary>
+    /// <summary>
+    /// Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.
+    /// </summary>
     public class GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -28,7 +30,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingCon
             var command = new Command("post");
             command.Description = "Invoke action getDeviceManagementIntentPerSettingContributingProfiles";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -41,7 +43,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingCon
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetDeviceManagementIntentPerSettingContributingProfilesPostRequestBody>(GetDeviceManagementIntentPerSettingContributingProfilesPostRequestBody.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -63,9 +65,9 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingCon
         }
         /// <summary>
         /// Instantiates a new GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -76,10 +78,16 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingCon
         }
         /// <summary>
         /// Invoke action getDeviceManagementIntentPerSettingContributingProfiles
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(GetDeviceManagementIntentPerSettingContributingProfilesPostRequestBody body, Action<GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(GetDeviceManagementIntentPerSettingContributingProfilesPostRequestBody body, Action<GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(GetDeviceManagementIntentPerSettingContributingProfilesPostRequestBody body, Action<GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -95,10 +103,12 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingCon
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -106,7 +116,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingCon
             /// </summary>
             public GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

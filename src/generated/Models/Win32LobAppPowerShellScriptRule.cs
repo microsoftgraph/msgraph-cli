@@ -6,9 +6,21 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class Win32LobAppPowerShellScriptRule : Win32LobAppRule, IParsable {
         /// <summary>The script output comparison value. Do not specify a value if the rule is used for detection.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ComparisonValue { get; set; }
+#nullable restore
+#else
         public string ComparisonValue { get; set; }
+#endif
         /// <summary>The display name for the rule. Do not specify this value if the rule is used for detection.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>A value indicating whether a signature check is enforced.</summary>
         public bool? EnforceSignatureCheck { get; set; }
         /// <summary>Contains all supported Powershell Script output detection type.</summary>
@@ -20,7 +32,13 @@ namespace ApiSdk.Models {
         /// <summary>The execution context of the script. Do not specify this value if the rule is used for detection. Script detection rules will run in the same context as the associated app install context. Possible values are: system, user.</summary>
         public RunAsAccountType? RunAsAccount { get; set; }
         /// <summary>The base64-encoded script content.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ScriptContent { get; set; }
+#nullable restore
+#else
         public string ScriptContent { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new Win32LobAppPowerShellScriptRule and sets the default values.
         /// </summary>
@@ -29,8 +47,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Win32LobAppPowerShellScriptRule CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Win32LobAppPowerShellScriptRule();
@@ -52,8 +70,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

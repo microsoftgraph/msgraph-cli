@@ -8,9 +8,21 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Name of the capture device driver used by the media endpoint.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CaptureDeviceDriver { get; set; }
+#nullable restore
+#else
         public string CaptureDeviceDriver { get; set; }
+#endif
         /// <summary>Name of the capture device used by the media endpoint.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CaptureDeviceName { get; set; }
+#nullable restore
+#else
         public string CaptureDeviceName { get; set; }
+#endif
         /// <summary>Fraction of the call that the media endpoint detected the capture device was not working properly.</summary>
         public float? CaptureNotFunctioningEventRatio { get; set; }
         /// <summary>Fraction of the call that the media endpoint detected the CPU resources available were insufficient and caused poor quality of the audio sent and received.</summary>
@@ -30,15 +42,33 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>Glitches per 5 minute interval for the media endpoint&apos;s microphone.</summary>
         public float? MicGlitchRate { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Average energy level of received audio for audio classified as mono noise or left channel of stereo noise by the media endpoint.</summary>
         public int? ReceivedNoiseLevel { get; set; }
         /// <summary>Average energy level of received audio for audio classified as mono speech, or left channel of stereo speech by the media endpoint.</summary>
         public int? ReceivedSignalLevel { get; set; }
         /// <summary>Name of the render device driver used by the media endpoint.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RenderDeviceDriver { get; set; }
+#nullable restore
+#else
         public string RenderDeviceDriver { get; set; }
+#endif
         /// <summary>Name of the render device used by the media endpoint.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RenderDeviceName { get; set; }
+#nullable restore
+#else
         public string RenderDeviceName { get; set; }
+#endif
         /// <summary>Fraction of the call that media endpoint detected device render is muted.</summary>
         public float? RenderMuteEventRatio { get; set; }
         /// <summary>Fraction of the call that the media endpoint detected the render device was not working properly.</summary>
@@ -56,12 +86,11 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public DeviceInfo() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.callRecords.deviceInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static DeviceInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceInfo();
@@ -97,8 +126,8 @@ namespace ApiSdk.Models.CallRecords {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("captureDeviceDriver", CaptureDeviceDriver);

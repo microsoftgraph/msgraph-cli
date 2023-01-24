@@ -4,24 +4,35 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class WorkbookComment : Entity, IParsable {
         /// <summary>The content of comment.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Content { get; set; }
+#nullable restore
+#else
         public string Content { get; set; }
+#endif
         /// <summary>Indicates the type for the comment.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ContentType { get; set; }
+#nullable restore
+#else
         public string ContentType { get; set; }
+#endif
         /// <summary>The replies property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<WorkbookCommentReply>? Replies { get; set; }
+#nullable restore
+#else
         public List<WorkbookCommentReply> Replies { get; set; }
-        /// <summary>
-        /// Instantiates a new workbookComment and sets the default values.
-        /// </summary>
-        public WorkbookComment() : base() {
-            OdataType = "#microsoft.graph.workbookComment";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new WorkbookComment CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookComment();
@@ -38,8 +49,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

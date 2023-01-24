@@ -6,17 +6,17 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class WorkbookFilter : Entity, IParsable {
         /// <summary>The currently applied filter on the given column. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public WorkbookFilterCriteria? Criteria { get; set; }
+#nullable restore
+#else
         public WorkbookFilterCriteria Criteria { get; set; }
-        /// <summary>
-        /// Instantiates a new workbookFilter and sets the default values.
-        /// </summary>
-        public WorkbookFilter() : base() {
-            OdataType = "#microsoft.graph.workbookFilter";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new WorkbookFilter CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookFilter();
@@ -31,8 +31,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

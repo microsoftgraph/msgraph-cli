@@ -8,9 +8,21 @@ namespace ApiSdk.Models.Security {
         /// <summary>Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.  This value controls whether the UX presents the tags as checkboxes or a radio button group.</summary>
         public ApiSdk.Models.Security.ChildSelectability? ChildSelectability { get; set; }
         /// <summary>Returns the tags that are a child of a tag.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<EdiscoveryReviewTag>? ChildTags { get; set; }
+#nullable restore
+#else
         public List<EdiscoveryReviewTag> ChildTags { get; set; }
+#endif
         /// <summary>Returns the parent tag of the specified tag.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public EdiscoveryReviewTag? Parent { get; set; }
+#nullable restore
+#else
         public EdiscoveryReviewTag Parent { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new EdiscoveryReviewTag and sets the default values.
         /// </summary>
@@ -19,8 +31,8 @@ namespace ApiSdk.Models.Security {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new EdiscoveryReviewTag CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EdiscoveryReviewTag();
@@ -37,8 +49,8 @@ namespace ApiSdk.Models.Security {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

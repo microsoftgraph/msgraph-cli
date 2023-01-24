@@ -24,7 +24,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
-    /// <summary>Provides operations to manage the device property of the microsoft.graph.windowsHelloForBusinessAuthenticationMethod entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the device property of the microsoft.graph.windowsHelloForBusinessAuthenticationMethod entity.
+    /// </summary>
     public class DeviceRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -32,14 +34,22 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
         public Command BuildCheckMemberGroupsCommand() {
             var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
         public Command BuildCheckMemberObjectsCommand() {
             var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -55,7 +65,8 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             };
             windowsHelloForBusinessAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(windowsHelloForBusinessAuthenticationMethodIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -63,10 +74,10 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
                 var windowsHelloForBusinessAuthenticationMethodId = invocationContext.ParseResult.GetValueForOption(windowsHelloForBusinessAuthenticationMethodIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("windowsHelloForBusinessAuthenticationMethod%2Did", windowsHelloForBusinessAuthenticationMethodId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -76,8 +87,12 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the extensions property of the microsoft.graph.device entity.
+        /// </summary>
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
+            command.Description = "Provides operations to manage the extensions property of the microsoft.graph.device entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -129,7 +144,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -146,20 +161,32 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getMemberGroups method.
+        /// </summary>
         public Command BuildGetMemberGroupsCommand() {
             var command = new Command("get-member-groups");
+            command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getMemberObjects method.
+        /// </summary>
         public Command BuildGetMemberObjectsCommand() {
             var command = new Command("get-member-objects");
+            command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the memberOf property of the microsoft.graph.device entity.
+        /// </summary>
         public Command BuildMemberOfCommand() {
             var command = new Command("member-of");
+            command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.device entity.";
             var builder = new MemberOfRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildApplicationCommand());
             command.AddCommand(builder.BuildCommand());
@@ -183,7 +210,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             };
             windowsHelloForBusinessAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(windowsHelloForBusinessAuthenticationMethodIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -212,7 +239,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Device>(ApiSdk.Models.Device.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("windowsHelloForBusinessAuthenticationMethod%2Did", windowsHelloForBusinessAuthenticationMethodId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -227,8 +254,12 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.
+        /// </summary>
         public Command BuildRegisteredOwnersCommand() {
             var command = new Command("registered-owners");
+            command.Description = "Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.";
             var builder = new RegisteredOwnersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAppRoleAssignmentCommand());
             command.AddCommand(builder.BuildCommand());
@@ -240,8 +271,12 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             command.AddCommand(builder.BuildUserCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.
+        /// </summary>
         public Command BuildRegisteredUsersCommand() {
             var command = new Command("registered-users");
+            command.Description = "Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.";
             var builder = new RegisteredUsersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAppRoleAssignmentCommand());
             command.AddCommand(builder.BuildCommand());
@@ -252,14 +287,22 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             command.AddCommand(builder.BuildUserCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
         public Command BuildRestoreCommand() {
             var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.device entity.
+        /// </summary>
         public Command BuildTransitiveMemberOfCommand() {
             var command = new Command("transitive-member-of");
+            command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.device entity.";
             var builder = new TransitiveMemberOfRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildApplicationCommand());
             command.AddCommand(builder.BuildCommand());
@@ -274,9 +317,9 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
         }
         /// <summary>
         /// Instantiates a new DeviceRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public DeviceRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -287,9 +330,15 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
         }
         /// <summary>
         /// Delete navigation property device for me
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<DeviceRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<DeviceRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<DeviceRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -305,9 +354,15 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
         }
         /// <summary>
         /// The registered device on which this Windows Hello for Business key resides. Supports $expand. When you get a user&apos;s Windows Hello for Business registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/windowsHelloForBusinessMethods/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<DeviceRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<DeviceRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<DeviceRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -325,10 +380,16 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
         }
         /// <summary>
         /// Update the navigation property device in me
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Device body, Action<DeviceRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Device body, Action<DeviceRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Device body, Action<DeviceRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -345,10 +406,12 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DeviceRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -356,22 +419,40 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             /// </summary>
             public DeviceRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>The registered device on which this Windows Hello for Business key resides. Supports $expand. When you get a user&apos;s Windows Hello for Business registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/windowsHelloForBusinessMethods/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.</summary>
+        /// <summary>
+        /// The registered device on which this Windows Hello for Business key resides. Supports $expand. When you get a user&apos;s Windows Hello for Business registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/windowsHelloForBusinessMethods/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.
+        /// </summary>
         public class DeviceRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DeviceRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -381,13 +462,15 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             /// </summary>
             public DeviceRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DeviceRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -395,7 +478,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             /// </summary>
             public DeviceRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

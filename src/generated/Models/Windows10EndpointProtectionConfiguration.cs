@@ -34,17 +34,53 @@ namespace ApiSdk.Models {
         /// <summary>Allows the admin to require encryption to be turned on using BitLocker.</summary>
         public bool? BitLockerEncryptDevice { get; set; }
         /// <summary>BitLocker Removable Drive Policy.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.BitLockerRemovableDrivePolicy? BitLockerRemovableDrivePolicy { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.BitLockerRemovableDrivePolicy BitLockerRemovableDrivePolicy { get; set; }
+#endif
         /// <summary>List of folder paths to be added to the list of protected folders</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? DefenderAdditionalGuardedFolders { get; set; }
+#nullable restore
+#else
         public List<string> DefenderAdditionalGuardedFolders { get; set; }
+#endif
         /// <summary>List of exe files and folders to be excluded from attack surface reduction rules</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? DefenderAttackSurfaceReductionExcludedPaths { get; set; }
+#nullable restore
+#else
         public List<string> DefenderAttackSurfaceReductionExcludedPaths { get; set; }
+#endif
         /// <summary>Xml content containing information regarding exploit protection details.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public byte[]? DefenderExploitProtectionXml { get; set; }
+#nullable restore
+#else
         public byte[] DefenderExploitProtectionXml { get; set; }
+#endif
         /// <summary>Name of the file from which DefenderExploitProtectionXml was obtained.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DefenderExploitProtectionXmlFileName { get; set; }
+#nullable restore
+#else
         public string DefenderExploitProtectionXmlFileName { get; set; }
+#endif
         /// <summary>List of paths to exe that are allowed to access protected folders</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? DefenderGuardedFoldersAllowedAppPaths { get; set; }
+#nullable restore
+#else
         public List<string> DefenderGuardedFoldersAllowedAppPaths { get; set; }
+#endif
         /// <summary>Indicates whether or not to block user from overriding Exploit Protection settings.</summary>
         public bool? DefenderSecurityCenterBlockExploitProtectionOverride { get; set; }
         /// <summary>Blocks stateful FTP connections to the device</summary>
@@ -68,11 +104,29 @@ namespace ApiSdk.Models {
         /// <summary>Possible values for firewallPreSharedKeyEncodingMethod</summary>
         public FirewallPreSharedKeyEncodingMethodType? FirewallPreSharedKeyEncodingMethod { get; set; }
         /// <summary>Configures the firewall profile settings for domain networks</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public WindowsFirewallNetworkProfile? FirewallProfileDomain { get; set; }
+#nullable restore
+#else
         public WindowsFirewallNetworkProfile FirewallProfileDomain { get; set; }
+#endif
         /// <summary>Configures the firewall profile settings for private networks</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public WindowsFirewallNetworkProfile? FirewallProfilePrivate { get; set; }
+#nullable restore
+#else
         public WindowsFirewallNetworkProfile FirewallProfilePrivate { get; set; }
+#endif
         /// <summary>Configures the firewall profile settings for public networks</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public WindowsFirewallNetworkProfile? FirewallProfilePublic { get; set; }
+#nullable restore
+#else
         public WindowsFirewallNetworkProfile FirewallProfilePublic { get; set; }
+#endif
         /// <summary>Allows IT Admins to control whether users can can ignore SmartScreen warnings and run malicious files.</summary>
         public bool? SmartScreenBlockOverrideForFiles { get; set; }
         /// <summary>Allows IT Admins to configure SmartScreen for Windows.</summary>
@@ -85,8 +139,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Windows10EndpointProtectionConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Windows10EndpointProtectionConfiguration();
@@ -136,8 +190,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

@@ -4,44 +4,97 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of agreementAcceptance entities.</summary>
     public class AgreementAcceptance : Entity, IParsable {
         /// <summary>The identifier of the agreement file accepted by the user.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AgreementFileId { get; set; }
+#nullable restore
+#else
         public string AgreementFileId { get; set; }
+#endif
         /// <summary>The identifier of the agreement.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AgreementId { get; set; }
+#nullable restore
+#else
         public string AgreementId { get; set; }
+#endif
         /// <summary>The display name of the device used for accepting the agreement.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceDisplayName { get; set; }
+#nullable restore
+#else
         public string DeviceDisplayName { get; set; }
-        /// <summary>The unique identifier of the device used for accepting the agreement.</summary>
+#endif
+        /// <summary>The unique identifier of the device used for accepting the agreement. Supports $filter (eq) and eq for null values.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceId { get; set; }
+#nullable restore
+#else
         public string DeviceId { get; set; }
+#endif
         /// <summary>The operating system used to accept the agreement.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceOSType { get; set; }
+#nullable restore
+#else
         public string DeviceOSType { get; set; }
+#endif
         /// <summary>The operating system version of the device used to accept the agreement.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceOSVersion { get; set; }
+#nullable restore
+#else
         public string DeviceOSVersion { get; set; }
-        /// <summary>The expiration date time of the acceptance. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
+#endif
+        /// <summary>The expiration date time of the acceptance. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ge, le) and eq for null values.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? RecordedDateTime { get; set; }
         /// <summary>The state of the agreement acceptance. Possible values are: accepted, declined. Supports $filter (eq).</summary>
         public AgreementAcceptanceState? State { get; set; }
         /// <summary>Display name of the user when the acceptance was recorded.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserDisplayName { get; set; }
+#nullable restore
+#else
         public string UserDisplayName { get; set; }
+#endif
         /// <summary>Email of the user when the acceptance was recorded.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserEmail { get; set; }
+#nullable restore
+#else
         public string UserEmail { get; set; }
-        /// <summary>The identifier of the user who accepted the agreement.</summary>
+#endif
+        /// <summary>The identifier of the user who accepted the agreement. Supports $filter (eq).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserId { get; set; }
+#nullable restore
+#else
         public string UserId { get; set; }
+#endif
         /// <summary>UPN of the user when the acceptance was recorded.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserPrincipalName { get; set; }
+#nullable restore
+#else
         public string UserPrincipalName { get; set; }
-        /// <summary>
-        /// Instantiates a new agreementAcceptance and sets the default values.
-        /// </summary>
-        public AgreementAcceptance() : base() {
-            OdataType = "#microsoft.graph.agreementAcceptance";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new AgreementAcceptance CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AgreementAcceptance();
@@ -68,8 +121,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

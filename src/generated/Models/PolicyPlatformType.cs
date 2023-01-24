@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Supported platform types for policies.</summary>
     public enum PolicyPlatformType {
         /// <summary>Android.</summary>
         Android,

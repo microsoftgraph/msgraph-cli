@@ -24,7 +24,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
-    /// <summary>Provides operations to manage the contentTypes property of the microsoft.graph.list entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the contentTypes property of the microsoft.graph.list entity.
+    /// </summary>
     public class ContentTypeItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -32,28 +34,44 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the associateWithHubSites method.
+        /// </summary>
         public Command BuildAssociateWithHubSitesCommand() {
             var command = new Command("associate-with-hub-sites");
+            command.Description = "Provides operations to call the associateWithHubSites method.";
             var builder = new AssociateWithHubSitesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the base property of the microsoft.graph.contentType entity.
+        /// </summary>
         public Command BuildBaseCommand() {
             var command = new Command("base");
+            command.Description = "Provides operations to manage the base property of the microsoft.graph.contentType entity.";
             var builder = new BaseRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.
+        /// </summary>
         public Command BuildBaseTypesCommand() {
             var command = new Command("base-types");
+            command.Description = "Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.";
             var builder = new BaseTypesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the columnLinks property of the microsoft.graph.contentType entity.
+        /// </summary>
         public Command BuildColumnLinksCommand() {
             var command = new Command("column-links");
+            command.Description = "Provides operations to manage the columnLinks property of the microsoft.graph.contentType entity.";
             var builder = new ColumnLinksRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -61,16 +79,24 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.
+        /// </summary>
         public Command BuildColumnPositionsCommand() {
             var command = new Command("column-positions");
+            command.Description = "Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.";
             var builder = new ColumnPositionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the columns property of the microsoft.graph.contentType entity.
+        /// </summary>
         public Command BuildColumnsCommand() {
             var command = new Command("columns");
+            command.Description = "Provides operations to manage the columns property of the microsoft.graph.contentType entity.";
             var builder = new ColumnsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -78,8 +104,12 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the copyToDefaultContentLocation method.
+        /// </summary>
         public Command BuildCopyToDefaultContentLocationCommand() {
             var command = new Command("copy-to-default-content-location");
+            command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
             var builder = new CopyToDefaultContentLocationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -103,7 +133,8 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -113,12 +144,12 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
                 var contentTypeId = invocationContext.ParseResult.GetValueForOption(contentTypeIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 requestInfo.PathParameters.Add("drive%2Did", driveId);
                 requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -182,7 +213,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -220,7 +251,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -251,7 +282,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ContentType>(ContentType.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 requestInfo.PathParameters.Add("drive%2Did", driveId);
@@ -268,23 +299,31 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the publish method.
+        /// </summary>
         public Command BuildPublishCommand() {
             var command = new Command("publish");
+            command.Description = "Provides operations to call the publish method.";
             var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the unpublish method.
+        /// </summary>
         public Command BuildUnpublishCommand() {
             var command = new Command("unpublish");
+            command.Description = "Provides operations to call the unpublish method.";
             var builder = new UnpublishRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Instantiates a new ContentTypeItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public ContentTypeItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -294,10 +333,22 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property contentTypes for users
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Provides operations to call the isPublished method.
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<ContentTypeItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public IsPublishedRequestBuilder IsPublished() {
+            return new IsPublishedRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>
+        /// Delete navigation property contentTypes for users
+        /// </summary>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<ContentTypeItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<ContentTypeItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -313,9 +364,15 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
         }
         /// <summary>
         /// The collection of content types present in this list.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<ContentTypeItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<ContentTypeItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<ContentTypeItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -333,10 +390,16 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
         }
         /// <summary>
         /// Update the navigation property contentTypes in users
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ContentType body, Action<ContentTypeItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ContentType body, Action<ContentTypeItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ContentType body, Action<ContentTypeItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -354,15 +417,11 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Provides operations to call the isPublished method.
+        /// Configuration for the request such as headers, query parameters, and middleware options.
         /// </summary>
-        public IsPublishedRequestBuilder IsPublished() {
-            return new IsPublishedRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class ContentTypeItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -370,22 +429,40 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
             /// </summary>
             public ContentTypeItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>The collection of content types present in this list.</summary>
+        /// <summary>
+        /// The collection of content types present in this list.
+        /// </summary>
         public class ContentTypeItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ContentTypeItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -395,13 +472,15 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
             /// </summary>
             public ContentTypeItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ContentTypeItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -409,7 +488,7 @@ namespace ApiSdk.Users.Item.Drives.Item.List.ContentTypes.Item {
             /// </summary>
             public ContentTypeItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

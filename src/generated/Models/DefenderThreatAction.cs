@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Defender’s default action to take on detected Malware threats.</summary>
     public enum DefenderThreatAction {
         /// <summary>Apply action based on the update definition.</summary>
         DeviceDefault,

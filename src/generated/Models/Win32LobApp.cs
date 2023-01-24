@@ -8,9 +8,21 @@ namespace ApiSdk.Models {
         /// <summary>Contains properties for Windows architecture.</summary>
         public WindowsArchitecture? ApplicableArchitectures { get; set; }
         /// <summary>The command line to install this app</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? InstallCommandLine { get; set; }
+#nullable restore
+#else
         public string InstallCommandLine { get; set; }
+#endif
         /// <summary>The install experience for this app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Win32LobAppInstallExperience? InstallExperience { get; set; }
+#nullable restore
+#else
         public Win32LobAppInstallExperience InstallExperience { get; set; }
+#endif
         /// <summary>The value for the minimum CPU speed which is required to install this app.</summary>
         public int? MinimumCpuSpeedInMHz { get; set; }
         /// <summary>The value for the minimum free disk space which is required to install this app.</summary>
@@ -20,17 +32,53 @@ namespace ApiSdk.Models {
         /// <summary>The value for the minimum number of processors which is required to install this app.</summary>
         public int? MinimumNumberOfProcessors { get; set; }
         /// <summary>The value for the minimum supported windows release.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MinimumSupportedWindowsRelease { get; set; }
+#nullable restore
+#else
         public string MinimumSupportedWindowsRelease { get; set; }
+#endif
         /// <summary>The MSI details if this Win32 app is an MSI app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Win32LobAppMsiInformation? MsiInformation { get; set; }
+#nullable restore
+#else
         public Win32LobAppMsiInformation MsiInformation { get; set; }
+#endif
         /// <summary>The return codes for post installation behavior.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Win32LobAppReturnCode>? ReturnCodes { get; set; }
+#nullable restore
+#else
         public List<Win32LobAppReturnCode> ReturnCodes { get; set; }
+#endif
         /// <summary>The detection and requirement rules for this app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Win32LobAppRule>? Rules { get; set; }
+#nullable restore
+#else
         public List<Win32LobAppRule> Rules { get; set; }
+#endif
         /// <summary>The relative path of the setup file in the encrypted Win32LobApp package.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SetupFilePath { get; set; }
+#nullable restore
+#else
         public string SetupFilePath { get; set; }
+#endif
         /// <summary>The command line to uninstall this app</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UninstallCommandLine { get; set; }
+#nullable restore
+#else
         public string UninstallCommandLine { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new Win32LobApp and sets the default values.
         /// </summary>
@@ -39,8 +87,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Win32LobApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Win32LobApp();
@@ -67,8 +115,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

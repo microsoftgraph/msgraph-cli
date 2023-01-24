@@ -8,32 +8,79 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The list of available print connectors.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<PrintConnector>? Connectors { get; set; }
+#nullable restore
+#else
         public List<PrintConnector> Connectors { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The list of print long running operations.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<PrintOperation>? Operations { get; set; }
+#nullable restore
+#else
         public List<PrintOperation> Operations { get; set; }
+#endif
         /// <summary>The list of printers registered in the tenant.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Printer>? Printers { get; set; }
+#nullable restore
+#else
         public List<Printer> Printers { get; set; }
+#endif
         /// <summary>The list of available Universal Print service endpoints.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<PrintService>? Services { get; set; }
+#nullable restore
+#else
         public List<PrintService> Services { get; set; }
+#endif
         /// <summary>Tenant-wide settings for the Universal Print service.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public PrintSettings? Settings { get; set; }
+#nullable restore
+#else
         public PrintSettings Settings { get; set; }
+#endif
         /// <summary>The list of printer shares registered in the tenant.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<PrinterShare>? Shares { get; set; }
+#nullable restore
+#else
         public List<PrinterShare> Shares { get; set; }
+#endif
         /// <summary>List of abstract definition for a task that can be triggered when various events occur within Universal Print.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<PrintTaskDefinition>? TaskDefinitions { get; set; }
+#nullable restore
+#else
         public List<PrintTaskDefinition> TaskDefinitions { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new Print and sets the default values.
         /// </summary>
         public Print() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.print";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Print CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Print();
@@ -55,8 +102,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<PrintConnector>("connectors", Connectors);

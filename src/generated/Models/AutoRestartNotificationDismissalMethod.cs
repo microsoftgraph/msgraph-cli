@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Auto restart required notification dismissal method</summary>
     public enum AutoRestartNotificationDismissalMethod {
         /// <summary>Not configured</summary>
         NotConfigured,

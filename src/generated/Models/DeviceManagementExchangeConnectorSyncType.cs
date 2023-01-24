@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to call the sync method.</summary>
+    /// <summary>The type of Exchange Connector sync requested.</summary>
     public enum DeviceManagementExchangeConnectorSyncType {
         /// <summary>Discover all the device in Exchange.</summary>
         FullSync,

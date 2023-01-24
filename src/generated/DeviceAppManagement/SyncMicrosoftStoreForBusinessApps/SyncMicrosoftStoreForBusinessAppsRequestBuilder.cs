@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
-    /// <summary>Provides operations to call the syncMicrosoftStoreForBusinessApps method.</summary>
+    /// <summary>
+    /// Provides operations to call the syncMicrosoftStoreForBusinessApps method.
+    /// </summary>
     public class SyncMicrosoftStoreForBusinessAppsRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -30,7 +32,7 @@ namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
             // Create options for all the parameters
             command.SetHandler(async (invocationContext) => {
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreatePostRequestInformation(q => {
+                var requestInfo = ToPostRequestInformation(q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -43,9 +45,9 @@ namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
         }
         /// <summary>
         /// Instantiates a new SyncMicrosoftStoreForBusinessAppsRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public SyncMicrosoftStoreForBusinessAppsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -56,9 +58,15 @@ namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
         }
         /// <summary>
         /// Syncs Intune account with Microsoft Store For Business
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Action<SyncMicrosoftStoreForBusinessAppsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(Action<SyncMicrosoftStoreForBusinessAppsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(Action<SyncMicrosoftStoreForBusinessAppsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
@@ -72,10 +80,12 @@ namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class SyncMicrosoftStoreForBusinessAppsRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -83,7 +93,7 @@ namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
             /// </summary>
             public SyncMicrosoftStoreForBusinessAppsRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

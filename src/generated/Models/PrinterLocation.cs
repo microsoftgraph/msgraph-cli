@@ -10,50 +10,139 @@ namespace ApiSdk.Models {
         /// <summary>The altitude, in meters, that the printer is located at.</summary>
         public int? AltitudeInMeters { get; set; }
         /// <summary>The building that the printer is located in.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Building { get; set; }
+#nullable restore
+#else
         public string Building { get; set; }
+#endif
         /// <summary>The city that the printer is located in.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? City { get; set; }
+#nullable restore
+#else
         public string City { get; set; }
+#endif
         /// <summary>The country or region that the printer is located in.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CountryOrRegion { get; set; }
+#nullable restore
+#else
         public string CountryOrRegion { get; set; }
+#endif
         /// <summary>The floor that the printer is located on. Only numerical values are supported right now.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Floor { get; set; }
+#nullable restore
+#else
         public string Floor { get; set; }
+#endif
         /// <summary>The description of the floor that the printer is located on.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? FloorDescription { get; set; }
+#nullable restore
+#else
         public string FloorDescription { get; set; }
+#endif
         /// <summary>The latitude that the printer is located at.</summary>
         public double? Latitude { get; set; }
         /// <summary>The longitude that the printer is located at.</summary>
         public double? Longitude { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The organizational hierarchy that the printer belongs to. The elements should be in hierarchical order.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Organization { get; set; }
+#nullable restore
+#else
         public List<string> Organization { get; set; }
+#endif
         /// <summary>The postal code that the printer is located in.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PostalCode { get; set; }
+#nullable restore
+#else
         public string PostalCode { get; set; }
+#endif
         /// <summary>The description of the room that the printer is located in.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RoomDescription { get; set; }
+#nullable restore
+#else
         public string RoomDescription { get; set; }
+#endif
         /// <summary>The room that the printer is located in. Only numerical values are supported right now.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RoomName { get; set; }
+#nullable restore
+#else
         public string RoomName { get; set; }
+#endif
         /// <summary>The site that the printer is located in.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Site { get; set; }
+#nullable restore
+#else
         public string Site { get; set; }
+#endif
         /// <summary>The state or province that the printer is located in.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StateOrProvince { get; set; }
+#nullable restore
+#else
         public string StateOrProvince { get; set; }
+#endif
         /// <summary>The street address where the printer is located.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StreetAddress { get; set; }
+#nullable restore
+#else
         public string StreetAddress { get; set; }
+#endif
         /// <summary>The subdivision that the printer is located in. The elements should be in hierarchical order.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Subdivision { get; set; }
+#nullable restore
+#else
         public List<string> Subdivision { get; set; }
+#endif
         /// <summary>The subunit property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Subunit { get; set; }
+#nullable restore
+#else
         public List<string> Subunit { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new printerLocation and sets the default values.
         /// </summary>
         public PrinterLocation() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.printerLocation";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static PrinterLocation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrinterLocation();
@@ -85,8 +174,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("altitudeInMeters", AltitudeInMeters);

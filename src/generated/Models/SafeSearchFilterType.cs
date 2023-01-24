@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Specifies what level of safe search (filtering adult content) is required</summary>
     public enum SafeSearchFilterType {
         /// <summary>User Defined, default value, no intent.</summary>
         UserDefined,

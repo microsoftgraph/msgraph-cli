@@ -6,31 +6,73 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class RbacApplication : Entity, IParsable {
         /// <summary>Resource to grant access to users or groups.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UnifiedRoleAssignment>? RoleAssignments { get; set; }
+#nullable restore
+#else
         public List<UnifiedRoleAssignment> RoleAssignments { get; set; }
+#endif
         /// <summary>Instances for active role assignments.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UnifiedRoleAssignmentScheduleInstance>? RoleAssignmentScheduleInstances { get; set; }
+#nullable restore
+#else
         public List<UnifiedRoleAssignmentScheduleInstance> RoleAssignmentScheduleInstances { get; set; }
+#endif
         /// <summary>Requests for active role assignments to principals through PIM.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UnifiedRoleAssignmentScheduleRequest>? RoleAssignmentScheduleRequests { get; set; }
+#nullable restore
+#else
         public List<UnifiedRoleAssignmentScheduleRequest> RoleAssignmentScheduleRequests { get; set; }
+#endif
         /// <summary>Schedules for active role assignment operations.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UnifiedRoleAssignmentSchedule>? RoleAssignmentSchedules { get; set; }
+#nullable restore
+#else
         public List<UnifiedRoleAssignmentSchedule> RoleAssignmentSchedules { get; set; }
+#endif
         /// <summary>Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UnifiedRoleDefinition>? RoleDefinitions { get; set; }
+#nullable restore
+#else
         public List<UnifiedRoleDefinition> RoleDefinitions { get; set; }
+#endif
         /// <summary>Instances for role eligibility requests.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UnifiedRoleEligibilityScheduleInstance>? RoleEligibilityScheduleInstances { get; set; }
+#nullable restore
+#else
         public List<UnifiedRoleEligibilityScheduleInstance> RoleEligibilityScheduleInstances { get; set; }
+#endif
         /// <summary>Requests for role eligibilities for principals through PIM.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UnifiedRoleEligibilityScheduleRequest>? RoleEligibilityScheduleRequests { get; set; }
+#nullable restore
+#else
         public List<UnifiedRoleEligibilityScheduleRequest> RoleEligibilityScheduleRequests { get; set; }
+#endif
         /// <summary>Schedules for role eligibility operations.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UnifiedRoleEligibilitySchedule>? RoleEligibilitySchedules { get; set; }
+#nullable restore
+#else
         public List<UnifiedRoleEligibilitySchedule> RoleEligibilitySchedules { get; set; }
-        /// <summary>
-        /// Instantiates a new RbacApplication and sets the default values.
-        /// </summary>
-        public RbacApplication() : base() {
-            OdataType = "#microsoft.graph.rbacApplication";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new RbacApplication CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RbacApplication();
@@ -52,8 +94,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

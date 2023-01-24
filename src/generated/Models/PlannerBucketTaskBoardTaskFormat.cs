@@ -5,18 +5,18 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class PlannerBucketTaskBoardTaskFormat : Entity, IParsable {
-        /// <summary>Hint used to order tasks in the Bucket view of the Task Board. The format is defined as outlined here.</summary>
+        /// <summary>Hint used to order tasks in the bucket view of the task board. For details about the supported format, see Using order hints in Planner.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OrderHint { get; set; }
+#nullable restore
+#else
         public string OrderHint { get; set; }
-        /// <summary>
-        /// Instantiates a new plannerBucketTaskBoardTaskFormat and sets the default values.
-        /// </summary>
-        public PlannerBucketTaskBoardTaskFormat() : base() {
-            OdataType = "#microsoft.graph.plannerBucketTaskBoardTaskFormat";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new PlannerBucketTaskBoardTaskFormat CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PlannerBucketTaskBoardTaskFormat();
@@ -31,8 +31,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

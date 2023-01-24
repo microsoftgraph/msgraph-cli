@@ -8,30 +8,71 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The ID of the conference.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ConferenceId { get; set; }
+#nullable restore
+#else
         public string ConferenceId { get; set; }
+#endif
         /// <summary>The external link that launches the online meeting. This is a URL that clients will launch into a browser and will redirect the user to join the meeting.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? JoinUrl { get; set; }
+#nullable restore
+#else
         public string JoinUrl { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>All of the phone numbers associated with this conference.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Phone>? Phones { get; set; }
+#nullable restore
+#else
         public List<Phone> Phones { get; set; }
+#endif
         /// <summary>The pre-formatted quickdial for this call.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? QuickDial { get; set; }
+#nullable restore
+#else
         public string QuickDial { get; set; }
+#endif
         /// <summary>The toll free numbers that can be used to join the conference.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? TollFreeNumbers { get; set; }
+#nullable restore
+#else
         public List<string> TollFreeNumbers { get; set; }
+#endif
         /// <summary>The toll number that can be used to join the conference.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TollNumber { get; set; }
+#nullable restore
+#else
         public string TollNumber { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new onlineMeetingInfo and sets the default values.
         /// </summary>
         public OnlineMeetingInfo() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.onlineMeetingInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static OnlineMeetingInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OnlineMeetingInfo();
@@ -52,8 +93,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("conferenceId", ConferenceId);

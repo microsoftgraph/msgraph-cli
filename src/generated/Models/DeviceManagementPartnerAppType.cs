@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Partner App Type.</summary>
     public enum DeviceManagementPartnerAppType {
         /// <summary>Partner App type is unknown.</summary>
         Unknown,

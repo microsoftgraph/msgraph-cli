@@ -4,10 +4,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Contains properties for a single installer file that is associated with a given mobileAppContent version.</summary>
+    /// <summary>
+    /// Contains properties for a single installer file that is associated with a given mobileAppContent version.
+    /// </summary>
     public class MobileAppContentFile : Entity, IParsable {
         /// <summary>The Azure Storage URI.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AzureStorageUri { get; set; }
+#nullable restore
+#else
         public string AzureStorageUri { get; set; }
+#endif
         /// <summary>The time the Azure storage Uri expires.</summary>
         public DateTimeOffset? AzureStorageUriExpirationDateTime { get; set; }
         /// <summary>The time the file was created.</summary>
@@ -15,9 +23,21 @@ namespace ApiSdk.Models {
         /// <summary>A value indicating whether the file is committed.</summary>
         public bool? IsCommitted { get; set; }
         /// <summary>The manifest information.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public byte[]? Manifest { get; set; }
+#nullable restore
+#else
         public byte[] Manifest { get; set; }
+#endif
         /// <summary>the file name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
         public string Name { get; set; }
+#endif
         /// <summary>The size of the file prior to encryption.</summary>
         public long? Size { get; set; }
         /// <summary>The size of the file after encryption.</summary>
@@ -25,15 +45,9 @@ namespace ApiSdk.Models {
         /// <summary>Contains properties for upload request states.</summary>
         public MobileAppContentFileUploadState? UploadState { get; set; }
         /// <summary>
-        /// Instantiates a new mobileAppContentFile and sets the default values.
-        /// </summary>
-        public MobileAppContentFile() : base() {
-            OdataType = "#microsoft.graph.mobileAppContentFile";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new MobileAppContentFile CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MobileAppContentFile();
@@ -56,8 +70,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

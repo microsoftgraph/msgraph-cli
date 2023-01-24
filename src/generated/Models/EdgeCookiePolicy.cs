@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Possible values to specify which cookies are allowed in Microsoft Edge.</summary>
     public enum EdgeCookiePolicy {
         /// <summary>Allow the user to set.</summary>
         UserDefined,
