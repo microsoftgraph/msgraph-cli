@@ -21,7 +21,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Calendar {
-    /// <summary>Provides operations to manage the calendar property of the microsoft.graph.group entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the calendar property of the microsoft.graph.group entity.
+    /// </summary>
     public class CalendarRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -31,14 +33,18 @@ namespace ApiSdk.Groups.Item.Calendar {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Provides operations to call the allowedCalendarSharingRoles method.
-        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
         /// </summary>
+        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
         public AllowedCalendarSharingRolesWithUserRequestBuilder AllowedCalendarSharingRolesWithUser(string user) {
             if(string.IsNullOrEmpty(user)) throw new ArgumentNullException(nameof(user));
             return new AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters, RequestAdapter, user);
         }
+        /// <summary>
+        /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
+        /// </summary>
         public Command BuildCalendarPermissionsCommand() {
             var command = new Command("calendar-permissions");
+            command.Description = "Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.";
             var builder = new CalendarPermissionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -46,16 +52,24 @@ namespace ApiSdk.Groups.Item.Calendar {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.
+        /// </summary>
         public Command BuildCalendarViewCommand() {
             var command = new Command("calendar-view");
+            command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.";
             var builder = new CalendarViewRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the events property of the microsoft.graph.calendar entity.
+        /// </summary>
         public Command BuildEventsCommand() {
             var command = new Command("events");
+            command.Description = "Provides operations to manage the events property of the microsoft.graph.calendar entity.";
             var builder = new EventsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -101,7 +115,7 @@ namespace ApiSdk.Groups.Item.Calendar {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -117,14 +131,22 @@ namespace ApiSdk.Groups.Item.Calendar {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getSchedule method.
+        /// </summary>
         public Command BuildGetScheduleCommand() {
             var command = new Command("get-schedule");
+            command.Description = "Provides operations to call the getSchedule method.";
             var builder = new GetScheduleRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.calendar entity.
+        /// </summary>
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
+            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.calendar entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -133,62 +155,11 @@ namespace ApiSdk.Groups.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// Update the navigation property calendar in groups
+        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.
         /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
-            command.Description = "Update the navigation property calendar in groups";
-            // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
-            };
-            groupIdOption.IsRequired = true;
-            command.AddOption(groupIdOption);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (invocationContext) => {
-                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
-                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Calendar>(ApiSdk.Models.Calendar.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
-                });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            });
-            return command;
-        }
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
+            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -198,9 +169,9 @@ namespace ApiSdk.Groups.Item.Calendar {
         }
         /// <summary>
         /// Instantiates a new CalendarRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -211,9 +182,15 @@ namespace ApiSdk.Groups.Item.Calendar {
         }
         /// <summary>
         /// The group&apos;s calendar. Read-only.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<CalendarRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<CalendarRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<CalendarRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -230,37 +207,26 @@ namespace ApiSdk.Groups.Item.Calendar {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property calendar in groups
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// The group&apos;s calendar. Read-only.
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Calendar body, Action<CalendarRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new CalendarRequestBuilderPatchRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>The group&apos;s calendar. Read-only.</summary>
         public class CalendarRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class CalendarRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -270,21 +236,7 @@ namespace ApiSdk.Groups.Item.Calendar {
             /// </summary>
             public CalendarRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class CalendarRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new calendarRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public CalendarRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

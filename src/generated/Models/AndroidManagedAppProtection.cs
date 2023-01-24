@@ -6,23 +6,59 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class AndroidManagedAppProtection : TargetedManagedAppProtection, IParsable {
         /// <summary>List of apps to which the policy is deployed.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ManagedMobileApp>? Apps { get; set; }
+#nullable restore
+#else
         public List<ManagedMobileApp> Apps { get; set; }
+#endif
         /// <summary>Friendly name of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomBrowserDisplayName { get; set; }
+#nullable restore
+#else
         public string CustomBrowserDisplayName { get; set; }
+#endif
         /// <summary>Unique identifier of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomBrowserPackageId { get; set; }
+#nullable restore
+#else
         public string CustomBrowserPackageId { get; set; }
+#endif
         /// <summary>Count of apps to which the current policy is deployed.</summary>
         public int? DeployedAppCount { get; set; }
         /// <summary>Navigation property to deployment summary of the configuration.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ManagedAppPolicyDeploymentSummary? DeploymentSummary { get; set; }
+#nullable restore
+#else
         public ManagedAppPolicyDeploymentSummary DeploymentSummary { get; set; }
+#endif
         /// <summary>When this setting is enabled, app level encryption is disabled if device level encryption is enabled</summary>
         public bool? DisableAppEncryptionIfDeviceEncryptionIsEnabled { get; set; }
         /// <summary>Indicates whether application data for managed apps should be encrypted</summary>
         public bool? EncryptAppData { get; set; }
         /// <summary>Define the oldest required Android security patch level a user can have to gain secure access to the app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MinimumRequiredPatchVersion { get; set; }
+#nullable restore
+#else
         public string MinimumRequiredPatchVersion { get; set; }
+#endif
         /// <summary>Define the oldest recommended Android security patch level a user can have for secure access to the app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MinimumWarningPatchVersion { get; set; }
+#nullable restore
+#else
         public string MinimumWarningPatchVersion { get; set; }
+#endif
         /// <summary>Indicates whether a managed user can take screen captures of managed apps</summary>
         public bool? ScreenCaptureBlocked { get; set; }
         /// <summary>
@@ -33,8 +69,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new AndroidManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AndroidManagedAppProtection();
@@ -58,8 +94,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

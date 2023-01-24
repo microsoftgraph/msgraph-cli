@@ -17,7 +17,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
-    /// <summary>Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.
+    /// </summary>
     public class AdministrativeUnitItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -36,7 +38,8 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -44,10 +47,10 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
                 var administrativeUnitId = invocationContext.ParseResult.GetValueForOption(administrativeUnitIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("administrativeUnit%2Did", administrativeUnitId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -57,8 +60,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the extensions property of the microsoft.graph.administrativeUnit entity.
+        /// </summary>
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
+            command.Description = "Provides operations to manage the extensions property of the microsoft.graph.administrativeUnit entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -110,7 +117,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -127,8 +134,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the members property of the microsoft.graph.administrativeUnit entity.
+        /// </summary>
         public Command BuildMembersCommand() {
             var command = new Command("members");
+            command.Description = "Provides operations to manage the members property of the microsoft.graph.administrativeUnit entity.";
             var builder = new MembersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildApplicationCommand());
             command.AddCommand(builder.BuildCommand());
@@ -153,7 +164,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -182,7 +193,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.AdministrativeUnit>(ApiSdk.Models.AdministrativeUnit.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("administrativeUnit%2Did", administrativeUnitId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -197,8 +208,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the scopedRoleMembers property of the microsoft.graph.administrativeUnit entity.
+        /// </summary>
         public Command BuildScopedRoleMembersCommand() {
             var command = new Command("scoped-role-members");
+            command.Description = "Provides operations to manage the scopedRoleMembers property of the microsoft.graph.administrativeUnit entity.";
             var builder = new ScopedRoleMembersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -208,9 +223,9 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         }
         /// <summary>
         /// Instantiates a new AdministrativeUnitItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public AdministrativeUnitItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -221,9 +236,15 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         }
         /// <summary>
         /// Delete navigation property administrativeUnits for directory
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -239,9 +260,15 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         }
         /// <summary>
         /// Conceptual container for user and group directory objects.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<AdministrativeUnitItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<AdministrativeUnitItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<AdministrativeUnitItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -259,10 +286,16 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         }
         /// <summary>
         /// Update the navigation property administrativeUnits in directory
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.AdministrativeUnit body, Action<AdministrativeUnitItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AdministrativeUnit body, Action<AdministrativeUnitItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AdministrativeUnit body, Action<AdministrativeUnitItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -279,10 +312,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -290,22 +325,40 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             /// </summary>
             public AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Conceptual container for user and group directory objects.</summary>
+        /// <summary>
+        /// Conceptual container for user and group directory objects.
+        /// </summary>
         public class AdministrativeUnitItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AdministrativeUnitItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -315,13 +368,15 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             /// </summary>
             public AdministrativeUnitItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AdministrativeUnitItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -329,7 +384,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             /// </summary>
             public AdministrativeUnitItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

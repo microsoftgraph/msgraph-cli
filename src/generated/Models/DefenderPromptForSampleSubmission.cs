@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Possible values for prompting user for samples submission.</summary>
     public enum DefenderPromptForSampleSubmission {
         /// <summary>User Defined, default value, no intent.</summary>
         UserDefined,

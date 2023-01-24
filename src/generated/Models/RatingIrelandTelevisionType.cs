@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>TV content rating labels in Ireland</summary>
     public enum RatingIrelandTelevisionType {
         /// <summary>Default value, allow all TV shows content</summary>
         AllAllowed,

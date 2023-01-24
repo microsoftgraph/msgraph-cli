@@ -6,21 +6,69 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class BookingCustomerInformation : BookingCustomerInformationBase, IParsable {
         /// <summary>The ID of the bookingCustomer for this appointment. If no ID is specified when an appointment is created, then a new bookingCustomer object is created. Once set, you should consider the customerId immutable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerId { get; set; }
+#nullable restore
+#else
         public string CustomerId { get; set; }
+#endif
         /// <summary>It consists of the list of custom questions and answers given by the customer as part of the appointment</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<BookingQuestionAnswer>? CustomQuestionAnswers { get; set; }
+#nullable restore
+#else
         public List<BookingQuestionAnswer> CustomQuestionAnswers { get; set; }
+#endif
         /// <summary>The SMTP address of the bookingCustomer who is booking the appointment</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EmailAddress { get; set; }
+#nullable restore
+#else
         public string EmailAddress { get; set; }
+#endif
         /// <summary>Represents location information for the bookingCustomer who is booking the appointment.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.Location? Location { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.Location Location { get; set; }
+#endif
         /// <summary>The customer&apos;s name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
         public string Name { get; set; }
+#endif
         /// <summary>Notes from the customer associated with this appointment. You can get the value only when reading this bookingAppointment by its ID. You can set this property only when initially creating an appointment with a new customer. After that point, the value is computed from the customer represented by the customerId.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Notes { get; set; }
+#nullable restore
+#else
         public string Notes { get; set; }
+#endif
         /// <summary>The customer&apos;s phone number.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Phone { get; set; }
+#nullable restore
+#else
         public string Phone { get; set; }
+#endif
         /// <summary>The time zone of the customer. For a list of possible values, see dateTimeTimeZone.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TimeZone { get; set; }
+#nullable restore
+#else
         public string TimeZone { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new BookingCustomerInformation and sets the default values.
         /// </summary>
@@ -29,8 +77,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new BookingCustomerInformation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new BookingCustomerInformation();
@@ -52,8 +100,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

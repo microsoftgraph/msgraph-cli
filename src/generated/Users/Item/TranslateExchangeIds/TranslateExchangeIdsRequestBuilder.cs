@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.TranslateExchangeIds {
-    /// <summary>Provides operations to call the translateExchangeIds method.</summary>
+    /// <summary>
+    /// Provides operations to call the translateExchangeIds method.
+    /// </summary>
     public class TranslateExchangeIdsRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,6 +25,7 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Translate identifiers of Outlook-related resources between formats.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-translateexchangeids?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -32,7 +35,7 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -65,7 +68,7 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TranslateExchangeIdsPostRequestBody>(TranslateExchangeIdsPostRequestBody.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -73,7 +76,7 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
-                var pageResponse = await pagingService.GetPagedDataAsync((info, handler, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token, responseHandler: handler), pagingData, all, cancellationToken);
+                var pageResponse = await pagingService.GetPagedDataAsync((info, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
                 IOutputFormatterOptions? formatterOptions = null;
                 IOutputFormatter? formatter = null;
@@ -90,9 +93,9 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
         }
         /// <summary>
         /// Instantiates a new TranslateExchangeIdsRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public TranslateExchangeIdsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -103,10 +106,16 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
         }
         /// <summary>
         /// Translate identifiers of Outlook-related resources between formats.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(TranslateExchangeIdsPostRequestBody body, Action<TranslateExchangeIdsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(TranslateExchangeIdsPostRequestBody body, Action<TranslateExchangeIdsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(TranslateExchangeIdsPostRequestBody body, Action<TranslateExchangeIdsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -123,10 +132,12 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class TranslateExchangeIdsRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -134,7 +145,7 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
             /// </summary>
             public TranslateExchangeIdsRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

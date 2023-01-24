@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.ManagedDevices.Item.LocateDevice {
-    /// <summary>Provides operations to call the locateDevice method.</summary>
+    /// <summary>
+    /// Provides operations to call the locateDevice method.
+    /// </summary>
     public class LocateDeviceRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -35,7 +37,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.LocateDevice {
             command.SetHandler(async (invocationContext) => {
                 var managedDeviceId = invocationContext.ParseResult.GetValueForOption(managedDeviceIdOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreatePostRequestInformation(q => {
+                var requestInfo = ToPostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("managedDevice%2Did", managedDeviceId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -49,9 +51,9 @@ namespace ApiSdk.Me.ManagedDevices.Item.LocateDevice {
         }
         /// <summary>
         /// Instantiates a new LocateDeviceRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public LocateDeviceRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -62,9 +64,15 @@ namespace ApiSdk.Me.ManagedDevices.Item.LocateDevice {
         }
         /// <summary>
         /// Locate a device
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Action<LocateDeviceRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(Action<LocateDeviceRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(Action<LocateDeviceRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
@@ -78,10 +86,12 @@ namespace ApiSdk.Me.ManagedDevices.Item.LocateDevice {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class LocateDeviceRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -89,7 +99,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.LocateDevice {
             /// </summary>
             public LocateDeviceRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

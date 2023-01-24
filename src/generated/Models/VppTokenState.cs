@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Possible states associated with an Apple Volume Purchase Program token.</summary>
     public enum VppTokenState {
         /// <summary>Default state.</summary>
         Unknown,

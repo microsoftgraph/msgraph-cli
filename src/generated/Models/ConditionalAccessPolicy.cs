@@ -4,34 +4,57 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class ConditionalAccessPolicy : Entity, IParsable {
         /// <summary>The conditions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ConditionalAccessConditionSet? Conditions { get; set; }
+#nullable restore
+#else
         public ConditionalAccessConditionSet Conditions { get; set; }
+#endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Readonly.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The description property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
         public string Description { get; set; }
+#endif
         /// <summary>Specifies a display name for the conditionalAccessPolicy object.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>Specifies the grant controls that must be fulfilled to pass the policy.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ConditionalAccessGrantControls? GrantControls { get; set; }
+#nullable restore
+#else
         public ConditionalAccessGrantControls GrantControls { get; set; }
+#endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Readonly.</summary>
         public DateTimeOffset? ModifiedDateTime { get; set; }
         /// <summary>Specifies the session controls that are enforced after sign-in.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ConditionalAccessSessionControls? SessionControls { get; set; }
+#nullable restore
+#else
         public ConditionalAccessSessionControls SessionControls { get; set; }
+#endif
         /// <summary>The state property</summary>
         public ConditionalAccessPolicyState? State { get; set; }
         /// <summary>
-        /// Instantiates a new conditionalAccessPolicy and sets the default values.
-        /// </summary>
-        public ConditionalAccessPolicy() : base() {
-            OdataType = "#microsoft.graph.conditionalAccessPolicy";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ConditionalAccessPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConditionalAccessPolicy();
@@ -53,8 +76,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

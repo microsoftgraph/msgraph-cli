@@ -4,26 +4,37 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.TermStore {
-    /// <summary>Casts the previous resource to group.</summary>
     public class Relation : Entity, IParsable {
         /// <summary>The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Term? FromTerm { get; set; }
+#nullable restore
+#else
         public Term FromTerm { get; set; }
+#endif
         /// <summary>The type of relation. Possible values are: pin, reuse.</summary>
         public RelationType? Relationship { get; set; }
         /// <summary>The [set] in which the relation is relevant.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.TermStore.Set? Set { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.TermStore.Set Set { get; set; }
+#endif
         /// <summary>The to [term] of the relation. The term to which the relationship is defined.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Term? ToTerm { get; set; }
+#nullable restore
+#else
         public Term ToTerm { get; set; }
-        /// <summary>
-        /// Instantiates a new relation and sets the default values.
-        /// </summary>
-        public Relation() : base() {
-            OdataType = "#microsoft.graph.termStore.relation";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Relation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Relation();
@@ -41,8 +52,8 @@ namespace ApiSdk.Models.TermStore {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

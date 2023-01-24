@@ -8,22 +8,33 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
-        /// <summary>The rules property</summary>
+#endif
+        /// <summary>Rules are configured in addition to the authentication mode to bind a specific x509CertificateRuleType to an x509CertificateAuthenticationMode. For example, bind the policyOID with identifier 1.32.132.343 to x509CertificateMultiFactor authentication mode.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<X509CertificateRule>? Rules { get; set; }
+#nullable restore
+#else
         public List<X509CertificateRule> Rules { get; set; }
-        /// <summary>The x509CertificateAuthenticationDefaultMode property</summary>
+#endif
+        /// <summary>The type of strong authentication mode. The possible values are: x509CertificateSingleFactor, x509CertificateMultiFactor, unknownFutureValue.</summary>
         public X509CertificateAuthenticationMode? X509CertificateAuthenticationDefaultMode { get; set; }
         /// <summary>
         /// Instantiates a new x509CertificateAuthenticationModeConfiguration and sets the default values.
         /// </summary>
         public X509CertificateAuthenticationModeConfiguration() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.x509CertificateAuthenticationModeConfiguration";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static X509CertificateAuthenticationModeConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new X509CertificateAuthenticationModeConfiguration();
@@ -40,8 +51,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);

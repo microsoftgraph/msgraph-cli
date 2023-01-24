@@ -14,7 +14,13 @@ namespace ApiSdk.Models.Security {
         /// <summary>Indicates whether themes model is enabled for the case.</summary>
         public bool? IsEnabled { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The total number of topics that the themes model will generate for a review set. To learn more, see Maximum number of themes.</summary>
         public int? TopicCount { get; set; }
         /// <summary>
@@ -22,12 +28,11 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public TopicModelingSettings() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.security.topicModelingSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static TopicModelingSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TopicModelingSettings();
@@ -46,8 +51,8 @@ namespace ApiSdk.Models.Security {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("dynamicallyAdjustTopicCount", DynamicallyAdjustTopicCount);

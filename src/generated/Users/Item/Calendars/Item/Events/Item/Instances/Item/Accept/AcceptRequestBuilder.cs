@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Accept {
-    /// <summary>Provides operations to call the accept method.</summary>
+    /// <summary>
+    /// Provides operations to call the accept method.
+    /// </summary>
     public class AcceptRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,6 +25,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Accept {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Accept the specified event in a user calendar.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-accept?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -44,7 +47,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Accept {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -58,7 +61,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Accept {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AcceptPostRequestBody>(AcceptPostRequestBody.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 requestInfo.PathParameters.Add("calendar%2Did", calendarId);
@@ -75,9 +78,9 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Accept {
         }
         /// <summary>
         /// Instantiates a new AcceptRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public AcceptRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -88,10 +91,16 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Accept {
         }
         /// <summary>
         /// Accept the specified event in a user calendar.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(AcceptPostRequestBody body, Action<AcceptRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(AcceptPostRequestBody body, Action<AcceptRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(AcceptPostRequestBody body, Action<AcceptRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -107,10 +116,12 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Accept {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AcceptRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -118,7 +129,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Accept {
             /// </summary>
             public AcceptRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

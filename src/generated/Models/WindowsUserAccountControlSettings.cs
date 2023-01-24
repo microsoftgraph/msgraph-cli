@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Possible values for Windows user account control settings.</summary>
     public enum WindowsUserAccountControlSettings {
         /// <summary>User Defined, default value, no intent.</summary>
         UserDefined,

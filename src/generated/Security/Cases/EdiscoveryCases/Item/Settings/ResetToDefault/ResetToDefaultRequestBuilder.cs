@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.ResetToDefault {
-    /// <summary>Provides operations to call the resetToDefault method.</summary>
+    /// <summary>
+    /// Provides operations to call the resetToDefault method.
+    /// </summary>
     public class ResetToDefaultRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,6 +25,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.ResetToDefault {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Reset a caseSettings object to the default values.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycasesettings-resettodefault?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -35,7 +38,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.ResetToDefault {
             command.SetHandler(async (invocationContext) => {
                 var ediscoveryCaseId = invocationContext.ParseResult.GetValueForOption(ediscoveryCaseIdOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreatePostRequestInformation(q => {
+                var requestInfo = ToPostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -49,9 +52,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.ResetToDefault {
         }
         /// <summary>
         /// Instantiates a new ResetToDefaultRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public ResetToDefaultRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -62,9 +65,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.ResetToDefault {
         }
         /// <summary>
         /// Reset a caseSettings object to the default values.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Action<ResetToDefaultRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(Action<ResetToDefaultRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(Action<ResetToDefaultRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
@@ -78,10 +87,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.ResetToDefault {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ResetToDefaultRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -89,7 +100,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.ResetToDefault {
             /// </summary>
             public ResetToDefaultRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

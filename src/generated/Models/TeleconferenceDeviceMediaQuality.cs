@@ -1,4 +1,3 @@
-using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -25,7 +24,13 @@ namespace ApiSdk.Models {
         /// <summary>The total number of the inbound packets.</summary>
         public long? InboundPackets { get; set; }
         /// <summary>the local IP address for the media session.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LocalIPAddress { get; set; }
+#nullable restore
+#else
         public string LocalIPAddress { get; set; }
+#endif
         /// <summary>The local media port.</summary>
         public int? LocalPort { get; set; }
         /// <summary>The maximum inbound stream network jitter.</summary>
@@ -45,11 +50,23 @@ namespace ApiSdk.Models {
         /// <summary>The network link speed in bytes</summary>
         public long? NetworkLinkSpeedInBytes { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The total number of the outbound packets.</summary>
         public long? OutboundPackets { get; set; }
         /// <summary>The remote IP address for the media session.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RemoteIPAddress { get; set; }
+#nullable restore
+#else
         public string RemoteIPAddress { get; set; }
+#endif
         /// <summary>The remote media port.</summary>
         public int? RemotePort { get; set; }
         /// <summary>
@@ -57,12 +74,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public TeleconferenceDeviceMediaQuality() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.teleconferenceDeviceMediaQuality";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static TeleconferenceDeviceMediaQuality CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
@@ -104,8 +120,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteTimeSpanValue("averageInboundJitter", AverageInboundJitter);

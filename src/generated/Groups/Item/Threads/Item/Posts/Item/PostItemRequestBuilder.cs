@@ -21,7 +21,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
-    /// <summary>Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.
+    /// </summary>
     public class PostItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -29,8 +31,12 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to manage the attachments property of the microsoft.graph.post entity.
+        /// </summary>
         public Command BuildAttachmentsCommand() {
             var command = new Command("attachments");
+            command.Description = "Provides operations to manage the attachments property of the microsoft.graph.post entity.";
             var builder = new AttachmentsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -39,8 +45,12 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the extensions property of the microsoft.graph.post entity.
+        /// </summary>
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
+            command.Description = "Provides operations to manage the extensions property of the microsoft.graph.post entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -48,8 +58,12 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the forward method.
+        /// </summary>
         public Command BuildForwardCommand() {
             var command = new Command("forward");
+            command.Description = "Provides operations to call the forward method.";
             var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -108,7 +122,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -127,21 +141,28 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the inReplyTo property of the microsoft.graph.post entity.
+        /// </summary>
         public Command BuildInReplyToCommand() {
             var command = new Command("in-reply-to");
+            command.Description = "Provides operations to manage the inReplyTo property of the microsoft.graph.post entity.";
             var builder = new InReplyToRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
             command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildReplyCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.post entity.
+        /// </summary>
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
+            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.post entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -149,14 +170,22 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the reply method.
+        /// </summary>
         public Command BuildReplyCommand() {
             var command = new Command("reply");
+            command.Description = "Provides operations to call the reply method.";
             var builder = new ReplyRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.post entity.
+        /// </summary>
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
+            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.post entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -166,9 +195,9 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         }
         /// <summary>
         /// Instantiates a new PostItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public PostItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -179,9 +208,15 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         }
         /// <summary>
         /// Get posts from groups
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<PostItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<PostItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<PostItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -197,19 +232,37 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             }
             return requestInfo;
         }
-        /// <summary>Get posts from groups</summary>
+        /// <summary>
+        /// Get posts from groups
+        /// </summary>
         public class PostItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class PostItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -219,7 +272,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             /// </summary>
             public PostItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

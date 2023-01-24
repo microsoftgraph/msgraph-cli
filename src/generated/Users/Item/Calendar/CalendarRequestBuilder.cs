@@ -21,7 +21,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Calendar {
-    /// <summary>Provides operations to manage the calendar property of the microsoft.graph.user entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the calendar property of the microsoft.graph.user entity.
+    /// </summary>
     public class CalendarRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -31,14 +33,18 @@ namespace ApiSdk.Users.Item.Calendar {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Provides operations to call the allowedCalendarSharingRoles method.
-        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
         /// </summary>
+        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
         public AllowedCalendarSharingRolesWithUserRequestBuilder AllowedCalendarSharingRolesWithUser(string user) {
             if(string.IsNullOrEmpty(user)) throw new ArgumentNullException(nameof(user));
             return new AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters, RequestAdapter, user);
         }
+        /// <summary>
+        /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
+        /// </summary>
         public Command BuildCalendarPermissionsCommand() {
             var command = new Command("calendar-permissions");
+            command.Description = "Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.";
             var builder = new CalendarPermissionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -46,16 +52,24 @@ namespace ApiSdk.Users.Item.Calendar {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.
+        /// </summary>
         public Command BuildCalendarViewCommand() {
             var command = new Command("calendar-view");
+            command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.";
             var builder = new CalendarViewRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the events property of the microsoft.graph.calendar entity.
+        /// </summary>
         public Command BuildEventsCommand() {
             var command = new Command("events");
+            command.Description = "Provides operations to manage the events property of the microsoft.graph.calendar entity.";
             var builder = new EventsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -65,6 +79,7 @@ namespace ApiSdk.Users.Item.Calendar {
         }
         /// <summary>
         /// Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -101,7 +116,7 @@ namespace ApiSdk.Users.Item.Calendar {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
@@ -117,14 +132,22 @@ namespace ApiSdk.Users.Item.Calendar {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getSchedule method.
+        /// </summary>
         public Command BuildGetScheduleCommand() {
             var command = new Command("get-schedule");
+            command.Description = "Provides operations to call the getSchedule method.";
             var builder = new GetScheduleRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.calendar entity.
+        /// </summary>
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
+            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.calendar entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -134,6 +157,7 @@ namespace ApiSdk.Users.Item.Calendar {
         }
         /// <summary>
         /// Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
@@ -143,7 +167,7 @@ namespace ApiSdk.Users.Item.Calendar {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -172,7 +196,7 @@ namespace ApiSdk.Users.Item.Calendar {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Calendar>(ApiSdk.Models.Calendar.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -187,8 +211,12 @@ namespace ApiSdk.Users.Item.Calendar {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.
+        /// </summary>
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
+            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -198,9 +226,9 @@ namespace ApiSdk.Users.Item.Calendar {
         }
         /// <summary>
         /// Instantiates a new CalendarRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -211,9 +239,15 @@ namespace ApiSdk.Users.Item.Calendar {
         }
         /// <summary>
         /// Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<CalendarRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<CalendarRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<CalendarRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -231,10 +265,16 @@ namespace ApiSdk.Users.Item.Calendar {
         }
         /// <summary>
         /// Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Calendar body, Action<CalendarRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Calendar body, Action<CalendarRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Calendar body, Action<CalendarRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -251,16 +291,27 @@ namespace ApiSdk.Users.Item.Calendar {
             }
             return requestInfo;
         }
-        /// <summary>Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:</summary>
+        /// <summary>
+        /// Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
+        /// </summary>
         public class CalendarRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class CalendarRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -270,13 +321,15 @@ namespace ApiSdk.Users.Item.Calendar {
             /// </summary>
             public CalendarRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class CalendarRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -284,7 +337,7 @@ namespace ApiSdk.Users.Item.Calendar {
             /// </summary>
             public CalendarRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

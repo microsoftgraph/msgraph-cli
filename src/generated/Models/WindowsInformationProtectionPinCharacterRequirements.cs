@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Pin Character Requirements</summary>
     public enum WindowsInformationProtectionPinCharacterRequirements {
         /// <summary>Not allow</summary>
         NotAllow,

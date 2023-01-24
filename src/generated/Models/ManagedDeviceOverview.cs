@@ -6,9 +6,21 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class ManagedDeviceOverview : Entity, IParsable {
         /// <summary>Distribution of Exchange Access State in Intune</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.DeviceExchangeAccessStateSummary? DeviceExchangeAccessStateSummary { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.DeviceExchangeAccessStateSummary DeviceExchangeAccessStateSummary { get; set; }
+#endif
         /// <summary>Device operating system summary.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.DeviceOperatingSystemSummary? DeviceOperatingSystemSummary { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.DeviceOperatingSystemSummary DeviceOperatingSystemSummary { get; set; }
+#endif
         /// <summary>The number of devices enrolled in both MDM and EAS</summary>
         public int? DualEnrolledDeviceCount { get; set; }
         /// <summary>Total enrolled device count. Does not include PC devices managed via Intune PC Agent</summary>
@@ -16,15 +28,9 @@ namespace ApiSdk.Models {
         /// <summary>The number of devices enrolled in MDM</summary>
         public int? MdmEnrolledCount { get; set; }
         /// <summary>
-        /// Instantiates a new managedDeviceOverview and sets the default values.
-        /// </summary>
-        public ManagedDeviceOverview() : base() {
-            OdataType = "#microsoft.graph.managedDeviceOverview";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ManagedDeviceOverview CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ManagedDeviceOverview();
@@ -43,8 +49,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

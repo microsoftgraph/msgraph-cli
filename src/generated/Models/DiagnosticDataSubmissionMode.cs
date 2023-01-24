@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Allow the device to send diagnostic and usage telemetry data, such as Watson.</summary>
     public enum DiagnosticDataSubmissionMode {
         /// <summary>Allow the user to set.</summary>
         UserDefined,

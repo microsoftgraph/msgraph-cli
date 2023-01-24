@@ -6,13 +6,37 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class AppleManagedIdentityProvider : IdentityProviderBase, IParsable {
         /// <summary>The certificate data, which is a long string of text from the certificate. Can be null.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CertificateData { get; set; }
+#nullable restore
+#else
         public string CertificateData { get; set; }
+#endif
         /// <summary>The Apple developer identifier. Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeveloperId { get; set; }
+#nullable restore
+#else
         public string DeveloperId { get; set; }
+#endif
         /// <summary>The Apple key identifier. Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? KeyId { get; set; }
+#nullable restore
+#else
         public string KeyId { get; set; }
+#endif
         /// <summary>The Apple service identifier. Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ServiceId { get; set; }
+#nullable restore
+#else
         public string ServiceId { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new AppleManagedIdentityProvider and sets the default values.
         /// </summary>
@@ -21,8 +45,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new AppleManagedIdentityProvider CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AppleManagedIdentityProvider();
@@ -40,8 +64,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

@@ -12,11 +12,29 @@ namespace ApiSdk.Models {
         /// <summary>The minimum number of items that should be present in the aggregation to be returned in a bucket. Optional.</summary>
         public int? MinimumCount { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>A filter to define a matching criteria. The key should start with the specified prefix to be returned in the response. Optional.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PrefixFilter { get; set; }
+#nullable restore
+#else
         public string PrefixFilter { get; set; }
+#endif
         /// <summary>Specifies the manual ranges to compute the aggregations. This is only valid for non-string refiners of date or numeric type. Optional.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<BucketAggregationRange>? Ranges { get; set; }
+#nullable restore
+#else
         public List<BucketAggregationRange> Ranges { get; set; }
+#endif
         /// <summary>The sortBy property</summary>
         public BucketAggregationSortProperty? SortBy { get; set; }
         /// <summary>
@@ -24,12 +42,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public BucketAggregationDefinition() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.bucketAggregationDefinition";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static BucketAggregationDefinition CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new BucketAggregationDefinition();
@@ -49,8 +66,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("isDescending", IsDescending);

@@ -1,5 +1,7 @@
 using ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item.HostedContents;
 using ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item.Replies;
+using ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item.SoftDelete;
+using ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item.UndoSoftDelete;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +18,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
-    /// <summary>Provides operations to manage the messages property of the microsoft.graph.channel entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the messages property of the microsoft.graph.channel entity.
+    /// </summary>
     public class ChatMessageItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -43,7 +47,8 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -53,12 +58,12 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
                 var chatMessageId = invocationContext.ParseResult.GetValueForOption(chatMessageIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("team%2Did", teamId);
                 requestInfo.PathParameters.Add("channel%2Did", channelId);
                 requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -122,7 +127,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -141,8 +146,12 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.
+        /// </summary>
         public Command BuildHostedContentsCommand() {
             var command = new Command("hosted-contents");
+            command.Description = "Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.";
             var builder = new HostedContentsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -169,7 +178,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -200,7 +209,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("team%2Did", teamId);
                 requestInfo.PathParameters.Add("channel%2Did", channelId);
@@ -217,8 +226,12 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the replies property of the microsoft.graph.chatMessage entity.
+        /// </summary>
         public Command BuildRepliesCommand() {
             var command = new Command("replies");
+            command.Description = "Provides operations to manage the replies property of the microsoft.graph.chatMessage entity.";
             var builder = new RepliesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -227,10 +240,30 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the softDelete method.
+        /// </summary>
+        public Command BuildSoftDeleteCommand() {
+            var command = new Command("soft-delete");
+            command.Description = "Provides operations to call the softDelete method.";
+            var builder = new SoftDeleteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the undoSoftDelete method.
+        /// </summary>
+        public Command BuildUndoSoftDeleteCommand() {
+            var command = new Command("undo-soft-delete");
+            command.Description = "Provides operations to call the undoSoftDelete method.";
+            var builder = new UndoSoftDeleteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Instantiates a new ChatMessageItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public ChatMessageItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -241,9 +274,15 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
         }
         /// <summary>
         /// Delete navigation property messages for me
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<ChatMessageItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<ChatMessageItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<ChatMessageItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -259,9 +298,15 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
         }
         /// <summary>
         /// A collection of all the messages in the channel. A navigation property. Nullable.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<ChatMessageItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<ChatMessageItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<ChatMessageItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -279,10 +324,16 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
         }
         /// <summary>
         /// Update the navigation property messages in me
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ChatMessage body, Action<ChatMessageItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ChatMessage body, Action<ChatMessageItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ChatMessage body, Action<ChatMessageItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -299,10 +350,12 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ChatMessageItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -310,22 +363,40 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             /// </summary>
             public ChatMessageItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>A collection of all the messages in the channel. A navigation property. Nullable.</summary>
+        /// <summary>
+        /// A collection of all the messages in the channel. A navigation property. Nullable.
+        /// </summary>
         public class ChatMessageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ChatMessageItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -335,13 +406,15 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             /// </summary>
             public ChatMessageItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ChatMessageItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -349,7 +422,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             /// </summary>
             public ChatMessageItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

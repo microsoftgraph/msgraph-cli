@@ -1,20 +1,39 @@
-using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>The Base Class of Device Enrollment Configuration</summary>
+    /// <summary>
+    /// The Base Class of Device Enrollment Configuration
+    /// </summary>
     public class DeviceEnrollmentConfiguration : Entity, IParsable {
         /// <summary>The list of group assignments for the device configuration profile</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<EnrollmentConfigurationAssignment>? Assignments { get; set; }
+#nullable restore
+#else
         public List<EnrollmentConfigurationAssignment> Assignments { get; set; }
+#endif
         /// <summary>Created date time in UTC of the device enrollment configuration</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The description of the device enrollment configuration</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
         public string Description { get; set; }
+#endif
         /// <summary>The display name of the device enrollment configuration</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>Last modified date time in UTC of the device enrollment configuration</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Priority is used when a user exists in multiple groups that are assigned enrollment configuration. Users are subject only to the configuration with the lowest priority value.</summary>
@@ -22,15 +41,9 @@ namespace ApiSdk.Models {
         /// <summary>The version of the device enrollment configuration</summary>
         public int? Version { get; set; }
         /// <summary>
-        /// Instantiates a new deviceEnrollmentConfiguration and sets the default values.
-        /// </summary>
-        public DeviceEnrollmentConfiguration() : base() {
-            OdataType = "#microsoft.graph.deviceEnrollmentConfiguration";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DeviceEnrollmentConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
@@ -57,8 +70,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

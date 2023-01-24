@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Branding Options for the Message Template. Branding is defined in the Intune Admin Console.</summary>
     public enum NotificationTemplateBrandingOptions {
         /// <summary>No Branding.</summary>
         None,
@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         IncludeCompanyName,
         /// <summary>Include Contact Info.</summary>
         IncludeContactInformation,
+        /// <summary>Include Company Portal Link.</summary>
+        IncludeCompanyPortalLink,
         /// <summary>Include Device Details.</summary>
         IncludeDeviceDetails,
     }

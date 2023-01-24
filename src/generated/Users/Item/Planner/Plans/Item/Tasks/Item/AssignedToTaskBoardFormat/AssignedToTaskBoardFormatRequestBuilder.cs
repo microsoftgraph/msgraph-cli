@@ -14,7 +14,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFormat {
-    /// <summary>Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.
+    /// </summary>
     public class AssignedToTaskBoardFormatRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -41,7 +43,8 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -51,12 +54,12 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
                 var plannerTaskId = invocationContext.ParseResult.GetValueForOption(plannerTaskIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
                 requestInfo.PathParameters.Add("plannerTask%2Did", plannerTaskId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -67,11 +70,12 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of **plannerAssignedToTaskBoardTaskFormat** object.
+        /// Retrieve the properties and relationships of a **plannerAssignedToTaskBoardTaskFormat** object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of **plannerAssignedToTaskBoardTaskFormat** object.";
+            command.Description = "Retrieve the properties and relationships of a **plannerAssignedToTaskBoardTaskFormat** object.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -120,7 +124,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -141,6 +145,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
         }
         /// <summary>
         /// Update the properties of **plannerAssignedToTaskBoardTaskFormat** object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
@@ -158,7 +163,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -189,7 +194,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PlannerAssignedToTaskBoardTaskFormat>(PlannerAssignedToTaskBoardTaskFormat.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
@@ -208,9 +213,9 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
         }
         /// <summary>
         /// Instantiates a new AssignedToTaskBoardFormatRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public AssignedToTaskBoardFormatRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -221,9 +226,15 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
         }
         /// <summary>
         /// Delete navigation property assignedToTaskBoardFormat for users
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<AssignedToTaskBoardFormatRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<AssignedToTaskBoardFormatRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<AssignedToTaskBoardFormatRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -238,10 +249,16 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of **plannerAssignedToTaskBoardTaskFormat** object.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Retrieve the properties and relationships of a **plannerAssignedToTaskBoardTaskFormat** object.
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<AssignedToTaskBoardFormatRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<AssignedToTaskBoardFormatRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<AssignedToTaskBoardFormatRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -259,10 +276,16 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
         }
         /// <summary>
         /// Update the properties of **plannerAssignedToTaskBoardTaskFormat** object.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(PlannerAssignedToTaskBoardTaskFormat body, Action<AssignedToTaskBoardFormatRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(PlannerAssignedToTaskBoardTaskFormat body, Action<AssignedToTaskBoardFormatRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(PlannerAssignedToTaskBoardTaskFormat body, Action<AssignedToTaskBoardFormatRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -279,10 +302,12 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AssignedToTaskBoardFormatRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -290,22 +315,40 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
             /// </summary>
             public AssignedToTaskBoardFormatRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Retrieve the properties and relationships of **plannerAssignedToTaskBoardTaskFormat** object.</summary>
+        /// <summary>
+        /// Retrieve the properties and relationships of a **plannerAssignedToTaskBoardTaskFormat** object.
+        /// </summary>
         public class AssignedToTaskBoardFormatRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AssignedToTaskBoardFormatRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -315,13 +358,15 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
             /// </summary>
             public AssignedToTaskBoardFormatRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AssignedToTaskBoardFormatRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -329,7 +374,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
             /// </summary>
             public AssignedToTaskBoardFormatRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

@@ -8,30 +8,71 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Group IDs excluded from scope of policy.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? ExcludeGroups { get; set; }
+#nullable restore
+#else
         public List<string> ExcludeGroups { get; set; }
+#endif
         /// <summary>Role IDs excluded from scope of policy.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? ExcludeRoles { get; set; }
+#nullable restore
+#else
         public List<string> ExcludeRoles { get; set; }
+#endif
         /// <summary>User IDs excluded from scope of policy and/or GuestsOrExternalUsers.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? ExcludeUsers { get; set; }
+#nullable restore
+#else
         public List<string> ExcludeUsers { get; set; }
+#endif
         /// <summary>Group IDs in scope of policy unless explicitly excluded, or All.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? IncludeGroups { get; set; }
+#nullable restore
+#else
         public List<string> IncludeGroups { get; set; }
+#endif
         /// <summary>Role IDs in scope of policy unless explicitly excluded, or All.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? IncludeRoles { get; set; }
+#nullable restore
+#else
         public List<string> IncludeRoles { get; set; }
+#endif
         /// <summary>User IDs in scope of policy unless explicitly excluded, or None or All or GuestsOrExternalUsers.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? IncludeUsers { get; set; }
+#nullable restore
+#else
         public List<string> IncludeUsers { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new conditionalAccessUsers and sets the default values.
         /// </summary>
         public ConditionalAccessUsers() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.conditionalAccessUsers";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static ConditionalAccessUsers CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConditionalAccessUsers();
@@ -52,8 +93,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("excludeGroups", ExcludeGroups);

@@ -4,36 +4,107 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
     public class ColumnDefinition : Entity, IParsable {
         /// <summary>This column stores boolean values.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public BooleanColumn? Boolean { get; set; }
+#nullable restore
+#else
         public BooleanColumn Boolean { get; set; }
+#endif
         /// <summary>This column&apos;s data is calculated based on other columns.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public CalculatedColumn? Calculated { get; set; }
+#nullable restore
+#else
         public CalculatedColumn Calculated { get; set; }
+#endif
         /// <summary>This column stores data from a list of choices.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ChoiceColumn? Choice { get; set; }
+#nullable restore
+#else
         public ChoiceColumn Choice { get; set; }
+#endif
         /// <summary>For site columns, the name of the group this column belongs to. Helps organize related columns.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ColumnGroup { get; set; }
+#nullable restore
+#else
         public string ColumnGroup { get; set; }
+#endif
         /// <summary>This column stores content approval status.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ContentApprovalStatusColumn? ContentApprovalStatus { get; set; }
+#nullable restore
+#else
         public ContentApprovalStatusColumn ContentApprovalStatus { get; set; }
+#endif
         /// <summary>This column stores currency values.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public CurrencyColumn? Currency { get; set; }
+#nullable restore
+#else
         public CurrencyColumn Currency { get; set; }
+#endif
         /// <summary>This column stores DateTime values.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeColumn? DateTime { get; set; }
+#nullable restore
+#else
         public DateTimeColumn DateTime { get; set; }
+#endif
         /// <summary>The default value for this column.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DefaultColumnValue? DefaultValue { get; set; }
+#nullable restore
+#else
         public DefaultColumnValue DefaultValue { get; set; }
+#endif
         /// <summary>The user-facing description of the column.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
         public string Description { get; set; }
+#endif
         /// <summary>The user-facing name of the column.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>If true, no two list items may have the same value for this column.</summary>
         public bool? EnforceUniqueValues { get; set; }
         /// <summary>This column stores a geolocation.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GeolocationColumn? Geolocation { get; set; }
+#nullable restore
+#else
         public GeolocationColumn Geolocation { get; set; }
+#endif
         /// <summary>Specifies whether the column is displayed in the user interface.</summary>
         public bool? Hidden { get; set; }
         /// <summary>This column stores hyperlink or picture values.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public HyperlinkOrPictureColumn? HyperlinkOrPicture { get; set; }
+#nullable restore
+#else
         public HyperlinkOrPictureColumn HyperlinkOrPicture { get; set; }
+#endif
         /// <summary>Specifies whether the column values can be used for sorting and searching.</summary>
         public bool? Indexed { get; set; }
         /// <summary>Indicates whether this column can be deleted.</summary>
@@ -43,13 +114,37 @@ namespace ApiSdk.Models {
         /// <summary>Specifies whether the column can be changed.</summary>
         public bool? IsSealed { get; set; }
         /// <summary>This column&apos;s data is looked up from another source in the site.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public LookupColumn? Lookup { get; set; }
+#nullable restore
+#else
         public LookupColumn Lookup { get; set; }
+#endif
         /// <summary>The API-facing name of the column as it appears in the [fields][] on a [listItem][]. For the user-facing name, see displayName.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
         public string Name { get; set; }
+#endif
         /// <summary>This column stores number values.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public NumberColumn? Number { get; set; }
+#nullable restore
+#else
         public NumberColumn Number { get; set; }
+#endif
         /// <summary>This column stores Person or Group values.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public PersonOrGroupColumn? PersonOrGroup { get; set; }
+#nullable restore
+#else
         public PersonOrGroupColumn PersonOrGroup { get; set; }
+#endif
         /// <summary>If &apos;true&apos;, changes to this column will be propagated to lists that implement the column.</summary>
         public bool? PropagateChanges { get; set; }
         /// <summary>Specifies whether the column values can be modified.</summary>
@@ -57,29 +152,59 @@ namespace ApiSdk.Models {
         /// <summary>Specifies whether the column value isn&apos;t optional.</summary>
         public bool? Required { get; set; }
         /// <summary>The source column for the content type column.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ColumnDefinition? SourceColumn { get; set; }
+#nullable restore
+#else
         public ColumnDefinition SourceColumn { get; set; }
+#endif
         /// <summary>ContentType from which this column is inherited from. Present only in contentTypes columns response. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ContentTypeInfo? SourceContentType { get; set; }
+#nullable restore
+#else
         public ContentTypeInfo SourceContentType { get; set; }
+#endif
         /// <summary>This column stores taxonomy terms.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public TermColumn? Term { get; set; }
+#nullable restore
+#else
         public TermColumn Term { get; set; }
+#endif
         /// <summary>This column stores text values.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public TextColumn? Text { get; set; }
+#nullable restore
+#else
         public TextColumn Text { get; set; }
+#endif
         /// <summary>This column stores thumbnail values.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ThumbnailColumn? Thumbnail { get; set; }
+#nullable restore
+#else
         public ThumbnailColumn Thumbnail { get; set; }
+#endif
         /// <summary>For site columns, the type of column. Read-only.</summary>
         public ColumnTypes? Type { get; set; }
         /// <summary>This column stores validation formula and message for the column.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ColumnValidation? Validation { get; set; }
+#nullable restore
+#else
         public ColumnValidation Validation { get; set; }
-        /// <summary>
-        /// Instantiates a new columnDefinition and sets the default values.
-        /// </summary>
-        public ColumnDefinition() : base() {
-            OdataType = "#microsoft.graph.columnDefinition";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ColumnDefinition CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ColumnDefinition();
@@ -125,8 +250,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

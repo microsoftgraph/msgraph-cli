@@ -1,44 +1,87 @@
-using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>An abstract class for Mobile app configuration for enrolled devices.</summary>
+    /// <summary>
+    /// An abstract class for Mobile app configuration for enrolled devices.
+    /// </summary>
     public class ManagedDeviceMobileAppConfiguration : Entity, IParsable {
         /// <summary>The list of group assignemenets for app configration.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ManagedDeviceMobileAppConfigurationAssignment>? Assignments { get; set; }
+#nullable restore
+#else
         public List<ManagedDeviceMobileAppConfigurationAssignment> Assignments { get; set; }
+#endif
         /// <summary>DateTime the object was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Admin provided description of the Device Configuration.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
         public string Description { get; set; }
+#endif
         /// <summary>List of ManagedDeviceMobileAppConfigurationDeviceStatus.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ManagedDeviceMobileAppConfigurationDeviceStatus>? DeviceStatuses { get; set; }
+#nullable restore
+#else
         public List<ManagedDeviceMobileAppConfigurationDeviceStatus> DeviceStatuses { get; set; }
+#endif
         /// <summary>App configuration device status summary.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ManagedDeviceMobileAppConfigurationDeviceSummary? DeviceStatusSummary { get; set; }
+#nullable restore
+#else
         public ManagedDeviceMobileAppConfigurationDeviceSummary DeviceStatusSummary { get; set; }
+#endif
         /// <summary>Admin provided name of the device configuration.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>DateTime the object was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>the associated app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? TargetedMobileApps { get; set; }
+#nullable restore
+#else
         public List<string> TargetedMobileApps { get; set; }
+#endif
         /// <summary>List of ManagedDeviceMobileAppConfigurationUserStatus.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ManagedDeviceMobileAppConfigurationUserStatus>? UserStatuses { get; set; }
+#nullable restore
+#else
         public List<ManagedDeviceMobileAppConfigurationUserStatus> UserStatuses { get; set; }
+#endif
         /// <summary>App configuration user status summary.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ManagedDeviceMobileAppConfigurationUserSummary? UserStatusSummary { get; set; }
+#nullable restore
+#else
         public ManagedDeviceMobileAppConfigurationUserSummary UserStatusSummary { get; set; }
+#endif
         /// <summary>Version of the device configuration.</summary>
         public int? Version { get; set; }
         /// <summary>
-        /// Instantiates a new managedDeviceMobileAppConfiguration and sets the default values.
-        /// </summary>
-        public ManagedDeviceMobileAppConfiguration() : base() {
-            OdataType = "#microsoft.graph.managedDeviceMobileAppConfiguration";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ManagedDeviceMobileAppConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
@@ -67,8 +110,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

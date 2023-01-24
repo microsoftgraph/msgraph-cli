@@ -8,19 +8,49 @@ namespace ApiSdk.Models {
         /// <summary>The classification property</summary>
         public ServiceHealthClassificationType? Classification { get; set; }
         /// <summary>The feature name of the service issue.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Feature { get; set; }
+#nullable restore
+#else
         public string Feature { get; set; }
+#endif
         /// <summary>The feature group name of the service issue.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? FeatureGroup { get; set; }
+#nullable restore
+#else
         public string FeatureGroup { get; set; }
+#endif
         /// <summary>The description of the service issue impact.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ImpactDescription { get; set; }
+#nullable restore
+#else
         public string ImpactDescription { get; set; }
+#endif
         /// <summary>Indicates whether the issue is resolved.</summary>
         public bool? IsResolved { get; set; }
         /// <summary>The origin property</summary>
         public ServiceHealthOrigin? Origin { get; set; }
         /// <summary>Collection of historical posts for the service issue.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ServiceHealthIssuePost>? Posts { get; set; }
+#nullable restore
+#else
         public List<ServiceHealthIssuePost> Posts { get; set; }
+#endif
         /// <summary>Indicates the service affected by the issue.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Service { get; set; }
+#nullable restore
+#else
         public string Service { get; set; }
+#endif
         /// <summary>The status property</summary>
         public ServiceHealthStatus? Status { get; set; }
         /// <summary>
@@ -31,8 +61,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ServiceHealthIssue CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ServiceHealthIssue();
@@ -55,8 +85,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

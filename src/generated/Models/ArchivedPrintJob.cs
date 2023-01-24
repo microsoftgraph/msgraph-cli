@@ -16,15 +16,39 @@ namespace ApiSdk.Models {
         /// <summary>The number of copies that were printed. Read-only.</summary>
         public int? CopiesPrinted { get; set; }
         /// <summary>The user who created the print job. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public UserIdentity? CreatedBy { get; set; }
+#nullable restore
+#else
         public UserIdentity CreatedBy { get; set; }
+#endif
         /// <summary>The dateTimeOffset when the job was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The archived print job&apos;s GUID. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Id { get; set; }
+#nullable restore
+#else
         public string Id { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The printer ID that the job was queued for. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PrinterId { get; set; }
+#nullable restore
+#else
         public string PrinterId { get; set; }
+#endif
         /// <summary>The processingState property</summary>
         public PrintJobProcessingState? ProcessingState { get; set; }
         /// <summary>
@@ -32,12 +56,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public ArchivedPrintJob() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.archivedPrintJob";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static ArchivedPrintJob CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ArchivedPrintJob();
@@ -61,8 +84,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("acquiredByPrinter", AcquiredByPrinter);

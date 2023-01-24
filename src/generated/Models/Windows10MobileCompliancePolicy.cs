@@ -12,9 +12,21 @@ namespace ApiSdk.Models {
         /// <summary>Require devices to be reported as healthy by Windows Device Health Attestation - early launch antimalware driver is enabled.</summary>
         public bool? EarlyLaunchAntiMalwareDriverEnabled { get; set; }
         /// <summary>Maximum Windows Phone version.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OsMaximumVersion { get; set; }
+#nullable restore
+#else
         public string OsMaximumVersion { get; set; }
+#endif
         /// <summary>Minimum Windows Phone version.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OsMinimumVersion { get; set; }
+#nullable restore
+#else
         public string OsMinimumVersion { get; set; }
+#endif
         /// <summary>Whether or not to block syncing the calendar.</summary>
         public bool? PasswordBlockSimple { get; set; }
         /// <summary>Number of days before password expiration. Valid values 1 to 255</summary>
@@ -45,8 +57,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Windows10MobileCompliancePolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Windows10MobileCompliancePolicy();
@@ -76,8 +88,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Contains properties for Windows device type.</summary>
     public enum WindowsDeviceType {
         /// <summary>No flags set.</summary>
         None,

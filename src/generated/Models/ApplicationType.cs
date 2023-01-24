@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Possible types of Application</summary>
     public enum ApplicationType {
         /// <summary>The windows universal application</summary>
         Universal,

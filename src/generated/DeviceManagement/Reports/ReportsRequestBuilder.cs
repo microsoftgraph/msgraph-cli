@@ -9,6 +9,7 @@ using ApiSdk.DeviceManagement.Reports.GetConfigurationSettingNonComplianceReport
 using ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingContributingProfiles;
 using ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsReport;
 using ApiSdk.DeviceManagement.Reports.GetDeviceNonComplianceReport;
+using ApiSdk.DeviceManagement.Reports.GetDevicesWithoutCompliancePolicyReport;
 using ApiSdk.DeviceManagement.Reports.GetHistoricalReport;
 using ApiSdk.DeviceManagement.Reports.GetNoncompliantDevicesAndSettingsReport;
 using ApiSdk.DeviceManagement.Reports.GetPolicyNonComplianceMetadata;
@@ -32,7 +33,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.Reports {
-    /// <summary>Provides operations to manage the reports property of the microsoft.graph.deviceManagement entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the reports property of the microsoft.graph.deviceManagement entity.
+    /// </summary>
     public class ReportsRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -47,16 +50,17 @@ namespace ApiSdk.DeviceManagement.Reports {
             var command = new Command("delete");
             command.Description = "Delete navigation property reports for deviceManagement";
             // Create options for all the parameters
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
             command.SetHandler(async (invocationContext) => {
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -66,8 +70,12 @@ namespace ApiSdk.DeviceManagement.Reports {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the exportJobs property of the microsoft.graph.deviceManagementReports entity.
+        /// </summary>
         public Command BuildExportJobsCommand() {
             var command = new Command("export-jobs");
+            command.Description = "Provides operations to manage the exportJobs property of the microsoft.graph.deviceManagementReports entity.";
             var builder = new ExportJobsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -75,8 +83,12 @@ namespace ApiSdk.DeviceManagement.Reports {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getCachedReport method.
+        /// </summary>
         public Command BuildGetCachedReportCommand() {
             var command = new Command("get-cached-report");
+            command.Description = "Provides operations to call the getCachedReport method.";
             var builder = new GetCachedReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -120,7 +132,7 @@ namespace ApiSdk.DeviceManagement.Reports {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -136,98 +148,172 @@ namespace ApiSdk.DeviceManagement.Reports {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getCompliancePolicyNonComplianceReport method.
+        /// </summary>
         public Command BuildGetCompliancePolicyNonComplianceReportCommand() {
             var command = new Command("get-compliance-policy-non-compliance-report");
+            command.Description = "Provides operations to call the getCompliancePolicyNonComplianceReport method.";
             var builder = new GetCompliancePolicyNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getCompliancePolicyNonComplianceSummaryReport method.
+        /// </summary>
         public Command BuildGetCompliancePolicyNonComplianceSummaryReportCommand() {
             var command = new Command("get-compliance-policy-non-compliance-summary-report");
+            command.Description = "Provides operations to call the getCompliancePolicyNonComplianceSummaryReport method.";
             var builder = new GetCompliancePolicyNonComplianceSummaryReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getComplianceSettingNonComplianceReport method.
+        /// </summary>
         public Command BuildGetComplianceSettingNonComplianceReportCommand() {
             var command = new Command("get-compliance-setting-non-compliance-report");
+            command.Description = "Provides operations to call the getComplianceSettingNonComplianceReport method.";
             var builder = new GetComplianceSettingNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getConfigurationPolicyNonComplianceReport method.
+        /// </summary>
         public Command BuildGetConfigurationPolicyNonComplianceReportCommand() {
             var command = new Command("get-configuration-policy-non-compliance-report");
+            command.Description = "Provides operations to call the getConfigurationPolicyNonComplianceReport method.";
             var builder = new GetConfigurationPolicyNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getConfigurationPolicyNonComplianceSummaryReport method.
+        /// </summary>
         public Command BuildGetConfigurationPolicyNonComplianceSummaryReportCommand() {
             var command = new Command("get-configuration-policy-non-compliance-summary-report");
+            command.Description = "Provides operations to call the getConfigurationPolicyNonComplianceSummaryReport method.";
             var builder = new GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getConfigurationSettingNonComplianceReport method.
+        /// </summary>
         public Command BuildGetConfigurationSettingNonComplianceReportCommand() {
             var command = new Command("get-configuration-setting-non-compliance-report");
+            command.Description = "Provides operations to call the getConfigurationSettingNonComplianceReport method.";
             var builder = new GetConfigurationSettingNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.
+        /// </summary>
         public Command BuildGetDeviceManagementIntentPerSettingContributingProfilesCommand() {
             var command = new Command("get-device-management-intent-per-setting-contributing-profiles");
+            command.Description = "Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.";
             var builder = new GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getDeviceManagementIntentSettingsReport method.
+        /// </summary>
         public Command BuildGetDeviceManagementIntentSettingsReportCommand() {
             var command = new Command("get-device-management-intent-settings-report");
+            command.Description = "Provides operations to call the getDeviceManagementIntentSettingsReport method.";
             var builder = new GetDeviceManagementIntentSettingsReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getDeviceNonComplianceReport method.
+        /// </summary>
         public Command BuildGetDeviceNonComplianceReportCommand() {
             var command = new Command("get-device-non-compliance-report");
+            command.Description = "Provides operations to call the getDeviceNonComplianceReport method.";
             var builder = new GetDeviceNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getDevicesWithoutCompliancePolicyReport method.
+        /// </summary>
+        public Command BuildGetDevicesWithoutCompliancePolicyReportCommand() {
+            var command = new Command("get-devices-without-compliance-policy-report");
+            command.Description = "Provides operations to call the getDevicesWithoutCompliancePolicyReport method.";
+            var builder = new GetDevicesWithoutCompliancePolicyReportRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getHistoricalReport method.
+        /// </summary>
         public Command BuildGetHistoricalReportCommand() {
             var command = new Command("get-historical-report");
+            command.Description = "Provides operations to call the getHistoricalReport method.";
             var builder = new GetHistoricalReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getNoncompliantDevicesAndSettingsReport method.
+        /// </summary>
         public Command BuildGetNoncompliantDevicesAndSettingsReportCommand() {
             var command = new Command("get-noncompliant-devices-and-settings-report");
+            command.Description = "Provides operations to call the getNoncompliantDevicesAndSettingsReport method.";
             var builder = new GetNoncompliantDevicesAndSettingsReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getPolicyNonComplianceMetadata method.
+        /// </summary>
         public Command BuildGetPolicyNonComplianceMetadataCommand() {
             var command = new Command("get-policy-non-compliance-metadata");
+            command.Description = "Provides operations to call the getPolicyNonComplianceMetadata method.";
             var builder = new GetPolicyNonComplianceMetadataRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getPolicyNonComplianceReport method.
+        /// </summary>
         public Command BuildGetPolicyNonComplianceReportCommand() {
             var command = new Command("get-policy-non-compliance-report");
+            command.Description = "Provides operations to call the getPolicyNonComplianceReport method.";
             var builder = new GetPolicyNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getPolicyNonComplianceSummaryReport method.
+        /// </summary>
         public Command BuildGetPolicyNonComplianceSummaryReportCommand() {
             var command = new Command("get-policy-non-compliance-summary-report");
+            command.Description = "Provides operations to call the getPolicyNonComplianceSummaryReport method.";
             var builder = new GetPolicyNonComplianceSummaryReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getReportFilters method.
+        /// </summary>
         public Command BuildGetReportFiltersCommand() {
             var command = new Command("get-report-filters");
+            command.Description = "Provides operations to call the getReportFilters method.";
             var builder = new GetReportFiltersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getSettingNonComplianceReport method.
+        /// </summary>
         public Command BuildGetSettingNonComplianceReportCommand() {
             var command = new Command("get-setting-non-compliance-report");
+            command.Description = "Provides operations to call the getSettingNonComplianceReport method.";
             var builder = new GetSettingNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -239,7 +325,7 @@ namespace ApiSdk.DeviceManagement.Reports {
             var command = new Command("patch");
             command.Description = "Update the navigation property reports in deviceManagement";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -267,7 +353,7 @@ namespace ApiSdk.DeviceManagement.Reports {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceManagementReports>(DeviceManagementReports.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -283,9 +369,9 @@ namespace ApiSdk.DeviceManagement.Reports {
         }
         /// <summary>
         /// Instantiates a new ReportsRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public ReportsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -296,9 +382,15 @@ namespace ApiSdk.DeviceManagement.Reports {
         }
         /// <summary>
         /// Delete navigation property reports for deviceManagement
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<ReportsRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<ReportsRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<ReportsRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -314,9 +406,15 @@ namespace ApiSdk.DeviceManagement.Reports {
         }
         /// <summary>
         /// Reports singleton
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<ReportsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<ReportsRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<ReportsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -334,10 +432,16 @@ namespace ApiSdk.DeviceManagement.Reports {
         }
         /// <summary>
         /// Update the navigation property reports in deviceManagement
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(DeviceManagementReports body, Action<ReportsRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(DeviceManagementReports body, Action<ReportsRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(DeviceManagementReports body, Action<ReportsRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -354,10 +458,12 @@ namespace ApiSdk.DeviceManagement.Reports {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ReportsRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -365,22 +471,40 @@ namespace ApiSdk.DeviceManagement.Reports {
             /// </summary>
             public ReportsRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Reports singleton</summary>
+        /// <summary>
+        /// Reports singleton
+        /// </summary>
         public class ReportsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ReportsRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -390,13 +514,15 @@ namespace ApiSdk.DeviceManagement.Reports {
             /// </summary>
             public ReportsRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ReportsRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -404,7 +530,7 @@ namespace ApiSdk.DeviceManagement.Reports {
             /// </summary>
             public ReportsRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

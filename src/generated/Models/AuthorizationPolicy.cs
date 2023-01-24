@@ -16,9 +16,15 @@ namespace ApiSdk.Models {
         /// <summary>To disable the use of MSOL PowerShell set this property to true. This will also disable user-based access to the legacy service endpoint used by MSOL PowerShell. This does not affect Azure AD Connect or Microsoft Graph.</summary>
         public bool? BlockMsolPowerShell { get; set; }
         /// <summary>The defaultUserRolePermissions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.DefaultUserRolePermissions? DefaultUserRolePermissions { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.DefaultUserRolePermissions DefaultUserRolePermissions { get; set; }
+#endif
         /// <summary>Represents role templateId for the role that should be granted to guest user. Currently following roles are supported:  User (a0b1b346-4d3e-4e8b-98f8-753987be4970), Guest User (10dae51f-b6af-4016-8d66-8c2a99b929b3), and Restricted Guest User (2af84b1e-32c8-42b7-82bc-daa82404023b).</summary>
-        public string GuestUserRoleId { get; set; }
+        public Guid? GuestUserRoleId { get; set; }
         /// <summary>
         /// Instantiates a new AuthorizationPolicy and sets the default values.
         /// </summary>
@@ -27,8 +33,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new AuthorizationPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AuthorizationPolicy();
@@ -44,13 +50,13 @@ namespace ApiSdk.Models {
                 {"allowInvitesFrom", n => { AllowInvitesFrom = n.GetEnumValue<AllowInvitesFrom>(); } },
                 {"blockMsolPowerShell", n => { BlockMsolPowerShell = n.GetBoolValue(); } },
                 {"defaultUserRolePermissions", n => { DefaultUserRolePermissions = n.GetObjectValue<ApiSdk.Models.DefaultUserRolePermissions>(ApiSdk.Models.DefaultUserRolePermissions.CreateFromDiscriminatorValue); } },
-                {"guestUserRoleId", n => { GuestUserRoleId = n.GetStringValue(); } },
+                {"guestUserRoleId", n => { GuestUserRoleId = n.GetGuidValue(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
@@ -60,7 +66,7 @@ namespace ApiSdk.Models {
             writer.WriteEnumValue<AllowInvitesFrom>("allowInvitesFrom", AllowInvitesFrom);
             writer.WriteBoolValue("blockMsolPowerShell", BlockMsolPowerShell);
             writer.WriteObjectValue<ApiSdk.Models.DefaultUserRolePermissions>("defaultUserRolePermissions", DefaultUserRolePermissions);
-            writer.WriteStringValue("guestUserRoleId", GuestUserRoleId);
+            writer.WriteGuidValue("guestUserRoleId", GuestUserRoleId);
         }
     }
 }

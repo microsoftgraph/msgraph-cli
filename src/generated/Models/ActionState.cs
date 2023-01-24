@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>State of the action on the device</summary>
     public enum ActionState {
         /// <summary>Not a valid action state</summary>
         None,

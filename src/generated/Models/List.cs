@@ -6,25 +6,85 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class List : BaseItem, IParsable {
         /// <summary>The collection of field definitions for this list.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ColumnDefinition>? Columns { get; set; }
+#nullable restore
+#else
         public List<ColumnDefinition> Columns { get; set; }
+#endif
         /// <summary>The collection of content types present in this list.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ContentType>? ContentTypes { get; set; }
+#nullable restore
+#else
         public List<ContentType> ContentTypes { get; set; }
+#endif
         /// <summary>The displayable title of the list.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>Only present on document libraries. Allows access to the list as a [drive][] resource with [driveItems][driveItem].</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.Drive? Drive { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.Drive Drive { get; set; }
+#endif
         /// <summary>All items contained in the list.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ListItem>? Items { get; set; }
+#nullable restore
+#else
         public List<ListItem> Items { get; set; }
+#endif
         /// <summary>Provides additional details about the list.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ListInfo? List_prop { get; set; }
+#nullable restore
+#else
         public ListInfo List_prop { get; set; }
+#endif
         /// <summary>The collection of long-running operations on the list.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<RichLongRunningOperation>? Operations { get; set; }
+#nullable restore
+#else
         public List<RichLongRunningOperation> Operations { get; set; }
+#endif
         /// <summary>Returns identifiers useful for SharePoint REST compatibility. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.SharepointIds? SharepointIds { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.SharepointIds SharepointIds { get; set; }
+#endif
         /// <summary>The set of subscriptions on the list.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Subscription>? Subscriptions { get; set; }
+#nullable restore
+#else
         public List<Subscription> Subscriptions { get; set; }
+#endif
         /// <summary>If present, indicates that this is a system-managed list. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public SystemFacet? System { get; set; }
+#nullable restore
+#else
         public SystemFacet System { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new list and sets the default values.
         /// </summary>
@@ -33,8 +93,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new List CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new List();
@@ -58,8 +118,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

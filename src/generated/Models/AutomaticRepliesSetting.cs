@@ -10,15 +10,45 @@ namespace ApiSdk.Models {
         /// <summary>The set of audience external to the signed-in user&apos;s organization who will receive the ExternalReplyMessage, if Status is AlwaysEnabled or Scheduled. The possible values are: none, contactsOnly, all.</summary>
         public ExternalAudienceScope? ExternalAudience { get; set; }
         /// <summary>The automatic reply to send to the specified external audience, if Status is AlwaysEnabled or Scheduled.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExternalReplyMessage { get; set; }
+#nullable restore
+#else
         public string ExternalReplyMessage { get; set; }
+#endif
         /// <summary>The automatic reply to send to the audience internal to the signed-in user&apos;s organization, if Status is AlwaysEnabled or Scheduled.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? InternalReplyMessage { get; set; }
+#nullable restore
+#else
         public string InternalReplyMessage { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The date and time that automatic replies are set to end, if Status is set to Scheduled.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeTimeZone? ScheduledEndDateTime { get; set; }
+#nullable restore
+#else
         public DateTimeTimeZone ScheduledEndDateTime { get; set; }
+#endif
         /// <summary>The date and time that automatic replies are set to begin, if Status is set to Scheduled.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeTimeZone? ScheduledStartDateTime { get; set; }
+#nullable restore
+#else
         public DateTimeTimeZone ScheduledStartDateTime { get; set; }
+#endif
         /// <summary>Configurations status for automatic replies. The possible values are: disabled, alwaysEnabled, scheduled.</summary>
         public AutomaticRepliesStatus? Status { get; set; }
         /// <summary>
@@ -26,12 +56,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public AutomaticRepliesSetting() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.automaticRepliesSetting";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static AutomaticRepliesSetting CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AutomaticRepliesSetting();
@@ -52,8 +81,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<ExternalAudienceScope>("externalAudience", ExternalAudience);

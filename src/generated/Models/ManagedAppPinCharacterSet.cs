@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Character set which is to be used for a user&apos;s app PIN</summary>
     public enum ManagedAppPinCharacterSet {
         /// <summary>Numeric characters</summary>
         Numeric,

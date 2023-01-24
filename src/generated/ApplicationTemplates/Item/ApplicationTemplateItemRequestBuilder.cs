@@ -15,7 +15,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.ApplicationTemplates.Item {
-    /// <summary>Provides operations to manage the collection of applicationTemplate entities.</summary>
+    /// <summary>
+    /// Provides operations to manage the collection of applicationTemplate entities.
+    /// </summary>
     public class ApplicationTemplateItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -24,17 +26,18 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from applicationTemplates
+        /// Delete entity from applicationTemplates by key (id)
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from applicationTemplates";
+            command.Description = "Delete entity from applicationTemplates by key (id)";
             // Create options for all the parameters
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "key: id of applicationTemplate") {
             };
             applicationTemplateIdOption.IsRequired = true;
             command.AddOption(applicationTemplateIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -42,10 +45,10 @@ namespace ApiSdk.ApplicationTemplates.Item {
                 var applicationTemplateId = invocationContext.ParseResult.GetValueForOption(applicationTemplateIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("applicationTemplate%2Did", applicationTemplateId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -57,6 +60,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
         }
         /// <summary>
         /// Retrieve the properties of an applicationTemplate object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/applicationtemplate-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -99,7 +103,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -116,24 +120,28 @@ namespace ApiSdk.ApplicationTemplates.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the instantiate method.
+        /// </summary>
         public Command BuildInstantiateCommand() {
             var command = new Command("instantiate");
+            command.Description = "Provides operations to call the instantiate method.";
             var builder = new InstantiateRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
-        /// Update entity in applicationTemplates
+        /// Update entity in applicationTemplates by key (id)
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in applicationTemplates";
+            command.Description = "Update entity in applicationTemplates by key (id)";
             // Create options for all the parameters
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "key: id of applicationTemplate") {
             };
             applicationTemplateIdOption.IsRequired = true;
             command.AddOption(applicationTemplateIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -162,7 +170,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApplicationTemplate>(ApplicationTemplate.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("applicationTemplate%2Did", applicationTemplateId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -179,9 +187,9 @@ namespace ApiSdk.ApplicationTemplates.Item {
         }
         /// <summary>
         /// Instantiates a new ApplicationTemplateItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public ApplicationTemplateItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -191,10 +199,16 @@ namespace ApiSdk.ApplicationTemplates.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from applicationTemplates
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Delete entity from applicationTemplates by key (id)
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<ApplicationTemplateItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<ApplicationTemplateItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<ApplicationTemplateItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -210,9 +224,15 @@ namespace ApiSdk.ApplicationTemplates.Item {
         }
         /// <summary>
         /// Retrieve the properties of an applicationTemplate object.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<ApplicationTemplateItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<ApplicationTemplateItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<ApplicationTemplateItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -229,11 +249,17 @@ namespace ApiSdk.ApplicationTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in applicationTemplates
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Update entity in applicationTemplates by key (id)
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApplicationTemplate body, Action<ApplicationTemplateItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ApplicationTemplate body, Action<ApplicationTemplateItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ApplicationTemplate body, Action<ApplicationTemplateItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -250,10 +276,12 @@ namespace ApiSdk.ApplicationTemplates.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ApplicationTemplateItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -261,22 +289,40 @@ namespace ApiSdk.ApplicationTemplates.Item {
             /// </summary>
             public ApplicationTemplateItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Retrieve the properties of an applicationTemplate object.</summary>
+        /// <summary>
+        /// Retrieve the properties of an applicationTemplate object.
+        /// </summary>
         public class ApplicationTemplateItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ApplicationTemplateItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -286,13 +332,15 @@ namespace ApiSdk.ApplicationTemplates.Item {
             /// </summary>
             public ApplicationTemplateItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ApplicationTemplateItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -300,7 +348,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
             /// </summary>
             public ApplicationTemplateItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

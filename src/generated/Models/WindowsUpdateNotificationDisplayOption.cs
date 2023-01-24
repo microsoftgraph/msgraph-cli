@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Windows Update Notification Display Options</summary>
     public enum WindowsUpdateNotificationDisplayOption {
         /// <summary>Not configured</summary>
         NotConfigured,

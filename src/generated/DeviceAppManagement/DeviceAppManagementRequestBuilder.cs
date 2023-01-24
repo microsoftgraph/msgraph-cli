@@ -29,7 +29,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>
+    /// Provides operations to manage the deviceAppManagement singleton.
+    /// </summary>
     public class DeviceAppManagementRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -37,8 +39,12 @@ namespace ApiSdk.DeviceAppManagement {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildAndroidManagedAppProtectionsCommand() {
             var command = new Command("android-managed-app-protections");
+            command.Description = "Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new AndroidManagedAppProtectionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -46,8 +52,12 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the defaultManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildDefaultManagedAppProtectionsCommand() {
             var command = new Command("default-managed-app-protections");
+            command.Description = "Provides operations to manage the defaultManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new DefaultManagedAppProtectionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -94,7 +104,7 @@ namespace ApiSdk.DeviceAppManagement {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -110,8 +120,12 @@ namespace ApiSdk.DeviceAppManagement {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the iosManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildIosManagedAppProtectionsCommand() {
             var command = new Command("ios-managed-app-protections");
+            command.Description = "Provides operations to manage the iosManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new IosManagedAppProtectionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -119,8 +133,12 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildManagedAppPoliciesCommand() {
             var command = new Command("managed-app-policies");
+            command.Description = "Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new ManagedAppPoliciesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -128,8 +146,12 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the managedAppRegistrations property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildManagedAppRegistrationsCommand() {
             var command = new Command("managed-app-registrations");
+            command.Description = "Provides operations to manage the managedAppRegistrations property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new ManagedAppRegistrationsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -137,8 +159,12 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildManagedAppStatusesCommand() {
             var command = new Command("managed-app-statuses");
+            command.Description = "Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new ManagedAppStatusesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -146,8 +172,12 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildManagedEBooksCommand() {
             var command = new Command("managed-e-books");
+            command.Description = "Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new ManagedEBooksRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -155,8 +185,12 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the mdmWindowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildMdmWindowsInformationProtectionPoliciesCommand() {
             var command = new Command("mdm-windows-information-protection-policies");
+            command.Description = "Provides operations to manage the mdmWindowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new MdmWindowsInformationProtectionPoliciesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -164,8 +198,12 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildMobileAppCategoriesCommand() {
             var command = new Command("mobile-app-categories");
+            command.Description = "Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new MobileAppCategoriesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -173,8 +211,12 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the mobileAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildMobileAppConfigurationsCommand() {
             var command = new Command("mobile-app-configurations");
+            command.Description = "Provides operations to manage the mobileAppConfigurations property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new MobileAppConfigurationsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -182,8 +224,12 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildMobileAppsCommand() {
             var command = new Command("mobile-apps");
+            command.Description = "Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new MobileAppsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -200,7 +246,7 @@ namespace ApiSdk.DeviceAppManagement {
             var command = new Command("patch");
             command.Description = "Update deviceAppManagement";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -228,7 +274,7 @@ namespace ApiSdk.DeviceAppManagement {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.DeviceAppManagement>(ApiSdk.Models.DeviceAppManagement.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -242,14 +288,22 @@ namespace ApiSdk.DeviceAppManagement {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the syncMicrosoftStoreForBusinessApps method.
+        /// </summary>
         public Command BuildSyncMicrosoftStoreForBusinessAppsCommand() {
             var command = new Command("sync-microsoft-store-for-business-apps");
+            command.Description = "Provides operations to call the syncMicrosoftStoreForBusinessApps method.";
             var builder = new SyncMicrosoftStoreForBusinessAppsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildTargetedManagedAppConfigurationsCommand() {
             var command = new Command("targeted-managed-app-configurations");
+            command.Description = "Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new TargetedManagedAppConfigurationsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -257,8 +311,12 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the vppTokens property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildVppTokensCommand() {
             var command = new Command("vpp-tokens");
+            command.Description = "Provides operations to manage the vppTokens property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new VppTokensRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -266,8 +324,12 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
+        /// </summary>
         public Command BuildWindowsInformationProtectionPoliciesCommand() {
             var command = new Command("windows-information-protection-policies");
+            command.Description = "Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new WindowsInformationProtectionPoliciesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -277,9 +339,9 @@ namespace ApiSdk.DeviceAppManagement {
         }
         /// <summary>
         /// Instantiates a new DeviceAppManagementRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public DeviceAppManagementRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -290,9 +352,15 @@ namespace ApiSdk.DeviceAppManagement {
         }
         /// <summary>
         /// Get deviceAppManagement
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<DeviceAppManagementRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<DeviceAppManagementRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<DeviceAppManagementRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -310,10 +378,16 @@ namespace ApiSdk.DeviceAppManagement {
         }
         /// <summary>
         /// Update deviceAppManagement
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.DeviceAppManagement body, Action<DeviceAppManagementRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceAppManagement body, Action<DeviceAppManagementRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceAppManagement body, Action<DeviceAppManagementRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -330,19 +404,37 @@ namespace ApiSdk.DeviceAppManagement {
             }
             return requestInfo;
         }
-        /// <summary>Get deviceAppManagement</summary>
+        /// <summary>
+        /// Get deviceAppManagement
+        /// </summary>
         public class DeviceAppManagementRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DeviceAppManagementRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -352,13 +444,15 @@ namespace ApiSdk.DeviceAppManagement {
             /// </summary>
             public DeviceAppManagementRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DeviceAppManagementRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -366,7 +460,7 @@ namespace ApiSdk.DeviceAppManagement {
             /// </summary>
             public DeviceAppManagementRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

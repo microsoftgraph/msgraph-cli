@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Scheduled the update installation on the weeks of the month</summary>
     public enum WindowsUpdateForBusinessUpdateWeeks {
         /// <summary>Allow the user to set.</summary>
         UserDefined,

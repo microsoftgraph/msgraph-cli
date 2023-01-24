@@ -8,9 +8,21 @@ namespace ApiSdk.Models {
         /// <summary>Possible values of the compliance app list.</summary>
         public AppListType? CompliantAppListType { get; set; }
         /// <summary>List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppListItem>? CompliantAppsList { get; set; }
+#nullable restore
+#else
         public List<AppListItem> CompliantAppsList { get; set; }
+#endif
         /// <summary>An email address lacking a suffix that matches any of these strings will be considered out-of-domain.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? EmailInDomainSuffixes { get; set; }
+#nullable restore
+#else
         public List<string> EmailInDomainSuffixes { get; set; }
+#endif
         /// <summary>Block simple passwords.</summary>
         public bool? PasswordBlockSimple { get; set; }
         /// <summary>Number of days before the password expires.</summary>
@@ -37,8 +49,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new MacOSGeneralDeviceConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MacOSGeneralDeviceConfiguration();
@@ -64,8 +76,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

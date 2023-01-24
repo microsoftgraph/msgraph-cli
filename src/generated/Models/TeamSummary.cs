@@ -7,25 +7,30 @@ namespace ApiSdk.Models {
     public class TeamSummary : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The guestsCount property</summary>
+        /// <summary>Count of guests in a team.</summary>
         public int? GuestsCount { get; set; }
-        /// <summary>The membersCount property</summary>
+        /// <summary>Count of members in a team.</summary>
         public int? MembersCount { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
-        /// <summary>The ownersCount property</summary>
+#endif
+        /// <summary>Count of owners in a team.</summary>
         public int? OwnersCount { get; set; }
         /// <summary>
         /// Instantiates a new teamSummary and sets the default values.
         /// </summary>
         public TeamSummary() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.teamSummary";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static TeamSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TeamSummary();
@@ -43,8 +48,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("guestsCount", GuestsCount);

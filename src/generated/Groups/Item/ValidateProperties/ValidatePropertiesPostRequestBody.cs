@@ -4,16 +4,27 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Groups.Item.ValidateProperties {
-    /// <summary>Provides operations to call the validateProperties method.</summary>
     public class ValidatePropertiesPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The displayName property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>The mailNickname property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MailNickname { get; set; }
+#nullable restore
+#else
         public string MailNickname { get; set; }
+#endif
         /// <summary>The onBehalfOfUserId property</summary>
-        public string OnBehalfOfUserId { get; set; }
+        public Guid? OnBehalfOfUserId { get; set; }
         /// <summary>
         /// Instantiates a new validatePropertiesPostRequestBody and sets the default values.
         /// </summary>
@@ -22,8 +33,8 @@ namespace ApiSdk.Groups.Item.ValidateProperties {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static ValidatePropertiesPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ValidatePropertiesPostRequestBody();
@@ -35,18 +46,18 @@ namespace ApiSdk.Groups.Item.ValidateProperties {
             return new Dictionary<string, Action<IParseNode>> {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"mailNickname", n => { MailNickname = n.GetStringValue(); } },
-                {"onBehalfOfUserId", n => { OnBehalfOfUserId = n.GetStringValue(); } },
+                {"onBehalfOfUserId", n => { OnBehalfOfUserId = n.GetGuidValue(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("mailNickname", MailNickname);
-            writer.WriteStringValue("onBehalfOfUserId", OnBehalfOfUserId);
+            writer.WriteGuidValue("onBehalfOfUserId", OnBehalfOfUserId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

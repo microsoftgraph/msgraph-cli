@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Delivery optimization mode for peer distribution</summary>
     public enum WindowsDeliveryOptimizationMode {
         /// <summary>Allow the user to set.</summary>
         UserDefined,

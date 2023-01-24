@@ -6,19 +6,61 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class ListItem : BaseItem, IParsable {
         /// <summary>Analytics about the view activities that took place on this item.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemAnalytics? Analytics { get; set; }
+#nullable restore
+#else
         public ItemAnalytics Analytics { get; set; }
+#endif
         /// <summary>The content type of this list item</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ContentTypeInfo? ContentType { get; set; }
+#nullable restore
+#else
         public ContentTypeInfo ContentType { get; set; }
+#endif
         /// <summary>Version information for a document set version created by a user.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DocumentSetVersion>? DocumentSetVersions { get; set; }
+#nullable restore
+#else
         public List<DocumentSetVersion> DocumentSetVersions { get; set; }
+#endif
         /// <summary>For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.DriveItem? DriveItem { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.DriveItem DriveItem { get; set; }
+#endif
         /// <summary>The values of the columns set on this list item.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public FieldValueSet? Fields { get; set; }
+#nullable restore
+#else
         public FieldValueSet Fields { get; set; }
+#endif
         /// <summary>Returns identifiers useful for SharePoint REST compatibility. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.SharepointIds? SharepointIds { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.SharepointIds SharepointIds { get; set; }
+#endif
         /// <summary>The list of previous versions of the list item.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ListItemVersion>? Versions { get; set; }
+#nullable restore
+#else
         public List<ListItemVersion> Versions { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new listItem and sets the default values.
         /// </summary>
@@ -27,8 +69,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ListItem CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ListItem();
@@ -49,8 +91,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

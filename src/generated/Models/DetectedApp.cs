@@ -4,32 +4,52 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>A managed or unmanaged app that is installed on a managed device. Unmanaged apps will only appear for devices marked as corporate owned.</summary>
+    /// <summary>
+    /// A managed or unmanaged app that is installed on a managed device. Unmanaged apps will only appear for devices marked as corporate owned.
+    /// </summary>
     public class DetectedApp : Entity, IParsable {
         /// <summary>The number of devices that have installed this application</summary>
         public int? DeviceCount { get; set; }
         /// <summary>Name of the discovered application. Read-only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>The devices that have the discovered application installed</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ManagedDevice>? ManagedDevices { get; set; }
+#nullable restore
+#else
         public List<ManagedDevice> ManagedDevices { get; set; }
+#endif
         /// <summary>Indicates the operating system / platform of the discovered application.  Some possible values are Windows, iOS, macOS. The default value is unknown (0).</summary>
         public DetectedAppPlatformType? Platform { get; set; }
         /// <summary>Indicates the publisher of the discovered application. For example: &apos;Microsoft&apos;.  The default value is an empty string.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Publisher { get; set; }
+#nullable restore
+#else
         public string Publisher { get; set; }
+#endif
         /// <summary>Discovered application size in bytes. Read-only</summary>
         public long? SizeInByte { get; set; }
         /// <summary>Version of the discovered application. Read-only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Version { get; set; }
+#nullable restore
+#else
         public string Version { get; set; }
-        /// <summary>
-        /// Instantiates a new detectedApp and sets the default values.
-        /// </summary>
-        public DetectedApp() : base() {
-            OdataType = "#microsoft.graph.detectedApp";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DetectedApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DetectedApp();
@@ -50,8 +70,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

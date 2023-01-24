@@ -14,7 +14,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
-    /// <summary>Provides operations to call the cancelMediaProcessing method.</summary>
+    /// <summary>
+    /// Provides operations to call the cancelMediaProcessing method.
+    /// </summary>
     public class CancelMediaProcessingRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -24,6 +26,7 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The **cancelMediaProcessing** method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a **subscribeToTone** operation because it operates independent of any operation queue.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-cancelmediaprocessing?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -33,7 +36,7 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -62,7 +65,7 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CancelMediaProcessingPostRequestBody>(CancelMediaProcessingPostRequestBody.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("call%2Did", callId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -79,9 +82,9 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
         }
         /// <summary>
         /// Instantiates a new CancelMediaProcessingRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public CancelMediaProcessingRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -92,10 +95,16 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
         }
         /// <summary>
         /// Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The **cancelMediaProcessing** method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a **subscribeToTone** operation because it operates independent of any operation queue.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(CancelMediaProcessingPostRequestBody body, Action<CancelMediaProcessingRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(CancelMediaProcessingPostRequestBody body, Action<CancelMediaProcessingRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(CancelMediaProcessingPostRequestBody body, Action<CancelMediaProcessingRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -112,10 +121,12 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class CancelMediaProcessingRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -123,7 +134,7 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
             /// </summary>
             public CancelMediaProcessingRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

@@ -8,32 +8,67 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Content types allowed in document set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ContentTypeInfo>? AllowedContentTypes { get; set; }
+#nullable restore
+#else
         public List<ContentTypeInfo> AllowedContentTypes { get; set; }
+#endif
         /// <summary>Default contents of document set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DocumentSetContent>? DefaultContents { get; set; }
+#nullable restore
+#else
         public List<DocumentSetContent> DefaultContents { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Specifies whether to push welcome page changes to inherited content types.</summary>
         public bool? PropagateWelcomePageChanges { get; set; }
         /// <summary>The sharedColumns property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ColumnDefinition>? SharedColumns { get; set; }
+#nullable restore
+#else
         public List<ColumnDefinition> SharedColumns { get; set; }
+#endif
         /// <summary>Indicates whether to add the name of the document set to each file name.</summary>
         public bool? ShouldPrefixNameToFile { get; set; }
         /// <summary>The welcomePageColumns property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ColumnDefinition>? WelcomePageColumns { get; set; }
+#nullable restore
+#else
         public List<ColumnDefinition> WelcomePageColumns { get; set; }
+#endif
         /// <summary>Welcome page absolute URL.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WelcomePageUrl { get; set; }
+#nullable restore
+#else
         public string WelcomePageUrl { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new documentSet and sets the default values.
         /// </summary>
         public DocumentSet() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.documentSet";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static DocumentSet CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DocumentSet();
@@ -55,8 +90,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<ContentTypeInfo>("allowedContentTypes", AllowedContentTypes);

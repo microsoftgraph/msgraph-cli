@@ -6,11 +6,23 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class EditionUpgradeConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Edition Upgrade License File Content.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? License { get; set; }
+#nullable restore
+#else
         public string License { get; set; }
+#endif
         /// <summary>Edition Upgrade License type</summary>
         public EditionUpgradeLicenseType? LicenseType { get; set; }
         /// <summary>Edition Upgrade Product Key.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ProductKey { get; set; }
+#nullable restore
+#else
         public string ProductKey { get; set; }
+#endif
         /// <summary>Windows 10 Edition type.</summary>
         public Windows10EditionType? TargetEdition { get; set; }
         /// <summary>
@@ -21,8 +33,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new EditionUpgradeConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EditionUpgradeConfiguration();
@@ -40,8 +52,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

@@ -4,20 +4,49 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
     public class OnenoteSection : OnenoteEntityHierarchyModel, IParsable {
         /// <summary>Indicates whether this is the user&apos;s default section. Read-only.</summary>
         public bool? IsDefault { get; set; }
         /// <summary>Links for opening the section. The oneNoteClientURL link opens the section in the OneNote native client if it&apos;s installed. The oneNoteWebURL link opens the section in OneNote on the web.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public SectionLinks? Links { get; set; }
+#nullable restore
+#else
         public SectionLinks Links { get; set; }
+#endif
         /// <summary>The collection of pages in the section.  Read-only. Nullable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<OnenotePage>? Pages { get; set; }
+#nullable restore
+#else
         public List<OnenotePage> Pages { get; set; }
+#endif
         /// <summary>The pages endpoint where you can get details for all the pages in the section. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PagesUrl { get; set; }
+#nullable restore
+#else
         public string PagesUrl { get; set; }
+#endif
         /// <summary>The notebook that contains the section.  Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Notebook? ParentNotebook { get; set; }
+#nullable restore
+#else
         public Notebook ParentNotebook { get; set; }
+#endif
         /// <summary>The section group that contains the section.  Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public SectionGroup? ParentSectionGroup { get; set; }
+#nullable restore
+#else
         public SectionGroup ParentSectionGroup { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new onenoteSection and sets the default values.
         /// </summary>
@@ -26,8 +55,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new OnenoteSection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OnenoteSection();
@@ -47,8 +76,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

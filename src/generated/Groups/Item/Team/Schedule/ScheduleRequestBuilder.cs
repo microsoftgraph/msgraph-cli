@@ -24,7 +24,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Team.Schedule {
-    /// <summary>Provides operations to manage the schedule property of the microsoft.graph.team entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the schedule property of the microsoft.graph.team entity.
+    /// </summary>
     public class ScheduleRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -43,7 +45,8 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -51,10 +54,10 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -66,6 +69,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
         }
         /// <summary>
         /// Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the `provisionStatus` property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the `provisionStatusCode` property. Clients can also inspect the configuration of the schedule.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/schedule-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -108,7 +112,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -125,8 +129,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the offerShiftRequests property of the microsoft.graph.schedule entity.
+        /// </summary>
         public Command BuildOfferShiftRequestsCommand() {
             var command = new Command("offer-shift-requests");
+            command.Description = "Provides operations to manage the offerShiftRequests property of the microsoft.graph.schedule entity.";
             var builder = new OfferShiftRequestsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -134,8 +142,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the openShiftChangeRequests property of the microsoft.graph.schedule entity.
+        /// </summary>
         public Command BuildOpenShiftChangeRequestsCommand() {
             var command = new Command("open-shift-change-requests");
+            command.Description = "Provides operations to manage the openShiftChangeRequests property of the microsoft.graph.schedule entity.";
             var builder = new OpenShiftChangeRequestsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -143,8 +155,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the openShifts property of the microsoft.graph.schedule entity.
+        /// </summary>
         public Command BuildOpenShiftsCommand() {
             var command = new Command("open-shifts");
+            command.Description = "Provides operations to manage the openShifts property of the microsoft.graph.schedule entity.";
             var builder = new OpenShiftsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -155,15 +171,15 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
         /// <summary>
         /// Update the navigation property schedule in groups
         /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
+        public Command BuildPutCommand() {
+            var command = new Command("put");
             command.Description = "Update the navigation property schedule in groups";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -192,7 +208,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Schedule>(ApiSdk.Models.Schedule.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPutRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -207,8 +223,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the schedulingGroups property of the microsoft.graph.schedule entity.
+        /// </summary>
         public Command BuildSchedulingGroupsCommand() {
             var command = new Command("scheduling-groups");
+            command.Description = "Provides operations to manage the schedulingGroups property of the microsoft.graph.schedule entity.";
             var builder = new SchedulingGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -216,14 +236,22 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the share method.
+        /// </summary>
         public Command BuildShareCommand() {
             var command = new Command("share");
+            command.Description = "Provides operations to call the share method.";
             var builder = new ShareRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the shifts property of the microsoft.graph.schedule entity.
+        /// </summary>
         public Command BuildShiftsCommand() {
             var command = new Command("shifts");
+            command.Description = "Provides operations to manage the shifts property of the microsoft.graph.schedule entity.";
             var builder = new ShiftsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -231,8 +259,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.
+        /// </summary>
         public Command BuildSwapShiftsChangeRequestsCommand() {
             var command = new Command("swap-shifts-change-requests");
+            command.Description = "Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.";
             var builder = new SwapShiftsChangeRequestsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -240,8 +272,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the timeOffReasons property of the microsoft.graph.schedule entity.
+        /// </summary>
         public Command BuildTimeOffReasonsCommand() {
             var command = new Command("time-off-reasons");
+            command.Description = "Provides operations to manage the timeOffReasons property of the microsoft.graph.schedule entity.";
             var builder = new TimeOffReasonsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -249,8 +285,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.
+        /// </summary>
         public Command BuildTimeOffRequestsCommand() {
             var command = new Command("time-off-requests");
+            command.Description = "Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.";
             var builder = new TimeOffRequestsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -258,8 +298,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.
+        /// </summary>
         public Command BuildTimesOffCommand() {
             var command = new Command("times-off");
+            command.Description = "Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.";
             var builder = new TimesOffRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -269,9 +313,9 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
         }
         /// <summary>
         /// Instantiates a new ScheduleRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public ScheduleRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -282,9 +326,15 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
         }
         /// <summary>
         /// Delete navigation property schedule for groups
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<ScheduleRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<ScheduleRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<ScheduleRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -300,9 +350,15 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
         }
         /// <summary>
         /// Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the `provisionStatus` property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the `provisionStatusCode` property. Clients can also inspect the configuration of the schedule.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<ScheduleRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<ScheduleRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<ScheduleRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -320,30 +376,38 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
         }
         /// <summary>
         /// Update the navigation property schedule in groups
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Schedule body, Action<ScheduleRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Schedule body, Action<ScheduleRequestBuilderPutRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Schedule body, Action<ScheduleRequestBuilderPutRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
-                var requestConfig = new ScheduleRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new ScheduleRequestBuilderPutRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ScheduleRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -351,22 +415,40 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             /// </summary>
             public ScheduleRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the `provisionStatus` property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the `provisionStatusCode` property. Clients can also inspect the configuration of the schedule.</summary>
+        /// <summary>
+        /// Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the `provisionStatus` property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the `provisionStatusCode` property. Clients can also inspect the configuration of the schedule.
+        /// </summary>
         public class ScheduleRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ScheduleRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -376,21 +458,23 @@ namespace ApiSdk.Groups.Item.Team.Schedule {
             /// </summary>
             public ScheduleRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class ScheduleRequestBuilderPatchRequestConfiguration {
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
+        public class ScheduleRequestBuilderPutRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
-            /// Instantiates a new scheduleRequestBuilderPatchRequestConfiguration and sets the default values.
+            /// Instantiates a new scheduleRequestBuilderPutRequestConfiguration and sets the default values.
             /// </summary>
-            public ScheduleRequestBuilderPatchRequestConfiguration() {
+            public ScheduleRequestBuilderPutRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

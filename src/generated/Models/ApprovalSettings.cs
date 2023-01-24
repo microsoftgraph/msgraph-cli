@@ -8,9 +8,21 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>One of SingleStage, Serial, Parallel, NoApproval (default). NoApproval is used when isApprovalRequired is false.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ApprovalMode { get; set; }
+#nullable restore
+#else
         public string ApprovalMode { get; set; }
+#endif
         /// <summary>If approval is required, the one or two elements of this collection define each of the stages of approval. An empty array if no approval is required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UnifiedApprovalStage>? ApprovalStages { get; set; }
+#nullable restore
+#else
         public List<UnifiedApprovalStage> ApprovalStages { get; set; }
+#endif
         /// <summary>Indicates whether approval is required for requests in this policy.</summary>
         public bool? IsApprovalRequired { get; set; }
         /// <summary>Indicates whether approval is required for a user to extend their assignment.</summary>
@@ -18,18 +30,23 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether the requestor is required to supply a justification in their request.</summary>
         public bool? IsRequestorJustificationRequired { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new approvalSettings and sets the default values.
         /// </summary>
         public ApprovalSettings() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.approvalSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static ApprovalSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ApprovalSettings();
@@ -49,8 +66,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("approvalMode", ApprovalMode);

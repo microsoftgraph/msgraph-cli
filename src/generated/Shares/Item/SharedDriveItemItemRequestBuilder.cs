@@ -21,7 +21,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Shares.Item {
-    /// <summary>Provides operations to manage the collection of sharedDriveItem entities.</summary>
+    /// <summary>
+    /// Provides operations to manage the collection of sharedDriveItem entities.
+    /// </summary>
     public class SharedDriveItemItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -30,17 +32,18 @@ namespace ApiSdk.Shares.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from shares
+        /// Delete entity from shares by key (id)
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from shares";
+            command.Description = "Delete entity from shares by key (id)";
             // Create options for all the parameters
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -48,10 +51,10 @@ namespace ApiSdk.Shares.Item {
                 var sharedDriveItemId = invocationContext.ParseResult.GetValueForOption(sharedDriveItemIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -61,8 +64,12 @@ namespace ApiSdk.Shares.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the driveItem property of the microsoft.graph.sharedDriveItem entity.
+        /// </summary>
         public Command BuildDriveItemCommand() {
             var command = new Command("drive-item");
+            command.Description = "Provides operations to manage the driveItem property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new DriveItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildContentCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -70,6 +77,7 @@ namespace ApiSdk.Shares.Item {
         }
         /// <summary>
         /// Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/shares-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -112,7 +120,7 @@ namespace ApiSdk.Shares.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -129,16 +137,24 @@ namespace ApiSdk.Shares.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the items property of the microsoft.graph.sharedDriveItem entity.
+        /// </summary>
         public Command BuildItemsCommand() {
             var command = new Command("items");
+            command.Description = "Provides operations to manage the items property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new ItemsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the list property of the microsoft.graph.sharedDriveItem entity.
+        /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Provides operations to manage the list property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new ListRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildColumnsCommand());
             command.AddCommand(builder.BuildContentTypesCommand());
@@ -151,8 +167,12 @@ namespace ApiSdk.Shares.Item {
             command.AddCommand(builder.BuildSubscriptionsCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the listItem property of the microsoft.graph.sharedDriveItem entity.
+        /// </summary>
         public Command BuildListItemCommand() {
             var command = new Command("list-item");
+            command.Description = "Provides operations to manage the listItem property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new ListItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAnalyticsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
@@ -165,17 +185,17 @@ namespace ApiSdk.Shares.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in shares
+        /// Update entity in shares by key (id)
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in shares";
+            command.Description = "Update entity in shares by key (id)";
             // Create options for all the parameters
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -204,7 +224,7 @@ namespace ApiSdk.Shares.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SharedDriveItem>(SharedDriveItem.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -219,8 +239,12 @@ namespace ApiSdk.Shares.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the permission property of the microsoft.graph.sharedDriveItem entity.
+        /// </summary>
         public Command BuildPermissionCommand() {
             var command = new Command("permission");
+            command.Description = "Provides operations to manage the permission property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new PermissionRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -228,24 +252,32 @@ namespace ApiSdk.Shares.Item {
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the root property of the microsoft.graph.sharedDriveItem entity.
+        /// </summary>
         public Command BuildRootCommand() {
             var command = new Command("root");
+            command.Description = "Provides operations to manage the root property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new RootRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildContentCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the site property of the microsoft.graph.sharedDriveItem entity.
+        /// </summary>
         public Command BuildSiteCommand() {
             var command = new Command("site");
+            command.Description = "Provides operations to manage the site property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new SiteRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Instantiates a new SharedDriveItemItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public SharedDriveItemItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -255,10 +287,16 @@ namespace ApiSdk.Shares.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from shares
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Delete entity from shares by key (id)
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<SharedDriveItemItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<SharedDriveItemItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<SharedDriveItemItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -274,9 +312,15 @@ namespace ApiSdk.Shares.Item {
         }
         /// <summary>
         /// Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<SharedDriveItemItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<SharedDriveItemItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<SharedDriveItemItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -293,11 +337,17 @@ namespace ApiSdk.Shares.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in shares
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Update entity in shares by key (id)
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(SharedDriveItem body, Action<SharedDriveItemItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(SharedDriveItem body, Action<SharedDriveItemItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(SharedDriveItem body, Action<SharedDriveItemItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -314,10 +364,12 @@ namespace ApiSdk.Shares.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class SharedDriveItemItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -325,22 +377,40 @@ namespace ApiSdk.Shares.Item {
             /// </summary>
             public SharedDriveItemItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.</summary>
+        /// <summary>
+        /// Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
+        /// </summary>
         public class SharedDriveItemItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class SharedDriveItemItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -350,13 +420,15 @@ namespace ApiSdk.Shares.Item {
             /// </summary>
             public SharedDriveItemItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class SharedDriveItemItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -364,7 +436,7 @@ namespace ApiSdk.Shares.Item {
             /// </summary>
             public SharedDriveItemItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

@@ -6,17 +6,47 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class ManagedIOSLobApp : ManagedMobileLobApp, IParsable {
         /// <summary>Contains properties of the possible iOS device types the mobile app can run on.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public IosDeviceType? ApplicableDeviceType { get; set; }
+#nullable restore
+#else
         public IosDeviceType ApplicableDeviceType { get; set; }
+#endif
         /// <summary>The build number of managed iOS Line of Business (LoB) app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BuildNumber { get; set; }
+#nullable restore
+#else
         public string BuildNumber { get; set; }
+#endif
         /// <summary>The Identity Name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BundleId { get; set; }
+#nullable restore
+#else
         public string BundleId { get; set; }
+#endif
         /// <summary>The expiration time.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
         /// <summary>The value for the minimum applicable operating system.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public IosMinimumOperatingSystem? MinimumSupportedOperatingSystem { get; set; }
+#nullable restore
+#else
         public IosMinimumOperatingSystem MinimumSupportedOperatingSystem { get; set; }
+#endif
         /// <summary>The version number of managed iOS Line of Business (LoB) app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? VersionNumber { get; set; }
+#nullable restore
+#else
         public string VersionNumber { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new ManagedIOSLobApp and sets the default values.
         /// </summary>
@@ -25,8 +55,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ManagedIOSLobApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ManagedIOSLobApp();
@@ -46,8 +76,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

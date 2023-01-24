@@ -4,14 +4,22 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Contains properties used to determine when to offer an app to devices and when to install the app on devices.</summary>
+    /// <summary>
+    /// Contains properties used to determine when to offer an app to devices and when to install the app on devices.
+    /// </summary>
     public class MobileAppInstallTimeSettings : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The time at which the app should be installed.</summary>
         public DateTimeOffset? DeadlineDateTime { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The time at which the app should be available for installation.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>Whether the local device time or UTC time should be used when determining the available and deadline times.</summary>
@@ -21,12 +29,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public MobileAppInstallTimeSettings() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.mobileAppInstallTimeSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static MobileAppInstallTimeSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MobileAppInstallTimeSettings();
@@ -44,8 +51,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("deadlineDateTime", DeadlineDateTime);
