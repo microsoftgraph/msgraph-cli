@@ -20,10 +20,6 @@ parameters:
 steps:
   - pwsh: Write-Host "##vso[task.setvariable variable=TARGET_RUNTIME]$(parameters.targetRuntime)"
     displayName: Resolve target runtime
-  - ${{ if startsWith(parameters.targetRuntime, 'osx') }}:
-    - bash: |
-        echo OSX
-      displayName: Test
   - bash: |
       if [ -d "$EXE_PATH" ]; then
         echo "##vso[task.logissue type=error;]Executable directory \"$EXE_PATH\" does not exist"
