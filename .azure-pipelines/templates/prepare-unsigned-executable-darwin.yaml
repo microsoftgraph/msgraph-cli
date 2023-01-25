@@ -22,39 +22,39 @@ steps:
     - bash: |
         echo OSX
       displayName: Test
-    - bash: |
-        if [ -d "$EXE_PATH" ]; then
-          echo "##vso[task.logissue type=error;]Executable directory \"$EXE_PATH\" does not exist"
-          echo "##vso[task.complete result=Failed;]"
-        fi
-      env:
-        EXE_PATH: ${{ parameters.executablePath }}
-      displayName: Validate executablePath value
-      condition: ${{ and(succeeded(), startsWith(parameters.targetRuntime, 'osx')) }}
+  - bash: |
+      if [ -d "$EXE_PATH" ]; then
+        echo "##vso[task.logissue type=error;]Executable directory \"$EXE_PATH\" does not exist"
+        echo "##vso[task.complete result=Failed;]"
+      fi
+    env:
+      EXE_PATH: ${{ parameters.executablePath }}
+    displayName: Validate executablePath value
+    condition: $[ and(succeeded(), startsWith(parameters.targetRuntime, 'osx')) ]
 
-    - task: AzureKeyVault@2
-      displayName: "Azure Key Vault: Get Secrets"
-      inputs:
-        azureSubscription: "MicrosofGraphKeyVault connection"
-        KeyVaultName: MicrosofGraphKeyVault
-        SecretsFilter: "graph-cli-apple-developer-certificate,graph-cli-apple-developer-certificate-password"
-      condition: ${{ and(succeeded(), startsWith(parameters.targetRuntime, 'osx')) }}
+  - task: AzureKeyVault@2
+    displayName: "Azure Key Vault: Get Secrets"
+    inputs:
+      azureSubscription: "MicrosofGraphKeyVault connection"
+      KeyVaultName: MicrosofGraphKeyVault
+      SecretsFilter: "graph-cli-apple-developer-certificate,graph-cli-apple-developer-certificate-password"
+    condition: $[ and(succeeded(), startsWith(parameters.targetRuntime, 'osx')) ]
 
-    # Setting hardened entitlements is a requirement for Apple notarization
-    - script: |
-        set -e
-        security create-keychain -p pwd $(agent.tempdirectory)/buildagent.keychain
-        security default-keychain -s $(agent.tempdirectory)/buildagent.keychain
-        security unlock-keychain -p pwd $(agent.tempdirectory)/buildagent.keychain
-        echo "$(graph-cli-apple-developer-certificate)" | base64 -D > $(agent.tempdirectory)/cert.p12
-        security import $(agent.tempdirectory)/cert.p12 -k $(agent.tempdirectory)/buildagent.keychain -P "$(graph-cli-apple-developer-certificate-password)" -T /usr/bin/codesign
-        security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k pwd $(agent.tempdirectory)/buildagent.keychain
-        codesign -s $(certificateName) --deep --force --options runtime --entitlements .azure-pipelines/darwin/entitlements.plist $(executablePath)/$(executableName)
-      displayName: Set Hardened Entitlements
-      condition: ${{ and(succeeded(), startsWith(parameters.targetRuntime, 'osx')) }}
-    
-    - script: |
-        set -e
-        pushd $(executablePath) && zip -r -X -y $(executablePath)/$(zipName) * && popd
-      displayName: Archive build for submission
-      condition: ${{ and(succeeded(), startsWith(parameters.targetRuntime, 'osx')) }}
+  # Setting hardened entitlements is a requirement for Apple notarization
+  - script: |
+      set -e
+      security create-keychain -p pwd $(agent.tempdirectory)/buildagent.keychain
+      security default-keychain -s $(agent.tempdirectory)/buildagent.keychain
+      security unlock-keychain -p pwd $(agent.tempdirectory)/buildagent.keychain
+      echo "$(graph-cli-apple-developer-certificate)" | base64 -D > $(agent.tempdirectory)/cert.p12
+      security import $(agent.tempdirectory)/cert.p12 -k $(agent.tempdirectory)/buildagent.keychain -P "$(graph-cli-apple-developer-certificate-password)" -T /usr/bin/codesign
+      security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k pwd $(agent.tempdirectory)/buildagent.keychain
+      codesign -s $(certificateName) --deep --force --options runtime --entitlements .azure-pipelines/darwin/entitlements.plist $(executablePath)/$(executableName)
+    displayName: Set Hardened Entitlements
+    condition: $[ and(succeeded(), startsWith(parameters.targetRuntime, 'osx')) ]
+  
+  - script: |
+      set -e
+      pushd $(executablePath) && zip -r -X -y $(executablePath)/$(zipName) * && popd
+    displayName: Archive build for submission
+    condition: $[ and(succeeded(), startsWith(parameters.targetRuntime, 'osx')) ]
