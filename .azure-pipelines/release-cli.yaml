@@ -60,9 +60,9 @@ stages:
         displayName: Run tests
         steps:
         - task: UseDotNet@2
-          displayName: 'Use .NET 6'
+          displayName: 'Use .NET 7'
           inputs:
-            version: 6.x
+            version: 7.x
 
         # Restore NuGet packages (enables cache by default)
         - template: templates/nuget-packages.yaml
@@ -108,9 +108,9 @@ stages:
           # maxParallel: 2
         steps:
           - task: UseDotNet@2
-            displayName: 'Use .NET 6'
+            displayName: 'Use .NET 7'
             inputs:
-              version: 6.x
+              version: 7.x
 
           - template: templates/nuget-packages.yaml
             parameters:
