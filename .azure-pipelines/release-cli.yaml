@@ -189,6 +189,7 @@ stages:
           matrix:
             # 'Windows-x64':
             #   rid: win-x64
+            #   vmImage: windows-latest
             #   sign: true
             #   pattern: |
             #     **\*.exe
@@ -219,15 +220,19 @@ stages:
             #   inlineNotarizeOperation: ""
             # 'MacOS-x64':
             #   rid: osx-x64
+            #   vmImage: macOS-12
             #   sign: true
             #   inlineSignOperation: ${{ variables.macSignOp }}
             #   inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
             'MacOS-ARM':
               rid: osx-arm64
+              vmImage: macOS-12
               sign: true
               inlineSignOperation: ${{ variables.macSignOp }}
               inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
         displayName: ESRP Signing
+        pool:
+          vmImage: $(vmImage)
         steps:
           - pwsh: |
               Write-Verbose -Verbose 'pattern = ''$(pattern)'''
