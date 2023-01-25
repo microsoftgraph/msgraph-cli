@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.AssociateWithHubSites {
-    /// <summary>Provides operations to call the associateWithHubSites method.</summary>
+    /// <summary>
+    /// Provides operations to call the associateWithHubSites method.
+    /// </summary>
     public class AssociateWithHubSitesRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,6 +25,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.AssociateWithHub
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Associate a published [content type][contentType] present in a content type hub with a list of hub sites.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -40,7 +43,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.AssociateWithHub
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -53,7 +56,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.AssociateWithHub
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssociateWithHubSitesPostRequestBody>(AssociateWithHubSitesPostRequestBody.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
                 requestInfo.PathParameters.Add("drive%2Did", driveId);
@@ -69,9 +72,9 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.AssociateWithHub
         }
         /// <summary>
         /// Instantiates a new AssociateWithHubSitesRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public AssociateWithHubSitesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -82,10 +85,16 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.AssociateWithHub
         }
         /// <summary>
         /// Associate a published [content type][contentType] present in a content type hub with a list of hub sites.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(AssociateWithHubSitesPostRequestBody body, Action<AssociateWithHubSitesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(AssociateWithHubSitesPostRequestBody body, Action<AssociateWithHubSitesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(AssociateWithHubSitesPostRequestBody body, Action<AssociateWithHubSitesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -101,10 +110,12 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.AssociateWithHub
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AssociateWithHubSitesRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -112,7 +123,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.AssociateWithHub
             /// </summary>
             public AssociateWithHubSitesRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

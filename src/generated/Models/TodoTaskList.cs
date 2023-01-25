@@ -4,30 +4,41 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class TodoTaskList : Entity, IParsable {
         /// <summary>The name of the task list.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>The collection of open extensions defined for the task list. Nullable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Extension>? Extensions { get; set; }
+#nullable restore
+#else
         public List<Extension> Extensions { get; set; }
+#endif
         /// <summary>True if the user is owner of the given task list.</summary>
         public bool? IsOwner { get; set; }
         /// <summary>True if the task list is shared with other users</summary>
         public bool? IsShared { get; set; }
         /// <summary>The tasks in this task list. Read-only. Nullable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<TodoTask>? Tasks { get; set; }
+#nullable restore
+#else
         public List<TodoTask> Tasks { get; set; }
+#endif
         /// <summary>The wellknownListName property</summary>
         public ApiSdk.Models.WellknownListName? WellknownListName { get; set; }
         /// <summary>
-        /// Instantiates a new todoTaskList and sets the default values.
-        /// </summary>
-        public TodoTaskList() : base() {
-            OdataType = "#microsoft.graph.todoTaskList";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new TodoTaskList CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TodoTaskList();
@@ -47,8 +58,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

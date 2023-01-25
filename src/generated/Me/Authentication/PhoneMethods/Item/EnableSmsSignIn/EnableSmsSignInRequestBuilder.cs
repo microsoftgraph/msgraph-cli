@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Authentication.PhoneMethods.Item.EnableSmsSignIn {
-    /// <summary>Provides operations to call the enableSmsSignIn method.</summary>
+    /// <summary>
+    /// Provides operations to call the enableSmsSignIn method.
+    /// </summary>
     public class EnableSmsSignInRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,6 +25,7 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item.EnableSmsSignIn {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Enable SMS sign-in for an existing `mobile` phone number registered to a user. To be successfully enabled:
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/phoneauthenticationmethod-enablesmssignin?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -35,7 +38,7 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item.EnableSmsSignIn {
             command.SetHandler(async (invocationContext) => {
                 var phoneAuthenticationMethodId = invocationContext.ParseResult.GetValueForOption(phoneAuthenticationMethodIdOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreatePostRequestInformation(q => {
+                var requestInfo = ToPostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("phoneAuthenticationMethod%2Did", phoneAuthenticationMethodId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -49,9 +52,9 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item.EnableSmsSignIn {
         }
         /// <summary>
         /// Instantiates a new EnableSmsSignInRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public EnableSmsSignInRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -62,9 +65,15 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item.EnableSmsSignIn {
         }
         /// <summary>
         /// Enable SMS sign-in for an existing `mobile` phone number registered to a user. To be successfully enabled:
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Action<EnableSmsSignInRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(Action<EnableSmsSignInRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(Action<EnableSmsSignInRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
@@ -78,10 +87,12 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item.EnableSmsSignIn {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class EnableSmsSignInRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -89,7 +100,7 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item.EnableSmsSignIn {
             /// </summary>
             public EnableSmsSignInRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

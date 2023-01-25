@@ -23,7 +23,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
-    /// <summary>Provides operations to manage the channels property of the microsoft.graph.team entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the channels property of the microsoft.graph.team entity.
+    /// </summary>
     public class ChannelItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -31,8 +33,12 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the completeMigration method.
+        /// </summary>
         public Command BuildCompleteMigrationCommand() {
             var command = new Command("complete-migration");
+            command.Description = "Provides operations to call the completeMigration method.";
             var builder = new CompleteMigrationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -52,7 +58,8 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -61,11 +68,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
                 var channelId = invocationContext.ParseResult.GetValueForOption(channelIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("team%2Did", teamId);
                 requestInfo.PathParameters.Add("channel%2Did", channelId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -75,8 +82,12 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.
+        /// </summary>
         public Command BuildFilesFolderCommand() {
             var command = new Command("files-folder");
+            command.Description = "Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.";
             var builder = new FilesFolderRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildContentCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -131,7 +142,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -149,8 +160,12 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the members property of the microsoft.graph.channel entity.
+        /// </summary>
         public Command BuildMembersCommand() {
             var command = new Command("members");
+            command.Description = "Provides operations to manage the members property of the microsoft.graph.channel entity.";
             var builder = new MembersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
@@ -159,8 +174,12 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the messages property of the microsoft.graph.channel entity.
+        /// </summary>
         public Command BuildMessagesCommand() {
             var command = new Command("messages");
+            command.Description = "Provides operations to manage the messages property of the microsoft.graph.channel entity.";
             var builder = new MessagesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -183,7 +202,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -213,7 +232,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Channel>(Channel.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("team%2Did", teamId);
                 requestInfo.PathParameters.Add("channel%2Did", channelId);
@@ -229,20 +248,32 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the provisionEmail method.
+        /// </summary>
         public Command BuildProvisionEmailCommand() {
             var command = new Command("provision-email");
+            command.Description = "Provides operations to call the provisionEmail method.";
             var builder = new ProvisionEmailRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the removeEmail method.
+        /// </summary>
         public Command BuildRemoveEmailCommand() {
             var command = new Command("remove-email");
+            command.Description = "Provides operations to call the removeEmail method.";
             var builder = new RemoveEmailRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the sharedWithTeams property of the microsoft.graph.channel entity.
+        /// </summary>
         public Command BuildSharedWithTeamsCommand() {
             var command = new Command("shared-with-teams");
+            command.Description = "Provides operations to manage the sharedWithTeams property of the microsoft.graph.channel entity.";
             var builder = new SharedWithTeamsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -250,8 +281,12 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the tabs property of the microsoft.graph.channel entity.
+        /// </summary>
         public Command BuildTabsCommand() {
             var command = new Command("tabs");
+            command.Description = "Provides operations to manage the tabs property of the microsoft.graph.channel entity.";
             var builder = new TabsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -261,9 +296,9 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
         }
         /// <summary>
         /// Instantiates a new ChannelItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public ChannelItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -273,10 +308,22 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property channels for me
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Provides operations to call the doesUserHaveAccess method.
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<ChannelItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName() {
+            return new DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>
+        /// Delete navigation property channels for me
+        /// </summary>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<ChannelItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<ChannelItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -292,9 +339,15 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
         }
         /// <summary>
         /// The collection of channels and messages associated with the team.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<ChannelItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<ChannelItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<ChannelItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -312,10 +365,16 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
         }
         /// <summary>
         /// Update the navigation property channels in me
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(Channel body, Action<ChannelItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(Channel body, Action<ChannelItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(Channel body, Action<ChannelItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -333,15 +392,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Provides operations to call the doesUserHaveAccess method.
+        /// Configuration for the request such as headers, query parameters, and middleware options.
         /// </summary>
-        public DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName() {
-            return new DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class ChannelItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -349,22 +404,40 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             /// </summary>
             public ChannelItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>The collection of channels and messages associated with the team.</summary>
+        /// <summary>
+        /// The collection of channels and messages associated with the team.
+        /// </summary>
         public class ChannelItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ChannelItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -374,13 +447,15 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             /// </summary>
             public ChannelItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ChannelItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -388,7 +463,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item {
             /// </summary>
             public ChannelItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

@@ -4,30 +4,47 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
     public class TeamworkTag : Entity, IParsable {
-        /// <summary>The description property</summary>
+        /// <summary>The description of the tag as it will appear to the user in Microsoft Teams.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
         public string Description { get; set; }
-        /// <summary>The displayName property</summary>
+#endif
+        /// <summary>The name of the tag as it will appear to the user in Microsoft Teams.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
-        /// <summary>The memberCount property</summary>
+#endif
+        /// <summary>The number of users assigned to the tag.</summary>
         public int? MemberCount { get; set; }
-        /// <summary>The members property</summary>
+        /// <summary>Users assigned to the tag.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<TeamworkTagMember>? Members { get; set; }
+#nullable restore
+#else
         public List<TeamworkTagMember> Members { get; set; }
-        /// <summary>The tagType property</summary>
+#endif
+        /// <summary>The type of the tag. Default is standard.</summary>
         public TeamworkTagType? TagType { get; set; }
-        /// <summary>The teamId property</summary>
+        /// <summary>ID of the team in which the tag is defined.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TeamId { get; set; }
+#nullable restore
+#else
         public string TeamId { get; set; }
-        /// <summary>
-        /// Instantiates a new teamworkTag and sets the default values.
-        /// </summary>
-        public TeamworkTag() : base() {
-            OdataType = "#microsoft.graph.teamworkTag";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new TeamworkTag CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TeamworkTag();
@@ -47,8 +64,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

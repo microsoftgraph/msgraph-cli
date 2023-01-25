@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Device Compilance Policy and Configuration for a Setting State summary</summary>
+    /// <summary>
+    /// Device Compilance Policy and Configuration for a Setting State summary
+    /// </summary>
     public class SettingStateDeviceSummary : Entity, IParsable {
         /// <summary>Device Compliant count for the setting</summary>
         public int? CompliantDeviceCount { get; set; }
@@ -13,7 +15,13 @@ namespace ApiSdk.Models {
         /// <summary>Device error count for the setting</summary>
         public int? ErrorDeviceCount { get; set; }
         /// <summary>Name of the InstancePath for the setting</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? InstancePath { get; set; }
+#nullable restore
+#else
         public string InstancePath { get; set; }
+#endif
         /// <summary>Device NonCompliant count for the setting</summary>
         public int? NonCompliantDeviceCount { get; set; }
         /// <summary>Device Not Applicable count for the setting</summary>
@@ -21,19 +29,19 @@ namespace ApiSdk.Models {
         /// <summary>Device Compliant count for the setting</summary>
         public int? RemediatedDeviceCount { get; set; }
         /// <summary>Name of the setting</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SettingName { get; set; }
+#nullable restore
+#else
         public string SettingName { get; set; }
+#endif
         /// <summary>Device Unkown count for the setting</summary>
         public int? UnknownDeviceCount { get; set; }
         /// <summary>
-        /// Instantiates a new settingStateDeviceSummary and sets the default values.
-        /// </summary>
-        public SettingStateDeviceSummary() : base() {
-            OdataType = "#microsoft.graph.settingStateDeviceSummary";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new SettingStateDeviceSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SettingStateDeviceSummary();
@@ -56,8 +64,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

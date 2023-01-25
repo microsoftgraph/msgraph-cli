@@ -6,9 +6,21 @@ using System.Linq;
 namespace ApiSdk.Models.CallRecords {
     public class ClientUserAgent : UserAgent, IParsable {
         /// <summary>The unique identifier of the Azure AD application used by this endpoint.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AzureADAppId { get; set; }
+#nullable restore
+#else
         public string AzureADAppId { get; set; }
+#endif
         /// <summary>Immutable resource identifier of the Azure Communication Service associated with this endpoint based on Communication Services APIs.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CommunicationServiceId { get; set; }
+#nullable restore
+#else
         public string CommunicationServiceId { get; set; }
+#endif
         /// <summary>The platform property</summary>
         public ClientPlatform? Platform { get; set; }
         /// <summary>The productFamily property</summary>
@@ -21,8 +33,8 @@ namespace ApiSdk.Models.CallRecords {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ClientUserAgent CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ClientUserAgent();
@@ -40,8 +52,8 @@ namespace ApiSdk.Models.CallRecords {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

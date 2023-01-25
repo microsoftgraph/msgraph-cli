@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Entity which represents a connection to Mobile threat defense partner.</summary>
+    /// <summary>
+    /// Entity which represents a connection to Mobile threat defense partner.
+    /// </summary>
     public class MobileThreatDefenseConnector : Entity, IParsable {
         /// <summary>For Android, set whether Intune must receive data from the data sync partner prior to marking a device compliant</summary>
         public bool? AndroidDeviceBlockedOnMissingPartnerData { get; set; }
@@ -23,15 +25,9 @@ namespace ApiSdk.Models {
         /// <summary>Get or set whether to block devices on the enabled platforms that do not meet the minimum version requirements of the Data Sync Partner</summary>
         public bool? PartnerUnsupportedOsVersionBlocked { get; set; }
         /// <summary>
-        /// Instantiates a new mobileThreatDefenseConnector and sets the default values.
-        /// </summary>
-        public MobileThreatDefenseConnector() : base() {
-            OdataType = "#microsoft.graph.mobileThreatDefenseConnector";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new MobileThreatDefenseConnector CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MobileThreatDefenseConnector();
@@ -53,8 +49,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

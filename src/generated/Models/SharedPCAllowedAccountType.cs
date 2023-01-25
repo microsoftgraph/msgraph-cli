@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Type of accounts that are allowed to share the PC.</summary>
     public enum SharedPCAllowedAccountType {
         /// <summary>Only guest accounts.</summary>
         Guest,

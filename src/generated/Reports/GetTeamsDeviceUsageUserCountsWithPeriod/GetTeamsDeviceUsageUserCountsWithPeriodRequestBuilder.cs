@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Reports.GetTeamsDeviceUsageUserCountsWithPeriod {
-    /// <summary>Provides operations to call the getTeamsDeviceUsageUserCounts method.</summary>
+    /// <summary>
+    /// Provides operations to call the getTeamsDeviceUsageUserCounts method.
+    /// </summary>
     public class GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -38,7 +40,7 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageUserCountsWithPeriod {
                 var period = invocationContext.ParseResult.GetValueForOption(periodOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("period", period);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -61,10 +63,10 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageUserCountsWithPeriod {
         }
         /// <summary>
         /// Instantiates a new GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string period = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -76,9 +78,15 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageUserCountsWithPeriod {
         }
         /// <summary>
         /// Invoke function getTeamsDeviceUsageUserCounts
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -92,10 +100,12 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageUserCountsWithPeriod {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -103,7 +113,7 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageUserCountsWithPeriod {
             /// </summary>
             public GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

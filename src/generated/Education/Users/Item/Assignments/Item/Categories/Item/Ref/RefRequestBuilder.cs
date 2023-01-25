@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item.Ref {
-    /// <summary>Provides operations to manage the collection of educationRoot entities.</summary>
+    /// <summary>
+    /// Provides operations to manage the collection of educationRoot entities.
+    /// </summary>
     public class RefRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -40,7 +42,8 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item.Ref {
             };
             educationCategoryIdOption.IsRequired = true;
             command.AddOption(educationCategoryIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -55,13 +58,13 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item.Ref {
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var id = invocationContext.ParseResult.GetValueForOption(idOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
-                    if (!String.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
+                var requestInfo = ToDeleteRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
                 requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
                 requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
                 requestInfo.PathParameters.Add("educationCategory%2Did", educationCategoryId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -73,9 +76,9 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item.Ref {
         }
         /// <summary>
         /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public RefRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -86,9 +89,15 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item.Ref {
         }
         /// <summary>
         /// Delete ref of navigation property categories for education
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<RefRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RefRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RefRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -103,16 +112,27 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item.Ref {
             }
             return requestInfo;
         }
-        /// <summary>Delete ref of navigation property categories for education</summary>
+        /// <summary>
+        /// Delete ref of navigation property categories for education
+        /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%40id")]
+            public string? Id { get; set; }
+#nullable restore
+#else
             [QueryParameter("%40id")]
             public string Id { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class RefRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -122,7 +142,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item.Ref {
             /// </summary>
             public RefRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

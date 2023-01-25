@@ -8,36 +8,83 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Folder ID of an archive folder for the user.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ArchiveFolder { get; set; }
+#nullable restore
+#else
         public string ArchiveFolder { get; set; }
+#endif
         /// <summary>Configuration settings to automatically notify the sender of an incoming email with a message from the signed-in user.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.AutomaticRepliesSetting? AutomaticRepliesSetting { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.AutomaticRepliesSetting AutomaticRepliesSetting { get; set; }
+#endif
         /// <summary>The date format for the user&apos;s mailbox.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DateFormat { get; set; }
+#nullable restore
+#else
         public string DateFormat { get; set; }
+#endif
         /// <summary>If the user has a calendar delegate, this specifies whether the delegate, mailbox owner, or both receive meeting messages and meeting responses. Possible values are: sendToDelegateAndInformationToPrincipal, sendToDelegateAndPrincipal, sendToDelegateOnly.</summary>
         public ApiSdk.Models.DelegateMeetingMessageDeliveryOptions? DelegateMeetingMessageDeliveryOptions { get; set; }
         /// <summary>The locale information for the user, including the preferred language and country/region.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public LocaleInfo? Language { get; set; }
+#nullable restore
+#else
         public LocaleInfo Language { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The time format for the user&apos;s mailbox.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TimeFormat { get; set; }
+#nullable restore
+#else
         public string TimeFormat { get; set; }
+#endif
         /// <summary>The default time zone for the user&apos;s mailbox.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TimeZone { get; set; }
+#nullable restore
+#else
         public string TimeZone { get; set; }
+#endif
         /// <summary>The userPurpose property</summary>
         public ApiSdk.Models.UserPurpose? UserPurpose { get; set; }
         /// <summary>The days of the week and hours in a specific time zone that the user works.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.WorkingHours? WorkingHours { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.WorkingHours WorkingHours { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new mailboxSettings and sets the default values.
         /// </summary>
         public MailboxSettings() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.mailboxSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static MailboxSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MailboxSettings();
@@ -61,8 +108,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("archiveFolder", ArchiveFolder);

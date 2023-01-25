@@ -4,66 +4,191 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class Call : Entity, IParsable {
         /// <summary>The audioRoutingGroups property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AudioRoutingGroup>? AudioRoutingGroups { get; set; }
+#nullable restore
+#else
         public List<AudioRoutingGroup> AudioRoutingGroups { get; set; }
+#endif
         /// <summary>The callback URL on which callbacks will be delivered. Must be https.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallbackUri { get; set; }
+#nullable restore
+#else
         public string CallbackUri { get; set; }
+#endif
         /// <summary>A unique identifier for all the participant calls in a conference or a unique identifier for two participant calls in a P2P call.  This needs to be copied over from Microsoft.Graph.Call.CallChainId.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallChainId { get; set; }
+#nullable restore
+#else
         public string CallChainId { get; set; }
-        /// <summary>The callOptions property</summary>
+#endif
+        /// <summary>Contains the optional features for the call.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.CallOptions? CallOptions { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.CallOptions CallOptions { get; set; }
+#endif
         /// <summary>The routing information on how the call was retargeted. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<CallRoute>? CallRoutes { get; set; }
+#nullable restore
+#else
         public List<CallRoute> CallRoutes { get; set; }
+#endif
         /// <summary>The chat information. Required information for joining a meeting.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ChatInfo? ChatInfo { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.ChatInfo ChatInfo { get; set; }
+#endif
         /// <summary>The contentSharingSessions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ContentSharingSession>? ContentSharingSessions { get; set; }
+#nullable restore
+#else
         public List<ContentSharingSession> ContentSharingSessions { get; set; }
+#endif
         /// <summary>The direction of the call. The possible value are incoming or outgoing. Read-only.</summary>
         public CallDirection? Direction { get; set; }
-        /// <summary>The incomingContext property</summary>
+        /// <summary>Call context associated with an incoming call.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.IncomingContext? IncomingContext { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.IncomingContext IncomingContext { get; set; }
+#endif
         /// <summary>The media configuration. Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.MediaConfig? MediaConfig { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.MediaConfig MediaConfig { get; set; }
+#endif
         /// <summary>Read-only. The call media state.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public CallMediaState? MediaState { get; set; }
+#nullable restore
+#else
         public CallMediaState MediaState { get; set; }
-        /// <summary>The meeting information that&apos;s required for joining a meeting.</summary>
+#endif
+        /// <summary>The meeting information. Required information for meeting scenarios.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.MeetingInfo? MeetingInfo { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.MeetingInfo MeetingInfo { get; set; }
+#endif
         /// <summary>The myParticipantId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MyParticipantId { get; set; }
+#nullable restore
+#else
         public string MyParticipantId { get; set; }
+#endif
         /// <summary>The operations property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<CommsOperation>? Operations { get; set; }
+#nullable restore
+#else
         public List<CommsOperation> Operations { get; set; }
+#endif
         /// <summary>The participants property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Participant>? Participants { get; set; }
+#nullable restore
+#else
         public List<Participant> Participants { get; set; }
-        /// <summary>The requestedModalities property</summary>
+#endif
+        /// <summary>The list of requested modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Modality?>? RequestedModalities { get; set; }
+#nullable restore
+#else
         public List<Modality?> RequestedModalities { get; set; }
-        /// <summary>The resultInfo property</summary>
+#endif
+        /// <summary>The result information. For example can hold termination reason. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ResultInfo? ResultInfo { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.ResultInfo ResultInfo { get; set; }
-        /// <summary>The source property</summary>
+#endif
+        /// <summary>The originator of the call.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ParticipantInfo? Source { get; set; }
+#nullable restore
+#else
         public ParticipantInfo Source { get; set; }
-        /// <summary>The state property</summary>
+#endif
+        /// <summary>The call state. Possible values are: incoming, establishing, ringing, established, hold, transferring, transferAccepted, redirecting, terminating, terminated. Read-only.</summary>
         public CallState? State { get; set; }
-        /// <summary>The subject property</summary>
+        /// <summary>The subject of the conversation.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Subject { get; set; }
+#nullable restore
+#else
         public string Subject { get; set; }
-        /// <summary>The targets property</summary>
+#endif
+        /// <summary>The targets of the call. Required information for creating peer to peer call.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<InvitationParticipantInfo>? Targets { get; set; }
+#nullable restore
+#else
         public List<InvitationParticipantInfo> Targets { get; set; }
+#endif
         /// <summary>The tenantId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TenantId { get; set; }
+#nullable restore
+#else
         public string TenantId { get; set; }
+#endif
         /// <summary>The toneInfo property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ToneInfo? ToneInfo { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.ToneInfo ToneInfo { get; set; }
-        /// <summary>The transcription property</summary>
+#endif
+        /// <summary>The transcription information for the call. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public CallTranscriptionInfo? Transcription { get; set; }
+#nullable restore
+#else
         public CallTranscriptionInfo Transcription { get; set; }
-        /// <summary>
-        /// Instantiates a new call and sets the default values.
-        /// </summary>
-        public Call() : base() {
-            OdataType = "#microsoft.graph.call";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Call CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Call();
@@ -101,8 +226,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName {
-    /// <summary>Provides operations to call the doesUserHaveAccess method.</summary>
+    /// <summary>
+    /// Provides operations to call the doesUserHaveAccess method.
+    /// </summary>
     public class DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -73,10 +75,10 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.DoesUserHaveAccessuserIdUserI
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
-                    if (!String.IsNullOrEmpty(userId)) q.QueryParameters.UserId = userId;
-                    if (!String.IsNullOrEmpty(tenantId)) q.QueryParameters.TenantId = tenantId;
-                    if (!String.IsNullOrEmpty(userPrincipalName)) q.QueryParameters.UserPrincipalName = userPrincipalName;
+                var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(userId)) q.QueryParameters.UserId = userId;
+                    if (!string.IsNullOrEmpty(tenantId)) q.QueryParameters.TenantId = tenantId;
+                    if (!string.IsNullOrEmpty(userPrincipalName)) q.QueryParameters.UserPrincipalName = userPrincipalName;
                 });
                 requestInfo.PathParameters.Add("team%2Did", teamId);
                 requestInfo.PathParameters.Add("channel%2Did", channelId);
@@ -94,9 +96,9 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.DoesUserHaveAccessuserIdUserI
         }
         /// <summary>
         /// Instantiates a new DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -107,9 +109,15 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.DoesUserHaveAccessuserIdUserI
         }
         /// <summary>
         /// Invoke function doesUserHaveAccess
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -125,19 +133,41 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.DoesUserHaveAccessuserIdUserI
             }
             return requestInfo;
         }
-        /// <summary>Invoke function doesUserHaveAccess</summary>
+        /// <summary>
+        /// Invoke function doesUserHaveAccess
+        /// </summary>
         public class DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilderGetQueryParameters {
             /// <summary>Usage: tenantId=&apos;@tenantId&apos;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? TenantId { get; set; }
+#nullable restore
+#else
             public string TenantId { get; set; }
+#endif
             /// <summary>Usage: userId=&apos;@userId&apos;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? UserId { get; set; }
+#nullable restore
+#else
             public string UserId { get; set; }
+#endif
             /// <summary>Usage: userPrincipalName=&apos;@userPrincipalName&apos;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? UserPrincipalName { get; set; }
+#nullable restore
+#else
             public string UserPrincipalName { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -147,7 +177,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.DoesUserHaveAccessuserIdUserI
             /// </summary>
             public DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

@@ -8,25 +8,37 @@ namespace ApiSdk.Models {
         /// <summary>Represents the bold status of font.</summary>
         public bool? Bold { get; set; }
         /// <summary>HTML color code representation of the text color. E.g. #FF0000 represents Red.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Color { get; set; }
+#nullable restore
+#else
         public string Color { get; set; }
+#endif
         /// <summary>Represents the italic status of the font.</summary>
         public bool? Italic { get; set; }
         /// <summary>Font name (e.g. &apos;Calibri&apos;)</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
         public string Name { get; set; }
+#endif
         /// <summary>Font size.</summary>
         public double? Size { get; set; }
         /// <summary>Type of underline applied to the font. The possible values are: None, Single, Double, SingleAccountant, DoubleAccountant.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Underline { get; set; }
+#nullable restore
+#else
         public string Underline { get; set; }
-        /// <summary>
-        /// Instantiates a new workbookRangeFont and sets the default values.
-        /// </summary>
-        public WorkbookRangeFont() : base() {
-            OdataType = "#microsoft.graph.workbookRangeFont";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new WorkbookRangeFont CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookRangeFont();
@@ -46,8 +58,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

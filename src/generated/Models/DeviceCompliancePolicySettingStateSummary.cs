@@ -4,14 +4,22 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Device Compilance Policy Setting State summary across the account.</summary>
+    /// <summary>
+    /// Device Compilance Policy Setting State summary across the account.
+    /// </summary>
     public class DeviceCompliancePolicySettingStateSummary : Entity, IParsable {
         /// <summary>Number of compliant devices</summary>
         public int? CompliantDeviceCount { get; set; }
         /// <summary>Number of conflict devices</summary>
         public int? ConflictDeviceCount { get; set; }
         /// <summary>Not yet documented</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DeviceComplianceSettingState>? DeviceComplianceSettingStates { get; set; }
+#nullable restore
+#else
         public List<DeviceComplianceSettingState> DeviceComplianceSettingStates { get; set; }
+#endif
         /// <summary>Number of error devices</summary>
         public int? ErrorDeviceCount { get; set; }
         /// <summary>Number of NonCompliant devices</summary>
@@ -23,21 +31,27 @@ namespace ApiSdk.Models {
         /// <summary>Number of remediated devices</summary>
         public int? RemediatedDeviceCount { get; set; }
         /// <summary>The setting class name and property name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Setting { get; set; }
+#nullable restore
+#else
         public string Setting { get; set; }
+#endif
         /// <summary>Name of the setting.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SettingName { get; set; }
+#nullable restore
+#else
         public string SettingName { get; set; }
+#endif
         /// <summary>Number of unknown devices</summary>
         public int? UnknownDeviceCount { get; set; }
         /// <summary>
-        /// Instantiates a new deviceCompliancePolicySettingStateSummary and sets the default values.
-        /// </summary>
-        public DeviceCompliancePolicySettingStateSummary() : base() {
-            OdataType = "#microsoft.graph.deviceCompliancePolicySettingStateSummary";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DeviceCompliancePolicySettingStateSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceCompliancePolicySettingStateSummary();
@@ -62,8 +76,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

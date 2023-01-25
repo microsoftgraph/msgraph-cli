@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Contains properties for detection operator.</summary>
     public enum Win32LobAppRuleOperator {
         /// <summary>Not configured.</summary>
         NotConfigured,

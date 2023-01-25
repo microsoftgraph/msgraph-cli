@@ -1,5 +1,4 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public enum DiskType {
         /// <summary>Enum member for unknown or default diskType</summary>
         Unknown,

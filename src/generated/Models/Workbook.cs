@@ -6,29 +6,65 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class Workbook : Entity, IParsable {
         /// <summary>The application property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public WorkbookApplication? Application { get; set; }
+#nullable restore
+#else
         public WorkbookApplication Application { get; set; }
+#endif
         /// <summary>The comments property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<WorkbookComment>? Comments { get; set; }
+#nullable restore
+#else
         public List<WorkbookComment> Comments { get; set; }
+#endif
         /// <summary>The functions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public WorkbookFunctions? Functions { get; set; }
+#nullable restore
+#else
         public WorkbookFunctions Functions { get; set; }
+#endif
         /// <summary>Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<WorkbookNamedItem>? Names { get; set; }
+#nullable restore
+#else
         public List<WorkbookNamedItem> Names { get; set; }
+#endif
         /// <summary>The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<WorkbookOperation>? Operations { get; set; }
+#nullable restore
+#else
         public List<WorkbookOperation> Operations { get; set; }
+#endif
         /// <summary>Represents a collection of tables associated with the workbook. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<WorkbookTable>? Tables { get; set; }
+#nullable restore
+#else
         public List<WorkbookTable> Tables { get; set; }
+#endif
         /// <summary>Represents a collection of worksheets associated with the workbook. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<WorkbookWorksheet>? Worksheets { get; set; }
+#nullable restore
+#else
         public List<WorkbookWorksheet> Worksheets { get; set; }
-        /// <summary>
-        /// Instantiates a new workbook and sets the default values.
-        /// </summary>
-        public Workbook() : base() {
-            OdataType = "#microsoft.graph.workbook";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Workbook CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Workbook();
@@ -49,8 +85,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

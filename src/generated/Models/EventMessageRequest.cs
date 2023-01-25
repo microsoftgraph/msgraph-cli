@@ -10,11 +10,29 @@ namespace ApiSdk.Models {
         /// <summary>The meetingRequestType property</summary>
         public ApiSdk.Models.MeetingRequestType? MeetingRequestType { get; set; }
         /// <summary>If the meeting update changes the meeting end time, this property specifies the previous meeting end time.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeTimeZone? PreviousEndDateTime { get; set; }
+#nullable restore
+#else
         public DateTimeTimeZone PreviousEndDateTime { get; set; }
+#endif
         /// <summary>If the meeting update changes the meeting location, this property specifies the previous meeting location.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Location? PreviousLocation { get; set; }
+#nullable restore
+#else
         public Location PreviousLocation { get; set; }
+#endif
         /// <summary>If the meeting update changes the meeting start time, this property specifies the previous meeting start time.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeTimeZone? PreviousStartDateTime { get; set; }
+#nullable restore
+#else
         public DateTimeTimeZone PreviousStartDateTime { get; set; }
+#endif
         /// <summary>Set to true if the sender would like the invitee to send a response to the requested meeting.</summary>
         public bool? ResponseRequested { get; set; }
         /// <summary>
@@ -25,8 +43,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new EventMessageRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EventMessageRequest();
@@ -46,8 +64,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

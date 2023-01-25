@@ -13,17 +13,17 @@ namespace ApiSdk.Models {
         /// <summary>Class-level default value for due time field. Default value is 23:59:00.</summary>
         public Time? DueTime { get; set; }
         /// <summary>Default Teams channel to which notifications will be sent. Default value is null.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NotificationChannelUrl { get; set; }
+#nullable restore
+#else
         public string NotificationChannelUrl { get; set; }
-        /// <summary>
-        /// Instantiates a new educationAssignmentDefaults and sets the default values.
-        /// </summary>
-        public EducationAssignmentDefaults() : base() {
-            OdataType = "#microsoft.graph.educationAssignmentDefaults";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new EducationAssignmentDefaults CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationAssignmentDefaults();
@@ -41,8 +41,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

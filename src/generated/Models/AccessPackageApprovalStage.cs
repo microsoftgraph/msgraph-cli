@@ -12,30 +12,59 @@ namespace ApiSdk.Models {
         /// <summary>If escalation is required, the time a request can be pending a response from a primary approver.</summary>
         public TimeSpan? DurationBeforeEscalation { get; set; }
         /// <summary>If escalation is enabled and the primary approvers do not respond before the escalation time, the escalationApprovers are the users who will be asked to approve requests.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<SubjectSet>? EscalationApprovers { get; set; }
+#nullable restore
+#else
         public List<SubjectSet> EscalationApprovers { get; set; }
+#endif
         /// <summary>The subjects, typically users, who are the fallback escalation approvers.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<SubjectSet>? FallbackEscalationApprovers { get; set; }
+#nullable restore
+#else
         public List<SubjectSet> FallbackEscalationApprovers { get; set; }
+#endif
         /// <summary>The subjects, typically users, who are the fallback primary approvers.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<SubjectSet>? FallbackPrimaryApprovers { get; set; }
+#nullable restore
+#else
         public List<SubjectSet> FallbackPrimaryApprovers { get; set; }
+#endif
         /// <summary>Indicates whether the approver is required to provide a justification for approving a request.</summary>
         public bool? IsApproverJustificationRequired { get; set; }
         /// <summary>If true, then one or more escalationApprovers are configured in this approval stage.</summary>
         public bool? IsEscalationEnabled { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The subjects, typically users, who will be asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors or externalSponsors.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<SubjectSet>? PrimaryApprovers { get; set; }
+#nullable restore
+#else
         public List<SubjectSet> PrimaryApprovers { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new accessPackageApprovalStage and sets the default values.
         /// </summary>
         public AccessPackageApprovalStage() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.accessPackageApprovalStage";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static AccessPackageApprovalStage CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AccessPackageApprovalStage();
@@ -58,8 +87,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteTimeSpanValue("durationBeforeAutomaticDenial", DurationBeforeAutomaticDenial);

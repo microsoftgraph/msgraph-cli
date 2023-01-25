@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of dataPolicyOperation entities.</summary>
     public class DataPolicyOperation : Entity, IParsable {
         /// <summary>Represents when the request for this data policy operation was completed, in UTC time, using the ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Null until the operation completes.</summary>
         public DateTimeOffset? CompletedDateTime { get; set; }
@@ -13,21 +12,27 @@ namespace ApiSdk.Models {
         /// <summary>Possible values are: notStarted, running, complete, failed, unknownFutureValue.</summary>
         public DataPolicyOperationStatus? Status { get; set; }
         /// <summary>The URL location to where data is being exported for export requests.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StorageLocation { get; set; }
+#nullable restore
+#else
         public string StorageLocation { get; set; }
+#endif
         /// <summary>Represents when the request for this data operation was submitted, in UTC time, using the ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? SubmittedDateTime { get; set; }
         /// <summary>The id for the user on whom the operation is performed.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserId { get; set; }
+#nullable restore
+#else
         public string UserId { get; set; }
-        /// <summary>
-        /// Instantiates a new dataPolicyOperation and sets the default values.
-        /// </summary>
-        public DataPolicyOperation() : base() {
-            OdataType = "#microsoft.graph.dataPolicyOperation";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DataPolicyOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DataPolicyOperation();
@@ -47,8 +52,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

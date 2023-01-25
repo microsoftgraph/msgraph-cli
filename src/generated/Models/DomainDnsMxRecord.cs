@@ -6,19 +6,19 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class DomainDnsMxRecord : DomainDnsRecord, IParsable {
         /// <summary>Value used when configuring the answer/destination/value of the MX record at the DNS host.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MailExchange { get; set; }
+#nullable restore
+#else
         public string MailExchange { get; set; }
+#endif
         /// <summary>Value used when configuring the Preference/Priority property of the MX record at the DNS host.</summary>
         public int? Preference { get; set; }
         /// <summary>
-        /// Instantiates a new DomainDnsMxRecord and sets the default values.
-        /// </summary>
-        public DomainDnsMxRecord() : base() {
-            OdataType = "#microsoft.graph.domainDnsMxRecord";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DomainDnsMxRecord CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DomainDnsMxRecord();
@@ -34,8 +34,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

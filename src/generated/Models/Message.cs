@@ -1,4 +1,3 @@
-using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -7,25 +6,85 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class Message : OutlookItem, IParsable {
         /// <summary>The fileAttachment and itemAttachment attachments for the message.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Attachment>? Attachments { get; set; }
+#nullable restore
+#else
         public List<Attachment> Attachments { get; set; }
+#endif
         /// <summary>The Bcc: recipients for the message.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Recipient>? BccRecipients { get; set; }
+#nullable restore
+#else
         public List<Recipient> BccRecipients { get; set; }
+#endif
         /// <summary>The body of the message. It can be in HTML or text format. Find out about safe HTML in a message body.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemBody? Body { get; set; }
+#nullable restore
+#else
         public ItemBody Body { get; set; }
+#endif
         /// <summary>The first 255 characters of the message body. It is in text format.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BodyPreview { get; set; }
+#nullable restore
+#else
         public string BodyPreview { get; set; }
+#endif
         /// <summary>The Cc: recipients for the message.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Recipient>? CcRecipients { get; set; }
+#nullable restore
+#else
         public List<Recipient> CcRecipients { get; set; }
+#endif
         /// <summary>The ID of the conversation the email belongs to.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ConversationId { get; set; }
+#nullable restore
+#else
         public string ConversationId { get; set; }
+#endif
         /// <summary>Indicates the position of the message within the conversation.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public byte[]? ConversationIndex { get; set; }
+#nullable restore
+#else
         public byte[] ConversationIndex { get; set; }
+#endif
         /// <summary>The collection of open extensions defined for the message. Nullable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Extension>? Extensions { get; set; }
+#nullable restore
+#else
         public List<Extension> Extensions { get; set; }
+#endif
         /// <summary>The flag value that indicates the status, start date, due date, or completion date for the message.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public FollowupFlag? Flag { get; set; }
+#nullable restore
+#else
         public FollowupFlag Flag { get; set; }
+#endif
         /// <summary>The owner of the mailbox from which the message is sent. In most cases, this value is the same as the sender property, except for sharing or delegation scenarios. The value must correspond to the actual mailbox used. Find out more about setting the from and sender properties of a message.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Recipient? From { get; set; }
+#nullable restore
+#else
         public Recipient From { get; set; }
+#endif
         /// <summary>Indicates whether the message has attachments. This property doesn&apos;t include inline attachments, so if a message contains only inline attachments, this property is false. To verify the existence of inline attachments, parse the body property to look for a src attribute, such as &lt;IMG src=&apos;cid:image001.jpg@01D26CD8.6C05F070&apos;&gt;.</summary>
         public bool? HasAttachments { get; set; }
         /// <summary>The importance property</summary>
@@ -33,9 +92,21 @@ namespace ApiSdk.Models {
         /// <summary>The inferenceClassification property</summary>
         public InferenceClassificationType? InferenceClassification { get; set; }
         /// <summary>The internetMessageHeaders property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<InternetMessageHeader>? InternetMessageHeaders { get; set; }
+#nullable restore
+#else
         public List<InternetMessageHeader> InternetMessageHeaders { get; set; }
+#endif
         /// <summary>The internetMessageId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? InternetMessageId { get; set; }
+#nullable restore
+#else
         public string InternetMessageId { get; set; }
+#endif
         /// <summary>The isDeliveryReceiptRequested property</summary>
         public bool? IsDeliveryReceiptRequested { get; set; }
         /// <summary>The isDraft property</summary>
@@ -45,27 +116,81 @@ namespace ApiSdk.Models {
         /// <summary>The isReadReceiptRequested property</summary>
         public bool? IsReadReceiptRequested { get; set; }
         /// <summary>The collection of multi-value extended properties defined for the message. Nullable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<MultiValueLegacyExtendedProperty>? MultiValueExtendedProperties { get; set; }
+#nullable restore
+#else
         public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
+#endif
         /// <summary>The parentFolderId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ParentFolderId { get; set; }
+#nullable restore
+#else
         public string ParentFolderId { get; set; }
+#endif
         /// <summary>The receivedDateTime property</summary>
         public DateTimeOffset? ReceivedDateTime { get; set; }
         /// <summary>The replyTo property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Recipient>? ReplyTo { get; set; }
+#nullable restore
+#else
         public List<Recipient> ReplyTo { get; set; }
+#endif
         /// <summary>The sender property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Recipient? Sender { get; set; }
+#nullable restore
+#else
         public Recipient Sender { get; set; }
+#endif
         /// <summary>The sentDateTime property</summary>
         public DateTimeOffset? SentDateTime { get; set; }
         /// <summary>The collection of single-value extended properties defined for the message. Nullable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<SingleValueLegacyExtendedProperty>? SingleValueExtendedProperties { get; set; }
+#nullable restore
+#else
         public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
+#endif
         /// <summary>The subject property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Subject { get; set; }
+#nullable restore
+#else
         public string Subject { get; set; }
+#endif
         /// <summary>The toRecipients property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Recipient>? ToRecipients { get; set; }
+#nullable restore
+#else
         public List<Recipient> ToRecipients { get; set; }
+#endif
         /// <summary>The uniqueBody property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemBody? UniqueBody { get; set; }
+#nullable restore
+#else
         public ItemBody UniqueBody { get; set; }
+#endif
         /// <summary>The webLink property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WebLink { get; set; }
+#nullable restore
+#else
         public string WebLink { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new Message and sets the default values.
         /// </summary>
@@ -74,8 +199,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Message CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
@@ -126,8 +251,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

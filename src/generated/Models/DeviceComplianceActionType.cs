@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Scheduled Action Type Enum</summary>
     public enum DeviceComplianceActionType {
         /// <summary>No Action</summary>
         NoAction,

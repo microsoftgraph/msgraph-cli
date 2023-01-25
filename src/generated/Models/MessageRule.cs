@@ -4,16 +4,39 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class MessageRule : Entity, IParsable {
         /// <summary>Actions to be taken on a message when the corresponding conditions are fulfilled.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public MessageRuleActions? Actions { get; set; }
+#nullable restore
+#else
         public MessageRuleActions Actions { get; set; }
+#endif
         /// <summary>Conditions that when fulfilled, will trigger the corresponding actions for that rule.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public MessageRulePredicates? Conditions { get; set; }
+#nullable restore
+#else
         public MessageRulePredicates Conditions { get; set; }
+#endif
         /// <summary>The display name of the rule.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>Exception conditions for the rule.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public MessageRulePredicates? Exceptions { get; set; }
+#nullable restore
+#else
         public MessageRulePredicates Exceptions { get; set; }
+#endif
         /// <summary>Indicates whether the rule is in an error condition. Read-only.</summary>
         public bool? HasError { get; set; }
         /// <summary>Indicates whether the rule is enabled to be applied to messages.</summary>
@@ -23,15 +46,9 @@ namespace ApiSdk.Models {
         /// <summary>Indicates the order in which the rule is executed, among other rules.</summary>
         public int? Sequence { get; set; }
         /// <summary>
-        /// Instantiates a new messageRule and sets the default values.
-        /// </summary>
-        public MessageRule() : base() {
-            OdataType = "#microsoft.graph.messageRule";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new MessageRule CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MessageRule();
@@ -53,8 +70,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

@@ -8,34 +8,87 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Identifies the version of the reminder. Every time the reminder is changed, changeKey changes as well. This allows Exchange to apply changes to the correct version of the object.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ChangeKey { get; set; }
+#nullable restore
+#else
         public string ChangeKey { get; set; }
+#endif
         /// <summary>The date, time and time zone that the event ends.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeTimeZone? EventEndTime { get; set; }
+#nullable restore
+#else
         public DateTimeTimeZone EventEndTime { get; set; }
+#endif
         /// <summary>The unique ID of the event. Read only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EventId { get; set; }
+#nullable restore
+#else
         public string EventId { get; set; }
+#endif
         /// <summary>The location of the event.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Location? EventLocation { get; set; }
+#nullable restore
+#else
         public Location EventLocation { get; set; }
+#endif
         /// <summary>The date, time, and time zone that the event starts.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeTimeZone? EventStartTime { get; set; }
+#nullable restore
+#else
         public DateTimeTimeZone EventStartTime { get; set; }
+#endif
         /// <summary>The text of the event&apos;s subject line.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EventSubject { get; set; }
+#nullable restore
+#else
         public string EventSubject { get; set; }
+#endif
         /// <summary>The URL to open the event in Outlook on the web.The event will open in the browser if you are logged in to your mailbox via Outlook on the web. You will be prompted to login if you are not already logged in with the browser.This URL cannot be accessed from within an iFrame.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EventWebLink { get; set; }
+#nullable restore
+#else
         public string EventWebLink { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The date, time, and time zone that the reminder is set to occur.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DateTimeTimeZone? ReminderFireTime { get; set; }
+#nullable restore
+#else
         public DateTimeTimeZone ReminderFireTime { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new reminder and sets the default values.
         /// </summary>
         public Reminder() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.reminder";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Reminder CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Reminder();
@@ -58,8 +111,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("changeKey", ChangeKey);

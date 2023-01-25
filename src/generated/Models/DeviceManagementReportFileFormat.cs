@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Possible values for the file format of a report</summary>
     public enum DeviceManagementReportFileFormat {
         /// <summary>CSV Format</summary>
         Csv,

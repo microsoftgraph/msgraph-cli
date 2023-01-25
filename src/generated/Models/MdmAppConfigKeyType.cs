@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>App configuration key types.</summary>
     public enum MdmAppConfigKeyType {
         StringType,
         IntegerType,

@@ -1,44 +1,87 @@
-using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Device Configuration.</summary>
+    /// <summary>
+    /// Device Configuration.
+    /// </summary>
     public class DeviceConfiguration : Entity, IParsable {
         /// <summary>The list of assignments for the device configuration profile.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DeviceConfigurationAssignment>? Assignments { get; set; }
+#nullable restore
+#else
         public List<DeviceConfigurationAssignment> Assignments { get; set; }
+#endif
         /// <summary>DateTime the object was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Admin provided description of the Device Configuration.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
         public string Description { get; set; }
+#endif
         /// <summary>Device Configuration Setting State Device Summary</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<SettingStateDeviceSummary>? DeviceSettingStateSummaries { get; set; }
+#nullable restore
+#else
         public List<SettingStateDeviceSummary> DeviceSettingStateSummaries { get; set; }
+#endif
         /// <summary>Device configuration installation status by device.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DeviceConfigurationDeviceStatus>? DeviceStatuses { get; set; }
+#nullable restore
+#else
         public List<DeviceConfigurationDeviceStatus> DeviceStatuses { get; set; }
+#endif
         /// <summary>Device Configuration devices status overview</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DeviceConfigurationDeviceOverview? DeviceStatusOverview { get; set; }
+#nullable restore
+#else
         public DeviceConfigurationDeviceOverview DeviceStatusOverview { get; set; }
+#endif
         /// <summary>Admin provided name of the device configuration.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>DateTime the object was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Device configuration installation status by user.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DeviceConfigurationUserStatus>? UserStatuses { get; set; }
+#nullable restore
+#else
         public List<DeviceConfigurationUserStatus> UserStatuses { get; set; }
+#endif
         /// <summary>Device Configuration users status overview</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DeviceConfigurationUserOverview? UserStatusOverview { get; set; }
+#nullable restore
+#else
         public DeviceConfigurationUserOverview UserStatusOverview { get; set; }
+#endif
         /// <summary>Version of the device configuration.</summary>
         public int? Version { get; set; }
         /// <summary>
-        /// Instantiates a new deviceConfiguration and sets the default values.
-        /// </summary>
-        public DeviceConfiguration() : base() {
-            OdataType = "#microsoft.graph.deviceConfiguration";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DeviceConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
@@ -92,8 +135,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

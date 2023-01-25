@@ -19,7 +19,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Identity {
-    /// <summary>Provides operations to manage the identityContainer singleton.</summary>
+    /// <summary>
+    /// Provides operations to manage the identityContainer singleton.
+    /// </summary>
     public class IdentityRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -27,8 +29,12 @@ namespace ApiSdk.Identity {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.
+        /// </summary>
         public Command BuildApiConnectorsCommand() {
             var command = new Command("api-connectors");
+            command.Description = "Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.";
             var builder = new ApiConnectorsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -36,8 +42,12 @@ namespace ApiSdk.Identity {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.
+        /// </summary>
         public Command BuildB2xUserFlowsCommand() {
             var command = new Command("b2x-user-flows");
+            command.Description = "Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.";
             var builder = new B2xUserFlowsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -45,14 +55,20 @@ namespace ApiSdk.Identity {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the conditionalAccess property of the microsoft.graph.identityContainer entity.
+        /// </summary>
         public Command BuildConditionalAccessCommand() {
             var command = new Command("conditional-access");
+            command.Description = "Provides operations to manage the conditionalAccess property of the microsoft.graph.identityContainer entity.";
             var builder = new ConditionalAccessRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAuthenticationContextClassReferencesCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildNamedLocationsCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPoliciesCommand());
+            command.AddCommand(builder.BuildTemplatesCommand());
             return command;
         }
         /// <summary>
@@ -94,7 +110,7 @@ namespace ApiSdk.Identity {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -110,8 +126,12 @@ namespace ApiSdk.Identity {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the identityProviders property of the microsoft.graph.identityContainer entity.
+        /// </summary>
         public Command BuildIdentityProvidersCommand() {
             var command = new Command("identity-providers");
+            command.Description = "Provides operations to manage the identityProviders property of the microsoft.graph.identityContainer entity.";
             var builder = new IdentityProvidersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -126,7 +146,7 @@ namespace ApiSdk.Identity {
             var command = new Command("patch");
             command.Description = "Update identity";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -154,7 +174,7 @@ namespace ApiSdk.Identity {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<IdentityContainer>(IdentityContainer.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -168,8 +188,12 @@ namespace ApiSdk.Identity {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the userFlowAttributes property of the microsoft.graph.identityContainer entity.
+        /// </summary>
         public Command BuildUserFlowAttributesCommand() {
             var command = new Command("user-flow-attributes");
+            command.Description = "Provides operations to manage the userFlowAttributes property of the microsoft.graph.identityContainer entity.";
             var builder = new UserFlowAttributesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -179,9 +203,9 @@ namespace ApiSdk.Identity {
         }
         /// <summary>
         /// Instantiates a new IdentityRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public IdentityRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -192,9 +216,15 @@ namespace ApiSdk.Identity {
         }
         /// <summary>
         /// Get identity
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<IdentityRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<IdentityRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<IdentityRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -212,10 +242,16 @@ namespace ApiSdk.Identity {
         }
         /// <summary>
         /// Update identity
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(IdentityContainer body, Action<IdentityRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(IdentityContainer body, Action<IdentityRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(IdentityContainer body, Action<IdentityRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -232,19 +268,37 @@ namespace ApiSdk.Identity {
             }
             return requestInfo;
         }
-        /// <summary>Get identity</summary>
+        /// <summary>
+        /// Get identity
+        /// </summary>
         public class IdentityRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class IdentityRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -254,13 +308,15 @@ namespace ApiSdk.Identity {
             /// </summary>
             public IdentityRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class IdentityRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -268,7 +324,7 @@ namespace ApiSdk.Identity {
             /// </summary>
             public IdentityRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

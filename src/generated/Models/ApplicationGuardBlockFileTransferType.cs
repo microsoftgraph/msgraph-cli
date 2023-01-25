@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Possible values for applicationGuardBlockFileTransfer</summary>
     public enum ApplicationGuardBlockFileTransferType {
         /// <summary>Not Configured</summary>
         NotConfigured,

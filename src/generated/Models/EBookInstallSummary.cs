@@ -18,15 +18,9 @@ namespace ApiSdk.Models {
         /// <summary>Number of Users that did not install this book.</summary>
         public int? NotInstalledUserCount { get; set; }
         /// <summary>
-        /// Instantiates a new eBookInstallSummary and sets the default values.
-        /// </summary>
-        public EBookInstallSummary() : base() {
-            OdataType = "#microsoft.graph.eBookInstallSummary";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new EBookInstallSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EBookInstallSummary();
@@ -46,8 +40,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

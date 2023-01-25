@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Drives.Item.Root.Versions.Item.RestoreVersion {
-    /// <summary>Provides operations to call the restoreVersion method.</summary>
+    /// <summary>
+    /// Provides operations to call the restoreVersion method.
+    /// </summary>
     public class RestoreVersionRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,6 +25,7 @@ namespace ApiSdk.Me.Drives.Item.Root.Versions.Item.RestoreVersion {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Restore a previous version of a DriveItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the file.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitemversion-restore?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -40,7 +43,7 @@ namespace ApiSdk.Me.Drives.Item.Root.Versions.Item.RestoreVersion {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemVersionId = invocationContext.ParseResult.GetValueForOption(driveItemVersionIdOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreatePostRequestInformation(q => {
+                var requestInfo = ToPostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("drive%2Did", driveId);
                 requestInfo.PathParameters.Add("driveItemVersion%2Did", driveItemVersionId);
@@ -55,9 +58,9 @@ namespace ApiSdk.Me.Drives.Item.Root.Versions.Item.RestoreVersion {
         }
         /// <summary>
         /// Instantiates a new RestoreVersionRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public RestoreVersionRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -68,9 +71,15 @@ namespace ApiSdk.Me.Drives.Item.Root.Versions.Item.RestoreVersion {
         }
         /// <summary>
         /// Restore a previous version of a DriveItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the file.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Action<RestoreVersionRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(Action<RestoreVersionRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(Action<RestoreVersionRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
@@ -84,10 +93,12 @@ namespace ApiSdk.Me.Drives.Item.Root.Versions.Item.RestoreVersion {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class RestoreVersionRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -95,7 +106,7 @@ namespace ApiSdk.Me.Drives.Item.Root.Versions.Item.RestoreVersion {
             /// </summary>
             public RestoreVersionRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

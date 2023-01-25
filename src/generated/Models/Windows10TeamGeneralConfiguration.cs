@@ -9,9 +9,21 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to Block Azure Operational Insights.</summary>
         public bool? AzureOperationalInsightsBlockTelemetry { get; set; }
         /// <summary>The Azure Operational Insights workspace id.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AzureOperationalInsightsWorkspaceId { get; set; }
+#nullable restore
+#else
         public string AzureOperationalInsightsWorkspaceId { get; set; }
+#endif
         /// <summary>The Azure Operational Insights Workspace key.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AzureOperationalInsightsWorkspaceKey { get; set; }
+#nullable restore
+#else
         public string AzureOperationalInsightsWorkspaceKey { get; set; }
+#endif
         /// <summary>Specifies whether to automatically launch the Connect app whenever a projection is initiated.</summary>
         public bool? ConnectAppBlockAutoLaunch { get; set; }
         /// <summary>Indicates whether or not to Block setting a maintenance window for device updates.</summary>
@@ -41,7 +53,13 @@ namespace ApiSdk.Models {
         /// <summary>Specifies the number of minutes until the Hub enters sleep mode.</summary>
         public int? SettingsSleepTimeoutInMinutes { get; set; }
         /// <summary>The welcome screen background image URL. The URL must use the HTTPS protocol and return a PNG image.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WelcomeScreenBackgroundImageUrl { get; set; }
+#nullable restore
+#else
         public string WelcomeScreenBackgroundImageUrl { get; set; }
+#endif
         /// <summary>Indicates whether or not to Block the welcome screen from waking up automatically when someone enters the room.</summary>
         public bool? WelcomeScreenBlockAutomaticWakeUp { get; set; }
         /// <summary>Possible values for welcome screen meeting information.</summary>
@@ -54,8 +72,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Windows10TeamGeneralConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Windows10TeamGeneralConfiguration();
@@ -89,8 +107,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

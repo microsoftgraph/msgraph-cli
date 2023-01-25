@@ -1,0 +1,29 @@
+{
+  "descriptionHash": "26C94E5C7EE0D1D8A0561F606D1260A75A333AA841C7058696F4D0084633E7E99C8DDD294439DDA600B45E92184DFE0898E13415E23E4EF542A88ADFFE087D86",
+  "descriptionLocation": "C:\\Users\\calebmagiya\\Documents\\projects\\microsoft\\microsoftgraph\\msgraph-metadata\\openapi\\v1.0\\openapi.yaml",
+  "lockFileVersion": "1.0.0",
+  "kiotaVersion": "0.10.0-preview",
+  "clientClassName": "GraphClient",
+  "clientNamespaceName": "ApiSdk",
+  "language": "Shell",
+  "usesBackingStore": false,
+  "includeAdditionalData": true,
+  "serializers": [
+    "Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory",
+    "Microsoft.Kiota.Serialization.Text.TextSerializationWriterFactory",
+    "Microsoft.Kiota.Serialization.Form.FormSerializationWriterFactory"
+  ],
+  "deserializers": [
+    "Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory",
+    "Microsoft.Kiota.Serialization.Text.TextParseNodeFactory",
+    "Microsoft.Kiota.Serialization.Form.FormParseNodeFactory"
+  ],
+  "structuredMimeTypes": [
+    "application/json",
+    "text/plain",
+    "application/x-www-form-urlencoded"
+  ],
+  "includePatterns": [],
+  "excludePatterns": [],
+  "disabledValidationRules": []
+}

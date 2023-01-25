@@ -1,6 +1,7 @@
 using ApiSdk.Domains.Item.DomainNameReferences;
 using ApiSdk.Domains.Item.FederationConfiguration;
 using ApiSdk.Domains.Item.ForceDelete;
+using ApiSdk.Domains.Item.Promote;
 using ApiSdk.Domains.Item.ServiceConfigurationRecords;
 using ApiSdk.Domains.Item.VerificationDnsRecords;
 using ApiSdk.Domains.Item.Verify;
@@ -20,7 +21,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Domains.Item {
-    /// <summary>Provides operations to manage the collection of domain entities.</summary>
+    /// <summary>
+    /// Provides operations to manage the collection of domain entities.
+    /// </summary>
     public class DomainItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -30,6 +33,7 @@ namespace ApiSdk.Domains.Item {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Deletes a domain from a tenant.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
@@ -39,7 +43,8 @@ namespace ApiSdk.Domains.Item {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -47,10 +52,10 @@ namespace ApiSdk.Domains.Item {
                 var domainId = invocationContext.ParseResult.GetValueForOption(domainIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("domain%2Did", domainId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -60,16 +65,24 @@ namespace ApiSdk.Domains.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the domainNameReferences property of the microsoft.graph.domain entity.
+        /// </summary>
         public Command BuildDomainNameReferencesCommand() {
             var command = new Command("domain-name-references");
+            command.Description = "Provides operations to manage the domainNameReferences property of the microsoft.graph.domain entity.";
             var builder = new DomainNameReferencesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the federationConfiguration property of the microsoft.graph.domain entity.
+        /// </summary>
         public Command BuildFederationConfigurationCommand() {
             var command = new Command("federation-configuration");
+            command.Description = "Provides operations to manage the federationConfiguration property of the microsoft.graph.domain entity.";
             var builder = new FederationConfigurationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -77,14 +90,19 @@ namespace ApiSdk.Domains.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the forceDelete method.
+        /// </summary>
         public Command BuildForceDeleteCommand() {
             var command = new Command("force-delete");
+            command.Description = "Provides operations to call the forceDelete method.";
             var builder = new ForceDeleteRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Retrieve the properties and relationships of domain object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/domain-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -127,7 +145,7 @@ namespace ApiSdk.Domains.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -146,6 +164,7 @@ namespace ApiSdk.Domains.Item {
         }
         /// <summary>
         /// Update the properties of domain object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/domain-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
@@ -155,7 +174,7 @@ namespace ApiSdk.Domains.Item {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -184,7 +203,7 @@ namespace ApiSdk.Domains.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Domain>(Domain.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("domain%2Did", domainId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -199,8 +218,22 @@ namespace ApiSdk.Domains.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the promote method.
+        /// </summary>
+        public Command BuildPromoteCommand() {
+            var command = new Command("promote");
+            command.Description = "Provides operations to call the promote method.";
+            var builder = new PromoteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.
+        /// </summary>
         public Command BuildServiceConfigurationRecordsCommand() {
             var command = new Command("service-configuration-records");
+            command.Description = "Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.";
             var builder = new ServiceConfigurationRecordsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -208,8 +241,12 @@ namespace ApiSdk.Domains.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the verificationDnsRecords property of the microsoft.graph.domain entity.
+        /// </summary>
         public Command BuildVerificationDnsRecordsCommand() {
             var command = new Command("verification-dns-records");
+            command.Description = "Provides operations to manage the verificationDnsRecords property of the microsoft.graph.domain entity.";
             var builder = new VerificationDnsRecordsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -217,17 +254,21 @@ namespace ApiSdk.Domains.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the verify method.
+        /// </summary>
         public Command BuildVerifyCommand() {
             var command = new Command("verify");
+            command.Description = "Provides operations to call the verify method.";
             var builder = new VerifyRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Instantiates a new DomainItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public DomainItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -238,9 +279,15 @@ namespace ApiSdk.Domains.Item {
         }
         /// <summary>
         /// Deletes a domain from a tenant.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<DomainItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<DomainItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<DomainItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -256,9 +303,15 @@ namespace ApiSdk.Domains.Item {
         }
         /// <summary>
         /// Retrieve the properties and relationships of domain object.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<DomainItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<DomainItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<DomainItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -276,10 +329,16 @@ namespace ApiSdk.Domains.Item {
         }
         /// <summary>
         /// Update the properties of domain object.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(Domain body, Action<DomainItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(Domain body, Action<DomainItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(Domain body, Action<DomainItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -296,10 +355,12 @@ namespace ApiSdk.Domains.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DomainItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -307,22 +368,40 @@ namespace ApiSdk.Domains.Item {
             /// </summary>
             public DomainItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Retrieve the properties and relationships of domain object.</summary>
+        /// <summary>
+        /// Retrieve the properties and relationships of domain object.
+        /// </summary>
         public class DomainItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DomainItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -332,13 +411,15 @@ namespace ApiSdk.Domains.Item {
             /// </summary>
             public DomainItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DomainItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -346,7 +427,7 @@ namespace ApiSdk.Domains.Item {
             /// </summary>
             public DomainItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

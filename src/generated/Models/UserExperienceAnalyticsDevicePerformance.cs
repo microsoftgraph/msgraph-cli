@@ -5,11 +5,11 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class UserExperienceAnalyticsDevicePerformance : Entity, IParsable {
-        /// <summary>Average (mean) number of Blue Screens per device in the last 14 days. Valid values 0 to 9999999</summary>
+        /// <summary>Average (mean) number of Blue Screens per device in the last 30 days. Valid values 0 to 9999999</summary>
         public double? AverageBlueScreens { get; set; }
-        /// <summary>Average (mean) number of Restarts per device in the last 14 days. Valid values 0 to 9999999</summary>
+        /// <summary>Average (mean) number of Restarts per device in the last 30 days. Valid values 0 to 9999999</summary>
         public double? AverageRestarts { get; set; }
-        /// <summary>Number of Blue Screens in the last 14 days. Valid values 0 to 9999999</summary>
+        /// <summary>Number of Blue Screens in the last 30 days. Valid values 0 to 9999999</summary>
         public int? BlueScreenCount { get; set; }
         /// <summary>The user experience analytics device boot score.</summary>
         public int? BootScore { get; set; }
@@ -20,7 +20,13 @@ namespace ApiSdk.Models {
         /// <summary>User experience analytics summarized device count.</summary>
         public long? DeviceCount { get; set; }
         /// <summary>The user experience analytics device name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceName { get; set; }
+#nullable restore
+#else
         public string DeviceName { get; set; }
+#endif
         /// <summary>The diskType property</summary>
         public ApiSdk.Models.DiskType? DiskType { get; set; }
         /// <summary>The user experience analytics device group policy boot time in milliseconds.</summary>
@@ -32,29 +38,41 @@ namespace ApiSdk.Models {
         /// <summary>The user experience analytics device login score.</summary>
         public int? LoginScore { get; set; }
         /// <summary>The user experience analytics device manufacturer.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Manufacturer { get; set; }
+#nullable restore
+#else
         public string Manufacturer { get; set; }
+#endif
         /// <summary>The user experience analytics device model.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Model { get; set; }
+#nullable restore
+#else
         public string Model { get; set; }
+#endif
         /// <summary>The user experience analytics model level startup performance score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308</summary>
         public double? ModelStartupPerformanceScore { get; set; }
         /// <summary>The user experience analytics device Operating System version.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OperatingSystemVersion { get; set; }
+#nullable restore
+#else
         public string OperatingSystemVersion { get; set; }
+#endif
         /// <summary>The user experience analytics responsive desktop time in milliseconds.</summary>
         public int? ResponsiveDesktopTimeInMs { get; set; }
-        /// <summary>Number of Restarts in the last 14 days. Valid values 0 to 9999999</summary>
+        /// <summary>Number of Restarts in the last 30 days. Valid values 0 to 9999999</summary>
         public int? RestartCount { get; set; }
         /// <summary>The user experience analytics device startup performance score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308</summary>
         public double? StartupPerformanceScore { get; set; }
         /// <summary>
-        /// Instantiates a new UserExperienceAnalyticsDevicePerformance and sets the default values.
-        /// </summary>
-        public UserExperienceAnalyticsDevicePerformance() : base() {
-            OdataType = "#microsoft.graph.userExperienceAnalyticsDevicePerformance";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new UserExperienceAnalyticsDevicePerformance CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UserExperienceAnalyticsDevicePerformance();
@@ -88,8 +106,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

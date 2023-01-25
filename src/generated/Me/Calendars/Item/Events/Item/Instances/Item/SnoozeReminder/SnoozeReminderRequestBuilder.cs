@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder {
-    /// <summary>Provides operations to call the snoozeReminder method.</summary>
+    /// <summary>
+    /// Provides operations to call the snoozeReminder method.
+    /// </summary>
     public class SnoozeReminderRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,6 +25,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Postpone a reminder for an event in a user calendar until a new time.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-snoozereminder?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -40,7 +43,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -53,7 +56,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SnoozeReminderPostRequestBody>(SnoozeReminderPostRequestBody.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("calendar%2Did", calendarId);
                 requestInfo.PathParameters.Add("event%2Did", eventId);
@@ -69,9 +72,9 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder {
         }
         /// <summary>
         /// Instantiates a new SnoozeReminderRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public SnoozeReminderRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -82,10 +85,16 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder {
         }
         /// <summary>
         /// Postpone a reminder for an event in a user calendar until a new time.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(SnoozeReminderPostRequestBody body, Action<SnoozeReminderRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(SnoozeReminderPostRequestBody body, Action<SnoozeReminderRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(SnoozeReminderPostRequestBody body, Action<SnoozeReminderRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -101,10 +110,12 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class SnoozeReminderRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -112,7 +123,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder {
             /// </summary>
             public SnoozeReminderRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

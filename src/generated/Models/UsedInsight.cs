@@ -4,26 +4,43 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class UsedInsight : Entity, IParsable {
         /// <summary>Information about when the item was last viewed or modified by the user. Read only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public UsageDetails? LastUsed { get; set; }
+#nullable restore
+#else
         public UsageDetails LastUsed { get; set; }
+#endif
         /// <summary>Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Entity? Resource { get; set; }
+#nullable restore
+#else
         public Entity Resource { get; set; }
+#endif
         /// <summary>Reference properties of the used document, such as the url and type of the document. Read-only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ResourceReference? ResourceReference { get; private set; }
+#nullable restore
+#else
         public ApiSdk.Models.ResourceReference ResourceReference { get; private set; }
+#endif
         /// <summary>Properties that you can use to visualize the document in your experience. Read-only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ResourceVisualization? ResourceVisualization { get; private set; }
+#nullable restore
+#else
         public ApiSdk.Models.ResourceVisualization ResourceVisualization { get; private set; }
-        /// <summary>
-        /// Instantiates a new usedInsight and sets the default values.
-        /// </summary>
-        public UsedInsight() : base() {
-            OdataType = "#microsoft.graph.usedInsight";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new UsedInsight CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UsedInsight();
@@ -41,8 +58,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

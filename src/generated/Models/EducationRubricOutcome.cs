@@ -6,13 +6,37 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class EducationRubricOutcome : EducationOutcome, IParsable {
         /// <summary>A copy of the rubricQualityFeedback property that is made when the grade is released to the student.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<RubricQualityFeedbackModel>? PublishedRubricQualityFeedback { get; set; }
+#nullable restore
+#else
         public List<RubricQualityFeedbackModel> PublishedRubricQualityFeedback { get; set; }
+#endif
         /// <summary>A copy of the rubricQualitySelectedLevels property that is made when the grade is released to the student.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<RubricQualitySelectedColumnModel>? PublishedRubricQualitySelectedLevels { get; set; }
+#nullable restore
+#else
         public List<RubricQualitySelectedColumnModel> PublishedRubricQualitySelectedLevels { get; set; }
+#endif
         /// <summary>A collection of specific feedback for each quality of this rubric.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<RubricQualityFeedbackModel>? RubricQualityFeedback { get; set; }
+#nullable restore
+#else
         public List<RubricQualityFeedbackModel> RubricQualityFeedback { get; set; }
+#endif
         /// <summary>The level that the teacher has selected for each quality while grading this assignment.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<RubricQualitySelectedColumnModel>? RubricQualitySelectedLevels { get; set; }
+#nullable restore
+#else
         public List<RubricQualitySelectedColumnModel> RubricQualitySelectedLevels { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new EducationRubricOutcome and sets the default values.
         /// </summary>
@@ -21,8 +45,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new EducationRubricOutcome CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationRubricOutcome();
@@ -40,8 +64,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

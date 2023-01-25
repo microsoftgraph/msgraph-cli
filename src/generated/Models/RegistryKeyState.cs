@@ -10,23 +10,65 @@ namespace ApiSdk.Models {
         /// <summary>A Windows registry hive : HKEY_CURRENT_CONFIG HKEY_CURRENT_USER HKEY_LOCAL_MACHINE/SAM HKEY_LOCAL_MACHINE/Security HKEY_LOCAL_MACHINE/Software HKEY_LOCAL_MACHINE/System HKEY_USERS/.Default. Possible values are: unknown, currentConfig, currentUser, localMachineSam, localMachineSecurity, localMachineSoftware, localMachineSystem, usersDefault.</summary>
         public RegistryHive? Hive { get; set; }
         /// <summary>Current (i.e. changed) registry key (excludes HIVE).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Key { get; set; }
+#nullable restore
+#else
         public string Key { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Previous (i.e. before changed) registry key (excludes HIVE).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OldKey { get; set; }
+#nullable restore
+#else
         public string OldKey { get; set; }
+#endif
         /// <summary>Previous (i.e. before changed) registry key value data (contents).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OldValueData { get; set; }
+#nullable restore
+#else
         public string OldValueData { get; set; }
+#endif
         /// <summary>Previous (i.e. before changed) registry key value name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OldValueName { get; set; }
+#nullable restore
+#else
         public string OldValueName { get; set; }
+#endif
         /// <summary>Operation that changed the registry key name and/or value. Possible values are: unknown, create, modify, delete.</summary>
         public RegistryOperation? Operation { get; set; }
         /// <summary>Process ID (PID) of the process that modified the registry key (process details will appear in the alert &apos;processes&apos; collection).</summary>
         public int? ProcessId { get; set; }
         /// <summary>Current (i.e. changed) registry key value data (contents).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ValueData { get; set; }
+#nullable restore
+#else
         public string ValueData { get; set; }
+#endif
         /// <summary>Current (i.e. changed) registry key value name</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ValueName { get; set; }
+#nullable restore
+#else
         public string ValueName { get; set; }
+#endif
         /// <summary>Registry key value type REG_BINARY REG_DWORD REG_DWORD_LITTLE_ENDIAN REG_DWORD_BIG_ENDIANREG_EXPAND_SZ REG_LINK REG_MULTI_SZ REG_NONE REG_QWORD REG_QWORD_LITTLE_ENDIAN REG_SZ Possible values are: unknown, binary, dword, dwordLittleEndian, dwordBigEndian, expandSz, link, multiSz, none, qword, qwordlittleEndian, sz.</summary>
         public RegistryValueType? ValueType { get; set; }
         /// <summary>
@@ -34,12 +76,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public RegistryKeyState() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.registryKeyState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static RegistryKeyState CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RegistryKeyState();
@@ -64,8 +105,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<RegistryHive>("hive", Hive);

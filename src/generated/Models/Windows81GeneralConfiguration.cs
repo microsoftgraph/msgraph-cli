@@ -26,13 +26,25 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to block a single word entry on Intranet sites.</summary>
         public bool? BrowserBlockSingleWordEntryOnIntranetSites { get; set; }
         /// <summary>The enterprise mode site list location. Could be a local file, local network or http location.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BrowserEnterpriseModeSiteListLocation { get; set; }
+#nullable restore
+#else
         public string BrowserEnterpriseModeSiteListLocation { get; set; }
+#endif
         /// <summary>Possible values for internet site security level.</summary>
         public InternetSiteSecurityLevel? BrowserInternetSecurityLevel { get; set; }
         /// <summary>Possible values for site security level.</summary>
         public SiteSecurityLevel? BrowserIntranetSecurityLevel { get; set; }
         /// <summary>The logging report location.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BrowserLoggingReportLocation { get; set; }
+#nullable restore
+#else
         public string BrowserLoggingReportLocation { get; set; }
+#endif
         /// <summary>Indicates whether or not to require a firewall.</summary>
         public bool? BrowserRequireFirewall { get; set; }
         /// <summary>Indicates whether or not to require fraud warning.</summary>
@@ -70,7 +82,13 @@ namespace ApiSdk.Models {
         /// <summary>Possible values for Windows user account control settings.</summary>
         public WindowsUserAccountControlSettings? UserAccountControlSettings { get; set; }
         /// <summary>The work folders url.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WorkFoldersUrl { get; set; }
+#nullable restore
+#else
         public string WorkFoldersUrl { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new Windows81GeneralConfiguration and sets the default values.
         /// </summary>
@@ -79,8 +97,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Windows81GeneralConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Windows81GeneralConfiguration();
@@ -127,8 +145,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

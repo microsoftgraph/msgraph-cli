@@ -5,22 +5,45 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Me.OnlineMeetings.CreateOrGet {
-    /// <summary>Provides operations to call the createOrGet method.</summary>
     public class CreateOrGetPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The chatInfo property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ChatInfo? ChatInfo { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.ChatInfo ChatInfo { get; set; }
+#endif
         /// <summary>The endDateTime property</summary>
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>The externalId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExternalId { get; set; }
+#nullable restore
+#else
         public string ExternalId { get; set; }
+#endif
         /// <summary>The participants property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public MeetingParticipants? Participants { get; set; }
+#nullable restore
+#else
         public MeetingParticipants Participants { get; set; }
+#endif
         /// <summary>The startDateTime property</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>The subject property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Subject { get; set; }
+#nullable restore
+#else
         public string Subject { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new createOrGetPostRequestBody and sets the default values.
         /// </summary>
@@ -29,8 +52,8 @@ namespace ApiSdk.Me.OnlineMeetings.CreateOrGet {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static CreateOrGetPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CreateOrGetPostRequestBody();
@@ -50,8 +73,8 @@ namespace ApiSdk.Me.OnlineMeetings.CreateOrGet {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<ApiSdk.Models.ChatInfo>("chatInfo", ChatInfo);

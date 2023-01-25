@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Possible values for the install intent chosen by the admin.</summary>
     public enum InstallIntent {
         /// <summary>Available install intent.</summary>
         Available,

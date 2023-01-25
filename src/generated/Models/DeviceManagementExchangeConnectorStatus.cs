@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>The current status of the Exchange Connector.</summary>
     public enum DeviceManagementExchangeConnectorStatus {
         /// <summary>No Connector exists.</summary>
         None,

@@ -24,7 +24,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Authentication {
-    /// <summary>Provides operations to manage the authentication property of the microsoft.graph.user entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the authentication property of the microsoft.graph.user entity.
+    /// </summary>
     public class AuthenticationRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -43,7 +45,8 @@ namespace ApiSdk.Users.Item.Authentication {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -51,10 +54,10 @@ namespace ApiSdk.Users.Item.Authentication {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -64,8 +67,12 @@ namespace ApiSdk.Users.Item.Authentication {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.
+        /// </summary>
         public Command BuildEmailMethodsCommand() {
             var command = new Command("email-methods");
+            command.Description = "Provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.";
             var builder = new EmailMethodsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -73,12 +80,15 @@ namespace ApiSdk.Users.Item.Authentication {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.
+        /// </summary>
         public Command BuildFido2MethodsCommand() {
             var command = new Command("fido2-methods");
+            command.Description = "Provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.";
             var builder = new Fido2MethodsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -126,7 +136,7 @@ namespace ApiSdk.Users.Item.Authentication {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -143,8 +153,12 @@ namespace ApiSdk.Users.Item.Authentication {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the methods property of the microsoft.graph.authentication entity.
+        /// </summary>
         public Command BuildMethodsCommand() {
             var command = new Command("methods");
+            command.Description = "Provides operations to manage the methods property of the microsoft.graph.authentication entity.";
             var builder = new MethodsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -152,17 +166,24 @@ namespace ApiSdk.Users.Item.Authentication {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
+        /// </summary>
         public Command BuildMicrosoftAuthenticatorMethodsCommand() {
             var command = new Command("microsoft-authenticator-methods");
+            command.Description = "Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.";
             var builder = new MicrosoftAuthenticatorMethodsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the operations property of the microsoft.graph.authentication entity.
+        /// </summary>
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
+            command.Description = "Provides operations to manage the operations property of the microsoft.graph.authentication entity.";
             var builder = new OperationsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -170,8 +191,12 @@ namespace ApiSdk.Users.Item.Authentication {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.
+        /// </summary>
         public Command BuildPasswordMethodsCommand() {
             var command = new Command("password-methods");
+            command.Description = "Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.";
             var builder = new PasswordMethodsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -190,7 +215,7 @@ namespace ApiSdk.Users.Item.Authentication {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -219,7 +244,7 @@ namespace ApiSdk.Users.Item.Authentication {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Authentication>(ApiSdk.Models.Authentication.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -234,8 +259,12 @@ namespace ApiSdk.Users.Item.Authentication {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.
+        /// </summary>
         public Command BuildPhoneMethodsCommand() {
             var command = new Command("phone-methods");
+            command.Description = "Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.";
             var builder = new PhoneMethodsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -243,17 +272,24 @@ namespace ApiSdk.Users.Item.Authentication {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.
+        /// </summary>
         public Command BuildSoftwareOathMethodsCommand() {
             var command = new Command("software-oath-methods");
+            command.Description = "Provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.";
             var builder = new SoftwareOathMethodsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.
+        /// </summary>
         public Command BuildTemporaryAccessPassMethodsCommand() {
             var command = new Command("temporary-access-pass-methods");
+            command.Description = "Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.";
             var builder = new TemporaryAccessPassMethodsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -261,20 +297,23 @@ namespace ApiSdk.Users.Item.Authentication {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.
+        /// </summary>
         public Command BuildWindowsHelloForBusinessMethodsCommand() {
             var command = new Command("windows-hello-for-business-methods");
+            command.Description = "Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.";
             var builder = new WindowsHelloForBusinessMethodsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Instantiates a new AuthenticationRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public AuthenticationRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -285,9 +324,15 @@ namespace ApiSdk.Users.Item.Authentication {
         }
         /// <summary>
         /// Delete navigation property authentication for users
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<AuthenticationRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<AuthenticationRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<AuthenticationRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -303,9 +348,15 @@ namespace ApiSdk.Users.Item.Authentication {
         }
         /// <summary>
         /// The authentication methods that are supported for the user.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<AuthenticationRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<AuthenticationRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<AuthenticationRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -323,10 +374,16 @@ namespace ApiSdk.Users.Item.Authentication {
         }
         /// <summary>
         /// Update the navigation property authentication in users
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Authentication body, Action<AuthenticationRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Authentication body, Action<AuthenticationRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Authentication body, Action<AuthenticationRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -343,10 +400,12 @@ namespace ApiSdk.Users.Item.Authentication {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AuthenticationRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -354,22 +413,40 @@ namespace ApiSdk.Users.Item.Authentication {
             /// </summary>
             public AuthenticationRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>The authentication methods that are supported for the user.</summary>
+        /// <summary>
+        /// The authentication methods that are supported for the user.
+        /// </summary>
         public class AuthenticationRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AuthenticationRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -379,13 +456,15 @@ namespace ApiSdk.Users.Item.Authentication {
             /// </summary>
             public AuthenticationRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AuthenticationRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -393,7 +472,7 @@ namespace ApiSdk.Users.Item.Authentication {
             /// </summary>
             public AuthenticationRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

@@ -6,33 +6,69 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class EducationRubric : Entity, IParsable {
         /// <summary>The user who created this resource.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public IdentitySet? CreatedBy { get; private set; }
+#nullable restore
+#else
         public IdentitySet CreatedBy { get; private set; }
+#endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CreatedDateTime { get; private set; }
         /// <summary>The description of this rubric.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public EducationItemBody? Description { get; set; }
+#nullable restore
+#else
         public EducationItemBody Description { get; set; }
+#endif
         /// <summary>The name of this rubric.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>The grading type of this rubric -- null for a no-points rubric, or educationAssignmentPointsGradeType for a points rubric.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public EducationAssignmentGradeType? Grading { get; set; }
+#nullable restore
+#else
         public EducationAssignmentGradeType Grading { get; set; }
+#endif
         /// <summary>The last user to modify the resource.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public IdentitySet? LastModifiedBy { get; private set; }
+#nullable restore
+#else
         public IdentitySet LastModifiedBy { get; private set; }
+#endif
         /// <summary>Moment in time when the resource was last modified.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? LastModifiedDateTime { get; private set; }
         /// <summary>The collection of levels making up this rubric.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<RubricLevel>? Levels { get; set; }
+#nullable restore
+#else
         public List<RubricLevel> Levels { get; set; }
+#endif
         /// <summary>The collection of qualities making up this rubric.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<RubricQuality>? Qualities { get; set; }
+#nullable restore
+#else
         public List<RubricQuality> Qualities { get; set; }
-        /// <summary>
-        /// Instantiates a new educationRubric and sets the default values.
-        /// </summary>
-        public EducationRubric() : base() {
-            OdataType = "#microsoft.graph.educationRubric";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new EducationRubric CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationRubric();
@@ -55,8 +91,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

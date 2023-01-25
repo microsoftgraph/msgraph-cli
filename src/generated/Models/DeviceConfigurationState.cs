@@ -4,30 +4,38 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Device Configuration State for a given device.</summary>
+    /// <summary>
+    /// Device Configuration State for a given device.
+    /// </summary>
     public class DeviceConfigurationState : Entity, IParsable {
         /// <summary>The name of the policy for this policyBase</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>Supported platform types for policies.</summary>
         public PolicyPlatformType? PlatformType { get; set; }
         /// <summary>Count of how many setting a policy holds</summary>
         public int? SettingCount { get; set; }
         /// <summary>The settingStates property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DeviceConfigurationSettingState>? SettingStates { get; set; }
+#nullable restore
+#else
         public List<DeviceConfigurationSettingState> SettingStates { get; set; }
+#endif
         /// <summary>The state property</summary>
         public ComplianceStatus? State { get; set; }
         /// <summary>The version of the policy</summary>
         public int? Version { get; set; }
         /// <summary>
-        /// Instantiates a new deviceConfigurationState and sets the default values.
-        /// </summary>
-        public DeviceConfigurationState() : base() {
-            OdataType = "#microsoft.graph.deviceConfigurationState";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DeviceConfigurationState CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceConfigurationState();
@@ -47,8 +55,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

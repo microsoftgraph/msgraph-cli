@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
+    /// <summary>Represents the type of pricing of a booking service.</summary>
     public enum BookingPriceType {
         /// <summary>The price of the service is not defined.</summary>
         Undefined,

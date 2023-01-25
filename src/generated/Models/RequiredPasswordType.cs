@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Possible values of required passwords.</summary>
     public enum RequiredPasswordType {
         /// <summary>Device default value, no intent.</summary>
         DeviceDefault,

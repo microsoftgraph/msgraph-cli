@@ -6,31 +6,97 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class Post : OutlookItem, IParsable {
         /// <summary>Read-only. Nullable. Supports $expand.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Attachment>? Attachments { get; set; }
+#nullable restore
+#else
         public List<Attachment> Attachments { get; set; }
+#endif
         /// <summary>The contents of the post. This is a default property. This property can be null.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemBody? Body { get; set; }
+#nullable restore
+#else
         public ItemBody Body { get; set; }
+#endif
         /// <summary>Unique ID of the conversation. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ConversationId { get; set; }
+#nullable restore
+#else
         public string ConversationId { get; set; }
+#endif
         /// <summary>Unique ID of the conversation thread. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ConversationThreadId { get; set; }
+#nullable restore
+#else
         public string ConversationThreadId { get; set; }
+#endif
         /// <summary>The collection of open extensions defined for the post. Read-only. Nullable. Supports $expand.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Extension>? Extensions { get; set; }
+#nullable restore
+#else
         public List<Extension> Extensions { get; set; }
+#endif
         /// <summary>The from property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Recipient? From { get; set; }
+#nullable restore
+#else
         public Recipient From { get; set; }
+#endif
         /// <summary>Indicates whether the post has at least one attachment. This is a default property.</summary>
         public bool? HasAttachments { get; set; }
         /// <summary>Read-only. Supports $expand.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Post? InReplyTo { get; set; }
+#nullable restore
+#else
         public Post InReplyTo { get; set; }
+#endif
         /// <summary>The collection of multi-value extended properties defined for the post. Read-only. Nullable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<MultiValueLegacyExtendedProperty>? MultiValueExtendedProperties { get; set; }
+#nullable restore
+#else
         public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
+#endif
         /// <summary>Conversation participants that were added to the thread as part of this post.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Recipient>? NewParticipants { get; set; }
+#nullable restore
+#else
         public List<Recipient> NewParticipants { get; set; }
+#endif
         /// <summary>Specifies when the post was received. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? ReceivedDateTime { get; set; }
         /// <summary>Contains the address of the sender. The value of Sender is assumed to be the address of the authenticated user in the case when Sender is not specified. This is a default property.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Recipient? Sender { get; set; }
+#nullable restore
+#else
         public Recipient Sender { get; set; }
+#endif
         /// <summary>The collection of single-value extended properties defined for the post. Read-only. Nullable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<SingleValueLegacyExtendedProperty>? SingleValueExtendedProperties { get; set; }
+#nullable restore
+#else
         public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new Post and sets the default values.
         /// </summary>
@@ -39,8 +105,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Post CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Post();
@@ -67,8 +133,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

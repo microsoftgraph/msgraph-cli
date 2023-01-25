@@ -4,38 +4,61 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class SecureScore : Entity, IParsable {
         /// <summary>Active user count of the given tenant.</summary>
         public int? ActiveUserCount { get; set; }
         /// <summary>Average score by different scopes (for example, average by industry, average by seating) and control category (Identity, Data, Device, Apps, Infrastructure) within the scope.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AverageComparativeScore>? AverageComparativeScores { get; set; }
+#nullable restore
+#else
         public List<AverageComparativeScore> AverageComparativeScores { get; set; }
+#endif
         /// <summary>GUID string for tenant ID.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AzureTenantId { get; set; }
+#nullable restore
+#else
         public string AzureTenantId { get; set; }
+#endif
         /// <summary>Contains tenant scores for a set of controls.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ControlScore>? ControlScores { get; set; }
+#nullable restore
+#else
         public List<ControlScore> ControlScores { get; set; }
+#endif
         /// <summary>The date when the entity is created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Tenant current attained score on specified date.</summary>
         public double? CurrentScore { get; set; }
         /// <summary>Microsoft-provided services for the tenant (for example, Exchange online, Skype, Sharepoint).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? EnabledServices { get; set; }
+#nullable restore
+#else
         public List<string> EnabledServices { get; set; }
+#endif
         /// <summary>Licensed user count of the given tenant.</summary>
         public int? LicensedUserCount { get; set; }
         /// <summary>Tenant maximum possible score on specified date.</summary>
         public double? MaxScore { get; set; }
         /// <summary>Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public SecurityVendorInformation? VendorInformation { get; set; }
+#nullable restore
+#else
         public SecurityVendorInformation VendorInformation { get; set; }
-        /// <summary>
-        /// Instantiates a new secureScore and sets the default values.
-        /// </summary>
-        public SecureScore() : base() {
-            OdataType = "#microsoft.graph.secureScore";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new SecureScore CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SecureScore();
@@ -59,8 +82,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

@@ -6,21 +6,21 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class CountryNamedLocation : NamedLocation, IParsable {
         /// <summary>List of countries and/or regions in two-letter format specified by ISO 3166-2. Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? CountriesAndRegions { get; set; }
+#nullable restore
+#else
         public List<string> CountriesAndRegions { get; set; }
+#endif
         /// <summary>Determines what method is used to decide which country the user is located in. Possible values are clientIpAddress(default) and authenticatorAppGps. Note: authenticatorAppGps is not yet supported in the Microsoft Cloud for US Government.</summary>
         public CountryLookupMethodType? CountryLookupMethod { get; set; }
         /// <summary>true if IP addresses that don&apos;t map to a country or region should be included in the named location. Optional. Default value is false.</summary>
         public bool? IncludeUnknownCountriesAndRegions { get; set; }
         /// <summary>
-        /// Instantiates a new CountryNamedLocation and sets the default values.
-        /// </summary>
-        public CountryNamedLocation() : base() {
-            OdataType = "#microsoft.graph.countryNamedLocation";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new CountryNamedLocation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CountryNamedLocation();
@@ -37,8 +37,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

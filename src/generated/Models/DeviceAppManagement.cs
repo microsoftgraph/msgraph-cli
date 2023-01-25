@@ -4,54 +4,140 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Singleton entity that acts as a container for all device app management functionality.</summary>
+    /// <summary>
+    /// Singleton entity that acts as a container for all device app management functionality.
+    /// </summary>
     public class DeviceAppManagement : Entity, IParsable {
         /// <summary>Android managed app policies.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AndroidManagedAppProtection>? AndroidManagedAppProtections { get; set; }
+#nullable restore
+#else
         public List<AndroidManagedAppProtection> AndroidManagedAppProtections { get; set; }
+#endif
         /// <summary>Default managed app policies.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DefaultManagedAppProtection>? DefaultManagedAppProtections { get; set; }
+#nullable restore
+#else
         public List<DefaultManagedAppProtection> DefaultManagedAppProtections { get; set; }
+#endif
         /// <summary>iOS managed app policies.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<IosManagedAppProtection>? IosManagedAppProtections { get; set; }
+#nullable restore
+#else
         public List<IosManagedAppProtection> IosManagedAppProtections { get; set; }
+#endif
         /// <summary>Whether the account is enabled for syncing applications from the Microsoft Store for Business.</summary>
         public bool? IsEnabledForMicrosoftStoreForBusiness { get; set; }
         /// <summary>Managed app policies.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ManagedAppPolicy>? ManagedAppPolicies { get; set; }
+#nullable restore
+#else
         public List<ManagedAppPolicy> ManagedAppPolicies { get; set; }
+#endif
         /// <summary>The managed app registrations.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ManagedAppRegistration>? ManagedAppRegistrations { get; set; }
+#nullable restore
+#else
         public List<ManagedAppRegistration> ManagedAppRegistrations { get; set; }
+#endif
         /// <summary>The managed app statuses.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ManagedAppStatus>? ManagedAppStatuses { get; set; }
+#nullable restore
+#else
         public List<ManagedAppStatus> ManagedAppStatuses { get; set; }
+#endif
         /// <summary>The Managed eBook.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ManagedEBook>? ManagedEBooks { get; set; }
+#nullable restore
+#else
         public List<ManagedEBook> ManagedEBooks { get; set; }
+#endif
         /// <summary>Windows information protection for apps running on devices which are MDM enrolled.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<MdmWindowsInformationProtectionPolicy>? MdmWindowsInformationProtectionPolicies { get; set; }
+#nullable restore
+#else
         public List<MdmWindowsInformationProtectionPolicy> MdmWindowsInformationProtectionPolicies { get; set; }
+#endif
         /// <summary>The locale information used to sync applications from the Microsoft Store for Business. Cultures that are specific to a country/region. The names of these cultures follow RFC 4646 (Windows Vista and later). The format is -&lt;country/regioncode2&gt;, where  is a lowercase two-letter code derived from ISO 639-1 and &lt;country/regioncode2&gt; is an uppercase two-letter code derived from ISO 3166. For example, en-US for English (United States) is a specific culture.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MicrosoftStoreForBusinessLanguage { get; set; }
+#nullable restore
+#else
         public string MicrosoftStoreForBusinessLanguage { get; set; }
+#endif
         /// <summary>The last time an application sync from the Microsoft Store for Business was completed.</summary>
         public DateTimeOffset? MicrosoftStoreForBusinessLastCompletedApplicationSyncTime { get; set; }
         /// <summary>The last time the apps from the Microsoft Store for Business were synced successfully for the account.</summary>
         public DateTimeOffset? MicrosoftStoreForBusinessLastSuccessfulSyncDateTime { get; set; }
         /// <summary>The mobile app categories.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<MobileAppCategory>? MobileAppCategories { get; set; }
+#nullable restore
+#else
         public List<MobileAppCategory> MobileAppCategories { get; set; }
+#endif
         /// <summary>The Managed Device Mobile Application Configurations.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ManagedDeviceMobileAppConfiguration>? MobileAppConfigurations { get; set; }
+#nullable restore
+#else
         public List<ManagedDeviceMobileAppConfiguration> MobileAppConfigurations { get; set; }
+#endif
         /// <summary>The mobile apps.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<MobileApp>? MobileApps { get; set; }
+#nullable restore
+#else
         public List<MobileApp> MobileApps { get; set; }
+#endif
         /// <summary>Targeted managed app configurations.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<TargetedManagedAppConfiguration>? TargetedManagedAppConfigurations { get; set; }
+#nullable restore
+#else
         public List<TargetedManagedAppConfiguration> TargetedManagedAppConfigurations { get; set; }
+#endif
         /// <summary>List of Vpp tokens for this organization.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<VppToken>? VppTokens { get; set; }
+#nullable restore
+#else
         public List<VppToken> VppTokens { get; set; }
+#endif
         /// <summary>Windows information protection for apps running on devices which are not MDM enrolled.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<WindowsInformationProtectionPolicy>? WindowsInformationProtectionPolicies { get; set; }
+#nullable restore
+#else
         public List<WindowsInformationProtectionPolicy> WindowsInformationProtectionPolicies { get; set; }
-        /// <summary>
-        /// Instantiates a new deviceAppManagement and sets the default values.
-        /// </summary>
-        public DeviceAppManagement() : base() {
-            OdataType = "#microsoft.graph.deviceAppManagement";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DeviceAppManagement CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceAppManagement();
@@ -83,8 +169,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

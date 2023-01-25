@@ -6,15 +6,45 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class DeviceEnrollmentPlatformRestrictionsConfiguration : DeviceEnrollmentConfiguration, IParsable {
         /// <summary>Android restrictions based on platform, platform operating system version, and device ownership</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DeviceEnrollmentPlatformRestriction? AndroidRestriction { get; set; }
+#nullable restore
+#else
         public DeviceEnrollmentPlatformRestriction AndroidRestriction { get; set; }
+#endif
         /// <summary>Ios restrictions based on platform, platform operating system version, and device ownership</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DeviceEnrollmentPlatformRestriction? IosRestriction { get; set; }
+#nullable restore
+#else
         public DeviceEnrollmentPlatformRestriction IosRestriction { get; set; }
+#endif
         /// <summary>Mac restrictions based on platform, platform operating system version, and device ownership</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DeviceEnrollmentPlatformRestriction? MacOSRestriction { get; set; }
+#nullable restore
+#else
         public DeviceEnrollmentPlatformRestriction MacOSRestriction { get; set; }
+#endif
         /// <summary>Windows mobile restrictions based on platform, platform operating system version, and device ownership</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DeviceEnrollmentPlatformRestriction? WindowsMobileRestriction { get; set; }
+#nullable restore
+#else
         public DeviceEnrollmentPlatformRestriction WindowsMobileRestriction { get; set; }
+#endif
         /// <summary>Windows restrictions based on platform, platform operating system version, and device ownership</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DeviceEnrollmentPlatformRestriction? WindowsRestriction { get; set; }
+#nullable restore
+#else
         public DeviceEnrollmentPlatformRestriction WindowsRestriction { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new DeviceEnrollmentPlatformRestrictionsConfiguration and sets the default values.
         /// </summary>
@@ -23,8 +53,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DeviceEnrollmentPlatformRestrictionsConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceEnrollmentPlatformRestrictionsConfiguration();
@@ -43,8 +73,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

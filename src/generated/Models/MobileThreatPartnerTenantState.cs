@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Partner state of this tenant.</summary>
     public enum MobileThreatPartnerTenantState {
         /// <summary>Partner is unavailable.</summary>
         Unavailable,

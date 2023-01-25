@@ -8,58 +8,159 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Name of the application managing the network connection (for example, Facebook or SMTP).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ApplicationName { get; set; }
+#nullable restore
+#else
         public string ApplicationName { get; set; }
+#endif
         /// <summary>Destination IP address (of the network connection).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DestinationAddress { get; set; }
+#nullable restore
+#else
         public string DestinationAddress { get; set; }
+#endif
         /// <summary>Destination domain portion of the destination URL. (for example &apos;www.contoso.com&apos;).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DestinationDomain { get; set; }
+#nullable restore
+#else
         public string DestinationDomain { get; set; }
+#endif
         /// <summary>Location (by IP address mapping) associated with the destination of a network connection.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DestinationLocation { get; set; }
+#nullable restore
+#else
         public string DestinationLocation { get; set; }
+#endif
         /// <summary>Destination port (of the network connection).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DestinationPort { get; set; }
+#nullable restore
+#else
         public string DestinationPort { get; set; }
+#endif
         /// <summary>Network connection URL/URI string - excluding parameters. (for example &apos;www.contoso.com/products/default.html&apos;)</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DestinationUrl { get; set; }
+#nullable restore
+#else
         public string DestinationUrl { get; set; }
+#endif
         /// <summary>Network connection direction. Possible values are: unknown, inbound, outbound.</summary>
         public ConnectionDirection? Direction { get; set; }
         /// <summary>Date when the destination domain was registered. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? DomainRegisteredDateTime { get; set; }
         /// <summary>The local DNS name resolution as it appears in the host&apos;s local DNS cache (for example, in case the &apos;hosts&apos; file was tampered with).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LocalDnsName { get; set; }
+#nullable restore
+#else
         public string LocalDnsName { get; set; }
+#endif
         /// <summary>Network Address Translation destination IP address.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NatDestinationAddress { get; set; }
+#nullable restore
+#else
         public string NatDestinationAddress { get; set; }
+#endif
         /// <summary>Network Address Translation destination port.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NatDestinationPort { get; set; }
+#nullable restore
+#else
         public string NatDestinationPort { get; set; }
+#endif
         /// <summary>Network Address Translation source IP address.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NatSourceAddress { get; set; }
+#nullable restore
+#else
         public string NatSourceAddress { get; set; }
+#endif
         /// <summary>Network Address Translation source port.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NatSourcePort { get; set; }
+#nullable restore
+#else
         public string NatSourcePort { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Network protocol. Possible values are: unknown, ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII.</summary>
         public SecurityNetworkProtocol? Protocol { get; set; }
         /// <summary>Provider generated/calculated risk score of the network connection. Recommended value range of 0-1, which equates to a percentage.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RiskScore { get; set; }
+#nullable restore
+#else
         public string RiskScore { get; set; }
+#endif
         /// <summary>Source (i.e. origin) IP address (of the network connection).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SourceAddress { get; set; }
+#nullable restore
+#else
         public string SourceAddress { get; set; }
+#endif
         /// <summary>Location (by IP address mapping) associated with the source of a network connection.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SourceLocation { get; set; }
+#nullable restore
+#else
         public string SourceLocation { get; set; }
+#endif
         /// <summary>Source (i.e. origin) IP port (of the network connection).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SourcePort { get; set; }
+#nullable restore
+#else
         public string SourcePort { get; set; }
+#endif
         /// <summary>Network connection status. Possible values are: unknown, attempted, succeeded, blocked, failed.</summary>
         public ConnectionStatus? Status { get; set; }
         /// <summary>Parameters (suffix) of the destination URL.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UrlParameters { get; set; }
+#nullable restore
+#else
         public string UrlParameters { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new networkConnection and sets the default values.
         /// </summary>
         public NetworkConnection() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.networkConnection";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static NetworkConnection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new NetworkConnection();
@@ -94,8 +195,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("applicationName", ApplicationName);

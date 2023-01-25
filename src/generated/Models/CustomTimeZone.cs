@@ -8,9 +8,21 @@ namespace ApiSdk.Models {
         /// <summary>The time offset of the time zone from Coordinated Universal Time (UTC). This value is in minutes. Time zones that are ahead of UTC have a positive offset; time zones that are behind UTC have a negative offset.</summary>
         public int? Bias { get; set; }
         /// <summary>Specifies when the time zone switches from standard time to daylight saving time.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DaylightTimeZoneOffset? DaylightOffset { get; set; }
+#nullable restore
+#else
         public DaylightTimeZoneOffset DaylightOffset { get; set; }
+#endif
         /// <summary>Specifies when the time zone switches from daylight saving time to standard time.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public StandardTimeZoneOffset? StandardOffset { get; set; }
+#nullable restore
+#else
         public StandardTimeZoneOffset StandardOffset { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new CustomTimeZone and sets the default values.
         /// </summary>
@@ -19,8 +31,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new CustomTimeZone CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CustomTimeZone();
@@ -37,8 +49,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

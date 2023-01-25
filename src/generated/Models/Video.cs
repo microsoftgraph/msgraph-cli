@@ -12,7 +12,13 @@ namespace ApiSdk.Models {
         /// <summary>Number of audio channels.</summary>
         public int? AudioChannels { get; set; }
         /// <summary>Name of the audio format (AAC, MP3, etc.).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AudioFormat { get; set; }
+#nullable restore
+#else
         public string AudioFormat { get; set; }
+#endif
         /// <summary>Number of audio samples per second.</summary>
         public int? AudioSamplesPerSecond { get; set; }
         /// <summary>Bit rate of the video in bits per second.</summary>
@@ -20,13 +26,25 @@ namespace ApiSdk.Models {
         /// <summary>Duration of the file in milliseconds.</summary>
         public long? Duration { get; set; }
         /// <summary>&apos;Four character code&apos; name of the video format.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? FourCC { get; set; }
+#nullable restore
+#else
         public string FourCC { get; set; }
+#endif
         /// <summary>Frame rate of the video.</summary>
         public double? FrameRate { get; set; }
         /// <summary>Height of the video, in pixels.</summary>
         public int? Height { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Width of the video, in pixels.</summary>
         public int? Width { get; set; }
         /// <summary>
@@ -34,12 +52,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public Video() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.video";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Video CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Video();
@@ -64,8 +81,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("audioBitsPerSample", AudioBitsPerSample);

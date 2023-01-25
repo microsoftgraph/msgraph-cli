@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Contains all supported registry data detection type.</summary>
     public enum Win32LobAppRegistryRuleOperationType {
         /// <summary>Not configured.</summary>
         NotConfigured,

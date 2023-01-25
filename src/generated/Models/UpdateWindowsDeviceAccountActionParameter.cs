@@ -10,28 +10,57 @@ namespace ApiSdk.Models {
         /// <summary>Not yet documented</summary>
         public bool? CalendarSyncEnabled { get; set; }
         /// <summary>Not yet documented</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public WindowsDeviceAccount? DeviceAccount { get; set; }
+#nullable restore
+#else
         public WindowsDeviceAccount DeviceAccount { get; set; }
+#endif
         /// <summary>Not yet documented</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceAccountEmail { get; set; }
+#nullable restore
+#else
         public string DeviceAccountEmail { get; set; }
+#endif
         /// <summary>Not yet documented</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExchangeServer { get; set; }
+#nullable restore
+#else
         public string ExchangeServer { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Not yet documented</summary>
         public bool? PasswordRotationEnabled { get; set; }
         /// <summary>Not yet documented</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SessionInitiationProtocalAddress { get; set; }
+#nullable restore
+#else
         public string SessionInitiationProtocalAddress { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new updateWindowsDeviceAccountActionParameter and sets the default values.
         /// </summary>
         public UpdateWindowsDeviceAccountActionParameter() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.updateWindowsDeviceAccountActionParameter";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static UpdateWindowsDeviceAccountActionParameter CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UpdateWindowsDeviceAccountActionParameter();
@@ -52,8 +81,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("calendarSyncEnabled", CalendarSyncEnabled);

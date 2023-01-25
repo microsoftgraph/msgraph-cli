@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Contains all supported file system detection type.</summary>
     public enum Win32LobAppFileSystemOperationType {
         /// <summary>Not configured.</summary>
         NotConfigured,

@@ -5,16 +5,27 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Me.FindMeetingTimes {
-    /// <summary>Provides operations to call the findMeetingTimes method.</summary>
     public class FindMeetingTimesPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The attendees property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AttendeeBase>? Attendees { get; set; }
+#nullable restore
+#else
         public List<AttendeeBase> Attendees { get; set; }
+#endif
         /// <summary>The isOrganizerOptional property</summary>
         public bool? IsOrganizerOptional { get; set; }
         /// <summary>The locationConstraint property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.LocationConstraint? LocationConstraint { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.LocationConstraint LocationConstraint { get; set; }
+#endif
         /// <summary>The maxCandidates property</summary>
         public int? MaxCandidates { get; set; }
         /// <summary>The meetingDuration property</summary>
@@ -24,7 +35,13 @@ namespace ApiSdk.Me.FindMeetingTimes {
         /// <summary>The returnSuggestionReasons property</summary>
         public bool? ReturnSuggestionReasons { get; set; }
         /// <summary>The timeConstraint property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.TimeConstraint? TimeConstraint { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.TimeConstraint TimeConstraint { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new findMeetingTimesPostRequestBody and sets the default values.
         /// </summary>
@@ -33,8 +50,8 @@ namespace ApiSdk.Me.FindMeetingTimes {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static FindMeetingTimesPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new FindMeetingTimesPostRequestBody();
@@ -56,8 +73,8 @@ namespace ApiSdk.Me.FindMeetingTimes {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<AttendeeBase>("attendees", Attendees);

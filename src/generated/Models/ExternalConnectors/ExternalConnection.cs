@@ -4,34 +4,69 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.ExternalConnectors {
-    /// <summary>Provides operations to manage the collection of externalConnection entities.</summary>
     public class ExternalConnection : Entity, IParsable {
         /// <summary>Specifies additional application IDs that are allowed to manage the connection and to index content in the connection. Optional.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ExternalConnectors.Configuration? Configuration { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.ExternalConnectors.Configuration Configuration { get; set; }
+#endif
         /// <summary>Description of the connection displayed in the Microsoft 365 admin center. Optional.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
         public string Description { get; set; }
+#endif
         /// <summary>The groups property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ExternalGroup>? Groups { get; set; }
+#nullable restore
+#else
         public List<ExternalGroup> Groups { get; set; }
+#endif
         /// <summary>The items property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ExternalItem>? Items { get; set; }
+#nullable restore
+#else
         public List<ExternalItem> Items { get; set; }
+#endif
         /// <summary>The display name of the connection to be displayed in the Microsoft 365 admin center. Maximum length of 128 characters. Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
         public string Name { get; set; }
+#endif
         /// <summary>The operations property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ConnectionOperation>? Operations { get; set; }
+#nullable restore
+#else
         public List<ConnectionOperation> Operations { get; set; }
+#endif
         /// <summary>The schema property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ExternalConnectors.Schema? Schema { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.ExternalConnectors.Schema Schema { get; set; }
+#endif
         /// <summary>Indicates the current state of the connection. Possible values are: draft, ready, obsolete, limitExceeded, unknownFutureValue.</summary>
         public ConnectionState? State { get; private set; }
         /// <summary>
-        /// Instantiates a new externalConnection and sets the default values.
-        /// </summary>
-        public ExternalConnection() : base() {
-            OdataType = "#microsoft.graph.externalConnectors.externalConnection";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ExternalConnection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ExternalConnection();
@@ -53,8 +88,8 @@ namespace ApiSdk.Models.ExternalConnectors {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

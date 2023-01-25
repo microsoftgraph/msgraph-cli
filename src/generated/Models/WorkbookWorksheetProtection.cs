@@ -6,19 +6,19 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class WorkbookWorksheetProtection : Entity, IParsable {
         /// <summary>Sheet protection options. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public WorkbookWorksheetProtectionOptions? Options { get; set; }
+#nullable restore
+#else
         public WorkbookWorksheetProtectionOptions Options { get; set; }
+#endif
         /// <summary>Indicates if the worksheet is protected.  Read-only.</summary>
         public bool? Protected { get; set; }
         /// <summary>
-        /// Instantiates a new workbookWorksheetProtection and sets the default values.
-        /// </summary>
-        public WorkbookWorksheetProtection() : base() {
-            OdataType = "#microsoft.graph.workbookWorksheetProtection";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new WorkbookWorksheetProtection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookWorksheetProtection();
@@ -34,8 +34,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

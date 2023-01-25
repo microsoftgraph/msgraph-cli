@@ -10,7 +10,13 @@ namespace ApiSdk.Models {
         /// <summary>Movies rating labels in France</summary>
         public RatingFranceMoviesType? MovieRating { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>TV content rating labels in France</summary>
         public RatingFranceTelevisionType? TvRating { get; set; }
         /// <summary>
@@ -18,12 +24,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public MediaContentRatingFrance() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.mediaContentRatingFrance";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static MediaContentRatingFrance CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MediaContentRatingFrance();
@@ -40,8 +45,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<RatingFranceMoviesType>("movieRating", MovieRating);

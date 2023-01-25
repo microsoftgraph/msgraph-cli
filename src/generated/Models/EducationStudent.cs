@@ -11,28 +11,57 @@ namespace ApiSdk.Models {
         /// <summary>Birth date of the student.</summary>
         public Date? BirthDate { get; set; }
         /// <summary>ID of the student in the source system.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExternalId { get; set; }
+#nullable restore
+#else
         public string ExternalId { get; set; }
+#endif
         /// <summary>The possible values are: female, male, other, unknownFutureValue.</summary>
         public EducationGender? Gender { get; set; }
         /// <summary>Current grade level of the student.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Grade { get; set; }
+#nullable restore
+#else
         public string Grade { get; set; }
+#endif
         /// <summary>Year the student is graduating from the school.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? GraduationYear { get; set; }
+#nullable restore
+#else
         public string GraduationYear { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Student Number.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StudentNumber { get; set; }
+#nullable restore
+#else
         public string StudentNumber { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new educationStudent and sets the default values.
         /// </summary>
         public EducationStudent() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.educationStudent";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static EducationStudent CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationStudent();
@@ -53,8 +82,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("birthDate", BirthDate);
