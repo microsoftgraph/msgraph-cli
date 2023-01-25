@@ -305,7 +305,7 @@ stages:
             condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'win'))
 
           - task: EsrpCodeSigning@2
-            displayName: 'ESRP CodeSigning'
+            displayName: 'ESRP CodeSigning (Sign)'
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
@@ -318,7 +318,7 @@ stages:
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
           - task: EsrpCodeSigning@2
-            displayName: 'ESRP CodeSigning'
+            displayName: 'ESRP CodeSigning (Notarize)'
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
@@ -331,7 +331,7 @@ stages:
             condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), eq(variables['SHOULD_SIGN'], 'True'))
 
           - pwsh: |
-              $artifactsPath = $(WORKING_DIR)/artifacts
+              $artifactsPath = "$(WORKING_DIR)/artifacts"
               # artifactsPath = $(artifactsDownloadLocation)/$(rid)/artifacts
               Move-Item -Path "$artifactsPath/*.md" -Destination ../
               # Move backup back
@@ -345,7 +345,7 @@ stages:
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'win'))
 
           - pwsh: |
-              $artifactsPath = $(WORKING_DIR)/artifacts
+              $artifactsPath = "$(WORKING_DIR)/artifacts"
               $zipPath = Join-Path -Path $artifactsPath -ChildPath '$(ZIP_NAME)'
               Expand-Archive -Path "$zipPath" -DestinationPath "$artifactsPath/"
               Move-Item -Path "$artifactsPath/*.md" -Destination "$artifactsPath/"
