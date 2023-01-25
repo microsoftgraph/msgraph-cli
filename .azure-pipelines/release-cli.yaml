@@ -334,11 +334,13 @@ stages:
               $artifactsPath = "$(WORKING_DIR)/artifacts"
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
               # artifactsPath = $(artifactsDownloadLocation)/$(rid)/artifacts
-              Move-Item -Path "$artifactsPath/*.md" -Destination ../
+              $stageDir = "$(WORKING_DIR)/stage"
+              New-Item "$stageDir" -ItemType "Directory"
+              Move-Item -Path "$artifactsPath/*.md" -Destination "$(WORKING_DIR)"
               # Move backup back
               # BACKUP_PATH = $(artifactsDownloadLocation)/$(rid)/backup
-              Move-Item -Path '$(BACKUP_PATH)/*' -Destination "$artifactsPath/"
-              Compress-Archive -Path "$artifactsPath/*" -DestinationPath ../$(ZIP_NAME)
+              Move-Item -Path '$(BACKUP_PATH)/*' -Destination "$artifactsPath"
+              Compress-Archive -Path "$artifactsPath/*" -DestinationPath $(WORKING_DIR)/$(ZIP_NAME)
               Remove-Item "$artifactsPath" -Recurse -Force
               Remove-Item '$(BACKUP_PATH)' -Recurse -Force
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
@@ -349,10 +351,11 @@ stages:
               $artifactsPath = "$(WORKING_DIR)/artifacts"
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
               $zipPath = Join-Path -Path $artifactsPath -ChildPath '$(ZIP_NAME)'
-              Expand-Archive -Path "$zipPath" -DestinationPath "$artifactsPath/"
-              Move-Item -Path "$artifactsPath/*.md" -Destination "$artifactsPath/"
+              Expand-Archive -Path "$zipPath" -DestinationPath "$artifactsPath"
+              Move-Item -Path "$artifactsPath/*.md" -Destination "$(WORKING_DIR)"
               Remove-Item -Path "$zipPath" -Force
-              Compress-Archive -Path "$artifactsPath/*" -DestinationPath ../$(ZIP_NAME)
+              Move-Item -Path '$(BACKUP_PATH)/*' -Destination "$artifactsPath"
+              Compress-Archive -Path "$artifactsPath/*" -DestinationPath $(WORKING_DIR)/$(ZIP_NAME)
               Remove-Item "$artifactsPath" -Recurse -Force
               Remove-Item '$(BACKUP_PATH)' -Recurse -Force
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
