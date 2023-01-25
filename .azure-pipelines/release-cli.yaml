@@ -302,7 +302,7 @@ stages:
           - pwsh: |
               Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(pattern)"
             displayName: Compute ESRP filter pattern Windows
-            condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'))
+            condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'win'))
 
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning'
