@@ -220,15 +220,11 @@ stages:
             'MacOS-x64':
               rid: osx-x64
               sign: false
-              pattern: |
-                **\*.zip
               inlineSignOperation: ${{ variables.macSignOp }}
               inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
             'MacOS-ARM':
               rid: osx-arm64
               sign: true
-              pattern: |
-                **\*.zip
               inlineSignOperation: ${{ variables.macSignOp }}
               inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
         displayName: ESRP Signing
@@ -248,11 +244,13 @@ stages:
               Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
               Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
               Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
+
           - task: DownloadPipelineArtifact@2
             inputs:
               patterns: build-output-$(rid)/**/*
               path: $(WORKING_DIR)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+
           - pwsh: |
               # Get the archive name
               $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
@@ -266,17 +264,18 @@ stages:
               # -Force so there's no confirmation
               # -Recurse so the child items warning isn't shown
               Remove-Item $downloadDir -Recurse -Force
+              Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
             displayName: Extract zip
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), not(startsWith(variables['RUNTIME_ID'], 'osx')))
-          - pwsh: |
-              # Get the archive name
-              $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
-              $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
-              Write-Host "Moving $downloadDir to $extractPath"
-              Move-Item -Path $downloadDir -Destination $extractPath
-              Get-ChildItem $extractPath -Recurse
-            displayName: Move zip
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
+            # condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), not(startsWith(variables['RUNTIME_ID'], 'osx')))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+
+          - ${{ if startsWith(variables['RUNTIME_ID'], 'osx') }}:
+            - template: templates/prepare-unsigned-executable-darwin.yaml
+              parameters:
+                executablePath: $(WORKING_DIR)/artifacts
+                executableName: mgc
+                zipName: $(ZIP_NAME)
+
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning'
             inputs:
@@ -285,8 +284,11 @@ stages:
               FolderPath: $(WORKING_DIR)/artifacts
               signConfigType: inlineSignParams
               UseMinimatch: true
-              Pattern: |
-                $(pattern)
+              ${{ if startsWith(variables['RUNTIME_ID'], 'osx') }}:
+                Pattern: $(ZIP_NAME)
+              ${{ else }}:
+                Pattern: |
+                  $(pattern)
               inlineOperation: $(inlineSignOperation)
               SessionTimeout: 20
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
@@ -298,16 +300,18 @@ stages:
               FolderPath: $(WORKING_DIR)/artifacts
               signConfigType: inlineSignParams
               UseMinimatch: true
-              Pattern: |
-                $(pattern)
+              ${{ if startsWith(variables['RUNTIME_ID'], 'osx') }}:
+                Pattern: $(ZIP_NAME)
+              ${{ else }}:
+                Pattern: |
+                  $(pattern)
               inlineOperation: $(inlineNotarizeOperation)
               SessionTimeout: 20
             condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), eq(variables['SHOULD_SIGN'], 'True'))
 
           - pwsh: |
-              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
               Move-Item -Path '$(WORKING_DIR)/artifacts/*.md' -Destination ../
-              Compress-Archive -Path '$(WORKING_DIR)/artifacts/*' -DestinationPath ../$zipName
+              Compress-Archive -Path '$(WORKING_DIR)/artifacts/*' -DestinationPath ../$(ZIP_NAME)
               Remove-Item '$(WORKING_DIR)/artifacts' -Recurse -Force
               Get-ChildItem '$(WORKING_DIR)' -Recurse
             displayName: Compress signed files
