@@ -243,7 +243,7 @@ stages:
               Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
               Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
               Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
-              Write-Host "##vso[task.setvariable variable=WORKING_DIR]'$(artifactsDownloadLocation)/$(rid)'"
+              Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
             displayName: Setup variables
 
           - task: DownloadPipelineArtifact@2
