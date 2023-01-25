@@ -334,8 +334,6 @@ stages:
               $artifactsPath = "$(WORKING_DIR)/artifacts"
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
               # artifactsPath = $(artifactsDownloadLocation)/$(rid)/artifacts
-              $stageDir = "$(WORKING_DIR)/stage"
-              New-Item "$stageDir" -ItemType "Directory"
               Move-Item -Path "$artifactsPath/*.md" -Destination "$(WORKING_DIR)"
               # Move backup back
               # BACKUP_PATH = $(artifactsDownloadLocation)/$(rid)/backup
