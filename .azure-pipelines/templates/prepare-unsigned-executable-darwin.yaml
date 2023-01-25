@@ -24,14 +24,13 @@ steps:
       Write-Host "##vso[task.setvariable variable=EXECUTABLE_PATH]${{ parameters.executablePath }}"
       Write-Host "##vso[task.setvariable variable=EXECUTABLE_NAME]${{ parameters.executableName }}"
     displayName: Resolve parameters
-  - bash: |
-      if [ -d "$EXE_PATH" ]; then
-        echo "##vso[task.logissue type=error;]Executable directory \"$EXE_PATH\" does not exist"
+  - pwsh: |
+      Get-ChildItem -Path '$(EXECUTABLE_PATH)/../' -Recurse -Directory -Force -ErrorAction SilentlyContinue | Select-Object FullName
+      if (-Not (Test-Path -Path $(EXECUTABLE_PATH)) {
+        echo "##vso[task.logissue type=error;]The directory \"$(EXECUTABLE_PATH)\" does not exist"
         echo "##vso[task.complete result=Failed;]"
-      fi
-    env:
-      EXE_PATH: ${{ parameters.executablePath }}
-    displayName: Validate executablePath value
+      }
+    displayName: Validate executablePath location
     condition: and(succeeded(), startsWith(variables['TARGET_RUNTIME'], 'osx'))
 
   - task: AzureKeyVault@2

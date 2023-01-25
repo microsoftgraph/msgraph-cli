@@ -267,13 +267,13 @@ stages:
               # artifactsDownloadLocation = $(Pipeline.Workspace)/artifacts
               # WORKING_DIR = $(artifactsDownloadLocation)/$(rid)
               $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
-              Get-ChildItem $downloadDir
+              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
               $zipPath = Join-Path -Path $downloadDir -ChildPath '$(ZIP_NAME)'
               Write-Host $zipPath
               $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
               # extractPath = $(artifactsDownloadLocation)/$(rid)/artifacts
               Expand-Archive -Path $zipPath -DestinationPath $extractPath
-              Get-ChildItem $extractPath
+              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
 
               $backupPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath backup
               # backupPath = $(artifactsDownloadLocation)/$(rid)/backup
@@ -340,7 +340,7 @@ stages:
               Compress-Archive -Path "$artifactsPath/*" -DestinationPath ../$(ZIP_NAME)
               Remove-Item "$artifactsPath" -Recurse -Force
               Remove-Item '$(BACKUP_PATH)' -Recurse -Force
-              Get-ChildItem '$(WORKING_DIR)' -Recurse
+              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Compress signed files
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), not(startsWith(variables['RUNTIME_ID'], 'osx')))
 
@@ -352,7 +352,7 @@ stages:
               Remove-Item -Path "$zipPath" -Force
               Compress-Archive -Path "$artifactsPath/*" -DestinationPath $(WORKING_DIR)/$(ZIP_NAME)
               Remove-Item "$artifactsPath" -Recurse -Force
-              Get-ChildItem '$(WORKING_DIR)' -Recurse
+              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Update signed files
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
 
