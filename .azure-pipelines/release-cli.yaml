@@ -332,6 +332,7 @@ stages:
 
           - pwsh: |
               $artifactsPath = "$(WORKING_DIR)/artifacts"
+              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
               # artifactsPath = $(artifactsDownloadLocation)/$(rid)/artifacts
               Move-Item -Path "$artifactsPath/*.md" -Destination ../
               # Move backup back
@@ -346,6 +347,7 @@ stages:
 
           - pwsh: |
               $artifactsPath = "$(WORKING_DIR)/artifacts"
+              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
               $zipPath = Join-Path -Path $artifactsPath -ChildPath '$(ZIP_NAME)'
               Expand-Archive -Path "$zipPath" -DestinationPath "$artifactsPath/"
               Move-Item -Path "$artifactsPath/*.md" -Destination "$artifactsPath/"
