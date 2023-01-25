@@ -289,7 +289,7 @@ stages:
 
           - template: templates/prepare-unsigned-executable-darwin.yaml
             parameters:
-              executablePath: $(WORKING_DIR)/artifacts
+              executablePath: $(Pipeline.Workspace)/artifacts
               executableName: mgc
               zipName: $(ZIP_NAME)
               targetRuntime: $(rid)

@@ -26,7 +26,7 @@ steps:
     displayName: Resolve parameters
   - pwsh: |
       Get-ChildItem -Path '$(EXECUTABLE_PATH)/../' -Recurse -Directory -Force -ErrorAction SilentlyContinue | Select-Object FullName
-      if (-Not (Test-Path -Path $(EXECUTABLE_PATH)) {
+      if (-Not (Test-Path -Path '$(EXECUTABLE_PATH)')) {
         echo "##vso[task.logissue type=error;]The directory \"$(EXECUTABLE_PATH)\" does not exist"
         echo "##vso[task.complete result=Failed;]"
       }
