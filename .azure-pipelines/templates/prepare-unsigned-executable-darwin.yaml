@@ -23,11 +23,12 @@ steps:
       Write-Host "##vso[task.setvariable variable=CERTIFICATE_NAME]${{ parameters.certificateName }}"
       Write-Host "##vso[task.setvariable variable=EXECUTABLE_PATH]${{ parameters.executablePath }}"
       Write-Host "##vso[task.setvariable variable=EXECUTABLE_NAME]${{ parameters.executableName }}"
+      Write-Host "##vso[task.setvariable variable=ZIP_NAME]${{ parameters.zipName }}"
     displayName: Resolve parameters
   - pwsh: |
-      Get-ChildItem -Path '$(EXECUTABLE_PATH)/../' -Recurse -Directory -Force -ErrorAction SilentlyContinue | Select-Object FullName
-      if (-Not (Test-Path -Path '$(EXECUTABLE_PATH)')) {
-        echo "##vso[task.logissue type=error;]The directory \"$(EXECUTABLE_PATH)\" does not exist"
+      Get-ChildItem -Path '$(EXECUTABLE_PATH)/' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
+      if (-Not (Test-Path -Path '$(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)')) {
+        echo "##vso[task.logissue type=error;]The directory \"$(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)\" does not exist"
         echo "##vso[task.complete result=Failed;]"
       }
     displayName: Validate executablePath location
@@ -56,6 +57,6 @@ steps:
   
   - script: |
       set -e
-      pushd $(EXECUTABLE_PATH) && zip -r -X -y $(EXECUTABLE_PATH)/$(zipName) * && popd
+      pushd $(EXECUTABLE_PATH) && zip -r -X $(EXECUTABLE_PATH)/$(ZIP_NAME) * && popd
     displayName: Archive build for submission
     condition: and(succeeded(), startsWith(variables['TARGET_RUNTIME'], 'osx'))
