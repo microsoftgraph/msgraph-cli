@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Movies rating labels in Ireland</summary>
     public enum RatingIrelandMoviesType {
         /// <summary>Default value, allow all movies content</summary>
         AllAllowed,

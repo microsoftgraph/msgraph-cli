@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Indicates the type of return code.</summary>
     public enum Win32LobAppReturnCodeType {
         /// <summary>Failed.</summary>
         Failed,

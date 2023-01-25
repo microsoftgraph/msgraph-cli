@@ -33,7 +33,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Applications.Item {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>
+    /// Provides operations to manage the collection of application entities.
+    /// </summary>
     public class ApplicationItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -41,38 +43,59 @@ namespace ApiSdk.Applications.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the addKey method.
+        /// </summary>
         public Command BuildAddKeyCommand() {
             var command = new Command("add-key");
+            command.Description = "Provides operations to call the addKey method.";
             var builder = new AddKeyRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the addPassword method.
+        /// </summary>
         public Command BuildAddPasswordCommand() {
             var command = new Command("add-password");
+            command.Description = "Provides operations to call the addPassword method.";
             var builder = new AddPasswordRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
         public Command BuildCheckMemberGroupsCommand() {
             var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
         public Command BuildCheckMemberObjectsCommand() {
             var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.application entity.
+        /// </summary>
         public Command BuildCreatedOnBehalfOfCommand() {
             var command = new Command("created-on-behalf-of");
+            command.Description = "Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.application entity.";
             var builder = new CreatedOnBehalfOfRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/application-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
@@ -82,7 +105,8 @@ namespace ApiSdk.Applications.Item {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -90,10 +114,10 @@ namespace ApiSdk.Applications.Item {
                 var applicationId = invocationContext.ParseResult.GetValueForOption(applicationIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("application%2Did", applicationId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -103,8 +127,12 @@ namespace ApiSdk.Applications.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.
+        /// </summary>
         public Command BuildExtensionPropertiesCommand() {
             var command = new Command("extension-properties");
+            command.Description = "Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.";
             var builder = new ExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -112,8 +140,12 @@ namespace ApiSdk.Applications.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.
+        /// </summary>
         public Command BuildFederatedIdentityCredentialsCommand() {
             var command = new Command("federated-identity-credentials");
+            command.Description = "Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.";
             var builder = new FederatedIdentityCredentialsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -123,6 +155,7 @@ namespace ApiSdk.Applications.Item {
         }
         /// <summary>
         /// Get the properties and relationships of an application object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/application-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -165,7 +198,7 @@ namespace ApiSdk.Applications.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -182,35 +215,55 @@ namespace ApiSdk.Applications.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getMemberGroups method.
+        /// </summary>
         public Command BuildGetMemberGroupsCommand() {
             var command = new Command("get-member-groups");
+            command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the getMemberObjects method.
+        /// </summary>
         public Command BuildGetMemberObjectsCommand() {
             var command = new Command("get-member-objects");
+            command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.
+        /// </summary>
         public Command BuildHomeRealmDiscoveryPoliciesCommand() {
             var command = new Command("home-realm-discovery-policies");
+            command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.";
             var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the media for the application entity.
+        /// </summary>
         public Command BuildLogoCommand() {
             var command = new Command("logo");
+            command.Description = "Provides operations to manage the media for the application entity.";
             var builder = new LogoRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPutCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the owners property of the microsoft.graph.application entity.
+        /// </summary>
         public Command BuildOwnersCommand() {
             var command = new Command("owners");
+            command.Description = "Provides operations to manage the owners property of the microsoft.graph.application entity.";
             var builder = new OwnersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAppRoleAssignmentCommand());
             command.AddCommand(builder.BuildCommand());
@@ -224,6 +277,7 @@ namespace ApiSdk.Applications.Item {
         }
         /// <summary>
         /// Update the properties of an application object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/application-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
@@ -233,7 +287,7 @@ namespace ApiSdk.Applications.Item {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -262,7 +316,7 @@ namespace ApiSdk.Applications.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Application>(ApiSdk.Models.Application.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("application%2Did", applicationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -277,32 +331,52 @@ namespace ApiSdk.Applications.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the removeKey method.
+        /// </summary>
         public Command BuildRemoveKeyCommand() {
             var command = new Command("remove-key");
+            command.Description = "Provides operations to call the removeKey method.";
             var builder = new RemoveKeyRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the removePassword method.
+        /// </summary>
         public Command BuildRemovePasswordCommand() {
             var command = new Command("remove-password");
+            command.Description = "Provides operations to call the removePassword method.";
             var builder = new RemovePasswordRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
         public Command BuildRestoreCommand() {
             var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the setVerifiedPublisher method.
+        /// </summary>
         public Command BuildSetVerifiedPublisherCommand() {
             var command = new Command("set-verified-publisher");
+            command.Description = "Provides operations to call the setVerifiedPublisher method.";
             var builder = new SetVerifiedPublisherRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.application entity.
+        /// </summary>
         public Command BuildTokenIssuancePoliciesCommand() {
             var command = new Command("token-issuance-policies");
+            command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.application entity.";
             var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -310,8 +384,12 @@ namespace ApiSdk.Applications.Item {
             command.AddCommand(builder.BuildRefCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.application entity.
+        /// </summary>
         public Command BuildTokenLifetimePoliciesCommand() {
             var command = new Command("token-lifetime-policies");
+            command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.application entity.";
             var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -319,17 +397,21 @@ namespace ApiSdk.Applications.Item {
             command.AddCommand(builder.BuildRefCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the unsetVerifiedPublisher method.
+        /// </summary>
         public Command BuildUnsetVerifiedPublisherCommand() {
             var command = new Command("unset-verified-publisher");
+            command.Description = "Provides operations to call the unsetVerifiedPublisher method.";
             var builder = new UnsetVerifiedPublisherRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Instantiates a new ApplicationItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public ApplicationItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -340,9 +422,15 @@ namespace ApiSdk.Applications.Item {
         }
         /// <summary>
         /// Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<ApplicationItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<ApplicationItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<ApplicationItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -358,9 +446,15 @@ namespace ApiSdk.Applications.Item {
         }
         /// <summary>
         /// Get the properties and relationships of an application object.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<ApplicationItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<ApplicationItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<ApplicationItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -378,10 +472,16 @@ namespace ApiSdk.Applications.Item {
         }
         /// <summary>
         /// Update the properties of an application object.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Application body, Action<ApplicationItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Application body, Action<ApplicationItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Application body, Action<ApplicationItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -398,10 +498,12 @@ namespace ApiSdk.Applications.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ApplicationItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -409,22 +511,40 @@ namespace ApiSdk.Applications.Item {
             /// </summary>
             public ApplicationItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Get the properties and relationships of an application object.</summary>
+        /// <summary>
+        /// Get the properties and relationships of an application object.
+        /// </summary>
         public class ApplicationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ApplicationItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -434,13 +554,15 @@ namespace ApiSdk.Applications.Item {
             /// </summary>
             public ApplicationItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ApplicationItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -448,7 +570,7 @@ namespace ApiSdk.Applications.Item {
             /// </summary>
             public ApplicationItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

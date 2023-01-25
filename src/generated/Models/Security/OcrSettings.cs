@@ -12,7 +12,13 @@ namespace ApiSdk.Models.Security {
         /// <summary>Maximum image size that will be processed in KB).</summary>
         public int? MaxImageSize { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The timeout duration for the OCR engine. A longer timeout might increase success of OCR, but might add to the total processing time.</summary>
         public TimeSpan? Timeout { get; set; }
         /// <summary>
@@ -20,12 +26,11 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public OcrSettings() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.security.ocrSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static OcrSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OcrSettings();
@@ -43,8 +48,8 @@ namespace ApiSdk.Models.Security {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("isEnabled", IsEnabled);

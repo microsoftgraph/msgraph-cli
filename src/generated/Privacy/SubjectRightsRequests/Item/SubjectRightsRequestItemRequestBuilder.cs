@@ -18,7 +18,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
-    /// <summary>Provides operations to manage the subjectRightsRequests property of the microsoft.graph.privacy entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the subjectRightsRequests property of the microsoft.graph.privacy entity.
+    /// </summary>
     public class SubjectRightsRequestItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -37,7 +39,8 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -45,10 +48,10 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
                 var subjectRightsRequestId = invocationContext.ParseResult.GetValueForOption(subjectRightsRequestIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("subjectRightsRequest%2Did", subjectRightsRequestId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -102,7 +105,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -119,8 +122,12 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.
+        /// </summary>
         public Command BuildNotesCommand() {
             var command = new Command("notes");
+            command.Description = "Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.";
             var builder = new NotesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -139,7 +146,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -168,7 +175,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SubjectRightsRequest>(SubjectRightsRequest.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("subjectRightsRequest%2Did", subjectRightsRequestId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -183,17 +190,21 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the team property of the microsoft.graph.subjectRightsRequest entity.
+        /// </summary>
         public Command BuildTeamCommand() {
             var command = new Command("team");
+            command.Description = "Provides operations to manage the team property of the microsoft.graph.subjectRightsRequest entity.";
             var builder = new TeamRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Instantiates a new SubjectRightsRequestItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public SubjectRightsRequestItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -203,10 +214,28 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property subjectRightsRequests for privacy
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Provides operations to call the getFinalAttachment method.
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public GetFinalAttachmentRequestBuilder GetFinalAttachment() {
+            return new GetFinalAttachmentRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>
+        /// Provides operations to call the getFinalReport method.
+        /// </summary>
+        public GetFinalReportRequestBuilder GetFinalReport() {
+            return new GetFinalReportRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>
+        /// Delete navigation property subjectRightsRequests for privacy
+        /// </summary>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -222,9 +251,15 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         }
         /// <summary>
         /// Get subjectRightsRequests from privacy
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<SubjectRightsRequestItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<SubjectRightsRequestItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<SubjectRightsRequestItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -242,10 +277,16 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         }
         /// <summary>
         /// Update the navigation property subjectRightsRequests in privacy
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(SubjectRightsRequest body, Action<SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(SubjectRightsRequest body, Action<SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(SubjectRightsRequest body, Action<SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -263,21 +304,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Provides operations to call the getFinalAttachment method.
+        /// Configuration for the request such as headers, query parameters, and middleware options.
         /// </summary>
-        public GetFinalAttachmentRequestBuilder GetFinalAttachment() {
-            return new GetFinalAttachmentRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the getFinalReport method.
-        /// </summary>
-        public GetFinalReportRequestBuilder GetFinalReport() {
-            return new GetFinalReportRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -285,22 +316,40 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             /// </summary>
             public SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Get subjectRightsRequests from privacy</summary>
+        /// <summary>
+        /// Get subjectRightsRequests from privacy
+        /// </summary>
         public class SubjectRightsRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class SubjectRightsRequestItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -310,13 +359,15 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             /// </summary>
             public SubjectRightsRequestItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -324,7 +375,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             /// </summary>
             public SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

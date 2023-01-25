@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Possible values for WIP Protection enforcement levels</summary>
     public enum WindowsInformationProtectionEnforcementLevel {
         /// <summary>No protection enforcement</summary>
         NoProtection,

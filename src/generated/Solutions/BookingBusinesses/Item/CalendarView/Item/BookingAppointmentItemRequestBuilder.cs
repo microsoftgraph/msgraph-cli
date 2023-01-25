@@ -15,7 +15,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
-    /// <summary>Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.
+    /// </summary>
     public class BookingAppointmentItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,8 +25,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the cancel method.
+        /// </summary>
         public Command BuildCancelCommand() {
             var command = new Command("cancel");
+            command.Description = "Provides operations to call the cancel method.";
             var builder = new CancelRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -44,7 +50,8 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
             };
             bookingAppointmentIdOption.IsRequired = true;
             command.AddOption(bookingAppointmentIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -53,11 +60,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
                 var bookingAppointmentId = invocationContext.ParseResult.GetValueForOption(bookingAppointmentIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
                 requestInfo.PathParameters.Add("bookingAppointment%2Did", bookingAppointmentId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,7 +123,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -149,7 +156,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
             };
             bookingAppointmentIdOption.IsRequired = true;
             command.AddOption(bookingAppointmentIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -179,7 +186,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<BookingAppointment>(BookingAppointment.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
                 requestInfo.PathParameters.Add("bookingAppointment%2Did", bookingAppointmentId);
@@ -197,9 +204,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
         }
         /// <summary>
         /// Instantiates a new BookingAppointmentItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public BookingAppointmentItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -210,9 +217,15 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
         }
         /// <summary>
         /// Delete navigation property calendarView for solutions
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<BookingAppointmentItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<BookingAppointmentItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<BookingAppointmentItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -228,9 +241,15 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
         }
         /// <summary>
         /// The set of appointments of this business in a specified date range. Read-only. Nullable.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<BookingAppointmentItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<BookingAppointmentItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<BookingAppointmentItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -248,10 +267,16 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
         }
         /// <summary>
         /// Update the navigation property calendarView in solutions
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(BookingAppointment body, Action<BookingAppointmentItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(BookingAppointment body, Action<BookingAppointmentItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(BookingAppointment body, Action<BookingAppointmentItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -268,10 +293,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class BookingAppointmentItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -279,22 +306,40 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
             /// </summary>
             public BookingAppointmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>The set of appointments of this business in a specified date range. Read-only. Nullable.</summary>
+        /// <summary>
+        /// The set of appointments of this business in a specified date range. Read-only. Nullable.
+        /// </summary>
         public class BookingAppointmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class BookingAppointmentItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -304,13 +349,15 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
             /// </summary>
             public BookingAppointmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class BookingAppointmentItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -318,7 +365,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
             /// </summary>
             public BookingAppointmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

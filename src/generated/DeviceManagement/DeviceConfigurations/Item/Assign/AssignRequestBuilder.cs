@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
-    /// <summary>Provides operations to call the assign method.</summary>
+    /// <summary>
+    /// Provides operations to call the assign method.
+    /// </summary>
     public class AssignRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -32,7 +34,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -65,7 +67,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssignPostRequestBody>(AssignPostRequestBody.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("deviceConfiguration%2Did", deviceConfigurationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -73,7 +75,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
-                var pageResponse = await pagingService.GetPagedDataAsync((info, handler, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token, responseHandler: handler), pagingData, all, cancellationToken);
+                var pageResponse = await pagingService.GetPagedDataAsync((info, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
                 IOutputFormatterOptions? formatterOptions = null;
                 IOutputFormatter? formatter = null;
@@ -90,9 +92,9 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
         }
         /// <summary>
         /// Instantiates a new AssignRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public AssignRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -103,10 +105,16 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
         }
         /// <summary>
         /// Invoke action assign
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(AssignPostRequestBody body, Action<AssignRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(AssignPostRequestBody body, Action<AssignRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(AssignPostRequestBody body, Action<AssignRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -123,10 +131,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AssignRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -134,7 +144,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
             /// </summary>
             public AssignRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

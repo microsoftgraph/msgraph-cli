@@ -16,7 +16,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Todo.Lists.Item {
-    /// <summary>Provides operations to manage the lists property of the microsoft.graph.todo entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the lists property of the microsoft.graph.todo entity.
+    /// </summary>
     public class TodoTaskListItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -35,7 +37,8 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -43,10 +46,10 @@ namespace ApiSdk.Me.Todo.Lists.Item {
                 var todoTaskListId = invocationContext.ParseResult.GetValueForOption(todoTaskListIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -56,8 +59,12 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the extensions property of the microsoft.graph.todoTaskList entity.
+        /// </summary>
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
+            command.Description = "Provides operations to manage the extensions property of the microsoft.graph.todoTaskList entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -109,7 +116,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -137,7 +144,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -166,7 +173,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TodoTaskList>(TodoTaskList.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -181,8 +188,12 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the tasks property of the microsoft.graph.todoTaskList entity.
+        /// </summary>
         public Command BuildTasksCommand() {
             var command = new Command("tasks");
+            command.Description = "Provides operations to manage the tasks property of the microsoft.graph.todoTaskList entity.";
             var builder = new TasksRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -192,9 +203,9 @@ namespace ApiSdk.Me.Todo.Lists.Item {
         }
         /// <summary>
         /// Instantiates a new TodoTaskListItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public TodoTaskListItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -205,9 +216,15 @@ namespace ApiSdk.Me.Todo.Lists.Item {
         }
         /// <summary>
         /// Delete navigation property lists for me
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<TodoTaskListItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<TodoTaskListItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<TodoTaskListItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -223,9 +240,15 @@ namespace ApiSdk.Me.Todo.Lists.Item {
         }
         /// <summary>
         /// The task lists in the users mailbox.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<TodoTaskListItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<TodoTaskListItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<TodoTaskListItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -243,10 +266,16 @@ namespace ApiSdk.Me.Todo.Lists.Item {
         }
         /// <summary>
         /// Update the navigation property lists in me
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(TodoTaskList body, Action<TodoTaskListItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(TodoTaskList body, Action<TodoTaskListItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(TodoTaskList body, Action<TodoTaskListItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -263,10 +292,12 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class TodoTaskListItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -274,22 +305,40 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             /// </summary>
             public TodoTaskListItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>The task lists in the users mailbox.</summary>
+        /// <summary>
+        /// The task lists in the users mailbox.
+        /// </summary>
         public class TodoTaskListItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class TodoTaskListItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -299,13 +348,15 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             /// </summary>
             public TodoTaskListItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class TodoTaskListItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -313,7 +364,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             /// </summary>
             public TodoTaskListItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

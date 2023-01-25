@@ -15,7 +15,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.AppCatalogs {
-    /// <summary>Provides operations to manage the appCatalogs singleton.</summary>
+    /// <summary>
+    /// Provides operations to manage the appCatalogs singleton.
+    /// </summary>
     public class AppCatalogsRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -62,7 +64,7 @@ namespace ApiSdk.AppCatalogs {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -85,7 +87,7 @@ namespace ApiSdk.AppCatalogs {
             var command = new Command("patch");
             command.Description = "Update appCatalogs";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -113,7 +115,7 @@ namespace ApiSdk.AppCatalogs {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.AppCatalogs>(ApiSdk.Models.AppCatalogs.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -127,8 +129,12 @@ namespace ApiSdk.AppCatalogs {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the teamsApps property of the microsoft.graph.appCatalogs entity.
+        /// </summary>
         public Command BuildTeamsAppsCommand() {
             var command = new Command("teams-apps");
+            command.Description = "Provides operations to manage the teamsApps property of the microsoft.graph.appCatalogs entity.";
             var builder = new TeamsAppsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -138,9 +144,9 @@ namespace ApiSdk.AppCatalogs {
         }
         /// <summary>
         /// Instantiates a new AppCatalogsRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public AppCatalogsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -151,9 +157,15 @@ namespace ApiSdk.AppCatalogs {
         }
         /// <summary>
         /// Get appCatalogs
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<AppCatalogsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<AppCatalogsRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<AppCatalogsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -171,10 +183,16 @@ namespace ApiSdk.AppCatalogs {
         }
         /// <summary>
         /// Update appCatalogs
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.AppCatalogs body, Action<AppCatalogsRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AppCatalogs body, Action<AppCatalogsRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AppCatalogs body, Action<AppCatalogsRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -191,19 +209,37 @@ namespace ApiSdk.AppCatalogs {
             }
             return requestInfo;
         }
-        /// <summary>Get appCatalogs</summary>
+        /// <summary>
+        /// Get appCatalogs
+        /// </summary>
         public class AppCatalogsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AppCatalogsRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -213,13 +249,15 @@ namespace ApiSdk.AppCatalogs {
             /// </summary>
             public AppCatalogsRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AppCatalogsRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -227,7 +265,7 @@ namespace ApiSdk.AppCatalogs {
             /// </summary>
             public AppCatalogsRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

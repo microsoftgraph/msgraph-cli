@@ -23,7 +23,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Drives.Item {
-    /// <summary>Provides operations to manage the drives property of the microsoft.graph.group entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the drives property of the microsoft.graph.group entity.
+    /// </summary>
     public class DriveItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -31,8 +33,12 @@ namespace ApiSdk.Groups.Item.Drives.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to manage the bundles property of the microsoft.graph.drive entity.
+        /// </summary>
         public Command BuildBundlesCommand() {
             var command = new Command("bundles");
+            command.Description = "Provides operations to manage the bundles property of the microsoft.graph.drive entity.";
             var builder = new BundlesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -54,7 +60,8 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -63,11 +70,11 @@ namespace ApiSdk.Groups.Item.Drives.Item {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
                 requestInfo.PathParameters.Add("drive%2Did", driveId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -77,8 +84,12 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the following property of the microsoft.graph.drive entity.
+        /// </summary>
         public Command BuildFollowingCommand() {
             var command = new Command("following");
+            command.Description = "Provides operations to manage the following property of the microsoft.graph.drive entity.";
             var builder = new FollowingRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -134,7 +145,7 @@ namespace ApiSdk.Groups.Item.Drives.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -152,8 +163,12 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the items property of the microsoft.graph.drive entity.
+        /// </summary>
         public Command BuildItemsCommand() {
             var command = new Command("items");
+            command.Description = "Provides operations to manage the items property of the microsoft.graph.drive entity.";
             var builder = new ItemsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -161,8 +176,12 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the list property of the microsoft.graph.drive entity.
+        /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Provides operations to manage the list property of the microsoft.graph.drive entity.";
             var builder = new ListRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildColumnsCommand());
             command.AddCommand(builder.BuildContentTypesCommand());
@@ -190,7 +209,7 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -220,7 +239,7 @@ namespace ApiSdk.Groups.Item.Drives.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
                 requestInfo.PathParameters.Add("drive%2Did", driveId);
@@ -236,8 +255,12 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the root property of the microsoft.graph.drive entity.
+        /// </summary>
         public Command BuildRootCommand() {
             var command = new Command("root");
+            command.Description = "Provides operations to manage the root property of the microsoft.graph.drive entity.";
             var builder = new RootRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAnalyticsCommand());
             command.AddCommand(builder.BuildCheckinCommand());
@@ -263,8 +286,12 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             command.AddCommand(builder.BuildVersionsCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the special property of the microsoft.graph.drive entity.
+        /// </summary>
         public Command BuildSpecialCommand() {
             var command = new Command("special");
+            command.Description = "Provides operations to manage the special property of the microsoft.graph.drive entity.";
             var builder = new SpecialRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -273,9 +300,9 @@ namespace ApiSdk.Groups.Item.Drives.Item {
         }
         /// <summary>
         /// Instantiates a new DriveItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public DriveItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -285,10 +312,36 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property drives for groups
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Provides operations to call the recent method.
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<DriveItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RecentRequestBuilder Recent() {
+            return new RecentRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>
+        /// Provides operations to call the search method.
+        /// </summary>
+        /// <param name="q">Usage: q=&apos;{q}&apos;</param>
+        public SearchWithQRequestBuilder SearchWithQ(string q) {
+            if(string.IsNullOrEmpty(q)) throw new ArgumentNullException(nameof(q));
+            return new SearchWithQRequestBuilder(PathParameters, RequestAdapter, q);
+        }
+        /// <summary>
+        /// Provides operations to call the sharedWithMe method.
+        /// </summary>
+        public SharedWithMeRequestBuilder SharedWithMe() {
+            return new SharedWithMeRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>
+        /// Delete navigation property drives for groups
+        /// </summary>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<DriveItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<DriveItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -304,9 +357,15 @@ namespace ApiSdk.Groups.Item.Drives.Item {
         }
         /// <summary>
         /// The group&apos;s drives. Read-only.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<DriveItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<DriveItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<DriveItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -324,10 +383,16 @@ namespace ApiSdk.Groups.Item.Drives.Item {
         }
         /// <summary>
         /// Update the navigation property drives in groups
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Drive body, Action<DriveItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Drive body, Action<DriveItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Drive body, Action<DriveItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -345,29 +410,11 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Provides operations to call the recent method.
+        /// Configuration for the request such as headers, query parameters, and middleware options.
         /// </summary>
-        public RecentRequestBuilder Recent() {
-            return new RecentRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the search method.
-        /// <param name="q">Usage: q=&apos;{q}&apos;</param>
-        /// </summary>
-        public SearchWithQRequestBuilder SearchWithQ(string q) {
-            if(string.IsNullOrEmpty(q)) throw new ArgumentNullException(nameof(q));
-            return new SearchWithQRequestBuilder(PathParameters, RequestAdapter, q);
-        }
-        /// <summary>
-        /// Provides operations to call the sharedWithMe method.
-        /// </summary>
-        public SharedWithMeRequestBuilder SharedWithMe() {
-            return new SharedWithMeRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
         public class DriveItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -375,22 +422,40 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             /// </summary>
             public DriveItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>The group&apos;s drives. Read-only.</summary>
+        /// <summary>
+        /// The group&apos;s drives. Read-only.
+        /// </summary>
         public class DriveItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DriveItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -400,13 +465,15 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             /// </summary>
             public DriveItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DriveItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -414,7 +481,7 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             /// </summary>
             public DriveItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

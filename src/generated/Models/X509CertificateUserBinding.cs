@@ -8,24 +8,41 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
-        /// <summary>The priority property</summary>
+#endif
+        /// <summary>The priority of the binding. Azure AD uses the binding with the highest priority. This value must be a non-negative integer and unique in the collection of objects in the certificateUserBindings property of an x509CertificateAuthenticationMethodConfiguration object. Required</summary>
         public int? Priority { get; set; }
-        /// <summary>The userProperty property</summary>
+        /// <summary>Defines the Azure AD user property of the user object to use for the binding. The possible values are: userPrincipalName, onPremisesUserPrincipalName, certificateUserIds. Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserProperty { get; set; }
+#nullable restore
+#else
         public string UserProperty { get; set; }
-        /// <summary>The x509CertificateField property</summary>
+#endif
+        /// <summary>The field on the X.509 certificate to use for the binding. The possible values are: PrincipalName, RFC822Name, SubjectKeyIdentifier, SHA1PublicKey.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? X509CertificateField { get; set; }
+#nullable restore
+#else
         public string X509CertificateField { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new x509CertificateUserBinding and sets the default values.
         /// </summary>
         public X509CertificateUserBinding() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.x509CertificateUserBinding";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static X509CertificateUserBinding CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new X509CertificateUserBinding();
@@ -43,8 +60,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);

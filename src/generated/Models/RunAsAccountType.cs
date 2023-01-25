@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Indicates the type of execution context the app runs in.</summary>
     public enum RunAsAccountType {
         /// <summary>System context</summary>
         System,

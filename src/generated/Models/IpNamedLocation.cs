@@ -6,19 +6,19 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class IpNamedLocation : NamedLocation, IParsable {
         /// <summary>List of IP address ranges in IPv4 CIDR format (e.g. 1.2.3.4/32) or any allowable IPv6 format from IETF RFC596. Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<IpRange>? IpRanges { get; set; }
+#nullable restore
+#else
         public List<IpRange> IpRanges { get; set; }
+#endif
         /// <summary>true if this location is explicitly trusted. Optional. Default value is false.</summary>
         public bool? IsTrusted { get; set; }
         /// <summary>
-        /// Instantiates a new IpNamedLocation and sets the default values.
-        /// </summary>
-        public IpNamedLocation() : base() {
-            OdataType = "#microsoft.graph.ipNamedLocation";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new IpNamedLocation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IpNamedLocation();
@@ -34,8 +34,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

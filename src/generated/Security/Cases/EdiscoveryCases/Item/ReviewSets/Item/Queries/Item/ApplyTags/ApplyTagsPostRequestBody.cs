@@ -5,14 +5,25 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.ApplyTags {
-    /// <summary>Provides operations to call the applyTags method.</summary>
     public class ApplyTagsPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The tagsToAdd property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<EdiscoveryReviewTag>? TagsToAdd { get; set; }
+#nullable restore
+#else
         public List<EdiscoveryReviewTag> TagsToAdd { get; set; }
+#endif
         /// <summary>The tagsToRemove property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<EdiscoveryReviewTag>? TagsToRemove { get; set; }
+#nullable restore
+#else
         public List<EdiscoveryReviewTag> TagsToRemove { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new applyTagsPostRequestBody and sets the default values.
         /// </summary>
@@ -21,8 +32,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static ApplyTagsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ApplyTagsPostRequestBody();
@@ -38,8 +49,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<EdiscoveryReviewTag>("tagsToAdd", TagsToAdd);

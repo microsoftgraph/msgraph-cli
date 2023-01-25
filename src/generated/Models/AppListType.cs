@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Possible values of the compliance app list.</summary>
     public enum AppListType {
         /// <summary>Default value, no intent.</summary>
         None,

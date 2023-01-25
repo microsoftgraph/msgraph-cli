@@ -4,26 +4,34 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Scheduled Action Configuration</summary>
+    /// <summary>
+    /// Scheduled Action Configuration
+    /// </summary>
     public class DeviceComplianceActionItem : Entity, IParsable {
         /// <summary>Scheduled Action Type Enum</summary>
         public DeviceComplianceActionType? ActionType { get; set; }
         /// <summary>Number of hours to wait till the action will be enforced. Valid values 0 to 8760</summary>
         public int? GracePeriodHours { get; set; }
         /// <summary>A list of group IDs to speicify who to CC this notification message to.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? NotificationMessageCCList { get; set; }
+#nullable restore
+#else
         public List<string> NotificationMessageCCList { get; set; }
+#endif
         /// <summary>What notification Message template to use</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NotificationTemplateId { get; set; }
+#nullable restore
+#else
         public string NotificationTemplateId { get; set; }
-        /// <summary>
-        /// Instantiates a new deviceComplianceActionItem and sets the default values.
-        /// </summary>
-        public DeviceComplianceActionItem() : base() {
-            OdataType = "#microsoft.graph.deviceComplianceActionItem";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DeviceComplianceActionItem CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceComplianceActionItem();
@@ -41,8 +49,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

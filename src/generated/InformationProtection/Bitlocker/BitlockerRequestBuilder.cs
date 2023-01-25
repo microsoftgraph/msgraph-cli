@@ -15,7 +15,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.InformationProtection.Bitlocker {
-    /// <summary>Provides operations to manage the bitlocker property of the microsoft.graph.informationProtection entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the bitlocker property of the microsoft.graph.informationProtection entity.
+    /// </summary>
     public class BitlockerRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -62,7 +64,7 @@ namespace ApiSdk.InformationProtection.Bitlocker {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -79,56 +81,11 @@ namespace ApiSdk.InformationProtection.Bitlocker {
             return command;
         }
         /// <summary>
-        /// Update the navigation property bitlocker in informationProtection
+        /// Provides operations to manage the recoveryKeys property of the microsoft.graph.bitlocker entity.
         /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
-            command.Description = "Update the navigation property bitlocker in informationProtection";
-            // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
-                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
-                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Bitlocker>(ApiSdk.Models.Bitlocker.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
-                });
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            });
-            return command;
-        }
         public Command BuildRecoveryKeysCommand() {
             var command = new Command("recovery-keys");
+            command.Description = "Provides operations to manage the recoveryKeys property of the microsoft.graph.bitlocker entity.";
             var builder = new RecoveryKeysRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -137,9 +94,9 @@ namespace ApiSdk.InformationProtection.Bitlocker {
         }
         /// <summary>
         /// Instantiates a new BitlockerRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public BitlockerRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -150,9 +107,15 @@ namespace ApiSdk.InformationProtection.Bitlocker {
         }
         /// <summary>
         /// Get bitlocker from informationProtection
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<BitlockerRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<BitlockerRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<BitlockerRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -169,40 +132,36 @@ namespace ApiSdk.InformationProtection.Bitlocker {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property bitlocker in informationProtection
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// Get bitlocker from informationProtection
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Bitlocker body, Action<BitlockerRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new BitlockerRequestBuilderPatchRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>Get bitlocker from informationProtection</summary>
         public class BitlockerRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class BitlockerRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -212,21 +171,7 @@ namespace ApiSdk.InformationProtection.Bitlocker {
             /// </summary>
             public BitlockerRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
-            }
-        }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
-        public class BitlockerRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new bitlockerRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public BitlockerRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

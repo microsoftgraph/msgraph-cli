@@ -7,29 +7,52 @@ namespace ApiSdk.Models {
     public class InvitationParticipantInfo : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The hidden property</summary>
+        /// <summary>Optional. Whether to hide the participant from the roster.</summary>
         public bool? Hidden { get; set; }
         /// <summary>The identity property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public IdentitySet? Identity { get; set; }
+#nullable restore
+#else
         public IdentitySet Identity { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Optional. The ID of the target participant.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ParticipantId { get; set; }
+#nullable restore
+#else
         public string ParticipantId { get; set; }
-        /// <summary>The removeFromDefaultAudioRoutingGroup property</summary>
+#endif
+        /// <summary>Optional. Whether to remove them from the main mixer.</summary>
         public bool? RemoveFromDefaultAudioRoutingGroup { get; set; }
         /// <summary>Optional. The call which the target identity is currently a part of. For peer-to-peer case, the call will be dropped once the participant is added successfully.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ReplacesCallId { get; set; }
+#nullable restore
+#else
         public string ReplacesCallId { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new invitationParticipantInfo and sets the default values.
         /// </summary>
         public InvitationParticipantInfo() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.invitationParticipantInfo";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static InvitationParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new InvitationParticipantInfo();
@@ -49,8 +72,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("hidden", Hidden);

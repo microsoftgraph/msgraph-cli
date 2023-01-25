@@ -4,22 +4,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the educationRoot singleton.</summary>
     public class EducationAssignmentResource : Entity, IParsable {
         /// <summary>Indicates whether this resource should be copied to each student submission for modification and submission. Required</summary>
         public bool? DistributeForStudentWork { get; set; }
         /// <summary>Resource object that has been associated with this assignment.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public EducationResource? Resource { get; set; }
+#nullable restore
+#else
         public EducationResource Resource { get; set; }
-        /// <summary>
-        /// Instantiates a new educationAssignmentResource and sets the default values.
-        /// </summary>
-        public EducationAssignmentResource() : base() {
-            OdataType = "#microsoft.graph.educationAssignmentResource";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new EducationAssignmentResource CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationAssignmentResource();
@@ -35,8 +34,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

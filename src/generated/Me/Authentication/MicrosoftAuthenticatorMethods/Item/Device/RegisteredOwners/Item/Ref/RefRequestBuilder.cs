@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device.RegisteredOwners.Item.Ref {
-    /// <summary>Provides operations to manage the collection of user entities.</summary>
+    /// <summary>
+    /// Provides operations to manage the collection of user entities.
+    /// </summary>
     public class RefRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -36,7 +38,8 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device.Reg
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -50,12 +53,12 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device.Reg
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var id = invocationContext.ParseResult.GetValueForOption(idOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
-                    if (!String.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
+                var requestInfo = ToDeleteRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
                 requestInfo.PathParameters.Add("microsoftAuthenticatorAuthenticationMethod%2Did", microsoftAuthenticatorAuthenticationMethodId);
                 requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -67,9 +70,9 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device.Reg
         }
         /// <summary>
         /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public RefRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -80,9 +83,15 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device.Reg
         }
         /// <summary>
         /// Delete ref of navigation property registeredOwners for me
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<RefRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RefRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RefRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -97,16 +106,27 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device.Reg
             }
             return requestInfo;
         }
-        /// <summary>Delete ref of navigation property registeredOwners for me</summary>
+        /// <summary>
+        /// Delete ref of navigation property registeredOwners for me
+        /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%40id")]
+            public string? Id { get; set; }
+#nullable restore
+#else
             [QueryParameter("%40id")]
             public string Id { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class RefRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -116,7 +136,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device.Reg
             /// </summary>
             public RefRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
 set -e
-
 capabilities=$(capsh --print | grep -e "Current: .*ipc_lock" | sed s/\n// | sed s/\ //)
 ipc_error="IPC_LOCK capability is not enabled. If you are running a docker container, add the capability using the '--cap-add' option."
 
@@ -17,4 +16,5 @@ else
     echo "dbus-daemon already running"
 fi
 
-dbus-run-session -- echo "$KEYRING_PASSWORD" | gnome-keyring-daemon --daemonize --components=secrets --unlock && "$@"
+dbus-run-session -- echo "$KEYRING_PASSWORD" | gnome-keyring-daemon --daemonize --components=secrets --unlock
+"$@"

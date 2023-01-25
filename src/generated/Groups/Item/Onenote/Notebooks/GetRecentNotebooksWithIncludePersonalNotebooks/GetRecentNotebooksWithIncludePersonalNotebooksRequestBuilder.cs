@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks {
-    /// <summary>Provides operations to call the getRecentNotebooks method.</summary>
+    /// <summary>
+    /// Provides operations to call the getRecentNotebooks method.
+    /// </summary>
     public class GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -87,11 +89,11 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
-                    if (!String.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
-                    if (!String.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
+                    if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
                 });
                 requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -101,7 +103,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
-                var pageResponse = await pagingService.GetPagedDataAsync((info, handler, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token, responseHandler: handler), pagingData, all, cancellationToken);
+                var pageResponse = await pagingService.GetPagedDataAsync((info, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
                 IOutputFormatterOptions? formatterOptions = null;
                 IOutputFormatter? formatter = null;
@@ -118,10 +120,10 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
         }
         /// <summary>
         /// Instantiates a new GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="includePersonalNotebooks">Usage: includePersonalNotebooks={includePersonalNotebooks}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, bool? includePersonalNotebooks = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -133,9 +135,15 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
         }
         /// <summary>
         /// Invoke function getRecentNotebooks
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -151,17 +159,33 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
             }
             return requestInfo;
         }
-        /// <summary>Invoke function getRecentNotebooks</summary>
+        /// <summary>
+        /// Invoke function getRecentNotebooks
+        /// </summary>
         public class GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
             /// <summary>Filter items by property values</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24filter")]
+            public string? Filter { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24filter")]
             public string Filter { get; set; }
+#endif
             /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24search")]
             public string Search { get; set; }
+#endif
             /// <summary>Skip the first n items</summary>
             [QueryParameter("%24skip")]
             public int? Skip { get; set; }
@@ -169,10 +193,12 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
             [QueryParameter("%24top")]
             public int? Top { get; set; }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -182,7 +208,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
             /// </summary>
             public GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

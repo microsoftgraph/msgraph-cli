@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead {
-    /// <summary>Provides operations to call the markRead method.</summary>
+    /// <summary>
+    /// Provides operations to call the markRead method.
+    /// </summary>
     public class MarkReadRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,12 +25,13 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Mark a list of serviceUpdateMessages as **read** for the signed in user.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceupdatemessage-markread?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Mark a list of serviceUpdateMessages as **read** for the signed in user.";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -56,7 +59,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MarkReadPostRequestBody>(MarkReadPostRequestBody.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -72,9 +75,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead {
         }
         /// <summary>
         /// Instantiates a new MarkReadRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public MarkReadRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -85,10 +88,16 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead {
         }
         /// <summary>
         /// Mark a list of serviceUpdateMessages as **read** for the signed in user.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(MarkReadPostRequestBody body, Action<MarkReadRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(MarkReadPostRequestBody body, Action<MarkReadRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(MarkReadPostRequestBody body, Action<MarkReadRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -105,10 +114,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class MarkReadRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -116,7 +127,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead {
             /// </summary>
             public MarkReadRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

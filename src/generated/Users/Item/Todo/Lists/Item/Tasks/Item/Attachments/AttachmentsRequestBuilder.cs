@@ -17,7 +17,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
-    /// <summary>Provides operations to manage the attachments property of the microsoft.graph.todoTask entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the attachments property of the microsoft.graph.todoTask entity.
+    /// </summary>
     public class AttachmentsRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -25,6 +27,9 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to manage the attachments property of the microsoft.graph.todoTask entity.
+        /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new AttachmentBaseItemRequestBuilder(PathParameters, RequestAdapter);
@@ -33,8 +38,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to count the resources in the collection.
+        /// </summary>
         public Command BuildCountCommand() {
             var command = new Command("count");
+            command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -58,7 +67,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -89,7 +98,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AttachmentBase>(AttachmentBase.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
@@ -106,8 +115,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the createUploadSession method.
+        /// </summary>
         public Command BuildCreateUploadSessionCommand() {
             var command = new Command("create-upload-session");
+            command.Description = "Provides operations to call the createUploadSession method.";
             var builder = new CreateUploadSessionRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -190,10 +203,10 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
-                    if (!String.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
@@ -206,7 +219,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
-                var pageResponse = await pagingService.GetPagedDataAsync((info, handler, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token, responseHandler: handler), pagingData, all, cancellationToken);
+                var pageResponse = await pagingService.GetPagedDataAsync((info, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
                 IOutputFormatterOptions? formatterOptions = null;
                 IOutputFormatter? formatter = null;
@@ -223,9 +236,9 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         }
         /// <summary>
         /// Instantiates a new AttachmentsRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public AttachmentsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -236,9 +249,15 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         }
         /// <summary>
         /// Get attachments from users
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<AttachmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<AttachmentsRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<AttachmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -256,10 +275,16 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         }
         /// <summary>
         /// Create new navigation property to attachments for users
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(AttachmentBase body, Action<AttachmentsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(AttachmentBase body, Action<AttachmentsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(AttachmentBase body, Action<AttachmentsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -276,20 +301,43 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             }
             return requestInfo;
         }
-        /// <summary>Get attachments from users</summary>
+        /// <summary>
+        /// Get attachments from users
+        /// </summary>
         public class AttachmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
             /// <summary>Filter items by property values</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24filter")]
+            public string? Filter { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24filter")]
             public string Filter { get; set; }
+#endif
             /// <summary>Order items by property values</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24orderby")]
+            public string[]? Orderby { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
             /// <summary>Skip the first n items</summary>
             [QueryParameter("%24skip")]
             public int? Skip { get; set; }
@@ -297,10 +345,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             [QueryParameter("%24top")]
             public int? Top { get; set; }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AttachmentsRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -310,13 +360,15 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             /// </summary>
             public AttachmentsRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class AttachmentsRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -324,7 +376,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             /// </summary>
             public AttachmentsRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

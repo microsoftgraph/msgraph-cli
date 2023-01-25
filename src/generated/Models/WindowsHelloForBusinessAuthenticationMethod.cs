@@ -8,9 +8,21 @@ namespace ApiSdk.Models {
         /// <summary>The date and time that this Windows Hello for Business key was registered.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The registered device on which this Windows Hello for Business key resides. Supports $expand. When you get a user&apos;s Windows Hello for Business registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/windowsHelloForBusinessMethods/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.Device? Device { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.Device Device { get; set; }
+#endif
         /// <summary>The name of the device on which Windows Hello for Business is registered</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>Key strength of this Windows Hello for Business key. Possible values are: normal, weak, unknown.</summary>
         public AuthenticationMethodKeyStrength? KeyStrength { get; set; }
         /// <summary>
@@ -21,8 +33,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new WindowsHelloForBusinessAuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WindowsHelloForBusinessAuthenticationMethod();
@@ -40,8 +52,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

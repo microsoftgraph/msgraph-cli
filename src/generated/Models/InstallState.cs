@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>Possible values for install state.</summary>
     public enum InstallState {
         /// <summary>Not Applicable.</summary>
         NotApplicable,

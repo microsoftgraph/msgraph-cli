@@ -10,7 +10,13 @@ namespace ApiSdk.Models {
         /// <summary>The default color mode to use when printing the document. Valid values are described in the following table.</summary>
         public PrintColorMode? ColorMode { get; set; }
         /// <summary>The default content (MIME) type to use when processing documents.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ContentType { get; set; }
+#nullable restore
+#else
         public string ContentType { get; set; }
+#endif
         /// <summary>The default number of copies printed per job.</summary>
         public int? CopiesPerJob { get; set; }
         /// <summary>The default resolution in DPI to use when printing the job.</summary>
@@ -18,25 +24,67 @@ namespace ApiSdk.Models {
         /// <summary>The default duplex (double-sided) configuration to use when printing a document. Valid values are described in the following table.</summary>
         public PrintDuplexMode? DuplexMode { get; set; }
         /// <summary>The default set of finishings to apply to print jobs. Valid values are described in the following table.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<PrintFinishing?>? Finishings { get; set; }
+#nullable restore
+#else
         public List<PrintFinishing?> Finishings { get; set; }
+#endif
         /// <summary>The default fitPdfToPage setting. True to fit each page of a PDF document to a physical sheet of media; false to let the printer decide how to lay out impressions.</summary>
         public bool? FitPdfToPage { get; set; }
         /// <summary>The inputBin property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? InputBin { get; set; }
+#nullable restore
+#else
         public string InputBin { get; set; }
+#endif
         /// <summary>The default media (such as paper) color to print the document on.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MediaColor { get; set; }
+#nullable restore
+#else
         public string MediaColor { get; set; }
+#endif
         /// <summary>The default media size to use. Supports standard size names for ISO and ANSI media sizes. Valid values are listed in the printerCapabilities topic.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MediaSize { get; set; }
+#nullable restore
+#else
         public string MediaSize { get; set; }
+#endif
         /// <summary>The default media (such as paper) type to print the document on.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MediaType { get; set; }
+#nullable restore
+#else
         public string MediaType { get; set; }
+#endif
         /// <summary>The default direction to lay out pages when multiple pages are being printed per sheet. Valid values are described in the following table.</summary>
         public PrintMultipageLayout? MultipageLayout { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The default orientation to use when printing the document. Valid values are described in the following table.</summary>
         public PrintOrientation? Orientation { get; set; }
         /// <summary>The default output bin to place completed prints into. See the printer&apos;s capabilities for a list of supported output bins.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OutputBin { get; set; }
+#nullable restore
+#else
         public string OutputBin { get; set; }
+#endif
         /// <summary>The default number of document pages to print on each sheet.</summary>
         public int? PagesPerSheet { get; set; }
         /// <summary>The default quality to use when printing the document. Valid values are described in the following table.</summary>
@@ -48,12 +96,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public PrinterDefaults() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.printerDefaults";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static PrinterDefaults CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrinterDefaults();
@@ -85,8 +132,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<PrintColorMode>("colorMode", ColorMode);

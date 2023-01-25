@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>Microsoft.Graph.Cli</RootNamespace>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
@@ -15,6 +15,7 @@
     <SelfContained>false</SelfContained>
     <PublishReadyToRun>true</PublishReadyToRun>
     <RuntimeIdentifiers>win-x64;linux-x64;osx-x64;osx-arm64</RuntimeIdentifiers>
+    <PublishAot>true</PublishAot>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -22,16 +23,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.7.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Graph.Cli.Core" Version="0.1.4-preview.4" />
-    <PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.0.0-preview.13" />
-    <PackageReference Include="Microsoft.Kiota.Authentication.Azure" Version="1.0.0-preview.4" />
-    <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.0.0-preview.10" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.0.0-preview.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Graph.Cli.Core" Version="0.1.5-preview.1" />
     <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22272.1" />
   </ItemGroup>
 </Project>

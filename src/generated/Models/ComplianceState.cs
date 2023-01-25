@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceManagement singleton.</summary>
+    /// <summary>Compliance state.</summary>
     public enum ComplianceState {
         /// <summary>Unknown.</summary>
         Unknown,

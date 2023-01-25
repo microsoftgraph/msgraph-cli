@@ -15,7 +15,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.RegisteredOwners.Item {
-    /// <summary>Builds and executes requests for operations under \me\authentication\windowsHelloForBusinessMethods\{windowsHelloForBusinessAuthenticationMethod-id}\device\registeredOwners\{directoryObject-id}</summary>
+    /// <summary>
+    /// Builds and executes requests for operations under \me\authentication\windowsHelloForBusinessMethods\{windowsHelloForBusinessAuthenticationMethod-id}\device\registeredOwners\{directoryObject-id}
+    /// </summary>
     public class DirectoryObjectItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,41 +25,61 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device.Re
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Casts the previous resource to appRoleAssignment.
+        /// </summary>
         public Command BuildAppRoleAssignmentCommand() {
             var command = new Command("app-role-assignment");
+            command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        /// <summary>
+        /// Casts the previous resource to endpoint.
+        /// </summary>
         public Command BuildEndpointCommand() {
             var command = new Command("endpoint");
+            command.Description = "Casts the previous resource to endpoint.";
             var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the collection of user entities.
+        /// </summary>
         public Command BuildRefCommand() {
             var command = new Command("ref");
+            command.Description = "Provides operations to manage the collection of user entities.";
             var builder = new RefRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             return command;
         }
+        /// <summary>
+        /// Casts the previous resource to servicePrincipal.
+        /// </summary>
         public Command BuildServicePrincipalCommand() {
             var command = new Command("service-principal");
+            command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        /// <summary>
+        /// Casts the previous resource to user.
+        /// </summary>
         public Command BuildUserCommand() {
             var command = new Command("user");
+            command.Description = "Casts the previous resource to user.";
             var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));

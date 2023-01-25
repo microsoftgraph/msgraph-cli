@@ -14,7 +14,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.Item {
-    /// <summary>Provides operations to manage the roleEligibilitySchedules property of the microsoft.graph.rbacApplication entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the roleEligibilitySchedules property of the microsoft.graph.rbacApplication entity.
+    /// </summary>
     public class UnifiedRoleEligibilityScheduleItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -33,7 +35,8 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
             };
             unifiedRoleEligibilityScheduleIdOption.IsRequired = true;
             command.AddOption(unifiedRoleEligibilityScheduleIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -41,10 +44,10 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
                 var unifiedRoleEligibilityScheduleId = invocationContext.ParseResult.GetValueForOption(unifiedRoleEligibilityScheduleIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("unifiedRoleEligibilitySchedule%2Did", unifiedRoleEligibilityScheduleId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -98,7 +101,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -126,7 +129,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
             };
             unifiedRoleEligibilityScheduleIdOption.IsRequired = true;
             command.AddOption(unifiedRoleEligibilityScheduleIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -155,7 +158,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UnifiedRoleEligibilitySchedule>(UnifiedRoleEligibilitySchedule.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("unifiedRoleEligibilitySchedule%2Did", unifiedRoleEligibilityScheduleId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -172,9 +175,9 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         }
         /// <summary>
         /// Instantiates a new UnifiedRoleEligibilityScheduleItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public UnifiedRoleEligibilityScheduleItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -185,9 +188,15 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         }
         /// <summary>
         /// Delete navigation property roleEligibilitySchedules for roleManagement
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<UnifiedRoleEligibilityScheduleItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<UnifiedRoleEligibilityScheduleItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<UnifiedRoleEligibilityScheduleItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -203,9 +212,15 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         }
         /// <summary>
         /// Schedules for role eligibility operations.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<UnifiedRoleEligibilityScheduleItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<UnifiedRoleEligibilityScheduleItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<UnifiedRoleEligibilityScheduleItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -223,10 +238,16 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         }
         /// <summary>
         /// Update the navigation property roleEligibilitySchedules in roleManagement
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(UnifiedRoleEligibilitySchedule body, Action<UnifiedRoleEligibilityScheduleItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(UnifiedRoleEligibilitySchedule body, Action<UnifiedRoleEligibilityScheduleItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(UnifiedRoleEligibilitySchedule body, Action<UnifiedRoleEligibilityScheduleItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -243,10 +264,12 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class UnifiedRoleEligibilityScheduleItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -254,22 +277,40 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
             /// </summary>
             public UnifiedRoleEligibilityScheduleItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Schedules for role eligibility operations.</summary>
+        /// <summary>
+        /// Schedules for role eligibility operations.
+        /// </summary>
         public class UnifiedRoleEligibilityScheduleItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class UnifiedRoleEligibilityScheduleItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -279,13 +320,15 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
             /// </summary>
             public UnifiedRoleEligibilityScheduleItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class UnifiedRoleEligibilityScheduleItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -293,7 +336,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
             /// </summary>
             public UnifiedRoleEligibilityScheduleItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

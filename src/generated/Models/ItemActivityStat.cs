@@ -6,35 +6,71 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class ItemActivityStat : Entity, IParsable {
         /// <summary>Statistics about the access actions in this interval. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemActionStat? Access { get; set; }
+#nullable restore
+#else
         public ItemActionStat Access { get; set; }
+#endif
         /// <summary>Exposes the itemActivities represented in this itemActivityStat resource.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ItemActivity>? Activities { get; set; }
+#nullable restore
+#else
         public List<ItemActivity> Activities { get; set; }
+#endif
         /// <summary>Statistics about the create actions in this interval. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemActionStat? Create { get; set; }
+#nullable restore
+#else
         public ItemActionStat Create { get; set; }
+#endif
         /// <summary>Statistics about the delete actions in this interval. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemActionStat? Delete { get; set; }
+#nullable restore
+#else
         public ItemActionStat Delete { get; set; }
+#endif
         /// <summary>Statistics about the edit actions in this interval. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemActionStat? Edit { get; set; }
+#nullable restore
+#else
         public ItemActionStat Edit { get; set; }
+#endif
         /// <summary>When the interval ends. Read-only.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>Indicates that the statistics in this interval are based on incomplete data. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.IncompleteData? IncompleteData { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.IncompleteData IncompleteData { get; set; }
+#endif
         /// <summary>Indicates whether the item is &apos;trending.&apos; Read-only.</summary>
         public bool? IsTrending { get; set; }
         /// <summary>Statistics about the move actions in this interval. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemActionStat? Move { get; set; }
+#nullable restore
+#else
         public ItemActionStat Move { get; set; }
+#endif
         /// <summary>When the interval starts. Read-only.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new itemActivityStat and sets the default values.
-        /// </summary>
-        public ItemActivityStat() : base() {
-            OdataType = "#microsoft.graph.itemActivityStat";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ItemActivityStat CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ItemActivityStat();
@@ -58,8 +94,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

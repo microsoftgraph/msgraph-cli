@@ -4,20 +4,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the appCatalogs singleton.</summary>
     public class AppCatalogs : Entity, IParsable {
         /// <summary>The teamsApps property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<TeamsApp>? TeamsApps { get; set; }
+#nullable restore
+#else
         public List<TeamsApp> TeamsApps { get; set; }
-        /// <summary>
-        /// Instantiates a new appCatalogs and sets the default values.
-        /// </summary>
-        public AppCatalogs() : base() {
-            OdataType = "#microsoft.graph.appCatalogs";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new AppCatalogs CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AppCatalogs();
@@ -32,8 +31,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

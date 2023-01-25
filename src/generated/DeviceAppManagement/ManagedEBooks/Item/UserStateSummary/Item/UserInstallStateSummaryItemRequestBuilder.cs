@@ -15,7 +15,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
-    /// <summary>Provides operations to manage the userStateSummary property of the microsoft.graph.managedEBook entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the userStateSummary property of the microsoft.graph.managedEBook entity.
+    /// </summary>
     public class UserInstallStateSummaryItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -38,7 +40,8 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             };
             userInstallStateSummaryIdOption.IsRequired = true;
             command.AddOption(userInstallStateSummaryIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -47,11 +50,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
                 var userInstallStateSummaryId = invocationContext.ParseResult.GetValueForOption(userInstallStateSummaryIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("managedEBook%2Did", managedEBookId);
                 requestInfo.PathParameters.Add("userInstallStateSummary%2Did", userInstallStateSummaryId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -61,8 +64,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the deviceStates property of the microsoft.graph.userInstallStateSummary entity.
+        /// </summary>
         public Command BuildDeviceStatesCommand() {
             var command = new Command("device-states");
+            command.Description = "Provides operations to manage the deviceStates property of the microsoft.graph.userInstallStateSummary entity.";
             var builder = new DeviceStatesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -119,7 +126,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -152,7 +159,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             };
             userInstallStateSummaryIdOption.IsRequired = true;
             command.AddOption(userInstallStateSummaryIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -182,7 +189,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UserInstallStateSummary>(UserInstallStateSummary.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("managedEBook%2Did", managedEBookId);
                 requestInfo.PathParameters.Add("userInstallStateSummary%2Did", userInstallStateSummaryId);
@@ -200,9 +207,9 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
         }
         /// <summary>
         /// Instantiates a new UserInstallStateSummaryItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public UserInstallStateSummaryItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -213,9 +220,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
         }
         /// <summary>
         /// Delete navigation property userStateSummary for deviceAppManagement
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<UserInstallStateSummaryItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<UserInstallStateSummaryItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<UserInstallStateSummaryItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -231,9 +244,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
         }
         /// <summary>
         /// The list of installation states for this eBook.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<UserInstallStateSummaryItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<UserInstallStateSummaryItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<UserInstallStateSummaryItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -251,10 +270,16 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
         }
         /// <summary>
         /// Update the navigation property userStateSummary in deviceAppManagement
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(UserInstallStateSummary body, Action<UserInstallStateSummaryItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(UserInstallStateSummary body, Action<UserInstallStateSummaryItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(UserInstallStateSummary body, Action<UserInstallStateSummaryItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -271,10 +296,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class UserInstallStateSummaryItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -282,22 +309,40 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             /// </summary>
             public UserInstallStateSummaryItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>The list of installation states for this eBook.</summary>
+        /// <summary>
+        /// The list of installation states for this eBook.
+        /// </summary>
         public class UserInstallStateSummaryItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class UserInstallStateSummaryItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -307,13 +352,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             /// </summary>
             public UserInstallStateSummaryItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class UserInstallStateSummaryItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -321,7 +368,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             /// </summary>
             public UserInstallStateSummaryItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

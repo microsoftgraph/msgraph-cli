@@ -5,12 +5,30 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class X509CertificateAuthenticationMethodConfiguration : AuthenticationMethodConfiguration, IParsable {
-        /// <summary>The authenticationModeConfiguration property</summary>
+        /// <summary>Defines strong authentication configurations. This configuration includes the default authentication mode and the different rules for strong authentication bindings.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public X509CertificateAuthenticationModeConfiguration? AuthenticationModeConfiguration { get; set; }
+#nullable restore
+#else
         public X509CertificateAuthenticationModeConfiguration AuthenticationModeConfiguration { get; set; }
-        /// <summary>The certificateUserBindings property</summary>
+#endif
+        /// <summary>Defines fields in the X.509 certificate that map to attributes of the Azure AD user object in order to bind the certificate to the user. The priority of the object determines the order in which the binding is carried out. The first binding that matches will be used and the rest ignored.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<X509CertificateUserBinding>? CertificateUserBindings { get; set; }
+#nullable restore
+#else
         public List<X509CertificateUserBinding> CertificateUserBindings { get; set; }
-        /// <summary>The includeTargets property</summary>
+#endif
+        /// <summary>A collection of groups that are enabled to use the authentication method.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AuthenticationMethodTarget>? IncludeTargets { get; set; }
+#nullable restore
+#else
         public List<AuthenticationMethodTarget> IncludeTargets { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new X509CertificateAuthenticationMethodConfiguration and sets the default values.
         /// </summary>
@@ -19,8 +37,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new X509CertificateAuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new X509CertificateAuthenticationMethodConfiguration();
@@ -37,8 +55,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

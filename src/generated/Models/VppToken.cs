@@ -4,14 +4,28 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>You purchase multiple licenses for iOS apps through the Apple Volume Purchase Program for Business or Education. This involves setting up an Apple VPP account from the Apple website and uploading the Apple VPP Business or Education token to Intune. You can then synchronize your volume purchase information with Intune and track your volume-purchased app use. You can upload multiple Apple VPP Business or Education tokens.</summary>
+    /// <summary>
+    /// You purchase multiple licenses for iOS apps through the Apple Volume Purchase Program for Business or Education. This involves setting up an Apple VPP account from the Apple website and uploading the Apple VPP Business or Education token to Intune. You can then synchronize your volume purchase information with Intune and track your volume-purchased app use. You can upload multiple Apple VPP Business or Education tokens.
+    /// </summary>
     public class VppToken : Entity, IParsable {
         /// <summary>The apple Id associated with the given Apple Volume Purchase Program Token.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AppleId { get; set; }
+#nullable restore
+#else
         public string AppleId { get; set; }
+#endif
         /// <summary>Whether or not apps for the VPP token will be automatically updated.</summary>
         public bool? AutomaticallyUpdateApps { get; set; }
         /// <summary>Whether or not apps for the VPP token will be automatically updated.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CountryOrRegion { get; set; }
+#nullable restore
+#else
         public string CountryOrRegion { get; set; }
+#endif
         /// <summary>The expiration date time of the Apple Volume Purchase Program Token.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
         /// <summary>Last modification date time associated with the Apple Volume Purchase Program Token.</summary>
@@ -21,23 +35,29 @@ namespace ApiSdk.Models {
         /// <summary>Possible sync statuses associated with an Apple Volume Purchase Program token.</summary>
         public VppTokenSyncStatus? LastSyncStatus { get; set; }
         /// <summary>The organization associated with the Apple Volume Purchase Program Token</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OrganizationName { get; set; }
+#nullable restore
+#else
         public string OrganizationName { get; set; }
+#endif
         /// <summary>Possible states associated with an Apple Volume Purchase Program token.</summary>
         public VppTokenState? State { get; set; }
         /// <summary>The Apple Volume Purchase Program Token string downloaded from the Apple Volume Purchase Program.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Token { get; set; }
+#nullable restore
+#else
         public string Token { get; set; }
+#endif
         /// <summary>Possible types of an Apple Volume Purchase Program token.</summary>
         public ApiSdk.Models.VppTokenAccountType? VppTokenAccountType { get; set; }
         /// <summary>
-        /// Instantiates a new vppToken and sets the default values.
-        /// </summary>
-        public VppToken() : base() {
-            OdataType = "#microsoft.graph.vppToken";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new VppToken CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new VppToken();
@@ -62,8 +82,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

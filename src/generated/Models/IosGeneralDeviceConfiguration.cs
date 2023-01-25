@@ -22,7 +22,13 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to force a paired Apple Watch to use Wrist Detection (iOS 8.2 and later).</summary>
         public bool? AppleWatchForceWristDetection { get; set; }
         /// <summary>Gets or sets the list of iOS apps allowed to autonomously enter Single App Mode. Supervised only. iOS 7.0 and later. This collection can contain a maximum of 500 elements.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppListItem>? AppsSingleAppModeList { get; set; }
+#nullable restore
+#else
         public List<AppListItem> AppsSingleAppModeList { get; set; }
+#endif
         /// <summary>Indicates whether or not to block the automatic downloading of apps purchased on other devices when the device is in supervised mode (iOS 9.0 and later).</summary>
         public bool? AppStoreBlockAutomaticDownloads { get; set; }
         /// <summary>Indicates whether or not to block the user from using the App Store. Requires a supervised device for iOS 13 and later.</summary>
@@ -34,7 +40,13 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to require a password when using the app store.</summary>
         public bool? AppStoreRequirePassword { get; set; }
         /// <summary>List of apps in the visibility list (either visible/launchable apps list or hidden/unlaunchable apps list, controlled by AppsVisibilityListType) (iOS 9.3 and later). This collection can contain a maximum of 10000 elements.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppListItem>? AppsVisibilityList { get; set; }
+#nullable restore
+#else
         public List<AppListItem> AppsVisibilityList { get; set; }
+#endif
         /// <summary>Possible values of the compliance app list.</summary>
         public AppListType? AppsVisibilityListType { get; set; }
         /// <summary>Indicates whether or not to allow modification of Bluetooth settings when the device is in supervised mode (iOS 10.0 and later).</summary>
@@ -60,7 +72,13 @@ namespace ApiSdk.Models {
         /// <summary>Possible values of the compliance app list.</summary>
         public AppListType? CompliantAppListType { get; set; }
         /// <summary>List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppListItem>? CompliantAppsList { get; set; }
+#nullable restore
+#else
         public List<AppListItem> CompliantAppsList { get; set; }
+#endif
         /// <summary>Indicates whether or not to block the user from installing configuration profiles and certificates interactively when the device is in supervised mode.</summary>
         public bool? ConfigurationProfileBlockChanges { get; set; }
         /// <summary>Indicates whether or not to block definition lookup when the device is in supervised mode (iOS 8.1.3 and later ).</summary>
@@ -80,7 +98,13 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to block the user from viewing unmanaged documents in managed apps.</summary>
         public bool? DocumentsBlockUnmanagedDocumentsInManagedApps { get; set; }
         /// <summary>An email address lacking a suffix that matches any of these strings will be considered out-of-domain.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? EmailInDomainSuffixes { get; set; }
+#nullable restore
+#else
         public List<string> EmailInDomainSuffixes { get; set; }
+#endif
         /// <summary>Indicates whether or not to block the user from trusting an enterprise app.</summary>
         public bool? EnterpriseAppBlockTrust { get; set; }
         /// <summary>[Deprecated] Configuring this setting and setting the value to &apos;true&apos; has no effect on the device.</summary>
@@ -156,11 +180,29 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to allow access to the zoom settings while in kiosk mode.</summary>
         public bool? KioskModeAllowZoomSettings { get; set; }
         /// <summary>URL in the app store to the app to use for kiosk mode. Use if KioskModeManagedAppId is not known.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? KioskModeAppStoreUrl { get; set; }
+#nullable restore
+#else
         public string KioskModeAppStoreUrl { get; set; }
+#endif
         /// <summary>ID for built-in apps to use for kiosk mode. Used when KioskModeManagedAppId and KioskModeAppStoreUrl are not set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? KioskModeBuiltInAppId { get; set; }
+#nullable restore
+#else
         public string KioskModeBuiltInAppId { get; set; }
+#endif
         /// <summary>Managed app id of the app to use for kiosk mode. If KioskModeManagedAppId is specified then KioskModeAppStoreUrl will be ignored.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? KioskModeManagedAppId { get; set; }
+#nullable restore
+#else
         public string KioskModeManagedAppId { get; set; }
+#endif
         /// <summary>Indicates whether or not to require assistive touch while in kiosk mode.</summary>
         public bool? KioskModeRequireAssistiveTouch { get; set; }
         /// <summary>Indicates whether or not to require color inversion while in kiosk mode.</summary>
@@ -182,27 +224,87 @@ namespace ApiSdk.Models {
         /// <summary>Apps rating as in media content</summary>
         public RatingAppsType? MediaContentRatingApps { get; set; }
         /// <summary>Media content rating settings for Australia</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.MediaContentRatingAustralia? MediaContentRatingAustralia { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.MediaContentRatingAustralia MediaContentRatingAustralia { get; set; }
+#endif
         /// <summary>Media content rating settings for Canada</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.MediaContentRatingCanada? MediaContentRatingCanada { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.MediaContentRatingCanada MediaContentRatingCanada { get; set; }
+#endif
         /// <summary>Media content rating settings for France</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.MediaContentRatingFrance? MediaContentRatingFrance { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.MediaContentRatingFrance MediaContentRatingFrance { get; set; }
+#endif
         /// <summary>Media content rating settings for Germany</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.MediaContentRatingGermany? MediaContentRatingGermany { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.MediaContentRatingGermany MediaContentRatingGermany { get; set; }
+#endif
         /// <summary>Media content rating settings for Ireland</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.MediaContentRatingIreland? MediaContentRatingIreland { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.MediaContentRatingIreland MediaContentRatingIreland { get; set; }
+#endif
         /// <summary>Media content rating settings for Japan</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.MediaContentRatingJapan? MediaContentRatingJapan { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.MediaContentRatingJapan MediaContentRatingJapan { get; set; }
+#endif
         /// <summary>Media content rating settings for New Zealand</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.MediaContentRatingNewZealand? MediaContentRatingNewZealand { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.MediaContentRatingNewZealand MediaContentRatingNewZealand { get; set; }
+#endif
         /// <summary>Media content rating settings for United Kingdom</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.MediaContentRatingUnitedKingdom? MediaContentRatingUnitedKingdom { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.MediaContentRatingUnitedKingdom MediaContentRatingUnitedKingdom { get; set; }
+#endif
         /// <summary>Media content rating settings for United States</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.MediaContentRatingUnitedStates? MediaContentRatingUnitedStates { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.MediaContentRatingUnitedStates MediaContentRatingUnitedStates { get; set; }
+#endif
         /// <summary>Indicates whether or not to block the user from using the Messages app on the supervised device.</summary>
         public bool? MessagesBlocked { get; set; }
         /// <summary>List of managed apps and the network rules that applies to them. This collection can contain a maximum of 1000 elements.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<IosNetworkUsageRule>? NetworkUsageRules { get; set; }
+#nullable restore
+#else
         public List<IosNetworkUsageRule> NetworkUsageRules { get; set; }
+#endif
         /// <summary>Indicates whether or not to allow notifications settings modification (iOS 9.3 and later).</summary>
         public bool? NotificationsBlockSettingsModification { get; set; }
         /// <summary>Block modification of registered Touch ID fingerprints when in supervised mode.</summary>
@@ -244,9 +346,21 @@ namespace ApiSdk.Models {
         /// <summary>Web Browser Cookie Settings.</summary>
         public WebBrowserCookieSettings? SafariCookieSettings { get; set; }
         /// <summary>URLs matching the patterns listed here will be considered managed.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? SafariManagedDomains { get; set; }
+#nullable restore
+#else
         public List<string> SafariManagedDomains { get; set; }
+#endif
         /// <summary>Users can save passwords in Safari only from URLs matching the patterns listed here. Applies to devices in supervised mode (iOS 9.3 and later).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? SafariPasswordAutoFillDomains { get; set; }
+#nullable restore
+#else
         public List<string> SafariPasswordAutoFillDomains { get; set; }
+#endif
         /// <summary>Indicates whether or not to require fraud warning in Safari.</summary>
         public bool? SafariRequireFraudWarning { get; set; }
         /// <summary>Indicates whether or not to block the user from taking Screenshots.</summary>
@@ -275,8 +389,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new IosGeneralDeviceConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IosGeneralDeviceConfiguration();
@@ -421,8 +535,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

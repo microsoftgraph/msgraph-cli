@@ -8,26 +8,55 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Specific provider (product/service - not vendor company); for example, WindowsDefenderATP.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Provider { get; set; }
+#nullable restore
+#else
         public string Provider { get; set; }
+#endif
         /// <summary>Version of the provider or subprovider, if it exists, that generated the alert. Required</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ProviderVersion { get; set; }
+#nullable restore
+#else
         public string ProviderVersion { get; set; }
+#endif
         /// <summary>Specific subprovider (under aggregating provider); for example, WindowsDefenderATP.SmartScreen.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SubProvider { get; set; }
+#nullable restore
+#else
         public string SubProvider { get; set; }
+#endif
         /// <summary>Name of the alert vendor (for example, Microsoft, Dell, FireEye). Required</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Vendor { get; set; }
+#nullable restore
+#else
         public string Vendor { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new securityVendorInformation and sets the default values.
         /// </summary>
         public SecurityVendorInformation() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.securityVendorInformation";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static SecurityVendorInformation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SecurityVendorInformation();
@@ -46,8 +75,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);

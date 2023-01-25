@@ -14,7 +14,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Drives.Item.Root.Follow {
-    /// <summary>Provides operations to call the follow method.</summary>
+    /// <summary>
+    /// Provides operations to call the follow method.
+    /// </summary>
     public class FollowRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -24,6 +26,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Root.Follow {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Follow a driveItem.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-follow?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -59,7 +62,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Root.Follow {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreatePostRequestInformation(q => {
+                var requestInfo = ToPostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("user%2Did", userId);
                 requestInfo.PathParameters.Add("drive%2Did", driveId);
@@ -77,9 +80,9 @@ namespace ApiSdk.Users.Item.Drives.Item.Root.Follow {
         }
         /// <summary>
         /// Instantiates a new FollowRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public FollowRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -90,9 +93,15 @@ namespace ApiSdk.Users.Item.Drives.Item.Root.Follow {
         }
         /// <summary>
         /// Follow a driveItem.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Action<FollowRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(Action<FollowRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(Action<FollowRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
@@ -107,10 +116,12 @@ namespace ApiSdk.Users.Item.Drives.Item.Root.Follow {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class FollowRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -118,7 +129,7 @@ namespace ApiSdk.Users.Item.Drives.Item.Root.Follow {
             /// </summary>
             public FollowRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

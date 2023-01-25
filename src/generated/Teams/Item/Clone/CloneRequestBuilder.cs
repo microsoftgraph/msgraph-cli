@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Teams.Item.Clone {
-    /// <summary>Provides operations to call the clone method.</summary>
+    /// <summary>
+    /// Provides operations to call the clone method.
+    /// </summary>
     public class CloneRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,6 +25,7 @@ namespace ApiSdk.Teams.Item.Clone {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Create a copy of a team. This operation also creates a copy of the corresponding group.You can specify which parts of the team to clone: When tabs are cloned, they are put into an unconfigured state -- they are displayed on the tab bar in Microsoft Teams, and the first time you open them, you&apos;ll go through the configuration screen. (If the person opening the tab does not have permission to configure apps, they will see a message explaining that the tab hasn&apos;t been configured.) Cloning is a long-running operation.After the POST clone returns, you need to GET the operation to see if it&apos;s &apos;running&apos; or &apos;succeeded&apos; or &apos;failed&apos;. You should continue to GET until the status is not &apos;running&apos;. The recommended delay between GETs is 5 seconds.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-clone?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -32,7 +35,7 @@ namespace ApiSdk.Teams.Item.Clone {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -43,7 +46,7 @@ namespace ApiSdk.Teams.Item.Clone {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ClonePostRequestBody>(ClonePostRequestBody.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("team%2Did", teamId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -57,9 +60,9 @@ namespace ApiSdk.Teams.Item.Clone {
         }
         /// <summary>
         /// Instantiates a new CloneRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public CloneRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -70,10 +73,16 @@ namespace ApiSdk.Teams.Item.Clone {
         }
         /// <summary>
         /// Create a copy of a team. This operation also creates a copy of the corresponding group.You can specify which parts of the team to clone: When tabs are cloned, they are put into an unconfigured state -- they are displayed on the tab bar in Microsoft Teams, and the first time you open them, you&apos;ll go through the configuration screen. (If the person opening the tab does not have permission to configure apps, they will see a message explaining that the tab hasn&apos;t been configured.) Cloning is a long-running operation.After the POST clone returns, you need to GET the operation to see if it&apos;s &apos;running&apos; or &apos;succeeded&apos; or &apos;failed&apos;. You should continue to GET until the status is not &apos;running&apos;. The recommended delay between GETs is 5 seconds.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ClonePostRequestBody body, Action<CloneRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(ClonePostRequestBody body, Action<CloneRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(ClonePostRequestBody body, Action<CloneRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -89,10 +98,12 @@ namespace ApiSdk.Teams.Item.Clone {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class CloneRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -100,7 +111,7 @@ namespace ApiSdk.Teams.Item.Clone {
             /// </summary>
             public CloneRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

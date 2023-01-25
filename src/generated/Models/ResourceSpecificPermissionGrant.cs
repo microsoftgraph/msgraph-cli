@@ -4,18 +4,47 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
     public class ResourceSpecificPermissionGrant : DirectoryObject, IParsable {
         /// <summary>ID of the service principal of the Azure AD app that has been granted access. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ClientAppId { get; set; }
+#nullable restore
+#else
         public string ClientAppId { get; set; }
+#endif
         /// <summary>ID of the Azure AD app that has been granted access. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ClientId { get; set; }
+#nullable restore
+#else
         public string ClientId { get; set; }
+#endif
         /// <summary>The name of the resource-specific permission. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Permission { get; set; }
+#nullable restore
+#else
         public string Permission { get; set; }
+#endif
         /// <summary>The type of permission. Possible values are: Application, Delegated. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PermissionType { get; set; }
+#nullable restore
+#else
         public string PermissionType { get; set; }
+#endif
         /// <summary>ID of the Azure AD app that is hosting the resource. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ResourceAppId { get; set; }
+#nullable restore
+#else
         public string ResourceAppId { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new resourceSpecificPermissionGrant and sets the default values.
         /// </summary>
@@ -24,8 +53,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ResourceSpecificPermissionGrant CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ResourceSpecificPermissionGrant();
@@ -44,8 +73,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

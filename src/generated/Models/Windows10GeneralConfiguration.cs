@@ -15,7 +15,13 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to disable the launch of all apps from Windows Store that came pre-installed or were downloaded.</summary>
         public bool? AppsBlockWindowsStoreOriginatedApps { get; set; }
         /// <summary>Specify a list of allowed Bluetooth services and profiles in hex formatted strings.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? BluetoothAllowedServices { get; set; }
+#nullable restore
+#else
         public List<string> BluetoothAllowedServices { get; set; }
+#endif
         /// <summary>Whether or not to Block the user from using bluetooth advertising.</summary>
         public bool? BluetoothBlockAdvertising { get; set; }
         /// <summary>Whether or not to Block the user from using bluetooth discoverable mode.</summary>
@@ -47,15 +53,39 @@ namespace ApiSdk.Models {
         /// <summary>Number of days before deleting quarantined malware. Valid values 0 to 90</summary>
         public int? DefenderDaysBeforeDeletingQuarantinedMalware { get; set; }
         /// <summary>Gets or sets Defender’s actions to take on detected Malware per threat level.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.DefenderDetectedMalwareActions? DefenderDetectedMalwareActions { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.DefenderDetectedMalwareActions DefenderDetectedMalwareActions { get; set; }
+#endif
         /// <summary>File extensions to exclude from scans and real time protection.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? DefenderFileExtensionsToExclude { get; set; }
+#nullable restore
+#else
         public List<string> DefenderFileExtensionsToExclude { get; set; }
+#endif
         /// <summary>Files and folder to exclude from scans and real time protection.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? DefenderFilesAndFoldersToExclude { get; set; }
+#nullable restore
+#else
         public List<string> DefenderFilesAndFoldersToExclude { get; set; }
+#endif
         /// <summary>Possible values for monitoring file activity.</summary>
         public ApiSdk.Models.DefenderMonitorFileActivity? DefenderMonitorFileActivity { get; set; }
         /// <summary>Processes to exclude from scans and real time protection.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? DefenderProcessesToExclude { get; set; }
+#nullable restore
+#else
         public List<string> DefenderProcessesToExclude { get; set; }
+#endif
         /// <summary>Possible values for prompting user for samples submission.</summary>
         public ApiSdk.Models.DefenderPromptForSampleSubmission? DefenderPromptForSampleSubmission { get; set; }
         /// <summary>Indicates whether or not to require behavior monitoring.</summary>
@@ -139,31 +169,85 @@ namespace ApiSdk.Models {
         /// <summary>Block the Microsoft web page that opens on the first use of Microsoft Edge. This policy allows enterprises, like those enrolled in zero emissions configurations, to block this page.</summary>
         public bool? EdgeDisableFirstRunPage { get; set; }
         /// <summary>Indicates the enterprise mode site list location. Could be a local file, local network or http location.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EdgeEnterpriseModeSiteListLocation { get; set; }
+#nullable restore
+#else
         public string EdgeEnterpriseModeSiteListLocation { get; set; }
+#endif
         /// <summary>The first run URL for when Edge browser is opened for the first time.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EdgeFirstRunUrl { get; set; }
+#nullable restore
+#else
         public string EdgeFirstRunUrl { get; set; }
+#endif
         /// <summary>The list of URLs for homepages shodwn on MDM-enrolled devices on Edge browser.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? EdgeHomepageUrls { get; set; }
+#nullable restore
+#else
         public List<string> EdgeHomepageUrls { get; set; }
+#endif
         /// <summary>Indicates whether or not to Require the user to use the smart screen filter.</summary>
         public bool? EdgeRequireSmartScreen { get; set; }
         /// <summary>Allows IT admins to set a default search engine for MDM-Controlled devices. Users can override this and change their default search engine provided the AllowSearchEngineCustomization policy is not set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public EdgeSearchEngineBase? EdgeSearchEngine { get; set; }
+#nullable restore
+#else
         public EdgeSearchEngineBase EdgeSearchEngine { get; set; }
+#endif
         /// <summary>Indicates whether or not to switch the intranet traffic from Edge to Internet Explorer.</summary>
         public bool? EdgeSendIntranetTrafficToInternetExplorer { get; set; }
         /// <summary>Enable favorites sync between Internet Explorer and Microsoft Edge. Additions, deletions, modifications and order changes to favorites are shared between browsers.</summary>
         public bool? EdgeSyncFavoritesWithInternetExplorer { get; set; }
         /// <summary>Endpoint for discovering cloud printers.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EnterpriseCloudPrintDiscoveryEndPoint { get; set; }
+#nullable restore
+#else
         public string EnterpriseCloudPrintDiscoveryEndPoint { get; set; }
+#endif
         /// <summary>Maximum number of printers that should be queried from a discovery endpoint. This is a mobile only setting. Valid values 1 to 65535</summary>
         public int? EnterpriseCloudPrintDiscoveryMaxLimit { get; set; }
         /// <summary>OAuth resource URI for printer discovery service as configured in Azure portal.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EnterpriseCloudPrintMopriaDiscoveryResourceIdentifier { get; set; }
+#nullable restore
+#else
         public string EnterpriseCloudPrintMopriaDiscoveryResourceIdentifier { get; set; }
+#endif
         /// <summary>Authentication endpoint for acquiring OAuth tokens.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EnterpriseCloudPrintOAuthAuthority { get; set; }
+#nullable restore
+#else
         public string EnterpriseCloudPrintOAuthAuthority { get; set; }
+#endif
         /// <summary>GUID of a client application authorized to retrieve OAuth tokens from the OAuth Authority.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EnterpriseCloudPrintOAuthClientIdentifier { get; set; }
+#nullable restore
+#else
         public string EnterpriseCloudPrintOAuthClientIdentifier { get; set; }
+#endif
         /// <summary>OAuth resource URI for print service as configured in the Azure portal.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EnterpriseCloudPrintResourceIdentifier { get; set; }
+#nullable restore
+#else
         public string EnterpriseCloudPrintResourceIdentifier { get; set; }
+#endif
         /// <summary>Indicates whether or not to enable device discovery UX.</summary>
         public bool? ExperienceBlockDeviceDiscovery { get; set; }
         /// <summary>Indicates whether or not to allow the error dialog from displaying if no SIM card is detected.</summary>
@@ -195,11 +279,23 @@ namespace ApiSdk.Models {
         /// <summary>If set, proxy settings will be applied to all processes and accounts in the device. Otherwise, it will be applied to the user account that’s enrolled into MDM.</summary>
         public bool? NetworkProxyApplySettingsDeviceWide { get; set; }
         /// <summary>Address to the proxy auto-config (PAC) script you want to use.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NetworkProxyAutomaticConfigurationUrl { get; set; }
+#nullable restore
+#else
         public string NetworkProxyAutomaticConfigurationUrl { get; set; }
+#endif
         /// <summary>Disable automatic detection of settings. If enabled, the system will try to find the path to a proxy auto-config (PAC) script.</summary>
         public bool? NetworkProxyDisableAutoDetect { get; set; }
         /// <summary>Specifies manual proxy server settings.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Windows10NetworkProxyServer? NetworkProxyServer { get; set; }
+#nullable restore
+#else
         public Windows10NetworkProxyServer NetworkProxyServer { get; set; }
+#endif
         /// <summary>Indicates whether or not to Block the user from using near field communication.</summary>
         public bool? NfcBlocked { get; set; }
         /// <summary>Gets or sets a value allowing IT admins to prevent apps and features from working with files on OneDrive.</summary>
@@ -225,9 +321,21 @@ namespace ApiSdk.Models {
         /// <summary>The number of sign in failures before factory reset. Valid values 0 to 999</summary>
         public int? PasswordSignInFailureCountBeforeFactoryReset { get; set; }
         /// <summary>A http or https Url to a jpg, jpeg or png image that needs to be downloaded and used as the Desktop Image or a file Url to a local image on the file system that needs to used as the Desktop Image.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PersonalizationDesktopImageUrl { get; set; }
+#nullable restore
+#else
         public string PersonalizationDesktopImageUrl { get; set; }
+#endif
         /// <summary>A http or https Url to a jpg, jpeg or png image that neeeds to be downloaded and used as the Lock Screen Image or a file Url to a local image on the file system that needs to be used as the Lock Screen Image.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PersonalizationLockScreenImageUrl { get; set; }
+#nullable restore
+#else
         public string PersonalizationLockScreenImageUrl { get; set; }
+#endif
         /// <summary>State Management Setting.</summary>
         public StateManagementSetting? PrivacyAdvertisingId { get; set; }
         /// <summary>Indicates whether or not to allow the automatic acceptance of the pairing and privacy user consent dialog when launching apps.</summary>
@@ -331,9 +439,21 @@ namespace ApiSdk.Models {
         /// <summary>Enabling this policy hides the user tile from appearing in the start menu.</summary>
         public bool? StartMenuHideUserTile { get; set; }
         /// <summary>This policy setting allows you to import Edge assets to be used with startMenuLayoutXml policy. Start layout can contain secondary tile from Edge app which looks for Edge local asset file. Edge local asset would not exist and cause Edge secondary tile to appear empty in this case. This policy only gets applied when startMenuLayoutXml policy is modified. The value should be a UTF-8 Base64 encoded byte array.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public byte[]? StartMenuLayoutEdgeAssetsXml { get; set; }
+#nullable restore
+#else
         public byte[] StartMenuLayoutEdgeAssetsXml { get; set; }
+#endif
         /// <summary>Allows admins to override the default Start menu layout and prevents the user from changing it. The layout is modified by specifying an XML file based on a layout modification schema. XML needs to be in a UTF8 encoded byte array format.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public byte[]? StartMenuLayoutXml { get; set; }
+#nullable restore
+#else
         public byte[] StartMenuLayoutXml { get; set; }
+#endif
         /// <summary>Type of display modes for the start menu.</summary>
         public WindowsStartMenuModeType? StartMenuMode { get; set; }
         /// <summary>Generic visibility state.</summary>
@@ -416,8 +536,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Windows10GeneralConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Windows10GeneralConfiguration();
@@ -632,8 +752,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

@@ -6,17 +6,17 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class AppConsentApprovalRoute : Entity, IParsable {
         /// <summary>A collection of userConsentRequest objects for a specific application.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppConsentRequest>? AppConsentRequests { get; set; }
+#nullable restore
+#else
         public List<AppConsentRequest> AppConsentRequests { get; set; }
-        /// <summary>
-        /// Instantiates a new AppConsentApprovalRoute and sets the default values.
-        /// </summary>
-        public AppConsentApprovalRoute() : base() {
-            OdataType = "#microsoft.graph.appConsentApprovalRoute";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new AppConsentApprovalRoute CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AppConsentApprovalRoute();
@@ -31,8 +31,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

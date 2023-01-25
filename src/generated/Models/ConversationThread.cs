@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Casts the previous resource to group.</summary>
     public class ConversationThread : Entity, IParsable {
         /// <summary>The Cc: recipients for the thread. Returned only on $select.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Recipient>? CcRecipients { get; set; }
+#nullable restore
+#else
         public List<Recipient> CcRecipients { get; set; }
+#endif
         /// <summary>Indicates whether any of the posts within this thread has at least one attachment. Returned by default.</summary>
         public bool? HasAttachments { get; set; }
         /// <summary>Indicates if the thread is locked. Returned by default.</summary>
@@ -15,25 +20,49 @@ namespace ApiSdk.Models {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.Returned by default.</summary>
         public DateTimeOffset? LastDeliveredDateTime { get; set; }
         /// <summary>The posts property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Post>? Posts { get; set; }
+#nullable restore
+#else
         public List<Post> Posts { get; set; }
+#endif
         /// <summary>A short summary from the body of the latest post in this conversation. Returned by default.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Preview { get; set; }
+#nullable restore
+#else
         public string Preview { get; set; }
+#endif
         /// <summary>The topic of the conversation. This property can be set when the conversation is created, but it cannot be updated. Returned by default.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Topic { get; set; }
+#nullable restore
+#else
         public string Topic { get; set; }
+#endif
         /// <summary>The To: recipients for the thread. Returned only on $select.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<Recipient>? ToRecipients { get; set; }
+#nullable restore
+#else
         public List<Recipient> ToRecipients { get; set; }
+#endif
         /// <summary>All the users that sent a message to this thread. Returned by default.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? UniqueSenders { get; set; }
+#nullable restore
+#else
         public List<string> UniqueSenders { get; set; }
-        /// <summary>
-        /// Instantiates a new conversationThread and sets the default values.
-        /// </summary>
-        public ConversationThread() : base() {
-            OdataType = "#microsoft.graph.conversationThread";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ConversationThread CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConversationThread();
@@ -56,8 +85,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

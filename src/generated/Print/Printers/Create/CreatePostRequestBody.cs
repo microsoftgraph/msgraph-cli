@@ -5,24 +5,59 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Print.Printers.Create {
-    /// <summary>Provides operations to call the create method.</summary>
     public class CreatePostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The certificateSigningRequest property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public PrintCertificateSigningRequest? CertificateSigningRequest { get; set; }
+#nullable restore
+#else
         public PrintCertificateSigningRequest CertificateSigningRequest { get; set; }
+#endif
         /// <summary>The connectorId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ConnectorId { get; set; }
+#nullable restore
+#else
         public string ConnectorId { get; set; }
+#endif
         /// <summary>The displayName property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>The hasPhysicalDevice property</summary>
         public bool? HasPhysicalDevice { get; set; }
         /// <summary>The manufacturer property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Manufacturer { get; set; }
+#nullable restore
+#else
         public string Manufacturer { get; set; }
+#endif
         /// <summary>The model property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Model { get; set; }
+#nullable restore
+#else
         public string Model { get; set; }
+#endif
         /// <summary>The physicalDeviceId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PhysicalDeviceId { get; set; }
+#nullable restore
+#else
         public string PhysicalDeviceId { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new createPostRequestBody and sets the default values.
         /// </summary>
@@ -31,8 +66,8 @@ namespace ApiSdk.Print.Printers.Create {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static CreatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CreatePostRequestBody();
@@ -53,8 +88,8 @@ namespace ApiSdk.Print.Printers.Create {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<PrintCertificateSigningRequest>("certificateSigningRequest", CertificateSigningRequest);

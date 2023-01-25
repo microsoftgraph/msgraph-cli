@@ -19,7 +19,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
-    /// <summary>Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
+    /// </summary>
     public class MobileAppItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -27,14 +29,22 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the assign method.
+        /// </summary>
         public Command BuildAssignCommand() {
             var command = new Command("assign");
+            command.Description = "Provides operations to call the assign method.";
             var builder = new AssignRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
+        /// </summary>
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
+            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -42,8 +52,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
+        /// </summary>
         public Command BuildCategoriesCommand() {
             var command = new Command("categories");
+            command.Description = "Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.";
             var builder = new CategoriesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -61,7 +75,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             };
             mobileAppIdOption.IsRequired = true;
             command.AddOption(mobileAppIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -69,10 +84,10 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 var mobileAppId = invocationContext.ParseResult.GetValueForOption(mobileAppIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("mobileApp%2Did", mobileAppId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -126,7 +141,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -143,14 +158,22 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Casts the previous resource to managedMobileLobApp.
+        /// </summary>
         public Command BuildManagedMobileLobAppCommand() {
             var command = new Command("managed-mobile-lob-app");
+            command.Description = "Casts the previous resource to managedMobileLobApp.";
             var builder = new ManagedMobileLobAppRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        /// <summary>
+        /// Casts the previous resource to mobileLobApp.
+        /// </summary>
         public Command BuildMobileLobAppCommand() {
             var command = new Command("mobile-lob-app");
+            command.Description = "Casts the previous resource to mobileLobApp.";
             var builder = new MobileLobAppRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -166,7 +189,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             };
             mobileAppIdOption.IsRequired = true;
             command.AddOption(mobileAppIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -195,7 +218,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MobileApp>(MobileApp.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("mobileApp%2Did", mobileAppId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -212,9 +235,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         }
         /// <summary>
         /// Instantiates a new MobileAppItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public MobileAppItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -225,9 +248,15 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         }
         /// <summary>
         /// Delete navigation property mobileApps for deviceAppManagement
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<MobileAppItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<MobileAppItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<MobileAppItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -243,9 +272,15 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         }
         /// <summary>
         /// The mobile apps.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<MobileAppItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<MobileAppItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<MobileAppItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -263,10 +298,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         }
         /// <summary>
         /// Update the navigation property mobileApps in deviceAppManagement
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(MobileApp body, Action<MobileAppItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(MobileApp body, Action<MobileAppItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(MobileApp body, Action<MobileAppItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -283,10 +324,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class MobileAppItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -294,22 +337,40 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             /// </summary>
             public MobileAppItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>The mobile apps.</summary>
+        /// <summary>
+        /// The mobile apps.
+        /// </summary>
         public class MobileAppItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class MobileAppItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -319,13 +380,15 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             /// </summary>
             public MobileAppItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class MobileAppItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -333,7 +396,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             /// </summary>
             public MobileAppItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

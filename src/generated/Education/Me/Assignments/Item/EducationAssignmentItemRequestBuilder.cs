@@ -2,6 +2,7 @@ using ApiSdk.Education.Me.Assignments.Item.Categories;
 using ApiSdk.Education.Me.Assignments.Item.Publish;
 using ApiSdk.Education.Me.Assignments.Item.Resources;
 using ApiSdk.Education.Me.Assignments.Item.Rubric;
+using ApiSdk.Education.Me.Assignments.Item.SetUpFeedbackResourcesFolder;
 using ApiSdk.Education.Me.Assignments.Item.SetUpResourcesFolder;
 using ApiSdk.Education.Me.Assignments.Item.Submissions;
 using ApiSdk.Models;
@@ -20,7 +21,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Education.Me.Assignments.Item {
-    /// <summary>Provides operations to manage the assignments property of the microsoft.graph.educationUser entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the assignments property of the microsoft.graph.educationUser entity.
+    /// </summary>
     public class EducationAssignmentItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -28,8 +31,12 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to manage the categories property of the microsoft.graph.educationAssignment entity.
+        /// </summary>
         public Command BuildCategoriesCommand() {
             var command = new Command("categories");
+            command.Description = "Provides operations to manage the categories property of the microsoft.graph.educationAssignment entity.";
             var builder = new CategoriesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -49,7 +56,8 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -57,10 +65,10 @@ namespace ApiSdk.Education.Me.Assignments.Item {
                 var educationAssignmentId = invocationContext.ParseResult.GetValueForOption(educationAssignmentIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -114,7 +122,7 @@ namespace ApiSdk.Education.Me.Assignments.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -142,7 +150,7 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -171,7 +179,7 @@ namespace ApiSdk.Education.Me.Assignments.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationAssignment>(EducationAssignment.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -186,14 +194,22 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the publish method.
+        /// </summary>
         public Command BuildPublishCommand() {
             var command = new Command("publish");
+            command.Description = "Provides operations to call the publish method.";
             var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.
+        /// </summary>
         public Command BuildResourcesCommand() {
             var command = new Command("resources");
+            command.Description = "Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.";
             var builder = new ResourcesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -201,8 +217,12 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the rubric property of the microsoft.graph.educationAssignment entity.
+        /// </summary>
         public Command BuildRubricCommand() {
             var command = new Command("rubric");
+            command.Description = "Provides operations to manage the rubric property of the microsoft.graph.educationAssignment entity.";
             var builder = new RubricRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -210,14 +230,32 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             command.AddCommand(builder.BuildRefCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the setUpFeedbackResourcesFolder method.
+        /// </summary>
+        public Command BuildSetUpFeedbackResourcesFolderCommand() {
+            var command = new Command("set-up-feedback-resources-folder");
+            command.Description = "Provides operations to call the setUpFeedbackResourcesFolder method.";
+            var builder = new SetUpFeedbackResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUpResourcesFolder method.
+        /// </summary>
         public Command BuildSetUpResourcesFolderCommand() {
             var command = new Command("set-up-resources-folder");
+            command.Description = "Provides operations to call the setUpResourcesFolder method.";
             var builder = new SetUpResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the submissions property of the microsoft.graph.educationAssignment entity.
+        /// </summary>
         public Command BuildSubmissionsCommand() {
             var command = new Command("submissions");
+            command.Description = "Provides operations to manage the submissions property of the microsoft.graph.educationAssignment entity.";
             var builder = new SubmissionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -227,9 +265,9 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         }
         /// <summary>
         /// Instantiates a new EducationAssignmentItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public EducationAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -240,9 +278,15 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         }
         /// <summary>
         /// Delete navigation property assignments for education
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<EducationAssignmentItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<EducationAssignmentItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<EducationAssignmentItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -258,9 +302,15 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         }
         /// <summary>
         /// Assignments belonging to the user.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<EducationAssignmentItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<EducationAssignmentItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<EducationAssignmentItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -278,10 +328,16 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         }
         /// <summary>
         /// Update the navigation property assignments in education
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(EducationAssignment body, Action<EducationAssignmentItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<EducationAssignmentItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<EducationAssignmentItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -298,10 +354,12 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class EducationAssignmentItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -309,22 +367,40 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             /// </summary>
             public EducationAssignmentItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Assignments belonging to the user.</summary>
+        /// <summary>
+        /// Assignments belonging to the user.
+        /// </summary>
         public class EducationAssignmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class EducationAssignmentItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -334,13 +410,15 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             /// </summary>
             public EducationAssignmentItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class EducationAssignmentItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -348,7 +426,7 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             /// </summary>
             public EducationAssignmentItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

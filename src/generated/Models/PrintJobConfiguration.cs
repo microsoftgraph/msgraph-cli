@@ -20,44 +20,91 @@ namespace ApiSdk.Models {
         /// <summary>The orientation to use when feeding media into the printer. Valid values are described in the following table. Read-only.</summary>
         public PrinterFeedOrientation? FeedOrientation { get; set; }
         /// <summary>Finishing processes to use when printing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<PrintFinishing?>? Finishings { get; set; }
+#nullable restore
+#else
         public List<PrintFinishing?> Finishings { get; set; }
+#endif
         /// <summary>The fitPdfToPage property</summary>
         public bool? FitPdfToPage { get; set; }
         /// <summary>The input bin (tray) to use when printing. See the printer&apos;s capabilities for a list of supported input bins.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? InputBin { get; set; }
+#nullable restore
+#else
         public string InputBin { get; set; }
+#endif
         /// <summary>The margin settings to use when printing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public PrintMargin? Margin { get; set; }
+#nullable restore
+#else
         public PrintMargin Margin { get; set; }
-        /// <summary>The media size to use when printing. Supports standard size names for ISO and ANSI media sizes. Valid values listed in the printerCapabilities topic.</summary>
+#endif
+        /// <summary>The media size to use when printing. Supports standard size names for ISO and ANSI media sizes.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MediaSize { get; set; }
+#nullable restore
+#else
         public string MediaSize { get; set; }
-        /// <summary>The default media (such as paper) type to print the document on.</summary>
+#endif
+        /// <summary>The mediaType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MediaType { get; set; }
+#nullable restore
+#else
         public string MediaType { get; set; }
-        /// <summary>The direction to lay out pages when multiple pages are being printed per sheet. Valid values are described in the following table.</summary>
+#endif
+        /// <summary>The multipageLayout property</summary>
         public PrintMultipageLayout? MultipageLayout { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
-        /// <summary>The orientation setting the printer should use when printing the job. Valid values are described in the following table.</summary>
+#endif
+        /// <summary>The orientation property</summary>
         public PrintOrientation? Orientation { get; set; }
-        /// <summary>The output bin to place completed prints into. See the printer&apos;s capabilities for a list of supported output bins.</summary>
+        /// <summary>The outputBin property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OutputBin { get; set; }
+#nullable restore
+#else
         public string OutputBin { get; set; }
-        /// <summary>The page ranges to print. Read-only.</summary>
+#endif
+        /// <summary>The pageRanges property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<IntegerRange>? PageRanges { get; set; }
+#nullable restore
+#else
         public List<IntegerRange> PageRanges { get; set; }
-        /// <summary>The number of document pages to print on each sheet.</summary>
+#endif
+        /// <summary>The pagesPerSheet property</summary>
         public int? PagesPerSheet { get; set; }
-        /// <summary>The print quality to use when printing the job. Valid values are described in the table below. Read-only.</summary>
+        /// <summary>The quality property</summary>
         public PrintQuality? Quality { get; set; }
-        /// <summary>Specifies how the printer should scale the document data to fit the requested media. Valid values are described in the following table.</summary>
+        /// <summary>The scaling property</summary>
         public PrintScaling? Scaling { get; set; }
         /// <summary>
         /// Instantiates a new printJobConfiguration and sets the default values.
         /// </summary>
         public PrintJobConfiguration() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.printJobConfiguration";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static PrintJobConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrintJobConfiguration();
@@ -91,8 +138,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("collate", Collate);

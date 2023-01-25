@@ -16,7 +16,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Education.Me.Classes {
-    /// <summary>Provides operations to manage the classes property of the microsoft.graph.educationUser entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the classes property of the microsoft.graph.educationUser entity.
+    /// </summary>
     public class ClassesRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -24,20 +26,28 @@ namespace ApiSdk.Education.Me.Classes {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to manage the classes property of the microsoft.graph.educationUser entity.
+        /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new EducationClassItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to count the resources in the collection.
+        /// </summary>
         public Command BuildCountCommand() {
             var command = new Command("count");
+            command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Get the educationClass resources an educationUser is a member of.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationuser-list-classes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
@@ -110,11 +120,11 @@ namespace ApiSdk.Education.Me.Classes {
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
-                    if (!String.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
-                    if (!String.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
+                    if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
@@ -125,7 +135,7 @@ namespace ApiSdk.Education.Me.Classes {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
-                var pageResponse = await pagingService.GetPagedDataAsync((info, handler, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token, responseHandler: handler), pagingData, all, cancellationToken);
+                var pageResponse = await pagingService.GetPagedDataAsync((info, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
                 IOutputFormatterOptions? formatterOptions = null;
                 IOutputFormatter? formatter = null;
@@ -142,9 +152,9 @@ namespace ApiSdk.Education.Me.Classes {
         }
         /// <summary>
         /// Instantiates a new ClassesRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public ClassesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -155,9 +165,15 @@ namespace ApiSdk.Education.Me.Classes {
         }
         /// <summary>
         /// Get the educationClass resources an educationUser is a member of.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<ClassesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<ClassesRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<ClassesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -173,26 +189,63 @@ namespace ApiSdk.Education.Me.Classes {
             }
             return requestInfo;
         }
-        /// <summary>Get the educationClass resources an educationUser is a member of.</summary>
+        /// <summary>
+        /// Get the educationClass resources an educationUser is a member of.
+        /// </summary>
         public class ClassesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Filter items by property values</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24filter")]
+            public string? Filter { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24filter")]
             public string Filter { get; set; }
+#endif
             /// <summary>Order items by property values</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24orderby")]
+            public string[]? Orderby { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
+#endif
             /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24search")]
             public string Search { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
             /// <summary>Skip the first n items</summary>
             [QueryParameter("%24skip")]
             public int? Skip { get; set; }
@@ -200,10 +253,12 @@ namespace ApiSdk.Education.Me.Classes {
             [QueryParameter("%24top")]
             public int? Top { get; set; }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class ClassesRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -213,7 +268,7 @@ namespace ApiSdk.Education.Me.Classes {
             /// </summary>
             public ClassesRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

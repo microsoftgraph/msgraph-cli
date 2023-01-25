@@ -48,7 +48,13 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>Maximum network propagation round-trip time computed as specified in [RFC 3550][], denoted in [ISO 8601][] format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
         public TimeSpan? MaxRoundTripTime { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>Packet count for the stream.</summary>
         public long? PacketUtilization { get; set; }
         /// <summary>Packet loss rate after FEC has been applied aggregated across all video streams and codecs.</summary>
@@ -58,7 +64,13 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>The streamDirection property</summary>
         public MediaStreamDirection? StreamDirection { get; set; }
         /// <summary>Unique identifier for the stream.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StreamId { get; set; }
+#nullable restore
+#else
         public string StreamId { get; set; }
+#endif
         /// <summary>Codec name used to encode video for transmission on the network. Possible values are: unknown, invalid, av1, h263, h264, h264s, h264uc, h265, rtvc1, rtVideo, xrtvc1, unknownFutureValue.</summary>
         public ApiSdk.Models.CallRecords.VideoCodec? VideoCodec { get; set; }
         /// <summary>True if the media stream bypassed the Mediation Server and went straight between client and PSTN Gateway/PBX, false otherwise.</summary>
@@ -68,12 +80,11 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public MediaStream() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.callRecords.mediaStream";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static MediaStream CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MediaStream();
@@ -115,8 +126,8 @@ namespace ApiSdk.Models.CallRecords {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<AudioCodec>("audioCodec", AudioCodec);

@@ -4,20 +4,49 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.CopyNotebook {
-    /// <summary>Provides operations to call the copyNotebook method.</summary>
     public class CopyNotebookPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The groupId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? GroupId { get; set; }
+#nullable restore
+#else
         public string GroupId { get; set; }
+#endif
         /// <summary>The notebookFolder property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NotebookFolder { get; set; }
+#nullable restore
+#else
         public string NotebookFolder { get; set; }
+#endif
         /// <summary>The renameAs property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RenameAs { get; set; }
+#nullable restore
+#else
         public string RenameAs { get; set; }
+#endif
         /// <summary>The siteCollectionId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SiteCollectionId { get; set; }
+#nullable restore
+#else
         public string SiteCollectionId { get; set; }
+#endif
         /// <summary>The siteId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SiteId { get; set; }
+#nullable restore
+#else
         public string SiteId { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new copyNotebookPostRequestBody and sets the default values.
         /// </summary>
@@ -26,8 +55,8 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.CopyNotebook {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static CopyNotebookPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CopyNotebookPostRequestBody();
@@ -46,8 +75,8 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.CopyNotebook {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("groupId", GroupId);

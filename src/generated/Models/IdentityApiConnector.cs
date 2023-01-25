@@ -6,21 +6,33 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class IdentityApiConnector : Entity, IParsable {
         /// <summary>The object which describes the authentication configuration details for calling the API. Basic and PKCS 12 client certificate are supported.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiAuthenticationConfigurationBase? AuthenticationConfiguration { get; set; }
+#nullable restore
+#else
         public ApiAuthenticationConfigurationBase AuthenticationConfiguration { get; set; }
+#endif
         /// <summary>The name of the API connector.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>The URL of the API endpoint to call.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TargetUrl { get; set; }
+#nullable restore
+#else
         public string TargetUrl { get; set; }
-        /// <summary>
-        /// Instantiates a new IdentityApiConnector and sets the default values.
-        /// </summary>
-        public IdentityApiConnector() : base() {
-            OdataType = "#microsoft.graph.identityApiConnector";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new IdentityApiConnector CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IdentityApiConnector();
@@ -37,8 +49,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

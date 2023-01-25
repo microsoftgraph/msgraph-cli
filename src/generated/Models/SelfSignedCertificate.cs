@@ -8,36 +8,77 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The customKeyIdentifier property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public byte[]? CustomKeyIdentifier { get; set; }
+#nullable restore
+#else
         public byte[] CustomKeyIdentifier { get; set; }
+#endif
         /// <summary>The displayName property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>The endDateTime property</summary>
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>The key property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public byte[]? Key { get; set; }
+#nullable restore
+#else
         public byte[] Key { get; set; }
+#endif
         /// <summary>The keyId property</summary>
-        public string KeyId { get; set; }
+        public Guid? KeyId { get; set; }
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The startDateTime property</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>The thumbprint property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Thumbprint { get; set; }
+#nullable restore
+#else
         public string Thumbprint { get; set; }
+#endif
         /// <summary>The type property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Type { get; set; }
+#nullable restore
+#else
         public string Type { get; set; }
+#endif
         /// <summary>The usage property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Usage { get; set; }
+#nullable restore
+#else
         public string Usage { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new SelfSignedCertificate and sets the default values.
         /// </summary>
         public SelfSignedCertificate() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.selfSignedCertificate";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static SelfSignedCertificate CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SelfSignedCertificate();
@@ -51,7 +92,7 @@ namespace ApiSdk.Models {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 {"key", n => { Key = n.GetByteArrayValue(); } },
-                {"keyId", n => { KeyId = n.GetStringValue(); } },
+                {"keyId", n => { KeyId = n.GetGuidValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"thumbprint", n => { Thumbprint = n.GetStringValue(); } },
@@ -61,15 +102,15 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteByteArrayValue("customKeyIdentifier", CustomKeyIdentifier);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteByteArrayValue("key", Key);
-            writer.WriteStringValue("keyId", KeyId);
+            writer.WriteGuidValue("keyId", KeyId);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteStringValue("thumbprint", Thumbprint);

@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Possible values for welcome screen meeting information.</summary>
     public enum WelcomeScreenMeetingInformation {
         /// <summary>User Defined, default value, no intent.</summary>
         UserDefined,

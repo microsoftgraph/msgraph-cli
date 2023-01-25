@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
+    /// <summary>Windows 10 Edition type.</summary>
     public enum Windows10EditionType {
         /// <summary>Windows 10 Enterprise</summary>
         Windows10Enterprise,

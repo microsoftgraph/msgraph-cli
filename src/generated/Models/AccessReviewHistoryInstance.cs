@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the collection of application entities.</summary>
     public class AccessReviewHistoryInstance : Entity, IParsable {
         /// <summary>Uri which can be used to retrieve review history data. This URI will be active for 24 hours after being generated. Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DownloadUri { get; set; }
+#nullable restore
+#else
         public string DownloadUri { get; set; }
+#endif
         /// <summary>Timestamp when this instance and associated data expires and the history is deleted. Required.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
         /// <summary>Timestamp when all of the available data for this instance was collected. This will be set after this instance&apos;s status is set to done. Required.</summary>
@@ -21,15 +26,9 @@ namespace ApiSdk.Models {
         /// <summary>Represents the status of the review history data collection. The possible values are: done, inProgress, error, requested, unknownFutureValue. Once the status has been marked as done, a link can be generated to retrieve the instance&apos;s data by calling generateDownloadUri method.</summary>
         public AccessReviewHistoryStatus? Status { get; set; }
         /// <summary>
-        /// Instantiates a new accessReviewHistoryInstance and sets the default values.
-        /// </summary>
-        public AccessReviewHistoryInstance() : base() {
-            OdataType = "#microsoft.graph.accessReviewHistoryInstance";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new AccessReviewHistoryInstance CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AccessReviewHistoryInstance();
@@ -50,8 +49,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

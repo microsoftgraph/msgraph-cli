@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class ActivityHistoryItem : Entity, IParsable {
         /// <summary>Optional. The duration of active user engagement. if not supplied, this is calculated from the startedDateTime and lastActiveDateTime.</summary>
         public int? ActiveDurationSeconds { get; set; }
         /// <summary>The activity property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public UserActivity? Activity { get; set; }
+#nullable restore
+#else
         public UserActivity Activity { get; set; }
+#endif
         /// <summary>Set by the server. DateTime in UTC when the object was created on the server.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Optional. UTC DateTime when the historyItem will undergo hard-delete. Can be set by the client.</summary>
@@ -23,17 +28,17 @@ namespace ApiSdk.Models {
         /// <summary>Set by the server. A status code used to identify valid objects. Values: active, updated, deleted, ignored.</summary>
         public ApiSdk.Models.Status? Status { get; set; }
         /// <summary>Optional. The timezone in which the user&apos;s device used to generate the activity was located at activity creation time. Values supplied as Olson IDs in order to support cross-platform representation.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserTimezone { get; set; }
+#nullable restore
+#else
         public string UserTimezone { get; set; }
-        /// <summary>
-        /// Instantiates a new activityHistoryItem and sets the default values.
-        /// </summary>
-        public ActivityHistoryItem() : base() {
-            OdataType = "#microsoft.graph.activityHistoryItem";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ActivityHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ActivityHistoryItem();
@@ -56,8 +61,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

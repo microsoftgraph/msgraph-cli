@@ -1,5 +1,5 @@
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the deviceAppManagement singleton.</summary>
+    /// <summary>A managed (MAM) application&apos;s availability.</summary>
     public enum ManagedAppAvailability {
         /// <summary>A globally available app to all tenants.</summary>
         Global,

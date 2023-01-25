@@ -10,15 +10,39 @@ namespace ApiSdk.Models {
         /// <summary>The type of attachment. Possible values are: file, item, reference. Required.</summary>
         public ApiSdk.Models.AttachmentType? AttachmentType { get; set; }
         /// <summary>The CID or Content-Id of the attachment for referencing in case of in-line attachments using &lt;img src=&apos;cid:contentId&apos;&gt; tag in HTML messages. Optional.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ContentId { get; set; }
+#nullable restore
+#else
         public string ContentId { get; set; }
+#endif
         /// <summary>The nature of the data in the attachment. Optional.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ContentType { get; set; }
+#nullable restore
+#else
         public string ContentType { get; set; }
+#endif
         /// <summary>true if the attachment is an inline attachment; otherwise, false. Optional.</summary>
         public bool? IsInline { get; set; }
         /// <summary>The display name of the attachment. This can be a descriptive string and does not have to be the actual file name. Required.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
         public string Name { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The length of the attachment in bytes. Required.</summary>
         public long? Size { get; set; }
         /// <summary>
@@ -26,12 +50,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public AttachmentItem() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.attachmentItem";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static AttachmentItem CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AttachmentItem();
@@ -52,8 +75,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<AttachmentType>("attachmentType", AttachmentType);

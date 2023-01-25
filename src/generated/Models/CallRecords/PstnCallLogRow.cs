@@ -10,62 +10,169 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>The source of the call duration data. If the call uses a third-party telecommunications operator via the Operator Connect Program, the operator may provide their own call duration data. In this case, the property value is operator. Otherwise, the value is microsoft.</summary>
         public PstnCallDurationSource? CallDurationSource { get; set; }
         /// <summary>Number dialed in E.164 format.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CalleeNumber { get; set; }
+#nullable restore
+#else
         public string CalleeNumber { get; set; }
+#endif
         /// <summary>Number that received the call for inbound calls or the number dialed for outbound calls. E.164 format.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallerNumber { get; set; }
+#nullable restore
+#else
         public string CallerNumber { get; set; }
+#endif
         /// <summary>Call identifier. Not guaranteed to be unique.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallId { get; set; }
+#nullable restore
+#else
         public string CallId { get; set; }
+#endif
         /// <summary>Whether the call was a PSTN outbound or inbound call and the type of call such as a call placed by a user or an audio conference.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallType { get; set; }
+#nullable restore
+#else
         public string CallType { get; set; }
+#endif
         /// <summary>Amount of money or cost of the call that is charged to your account.</summary>
         public decimal? Charge { get; set; }
         /// <summary>ID of the audio conference.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ConferenceId { get; set; }
+#nullable restore
+#else
         public string ConferenceId { get; set; }
+#endif
         /// <summary>Connection fee price.</summary>
         public decimal? ConnectionCharge { get; set; }
         /// <summary>Type of currency used to calculate the cost of the call (ISO 4217).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Currency { get; set; }
+#nullable restore
+#else
         public string Currency { get; set; }
+#endif
         /// <summary>Whether the call was domestic (within a country or region) or international (outside a country or region) based on the user&apos;s location.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DestinationContext { get; set; }
+#nullable restore
+#else
         public string DestinationContext { get; set; }
+#endif
         /// <summary>Country or region dialed.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DestinationName { get; set; }
+#nullable restore
+#else
         public string DestinationName { get; set; }
+#endif
         /// <summary>How long the call was connected, in seconds.</summary>
         public int? Duration { get; set; }
         /// <summary>Call end time.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>Unique call identifier. GUID.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Id { get; set; }
+#nullable restore
+#else
         public string Id { get; set; }
+#endif
         /// <summary>User&apos;s phone number type, such as a service of toll-free number.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? InventoryType { get; set; }
+#nullable restore
+#else
         public string InventoryType { get; set; }
+#endif
         /// <summary>The license used for the call.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LicenseCapability { get; set; }
+#nullable restore
+#else
         public string LicenseCapability { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The telecommunications operator which provided PSTN services for this call. This may be Microsoft, or it may be a third-party operator via the Operator Connect Program.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Operator { get; set; }
+#nullable restore
+#else
         public string Operator { get; set; }
+#endif
         /// <summary>Call start time.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>Country code of the tenant, ISO 3166-1 alpha-2.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TenantCountryCode { get; set; }
+#nullable restore
+#else
         public string TenantCountryCode { get; set; }
+#endif
         /// <summary>Country code of the user, ISO 3166-1 alpha-2.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UsageCountryCode { get; set; }
+#nullable restore
+#else
         public string UsageCountryCode { get; set; }
+#endif
         /// <summary>Display name of the user.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserDisplayName { get; set; }
+#nullable restore
+#else
         public string UserDisplayName { get; set; }
+#endif
         /// <summary>Calling user&apos;s ID in Graph. GUID. This and other user info will be null/empty for bot call types (ucap_in, ucap_out).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserId { get; set; }
+#nullable restore
+#else
         public string UserId { get; set; }
+#endif
         /// <summary>UserPrincipalName (sign-in name) in Azure Active Directory. This is usually the same as user&apos;s SIP Address, and can be same as user&apos;s e-mail address.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserPrincipalName { get; set; }
+#nullable restore
+#else
         public string UserPrincipalName { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new pstnCallLogRow and sets the default values.
         /// </summary>
         public PstnCallLogRow() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.callRecords.pstnCallLogRow";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static PstnCallLogRow CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PstnCallLogRow();
@@ -103,8 +210,8 @@ namespace ApiSdk.Models.CallRecords {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<PstnCallDurationSource>("callDurationSource", CallDurationSource);

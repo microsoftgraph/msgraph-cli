@@ -4,34 +4,66 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Contains properties for the installation state for a device.</summary>
+    /// <summary>
+    /// Contains properties for the installation state for a device.
+    /// </summary>
     public class DeviceInstallState : Entity, IParsable {
         /// <summary>Device Id.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceId { get; set; }
+#nullable restore
+#else
         public string DeviceId { get; set; }
+#endif
         /// <summary>Device name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceName { get; set; }
+#nullable restore
+#else
         public string DeviceName { get; set; }
+#endif
         /// <summary>The error code for install failures.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ErrorCode { get; set; }
+#nullable restore
+#else
         public string ErrorCode { get; set; }
+#endif
         /// <summary>Possible values for install state.</summary>
         public ApiSdk.Models.InstallState? InstallState { get; set; }
         /// <summary>Last sync date and time.</summary>
         public DateTimeOffset? LastSyncDateTime { get; set; }
         /// <summary>OS Description.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OsDescription { get; set; }
+#nullable restore
+#else
         public string OsDescription { get; set; }
+#endif
         /// <summary>OS Version.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OsVersion { get; set; }
+#nullable restore
+#else
         public string OsVersion { get; set; }
+#endif
         /// <summary>Device User Name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserName { get; set; }
+#nullable restore
+#else
         public string UserName { get; set; }
-        /// <summary>
-        /// Instantiates a new deviceInstallState and sets the default values.
-        /// </summary>
-        public DeviceInstallState() : base() {
-            OdataType = "#microsoft.graph.deviceInstallState";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DeviceInstallState CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceInstallState();
@@ -53,8 +85,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

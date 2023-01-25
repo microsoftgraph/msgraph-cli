@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate {
-    /// <summary>Provides operations to call the getTeamsUserActivityUserDetail method.</summary>
+    /// <summary>
+    /// Provides operations to call the getTeamsUserActivityUserDetail method.
+    /// </summary>
     public class GetTeamsUserActivityUserDetailWithDateRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -38,7 +40,7 @@ namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate {
                 var date = invocationContext.ParseResult.GetValueForOption(dateOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("date", date);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -61,10 +63,10 @@ namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate {
         }
         /// <summary>
         /// Instantiates a new GetTeamsUserActivityUserDetailWithDateRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public GetTeamsUserActivityUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, Date? date = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -76,9 +78,15 @@ namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate {
         }
         /// <summary>
         /// Invoke function getTeamsUserActivityUserDetail
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetTeamsUserActivityUserDetailWithDateRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<GetTeamsUserActivityUserDetailWithDateRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<GetTeamsUserActivityUserDetailWithDateRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -92,10 +100,12 @@ namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class GetTeamsUserActivityUserDetailWithDateRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -103,7 +113,7 @@ namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate {
             /// </summary>
             public GetTeamsUserActivityUserDetailWithDateRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

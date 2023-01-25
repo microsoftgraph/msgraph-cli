@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Applications.Item.Logo {
-    /// <summary>Provides operations to manage the media for the application entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the media for the application entity.
+    /// </summary>
     public class LogoRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -38,7 +40,7 @@ namespace ApiSdk.Applications.Item.Logo {
                 var applicationId = invocationContext.ParseResult.GetValueForOption(applicationIdOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("application%2Did", applicationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -79,7 +81,7 @@ namespace ApiSdk.Applications.Item.Logo {
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream, q => {
+                var requestInfo = ToPutRequestInformation(stream, q => {
                 });
                 requestInfo.PathParameters.Add("application%2Did", applicationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -93,9 +95,9 @@ namespace ApiSdk.Applications.Item.Logo {
         }
         /// <summary>
         /// Instantiates a new LogoRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public LogoRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -106,9 +108,15 @@ namespace ApiSdk.Applications.Item.Logo {
         }
         /// <summary>
         /// The main logo for the application. Not nullable.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<LogoRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<LogoRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<LogoRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -124,10 +132,16 @@ namespace ApiSdk.Applications.Item.Logo {
         }
         /// <summary>
         /// The main logo for the application. Not nullable.
+        /// </summary>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// </summary>
-        public RequestInformation CreatePutRequestInformation(Stream body, Action<LogoRequestBuilderPutRequestConfiguration> requestConfiguration = default) {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPutRequestInformation(Stream body, Action<LogoRequestBuilderPutRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPutRequestInformation(Stream body, Action<LogoRequestBuilderPutRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PUT,
@@ -143,10 +157,12 @@ namespace ApiSdk.Applications.Item.Logo {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class LogoRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -154,13 +170,15 @@ namespace ApiSdk.Applications.Item.Logo {
             /// </summary>
             public LogoRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class LogoRequestBuilderPutRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -168,7 +186,7 @@ namespace ApiSdk.Applications.Item.Logo {
             /// </summary>
             public LogoRequestBuilderPutRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

@@ -4,30 +4,59 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class SharedInsight : Entity, IParsable {
         /// <summary>Details about the shared item. Read only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public SharingDetail? LastShared { get; set; }
+#nullable restore
+#else
         public SharingDetail LastShared { get; set; }
+#endif
         /// <summary>The lastSharedMethod property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Entity? LastSharedMethod { get; set; }
+#nullable restore
+#else
         public Entity LastSharedMethod { get; set; }
+#endif
         /// <summary>Used for navigating to the item that was shared. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Entity? Resource { get; set; }
+#nullable restore
+#else
         public Entity Resource { get; set; }
+#endif
         /// <summary>Reference properties of the shared document, such as the url and type of the document. Read-only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ResourceReference? ResourceReference { get; private set; }
+#nullable restore
+#else
         public ApiSdk.Models.ResourceReference ResourceReference { get; private set; }
+#endif
         /// <summary>Properties that you can use to visualize the document in your experience. Read-only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ResourceVisualization? ResourceVisualization { get; private set; }
+#nullable restore
+#else
         public ApiSdk.Models.ResourceVisualization ResourceVisualization { get; private set; }
+#endif
         /// <summary>The sharingHistory property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<SharingDetail>? SharingHistory { get; set; }
+#nullable restore
+#else
         public List<SharingDetail> SharingHistory { get; set; }
-        /// <summary>
-        /// Instantiates a new sharedInsight and sets the default values.
-        /// </summary>
-        public SharedInsight() : base() {
-            OdataType = "#microsoft.graph.sharedInsight";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new SharedInsight CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SharedInsight();
@@ -47,8 +76,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

@@ -11,7 +11,13 @@ namespace ApiSdk.Models {
         /// <summary>Active Hours Start (active hours mean the time window when updates install should not happen)</summary>
         public Time? ActiveHoursStart { get; set; }
         /// <summary>Days in week for which active hours are configured. This collection can contain a maximum of 7 elements.</summary>
-        public List<DayOfWeek?> ScheduledInstallDays { get; set; }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DayOfWeekObject?>? ScheduledInstallDays { get; set; }
+#nullable restore
+#else
+        public List<DayOfWeekObject?> ScheduledInstallDays { get; set; }
+#endif
         /// <summary>UTC Time Offset indicated in minutes</summary>
         public int? UtcTimeOffsetInMinutes { get; set; }
         /// <summary>
@@ -22,8 +28,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new IosUpdateConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IosUpdateConfiguration();
@@ -35,20 +41,20 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"activeHoursEnd", n => { ActiveHoursEnd = n.GetTimeValue(); } },
                 {"activeHoursStart", n => { ActiveHoursStart = n.GetTimeValue(); } },
-                {"scheduledInstallDays", n => { ScheduledInstallDays = n.GetCollectionOfEnumValues<DayOfWeek>()?.ToList(); } },
+                {"scheduledInstallDays", n => { ScheduledInstallDays = n.GetCollectionOfEnumValues<DayOfWeekObject>()?.ToList(); } },
                 {"utcTimeOffsetInMinutes", n => { UtcTimeOffsetInMinutes = n.GetIntValue(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteTimeValue("activeHoursEnd", ActiveHoursEnd);
             writer.WriteTimeValue("activeHoursStart", ActiveHoursStart);
-            writer.WriteCollectionOfEnumValues<DayOfWeek>("scheduledInstallDays", ScheduledInstallDays);
+            writer.WriteCollectionOfEnumValues<DayOfWeekObject>("scheduledInstallDays", ScheduledInstallDays);
             writer.WriteIntValue("utcTimeOffsetInMinutes", UtcTimeOffsetInMinutes);
         }
     }

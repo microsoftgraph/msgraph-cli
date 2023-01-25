@@ -4,12 +4,23 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class CalendarPermission : Entity, IParsable {
         /// <summary>List of allowed sharing or delegating permission levels for the calendar. Possible values are: none, freeBusyRead, limitedRead, read, write, delegateWithoutPrivateEventAccess, delegateWithPrivateEventAccess, custom.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<CalendarRoleType?>? AllowedRoles { get; set; }
+#nullable restore
+#else
         public List<CalendarRoleType?> AllowedRoles { get; set; }
+#endif
         /// <summary>Represents a sharee or delegate who has access to the calendar. For the &apos;My Organization&apos; sharee, the address property is null. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.EmailAddress? EmailAddress { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.EmailAddress EmailAddress { get; set; }
+#endif
         /// <summary>True if the user in context (sharee or delegate) is inside the same organization as the calendar owner.</summary>
         public bool? IsInsideOrganization { get; set; }
         /// <summary>True if the user can be removed from the list of sharees or delegates for the specified calendar, false otherwise. The &apos;My organization&apos; user determines the permissions other people within your organization have to the given calendar. You cannot remove &apos;My organization&apos; as a sharee to a calendar.</summary>
@@ -17,15 +28,9 @@ namespace ApiSdk.Models {
         /// <summary>Current permission level of the calendar sharee or delegate.</summary>
         public CalendarRoleType? Role { get; set; }
         /// <summary>
-        /// Instantiates a new calendarPermission and sets the default values.
-        /// </summary>
-        public CalendarPermission() : base() {
-            OdataType = "#microsoft.graph.calendarPermission";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new CalendarPermission CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CalendarPermission();
@@ -44,8 +49,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

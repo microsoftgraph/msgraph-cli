@@ -4,20 +4,22 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>The type for deployment of groups or apps.</summary>
+    /// <summary>
+    /// The type for deployment of groups or apps.
+    /// </summary>
     public class TargetedManagedAppPolicyAssignment : Entity, IParsable {
         /// <summary>Identifier for deployment to a group or app</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DeviceAndAppManagementAssignmentTarget? Target { get; set; }
+#nullable restore
+#else
         public DeviceAndAppManagementAssignmentTarget Target { get; set; }
-        /// <summary>
-        /// Instantiates a new targetedManagedAppPolicyAssignment and sets the default values.
-        /// </summary>
-        public TargetedManagedAppPolicyAssignment() : base() {
-            OdataType = "#microsoft.graph.targetedManagedAppPolicyAssignment";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new TargetedManagedAppPolicyAssignment CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TargetedManagedAppPolicyAssignment();
@@ -32,8 +34,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

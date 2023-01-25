@@ -6,29 +6,53 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class SubscribedSku : Entity, IParsable {
         /// <summary>For example, &apos;User&apos; or &apos;Company&apos;.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AppliesTo { get; set; }
+#nullable restore
+#else
         public string AppliesTo { get; set; }
+#endif
         /// <summary>Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut. The capabilityStatus is Enabled if the prepaidUnits property has at least 1 unit that is enabled, and LockedOut if the customer cancelled their subscription.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CapabilityStatus { get; set; }
+#nullable restore
+#else
         public string CapabilityStatus { get; set; }
+#endif
         /// <summary>The number of licenses that have been assigned.</summary>
         public int? ConsumedUnits { get; set; }
         /// <summary>Information about the number and status of prepaid licenses.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public LicenseUnitsDetail? PrepaidUnits { get; set; }
+#nullable restore
+#else
         public LicenseUnitsDetail PrepaidUnits { get; set; }
+#endif
         /// <summary>Information about the service plans that are available with the SKU. Not nullable</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ServicePlanInfo>? ServicePlans { get; set; }
+#nullable restore
+#else
         public List<ServicePlanInfo> ServicePlans { get; set; }
+#endif
         /// <summary>The unique identifier (GUID) for the service SKU.</summary>
-        public string SkuId { get; set; }
+        public Guid? SkuId { get; set; }
         /// <summary>The SKU part number; for example: &apos;AAD_PREMIUM&apos; or &apos;RMSBASIC&apos;. To get a list of commercial subscriptions that an organization has acquired, see List subscribedSkus.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SkuPartNumber { get; set; }
+#nullable restore
+#else
         public string SkuPartNumber { get; set; }
-        /// <summary>
-        /// Instantiates a new SubscribedSku and sets the default values.
-        /// </summary>
-        public SubscribedSku() : base() {
-            OdataType = "#microsoft.graph.subscribedSku";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new SubscribedSku CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SubscribedSku();
@@ -43,14 +67,14 @@ namespace ApiSdk.Models {
                 {"consumedUnits", n => { ConsumedUnits = n.GetIntValue(); } },
                 {"prepaidUnits", n => { PrepaidUnits = n.GetObjectValue<LicenseUnitsDetail>(LicenseUnitsDetail.CreateFromDiscriminatorValue); } },
                 {"servicePlans", n => { ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>(ServicePlanInfo.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"skuId", n => { SkuId = n.GetStringValue(); } },
+                {"skuId", n => { SkuId = n.GetGuidValue(); } },
                 {"skuPartNumber", n => { SkuPartNumber = n.GetStringValue(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
@@ -59,7 +83,7 @@ namespace ApiSdk.Models {
             writer.WriteIntValue("consumedUnits", ConsumedUnits);
             writer.WriteObjectValue<LicenseUnitsDetail>("prepaidUnits", PrepaidUnits);
             writer.WriteCollectionOfObjectValues<ServicePlanInfo>("servicePlans", ServicePlans);
-            writer.WriteStringValue("skuId", SkuId);
+            writer.WriteGuidValue("skuId", SkuId);
             writer.WriteStringValue("skuPartNumber", SkuPartNumber);
         }
     }

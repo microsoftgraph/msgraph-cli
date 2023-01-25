@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Drives.Item.Root.Unfollow {
-    /// <summary>Provides operations to call the unfollow method.</summary>
+    /// <summary>
+    /// Provides operations to call the unfollow method.
+    /// </summary>
     public class UnfollowRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -23,6 +25,7 @@ namespace ApiSdk.Me.Drives.Item.Root.Unfollow {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Unfollow a driveItem.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-unfollow?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -35,7 +38,7 @@ namespace ApiSdk.Me.Drives.Item.Root.Unfollow {
             command.SetHandler(async (invocationContext) => {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreatePostRequestInformation(q => {
+                var requestInfo = ToPostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("drive%2Did", driveId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -49,9 +52,9 @@ namespace ApiSdk.Me.Drives.Item.Root.Unfollow {
         }
         /// <summary>
         /// Instantiates a new UnfollowRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public UnfollowRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -62,9 +65,15 @@ namespace ApiSdk.Me.Drives.Item.Root.Unfollow {
         }
         /// <summary>
         /// Unfollow a driveItem.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Action<UnfollowRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(Action<UnfollowRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(Action<UnfollowRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
@@ -78,10 +87,12 @@ namespace ApiSdk.Me.Drives.Item.Root.Unfollow {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class UnfollowRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -89,7 +100,7 @@ namespace ApiSdk.Me.Drives.Item.Root.Unfollow {
             /// </summary>
             public UnfollowRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

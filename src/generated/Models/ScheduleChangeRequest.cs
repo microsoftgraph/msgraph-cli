@@ -1,4 +1,3 @@
-using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -11,15 +10,39 @@ namespace ApiSdk.Models {
         /// <summary>The managerActionDateTime property</summary>
         public DateTimeOffset? ManagerActionDateTime { get; private set; }
         /// <summary>The managerActionMessage property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ManagerActionMessage { get; set; }
+#nullable restore
+#else
         public string ManagerActionMessage { get; set; }
+#endif
         /// <summary>The managerUserId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ManagerUserId { get; private set; }
+#nullable restore
+#else
         public string ManagerUserId { get; private set; }
+#endif
         /// <summary>The senderDateTime property</summary>
         public DateTimeOffset? SenderDateTime { get; private set; }
         /// <summary>The senderMessage property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SenderMessage { get; set; }
+#nullable restore
+#else
         public string SenderMessage { get; set; }
+#endif
         /// <summary>The senderUserId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SenderUserId { get; private set; }
+#nullable restore
+#else
         public string SenderUserId { get; private set; }
+#endif
         /// <summary>The state property</summary>
         public ScheduleChangeState? State { get; set; }
         /// <summary>
@@ -30,8 +53,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ScheduleChangeRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
@@ -60,8 +83,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

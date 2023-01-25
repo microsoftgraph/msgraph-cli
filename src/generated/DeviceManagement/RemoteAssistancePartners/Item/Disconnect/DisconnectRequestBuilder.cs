@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
-    /// <summary>Provides operations to call the disconnect method.</summary>
+    /// <summary>
+    /// Provides operations to call the disconnect method.
+    /// </summary>
     public class DisconnectRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -35,7 +37,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
             command.SetHandler(async (invocationContext) => {
                 var remoteAssistancePartnerId = invocationContext.ParseResult.GetValueForOption(remoteAssistancePartnerIdOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreatePostRequestInformation(q => {
+                var requestInfo = ToPostRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("remoteAssistancePartner%2Did", remoteAssistancePartnerId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -49,9 +51,9 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
         }
         /// <summary>
         /// Instantiates a new DisconnectRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public DisconnectRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -62,9 +64,15 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
         }
         /// <summary>
         /// A request to remove the active TeamViewer connector
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Action<DisconnectRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(Action<DisconnectRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(Action<DisconnectRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
@@ -78,10 +86,12 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class DisconnectRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -89,7 +99,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
             /// </summary>
             public DisconnectRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

@@ -14,7 +14,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item {
-    /// <summary>Provides operations to manage the mdmWindowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the mdmWindowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
+    /// </summary>
     public class MdmWindowsInformationProtectionPolicyItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -33,7 +35,8 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             };
             mdmWindowsInformationProtectionPolicyIdOption.IsRequired = true;
             command.AddOption(mdmWindowsInformationProtectionPolicyIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -41,10 +44,10 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
                 var mdmWindowsInformationProtectionPolicyId = invocationContext.ParseResult.GetValueForOption(mdmWindowsInformationProtectionPolicyIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("mdmWindowsInformationProtectionPolicy%2Did", mdmWindowsInformationProtectionPolicyId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -98,7 +101,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -126,7 +129,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             };
             mdmWindowsInformationProtectionPolicyIdOption.IsRequired = true;
             command.AddOption(mdmWindowsInformationProtectionPolicyIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -155,7 +158,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MdmWindowsInformationProtectionPolicy>(MdmWindowsInformationProtectionPolicy.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("mdmWindowsInformationProtectionPolicy%2Did", mdmWindowsInformationProtectionPolicyId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -172,9 +175,9 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         }
         /// <summary>
         /// Instantiates a new MdmWindowsInformationProtectionPolicyItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public MdmWindowsInformationProtectionPolicyItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -185,9 +188,15 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         }
         /// <summary>
         /// Delete navigation property mdmWindowsInformationProtectionPolicies for deviceAppManagement
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<MdmWindowsInformationProtectionPolicyItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<MdmWindowsInformationProtectionPolicyItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<MdmWindowsInformationProtectionPolicyItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -203,9 +212,15 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         }
         /// <summary>
         /// Windows information protection for apps running on devices which are MDM enrolled.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<MdmWindowsInformationProtectionPolicyItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<MdmWindowsInformationProtectionPolicyItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<MdmWindowsInformationProtectionPolicyItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -223,10 +238,16 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         }
         /// <summary>
         /// Update the navigation property mdmWindowsInformationProtectionPolicies in deviceAppManagement
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(MdmWindowsInformationProtectionPolicy body, Action<MdmWindowsInformationProtectionPolicyItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(MdmWindowsInformationProtectionPolicy body, Action<MdmWindowsInformationProtectionPolicyItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(MdmWindowsInformationProtectionPolicy body, Action<MdmWindowsInformationProtectionPolicyItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -243,10 +264,12 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class MdmWindowsInformationProtectionPolicyItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -254,22 +277,40 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             /// </summary>
             public MdmWindowsInformationProtectionPolicyItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Windows information protection for apps running on devices which are MDM enrolled.</summary>
+        /// <summary>
+        /// Windows information protection for apps running on devices which are MDM enrolled.
+        /// </summary>
         public class MdmWindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class MdmWindowsInformationProtectionPolicyItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -279,13 +320,15 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             /// </summary>
             public MdmWindowsInformationProtectionPolicyItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class MdmWindowsInformationProtectionPolicyItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -293,7 +336,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             /// </summary>
             public MdmWindowsInformationProtectionPolicyItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

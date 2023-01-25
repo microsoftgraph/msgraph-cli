@@ -8,30 +8,65 @@ namespace ApiSdk.Models {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The name of the content source that the externalItem is part of.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ContentSource { get; set; }
+#nullable restore
+#else
         public string ContentSource { get; set; }
+#endif
         /// <summary>The internal identifier for the item. The format of the identifier varies based on the entity type. For details, see hitId format.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? HitId { get; set; }
+#nullable restore
+#else
         public string HitId { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The rank or the order of the result.</summary>
         public int? Rank { get; set; }
         /// <summary>The resource property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Entity? Resource { get; set; }
+#nullable restore
+#else
         public Entity Resource { get; set; }
+#endif
         /// <summary>ID of the result template used to render the search result. This ID must map to a display layout in the resultTemplates dictionary that is also included in the searchResponse.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ResultTemplateId { get; set; }
+#nullable restore
+#else
         public string ResultTemplateId { get; set; }
+#endif
         /// <summary>A summary of the result, if a summary is available.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Summary { get; set; }
+#nullable restore
+#else
         public string Summary { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new searchHit and sets the default values.
         /// </summary>
         public SearchHit() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.searchHit";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static SearchHit CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SearchHit();
@@ -52,8 +87,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("contentSource", ContentSource);

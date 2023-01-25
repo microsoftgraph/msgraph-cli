@@ -14,7 +14,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
-    /// <summary>Provides operations to call the uploadClientCertificate method.</summary>
+    /// <summary>
+    /// Provides operations to call the uploadClientCertificate method.
+    /// </summary>
     public class UploadClientCertificateRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -24,6 +26,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Upload a PKCS 12 format key (.pfx) to an API connector&apos;s authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
@@ -33,7 +36,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
             };
             identityApiConnectorIdOption.IsRequired = true;
             command.AddOption(identityApiConnectorIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -62,7 +65,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UploadClientCertificatePostRequestBody>(UploadClientCertificatePostRequestBody.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePostRequestInformation(model, q => {
+                var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("identityApiConnector%2Did", identityApiConnectorId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -79,9 +82,9 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
         }
         /// <summary>
         /// Instantiates a new UploadClientCertificateRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public UploadClientCertificateRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -92,10 +95,16 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
         }
         /// <summary>
         /// Upload a PKCS 12 format key (.pfx) to an API connector&apos;s authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(UploadClientCertificatePostRequestBody body, Action<UploadClientCertificateRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(UploadClientCertificatePostRequestBody body, Action<UploadClientCertificateRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(UploadClientCertificatePostRequestBody body, Action<UploadClientCertificateRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -112,10 +121,12 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class UploadClientCertificateRequestBuilderPostRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -123,7 +134,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
             /// </summary>
             public UploadClientCertificateRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

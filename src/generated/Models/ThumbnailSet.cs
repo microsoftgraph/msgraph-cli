@@ -4,26 +4,43 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class ThumbnailSet : Entity, IParsable {
         /// <summary>A 1920x1920 scaled thumbnail.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Thumbnail? Large { get; set; }
+#nullable restore
+#else
         public Thumbnail Large { get; set; }
+#endif
         /// <summary>A 176x176 scaled thumbnail.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Thumbnail? Medium { get; set; }
+#nullable restore
+#else
         public Thumbnail Medium { get; set; }
+#endif
         /// <summary>A 48x48 cropped thumbnail.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Thumbnail? Small { get; set; }
+#nullable restore
+#else
         public Thumbnail Small { get; set; }
+#endif
         /// <summary>A custom thumbnail image or the original image used to generate other thumbnails.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public Thumbnail? Source { get; set; }
+#nullable restore
+#else
         public Thumbnail Source { get; set; }
-        /// <summary>
-        /// Instantiates a new thumbnailSet and sets the default values.
-        /// </summary>
-        public ThumbnailSet() : base() {
-            OdataType = "#microsoft.graph.thumbnailSet";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ThumbnailSet CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ThumbnailSet();
@@ -41,8 +58,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

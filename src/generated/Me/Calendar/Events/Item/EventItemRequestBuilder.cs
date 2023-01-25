@@ -27,7 +27,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Calendar.Events.Item {
-    /// <summary>Provides operations to manage the events property of the microsoft.graph.calendar entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the events property of the microsoft.graph.calendar entity.
+    /// </summary>
     public class EventItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -35,14 +37,22 @@ namespace ApiSdk.Me.Calendar.Events.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the accept method.
+        /// </summary>
         public Command BuildAcceptCommand() {
             var command = new Command("accept");
+            command.Description = "Provides operations to call the accept method.";
             var builder = new AcceptRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the attachments property of the microsoft.graph.event entity.
+        /// </summary>
         public Command BuildAttachmentsCommand() {
             var command = new Command("attachments");
+            command.Description = "Provides operations to manage the attachments property of the microsoft.graph.event entity.";
             var builder = new AttachmentsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -51,20 +61,32 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the calendar property of the microsoft.graph.event entity.
+        /// </summary>
         public Command BuildCalendarCommand() {
             var command = new Command("calendar");
+            command.Description = "Provides operations to manage the calendar property of the microsoft.graph.event entity.";
             var builder = new ApiSdk.Me.Calendar.Events.Item.Calendar.CalendarRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the cancel method.
+        /// </summary>
         public Command BuildCancelCommand() {
             var command = new Command("cancel");
+            command.Description = "Provides operations to call the cancel method.";
             var builder = new CancelRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the decline method.
+        /// </summary>
         public Command BuildDeclineCommand() {
             var command = new Command("decline");
+            command.Description = "Provides operations to call the decline method.";
             var builder = new DeclineRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -80,7 +102,8 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -88,10 +111,10 @@ namespace ApiSdk.Me.Calendar.Events.Item {
                 var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("event%2Did", eventId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -101,14 +124,22 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the dismissReminder method.
+        /// </summary>
         public Command BuildDismissReminderCommand() {
             var command = new Command("dismiss-reminder");
+            command.Description = "Provides operations to call the dismissReminder method.";
             var builder = new DismissReminderRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the extensions property of the microsoft.graph.event entity.
+        /// </summary>
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
+            command.Description = "Provides operations to manage the extensions property of the microsoft.graph.event entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -116,8 +147,12 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the forward method.
+        /// </summary>
         public Command BuildForwardCommand() {
             var command = new Command("forward");
+            command.Description = "Provides operations to call the forward method.";
             var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -160,7 +195,7 @@ namespace ApiSdk.Me.Calendar.Events.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
                 requestInfo.PathParameters.Add("event%2Did", eventId);
@@ -176,16 +211,24 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the instances property of the microsoft.graph.event entity.
+        /// </summary>
         public Command BuildInstancesCommand() {
             var command = new Command("instances");
+            command.Description = "Provides operations to manage the instances property of the microsoft.graph.event entity.";
             var builder = new InstancesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.
+        /// </summary>
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
+            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -204,7 +247,7 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -233,7 +276,7 @@ namespace ApiSdk.Me.Calendar.Events.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Event>(Event.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("event%2Did", eventId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -248,8 +291,12 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.
+        /// </summary>
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
+            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -257,23 +304,31 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the snoozeReminder method.
+        /// </summary>
         public Command BuildSnoozeReminderCommand() {
             var command = new Command("snooze-reminder");
+            command.Description = "Provides operations to call the snoozeReminder method.";
             var builder = new SnoozeReminderRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the tentativelyAccept method.
+        /// </summary>
         public Command BuildTentativelyAcceptCommand() {
             var command = new Command("tentatively-accept");
+            command.Description = "Provides operations to call the tentativelyAccept method.";
             var builder = new TentativelyAcceptRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Instantiates a new EventItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public EventItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -284,9 +339,15 @@ namespace ApiSdk.Me.Calendar.Events.Item {
         }
         /// <summary>
         /// Delete navigation property events for me
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<EventItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<EventItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<EventItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -302,9 +363,15 @@ namespace ApiSdk.Me.Calendar.Events.Item {
         }
         /// <summary>
         /// The events in the calendar. Navigation property. Read-only.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<EventItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<EventItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<EventItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -322,10 +389,16 @@ namespace ApiSdk.Me.Calendar.Events.Item {
         }
         /// <summary>
         /// Update the navigation property events in me
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(Event body, Action<EventItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(Event body, Action<EventItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(Event body, Action<EventItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -342,10 +415,12 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class EventItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -353,19 +428,30 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             /// </summary>
             public EventItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>The events in the calendar. Navigation property. Read-only.</summary>
+        /// <summary>
+        /// The events in the calendar. Navigation property. Read-only.
+        /// </summary>
         public class EventItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class EventItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -375,13 +461,15 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             /// </summary>
             public EventItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class EventItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -389,7 +477,7 @@ namespace ApiSdk.Me.Calendar.Events.Item {
             /// </summary>
             public EventItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

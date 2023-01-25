@@ -5,20 +5,43 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Me.Teamwork.SendActivityNotification {
-    /// <summary>Provides operations to call the sendActivityNotification method.</summary>
     public class SendActivityNotificationPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>The activityType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ActivityType { get; set; }
+#nullable restore
+#else
         public string ActivityType { get; set; }
+#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The chainId property</summary>
         public long? ChainId { get; set; }
         /// <summary>The previewText property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemBody? PreviewText { get; set; }
+#nullable restore
+#else
         public ItemBody PreviewText { get; set; }
+#endif
         /// <summary>The templateParameters property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.KeyValuePair>? TemplateParameters { get; set; }
+#nullable restore
+#else
         public List<ApiSdk.Models.KeyValuePair> TemplateParameters { get; set; }
+#endif
         /// <summary>The topic property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public TeamworkActivityTopic? Topic { get; set; }
+#nullable restore
+#else
         public TeamworkActivityTopic Topic { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new sendActivityNotificationPostRequestBody and sets the default values.
         /// </summary>
@@ -27,8 +50,8 @@ namespace ApiSdk.Me.Teamwork.SendActivityNotification {
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static SendActivityNotificationPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SendActivityNotificationPostRequestBody();
@@ -47,8 +70,8 @@ namespace ApiSdk.Me.Teamwork.SendActivityNotification {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("activityType", ActivityType);

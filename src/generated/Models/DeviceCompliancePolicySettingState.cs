@@ -4,47 +4,114 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Device Compilance Policy Setting State for a given device.</summary>
+    /// <summary>
+    /// Device Compilance Policy Setting State for a given device.
+    /// </summary>
     public class DeviceCompliancePolicySettingState : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Current value of setting on device</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CurrentValue { get; set; }
+#nullable restore
+#else
         public string CurrentValue { get; set; }
+#endif
         /// <summary>Error code for the setting</summary>
         public long? ErrorCode { get; set; }
         /// <summary>Error description</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ErrorDescription { get; set; }
+#nullable restore
+#else
         public string ErrorDescription { get; set; }
+#endif
         /// <summary>Name of setting instance that is being reported.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? InstanceDisplayName { get; set; }
+#nullable restore
+#else
         public string InstanceDisplayName { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OdataType { get; set; }
+#nullable restore
+#else
         public string OdataType { get; set; }
+#endif
         /// <summary>The setting that is being reported</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Setting { get; set; }
+#nullable restore
+#else
         public string Setting { get; set; }
+#endif
         /// <summary>Localized/user friendly setting name that is being reported</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SettingName { get; set; }
+#nullable restore
+#else
         public string SettingName { get; set; }
+#endif
         /// <summary>Contributing policies</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<SettingSource>? Sources { get; set; }
+#nullable restore
+#else
         public List<SettingSource> Sources { get; set; }
+#endif
         /// <summary>The state property</summary>
         public ComplianceStatus? State { get; set; }
         /// <summary>UserEmail</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserEmail { get; set; }
+#nullable restore
+#else
         public string UserEmail { get; set; }
+#endif
         /// <summary>UserId</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserId { get; set; }
+#nullable restore
+#else
         public string UserId { get; set; }
+#endif
         /// <summary>UserName</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserName { get; set; }
+#nullable restore
+#else
         public string UserName { get; set; }
+#endif
         /// <summary>UserPrincipalName.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserPrincipalName { get; set; }
+#nullable restore
+#else
         public string UserPrincipalName { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new deviceCompliancePolicySettingState and sets the default values.
         /// </summary>
         public DeviceCompliancePolicySettingState() {
             AdditionalData = new Dictionary<string, object>();
-            OdataType = "#microsoft.graph.deviceCompliancePolicySettingState";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static DeviceCompliancePolicySettingState CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceCompliancePolicySettingState();
@@ -71,8 +138,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("currentValue", CurrentValue);

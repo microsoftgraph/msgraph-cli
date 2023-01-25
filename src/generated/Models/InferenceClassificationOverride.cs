@@ -4,22 +4,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Provides operations to manage the auditLogRoot singleton.</summary>
     public class InferenceClassificationOverride : Entity, IParsable {
         /// <summary>Specifies how incoming messages from a specific sender should always be classified as. The possible values are: focused, other.</summary>
         public InferenceClassificationType? ClassifyAs { get; set; }
         /// <summary>The email address information of the sender for whom the override is created.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public EmailAddress? SenderEmailAddress { get; set; }
+#nullable restore
+#else
         public EmailAddress SenderEmailAddress { get; set; }
-        /// <summary>
-        /// Instantiates a new inferenceClassificationOverride and sets the default values.
-        /// </summary>
-        public InferenceClassificationOverride() : base() {
-            OdataType = "#microsoft.graph.inferenceClassificationOverride";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new InferenceClassificationOverride CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new InferenceClassificationOverride();
@@ -35,8 +34,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

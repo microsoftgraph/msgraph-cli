@@ -28,7 +28,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
-    /// <summary>Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.</summary>
+    /// <summary>
+    /// Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.
+    /// </summary>
     public class MessageItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -36,8 +38,12 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to manage the attachments property of the microsoft.graph.message entity.
+        /// </summary>
         public Command BuildAttachmentsCommand() {
             var command = new Command("attachments");
+            command.Description = "Provides operations to manage the attachments property of the microsoft.graph.message entity.";
             var builder = new AttachmentsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -46,33 +52,53 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the media for the user entity.
+        /// </summary>
         public Command BuildContentCommand() {
             var command = new Command("content");
+            command.Description = "Provides operations to manage the media for the user entity.";
             var builder = new ContentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPutCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the copy method.
+        /// </summary>
         public Command BuildCopyCommand() {
             var command = new Command("copy");
+            command.Description = "Provides operations to call the copy method.";
             var builder = new CopyRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the createForward method.
+        /// </summary>
         public Command BuildCreateForwardCommand() {
             var command = new Command("create-forward");
+            command.Description = "Provides operations to call the createForward method.";
             var builder = new CreateForwardRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the createReplyAll method.
+        /// </summary>
         public Command BuildCreateReplyAllCommand() {
             var command = new Command("create-reply-all");
+            command.Description = "Provides operations to call the createReplyAll method.";
             var builder = new CreateReplyAllRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the createReply method.
+        /// </summary>
         public Command BuildCreateReplyCommand() {
             var command = new Command("create-reply");
+            command.Description = "Provides operations to call the createReply method.";
             var builder = new CreateReplyRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -92,7 +118,8 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var ifMatchOption = new Option<string>("--if-match", description: "ETag") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
@@ -101,11 +128,11 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
                 var messageId = invocationContext.ParseResult.GetValueForOption(messageIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateDeleteRequestInformation(q => {
+                var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
                 requestInfo.PathParameters.Add("message%2Did", messageId);
-                requestInfo.Headers["If-Match"] = ifMatch;
+                requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -115,8 +142,12 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the extensions property of the microsoft.graph.message entity.
+        /// </summary>
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
+            command.Description = "Provides operations to manage the extensions property of the microsoft.graph.message entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -124,8 +155,12 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the forward method.
+        /// </summary>
         public Command BuildForwardCommand() {
             var command = new Command("forward");
+            command.Description = "Provides operations to call the forward method.";
             var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -179,7 +214,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
                 var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = CreateGetRequestInformation(q => {
+                var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -197,14 +232,22 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the move method.
+        /// </summary>
         public Command BuildMoveCommand() {
             var command = new Command("move");
+            command.Description = "Provides operations to call the move method.";
             var builder = new MoveRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.message entity.
+        /// </summary>
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
+            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.message entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -227,7 +270,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -257,7 +300,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue);
-                var requestInfo = CreatePatchRequestInformation(model, q => {
+                var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
                 requestInfo.PathParameters.Add("message%2Did", messageId);
@@ -273,26 +316,42 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             });
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the replyAll method.
+        /// </summary>
         public Command BuildReplyAllCommand() {
             var command = new Command("reply-all");
+            command.Description = "Provides operations to call the replyAll method.";
             var builder = new ReplyAllRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the reply method.
+        /// </summary>
         public Command BuildReplyCommand() {
             var command = new Command("reply");
+            command.Description = "Provides operations to call the reply method.";
             var builder = new ReplyRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to call the send method.
+        /// </summary>
         public Command BuildSendCommand() {
             var command = new Command("send");
+            command.Description = "Provides operations to call the send method.";
             var builder = new SendRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
+        /// <summary>
+        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.message entity.
+        /// </summary>
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
+            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.message entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
@@ -302,9 +361,9 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
         }
         /// <summary>
         /// Instantiates a new MessageItemRequestBuilder and sets the default values.
+        /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
         public MessageItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -315,9 +374,15 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
         }
         /// <summary>
         /// Delete navigation property messages for me
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<MessageItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<MessageItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<MessageItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
@@ -333,9 +398,15 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
         }
         /// <summary>
         /// The collection of messages in the mailFolder.
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<MessageItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<MessageItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<MessageItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+#endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
@@ -353,10 +424,16 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
         }
         /// <summary>
         /// Update the navigation property messages in me
-        /// <param name="body"></param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Message body, Action<MessageItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Message body, Action<MessageItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Message body, Action<MessageItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+#endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -373,10 +450,12 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             }
             return requestInfo;
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class MessageItemRequestBuilderDeleteRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -384,22 +463,40 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             /// </summary>
             public MessageItemRequestBuilderDeleteRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>The collection of messages in the mailFolder.</summary>
+        /// <summary>
+        /// The collection of messages in the mailFolder.
+        /// </summary>
         public class MessageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24expand")]
             public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24select")]
+            public string[]? Select { get; set; }
+#nullable restore
+#else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class MessageItemRequestBuilderGetRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>Request query parameters</summary>
@@ -409,13 +506,15 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             /// </summary>
             public MessageItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
-        /// <summary>Configuration for the request such as headers, query parameters, and middleware options.</summary>
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
         public class MessageItemRequestBuilderPatchRequestConfiguration {
             /// <summary>Request headers</summary>
-            public IDictionary<string, string> Headers { get; set; }
+            public RequestHeaders Headers { get; set; }
             /// <summary>Request options</summary>
             public IList<IRequestOption> Options { get; set; }
             /// <summary>
@@ -423,7 +522,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             /// </summary>
             public MessageItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
-                Headers = new Dictionary<string, string>();
+                Headers = new RequestHeaders();
             }
         }
     }

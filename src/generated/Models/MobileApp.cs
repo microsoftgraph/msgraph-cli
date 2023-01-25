@@ -1,52 +1,113 @@
-using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>An abstract class containing the base properties for Intune mobile apps.</summary>
+    /// <summary>
+    /// An abstract class containing the base properties for Intune mobile apps.
+    /// </summary>
     public class MobileApp : Entity, IParsable {
         /// <summary>The list of group assignments for this mobile app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<MobileAppAssignment>? Assignments { get; set; }
+#nullable restore
+#else
         public List<MobileAppAssignment> Assignments { get; set; }
+#endif
         /// <summary>The list of categories for this app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<MobileAppCategory>? Categories { get; set; }
+#nullable restore
+#else
         public List<MobileAppCategory> Categories { get; set; }
+#endif
         /// <summary>The date and time the app was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The description of the app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
         public string Description { get; set; }
+#endif
         /// <summary>The developer of the app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Developer { get; set; }
+#nullable restore
+#else
         public string Developer { get; set; }
+#endif
         /// <summary>The admin provided or imported title of the app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
         public string DisplayName { get; set; }
+#endif
         /// <summary>The more information Url.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? InformationUrl { get; set; }
+#nullable restore
+#else
         public string InformationUrl { get; set; }
+#endif
         /// <summary>The value indicating whether the app is marked as featured by the admin.</summary>
         public bool? IsFeatured { get; set; }
         /// <summary>The large icon, to be displayed in the app details and used for upload of the icon.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public MimeContent? LargeIcon { get; set; }
+#nullable restore
+#else
         public MimeContent LargeIcon { get; set; }
+#endif
         /// <summary>The date and time the app was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Notes for the app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Notes { get; set; }
+#nullable restore
+#else
         public string Notes { get; set; }
+#endif
         /// <summary>The owner of the app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Owner { get; set; }
+#nullable restore
+#else
         public string Owner { get; set; }
+#endif
         /// <summary>The privacy statement Url.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PrivacyInformationUrl { get; set; }
+#nullable restore
+#else
         public string PrivacyInformationUrl { get; set; }
+#endif
         /// <summary>The publisher of the app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Publisher { get; set; }
+#nullable restore
+#else
         public string Publisher { get; set; }
+#endif
         /// <summary>Indicates the publishing state of an app.</summary>
         public MobileAppPublishingState? PublishingState { get; set; }
         /// <summary>
-        /// Instantiates a new mobileApp and sets the default values.
-        /// </summary>
-        public MobileApp() : base() {
-            OdataType = "#microsoft.graph.mobileApp";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new MobileApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
@@ -56,6 +117,8 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.iosLobApp" => new IosLobApp(),
                 "#microsoft.graph.iosStoreApp" => new IosStoreApp(),
                 "#microsoft.graph.iosVppApp" => new IosVppApp(),
+                "#microsoft.graph.macOSLobApp" => new MacOSLobApp(),
+                "#microsoft.graph.macOSMicrosoftEdgeApp" => new MacOSMicrosoftEdgeApp(),
                 "#microsoft.graph.macOSOfficeSuiteApp" => new MacOSOfficeSuiteApp(),
                 "#microsoft.graph.managedAndroidLobApp" => new ManagedAndroidLobApp(),
                 "#microsoft.graph.managedAndroidStoreApp" => new ManagedAndroidStoreApp(),
@@ -67,6 +130,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.mobileLobApp" => new MobileLobApp(),
                 "#microsoft.graph.webApp" => new WebApp(),
                 "#microsoft.graph.win32LobApp" => new Win32LobApp(),
+                "#microsoft.graph.windowsMicrosoftEdgeApp" => new WindowsMicrosoftEdgeApp(),
                 "#microsoft.graph.windowsMobileMSI" => new WindowsMobileMSI(),
                 "#microsoft.graph.windowsUniversalAppX" => new WindowsUniversalAppX(),
                 _ => new MobileApp(),
@@ -96,8 +160,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

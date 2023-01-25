@@ -6,11 +6,29 @@ using System.Linq;
 namespace ApiSdk.Models {
     public class WorkbookChartDataLabels : Entity, IParsable {
         /// <summary>Represents the format of chart data labels, which includes fill and font formatting. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public WorkbookChartDataLabelFormat? Format { get; set; }
+#nullable restore
+#else
         public WorkbookChartDataLabelFormat Format { get; set; }
+#endif
         /// <summary>DataLabelPosition value that represents the position of the data label. The possible values are: None, Center, InsideEnd, InsideBase, OutsideEnd, Left, Right, Top, Bottom, BestFit, Callout.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Position { get; set; }
+#nullable restore
+#else
         public string Position { get; set; }
+#endif
         /// <summary>String representing the separator used for the data labels on a chart.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Separator { get; set; }
+#nullable restore
+#else
         public string Separator { get; set; }
+#endif
         /// <summary>Boolean value representing if the data label bubble size is visible or not.</summary>
         public bool? ShowBubbleSize { get; set; }
         /// <summary>Boolean value representing if the data label category name is visible or not.</summary>
@@ -24,15 +42,9 @@ namespace ApiSdk.Models {
         /// <summary>Boolean value representing if the data label value is visible or not.</summary>
         public bool? ShowValue { get; set; }
         /// <summary>
-        /// Instantiates a new workbookChartDataLabels and sets the default values.
-        /// </summary>
-        public WorkbookChartDataLabels() : base() {
-            OdataType = "#microsoft.graph.workbookChartDataLabels";
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new WorkbookChartDataLabels CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookChartDataLabels();
@@ -55,8 +67,8 @@ namespace ApiSdk.Models {
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);

@@ -4,14 +4,34 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>Devices that are managed or pre-enrolled through Intune</summary>
+    /// <summary>
+    /// Devices that are managed or pre-enrolled through Intune
+    /// </summary>
     public class ManagedDevice : Entity, IParsable {
-        /// <summary>Code that allows the Activation Lock on a device to be bypassed. This property is read-only.</summary>
+        /// <summary>The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ActivationLockBypassCode { get; private set; }
+#nullable restore
+#else
         public string ActivationLockBypassCode { get; private set; }
+#endif
         /// <summary>Android security patch level. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AndroidSecurityPatchLevel { get; private set; }
+#nullable restore
+#else
         public string AndroidSecurityPatchLevel { get; private set; }
+#endif
         /// <summary>The unique identifier for the Azure Active Directory device. Read only. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AzureADDeviceId { get; private set; }
+#nullable restore
+#else
         public string AzureADDeviceId { get; private set; }
+#endif
         /// <summary>Whether the device is Azure Active Directory registered. This property is read-only.</summary>
         public bool? AzureADRegistered { get; private set; }
         /// <summary>The DateTime when device compliance grace period expires. This property is read-only.</summary>
@@ -19,23 +39,71 @@ namespace ApiSdk.Models {
         /// <summary>Compliance state.</summary>
         public ApiSdk.Models.ComplianceState? ComplianceState { get; set; }
         /// <summary>ConfigrMgr client enabled features. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ConfigurationManagerClientEnabledFeatures? ConfigurationManagerClientEnabledFeatures { get; private set; }
+#nullable restore
+#else
         public ApiSdk.Models.ConfigurationManagerClientEnabledFeatures ConfigurationManagerClientEnabledFeatures { get; private set; }
+#endif
         /// <summary>List of ComplexType deviceActionResult objects. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DeviceActionResult>? DeviceActionResults { get; private set; }
+#nullable restore
+#else
         public List<DeviceActionResult> DeviceActionResults { get; private set; }
+#endif
         /// <summary>Device category</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.DeviceCategory? DeviceCategory { get; set; }
+#nullable restore
+#else
         public ApiSdk.Models.DeviceCategory DeviceCategory { get; set; }
+#endif
         /// <summary>Device category display name. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceCategoryDisplayName { get; private set; }
+#nullable restore
+#else
         public string DeviceCategoryDisplayName { get; private set; }
+#endif
         /// <summary>Device compliance policy states for this device.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DeviceCompliancePolicyState>? DeviceCompliancePolicyStates { get; set; }
+#nullable restore
+#else
         public List<DeviceCompliancePolicyState> DeviceCompliancePolicyStates { get; set; }
+#endif
         /// <summary>Device configuration states for this device.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DeviceConfigurationState>? DeviceConfigurationStates { get; set; }
+#nullable restore
+#else
         public List<DeviceConfigurationState> DeviceConfigurationStates { get; set; }
+#endif
         /// <summary>Possible ways of adding a mobile device to management.</summary>
         public ApiSdk.Models.DeviceEnrollmentType? DeviceEnrollmentType { get; set; }
         /// <summary>The device health attestation state. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.DeviceHealthAttestationState? DeviceHealthAttestationState { get; private set; }
+#nullable restore
+#else
         public ApiSdk.Models.DeviceHealthAttestationState DeviceHealthAttestationState { get; private set; }
+#endif
         /// <summary>Name of the device. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceName { get; private set; }
+#nullable restore
+#else
         public string DeviceName { get; private set; }
+#endif
         /// <summary>Device registration status.</summary>
         public ApiSdk.Models.DeviceRegistrationState? DeviceRegistrationState { get; set; }
         /// <summary>Whether the device is Exchange ActiveSync activated. This property is read-only.</summary>
@@ -43,87 +111,231 @@ namespace ApiSdk.Models {
         /// <summary>Exchange ActivationSync activation time of the device. This property is read-only.</summary>
         public DateTimeOffset? EasActivationDateTime { get; private set; }
         /// <summary>Exchange ActiveSync Id of the device. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EasDeviceId { get; private set; }
+#nullable restore
+#else
         public string EasDeviceId { get; private set; }
+#endif
         /// <summary>Email(s) for the user associated with the device. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EmailAddress { get; private set; }
+#nullable restore
+#else
         public string EmailAddress { get; private set; }
+#endif
         /// <summary>Enrollment time of the device. This property is read-only.</summary>
         public DateTimeOffset? EnrolledDateTime { get; private set; }
-        /// <summary>Ethernet MAC. This property is read-only.</summary>
+        /// <summary>Ethernet MAC. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EthernetMacAddress { get; private set; }
+#nullable restore
+#else
         public string EthernetMacAddress { get; private set; }
+#endif
         /// <summary>Device Exchange Access State.</summary>
         public DeviceManagementExchangeAccessState? ExchangeAccessState { get; set; }
         /// <summary>Device Exchange Access State Reason.</summary>
         public DeviceManagementExchangeAccessStateReason? ExchangeAccessStateReason { get; set; }
         /// <summary>Last time the device contacted Exchange. This property is read-only.</summary>
         public DateTimeOffset? ExchangeLastSuccessfulSyncDateTime { get; private set; }
-        /// <summary>Free Storage in Bytes. This property is read-only.</summary>
+        /// <summary>Free Storage in Bytes. Default value is 0. Read-only. This property is read-only.</summary>
         public long? FreeStorageSpaceInBytes { get; private set; }
-        /// <summary>Integrated Circuit Card Identifier, it is A SIM card&apos;s unique identification number. This property is read-only.</summary>
+        /// <summary>Integrated Circuit Card Identifier, it is A SIM card&apos;s unique identification number. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Iccid { get; private set; }
+#nullable restore
+#else
         public string Iccid { get; private set; }
+#endif
         /// <summary>IMEI. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Imei { get; private set; }
+#nullable restore
+#else
         public string Imei { get; private set; }
+#endif
         /// <summary>Device encryption status. This property is read-only.</summary>
         public bool? IsEncrypted { get; private set; }
         /// <summary>Device supervised status. This property is read-only.</summary>
         public bool? IsSupervised { get; private set; }
         /// <summary>whether the device is jail broken or rooted. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? JailBroken { get; private set; }
+#nullable restore
+#else
         public string JailBroken { get; private set; }
+#endif
         /// <summary>The date and time that the device last completed a successful sync with Intune. This property is read-only.</summary>
         public DateTimeOffset? LastSyncDateTime { get; private set; }
         /// <summary>Automatically generated name to identify a device. Can be overwritten to a user friendly name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ManagedDeviceName { get; set; }
+#nullable restore
+#else
         public string ManagedDeviceName { get; set; }
+#endif
         /// <summary>Owner type of device.</summary>
         public ApiSdk.Models.ManagedDeviceOwnerType? ManagedDeviceOwnerType { get; set; }
         /// <summary>The managementAgent property</summary>
         public ManagementAgentType? ManagementAgent { get; set; }
+        /// <summary>Reports device management certificate expiration date. This property is read-only.</summary>
+        public DateTimeOffset? ManagementCertificateExpirationDate { get; private set; }
         /// <summary>Manufacturer of the device. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Manufacturer { get; private set; }
+#nullable restore
+#else
         public string Manufacturer { get; private set; }
+#endif
         /// <summary>MEID. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Meid { get; private set; }
+#nullable restore
+#else
         public string Meid { get; private set; }
+#endif
         /// <summary>Model of the device. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Model { get; private set; }
+#nullable restore
+#else
         public string Model { get; private set; }
-        /// <summary>Notes on the device created by IT Admin</summary>
+#endif
+        /// <summary>Notes on the device created by IT Admin. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select.  $Search is not supported.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Notes { get; set; }
+#nullable restore
+#else
         public string Notes { get; set; }
+#endif
         /// <summary>Operating system of the device. Windows, iOS, etc. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OperatingSystem { get; private set; }
+#nullable restore
+#else
         public string OperatingSystem { get; private set; }
+#endif
         /// <summary>Operating system version of the device. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OsVersion { get; private set; }
+#nullable restore
+#else
         public string OsVersion { get; private set; }
+#endif
         /// <summary>Available health states for the Device Health API</summary>
         public ManagedDevicePartnerReportedHealthState? PartnerReportedThreatState { get; set; }
         /// <summary>Phone number of the device. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PhoneNumber { get; private set; }
+#nullable restore
+#else
         public string PhoneNumber { get; private set; }
-        /// <summary>Total Memory in Bytes. This property is read-only.</summary>
+#endif
+        /// <summary>Total Memory in Bytes. Return default value 0 in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. Default value is 0. Read-only. This property is read-only.</summary>
         public long? PhysicalMemoryInBytes { get; private set; }
         /// <summary>An error string that identifies issues when creating Remote Assistance session objects. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RemoteAssistanceSessionErrorDetails { get; private set; }
+#nullable restore
+#else
         public string RemoteAssistanceSessionErrorDetails { get; private set; }
+#endif
         /// <summary>Url that allows a Remote Assistance session to be established with the device. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RemoteAssistanceSessionUrl { get; private set; }
+#nullable restore
+#else
         public string RemoteAssistanceSessionUrl { get; private set; }
+#endif
+        /// <summary>Reports if the managed iOS device is user approval enrollment. This property is read-only.</summary>
+        public bool? RequireUserEnrollmentApproval { get; private set; }
         /// <summary>SerialNumber. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SerialNumber { get; private set; }
+#nullable restore
+#else
         public string SerialNumber { get; private set; }
+#endif
         /// <summary>Subscriber Carrier. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SubscriberCarrier { get; private set; }
+#nullable restore
+#else
         public string SubscriberCarrier { get; private set; }
+#endif
         /// <summary>Total Storage in Bytes. This property is read-only.</summary>
         public long? TotalStorageSpaceInBytes { get; private set; }
-        /// <summary>Unique Device Identifier for iOS and macOS devices. This property is read-only.</summary>
+        /// <summary>Unique Device Identifier for iOS and macOS devices. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Udid { get; private set; }
+#nullable restore
+#else
         public string Udid { get; private set; }
+#endif
         /// <summary>User display name. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserDisplayName { get; private set; }
+#nullable restore
+#else
         public string UserDisplayName { get; private set; }
+#endif
         /// <summary>Unique Identifier for the user associated with the device. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserId { get; private set; }
+#nullable restore
+#else
         public string UserId { get; private set; }
+#endif
         /// <summary>Device user principal name. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserPrincipalName { get; private set; }
+#nullable restore
+#else
         public string UserPrincipalName { get; private set; }
+#endif
+        /// <summary>The primary users associated with the managed device.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<User>? Users { get; set; }
+#nullable restore
+#else
+        public List<User> Users { get; set; }
+#endif
         /// <summary>Wi-Fi MAC. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WiFiMacAddress { get; private set; }
+#nullable restore
+#else
         public string WiFiMacAddress { get; private set; }
-        /// <summary>
-        /// Instantiates a new managedDevice and sets the default values.
-        /// </summary>
-        public ManagedDevice() : base() {
-            OdataType = "#microsoft.graph.managedDevice";
-        }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
-        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ManagedDevice CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ManagedDevice();
@@ -168,6 +380,7 @@ namespace ApiSdk.Models {
                 {"managedDeviceName", n => { ManagedDeviceName = n.GetStringValue(); } },
                 {"managedDeviceOwnerType", n => { ManagedDeviceOwnerType = n.GetEnumValue<ManagedDeviceOwnerType>(); } },
                 {"managementAgent", n => { ManagementAgent = n.GetEnumValue<ManagementAgentType>(); } },
+                {"managementCertificateExpirationDate", n => { ManagementCertificateExpirationDate = n.GetDateTimeOffsetValue(); } },
                 {"manufacturer", n => { Manufacturer = n.GetStringValue(); } },
                 {"meid", n => { Meid = n.GetStringValue(); } },
                 {"model", n => { Model = n.GetStringValue(); } },
@@ -179,6 +392,7 @@ namespace ApiSdk.Models {
                 {"physicalMemoryInBytes", n => { PhysicalMemoryInBytes = n.GetLongValue(); } },
                 {"remoteAssistanceSessionErrorDetails", n => { RemoteAssistanceSessionErrorDetails = n.GetStringValue(); } },
                 {"remoteAssistanceSessionUrl", n => { RemoteAssistanceSessionUrl = n.GetStringValue(); } },
+                {"requireUserEnrollmentApproval", n => { RequireUserEnrollmentApproval = n.GetBoolValue(); } },
                 {"serialNumber", n => { SerialNumber = n.GetStringValue(); } },
                 {"subscriberCarrier", n => { SubscriberCarrier = n.GetStringValue(); } },
                 {"totalStorageSpaceInBytes", n => { TotalStorageSpaceInBytes = n.GetLongValue(); } },
@@ -186,13 +400,14 @@ namespace ApiSdk.Models {
                 {"userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
                 {"userId", n => { UserId = n.GetStringValue(); } },
                 {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
+                {"users", n => { Users = n.GetCollectionOfObjectValues<User>(User.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"wiFiMacAddress", n => { WiFiMacAddress = n.GetStringValue(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
-        /// <param name="writer">Serialization writer to use to serialize this model</param>
         /// </summary>
+        /// <param name="writer">Serialization writer to use to serialize this model</param>
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
@@ -209,6 +424,7 @@ namespace ApiSdk.Models {
             writer.WriteEnumValue<ManagementAgentType>("managementAgent", ManagementAgent);
             writer.WriteStringValue("notes", Notes);
             writer.WriteEnumValue<ManagedDevicePartnerReportedHealthState>("partnerReportedThreatState", PartnerReportedThreatState);
+            writer.WriteCollectionOfObjectValues<User>("users", Users);
         }
     }
 }
