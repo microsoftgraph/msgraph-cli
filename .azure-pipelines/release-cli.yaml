@@ -97,12 +97,12 @@ stages:
           version: $[ dependencies.prepare.outputs['version.versionVar'] ]
         strategy:
           matrix:
-            'Windows-x64':
-              rid: win-x64
-            'Linux-x64':
-              rid: linux-x64
-            'MacOS-x64':
-              rid: osx-x64
+            # 'Windows-x64':
+            #   rid: win-x64
+            # 'Linux-x64':
+            #   rid: linux-x64
+            # 'MacOS-x64':
+            #   rid: osx-x64
             'MacOS-ARM':
               rid: osx-arm64
           # maxParallel: 2
@@ -187,41 +187,41 @@ stages:
             ]
         strategy:
           matrix:
-            'Windows-x64':
-              rid: win-x64
-              sign: true
-              pattern: |
-                **\*.exe
-                **\*.dll
-              inlineSignOperation: |
-                [
-                  {
-                    "KeyCode": "CP-230012",
-                    "OperationCode": "SigntoolSign",
-                    "Parameters": {
-                        "OpusName" : "Microsoft",
-                        "OpusInfo" : "http://www.microsoft.com",
-                        "FileDigest" : "/fd \"SHA256\"",
-                        "PageHash" : "/NPH",
-                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
-                    },
-                    "ToolName": "sign",
-                    "ToolVersion": "1.0"
-                  },
-                  {
-                    "KeyCode": "CP-230012",
-                    "OperationCode": "SigntoolVerify",
-                    "Parameters": {},
-                    "ToolName": "sign",
-                    "ToolVersion": "1.0"
-                  }
-                ]
-              inlineNotarizeOperation: ""
-            'MacOS-x64':
-              rid: osx-x64
-              sign: false
-              inlineSignOperation: ${{ variables.macSignOp }}
-              inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
+            # 'Windows-x64':
+            #   rid: win-x64
+            #   sign: true
+            #   pattern: |
+            #     **\*.exe
+            #     **\*.dll
+            #   inlineSignOperation: |
+            #     [
+            #       {
+            #         "KeyCode": "CP-230012",
+            #         "OperationCode": "SigntoolSign",
+            #         "Parameters": {
+            #             "OpusName" : "Microsoft",
+            #             "OpusInfo" : "http://www.microsoft.com",
+            #             "FileDigest" : "/fd \"SHA256\"",
+            #             "PageHash" : "/NPH",
+            #             "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+            #         },
+            #         "ToolName": "sign",
+            #         "ToolVersion": "1.0"
+            #       },
+            #       {
+            #         "KeyCode": "CP-230012",
+            #         "OperationCode": "SigntoolVerify",
+            #         "Parameters": {},
+            #         "ToolName": "sign",
+            #         "ToolVersion": "1.0"
+            #       }
+            #     ]
+            #   inlineNotarizeOperation: ""
+            # 'MacOS-x64':
+            #   rid: osx-x64
+            #   sign: true
+            #   inlineSignOperation: ${{ variables.macSignOp }}
+            #   inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
             'MacOS-ARM':
               rid: osx-arm64
               sign: true
@@ -250,31 +250,54 @@ stages:
               patterns: build-output-$(rid)/**/*
               path: $(WORKING_DIR)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+          
+          - pwsh: |
+              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
+              Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
+            displayName: Compute zip name
 
           - pwsh: |
               # Get the archive name
+              # artifactsDownloadLocation = $(Pipeline.Workspace)/artifacts
+              # WORKING_DIR = $(artifactsDownloadLocation)/$(rid)
               $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
               Get-ChildItem $downloadDir
-              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
-              $zipPath = Join-Path -Path $downloadDir -ChildPath $zipName
+              $zipPath = Join-Path -Path $downloadDir -ChildPath '$(ZIP_NAME)'
               Write-Host $zipPath
               $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
+              # extractPath = $(artifactsDownloadLocation)/$(rid)/artifacts
               Expand-Archive -Path $zipPath -DestinationPath $extractPath
               Get-ChildItem $extractPath
+
+              $backupPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath backup
+              # backupPath = $(artifactsDownloadLocation)/$(rid)/backup
+              New-Item "$backupPath" -ItemType "Directory"
+              # Move non-exe items
+              Move-Item -Path $extractPath/* -Exclude mgc,mgc.exe -Destination "$backupPath"
               # -Force so there's no confirmation
               # -Recurse so the child items warning isn't shown
               Remove-Item $downloadDir -Recurse -Force
-              Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
+              Write-Host "##vso[task.setvariable variable=BACKUP_PATH]$backupPath"
             displayName: Extract zip
             # condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), not(startsWith(variables['RUNTIME_ID'], 'osx')))
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
-          - ${{ if startsWith(variables['RUNTIME_ID'], 'osx') }}:
-            - template: templates/prepare-unsigned-executable-darwin.yaml
-              parameters:
-                executablePath: $(WORKING_DIR)/artifacts
-                executableName: mgc
-                zipName: $(ZIP_NAME)
+          - template: templates/prepare-unsigned-executable-darwin.yaml
+            parameters:
+              executablePath: $(WORKING_DIR)/artifacts
+              executableName: mgc
+              zipName: $(ZIP_NAME)
+              targetRuntime: $(rid)
+
+          - pwsh: |
+              Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(ZIP_NAME)"
+            displayName: Compute ESRP filter pattern osx
+            condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'))
+
+          - pwsh: |
+              Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(pattern)"
+            displayName: Compute ESRP filter pattern win
+            condition: and(succeeded(), not(startsWith(variables['RUNTIME_ID'], 'osx')))
 
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning'
@@ -284,14 +307,11 @@ stages:
               FolderPath: $(WORKING_DIR)/artifacts
               signConfigType: inlineSignParams
               UseMinimatch: true
-              ${{ if startsWith(variables['RUNTIME_ID'], 'osx') }}:
-                Pattern: $(ZIP_NAME)
-              ${{ else }}:
-                Pattern: |
-                  $(pattern)
+              Pattern: $(ESRP_FILE_PATTERN)
               inlineOperation: $(inlineSignOperation)
               SessionTimeout: 20
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning'
             inputs:
@@ -300,27 +320,35 @@ stages:
               FolderPath: $(WORKING_DIR)/artifacts
               signConfigType: inlineSignParams
               UseMinimatch: true
-              ${{ if startsWith(variables['RUNTIME_ID'], 'osx') }}:
-                Pattern: $(ZIP_NAME)
-              ${{ else }}:
-                Pattern: |
-                  $(pattern)
+              Pattern: $(ESRP_FILE_PATTERN)
               inlineOperation: $(inlineNotarizeOperation)
               SessionTimeout: 20
             condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), eq(variables['SHOULD_SIGN'], 'True'))
 
           - pwsh: |
-              Move-Item -Path '$(WORKING_DIR)/artifacts/*.md' -Destination ../
-              Compress-Archive -Path '$(WORKING_DIR)/artifacts/*' -DestinationPath ../$(ZIP_NAME)
-              Remove-Item '$(WORKING_DIR)/artifacts' -Recurse -Force
+              $artifactsPath = $(WORKING_DIR)/artifacts
+              # artifactsPath = $(artifactsDownloadLocation)/$(rid)/artifacts
+              Move-Item -Path "$artifactsPath/*.md" -Destination ../
+              # Move backup back
+              # BACKUP_PATH = $(artifactsDownloadLocation)/$(rid)/backup
+              Move-Item -Path '$(BACKUP_PATH)/*' -Destination "$artifactsPath/"
+              Compress-Archive -Path "$artifactsPath/*" -DestinationPath ../$(ZIP_NAME)
+              Remove-Item "$artifactsPath" -Recurse -Force
+              Remove-Item '$(BACKUP_PATH)' -Recurse -Force
               Get-ChildItem '$(WORKING_DIR)' -Recurse
             displayName: Compress signed files
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), not(startsWith(variables['RUNTIME_ID'], 'osx')))
 
           - pwsh: |
-              Move-Item -Path '$(WORKING_DIR)/artifacts' -Destination ../
+              $artifactsPath = $(WORKING_DIR)/artifacts
+              $zipPath = Join-Path -Path $artifactsPath -ChildPath '$(ZIP_NAME)'
+              Expand-Archive -Path "$zipPath" -DestinationPath "$artifactsPath/"
+              Move-Item -Path "$artifactsPath/*.md" -Destination $(WORKING_DIR)
+              Remove-Item -Path "$zipPath" -Force
+              Compress-Archive -Path "$artifactsPath/*" -DestinationPath $(WORKING_DIR)/$(ZIP_NAME)
+              Remove-Item "$artifactsPath" -Recurse -Force
               Get-ChildItem '$(WORKING_DIR)' -Recurse
-            displayName: Move signed files
+            displayName: Update signed files
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
 
           - task: PublishPipelineArtifact@1
