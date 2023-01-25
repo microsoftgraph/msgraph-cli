@@ -243,7 +243,7 @@ stages:
               Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
               Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
               Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
-              Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
+              Write-Host "##vso[task.setvariable variable=WORKING_DIR]'$(artifactsDownloadLocation)/$(rid)'"
             displayName: Setup variables
 
           - task: DownloadPipelineArtifact@2
@@ -290,15 +290,15 @@ stages:
               zipName: $(ZIP_NAME)
               targetRuntime: $(rid)
 
-          # - pwsh: |
-          #     Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(ZIP_NAME)"
-          #   displayName: Compute ESRP filter pattern osx
-          #   condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'))
+          - pwsh: |
+              Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(ZIP_NAME)"
+            displayName: Compute ESRP filter pattern osx
+            condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'))
 
-          # - pwsh: |
-          #     Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(pattern)"
-          #   displayName: Compute ESRP filter pattern win
-          #   condition: and(succeeded(), not(startsWith(variables['RUNTIME_ID'], 'osx')))
+          - pwsh: |
+              Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(pattern)"
+            displayName: Compute ESRP filter pattern win
+            condition: and(succeeded(), not(startsWith(variables['RUNTIME_ID'], 'osx')))
 
           # - task: EsrpCodeSigning@2
           #   displayName: 'ESRP CodeSigning'

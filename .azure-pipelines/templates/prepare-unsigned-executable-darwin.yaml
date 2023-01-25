@@ -18,7 +18,7 @@ parameters:
 # Assumptions:
 # The built zip has been downloaded already
 steps:
-  - pwsh: Write-Host "##vso[task.setvariable variable=TARGET_RUNTIME]$(parameters.targetRuntime)"
+  - pwsh: Write-Host "##vso[task.setvariable variable=TARGET_RUNTIME]'$(parameters.targetRuntime)'"
     displayName: Resolve target runtime
   - bash: |
       if [ -d "$EXE_PATH" ]; then
