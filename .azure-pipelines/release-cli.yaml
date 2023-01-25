@@ -257,31 +257,31 @@ stages:
               Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
             displayName: Compute zip name
 
-          - pwsh: |
-              # Get the archive name
-              # artifactsDownloadLocation = $(Pipeline.Workspace)/artifacts
-              # WORKING_DIR = $(artifactsDownloadLocation)/$(rid)
-              $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
-              Get-ChildItem $downloadDir
-              $zipPath = Join-Path -Path $downloadDir -ChildPath '$(ZIP_NAME)'
-              Write-Host $zipPath
-              $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
-              # extractPath = $(artifactsDownloadLocation)/$(rid)/artifacts
-              Expand-Archive -Path $zipPath -DestinationPath $extractPath
-              Get-ChildItem $extractPath
+          # - pwsh: |
+          #     # Get the archive name
+          #     # artifactsDownloadLocation = $(Pipeline.Workspace)/artifacts
+          #     # WORKING_DIR = $(artifactsDownloadLocation)/$(rid)
+          #     $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
+          #     Get-ChildItem $downloadDir
+          #     $zipPath = Join-Path -Path $downloadDir -ChildPath '$(ZIP_NAME)'
+          #     Write-Host $zipPath
+          #     $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
+          #     # extractPath = $(artifactsDownloadLocation)/$(rid)/artifacts
+          #     Expand-Archive -Path $zipPath -DestinationPath $extractPath
+          #     Get-ChildItem $extractPath
 
-              $backupPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath backup
-              # backupPath = $(artifactsDownloadLocation)/$(rid)/backup
-              New-Item "$backupPath" -ItemType "Directory"
-              # Move non-exe items
-              Move-Item -Path $extractPath/* -Exclude mgc,mgc.exe -Destination "$backupPath"
-              # -Force so there's no confirmation
-              # -Recurse so the child items warning isn't shown
-              Remove-Item $downloadDir -Recurse -Force
-              Write-Host "##vso[task.setvariable variable=BACKUP_PATH]$backupPath"
-            displayName: Extract zip
-            # condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), not(startsWith(variables['RUNTIME_ID'], 'osx')))
-            condition: and(False, succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+          #     $backupPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath backup
+          #     # backupPath = $(artifactsDownloadLocation)/$(rid)/backup
+          #     New-Item "$backupPath" -ItemType "Directory"
+          #     # Move non-exe items
+          #     Move-Item -Path $extractPath/* -Exclude mgc,mgc.exe -Destination "$backupPath"
+          #     # -Force so there's no confirmation
+          #     # -Recurse so the child items warning isn't shown
+          #     Remove-Item $downloadDir -Recurse -Force
+          #     Write-Host "##vso[task.setvariable variable=BACKUP_PATH]$backupPath"
+          #   displayName: Extract zip
+          #   # condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), not(startsWith(variables['RUNTIME_ID'], 'osx')))
+          #   condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
           - template: templates/prepare-unsigned-executable-darwin.yaml
             parameters:
@@ -290,73 +290,73 @@ stages:
               zipName: $(ZIP_NAME)
               targetRuntime: $(rid)
 
-          - pwsh: |
-              Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(ZIP_NAME)"
-            displayName: Compute ESRP filter pattern osx
-            condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'))
+          # - pwsh: |
+          #     Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(ZIP_NAME)"
+          #   displayName: Compute ESRP filter pattern osx
+          #   condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'))
 
-          - pwsh: |
-              Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(pattern)"
-            displayName: Compute ESRP filter pattern win
-            condition: and(succeeded(), not(startsWith(variables['RUNTIME_ID'], 'osx')))
+          # - pwsh: |
+          #     Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(pattern)"
+          #   displayName: Compute ESRP filter pattern win
+          #   condition: and(succeeded(), not(startsWith(variables['RUNTIME_ID'], 'osx')))
 
-          - task: EsrpCodeSigning@2
-            displayName: 'ESRP CodeSigning'
-            inputs:
-              # Pipeline validation can't expand service name from matrix variables
-              ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(WORKING_DIR)/artifacts
-              signConfigType: inlineSignParams
-              UseMinimatch: true
-              Pattern: $(ESRP_FILE_PATTERN)
-              inlineOperation: $(inlineSignOperation)
-              SessionTimeout: 20
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+          # - task: EsrpCodeSigning@2
+          #   displayName: 'ESRP CodeSigning'
+          #   inputs:
+          #     # Pipeline validation can't expand service name from matrix variables
+          #     ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
+          #     FolderPath: $(WORKING_DIR)/artifacts
+          #     signConfigType: inlineSignParams
+          #     UseMinimatch: true
+          #     Pattern: $(ESRP_FILE_PATTERN)
+          #     inlineOperation: $(inlineSignOperation)
+          #     SessionTimeout: 20
+          #   condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
-          - task: EsrpCodeSigning@2
-            displayName: 'ESRP CodeSigning'
-            inputs:
-              # Pipeline validation can't expand service name from matrix variables
-              ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(WORKING_DIR)/artifacts
-              signConfigType: inlineSignParams
-              UseMinimatch: true
-              Pattern: $(ESRP_FILE_PATTERN)
-              inlineOperation: $(inlineNotarizeOperation)
-              SessionTimeout: 20
-            condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), eq(variables['SHOULD_SIGN'], 'True'))
+          # - task: EsrpCodeSigning@2
+          #   displayName: 'ESRP CodeSigning'
+          #   inputs:
+          #     # Pipeline validation can't expand service name from matrix variables
+          #     ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
+          #     FolderPath: $(WORKING_DIR)/artifacts
+          #     signConfigType: inlineSignParams
+          #     UseMinimatch: true
+          #     Pattern: $(ESRP_FILE_PATTERN)
+          #     inlineOperation: $(inlineNotarizeOperation)
+          #     SessionTimeout: 20
+          #   condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), eq(variables['SHOULD_SIGN'], 'True'))
 
-          - pwsh: |
-              $artifactsPath = $(WORKING_DIR)/artifacts
-              # artifactsPath = $(artifactsDownloadLocation)/$(rid)/artifacts
-              Move-Item -Path "$artifactsPath/*.md" -Destination ../
-              # Move backup back
-              # BACKUP_PATH = $(artifactsDownloadLocation)/$(rid)/backup
-              Move-Item -Path '$(BACKUP_PATH)/*' -Destination "$artifactsPath/"
-              Compress-Archive -Path "$artifactsPath/*" -DestinationPath ../$(ZIP_NAME)
-              Remove-Item "$artifactsPath" -Recurse -Force
-              Remove-Item '$(BACKUP_PATH)' -Recurse -Force
-              Get-ChildItem '$(WORKING_DIR)' -Recurse
-            displayName: Compress signed files
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), not(startsWith(variables['RUNTIME_ID'], 'osx')))
+          # - pwsh: |
+          #     $artifactsPath = $(WORKING_DIR)/artifacts
+          #     # artifactsPath = $(artifactsDownloadLocation)/$(rid)/artifacts
+          #     Move-Item -Path "$artifactsPath/*.md" -Destination ../
+          #     # Move backup back
+          #     # BACKUP_PATH = $(artifactsDownloadLocation)/$(rid)/backup
+          #     Move-Item -Path '$(BACKUP_PATH)/*' -Destination "$artifactsPath/"
+          #     Compress-Archive -Path "$artifactsPath/*" -DestinationPath ../$(ZIP_NAME)
+          #     Remove-Item "$artifactsPath" -Recurse -Force
+          #     Remove-Item '$(BACKUP_PATH)' -Recurse -Force
+          #     Get-ChildItem '$(WORKING_DIR)' -Recurse
+          #   displayName: Compress signed files
+          #   condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), not(startsWith(variables['RUNTIME_ID'], 'osx')))
 
-          - pwsh: |
-              $artifactsPath = $(WORKING_DIR)/artifacts
-              $zipPath = Join-Path -Path $artifactsPath -ChildPath '$(ZIP_NAME)'
-              Expand-Archive -Path "$zipPath" -DestinationPath "$artifactsPath/"
-              Move-Item -Path "$artifactsPath/*.md" -Destination $(WORKING_DIR)
-              Remove-Item -Path "$zipPath" -Force
-              Compress-Archive -Path "$artifactsPath/*" -DestinationPath $(WORKING_DIR)/$(ZIP_NAME)
-              Remove-Item "$artifactsPath" -Recurse -Force
-              Get-ChildItem '$(WORKING_DIR)' -Recurse
-            displayName: Update signed files
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
+          # - pwsh: |
+          #     $artifactsPath = $(WORKING_DIR)/artifacts
+          #     $zipPath = Join-Path -Path $artifactsPath -ChildPath '$(ZIP_NAME)'
+          #     Expand-Archive -Path "$zipPath" -DestinationPath "$artifactsPath/"
+          #     Move-Item -Path "$artifactsPath/*.md" -Destination $(WORKING_DIR)
+          #     Remove-Item -Path "$zipPath" -Force
+          #     Compress-Archive -Path "$artifactsPath/*" -DestinationPath $(WORKING_DIR)/$(ZIP_NAME)
+          #     Remove-Item "$artifactsPath" -Recurse -Force
+          #     Get-ChildItem '$(WORKING_DIR)' -Recurse
+          #   displayName: Update signed files
+          #   condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
 
-          - task: PublishPipelineArtifact@1
-            inputs:
-              artifact: sign-output-$(rid)
-              path: $(WORKING_DIR)
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+          # - task: PublishPipelineArtifact@1
+          #   inputs:
+          #     artifact: sign-output-$(rid)
+          #     path: $(WORKING_DIR)
+          #   condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
   - stage: binaryScan
     displayName: Scan binaries (Anti malware, BinSkim)
