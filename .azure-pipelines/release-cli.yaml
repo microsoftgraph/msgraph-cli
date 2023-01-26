@@ -1,4 +1,4 @@
-name: Release CLI
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
 trigger:
   branches:
@@ -10,20 +10,11 @@ pr:
     include:
       - main
 
-# resources:
-#   repositories:
-#     - repository: MyGitHubRepo
-#       type: github
-#       endpoint: microsoftgraph (16)
-#       name: microsoftgraph/msgraph-cli
-
 pool:
   name: Azure Pipelines
   vmImage: ubuntu-latest
 
 variables:
-  - name: sourceRepository
-    value: 'microsoftgraph/msgraph-cli'
   - name: repositoryConnection
     value: 'GitHub - calebkiage'
   - name: zipTemplate
@@ -36,16 +27,12 @@ variables:
     value: $(Pipeline.Workspace)/artifacts
   - name: internalFeed
     value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
-  - name: versionString
-    value: $[ coalesce('$(Build.SourceBranchName)', 'latest') ]
-    # value: $[ coalesce(replace('${{parameters.tag}}', 'none', ''), '$(Build.SourceBranchName)', 'v0.1.0') ]
+  - name: branchOrTagName
+    ${{ if in(variables['Build.SourceBranch'], "refs/heads/main", "refs/heads/dev") }}:
+      value: 'latest'
+    ${{ else }}: # Version from the tag. Can be a branch name. Only mainline branches use latest
+      value: '$(Build.SourceBranchName)'
   - group: ESRP
-
-# parameters:
-#   - name: tag
-#     displayName: Tag
-#     type: string
-#     default: none
 
 #                   
 # test -> build -> | sign |
@@ -76,17 +63,19 @@ stages:
             command: test
             workingDirectory: $(Build.SourcesDirectory)
             arguments: --no-restore
+
   - stage: build
     displayName: Build CLI
     dependsOn: [test]
+    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('$(System.PullRequest.TargetBranch)', 'refs/tags/main')))
     jobs:
       - job: prepare
         displayName: Prepare build
         steps:
           - pwsh: |
               # Get the version
-              $version = '$(versionString)'
-              $version = $version.TrimStart('refs/tags/').TrimStart('v')
+              $version = '$(branchOrTagName)'
+              $version = $version.TrimStart('refs/tags/v')
               # Export version for use later
               Write-Host "##vso[task.setvariable variable=versionVar;isOutput=true]$version"
             name: version
@@ -156,7 +145,7 @@ stages:
     dependsOn: [build]
     variables:
       version: $[ stageDependencies.build.prepare.outputs['version.versionVar'] ]
-    # condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
+    condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
     jobs:
       - job: esrpSign
         dependsOn: []
@@ -384,12 +373,29 @@ stages:
   - stage: upload
     dependsOn: [binaryScan, sign]
     condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
-    # condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), startsWith('${{parameters.tag}}', 'v')))
+    variables:
+      currentTag: $[ coalesce(variables.tag, variables.defaultTag) ]
+      isPreRelease: $[ contains(variables.currentTag, 'preview') ]
     jobs:
       - job: upload
         displayName: Upload binaries
         steps:
           - checkout: none
-          - pwsh: |
-              echo "TODO: Upload"
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              path: $(artifactsDownloadLocation)
+          - task: GithubRelease@1
+            displayName: 'Create GitHub Draft Release'
+            inputs:
+              gitHubConnection: $(repositoryConnection)
+              repositoryName: '$(Build.Repository.Name)'
+              action: create
+              tagSource: 'gitTag'
+              isDraft: true
+              addChangeLog: true
+              changeLogCompareToRelease: lastNonDraftRelease
+              assets: |
+                $(artifactsDownloadLocation)/build-output-linux-*/*.zip
+                $(artifactsDownloadLocation)/sign-output-*/*.zip
+              isPreRelease: $(isPreRelease)
     

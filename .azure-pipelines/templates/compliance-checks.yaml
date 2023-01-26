@@ -41,17 +41,20 @@ steps:
       inputs:
         ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
           path: $(artifactsDownloadLocation)
+      displayName: Download binaries
 
     - ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
       - pwsh: |
           Get-ChildItem $(artifactsDownloadLocation)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive -LiteralPath "$($_.FullName)" -PassThru }, { Remove-Item "$($_.FullName)" }
           Get-ChildItem $(artifactsDownloadLocation)/build-output-* -Recurse
         workingDirectory: $(artifactsDownloadLocation)
+        displayName: Extracting binaries
     - ${{ else }}:
       - pwsh: |
           Get-ChildItem $(Pipeline.Workspace)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive -LiteralPath "$($_.FullName)" -PassThru }, { Remove-Item "$($_.FullName)" }
           Get-ChildItem $(Pipeline.Workspace)/build-output-* -Recurse
         workingDirectory: $(artifactsDownloadLocation)
+        displayName: Extracting binaries
 
 
     - task: AntiMalware@4

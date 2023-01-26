@@ -17,6 +17,7 @@ steps:
       Write-Verbose -Verbose "useCache = '${{parameters.useCache}}'"
       Write-Verbose -Verbose "restorePath = '${{parameters.restorePath}}'"
       Write-Verbose -Verbose "extraRestoreArgs = '${{parameters.extraRestoreArgs}}'"
+    displayName: Testing parameters
 
   # - task: UseDotNet@2
   #   displayName: 'Use .NET 6'
@@ -25,7 +26,7 @@ steps:
 
   - ${{ if eq(parameters.useCache, true) }}:
     - task: Cache@2
-      displayName: 'NuGet Cache'
+      displayName: 'Load NuGet Cache'
       inputs:
         key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
         restoreKeys: |
@@ -33,7 +34,7 @@ steps:
           nuget
         path: '${{parameters.restorePath}}'
     - task: DotNetCoreCLI@2
-      displayName: Restore packages
+      displayName: Restore packages (Cache enabled)
       inputs:
         command: restore
         ${{ if gt(length(parameters.vstsFeedName), 0) }}:
@@ -45,7 +46,7 @@ steps:
         restoreDirectory: ${{parameters.restorePath}}
   - ${{ else }}:
     - task: DotNetCoreCLI@2
-      displayName: Restore packages
+      displayName: Restore packages (No cache)
       inputs:
         command: restore
         ${{ if gt(length(parameters.vstsFeedName), 0) }}:
