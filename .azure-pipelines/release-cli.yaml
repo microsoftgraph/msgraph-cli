@@ -1,14 +1,15 @@
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
 trigger:
+  batch: true
   branches:
     include:
       - refs/tags/v*
-
-pr:
-  branches:
+  paths:
     include:
-      - main
+    - .azure-pipelines
+    - src
+    - msgraph-cli.sln
 
 pool:
   name: Azure Pipelines
@@ -67,7 +68,6 @@ stages:
   - stage: build
     displayName: Build CLI
     dependsOn: [test]
-    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('$(System.PullRequest.TargetBranch)', 'refs/tags/main')))
     jobs:
       - job: prepare
         displayName: Prepare build
@@ -121,6 +121,8 @@ stages:
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
+            # Only publish artifacts if we're building a tag, main or testing a PR targeting main
+            condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
             inputs:
               artifact: build-output-$(rid)
               path: $(outputDir)-$(rid)
@@ -145,6 +147,7 @@ stages:
     dependsOn: [build]
     variables:
       version: $[ stageDependencies.build.prepare.outputs['version.versionVar'] ]
+    # Only sign binaries if we're building a tag.
     condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
     jobs:
       - job: esrpSign
@@ -360,7 +363,8 @@ stages:
     dependsOn: [build, srcScan]
     pool:
       vmImage: windows-latest
-    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('$(System.PullRequest.TargetBranch)', 'refs/tags/main')))
+    # Only publish artifacts if we're building a tag, main or testing a PR targeting main
+    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
     jobs:
       - job: scan
         displayName: Scanning binaries
@@ -372,6 +376,7 @@ stages:
 
   - stage: upload
     dependsOn: [binaryScan, sign]
+    # Only upload release if we're building a tag.
     condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
     variables:
       currentTag: '$(branchOrTagName)'
