@@ -19,11 +19,6 @@ steps:
       Write-Verbose -Verbose "extraRestoreArgs = '${{parameters.extraRestoreArgs}}'"
     displayName: Testing parameters
 
-  # - task: UseDotNet@2
-  #   displayName: 'Use .NET 6'
-  #   inputs:
-  #     version: 7.x
-
   - ${{ if eq(parameters.useCache, true) }}:
     - task: Cache@2
       displayName: 'Load NuGet Cache'
