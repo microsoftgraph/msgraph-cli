@@ -28,7 +28,7 @@ variables:
   - name: internalFeed
     value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
   - name: branchOrTagName
-    ${{ if in(variables['Build.SourceBranch'], "refs/heads/main", "refs/heads/dev") }}:
+    ${{ if in(variables['Build.SourceBranch'], 'refs/heads/main', 'refs/heads/dev') }}:
       value: 'latest'
     ${{ else }}: # Version from the tag. Can be a branch name. Only mainline branches use latest
       value: '$(Build.SourceBranchName)'
@@ -374,7 +374,7 @@ stages:
     dependsOn: [binaryScan, sign]
     condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
     variables:
-      currentTag: $[ coalesce(variables.tag, variables.defaultTag) ]
+      currentTag: '$(branchOrTagName)'
       isPreRelease: $[ contains(variables.currentTag, 'preview') ]
     jobs:
       - job: upload
