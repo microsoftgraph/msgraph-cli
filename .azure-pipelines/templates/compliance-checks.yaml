@@ -1,0 +1,96 @@
+parameters:
+  - name: 'scanSource'
+    type: boolean
+    default: false
+  - name: 'scanBinary'
+    type: boolean
+    default: false
+  - name: 'artifactsDownloadLocation'
+    default: ''
+
+steps:
+  - pwsh: |
+      Write-Verbose -Verbose "scanSource = '${{parameters.scanSource}}'"
+      Write-Verbose -Verbose "scanBinary = '${{parameters.scanBinary}}'"
+      Write-Verbose -Verbose 'Agent OS = $(Agent.OS)'
+
+  - ${{ if ne(parameters.scanSource, true) }}:
+    - checkout: none
+
+  - ${{ if eq(parameters.scanSource, true) }}:
+    - task: PoliCheck@2
+      displayName: 'Run PoliCheck - Source code scan'
+      enabled: false
+      inputs:
+        termTypeT: 0001aCustom
+        termTypeTCustom: 9
+        targetArgument: $(Build.SourcesDirectory)/src
+        optionsSEV: "1|2"
+        optionsPE: 2
+
+    - task: CredScan@3
+      displayName: 'Run CredScan - Source code scan'
+      enabled: true
+      inputs:
+        scanFolder: '$(Build.SourcesDirectory)\src'
+        debugMode: false
+        verboseOutput: true
+
+  - ${{ if eq(parameters.scanBinary, true) }}:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
+          path: $(artifactsDownloadLocation)
+      displayName: Download binaries
+
+    - ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
+      - pwsh: |
+          Get-ChildItem $(artifactsDownloadLocation)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive -LiteralPath "$($_.FullName)" -PassThru }, { Remove-Item "$($_.FullName)" }
+          Get-ChildItem $(artifactsDownloadLocation)/build-output-* -Recurse
+        workingDirectory: $(artifactsDownloadLocation)
+        displayName: Extracting binaries
+    - ${{ else }}:
+      - pwsh: |
+          Get-ChildItem $(Pipeline.Workspace)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive -LiteralPath "$($_.FullName)" -PassThru }, { Remove-Item "$($_.FullName)" }
+          Get-ChildItem $(Pipeline.Workspace)/build-output-* -Recurse
+        workingDirectory: $(artifactsDownloadLocation)
+        displayName: Extracting binaries
+
+
+    - task: AntiMalware@4
+      displayName: 'Run MpCmdRun.exe - Product Binaries'
+      enabled: true
+      inputs:
+        ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
+          FileDirPath: $(artifactsDownloadLocation)
+        ${{ else }}:
+          FileDirPath: $(Pipeline.Workspace)
+
+
+    - task: BinSkim@4
+      displayName: 'Run BinSkim - Product Binaries'
+      enabled: true
+      inputs:
+        InputType: Basic
+        ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
+          AnalyzeTargetGlob: '$(artifactsDownloadLocation)\**.dll;$(artifactsDownloadLocation)\**.exe;'
+        ${{ else }}:
+          AnalyzeTargetGlob: '$(Pipeline.Workspace)\**.dll;$(Pipeline.Workspace)\**.exe;'
+        AnalyzeIgnorePdbLoadError: false
+        AnalyzeVerbose: true
+        AnalyzeHashes: true
+        AnalyzeRecurse: true
+        AnalyzeStatistics: true
+
+  - task: PublishSecurityAnalysisLogs@3
+    displayName: 'Publish Security Analysis Logs'
+    enabled: true
+    inputs:
+      ArtifactName: CodeAnalysisLogs
+      AllTools: true
+
+  - task: PostAnalysis@2
+    displayName: 'Post Analysis'
+    enabled: true
+    inputs:
+      GdnBreakAllTools: true

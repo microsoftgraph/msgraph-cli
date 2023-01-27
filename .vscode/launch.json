@@ -41,6 +41,18 @@
             "stopAtEntry": false
         },
         {
+            "name": "user patch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/bin/Debug/net6.0/mgc.dll",
+            "args": ["users", "item", "patch", "--user-id", "admin@M365x258755.OnMicrosoft.com", "--body", "{\"officeLocation\": \"NewLocation\"}", "--debug"],
+            "cwd": "${workspaceFolder}/src",
+            "envFile": "${workspaceFolder}/src/.env",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"

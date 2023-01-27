@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Added documentation content for non-terminal sub-commands
+- MacOS binaries are now signed and notarized.
 
 ### Changed
 - Logout now clears tokens from the cache.
