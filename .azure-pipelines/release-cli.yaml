@@ -100,12 +100,8 @@ stages:
             displayName: DotNet publish
 
           - pwsh: |
-              # Get the archive name
-              $version = $(powershellScriptsDir)/ComputeVersion.ps1 -BranchOrTagName '$(branchOrTagName)'
-              $zipName = '$(zipTemplate)' -f '$(rid)',"$version"
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
-
-              Zip-Build-Output -FileName $zipName -OutputDir '$(outputDir)-$(rid)' -RuntimeIdentifier '$(rid)'
+              Zip-BuildOutput -OutputDir '$(outputDir)-$(rid)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
@@ -235,8 +231,8 @@ stages:
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
           
           - pwsh: |
-              $version = $(powershellScriptsDir)/ComputeVersion.ps1 -BranchOrTagName '$(branchOrTagName)'
-              $zipName = '$(zipTemplate)' -f '$(rid)',"$version"
+              Import-Module $(powershellScriptsDir)/BuildTools.psm1
+              $zipName = Get-ZipName -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
               Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
             displayName: Compute zip name
 
