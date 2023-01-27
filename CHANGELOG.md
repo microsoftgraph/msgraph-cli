@@ -8,9 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added documentation content for non-terminal sub-commands
 - MacOS binaries are now signed and notarized.
 
 ### Changed
+- Logout now clears tokens from the cache.
+- Header command options can now be called multiple times. The header values will now be additive.
 
 ## [0.1.0-preview.7] - 2022-09-28
 
