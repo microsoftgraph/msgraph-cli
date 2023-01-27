@@ -28,6 +28,8 @@ variables:
     value: $(Pipeline.Workspace)/artifacts
   - name: internalFeed
     value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
+  - name: powershellScriptsDir
+    value: $(System.DefaultWorkingDirectory)/.azure-pipelines/powershell
   - name: branchOrTagName
     ${{ if in(variables['Build.SourceBranch'], 'refs/heads/main', 'refs/heads/dev') }}:
       value: 'latest'
@@ -69,21 +71,9 @@ stages:
     displayName: Build CLI
     dependsOn: [test]
     jobs:
-      - job: prepare
-        displayName: Prepare build
-        steps:
-          - pwsh: |
-              # Get the version
-              $version = '$(branchOrTagName)'
-              $version = $version.TrimStart('refs/tags/v')
-              # Export version for use later
-              Write-Host "##vso[task.setvariable variable=versionVar;isOutput=true]$version"
-            name: version
       - job: build
         dependsOn: [prepare]
         displayName: Build and publish
-        variables:
-          version: $[ dependencies.prepare.outputs['version.versionVar'] ]
         strategy:
           matrix:
             'Windows-x64':
@@ -111,13 +101,11 @@ stages:
 
           - pwsh: |
               # Get the archive name
-              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
+              $version = $(powershellScriptsDir)/ComputeVersion.ps1 -BranchOrTagName '$(branchOrTagName)'
+              $zipName = '$(zipTemplate)' -f '$(rid)',"$version"
+              Import-Module $(powershellScriptsDir)/BuildTools.psm1
 
-              $outputLocation = '$(outputDir)-$(rid)'
-              # Ensure output directory exists
-              New-Item $outputLocation -ItemType Directory -Force
-              Compress-Archive -Path $(outputDir)/* -DestinationPath $outputLocation/$zipName
-              Remove-Item '$(outputDir)/*'
+              Zip-Build-Output -FileName $zipName -OutputDir '$(outputDir)-$(rid)' -RuntimeIdentifier '$(rid)'
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
@@ -145,8 +133,6 @@ stages:
     pool:
       vmImage: windows-latest
     dependsOn: [build]
-    variables:
-      version: $[ stageDependencies.build.prepare.outputs['version.versionVar'] ]
     # Only sign binaries if we're building a tag.
     condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
     jobs:
@@ -230,7 +216,6 @@ stages:
               Write-Verbose -Verbose 'pattern = ''$(pattern)'''
               Write-Verbose -Verbose 'zipTemplate = ''$(zipTemplate)'''
               Write-Verbose -Verbose 'artifactsDownloadLocation = ''$(artifactsDownloadLocation)'''
-              Write-Verbose -Verbose 'version = ''$(version)'''
               Write-Verbose -Verbose 'sign = ''$(sign)'''
               Write-Verbose -Verbose 'inlineSignOperation = ''$(inlineSignOperation)'''
               Write-Verbose -Verbose 'inlineNotarizeOperation = ''$(inlineNotarizeOperation)'''
@@ -250,7 +235,8 @@ stages:
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
           
           - pwsh: |
-              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
+              $version = $(powershellScriptsDir)/ComputeVersion.ps1 -BranchOrTagName '$(branchOrTagName)'
+              $zipName = '$(zipTemplate)' -f '$(rid)',"$version"
               Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
             displayName: Compute zip name
 
