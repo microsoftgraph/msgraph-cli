@@ -39,7 +39,8 @@ namespace Microsoft.Graph.Cli
 
             var authSettings = config.GetSection(nameof(AuthenticationOptions)).Get<AuthenticationOptions>();
             var pathUtil = new PathUtility();
-            var authServiceFactory = new AuthenticationServiceFactory(pathUtil, authSettings);
+            var cacheUtility = new AuthenticationCacheUtility(pathUtil);
+            var authServiceFactory = new AuthenticationServiceFactory(pathUtil, cacheUtility, authSettings);
             var authStrategy = AuthenticationStrategy.DeviceCode;
 
             var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy, authSettings?.TenantId, authSettings?.ClientId, authSettings?.ClientCertificateName, authSettings?.ClientCertificateThumbPrint);
