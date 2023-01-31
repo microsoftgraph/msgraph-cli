@@ -45,8 +45,8 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.Upgrade {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("chat%2Did", chatId);
-                requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
+                if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
+                if (teamsAppInstallationId is not null) requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

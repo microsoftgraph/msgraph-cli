@@ -54,10 +54,10 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Item.UndoSoftDel
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("channel%2Did", channelId);
-                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
-                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (channelId is not null) requestInfo.PathParameters.Add("channel%2Did", channelId);
+                if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                if (chatMessageId1 is not null) requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

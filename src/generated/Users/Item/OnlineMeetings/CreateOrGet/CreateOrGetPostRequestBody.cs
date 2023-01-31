@@ -8,7 +8,6 @@ namespace ApiSdk.Users.Item.OnlineMeetings.CreateOrGet {
     public class CreateOrGetPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The chatInfo property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.ChatInfo? ChatInfo { get; set; }
@@ -16,9 +15,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.CreateOrGet {
 #else
         public ApiSdk.Models.ChatInfo ChatInfo { get; set; }
 #endif
-        /// <summary>The endDateTime property</summary>
         public DateTimeOffset? EndDateTime { get; set; }
-        /// <summary>The externalId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExternalId { get; set; }
@@ -26,7 +23,6 @@ namespace ApiSdk.Users.Item.OnlineMeetings.CreateOrGet {
 #else
         public string ExternalId { get; set; }
 #endif
-        /// <summary>The participants property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public MeetingParticipants? Participants { get; set; }
@@ -34,9 +30,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.CreateOrGet {
 #else
         public MeetingParticipants Participants { get; set; }
 #endif
-        /// <summary>The startDateTime property</summary>
         public DateTimeOffset? StartDateTime { get; set; }
-        /// <summary>The subject property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Subject { get; set; }
@@ -54,7 +48,13 @@ namespace ApiSdk.Users.Item.OnlineMeetings.CreateOrGet {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static CreateOrGetPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static CreateOrGetPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CreateOrGetPostRequestBody();
         }

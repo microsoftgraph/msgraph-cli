@@ -39,7 +39,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Repro
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("accessPackageAssignment%2Did", accessPackageAssignmentId);
+                if (accessPackageAssignmentId is not null) requestInfo.PathParameters.Add("accessPackageAssignment%2Did", accessPackageAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

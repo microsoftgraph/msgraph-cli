@@ -7,7 +7,6 @@ namespace ApiSdk.Models {
     public class SelfSignedCertificate : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The customKeyIdentifier property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public byte[]? CustomKeyIdentifier { get; set; }
@@ -15,7 +14,6 @@ namespace ApiSdk.Models {
 #else
         public byte[] CustomKeyIdentifier { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -23,9 +21,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The endDateTime property</summary>
         public DateTimeOffset? EndDateTime { get; set; }
-        /// <summary>The key property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public byte[]? Key { get; set; }
@@ -33,9 +29,7 @@ namespace ApiSdk.Models {
 #else
         public byte[] Key { get; set; }
 #endif
-        /// <summary>The keyId property</summary>
         public Guid? KeyId { get; set; }
-        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -43,9 +37,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The startDateTime property</summary>
         public DateTimeOffset? StartDateTime { get; set; }
-        /// <summary>The thumbprint property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Thumbprint { get; set; }
@@ -53,7 +45,6 @@ namespace ApiSdk.Models {
 #else
         public string Thumbprint { get; set; }
 #endif
-        /// <summary>The type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Type { get; set; }
@@ -61,7 +52,6 @@ namespace ApiSdk.Models {
 #else
         public string Type { get; set; }
 #endif
-        /// <summary>The usage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Usage { get; set; }
@@ -79,7 +69,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static SelfSignedCertificate CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static SelfSignedCertificate CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SelfSignedCertificate();
         }

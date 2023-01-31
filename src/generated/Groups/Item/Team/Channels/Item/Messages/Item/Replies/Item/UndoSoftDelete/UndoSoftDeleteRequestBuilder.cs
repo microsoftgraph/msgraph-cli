@@ -54,10 +54,10 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item.UndoS
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("channel%2Did", channelId);
-                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
-                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (channelId is not null) requestInfo.PathParameters.Add("channel%2Did", channelId);
+                if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                if (chatMessageId1 is not null) requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

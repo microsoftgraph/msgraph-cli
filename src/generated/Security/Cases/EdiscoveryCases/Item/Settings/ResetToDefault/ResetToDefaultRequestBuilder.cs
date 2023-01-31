@@ -40,7 +40,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.ResetToDefault {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

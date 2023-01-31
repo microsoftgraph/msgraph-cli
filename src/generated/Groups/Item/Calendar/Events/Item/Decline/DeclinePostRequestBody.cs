@@ -8,7 +8,6 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Decline {
     public class DeclinePostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The Comment property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Comment { get; set; }
@@ -16,7 +15,6 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Decline {
 #else
         public string Comment { get; set; }
 #endif
-        /// <summary>The ProposedNewTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public TimeSlot? ProposedNewTime { get; set; }
@@ -24,7 +22,6 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Decline {
 #else
         public TimeSlot ProposedNewTime { get; set; }
 #endif
-        /// <summary>The SendResponse property</summary>
         public bool? SendResponse { get; set; }
         /// <summary>
         /// Instantiates a new declinePostRequestBody and sets the default values.
@@ -36,7 +33,13 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Decline {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static DeclinePostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static DeclinePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeclinePostRequestBody();
         }
@@ -45,9 +48,9 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Decline {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"Comment", n => { Comment = n.GetStringValue(); } },
-                {"ProposedNewTime", n => { ProposedNewTime = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
-                {"SendResponse", n => { SendResponse = n.GetBoolValue(); } },
+                {"comment", n => { Comment = n.GetStringValue(); } },
+                {"proposedNewTime", n => { ProposedNewTime = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
+                {"sendResponse", n => { SendResponse = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -56,9 +59,9 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Decline {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("Comment", Comment);
-            writer.WriteObjectValue<TimeSlot>("ProposedNewTime", ProposedNewTime);
-            writer.WriteBoolValue("SendResponse", SendResponse);
+            writer.WriteStringValue("comment", Comment);
+            writer.WriteObjectValue<TimeSlot>("proposedNewTime", ProposedNewTime);
+            writer.WriteBoolValue("sendResponse", SendResponse);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

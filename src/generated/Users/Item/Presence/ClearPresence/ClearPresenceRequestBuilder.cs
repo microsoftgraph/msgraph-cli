@@ -35,20 +35,21 @@ namespace ApiSdk.Users.Item.Presence.ClearPresence {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var bodyOption = new Option<string>("--body", description: "The request body") {
+            var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ClearPresencePostRequestBody>(ClearPresencePostRequestBody.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -74,11 +75,10 @@ namespace ApiSdk.Users.Item.Presence.ClearPresence {
         /// <summary>
         /// Clear the application&apos;s presence session for a user. If it is the user&apos;s only presence session, the user&apos;s presence will change to `Offline/Offline`. For details about presences sessions, see presence: setPresence.
         /// </summary>
-        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ClearPresencePostRequestBody body, Action<ClearPresenceRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ClearPresencePostRequestBody? body, Action<ClearPresenceRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(ClearPresencePostRequestBody body, Action<ClearPresenceRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

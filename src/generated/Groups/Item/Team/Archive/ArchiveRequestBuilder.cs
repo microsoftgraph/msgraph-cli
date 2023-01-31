@@ -35,20 +35,21 @@ namespace ApiSdk.Groups.Item.Team.Archive {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var bodyOption = new Option<string>("--body", description: "The request body") {
+            var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ArchivePostRequestBody>(ArchivePostRequestBody.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -74,11 +75,10 @@ namespace ApiSdk.Groups.Item.Team.Archive {
         /// <summary>
         /// Archive the specified team. When a team is archived, users can no longer send or like messages on any channel in the team, edit the team&apos;s name, description, or other settings, or in general make most changes to the team.Membership changes to the team continue to be allowed. Archiving is an async operation. A team is archived once the async operation completes successfully, which may occur subsequent to a response from this API. To archive a team, the team and group must have an owner. To restore a team from its archived state, use the API to unarchive.
         /// </summary>
-        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ArchivePostRequestBody body, Action<ArchiveRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ArchivePostRequestBody? body, Action<ArchiveRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(ArchivePostRequestBody body, Action<ArchiveRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

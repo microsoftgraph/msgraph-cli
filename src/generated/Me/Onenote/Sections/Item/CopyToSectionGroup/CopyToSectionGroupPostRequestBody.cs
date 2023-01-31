@@ -7,7 +7,6 @@ namespace ApiSdk.Me.Onenote.Sections.Item.CopyToSectionGroup {
     public class CopyToSectionGroupPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The groupId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? GroupId { get; set; }
@@ -15,7 +14,6 @@ namespace ApiSdk.Me.Onenote.Sections.Item.CopyToSectionGroup {
 #else
         public string GroupId { get; set; }
 #endif
-        /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }
@@ -23,7 +21,6 @@ namespace ApiSdk.Me.Onenote.Sections.Item.CopyToSectionGroup {
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>The renameAs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RenameAs { get; set; }
@@ -31,7 +28,6 @@ namespace ApiSdk.Me.Onenote.Sections.Item.CopyToSectionGroup {
 #else
         public string RenameAs { get; set; }
 #endif
-        /// <summary>The siteCollectionId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SiteCollectionId { get; set; }
@@ -39,7 +35,6 @@ namespace ApiSdk.Me.Onenote.Sections.Item.CopyToSectionGroup {
 #else
         public string SiteCollectionId { get; set; }
 #endif
-        /// <summary>The siteId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SiteId { get; set; }
@@ -57,7 +52,13 @@ namespace ApiSdk.Me.Onenote.Sections.Item.CopyToSectionGroup {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static CopyToSectionGroupPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static CopyToSectionGroupPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CopyToSectionGroupPostRequestBody();
         }

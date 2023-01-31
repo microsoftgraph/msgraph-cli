@@ -49,9 +49,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item.Reauthorize {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("drive%2Did", driveId);
-                requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
-                requestInfo.PathParameters.Add("subscription%2Did", subscriptionId);
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                if (subscriptionId is not null) requestInfo.PathParameters.Add("subscription%2Did", subscriptionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

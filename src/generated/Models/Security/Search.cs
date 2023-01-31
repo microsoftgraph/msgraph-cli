@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Security {
     public class Search : Entity, IParsable {
-        /// <summary>The contentQuery property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ContentQuery { get; set; }
@@ -13,7 +12,6 @@ namespace ApiSdk.Models.Security {
 #else
         public string ContentQuery { get; set; }
 #endif
-        /// <summary>The createdBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.IdentitySet? CreatedBy { get; set; }
@@ -21,9 +19,7 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.IdentitySet CreatedBy { get; set; }
 #endif
-        /// <summary>The createdDateTime property</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -31,7 +27,6 @@ namespace ApiSdk.Models.Security {
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -39,7 +34,6 @@ namespace ApiSdk.Models.Security {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The lastModifiedBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.IdentitySet? LastModifiedBy { get; set; }
@@ -47,13 +41,18 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.IdentitySet LastModifiedBy { get; set; }
 #endif
-        /// <summary>The lastModifiedDateTime property</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new Search CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new Search CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {

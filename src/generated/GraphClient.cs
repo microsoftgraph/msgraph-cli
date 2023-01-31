@@ -64,6 +64,7 @@ using ApiSdk.Subscriptions;
 using ApiSdk.Teams;
 using ApiSdk.TeamsTemplates;
 using ApiSdk.Teamwork;
+using ApiSdk.TenantRelationships;
 using ApiSdk.Users;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -1021,6 +1022,7 @@ namespace ApiSdk {
             command.AddCommand(BuildTeamsCommand());
             command.AddCommand(BuildTeamsTemplatesCommand());
             command.AddCommand(BuildTeamworkCommand());
+            command.AddCommand(BuildTenantRelationshipsCommand());
             command.AddCommand(BuildUsersCommand());
             return command;
         }
@@ -1198,6 +1200,19 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSendActivityNotificationToRecipientsCommand());
             command.AddCommand(builder.BuildWorkforceIntegrationsCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the tenantRelationship singleton.
+        /// </summary>
+        public Command BuildTenantRelationshipsCommand() {
+            var command = new Command("tenant-relationships");
+            command.Description = "Provides operations to manage the tenantRelationship singleton.";
+            var builder = new TenantRelationshipsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildDelegatedAdminCustomersCommand());
+            command.AddCommand(builder.BuildDelegatedAdminRelationshipsCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>

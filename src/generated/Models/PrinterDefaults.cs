@@ -33,7 +33,6 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The default fitPdfToPage setting. True to fit each page of a PDF document to a physical sheet of media; false to let the printer decide how to lay out impressions.</summary>
         public bool? FitPdfToPage { get; set; }
-        /// <summary>The inputBin property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? InputBin { get; set; }
@@ -67,7 +66,6 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The default direction to lay out pages when multiple pages are being printed per sheet. Valid values are described in the following table.</summary>
         public PrintMultipageLayout? MultipageLayout { get; set; }
-        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -101,7 +99,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static PrinterDefaults CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static PrinterDefaults CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrinterDefaults();
         }

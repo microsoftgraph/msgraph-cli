@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>The date and time when the page was created. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new onenoteEntitySchemaObjectModel and sets the default values.
+        /// Instantiates a new OnenoteEntitySchemaObjectModel and sets the default values.
         /// </summary>
         public OnenoteEntitySchemaObjectModel() : base() {
             OdataType = "#microsoft.graph.onenoteEntitySchemaObjectModel";
@@ -17,7 +17,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new OnenoteEntitySchemaObjectModel CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new OnenoteEntitySchemaObjectModel CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {

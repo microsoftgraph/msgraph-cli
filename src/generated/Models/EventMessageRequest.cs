@@ -7,7 +7,6 @@ namespace ApiSdk.Models {
     public class EventMessageRequest : EventMessage, IParsable {
         /// <summary>True if the meeting organizer allows invitees to propose a new time when responding, false otherwise. Optional. Default is true.</summary>
         public bool? AllowNewTimeProposals { get; set; }
-        /// <summary>The meetingRequestType property</summary>
         public ApiSdk.Models.MeetingRequestType? MeetingRequestType { get; set; }
         /// <summary>If the meeting update changes the meeting end time, this property specifies the previous meeting end time.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,7 +44,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new EventMessageRequest CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new EventMessageRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EventMessageRequest();
         }

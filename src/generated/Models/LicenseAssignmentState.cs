@@ -7,7 +7,6 @@ namespace ApiSdk.Models {
     public class LicenseAssignmentState : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The assignedByGroup property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AssignedByGroup { get; set; }
@@ -15,7 +14,6 @@ namespace ApiSdk.Models {
 #else
         public string AssignedByGroup { get; set; }
 #endif
-        /// <summary>The disabledPlans property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Guid?>? DisabledPlans { get; set; }
@@ -23,7 +21,6 @@ namespace ApiSdk.Models {
 #else
         public List<Guid?> DisabledPlans { get; set; }
 #endif
-        /// <summary>The error property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Error { get; set; }
@@ -31,9 +28,7 @@ namespace ApiSdk.Models {
 #else
         public string Error { get; set; }
 #endif
-        /// <summary>The lastUpdatedDateTime property</summary>
         public DateTimeOffset? LastUpdatedDateTime { get; set; }
-        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -41,9 +36,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The skuId property</summary>
         public Guid? SkuId { get; set; }
-        /// <summary>The state property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? State { get; set; }
@@ -61,7 +54,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static LicenseAssignmentState CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static LicenseAssignmentState CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new LicenseAssignmentState();
         }

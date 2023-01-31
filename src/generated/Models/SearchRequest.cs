@@ -7,7 +7,6 @@ namespace ApiSdk.Models {
     public class SearchRequest : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The aggregationFilters property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? AggregationFilters { get; set; }
@@ -15,7 +14,6 @@ namespace ApiSdk.Models {
 #else
         public List<string> AggregationFilters { get; set; }
 #endif
-        /// <summary>The aggregations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AggregationOption>? Aggregations { get; set; }
@@ -23,7 +21,6 @@ namespace ApiSdk.Models {
 #else
         public List<AggregationOption> Aggregations { get; set; }
 #endif
-        /// <summary>The contentSources property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? ContentSources { get; set; }
@@ -31,9 +28,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> ContentSources { get; set; }
 #endif
-        /// <summary>The enableTopResults property</summary>
         public bool? EnableTopResults { get; set; }
-        /// <summary>The entityTypes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<EntityType?>? EntityTypes { get; set; }
@@ -41,7 +36,6 @@ namespace ApiSdk.Models {
 #else
         public List<EntityType?> EntityTypes { get; set; }
 #endif
-        /// <summary>The fields property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Fields { get; set; }
@@ -49,9 +43,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> Fields { get; set; }
 #endif
-        /// <summary>The from property</summary>
         public int? From { get; set; }
-        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -59,7 +51,6 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The query property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public SearchQuery? Query { get; set; }
@@ -67,7 +58,6 @@ namespace ApiSdk.Models {
 #else
         public SearchQuery Query { get; set; }
 #endif
-        /// <summary>The queryAlterationOptions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public SearchAlterationOptions? QueryAlterationOptions { get; set; }
@@ -75,7 +65,6 @@ namespace ApiSdk.Models {
 #else
         public SearchAlterationOptions QueryAlterationOptions { get; set; }
 #endif
-        /// <summary>The resultTemplateOptions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ResultTemplateOption? ResultTemplateOptions { get; set; }
@@ -83,9 +72,7 @@ namespace ApiSdk.Models {
 #else
         public ResultTemplateOption ResultTemplateOptions { get; set; }
 #endif
-        /// <summary>The size property</summary>
         public int? Size { get; set; }
-        /// <summary>The sortProperties property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SortProperty>? SortProperties { get; set; }
@@ -103,7 +90,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static SearchRequest CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static SearchRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SearchRequest();
         }

@@ -44,8 +44,8 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.UndoSoftDelete
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -40,7 +40,7 @@ namespace ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("presence%2Did", presenceId);
+                if (presenceId is not null) requestInfo.PathParameters.Add("presence%2Did", presenceId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

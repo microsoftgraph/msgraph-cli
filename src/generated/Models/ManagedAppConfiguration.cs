@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>
-    /// Configuration used to deliver a set of custom settings as-is to apps for users to whom the configuration is scoped
-    /// </summary>
     public class ManagedAppConfiguration : ManagedAppPolicy, IParsable {
         /// <summary>A set of string key and string value pairs to be sent to apps for users to whom the configuration is scoped, unalterned by this service</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -17,7 +14,7 @@ namespace ApiSdk.Models {
         public List<KeyValuePair> CustomSettings { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new managedAppConfiguration and sets the default values.
+        /// Instantiates a new ManagedAppConfiguration and sets the default values.
         /// </summary>
         public ManagedAppConfiguration() : base() {
             OdataType = "#microsoft.graph.managedAppConfiguration";
@@ -26,7 +23,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new ManagedAppConfiguration CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new ManagedAppConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {

@@ -43,7 +43,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.Forward {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            var bodyOption = new Option<string>("--body", description: "The request body") {
+            var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -51,16 +51,17 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.Forward {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
                 var eventId1 = invocationContext.ParseResult.GetValueForOption(eventId1Option);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ForwardPostRequestBody>(ForwardPostRequestBody.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("event%2Did", eventId);
-                requestInfo.PathParameters.Add("event%2Did1", eventId1);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
+                if (eventId1 is not null) requestInfo.PathParameters.Add("event%2Did1", eventId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -86,11 +87,10 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.Forward {
         /// <summary>
         /// This action allows the organizer or attendee of a meeting event to forward the meeting request to a new recipient.  If the meeting event is forwarded from an attendee&apos;s Microsoft 365 mailbox to another recipient, this action also sends a message to notify the organizer of the forwarding, and adds the recipient to the organizer&apos;s copy of the meeting event. This convenience is not available when forwarding from an Outlook.com account.
         /// </summary>
-        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ForwardPostRequestBody body, Action<ForwardRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ForwardPostRequestBody? body, Action<ForwardRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(ForwardPostRequestBody body, Action<ForwardRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

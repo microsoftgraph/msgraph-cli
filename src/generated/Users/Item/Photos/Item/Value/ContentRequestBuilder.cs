@@ -47,13 +47,13 @@ namespace ApiSdk.Users.Item.Photos.Item.Value {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("profilePhoto%2Did", profilePhotoId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (profilePhotoId is not null) requestInfo.PathParameters.Add("profilePhoto%2Did", profilePhotoId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
@@ -91,11 +91,12 @@ namespace ApiSdk.Users.Item.Photos.Item.Value {
                 var profilePhotoId = invocationContext.ParseResult.GetValueForOption(profilePhotoIdOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                if (file is null || !file.Exists) return;
                 using var stream = file.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("profilePhoto%2Did", profilePhotoId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (profilePhotoId is not null) requestInfo.PathParameters.Add("profilePhoto%2Did", profilePhotoId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

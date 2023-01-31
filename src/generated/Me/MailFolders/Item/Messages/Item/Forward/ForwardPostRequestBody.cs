@@ -8,7 +8,6 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Forward {
     public class ForwardPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The Comment property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Comment { get; set; }
@@ -16,7 +15,6 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Forward {
 #else
         public string Comment { get; set; }
 #endif
-        /// <summary>The Message property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Message? Message { get; set; }
@@ -24,7 +22,6 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Forward {
 #else
         public ApiSdk.Models.Message Message { get; set; }
 #endif
-        /// <summary>The ToRecipients property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Recipient>? ToRecipients { get; set; }
@@ -42,7 +39,13 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Forward {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static ForwardPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static ForwardPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ForwardPostRequestBody();
         }
@@ -51,9 +54,9 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Forward {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"Comment", n => { Comment = n.GetStringValue(); } },
-                {"Message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
-                {"ToRecipients", n => { ToRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"comment", n => { Comment = n.GetStringValue(); } },
+                {"message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
+                {"toRecipients", n => { ToRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -62,9 +65,9 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Forward {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("Comment", Comment);
-            writer.WriteObjectValue<ApiSdk.Models.Message>("Message", Message);
-            writer.WriteCollectionOfObjectValues<Recipient>("ToRecipients", ToRecipients);
+            writer.WriteStringValue("comment", Comment);
+            writer.WriteObjectValue<ApiSdk.Models.Message>("message", Message);
+            writer.WriteCollectionOfObjectValues<Recipient>("toRecipients", ToRecipients);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

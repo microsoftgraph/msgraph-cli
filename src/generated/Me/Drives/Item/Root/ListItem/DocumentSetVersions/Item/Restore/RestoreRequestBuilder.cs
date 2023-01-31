@@ -45,8 +45,8 @@ namespace ApiSdk.Me.Drives.Item.Root.ListItem.DocumentSetVersions.Item.Restore {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("drive%2Did", driveId);
-                requestInfo.PathParameters.Add("documentSetVersion%2Did", documentSetVersionId);
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (documentSetVersionId is not null) requestInfo.PathParameters.Add("documentSetVersion%2Did", documentSetVersionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -20,7 +20,6 @@ namespace ApiSdk.Models {
         public PolicyPlatformType? PlatformType { get; set; }
         /// <summary>Count of how many setting a policy holds</summary>
         public int? SettingCount { get; set; }
-        /// <summary>The settingStates property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DeviceCompliancePolicySettingState>? SettingStates { get; set; }
@@ -28,7 +27,6 @@ namespace ApiSdk.Models {
 #else
         public List<DeviceCompliancePolicySettingState> SettingStates { get; set; }
 #endif
-        /// <summary>The state property</summary>
         public ComplianceStatus? State { get; set; }
         /// <summary>The version of the policy</summary>
         public int? Version { get; set; }
@@ -36,7 +34,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new DeviceCompliancePolicyState CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new DeviceCompliancePolicyState CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceCompliancePolicyState();
         }

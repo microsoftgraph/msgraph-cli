@@ -7,7 +7,6 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Copy {
     public class CopyPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The DestinationId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DestinationId { get; set; }
@@ -25,7 +24,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Copy {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static CopyPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static CopyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CopyPostRequestBody();
         }
@@ -34,7 +39,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Copy {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"DestinationId", n => { DestinationId = n.GetStringValue(); } },
+                {"destinationId", n => { DestinationId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -43,7 +48,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Copy {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("DestinationId", DestinationId);
+            writer.WriteStringValue("destinationId", DestinationId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

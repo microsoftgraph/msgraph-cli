@@ -8,7 +8,6 @@ namespace ApiSdk.Me.FindMeetingTimes {
     public class FindMeetingTimesPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The attendees property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AttendeeBase>? Attendees { get; set; }
@@ -16,9 +15,7 @@ namespace ApiSdk.Me.FindMeetingTimes {
 #else
         public List<AttendeeBase> Attendees { get; set; }
 #endif
-        /// <summary>The isOrganizerOptional property</summary>
         public bool? IsOrganizerOptional { get; set; }
-        /// <summary>The locationConstraint property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.LocationConstraint? LocationConstraint { get; set; }
@@ -26,15 +23,10 @@ namespace ApiSdk.Me.FindMeetingTimes {
 #else
         public ApiSdk.Models.LocationConstraint LocationConstraint { get; set; }
 #endif
-        /// <summary>The maxCandidates property</summary>
         public int? MaxCandidates { get; set; }
-        /// <summary>The meetingDuration property</summary>
         public TimeSpan? MeetingDuration { get; set; }
-        /// <summary>The minimumAttendeePercentage property</summary>
         public double? MinimumAttendeePercentage { get; set; }
-        /// <summary>The returnSuggestionReasons property</summary>
         public bool? ReturnSuggestionReasons { get; set; }
-        /// <summary>The timeConstraint property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.TimeConstraint? TimeConstraint { get; set; }
@@ -52,7 +44,13 @@ namespace ApiSdk.Me.FindMeetingTimes {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static FindMeetingTimesPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static FindMeetingTimesPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new FindMeetingTimesPostRequestBody();
         }

@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
         /// <summary>Whether a phone is ready to be used for SMS sign-in or not. Possible values are: notSupported, notAllowedByPolicy, notEnabled, phoneNumberNotUnique, ready, or notConfigured, unknownFutureValue.</summary>
         public AuthenticationMethodSignInState? SmsSignInState { get; set; }
         /// <summary>
-        /// Instantiates a new PhoneAuthenticationMethod and sets the default values.
+        /// Instantiates a new phoneAuthenticationMethod and sets the default values.
         /// </summary>
         public PhoneAuthenticationMethod() : base() {
             OdataType = "#microsoft.graph.phoneAuthenticationMethod";
@@ -27,7 +27,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new PhoneAuthenticationMethod CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new PhoneAuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PhoneAuthenticationMethod();
         }

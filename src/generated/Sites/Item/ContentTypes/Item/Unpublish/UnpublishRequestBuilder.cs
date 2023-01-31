@@ -45,8 +45,8 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Unpublish {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (contentTypeId is not null) requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

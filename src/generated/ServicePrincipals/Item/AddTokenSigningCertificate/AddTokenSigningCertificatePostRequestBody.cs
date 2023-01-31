@@ -7,7 +7,6 @@ namespace ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate {
     public class AddTokenSigningCertificatePostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The displayName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -15,7 +14,6 @@ namespace ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The endDateTime property</summary>
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>
         /// Instantiates a new addTokenSigningCertificatePostRequestBody and sets the default values.
@@ -27,7 +25,13 @@ namespace ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static AddTokenSigningCertificatePostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static AddTokenSigningCertificatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AddTokenSigningCertificatePostRequestBody();
         }

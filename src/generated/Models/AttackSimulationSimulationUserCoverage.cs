@@ -21,7 +21,6 @@ namespace ApiSdk.Models {
         public int? CompromisedCount { get; set; }
         /// <summary>Date and time of the latest attack simulation and training campaign that the user was included in.</summary>
         public DateTimeOffset? LatestSimulationDateTime { get; set; }
-        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -41,7 +40,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static AttackSimulationSimulationUserCoverage CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static AttackSimulationSimulationUserCoverage CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AttackSimulationSimulationUserCoverage();
         }

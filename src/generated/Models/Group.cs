@@ -227,7 +227,6 @@ namespace ApiSdk.Models {
 #else
         public List<DirectoryObject> MembersWithLicenseErrors { get; set; }
 #endif
-        /// <summary>The onenote property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Onenote? Onenote { get; set; }
@@ -235,7 +234,6 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.Onenote Onenote { get; set; }
 #endif
-        /// <summary>The onPremisesDomainName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OnPremisesDomainName { get; set; }
@@ -245,7 +243,6 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Indicates the last time at which the group was synced with the on-premises directory.The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Read-only. Supports $filter (eq, ne, not, ge, le, in).</summary>
         public DateTimeOffset? OnPremisesLastSyncDateTime { get; set; }
-        /// <summary>The onPremisesNetBiosName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OnPremisesNetBiosName { get; set; }
@@ -430,7 +427,7 @@ namespace ApiSdk.Models {
         public string Visibility { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new group and sets the default values.
+        /// Instantiates a new Group and sets the default values.
         /// </summary>
         public Group() : base() {
             OdataType = "#microsoft.graph.group";
@@ -439,7 +436,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new Group CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new Group CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Group();
         }

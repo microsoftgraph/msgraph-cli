@@ -102,9 +102,9 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.DeltaWithToken {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -115,9 +115,9 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.DeltaWithToken {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Orderby = orderby;
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("drive%2Did", driveId);
-                requestInfo.PathParameters.Add("token", token);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (token is not null) requestInfo.PathParameters.Add("token", token);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -129,7 +129,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.DeltaWithToken {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -144,12 +144,18 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.DeltaWithToken {
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         /// <param name="token">Usage: token=&apos;{token}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public DeltaWithTokenRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string? token = default) {
+#nullable restore
+#else
         public DeltaWithTokenRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string token = default) {
+#endif
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/groups/{group%2Did}/drives/{drive%2Did}/root/microsoft.graph.delta(token='{token}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("token", token);
+            if (!string.IsNullOrWhiteSpace(token)) urlTplParams.Add("token", token);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class AudioRoutingGroup : Entity, IParsable {
-        /// <summary>The receivers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Receivers { get; set; }
@@ -13,9 +12,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> Receivers { get; set; }
 #endif
-        /// <summary>The routingMode property</summary>
         public ApiSdk.Models.RoutingMode? RoutingMode { get; set; }
-        /// <summary>The sources property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Sources { get; set; }
@@ -27,7 +24,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new AudioRoutingGroup CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new AudioRoutingGroup CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AudioRoutingGroup();
         }

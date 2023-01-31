@@ -30,16 +30,17 @@ namespace ApiSdk.Me.WipeManagedAppRegistrationsByDeviceTag {
             var command = new Command("post");
             command.Description = "Issues a wipe operation on an app registration with specified device tag.";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body", description: "The request body") {
+            var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WipeManagedAppRegistrationsByDeviceTagPostRequestBody>(WipeManagedAppRegistrationsByDeviceTagPostRequestBody.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -67,11 +68,10 @@ namespace ApiSdk.Me.WipeManagedAppRegistrationsByDeviceTag {
         /// <summary>
         /// Issues a wipe operation on an app registration with specified device tag.
         /// </summary>
-        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(WipeManagedAppRegistrationsByDeviceTagPostRequestBody body, Action<WipeManagedAppRegistrationsByDeviceTagRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(WipeManagedAppRegistrationsByDeviceTagPostRequestBody? body, Action<WipeManagedAppRegistrationsByDeviceTagRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(WipeManagedAppRegistrationsByDeviceTagPostRequestBody body, Action<WipeManagedAppRegistrationsByDeviceTagRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

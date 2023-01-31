@@ -7,7 +7,6 @@ namespace ApiSdk.DirectoryObjects.ValidateProperties {
     public class ValidatePropertiesPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The displayName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -15,7 +14,6 @@ namespace ApiSdk.DirectoryObjects.ValidateProperties {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The entityType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? EntityType { get; set; }
@@ -23,7 +21,6 @@ namespace ApiSdk.DirectoryObjects.ValidateProperties {
 #else
         public string EntityType { get; set; }
 #endif
-        /// <summary>The mailNickname property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MailNickname { get; set; }
@@ -31,7 +28,6 @@ namespace ApiSdk.DirectoryObjects.ValidateProperties {
 #else
         public string MailNickname { get; set; }
 #endif
-        /// <summary>The onBehalfOfUserId property</summary>
         public Guid? OnBehalfOfUserId { get; set; }
         /// <summary>
         /// Instantiates a new validatePropertiesPostRequestBody and sets the default values.
@@ -43,7 +39,13 @@ namespace ApiSdk.DirectoryObjects.ValidateProperties {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static ValidatePropertiesPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static ValidatePropertiesPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ValidatePropertiesPostRequestBody();
         }

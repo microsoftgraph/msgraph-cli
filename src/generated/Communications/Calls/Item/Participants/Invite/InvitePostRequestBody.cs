@@ -8,7 +8,6 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Invite {
     public class InvitePostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The clientContext property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ClientContext { get; set; }
@@ -16,7 +15,6 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Invite {
 #else
         public string ClientContext { get; set; }
 #endif
-        /// <summary>The participants property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<InvitationParticipantInfo>? Participants { get; set; }
@@ -34,7 +32,13 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Invite {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static InvitePostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static InvitePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new InvitePostRequestBody();
         }

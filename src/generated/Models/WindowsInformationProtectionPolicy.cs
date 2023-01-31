@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>
-    /// Policy for Windows information protection without MDM
-    /// </summary>
     public class WindowsInformationProtectionPolicy : WindowsInformationProtection, IParsable {
         /// <summary>Offline interval before app data is wiped (days)</summary>
         public int? DaysWithoutContactBeforeUnenroll { get; set; }
@@ -39,7 +36,7 @@ namespace ApiSdk.Models {
         /// <summary>Boolean value that sets Windows Hello for Business as a method for signing into Windows.</summary>
         public bool? WindowsHelloForBusinessBlocked { get; set; }
         /// <summary>
-        /// Instantiates a new windowsInformationProtectionPolicy and sets the default values.
+        /// Instantiates a new WindowsInformationProtectionPolicy and sets the default values.
         /// </summary>
         public WindowsInformationProtectionPolicy() : base() {
             OdataType = "#microsoft.graph.windowsInformationProtectionPolicy";
@@ -48,7 +45,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new WindowsInformationProtectionPolicy CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new WindowsInformationProtectionPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WindowsInformationProtectionPolicy();
         }

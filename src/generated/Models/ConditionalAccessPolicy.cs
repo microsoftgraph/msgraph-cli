@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class ConditionalAccessPolicy : Entity, IParsable {
-        /// <summary>The conditions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ConditionalAccessConditionSet? Conditions { get; set; }
@@ -15,7 +14,6 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Readonly.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -49,13 +47,18 @@ namespace ApiSdk.Models {
 #else
         public ConditionalAccessSessionControls SessionControls { get; set; }
 #endif
-        /// <summary>The state property</summary>
         public ConditionalAccessPolicyState? State { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new ConditionalAccessPolicy CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new ConditionalAccessPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConditionalAccessPolicy();
         }

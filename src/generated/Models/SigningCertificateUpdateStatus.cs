@@ -17,7 +17,6 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Date and time in ISO 8601 format and in UTC time when the certificate was last updated. Read-only.</summary>
         public DateTimeOffset? LastRunDateTime { get; set; }
-        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -35,7 +34,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static SigningCertificateUpdateStatus CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static SigningCertificateUpdateStatus CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SigningCertificateUpdateStatus();
         }

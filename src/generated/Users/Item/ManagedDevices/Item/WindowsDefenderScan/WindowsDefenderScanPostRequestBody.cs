@@ -7,7 +7,6 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsDefenderScan {
     public class WindowsDefenderScanPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The quickScan property</summary>
         public bool? QuickScan { get; set; }
         /// <summary>
         /// Instantiates a new windowsDefenderScanPostRequestBody and sets the default values.
@@ -19,7 +18,13 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsDefenderScan {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static WindowsDefenderScanPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static WindowsDefenderScanPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WindowsDefenderScanPostRequestBody();
         }

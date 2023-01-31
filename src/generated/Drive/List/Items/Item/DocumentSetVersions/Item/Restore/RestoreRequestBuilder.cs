@@ -45,8 +45,8 @@ namespace ApiSdk.Drive.List.Items.Item.DocumentSetVersions.Item.Restore {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
-                requestInfo.PathParameters.Add("documentSetVersion%2Did", documentSetVersionId);
+                if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                if (documentSetVersionId is not null) requestInfo.PathParameters.Add("documentSetVersion%2Did", documentSetVersionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

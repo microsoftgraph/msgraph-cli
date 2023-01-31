@@ -8,7 +8,6 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Attachm
     public class CreateUploadSessionPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The AttachmentItem property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.AttachmentItem? AttachmentItem { get; set; }
@@ -26,7 +25,13 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Attachm
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static CreateUploadSessionPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static CreateUploadSessionPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CreateUploadSessionPostRequestBody();
         }
@@ -35,7 +40,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Attachm
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"AttachmentItem", n => { AttachmentItem = n.GetObjectValue<ApiSdk.Models.AttachmentItem>(ApiSdk.Models.AttachmentItem.CreateFromDiscriminatorValue); } },
+                {"attachmentItem", n => { AttachmentItem = n.GetObjectValue<ApiSdk.Models.AttachmentItem>(ApiSdk.Models.AttachmentItem.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -44,7 +49,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Attachm
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ApiSdk.Models.AttachmentItem>("AttachmentItem", AttachmentItem);
+            writer.WriteObjectValue<ApiSdk.Models.AttachmentItem>("attachmentItem", AttachmentItem);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

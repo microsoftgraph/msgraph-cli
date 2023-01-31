@@ -7,7 +7,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite {
     public class UnfavoriteResponse : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The value property</summary>
         public bool? Value { get; set; }
         /// <summary>
         /// Instantiates a new unfavoriteResponse and sets the default values.
@@ -19,7 +18,13 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static UnfavoriteResponse CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static UnfavoriteResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UnfavoriteResponse();
         }

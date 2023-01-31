@@ -8,7 +8,6 @@ namespace ApiSdk.Communications.Calls.Item.Reject {
     public class RejectPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The callbackUri property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CallbackUri { get; set; }
@@ -16,7 +15,6 @@ namespace ApiSdk.Communications.Calls.Item.Reject {
 #else
         public string CallbackUri { get; set; }
 #endif
-        /// <summary>The reason property</summary>
         public RejectReason? Reason { get; set; }
         /// <summary>
         /// Instantiates a new rejectPostRequestBody and sets the default values.
@@ -28,7 +26,13 @@ namespace ApiSdk.Communications.Calls.Item.Reject {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static RejectPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static RejectPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RejectPostRequestBody();
         }

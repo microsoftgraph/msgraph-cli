@@ -8,7 +8,6 @@ namespace ApiSdk.Groups.Item.Drives.Item.Items.Item.Copy {
     public class CopyPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -16,7 +15,6 @@ namespace ApiSdk.Groups.Item.Drives.Item.Items.Item.Copy {
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The parentReference property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ItemReference? ParentReference { get; set; }
@@ -34,7 +32,13 @@ namespace ApiSdk.Groups.Item.Drives.Item.Items.Item.Copy {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static CopyPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static CopyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CopyPostRequestBody();
         }

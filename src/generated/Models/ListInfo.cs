@@ -11,7 +11,6 @@ namespace ApiSdk.Models {
         public bool? ContentTypesEnabled { get; set; }
         /// <summary>If true, indicates that the list is not normally visible in the SharePoint user experience.</summary>
         public bool? Hidden { get; set; }
-        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -37,7 +36,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static ListInfo CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static ListInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ListInfo();
         }

@@ -52,14 +52,14 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Photo.Va
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
-                requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
-                requestInfo.PathParameters.Add("contact%2Did", contactId);
+                if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
+                if (contactFolderId1 is not null) requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
+                if (contactId is not null) requestInfo.PathParameters.Add("contact%2Did", contactId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
@@ -102,12 +102,13 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Photo.Va
                 var contactId = invocationContext.ParseResult.GetValueForOption(contactIdOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                if (file is null || !file.Exists) return;
                 using var stream = file.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
-                requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
-                requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
-                requestInfo.PathParameters.Add("contact%2Did", contactId);
+                if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
+                if (contactFolderId1 is not null) requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
+                if (contactId is not null) requestInfo.PathParameters.Add("contact%2Did", contactId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

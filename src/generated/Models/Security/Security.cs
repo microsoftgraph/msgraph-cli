@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Security {
     public class Security : Entity, IParsable {
-        /// <summary>The alerts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ApiSdk.Models.Alert>? Alerts { get; set; }
@@ -21,7 +20,6 @@ namespace ApiSdk.Models.Security {
 #else
         public List<Alert> Alerts_v2 { get; set; }
 #endif
-        /// <summary>The attackSimulation property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.AttackSimulationRoot? AttackSimulation { get; set; }
@@ -29,7 +27,6 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.AttackSimulationRoot AttackSimulation { get; set; }
 #endif
-        /// <summary>The cases property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public CasesRoot? Cases { get; set; }
@@ -45,7 +42,6 @@ namespace ApiSdk.Models.Security {
 #else
         public List<Incident> Incidents { get; set; }
 #endif
-        /// <summary>The secureScoreControlProfiles property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ApiSdk.Models.SecureScoreControlProfile>? SecureScoreControlProfiles { get; set; }
@@ -53,7 +49,6 @@ namespace ApiSdk.Models.Security {
 #else
         public List<ApiSdk.Models.SecureScoreControlProfile> SecureScoreControlProfiles { get; set; }
 #endif
-        /// <summary>The secureScores property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ApiSdk.Models.SecureScore>? SecureScores { get; set; }
@@ -65,7 +60,13 @@ namespace ApiSdk.Models.Security {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new Security CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new Security CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Security();
         }

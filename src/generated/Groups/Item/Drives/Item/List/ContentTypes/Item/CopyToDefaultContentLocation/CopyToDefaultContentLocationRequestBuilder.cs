@@ -43,7 +43,7 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.CopyToDefaultCon
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var bodyOption = new Option<string>("--body", description: "The request body") {
+            var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -51,16 +51,17 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.CopyToDefaultCon
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var contentTypeId = invocationContext.ParseResult.GetValueForOption(contentTypeIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyToDefaultContentLocationPostRequestBody>(CopyToDefaultContentLocationPostRequestBody.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("drive%2Did", driveId);
-                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (contentTypeId is not null) requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -86,11 +87,10 @@ namespace ApiSdk.Groups.Item.Drives.Item.List.ContentTypes.Item.CopyToDefaultCon
         /// <summary>
         /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
         /// </summary>
-        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(CopyToDefaultContentLocationPostRequestBody body, Action<CopyToDefaultContentLocationRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(CopyToDefaultContentLocationPostRequestBody? body, Action<CopyToDefaultContentLocationRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(CopyToDefaultContentLocationPostRequestBody body, Action<CopyToDefaultContentLocationRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

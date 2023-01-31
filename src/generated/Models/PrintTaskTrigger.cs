@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class PrintTaskTrigger : Entity, IParsable {
-        /// <summary>The definition property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PrintTaskDefinition? Definition { get; set; }
@@ -13,13 +12,18 @@ namespace ApiSdk.Models {
 #else
         public PrintTaskDefinition Definition { get; set; }
 #endif
-        /// <summary>The event property</summary>
         public PrintEvent? Event { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new PrintTaskTrigger CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new PrintTaskTrigger CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrintTaskTrigger();
         }

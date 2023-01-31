@@ -56,9 +56,9 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Item.Ref {
                 var requestInfo = ToDeleteRequestInformation(q => {
                     if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
-                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
-                requestInfo.PathParameters.Add("educationCategory%2Did", educationCategoryId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                if (educationCategoryId is not null) requestInfo.PathParameters.Add("educationCategory%2Did", educationCategoryId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

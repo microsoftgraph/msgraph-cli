@@ -56,9 +56,9 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Item.Ref {
                 var requestInfo = ToDeleteRequestInformation(q => {
                     if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
-                requestInfo.PathParameters.Add("printerShare%2Did", printerShareId);
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (printerShareId is not null) requestInfo.PathParameters.Add("printerShare%2Did", printerShareId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

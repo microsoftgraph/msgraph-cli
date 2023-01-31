@@ -8,7 +8,6 @@ namespace ApiSdk.Groups.Item.Events.Item.SnoozeReminder {
     public class SnoozeReminderPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The NewReminderTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DateTimeTimeZone? NewReminderTime { get; set; }
@@ -26,7 +25,13 @@ namespace ApiSdk.Groups.Item.Events.Item.SnoozeReminder {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static SnoozeReminderPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static SnoozeReminderPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SnoozeReminderPostRequestBody();
         }
@@ -35,7 +40,7 @@ namespace ApiSdk.Groups.Item.Events.Item.SnoozeReminder {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"NewReminderTime", n => { NewReminderTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                {"newReminderTime", n => { NewReminderTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -44,7 +49,7 @@ namespace ApiSdk.Groups.Item.Events.Item.SnoozeReminder {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<DateTimeTimeZone>("NewReminderTime", NewReminderTime);
+            writer.WriteObjectValue<DateTimeTimeZone>("newReminderTime", NewReminderTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

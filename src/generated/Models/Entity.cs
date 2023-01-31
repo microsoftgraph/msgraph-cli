@@ -19,7 +19,6 @@ namespace ApiSdk.Models {
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -37,7 +36,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static Entity CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static Entity CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
@@ -164,6 +169,12 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.crossTenantAccessPolicyConfigurationDefault" => new CrossTenantAccessPolicyConfigurationDefault(),
                 "#microsoft.graph.dataPolicyOperation" => new DataPolicyOperation(),
                 "#microsoft.graph.defaultManagedAppProtection" => new DefaultManagedAppProtection(),
+                "#microsoft.graph.delegatedAdminAccessAssignment" => new DelegatedAdminAccessAssignment(),
+                "#microsoft.graph.delegatedAdminCustomer" => new DelegatedAdminCustomer(),
+                "#microsoft.graph.delegatedAdminRelationship" => new DelegatedAdminRelationship(),
+                "#microsoft.graph.delegatedAdminRelationshipOperation" => new DelegatedAdminRelationshipOperation(),
+                "#microsoft.graph.delegatedAdminRelationshipRequest" => new DelegatedAdminRelationshipRequest(),
+                "#microsoft.graph.delegatedAdminServiceManagementDetail" => new DelegatedAdminServiceManagementDetail(),
                 "#microsoft.graph.delegatedPermissionClassification" => new DelegatedPermissionClassification(),
                 "#microsoft.graph.detectedApp" => new DetectedApp(),
                 "#microsoft.graph.device" => new Device(),

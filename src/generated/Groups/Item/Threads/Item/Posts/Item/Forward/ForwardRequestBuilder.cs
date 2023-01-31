@@ -43,7 +43,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Forward {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var bodyOption = new Option<string>("--body", description: "The request body") {
+            var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -51,16 +51,17 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Forward {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var conversationThreadId = invocationContext.ParseResult.GetValueForOption(conversationThreadIdOption);
                 var postId = invocationContext.ParseResult.GetValueForOption(postIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ForwardPostRequestBody>(ForwardPostRequestBody.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
-                requestInfo.PathParameters.Add("post%2Did", postId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (conversationThreadId is not null) requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
+                if (postId is not null) requestInfo.PathParameters.Add("post%2Did", postId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -86,11 +87,10 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Forward {
         /// <summary>
         /// Forward a post to a recipient. You can specify both the parent conversation and thread in the request, or, you can specify just the parent thread without the parent conversation. 
         /// </summary>
-        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ForwardPostRequestBody body, Action<ForwardRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ForwardPostRequestBody? body, Action<ForwardRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(ForwardPostRequestBody body, Action<ForwardRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

@@ -40,7 +40,7 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("printer%2Did", printerId);
+                if (printerId is not null) requestInfo.PathParameters.Add("printer%2Did", printerId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

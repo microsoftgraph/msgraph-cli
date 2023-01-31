@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class X509CertificateUserBindingCollectionResponse : BaseCollectionPaginationCountResponse, IParsable {
-        /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<X509CertificateUserBinding>? Value { get; set; }
@@ -17,7 +16,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new X509CertificateUserBindingCollectionResponse CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new X509CertificateUserBindingCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new X509CertificateUserBindingCollectionResponse();
         }

@@ -45,8 +45,8 @@ namespace ApiSdk.Users.Item.Messages.Item.Send {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("message%2Did", messageId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

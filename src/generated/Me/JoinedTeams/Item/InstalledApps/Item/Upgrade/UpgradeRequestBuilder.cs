@@ -45,8 +45,8 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item.Upgrade {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (teamsAppInstallationId is not null) requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

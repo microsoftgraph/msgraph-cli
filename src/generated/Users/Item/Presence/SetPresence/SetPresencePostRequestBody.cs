@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Users.Item.Presence.SetPresence {
     public class SetPresencePostRequestBody : IAdditionalDataHolder, IParsable {
-        /// <summary>The activity property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Activity { get; set; }
@@ -15,7 +14,6 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The availability property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Availability { get; set; }
@@ -23,9 +21,7 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
 #else
         public string Availability { get; set; }
 #endif
-        /// <summary>The expirationDuration property</summary>
         public TimeSpan? ExpirationDuration { get; set; }
-        /// <summary>The sessionId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SessionId { get; set; }
@@ -43,7 +39,13 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static SetPresencePostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static SetPresencePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SetPresencePostRequestBody();
         }

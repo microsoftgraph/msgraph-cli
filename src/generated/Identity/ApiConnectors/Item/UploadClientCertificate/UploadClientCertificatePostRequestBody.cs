@@ -7,7 +7,6 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
     public class UploadClientCertificatePostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The password property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Password { get; set; }
@@ -15,7 +14,6 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
 #else
         public string Password { get; set; }
 #endif
-        /// <summary>The pkcs12Value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Pkcs12Value { get; set; }
@@ -33,7 +31,13 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static UploadClientCertificatePostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static UploadClientCertificatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UploadClientCertificatePostRequestBody();
         }

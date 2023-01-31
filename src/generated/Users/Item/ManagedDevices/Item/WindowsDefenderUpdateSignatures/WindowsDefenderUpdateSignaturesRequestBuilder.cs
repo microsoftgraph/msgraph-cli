@@ -44,8 +44,8 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsDefenderUpdateSignatures 
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("managedDevice%2Did", managedDeviceId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (managedDeviceId is not null) requestInfo.PathParameters.Add("managedDevice%2Did", managedDeviceId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

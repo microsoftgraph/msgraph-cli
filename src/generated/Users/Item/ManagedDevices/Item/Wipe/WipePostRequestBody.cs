@@ -7,11 +7,8 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.Wipe {
     public class WipePostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The keepEnrollmentData property</summary>
         public bool? KeepEnrollmentData { get; set; }
-        /// <summary>The keepUserData property</summary>
         public bool? KeepUserData { get; set; }
-        /// <summary>The macOsUnlockCode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MacOsUnlockCode { get; set; }
@@ -19,7 +16,6 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.Wipe {
 #else
         public string MacOsUnlockCode { get; set; }
 #endif
-        /// <summary>The persistEsimDataPlan property</summary>
         public bool? PersistEsimDataPlan { get; set; }
         /// <summary>
         /// Instantiates a new wipePostRequestBody and sets the default values.
@@ -31,7 +27,13 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.Wipe {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static WipePostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static WipePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WipePostRequestBody();
         }

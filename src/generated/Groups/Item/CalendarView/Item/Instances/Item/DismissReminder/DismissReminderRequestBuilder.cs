@@ -50,9 +50,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.DismissReminder {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("event%2Did", eventId);
-                requestInfo.PathParameters.Add("event%2Did1", eventId1);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
+                if (eventId1 is not null) requestInfo.PathParameters.Add("event%2Did1", eventId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

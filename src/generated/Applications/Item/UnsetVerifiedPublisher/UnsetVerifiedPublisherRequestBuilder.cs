@@ -40,7 +40,7 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("application%2Did", applicationId);
+                if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

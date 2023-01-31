@@ -15,7 +15,6 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.AllowInvitesFrom? AllowInvitesFrom { get; set; }
         /// <summary>To disable the use of MSOL PowerShell set this property to true. This will also disable user-based access to the legacy service endpoint used by MSOL PowerShell. This does not affect Azure AD Connect or Microsoft Graph.</summary>
         public bool? BlockMsolPowerShell { get; set; }
-        /// <summary>The defaultUserRolePermissions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.DefaultUserRolePermissions? DefaultUserRolePermissions { get; set; }
@@ -35,7 +34,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new AuthorizationPolicy CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new AuthorizationPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AuthorizationPolicy();
         }

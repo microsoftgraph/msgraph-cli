@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class EducationSubmission : Entity, IParsable {
-        /// <summary>The outcomes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<EducationOutcome>? Outcomes { get; set; }
@@ -31,7 +30,6 @@ namespace ApiSdk.Models {
 #else
         public EducationSubmissionRecipient Recipient { get; set; }
 #endif
-        /// <summary>The resources property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<EducationSubmissionResource>? Resources { get; set; }
@@ -69,7 +67,6 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Moment in time when the submission was moved into the submitted state. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? SubmittedDateTime { get; private set; }
-        /// <summary>The submittedResources property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<EducationSubmissionResource>? SubmittedResources { get; set; }
@@ -91,7 +88,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new EducationSubmission CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new EducationSubmission CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationSubmission();
         }

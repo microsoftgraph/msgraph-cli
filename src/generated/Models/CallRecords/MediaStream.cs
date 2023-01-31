@@ -47,7 +47,6 @@ namespace ApiSdk.Models.CallRecords {
         public float? MaxRatioOfConcealedSamples { get; set; }
         /// <summary>Maximum network propagation round-trip time computed as specified in [RFC 3550][], denoted in [ISO 8601][] format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
         public TimeSpan? MaxRoundTripTime { get; set; }
-        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -61,7 +60,6 @@ namespace ApiSdk.Models.CallRecords {
         public float? PostForwardErrorCorrectionPacketLossRate { get; set; }
         /// <summary>UTC time when the stream started. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? StartDateTime { get; set; }
-        /// <summary>The streamDirection property</summary>
         public MediaStreamDirection? StreamDirection { get; set; }
         /// <summary>Unique identifier for the stream.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -85,7 +83,13 @@ namespace ApiSdk.Models.CallRecords {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static MediaStream CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static MediaStream CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MediaStream();
         }

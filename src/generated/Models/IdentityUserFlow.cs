@@ -5,15 +5,19 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class IdentityUserFlow : Entity, IParsable {
-        /// <summary>The userFlowType property</summary>
         public ApiSdk.Models.UserFlowType? UserFlowType { get; set; }
-        /// <summary>The userFlowTypeVersion property</summary>
         public float? UserFlowTypeVersion { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new IdentityUserFlow CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new IdentityUserFlow CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {

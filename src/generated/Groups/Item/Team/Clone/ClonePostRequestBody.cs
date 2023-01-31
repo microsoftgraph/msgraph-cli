@@ -8,7 +8,6 @@ namespace ApiSdk.Groups.Item.Team.Clone {
     public class ClonePostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The classification property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Classification { get; set; }
@@ -16,7 +15,6 @@ namespace ApiSdk.Groups.Item.Team.Clone {
 #else
         public string Classification { get; set; }
 #endif
-        /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -24,7 +22,6 @@ namespace ApiSdk.Groups.Item.Team.Clone {
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -32,7 +29,6 @@ namespace ApiSdk.Groups.Item.Team.Clone {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The mailNickname property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MailNickname { get; set; }
@@ -40,9 +36,7 @@ namespace ApiSdk.Groups.Item.Team.Clone {
 #else
         public string MailNickname { get; set; }
 #endif
-        /// <summary>The partsToClone property</summary>
         public ClonableTeamParts? PartsToClone { get; set; }
-        /// <summary>The visibility property</summary>
         public TeamVisibilityType? Visibility { get; set; }
         /// <summary>
         /// Instantiates a new clonePostRequestBody and sets the default values.
@@ -54,7 +48,13 @@ namespace ApiSdk.Groups.Item.Team.Clone {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static ClonePostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static ClonePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ClonePostRequestBody();
         }

@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class TodoTask : Entity, IParsable {
-        /// <summary>The attachments property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AttachmentBase>? Attachments { get; set; }
@@ -13,7 +12,6 @@ namespace ApiSdk.Models {
 #else
         public List<AttachmentBase> Attachments { get; set; }
 #endif
-        /// <summary>The attachmentSessions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AttachmentSession>? AttachmentSessions { get; set; }
@@ -73,9 +71,7 @@ namespace ApiSdk.Models {
 #else
         public List<Extension> Extensions { get; set; }
 #endif
-        /// <summary>The hasAttachments property</summary>
         public bool? HasAttachments { get; set; }
-        /// <summary>The importance property</summary>
         public ApiSdk.Models.Importance? Importance { get; set; }
         /// <summary>Set to true if an alert is set to remind the user of the task.</summary>
         public bool? IsReminderOn { get; set; }
@@ -105,7 +101,6 @@ namespace ApiSdk.Models {
 #else
         public DateTimeTimeZone ReminderDateTime { get; set; }
 #endif
-        /// <summary>The startDateTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DateTimeTimeZone? StartDateTime { get; set; }
@@ -113,7 +108,6 @@ namespace ApiSdk.Models {
 #else
         public DateTimeTimeZone StartDateTime { get; set; }
 #endif
-        /// <summary>The status property</summary>
         public TaskStatus? Status { get; set; }
         /// <summary>A brief description of the task.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -127,7 +121,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new TodoTask CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new TodoTask CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TodoTask();
         }

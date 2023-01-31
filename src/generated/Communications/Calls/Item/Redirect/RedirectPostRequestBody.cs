@@ -8,7 +8,6 @@ namespace ApiSdk.Communications.Calls.Item.Redirect {
     public class RedirectPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The callbackUri property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CallbackUri { get; set; }
@@ -16,7 +15,6 @@ namespace ApiSdk.Communications.Calls.Item.Redirect {
 #else
         public string CallbackUri { get; set; }
 #endif
-        /// <summary>The targets property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<InvitationParticipantInfo>? Targets { get; set; }
@@ -24,7 +22,6 @@ namespace ApiSdk.Communications.Calls.Item.Redirect {
 #else
         public List<InvitationParticipantInfo> Targets { get; set; }
 #endif
-        /// <summary>The timeout property</summary>
         public int? Timeout { get; set; }
         /// <summary>
         /// Instantiates a new redirectPostRequestBody and sets the default values.
@@ -36,7 +33,13 @@ namespace ApiSdk.Communications.Calls.Item.Redirect {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static RedirectPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static RedirectPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RedirectPostRequestBody();
         }

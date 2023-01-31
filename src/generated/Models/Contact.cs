@@ -127,7 +127,6 @@ namespace ApiSdk.Models {
 #else
         public List<string> HomePhones { get; set; }
 #endif
-        /// <summary>The imAddresses property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? ImAddresses { get; set; }
@@ -135,7 +134,6 @@ namespace ApiSdk.Models {
 #else
         public List<string> ImAddresses { get; set; }
 #endif
-        /// <summary>The initials property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Initials { get; set; }
@@ -143,7 +141,6 @@ namespace ApiSdk.Models {
 #else
         public string Initials { get; set; }
 #endif
-        /// <summary>The jobTitle property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? JobTitle { get; set; }
@@ -151,7 +148,6 @@ namespace ApiSdk.Models {
 #else
         public string JobTitle { get; set; }
 #endif
-        /// <summary>The manager property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Manager { get; set; }
@@ -159,7 +155,6 @@ namespace ApiSdk.Models {
 #else
         public string Manager { get; set; }
 #endif
-        /// <summary>The middleName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MiddleName { get; set; }
@@ -167,7 +162,6 @@ namespace ApiSdk.Models {
 #else
         public string MiddleName { get; set; }
 #endif
-        /// <summary>The mobilePhone property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MobilePhone { get; set; }
@@ -183,7 +177,6 @@ namespace ApiSdk.Models {
 #else
         public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
 #endif
-        /// <summary>The nickName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NickName { get; set; }
@@ -191,7 +184,6 @@ namespace ApiSdk.Models {
 #else
         public string NickName { get; set; }
 #endif
-        /// <summary>The officeLocation property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OfficeLocation { get; set; }
@@ -199,7 +191,6 @@ namespace ApiSdk.Models {
 #else
         public string OfficeLocation { get; set; }
 #endif
-        /// <summary>The otherAddress property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PhysicalAddress? OtherAddress { get; set; }
@@ -207,7 +198,6 @@ namespace ApiSdk.Models {
 #else
         public PhysicalAddress OtherAddress { get; set; }
 #endif
-        /// <summary>The parentFolderId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ParentFolderId { get; set; }
@@ -215,7 +205,6 @@ namespace ApiSdk.Models {
 #else
         public string ParentFolderId { get; set; }
 #endif
-        /// <summary>The personalNotes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PersonalNotes { get; set; }
@@ -231,7 +220,6 @@ namespace ApiSdk.Models {
 #else
         public ProfilePhoto Photo { get; set; }
 #endif
-        /// <summary>The profession property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Profession { get; set; }
@@ -247,7 +235,6 @@ namespace ApiSdk.Models {
 #else
         public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
 #endif
-        /// <summary>The spouseName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SpouseName { get; set; }
@@ -255,7 +242,6 @@ namespace ApiSdk.Models {
 #else
         public string SpouseName { get; set; }
 #endif
-        /// <summary>The surname property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Surname { get; set; }
@@ -263,7 +249,6 @@ namespace ApiSdk.Models {
 #else
         public string Surname { get; set; }
 #endif
-        /// <summary>The title property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Title { get; set; }
@@ -271,7 +256,6 @@ namespace ApiSdk.Models {
 #else
         public string Title { get; set; }
 #endif
-        /// <summary>The yomiCompanyName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? YomiCompanyName { get; set; }
@@ -279,7 +263,6 @@ namespace ApiSdk.Models {
 #else
         public string YomiCompanyName { get; set; }
 #endif
-        /// <summary>The yomiGivenName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? YomiGivenName { get; set; }
@@ -287,7 +270,6 @@ namespace ApiSdk.Models {
 #else
         public string YomiGivenName { get; set; }
 #endif
-        /// <summary>The yomiSurname property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? YomiSurname { get; set; }
@@ -305,7 +287,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new Contact CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new Contact CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Contact();
         }

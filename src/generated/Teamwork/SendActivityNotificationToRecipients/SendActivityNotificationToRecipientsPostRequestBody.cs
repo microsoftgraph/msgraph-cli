@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Teamwork.SendActivityNotificationToRecipients {
     public class SendActivityNotificationToRecipientsPostRequestBody : IAdditionalDataHolder, IParsable {
-        /// <summary>The activityType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ActivityType { get; set; }
@@ -16,9 +15,7 @@ namespace ApiSdk.Teamwork.SendActivityNotificationToRecipients {
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The chainId property</summary>
         public long? ChainId { get; set; }
-        /// <summary>The previewText property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ItemBody? PreviewText { get; set; }
@@ -26,7 +23,6 @@ namespace ApiSdk.Teamwork.SendActivityNotificationToRecipients {
 #else
         public ItemBody PreviewText { get; set; }
 #endif
-        /// <summary>The recipients property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<TeamworkNotificationRecipient>? Recipients { get; set; }
@@ -34,7 +30,6 @@ namespace ApiSdk.Teamwork.SendActivityNotificationToRecipients {
 #else
         public List<TeamworkNotificationRecipient> Recipients { get; set; }
 #endif
-        /// <summary>The teamsAppId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TeamsAppId { get; set; }
@@ -42,7 +37,6 @@ namespace ApiSdk.Teamwork.SendActivityNotificationToRecipients {
 #else
         public string TeamsAppId { get; set; }
 #endif
-        /// <summary>The templateParameters property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ApiSdk.Models.KeyValuePair>? TemplateParameters { get; set; }
@@ -50,7 +44,6 @@ namespace ApiSdk.Teamwork.SendActivityNotificationToRecipients {
 #else
         public List<ApiSdk.Models.KeyValuePair> TemplateParameters { get; set; }
 #endif
-        /// <summary>The topic property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public TeamworkActivityTopic? Topic { get; set; }
@@ -68,7 +61,13 @@ namespace ApiSdk.Teamwork.SendActivityNotificationToRecipients {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static SendActivityNotificationToRecipientsPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static SendActivityNotificationToRecipientsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SendActivityNotificationToRecipientsPostRequestBody();
         }

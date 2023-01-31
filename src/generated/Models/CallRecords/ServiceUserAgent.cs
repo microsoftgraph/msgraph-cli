@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.CallRecords {
     public class ServiceUserAgent : UserAgent, IParsable {
-        /// <summary>The role property</summary>
         public ServiceRole? Role { get; set; }
         /// <summary>
         /// Instantiates a new ServiceUserAgent and sets the default values.
@@ -17,7 +16,13 @@ namespace ApiSdk.Models.CallRecords {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new ServiceUserAgent CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new ServiceUserAgent CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ServiceUserAgent();
         }

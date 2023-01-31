@@ -7,7 +7,6 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.Checkin {
     public class CheckinPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The checkInAs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CheckInAs { get; set; }
@@ -15,7 +14,6 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.Checkin {
 #else
         public string CheckInAs { get; set; }
 #endif
-        /// <summary>The comment property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Comment { get; set; }
@@ -33,7 +31,13 @@ namespace ApiSdk.Groups.Item.Drives.Item.Root.Checkin {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static CheckinPostRequestBody CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static CheckinPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CheckinPostRequestBody();
         }

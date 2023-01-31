@@ -44,8 +44,8 @@ namespace ApiSdk.Me.Chats.Item.Messages.Item.SoftDelete {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToPostRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("chat%2Did", chatId);
-                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
+                if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

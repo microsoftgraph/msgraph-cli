@@ -77,7 +77,6 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.MessageActionFlag? MessageActionFlag { get; set; }
         /// <summary>Indicates whether the owner of the mailbox must not be a recipient of an incoming message in order for the condition or exception to apply.</summary>
         public bool? NotSentToMe { get; set; }
-        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -145,7 +144,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static MessageRulePredicates CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static MessageRulePredicates CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MessageRulePredicates();
         }

@@ -56,9 +56,9 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item.Ref {
                 var requestInfo = ToDeleteRequestInformation(q => {
                     if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
-                requestInfo.PathParameters.Add("printerShare%2Did", printerShareId);
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (printerShareId is not null) requestInfo.PathParameters.Add("printerShare%2Did", printerShareId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

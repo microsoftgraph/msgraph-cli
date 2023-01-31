@@ -187,8 +187,8 @@ namespace ApiSdk.Reports {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
@@ -198,8 +198,8 @@ namespace ApiSdk.Reports {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -257,24 +257,25 @@ namespace ApiSdk.Reports {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ReportRoot>(ReportRoot.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -322,7 +323,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getEmailActivityCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetEmailActivityCountsWithPeriodRequestBuilder GetEmailActivityCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetEmailActivityCountsWithPeriodRequestBuilder GetEmailActivityCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetEmailActivityCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -330,7 +337,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getEmailActivityUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetEmailActivityUserCountsWithPeriodRequestBuilder GetEmailActivityUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetEmailActivityUserCountsWithPeriodRequestBuilder GetEmailActivityUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetEmailActivityUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -338,7 +351,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getEmailActivityUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetEmailActivityUserDetailWithDateRequestBuilder GetEmailActivityUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetEmailActivityUserDetailWithDateRequestBuilder GetEmailActivityUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetEmailActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -346,7 +365,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getEmailActivityUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetEmailActivityUserDetailWithPeriodRequestBuilder GetEmailActivityUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetEmailActivityUserDetailWithPeriodRequestBuilder GetEmailActivityUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetEmailActivityUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -354,7 +379,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getEmailAppUsageAppsUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetEmailAppUsageAppsUserCountsWithPeriodRequestBuilder GetEmailAppUsageAppsUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetEmailAppUsageAppsUserCountsWithPeriodRequestBuilder GetEmailAppUsageAppsUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetEmailAppUsageAppsUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -362,7 +393,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getEmailAppUsageUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetEmailAppUsageUserCountsWithPeriodRequestBuilder GetEmailAppUsageUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetEmailAppUsageUserCountsWithPeriodRequestBuilder GetEmailAppUsageUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetEmailAppUsageUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -370,7 +407,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getEmailAppUsageUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetEmailAppUsageUserDetailWithDateRequestBuilder GetEmailAppUsageUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetEmailAppUsageUserDetailWithDateRequestBuilder GetEmailAppUsageUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetEmailAppUsageUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -378,7 +421,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getEmailAppUsageUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetEmailAppUsageUserDetailWithPeriodRequestBuilder GetEmailAppUsageUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetEmailAppUsageUserDetailWithPeriodRequestBuilder GetEmailAppUsageUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetEmailAppUsageUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -386,7 +435,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getEmailAppUsageVersionsUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetEmailAppUsageVersionsUserCountsWithPeriodRequestBuilder GetEmailAppUsageVersionsUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetEmailAppUsageVersionsUserCountsWithPeriodRequestBuilder GetEmailAppUsageVersionsUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetEmailAppUsageVersionsUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -396,7 +451,13 @@ namespace ApiSdk.Reports {
         /// <param name="endDateTime">Usage: endDateTime={endDateTime}</param>
         /// <param name="groupId">Usage: groupId=&apos;{groupId}&apos;</param>
         /// <param name="startDateTime">Usage: startDateTime={startDateTime}</param>
-        public GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRequestBuilder GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTime(DateTimeOffset? endDateTime, string groupId, DateTimeOffset? startDateTime) {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRequestBuilder GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTime(DateTimeOffset? endDateTime, string? groupId, DateTimeOffset? startDateTime) {
+#nullable restore
+#else
+        public GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRequestBuilder GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTime(DateTimeOffset endDateTime, string groupId, DateTimeOffset startDateTime) {
+#endif
             _ = endDateTime ?? throw new ArgumentNullException(nameof(endDateTime));
             if(string.IsNullOrEmpty(groupId)) throw new ArgumentNullException(nameof(groupId));
             _ = startDateTime ?? throw new ArgumentNullException(nameof(startDateTime));
@@ -406,7 +467,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getM365AppPlatformUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetM365AppPlatformUserCountsWithPeriodRequestBuilder GetM365AppPlatformUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetM365AppPlatformUserCountsWithPeriodRequestBuilder GetM365AppPlatformUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetM365AppPlatformUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -414,7 +481,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getM365AppUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetM365AppUserCountsWithPeriodRequestBuilder GetM365AppUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetM365AppUserCountsWithPeriodRequestBuilder GetM365AppUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetM365AppUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -422,7 +495,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getM365AppUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetM365AppUserDetailWithDateRequestBuilder GetM365AppUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetM365AppUserDetailWithDateRequestBuilder GetM365AppUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetM365AppUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -430,7 +509,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getM365AppUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetM365AppUserDetailWithPeriodRequestBuilder GetM365AppUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetM365AppUserDetailWithPeriodRequestBuilder GetM365AppUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetM365AppUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -438,7 +523,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getMailboxUsageDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetMailboxUsageDetailWithPeriodRequestBuilder GetMailboxUsageDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetMailboxUsageDetailWithPeriodRequestBuilder GetMailboxUsageDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetMailboxUsageDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -446,7 +537,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getMailboxUsageMailboxCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetMailboxUsageMailboxCountsWithPeriodRequestBuilder GetMailboxUsageMailboxCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetMailboxUsageMailboxCountsWithPeriodRequestBuilder GetMailboxUsageMailboxCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetMailboxUsageMailboxCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -454,7 +551,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getMailboxUsageQuotaStatusMailboxCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder GetMailboxUsageQuotaStatusMailboxCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder GetMailboxUsageQuotaStatusMailboxCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -462,7 +565,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getMailboxUsageStorage method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetMailboxUsageStorageWithPeriodRequestBuilder GetMailboxUsageStorageWithPeriod(string? period) {
+#nullable restore
+#else
         public GetMailboxUsageStorageWithPeriodRequestBuilder GetMailboxUsageStorageWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetMailboxUsageStorageWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -488,7 +597,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOffice365ActiveUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOffice365ActiveUserCountsWithPeriodRequestBuilder GetOffice365ActiveUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOffice365ActiveUserCountsWithPeriodRequestBuilder GetOffice365ActiveUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOffice365ActiveUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -496,7 +611,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOffice365ActiveUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetOffice365ActiveUserDetailWithDateRequestBuilder GetOffice365ActiveUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetOffice365ActiveUserDetailWithDateRequestBuilder GetOffice365ActiveUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetOffice365ActiveUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -504,7 +625,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOffice365ActiveUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOffice365ActiveUserDetailWithPeriodRequestBuilder GetOffice365ActiveUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOffice365ActiveUserDetailWithPeriodRequestBuilder GetOffice365ActiveUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOffice365ActiveUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -512,7 +639,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOffice365GroupsActivityCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOffice365GroupsActivityCountsWithPeriodRequestBuilder GetOffice365GroupsActivityCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOffice365GroupsActivityCountsWithPeriodRequestBuilder GetOffice365GroupsActivityCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOffice365GroupsActivityCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -520,7 +653,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOffice365GroupsActivityDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetOffice365GroupsActivityDetailWithDateRequestBuilder GetOffice365GroupsActivityDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetOffice365GroupsActivityDetailWithDateRequestBuilder GetOffice365GroupsActivityDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetOffice365GroupsActivityDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -528,7 +667,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOffice365GroupsActivityDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOffice365GroupsActivityDetailWithPeriodRequestBuilder GetOffice365GroupsActivityDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOffice365GroupsActivityDetailWithPeriodRequestBuilder GetOffice365GroupsActivityDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOffice365GroupsActivityDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -536,7 +681,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOffice365GroupsActivityFileCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOffice365GroupsActivityFileCountsWithPeriodRequestBuilder GetOffice365GroupsActivityFileCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOffice365GroupsActivityFileCountsWithPeriodRequestBuilder GetOffice365GroupsActivityFileCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOffice365GroupsActivityFileCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -544,7 +695,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOffice365GroupsActivityGroupCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder GetOffice365GroupsActivityGroupCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder GetOffice365GroupsActivityGroupCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -552,7 +709,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOffice365GroupsActivityStorage method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOffice365GroupsActivityStorageWithPeriodRequestBuilder GetOffice365GroupsActivityStorageWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOffice365GroupsActivityStorageWithPeriodRequestBuilder GetOffice365GroupsActivityStorageWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOffice365GroupsActivityStorageWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -560,7 +723,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOffice365ServicesUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOffice365ServicesUserCountsWithPeriodRequestBuilder GetOffice365ServicesUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOffice365ServicesUserCountsWithPeriodRequestBuilder GetOffice365ServicesUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOffice365ServicesUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -568,7 +737,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOneDriveActivityFileCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOneDriveActivityFileCountsWithPeriodRequestBuilder GetOneDriveActivityFileCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOneDriveActivityFileCountsWithPeriodRequestBuilder GetOneDriveActivityFileCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOneDriveActivityFileCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -576,7 +751,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOneDriveActivityUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOneDriveActivityUserCountsWithPeriodRequestBuilder GetOneDriveActivityUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOneDriveActivityUserCountsWithPeriodRequestBuilder GetOneDriveActivityUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOneDriveActivityUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -584,7 +765,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOneDriveActivityUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetOneDriveActivityUserDetailWithDateRequestBuilder GetOneDriveActivityUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetOneDriveActivityUserDetailWithDateRequestBuilder GetOneDriveActivityUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetOneDriveActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -592,7 +779,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOneDriveActivityUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOneDriveActivityUserDetailWithPeriodRequestBuilder GetOneDriveActivityUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOneDriveActivityUserDetailWithPeriodRequestBuilder GetOneDriveActivityUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOneDriveActivityUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -600,7 +793,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOneDriveUsageAccountCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOneDriveUsageAccountCountsWithPeriodRequestBuilder GetOneDriveUsageAccountCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOneDriveUsageAccountCountsWithPeriodRequestBuilder GetOneDriveUsageAccountCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOneDriveUsageAccountCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -608,7 +807,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOneDriveUsageAccountDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetOneDriveUsageAccountDetailWithDateRequestBuilder GetOneDriveUsageAccountDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetOneDriveUsageAccountDetailWithDateRequestBuilder GetOneDriveUsageAccountDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetOneDriveUsageAccountDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -616,7 +821,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOneDriveUsageAccountDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOneDriveUsageAccountDetailWithPeriodRequestBuilder GetOneDriveUsageAccountDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOneDriveUsageAccountDetailWithPeriodRequestBuilder GetOneDriveUsageAccountDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOneDriveUsageAccountDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -624,7 +835,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOneDriveUsageFileCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOneDriveUsageFileCountsWithPeriodRequestBuilder GetOneDriveUsageFileCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOneDriveUsageFileCountsWithPeriodRequestBuilder GetOneDriveUsageFileCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOneDriveUsageFileCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -632,7 +849,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getOneDriveUsageStorage method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetOneDriveUsageStorageWithPeriodRequestBuilder GetOneDriveUsageStorageWithPeriod(string? period) {
+#nullable restore
+#else
         public GetOneDriveUsageStorageWithPeriodRequestBuilder GetOneDriveUsageStorageWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetOneDriveUsageStorageWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -642,7 +865,13 @@ namespace ApiSdk.Reports {
         /// <param name="endDateTime">Usage: endDateTime={endDateTime}</param>
         /// <param name="printerId">Usage: printerId=&apos;{printerId}&apos;</param>
         /// <param name="startDateTime">Usage: startDateTime={startDateTime}</param>
-        public GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRequestBuilder GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime(DateTimeOffset? endDateTime, string printerId, DateTimeOffset? startDateTime) {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRequestBuilder GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime(DateTimeOffset? endDateTime, string? printerId, DateTimeOffset? startDateTime) {
+#nullable restore
+#else
+        public GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRequestBuilder GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime(DateTimeOffset endDateTime, string printerId, DateTimeOffset startDateTime) {
+#endif
             _ = endDateTime ?? throw new ArgumentNullException(nameof(endDateTime));
             if(string.IsNullOrEmpty(printerId)) throw new ArgumentNullException(nameof(printerId));
             _ = startDateTime ?? throw new ArgumentNullException(nameof(startDateTime));
@@ -652,7 +881,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSharePointActivityFileCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSharePointActivityFileCountsWithPeriodRequestBuilder GetSharePointActivityFileCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSharePointActivityFileCountsWithPeriodRequestBuilder GetSharePointActivityFileCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSharePointActivityFileCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -660,7 +895,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSharePointActivityPages method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSharePointActivityPagesWithPeriodRequestBuilder GetSharePointActivityPagesWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSharePointActivityPagesWithPeriodRequestBuilder GetSharePointActivityPagesWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSharePointActivityPagesWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -668,7 +909,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSharePointActivityUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSharePointActivityUserCountsWithPeriodRequestBuilder GetSharePointActivityUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSharePointActivityUserCountsWithPeriodRequestBuilder GetSharePointActivityUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSharePointActivityUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -676,7 +923,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSharePointActivityUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetSharePointActivityUserDetailWithDateRequestBuilder GetSharePointActivityUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetSharePointActivityUserDetailWithDateRequestBuilder GetSharePointActivityUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetSharePointActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -684,7 +937,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSharePointActivityUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSharePointActivityUserDetailWithPeriodRequestBuilder GetSharePointActivityUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSharePointActivityUserDetailWithPeriodRequestBuilder GetSharePointActivityUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSharePointActivityUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -692,7 +951,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSharePointSiteUsageDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetSharePointSiteUsageDetailWithDateRequestBuilder GetSharePointSiteUsageDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetSharePointSiteUsageDetailWithDateRequestBuilder GetSharePointSiteUsageDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetSharePointSiteUsageDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -700,7 +965,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSharePointSiteUsageDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSharePointSiteUsageDetailWithPeriodRequestBuilder GetSharePointSiteUsageDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSharePointSiteUsageDetailWithPeriodRequestBuilder GetSharePointSiteUsageDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSharePointSiteUsageDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -708,7 +979,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSharePointSiteUsageFileCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSharePointSiteUsageFileCountsWithPeriodRequestBuilder GetSharePointSiteUsageFileCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSharePointSiteUsageFileCountsWithPeriodRequestBuilder GetSharePointSiteUsageFileCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSharePointSiteUsageFileCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -716,7 +993,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSharePointSiteUsagePages method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSharePointSiteUsagePagesWithPeriodRequestBuilder GetSharePointSiteUsagePagesWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSharePointSiteUsagePagesWithPeriodRequestBuilder GetSharePointSiteUsagePagesWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSharePointSiteUsagePagesWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -724,7 +1007,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSharePointSiteUsageSiteCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSharePointSiteUsageSiteCountsWithPeriodRequestBuilder GetSharePointSiteUsageSiteCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSharePointSiteUsageSiteCountsWithPeriodRequestBuilder GetSharePointSiteUsageSiteCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSharePointSiteUsageSiteCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -732,7 +1021,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSharePointSiteUsageStorage method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSharePointSiteUsageStorageWithPeriodRequestBuilder GetSharePointSiteUsageStorageWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSharePointSiteUsageStorageWithPeriodRequestBuilder GetSharePointSiteUsageStorageWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSharePointSiteUsageStorageWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -740,7 +1035,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessActivityCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessActivityCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessActivityCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessActivityCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -748,7 +1049,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessActivityUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessActivityUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessActivityUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessActivityUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -756,7 +1063,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessActivityUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder GetSkypeForBusinessActivityUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder GetSkypeForBusinessActivityUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -764,7 +1077,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessActivityUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessActivityUserDetailWithPeriodRequestBuilder GetSkypeForBusinessActivityUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessActivityUserDetailWithPeriodRequestBuilder GetSkypeForBusinessActivityUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessActivityUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -772,7 +1091,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessDeviceUsageDistributionUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -780,7 +1105,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessDeviceUsageUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessDeviceUsageUserCountsWithPeriodRequestBuilder GetSkypeForBusinessDeviceUsageUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessDeviceUsageUserCountsWithPeriodRequestBuilder GetSkypeForBusinessDeviceUsageUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessDeviceUsageUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -788,7 +1119,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessDeviceUsageUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetSkypeForBusinessDeviceUsageUserDetailWithDateRequestBuilder GetSkypeForBusinessDeviceUsageUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetSkypeForBusinessDeviceUsageUserDetailWithDateRequestBuilder GetSkypeForBusinessDeviceUsageUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetSkypeForBusinessDeviceUsageUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -796,7 +1133,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessDeviceUsageUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder GetSkypeForBusinessDeviceUsageUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder GetSkypeForBusinessDeviceUsageUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -804,7 +1147,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessOrganizerActivityCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessOrganizerActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessOrganizerActivityCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessOrganizerActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessOrganizerActivityCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessOrganizerActivityCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -812,7 +1161,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessOrganizerActivityMinuteCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessOrganizerActivityMinuteCountsWithPeriodRequestBuilder GetSkypeForBusinessOrganizerActivityMinuteCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessOrganizerActivityMinuteCountsWithPeriodRequestBuilder GetSkypeForBusinessOrganizerActivityMinuteCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessOrganizerActivityMinuteCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -820,7 +1175,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessOrganizerActivityUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessOrganizerActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessOrganizerActivityUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessOrganizerActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessOrganizerActivityUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessOrganizerActivityUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -828,7 +1189,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessParticipantActivityCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessParticipantActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessParticipantActivityCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessParticipantActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessParticipantActivityCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessParticipantActivityCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -836,7 +1203,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessParticipantActivityMinuteCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -844,7 +1217,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessParticipantActivityUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessParticipantActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessParticipantActivityUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessParticipantActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessParticipantActivityUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessParticipantActivityUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -852,7 +1231,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessPeerToPeerActivityCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessPeerToPeerActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessPeerToPeerActivityCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessPeerToPeerActivityCountsWithPeriodRequestBuilder GetSkypeForBusinessPeerToPeerActivityCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessPeerToPeerActivityCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -860,7 +1245,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessPeerToPeerActivityMinuteCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessPeerToPeerActivityMinuteCountsWithPeriodRequestBuilder GetSkypeForBusinessPeerToPeerActivityMinuteCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessPeerToPeerActivityMinuteCountsWithPeriodRequestBuilder GetSkypeForBusinessPeerToPeerActivityMinuteCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessPeerToPeerActivityMinuteCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -868,7 +1259,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getSkypeForBusinessPeerToPeerActivityUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetSkypeForBusinessPeerToPeerActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessPeerToPeerActivityUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetSkypeForBusinessPeerToPeerActivityUserCountsWithPeriodRequestBuilder GetSkypeForBusinessPeerToPeerActivityUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetSkypeForBusinessPeerToPeerActivityUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -876,7 +1273,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getTeamsDeviceUsageDistributionUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder GetTeamsDeviceUsageDistributionUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder GetTeamsDeviceUsageDistributionUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -884,7 +1287,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getTeamsDeviceUsageUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder GetTeamsDeviceUsageUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder GetTeamsDeviceUsageUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -892,7 +1301,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getTeamsDeviceUsageUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetTeamsDeviceUsageUserDetailWithDateRequestBuilder GetTeamsDeviceUsageUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetTeamsDeviceUsageUserDetailWithDateRequestBuilder GetTeamsDeviceUsageUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetTeamsDeviceUsageUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -900,7 +1315,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getTeamsDeviceUsageUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetTeamsDeviceUsageUserDetailWithPeriodRequestBuilder GetTeamsDeviceUsageUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetTeamsDeviceUsageUserDetailWithPeriodRequestBuilder GetTeamsDeviceUsageUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetTeamsDeviceUsageUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -908,7 +1329,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getTeamsUserActivityCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetTeamsUserActivityCountsWithPeriodRequestBuilder GetTeamsUserActivityCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetTeamsUserActivityCountsWithPeriodRequestBuilder GetTeamsUserActivityCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetTeamsUserActivityCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -916,7 +1343,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getTeamsUserActivityUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetTeamsUserActivityUserCountsWithPeriodRequestBuilder GetTeamsUserActivityUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetTeamsUserActivityUserCountsWithPeriodRequestBuilder GetTeamsUserActivityUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetTeamsUserActivityUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -924,7 +1357,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getTeamsUserActivityUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetTeamsUserActivityUserDetailWithDateRequestBuilder GetTeamsUserActivityUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetTeamsUserActivityUserDetailWithDateRequestBuilder GetTeamsUserActivityUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetTeamsUserActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -932,7 +1371,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getTeamsUserActivityUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetTeamsUserActivityUserDetailWithPeriodRequestBuilder GetTeamsUserActivityUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetTeamsUserActivityUserDetailWithPeriodRequestBuilder GetTeamsUserActivityUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetTeamsUserActivityUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -942,7 +1387,13 @@ namespace ApiSdk.Reports {
         /// <param name="endDateTime">Usage: endDateTime={endDateTime}</param>
         /// <param name="startDateTime">Usage: startDateTime={startDateTime}</param>
         /// <param name="userId">Usage: userId=&apos;{userId}&apos;</param>
-        public GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTimeRequestBuilder GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTime(DateTimeOffset? endDateTime, DateTimeOffset? startDateTime, string userId) {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTimeRequestBuilder GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTime(DateTimeOffset? endDateTime, DateTimeOffset? startDateTime, string? userId) {
+#nullable restore
+#else
+        public GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTimeRequestBuilder GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTime(DateTimeOffset endDateTime, DateTimeOffset startDateTime, string userId) {
+#endif
             _ = endDateTime ?? throw new ArgumentNullException(nameof(endDateTime));
             _ = startDateTime ?? throw new ArgumentNullException(nameof(startDateTime));
             if(string.IsNullOrEmpty(userId)) throw new ArgumentNullException(nameof(userId));
@@ -952,7 +1403,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerActivityCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetYammerActivityCountsWithPeriodRequestBuilder GetYammerActivityCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetYammerActivityCountsWithPeriodRequestBuilder GetYammerActivityCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetYammerActivityCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -960,7 +1417,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerActivityUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetYammerActivityUserCountsWithPeriodRequestBuilder GetYammerActivityUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetYammerActivityUserCountsWithPeriodRequestBuilder GetYammerActivityUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetYammerActivityUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -968,7 +1431,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerActivityUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetYammerActivityUserDetailWithDateRequestBuilder GetYammerActivityUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetYammerActivityUserDetailWithDateRequestBuilder GetYammerActivityUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetYammerActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -976,7 +1445,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerActivityUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetYammerActivityUserDetailWithPeriodRequestBuilder GetYammerActivityUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetYammerActivityUserDetailWithPeriodRequestBuilder GetYammerActivityUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetYammerActivityUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -984,7 +1459,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerDeviceUsageDistributionUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetYammerDeviceUsageDistributionUserCountsWithPeriodRequestBuilder GetYammerDeviceUsageDistributionUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetYammerDeviceUsageDistributionUserCountsWithPeriodRequestBuilder GetYammerDeviceUsageDistributionUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetYammerDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -992,7 +1473,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerDeviceUsageUserCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetYammerDeviceUsageUserCountsWithPeriodRequestBuilder GetYammerDeviceUsageUserCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetYammerDeviceUsageUserCountsWithPeriodRequestBuilder GetYammerDeviceUsageUserCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetYammerDeviceUsageUserCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -1000,7 +1487,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerDeviceUsageUserDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetYammerDeviceUsageUserDetailWithDateRequestBuilder GetYammerDeviceUsageUserDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetYammerDeviceUsageUserDetailWithDateRequestBuilder GetYammerDeviceUsageUserDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetYammerDeviceUsageUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -1008,7 +1501,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerDeviceUsageUserDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetYammerDeviceUsageUserDetailWithPeriodRequestBuilder GetYammerDeviceUsageUserDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetYammerDeviceUsageUserDetailWithPeriodRequestBuilder GetYammerDeviceUsageUserDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetYammerDeviceUsageUserDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -1016,7 +1515,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerGroupsActivityCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetYammerGroupsActivityCountsWithPeriodRequestBuilder GetYammerGroupsActivityCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetYammerGroupsActivityCountsWithPeriodRequestBuilder GetYammerGroupsActivityCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetYammerGroupsActivityCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -1024,7 +1529,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerGroupsActivityDetail method.
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public GetYammerGroupsActivityDetailWithDateRequestBuilder GetYammerGroupsActivityDetailWithDate(Date? date) {
+#nullable restore
+#else
+        public GetYammerGroupsActivityDetailWithDateRequestBuilder GetYammerGroupsActivityDetailWithDate(Date date) {
+#endif
             _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetYammerGroupsActivityDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
@@ -1032,7 +1543,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerGroupsActivityDetail method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetYammerGroupsActivityDetailWithPeriodRequestBuilder GetYammerGroupsActivityDetailWithPeriod(string? period) {
+#nullable restore
+#else
         public GetYammerGroupsActivityDetailWithPeriodRequestBuilder GetYammerGroupsActivityDetailWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetYammerGroupsActivityDetailWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -1040,7 +1557,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the getYammerGroupsActivityGroupCounts method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GetYammerGroupsActivityGroupCountsWithPeriodRequestBuilder GetYammerGroupsActivityGroupCountsWithPeriod(string? period) {
+#nullable restore
+#else
         public GetYammerGroupsActivityGroupCountsWithPeriodRequestBuilder GetYammerGroupsActivityGroupCountsWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new GetYammerGroupsActivityGroupCountsWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -1057,7 +1580,13 @@ namespace ApiSdk.Reports {
         /// <param name="skip">Usage: skip={skip}</param>
         /// <param name="skipToken">Usage: skipToken=&apos;{skipToken}&apos;</param>
         /// <param name="top">Usage: top={top}</param>
-        public ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipToken(string filter, int? skip, string skipToken, int? top) {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipToken(string? filter, int? skip, string? skipToken, int? top) {
+#nullable restore
+#else
+        public ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipToken(string filter, int skip, string skipToken, int top) {
+#endif
             if(string.IsNullOrEmpty(filter)) throw new ArgumentNullException(nameof(filter));
             _ = skip ?? throw new ArgumentNullException(nameof(skip));
             if(string.IsNullOrEmpty(skipToken)) throw new ArgumentNullException(nameof(skipToken));
@@ -1074,7 +1603,13 @@ namespace ApiSdk.Reports {
         /// Provides operations to call the managedDeviceEnrollmentTopFailures method.
         /// </summary>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder ManagedDeviceEnrollmentTopFailuresWithPeriod(string? period) {
+#nullable restore
+#else
         public ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder ManagedDeviceEnrollmentTopFailuresWithPeriod(string period) {
+#endif
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
         }
@@ -1111,7 +1646,7 @@ namespace ApiSdk.Reports {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ReportRoot body, Action<ReportsRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ReportRoot? body, Action<ReportsRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ReportRoot body, Action<ReportsRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

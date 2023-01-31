@@ -7,7 +7,6 @@ namespace ApiSdk.Models {
     public class MessageSecurityState : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The connectingIP property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ConnectingIP { get; set; }
@@ -15,7 +14,6 @@ namespace ApiSdk.Models {
 #else
         public string ConnectingIP { get; set; }
 #endif
-        /// <summary>The deliveryAction property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DeliveryAction { get; set; }
@@ -23,7 +21,6 @@ namespace ApiSdk.Models {
 #else
         public string DeliveryAction { get; set; }
 #endif
-        /// <summary>The deliveryLocation property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DeliveryLocation { get; set; }
@@ -31,7 +28,6 @@ namespace ApiSdk.Models {
 #else
         public string DeliveryLocation { get; set; }
 #endif
-        /// <summary>The directionality property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Directionality { get; set; }
@@ -39,7 +35,6 @@ namespace ApiSdk.Models {
 #else
         public string Directionality { get; set; }
 #endif
-        /// <summary>The internetMessageId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? InternetMessageId { get; set; }
@@ -47,7 +42,6 @@ namespace ApiSdk.Models {
 #else
         public string InternetMessageId { get; set; }
 #endif
-        /// <summary>The messageFingerprint property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MessageFingerprint { get; set; }
@@ -55,9 +49,7 @@ namespace ApiSdk.Models {
 #else
         public string MessageFingerprint { get; set; }
 #endif
-        /// <summary>The messageReceivedDateTime property</summary>
         public DateTimeOffset? MessageReceivedDateTime { get; set; }
-        /// <summary>The messageSubject property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MessageSubject { get; set; }
@@ -65,7 +57,6 @@ namespace ApiSdk.Models {
 #else
         public string MessageSubject { get; set; }
 #endif
-        /// <summary>The networkMessageId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NetworkMessageId { get; set; }
@@ -73,7 +64,6 @@ namespace ApiSdk.Models {
 #else
         public string NetworkMessageId { get; set; }
 #endif
-        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -91,7 +81,13 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static MessageSecurityState CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static MessageSecurityState CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MessageSecurityState();
         }

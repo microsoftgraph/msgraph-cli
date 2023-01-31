@@ -21,7 +21,6 @@ namespace ApiSdk.Models.ExternalConnectors {
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The groups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ExternalGroup>? Groups { get; set; }
@@ -29,7 +28,6 @@ namespace ApiSdk.Models.ExternalConnectors {
 #else
         public List<ExternalGroup> Groups { get; set; }
 #endif
-        /// <summary>The items property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ExternalItem>? Items { get; set; }
@@ -45,7 +43,6 @@ namespace ApiSdk.Models.ExternalConnectors {
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The operations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ConnectionOperation>? Operations { get; set; }
@@ -53,7 +50,6 @@ namespace ApiSdk.Models.ExternalConnectors {
 #else
         public List<ConnectionOperation> Operations { get; set; }
 #endif
-        /// <summary>The schema property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.ExternalConnectors.Schema? Schema { get; set; }
@@ -67,7 +63,13 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public static new ExternalConnection CreateFromDiscriminatorValue(IParseNode? parseNode) {
+#nullable restore
+#else
         public static new ExternalConnection CreateFromDiscriminatorValue(IParseNode parseNode) {
+#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ExternalConnection();
         }
