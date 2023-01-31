@@ -72,7 +72,6 @@ stages:
     dependsOn: [test]
     jobs:
       - job: build
-        dependsOn: [prepare]
         displayName: Build and publish
         strategy:
           matrix:
