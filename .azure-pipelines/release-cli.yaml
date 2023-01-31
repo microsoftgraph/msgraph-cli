@@ -101,7 +101,7 @@ stages:
 
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              Zip-BuildOutput -OutputDir '$(outputDir)-$(rid)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
+              Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
@@ -237,26 +237,14 @@ stages:
             displayName: Compute zip name
 
           - pwsh: |
-              # Get the archive name
-              # artifactsDownloadLocation = $(Pipeline.Workspace)/artifacts
-              # WORKING_DIR = $(artifactsDownloadLocation)/$(rid)
+              Import-Module $(powershellScriptsDir)/BuildTools.psm1
+
               $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
-              $zipPath = Join-Path -Path $downloadDir -ChildPath '$(ZIP_NAME)'
-              Write-Host $zipPath
               $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
-              # extractPath = $(artifactsDownloadLocation)/$(rid)/artifacts
-              Expand-Archive -Path $zipPath -DestinationPath $extractPath
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
+              Expand-EsrpArtifacts -ArtifactsDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
 
               $backupPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath backup
-              # backupPath = $(artifactsDownloadLocation)/$(rid)/backup
-              New-Item "$backupPath" -ItemType "Directory"
-              # Move non-exe items
-              Move-Item -Path $extractPath/* -Exclude mgc,mgc.exe -Destination "$backupPath"
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
-              # -Force so there's no confirmation
-              # -Recurse so the child items warning isn't shown
-              Remove-Item $downloadDir -Recurse -Force
+              Move-NonExecutableItems -SourcePath $extractPath -DestinationPath $backupPath -ExecutableItemNames mgc,mgc.exe
               Write-Host "##vso[task.setvariable variable=BACKUP_PATH]$backupPath"
             displayName: Extract zip
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
