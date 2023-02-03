@@ -41,7 +41,7 @@ function Compress-BuildOutput {
     }
 
     $zipName = Get-ZipName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier
-    $zipPath = Join-Path -Path $OutputDir -ChildPath $FileName
+    $zipPath = Join-Path -Path $OutputDir -ChildPath $zipName
 
     Compress-Archive -Path $OutputDir/* -DestinationPath $zipPath
     Remove-Item $OutputDir/*
