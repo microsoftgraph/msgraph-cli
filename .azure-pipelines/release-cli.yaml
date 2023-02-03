@@ -100,7 +100,8 @@ stages:
 
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -SourceDir '$(outputDir)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -CleanupSource
+              Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -SourceDir '$(outputDir)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
+            # condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
@@ -207,6 +208,7 @@ stages:
         pool:
           vmImage: $(vmImage)
         steps:
+          - checkout: none
           - pwsh: |
               Write-Verbose -Verbose 'pattern = ''$(pattern)'''
               Write-Verbose -Verbose 'zipTemplate = ''$(zipTemplate)'''
@@ -240,7 +242,7 @@ stages:
 
               $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
               $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
-              Expand-EsrpArtifacts -ArtifactsDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
+              Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
 
               $backupPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath backup
               Move-NonExecutableItems -SourcePath $extractPath -DestinationPath $backupPath -ExecutableItemNames mgc,mgc.exe
@@ -294,7 +296,7 @@ stages:
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
               $artifactsPath = "$(WORKING_DIR)/artifacts"
-              Compress-SignedFiles -ArtifactsDir $artifactsPath -ReportDir '$(WORKING_DIR)' -ExtraArtifactsDir '$(BACKUP_PATH)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)'
+              Compress-SignedFiles -SourceDir $artifactsPath -ReportDir '$(WORKING_DIR)' -ExtraSourceDir '$(BACKUP_PATH)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
 
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Compress signed files (Windows)
@@ -304,7 +306,7 @@ stages:
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
               $artifactsPath = "$(WORKING_DIR)/artifacts"
               $zipPath = Join-Path -Path $artifactsPath -ChildPath '$(ZIP_NAME)'
-              Update-SignedArchive -InputFile $zipPath -ArtifactsDir $artifactsPath -ReportDir '$(WORKING_DIR)' -ExtraArtifactsDir '$(BACKUP_PATH)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)'
+              Update-SignedArchive -InputFile $zipPath -TempDir $artifactsPath -ReportDir '$(WORKING_DIR)' -ExtraSourceDir '$(BACKUP_PATH)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Update signed files (MacOS)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
