@@ -105,7 +105,7 @@ stages:
 
           - task: PublishPipelineArtifact@1
             # Only publish artifacts if we're building a tag, main or testing a PR targeting main
-            condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
+            # condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
             inputs:
               artifact: build-output-$(rid)
               path: $(outputDir)-$(rid)
