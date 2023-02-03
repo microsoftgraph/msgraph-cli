@@ -160,6 +160,8 @@ function Update-SignedArchive {
         $TempDir,
         [string]
         $ReportDir,
+        [string]
+        $ExtraSourceDir,
         [Parameter(Mandatory)]
         [string]
         $OutputFile,
@@ -188,5 +190,5 @@ function Update-SignedArchive {
         Move-Item -Path "$TempDir/*.md" -Destination $ReportDir
     }
 
-    Compress-SignedFiles -SourceDir $TempDir -ExtraSourceDir $ExtraSourceDir -OutputFile $OutputFile -Cleanup
+    Compress-SignedFiles -SourceDir $TempDir -ExtraSourceDir $ExtraSourceDir -OutputFile $OutputFile -Cleanup $Cleanup
 }
