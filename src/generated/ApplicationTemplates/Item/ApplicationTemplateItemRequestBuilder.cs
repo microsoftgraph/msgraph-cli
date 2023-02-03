@@ -1,4 +1,4 @@
-using ApiSdk.ApplicationTemplates.Item.Instantiate;
+using ApiSdk.ApplicationTemplates.Item.MicrosoftGraphInstantiate;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,11 +26,11 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from applicationTemplates by key (id)
+        /// Delete entity from applicationTemplates
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from applicationTemplates by key (id)";
+            command.Description = "Delete entity from applicationTemplates";
             // Create options for all the parameters
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "key: id of applicationTemplate") {
             };
@@ -113,7 +113,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -123,25 +123,25 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// <summary>
         /// Provides operations to call the instantiate method.
         /// </summary>
-        public Command BuildInstantiateCommand() {
-            var command = new Command("instantiate");
+        public Command BuildMicrosoftGraphInstantiateCommand() {
+            var command = new Command("microsoft-graph-instantiate");
             command.Description = "Provides operations to call the instantiate method.";
             var builder = new InstantiateRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
-        /// Update entity in applicationTemplates by key (id)
+        /// Update entity in applicationTemplates
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in applicationTemplates by key (id)";
+            command.Description = "Update entity in applicationTemplates";
             // Create options for all the parameters
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "key: id of applicationTemplate") {
             };
             applicationTemplateIdOption.IsRequired = true;
             command.AddOption(applicationTemplateIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -179,7 +179,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -200,7 +200,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from applicationTemplates by key (id)
+        /// Delete entity from applicationTemplates
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -250,12 +250,13 @@ namespace ApiSdk.ApplicationTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in applicationTemplates by key (id)
+        /// Update entity in applicationTemplates
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApplicationTemplate? body, Action<ApplicationTemplateItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApplicationTemplate body, Action<ApplicationTemplateItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ApplicationTemplate body, Action<ApplicationTemplateItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

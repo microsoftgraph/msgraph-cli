@@ -1,4 +1,4 @@
-using ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instances.Item.GenerateDownloadUri;
+using ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instances.Item.MicrosoftGraphGenerateDownloadUri;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -65,16 +65,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             return command;
         }
         /// <summary>
-        /// Provides operations to call the generateDownloadUri method.
-        /// </summary>
-        public Command BuildGenerateDownloadUriCommand() {
-            var command = new Command("generate-download-uri");
-            command.Description = "Provides operations to call the generateDownloadUri method.";
-            var builder = new GenerateDownloadUriRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// If the accessReviewHistoryDefinition is a recurring definition, instances represent each recurrence. A definition that does not recur will have exactly one instance.
         /// </summary>
         public Command BuildGetCommand() {
@@ -134,11 +124,21 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the generateDownloadUri method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGenerateDownloadUriCommand() {
+            var command = new Command("microsoft-graph-generate-download-uri");
+            command.Description = "Provides operations to call the generateDownloadUri method.";
+            var builder = new GenerateDownloadUriRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -156,7 +156,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             };
             accessReviewHistoryInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryInstanceIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -196,7 +196,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -269,10 +269,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
         /// <summary>
         /// Update the navigation property instances in identityGovernance
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AccessReviewHistoryInstance? body, Action<AccessReviewHistoryInstanceItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AccessReviewHistoryInstance body, Action<AccessReviewHistoryInstanceItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(AccessReviewHistoryInstance body, Action<AccessReviewHistoryInstanceItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

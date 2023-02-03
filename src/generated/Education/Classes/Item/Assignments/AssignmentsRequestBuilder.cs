@@ -1,6 +1,6 @@
 using ApiSdk.Education.Classes.Item.Assignments.Count;
-using ApiSdk.Education.Classes.Item.Assignments.Delta;
 using ApiSdk.Education.Classes.Item.Assignments.Item;
+using ApiSdk.Education.Classes.Item.Assignments.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,12 +36,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             command.AddCommand(builder.BuildCategoriesCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphPublishCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSetUpFeedbackResourcesFolderCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSetUpResourcesFolderCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPublishCommand());
             command.AddCommand(builder.BuildResourcesCommand());
             command.AddCommand(builder.BuildRubricCommand());
-            command.AddCommand(builder.BuildSetUpFeedbackResourcesFolderCommand());
-            command.AddCommand(builder.BuildSetUpResourcesFolderCommand());
             command.AddCommand(builder.BuildSubmissionsCommand());
             return command;
         }
@@ -67,7 +67,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -105,7 +105,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -214,13 +214,23 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeltaCommand() {
+            var command = new Command("microsoft-graph-delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -235,12 +245,6 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public DeltaRequestBuilder Delta() {
-            return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Retrieve a list of assignment objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application executing with application permissions can see all assignment objects for the class. Students can only see assignments that are assigned to them.
@@ -271,10 +275,11 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// <summary>
         /// Create a new assignment. Only teachers in a class can create an assignment. Assignments start in the Draft state, which means that students will not see the assignment until publication.
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(EducationAssignment? body, Action<AssignmentsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(EducationAssignment body, Action<AssignmentsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(EducationAssignment body, Action<AssignmentsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

@@ -64,11 +64,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
             return command;
         }
         /// <summary>
-        /// Get requests from tenantRelationships
+        /// The requests associated with the delegated admin relationship.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get requests from tenantRelationships";
+            command.Description = "The requests associated with the delegated admin relationship.";
             // Create options for all the parameters
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
             };
@@ -123,7 +123,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -145,7 +145,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
             };
             delegatedAdminRelationshipRequestIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipRequestIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -185,7 +185,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -230,7 +230,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
             return requestInfo;
         }
         /// <summary>
-        /// Get requests from tenantRelationships
+        /// The requests associated with the delegated admin relationship.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -258,10 +258,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
         /// <summary>
         /// Update the navigation property requests in tenantRelationships
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(DelegatedAdminRelationshipRequest? body, Action<DelegatedAdminRelationshipRequestItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(DelegatedAdminRelationshipRequest body, Action<DelegatedAdminRelationshipRequestItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(DelegatedAdminRelationshipRequest body, Action<DelegatedAdminRelationshipRequestItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
@@ -299,7 +300,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
             }
         }
         /// <summary>
-        /// Get requests from tenantRelationships
+        /// The requests associated with the delegated admin relationship.
         /// </summary>
         public class DelegatedAdminRelationshipRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

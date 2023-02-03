@@ -124,7 +124,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Tasks.Item.Details {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -132,12 +132,12 @@ namespace ApiSdk.Me.Planner.Plans.Item.Tasks.Item.Details {
             return command;
         }
         /// <summary>
-        /// Update the properties of **plannerTaskDetails** object.
+        /// Update the navigation property details in me
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of **plannerTaskDetails** object.";
+            command.Description = "Update the navigation property details in me";
             // Create options for all the parameters
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
             };
@@ -147,7 +147,12 @@ namespace ApiSdk.Me.Planner.Plans.Item.Tasks.Item.Details {
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag value.") {
+                Arity = ArgumentArity.OneOrMore
+            };
+            ifMatchOption.IsRequired = true;
+            command.AddOption(ifMatchOption);
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -167,6 +172,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Tasks.Item.Details {
             command.SetHandler(async (invocationContext) => {
                 var plannerPlanId = invocationContext.ParseResult.GetValueForOption(plannerPlanIdOption);
                 var plannerTaskId = invocationContext.ParseResult.GetValueForOption(plannerTaskIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -182,12 +188,13 @@ namespace ApiSdk.Me.Planner.Plans.Item.Tasks.Item.Details {
                 });
                 if (plannerPlanId is not null) requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
                 if (plannerTaskId is not null) requestInfo.PathParameters.Add("plannerTask%2Did", plannerTaskId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -258,12 +265,13 @@ namespace ApiSdk.Me.Planner.Plans.Item.Tasks.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of **plannerTaskDetails** object.
+        /// Update the navigation property details in me
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PlannerTaskDetails? body, Action<DetailsRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PlannerTaskDetails body, Action<DetailsRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(PlannerTaskDetails body, Action<DetailsRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

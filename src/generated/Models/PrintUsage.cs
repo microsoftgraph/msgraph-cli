@@ -6,21 +6,19 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class PrintUsage : Entity, IParsable {
+        /// <summary>The completedBlackAndWhiteJobCount property</summary>
         public long? CompletedBlackAndWhiteJobCount { get; set; }
+        /// <summary>The completedColorJobCount property</summary>
         public long? CompletedColorJobCount { get; set; }
+        /// <summary>The incompleteJobCount property</summary>
         public long? IncompleteJobCount { get; set; }
+        /// <summary>The usageDate property</summary>
         public Date? UsageDate { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new PrintUsage CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new PrintUsage CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {

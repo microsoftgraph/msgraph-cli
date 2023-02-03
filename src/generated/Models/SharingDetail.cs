@@ -7,6 +7,7 @@ namespace ApiSdk.Models {
     public class SharingDetail : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -24,6 +25,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The date and time the file was last shared. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? SharedDateTime { get; set; }
+        /// <summary>The sharingReference property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ResourceReference? SharingReference { get; private set; }
@@ -57,13 +59,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static SharingDetail CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static SharingDetail CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SharingDetail();
         }

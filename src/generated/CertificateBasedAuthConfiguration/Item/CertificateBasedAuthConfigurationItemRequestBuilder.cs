@@ -25,11 +25,11 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from certificateBasedAuthConfiguration by key (id)
+        /// Delete entity from certificateBasedAuthConfiguration
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from certificateBasedAuthConfiguration by key (id)";
+            command.Description = "Delete entity from certificateBasedAuthConfiguration";
             // Create options for all the parameters
             var certificateBasedAuthConfigurationIdOption = new Option<string>("--certificate-based-auth-configuration-id", description: "key: id of certificateBasedAuthConfiguration") {
             };
@@ -58,11 +58,11 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from certificateBasedAuthConfiguration by key (id)
+        /// Get entity from certificateBasedAuthConfiguration by key
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from certificateBasedAuthConfiguration by key (id)";
+            command.Description = "Get entity from certificateBasedAuthConfiguration by key";
             // Create options for all the parameters
             var certificateBasedAuthConfigurationIdOption = new Option<string>("--certificate-based-auth-configuration-id", description: "key: id of certificateBasedAuthConfiguration") {
             };
@@ -111,7 +111,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -119,17 +119,17 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in certificateBasedAuthConfiguration by key (id)
+        /// Update entity in certificateBasedAuthConfiguration
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in certificateBasedAuthConfiguration by key (id)";
+            command.Description = "Update entity in certificateBasedAuthConfiguration";
             // Create options for all the parameters
             var certificateBasedAuthConfigurationIdOption = new Option<string>("--certificate-based-auth-configuration-id", description: "key: id of certificateBasedAuthConfiguration") {
             };
             certificateBasedAuthConfigurationIdOption.IsRequired = true;
             command.AddOption(certificateBasedAuthConfigurationIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -167,7 +167,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -188,7 +188,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from certificateBasedAuthConfiguration by key (id)
+        /// Delete entity from certificateBasedAuthConfiguration
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -212,7 +212,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from certificateBasedAuthConfiguration by key (id)
+        /// Get entity from certificateBasedAuthConfiguration by key
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -238,12 +238,13 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in certificateBasedAuthConfiguration by key (id)
+        /// Update entity in certificateBasedAuthConfiguration
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CertificateBasedAuthConfiguration? body, Action<CertificateBasedAuthConfigurationItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CertificateBasedAuthConfiguration body, Action<CertificateBasedAuthConfigurationItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CertificateBasedAuthConfiguration body, Action<CertificateBasedAuthConfigurationItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
@@ -281,7 +282,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
             }
         }
         /// <summary>
-        /// Get entity from certificateBasedAuthConfiguration by key (id)
+        /// Get entity from certificateBasedAuthConfiguration by key
         /// </summary>
         public class CertificateBasedAuthConfigurationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

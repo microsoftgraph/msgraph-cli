@@ -4,12 +4,12 @@ using ApiSdk.Groups.Item.Sites.Item.ContentTypes;
 using ApiSdk.Groups.Item.Sites.Item.Drive;
 using ApiSdk.Groups.Item.Sites.Item.Drives;
 using ApiSdk.Groups.Item.Sites.Item.ExternalColumns;
-using ApiSdk.Groups.Item.Sites.Item.GetActivitiesByInterval;
-using ApiSdk.Groups.Item.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
-using ApiSdk.Groups.Item.Sites.Item.GetApplicableContentTypesForListWithListId;
-using ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath;
 using ApiSdk.Groups.Item.Sites.Item.Items;
 using ApiSdk.Groups.Item.Sites.Item.Lists;
+using ApiSdk.Groups.Item.Sites.Item.MicrosoftGraphGetActivitiesByInterval;
+using ApiSdk.Groups.Item.Sites.Item.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
+using ApiSdk.Groups.Item.Sites.Item.MicrosoftGraphGetApplicableContentTypesForListWithListId;
+using ApiSdk.Groups.Item.Sites.Item.MicrosoftGraphGetByPathWithPath;
 using ApiSdk.Groups.Item.Sites.Item.Onenote;
 using ApiSdk.Groups.Item.Sites.Item.Operations;
 using ApiSdk.Groups.Item.Sites.Item.Permissions;
@@ -72,12 +72,13 @@ namespace ApiSdk.Groups.Item.Sites.Item {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.site entity.";
             var builder = new ContentTypesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAddCopyCommand());
-            command.AddCommand(builder.BuildAddCopyFromContentTypeHubCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddCopyCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddCopyFromContentTypeHubCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetCompatibleHubContentTypesCommand());
             return command;
         }
         /// <summary>
@@ -174,7 +175,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -204,6 +205,16 @@ namespace ApiSdk.Groups.Item.Sites.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetActivitiesByIntervalCommand() {
+            var command = new Command("microsoft-graph-get-activities-by-interval");
+            command.Description = "Provides operations to call the getActivitiesByInterval method.";
+            var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -252,7 +263,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -292,7 +303,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -367,22 +378,10 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
-        public GetActivitiesByIntervalRequestBuilder GetActivitiesByInterval() {
-            return new GetActivitiesByIntervalRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the getActivitiesByInterval method.
-        /// </summary>
         /// <param name="endDateTime">Usage: endDateTime=&apos;{endDateTime}&apos;</param>
         /// <param name="interval">Usage: interval=&apos;{interval}&apos;</param>
         /// <param name="startDateTime">Usage: startDateTime=&apos;{startDateTime}&apos;</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval(string? endDateTime, string? interval, string? startDateTime) {
-#nullable restore
-#else
-        public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval(string endDateTime, string interval, string startDateTime) {
-#endif
+        public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval(string endDateTime, string interval, string startDateTime) {
             if(string.IsNullOrEmpty(endDateTime)) throw new ArgumentNullException(nameof(endDateTime));
             if(string.IsNullOrEmpty(interval)) throw new ArgumentNullException(nameof(interval));
             if(string.IsNullOrEmpty(startDateTime)) throw new ArgumentNullException(nameof(startDateTime));
@@ -392,13 +391,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// Provides operations to call the getApplicableContentTypesForList method.
         /// </summary>
         /// <param name="listId">Usage: listId=&apos;{listId}&apos;</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public GetApplicableContentTypesForListWithListIdRequestBuilder GetApplicableContentTypesForListWithListId(string? listId) {
-#nullable restore
-#else
-        public GetApplicableContentTypesForListWithListIdRequestBuilder GetApplicableContentTypesForListWithListId(string listId) {
-#endif
+        public GetApplicableContentTypesForListWithListIdRequestBuilder MicrosoftGraphGetApplicableContentTypesForListWithListId(string listId) {
             if(string.IsNullOrEmpty(listId)) throw new ArgumentNullException(nameof(listId));
             return new GetApplicableContentTypesForListWithListIdRequestBuilder(PathParameters, RequestAdapter, listId);
         }
@@ -406,13 +399,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// Provides operations to call the getByPath method.
         /// </summary>
         /// <param name="path">Usage: path=&apos;{path}&apos;</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public GetByPathWithPathRequestBuilder GetByPathWithPath(string? path) {
-#nullable restore
-#else
-        public GetByPathWithPathRequestBuilder GetByPathWithPath(string path) {
-#endif
+        public GetByPathWithPathRequestBuilder MicrosoftGraphGetByPathWithPath(string path) {
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException(nameof(path));
             return new GetByPathWithPathRequestBuilder(PathParameters, RequestAdapter, path);
         }
@@ -445,10 +432,11 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// <summary>
         /// Update the navigation property sites in groups
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Site? body, Action<SiteItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Site body, Action<SiteItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Site body, Action<SiteItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

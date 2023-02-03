@@ -1,9 +1,9 @@
 using ApiSdk.Education.Me.Assignments.Item.Categories;
-using ApiSdk.Education.Me.Assignments.Item.Publish;
+using ApiSdk.Education.Me.Assignments.Item.MicrosoftGraphPublish;
+using ApiSdk.Education.Me.Assignments.Item.MicrosoftGraphSetUpFeedbackResourcesFolder;
+using ApiSdk.Education.Me.Assignments.Item.MicrosoftGraphSetUpResourcesFolder;
 using ApiSdk.Education.Me.Assignments.Item.Resources;
 using ApiSdk.Education.Me.Assignments.Item.Rubric;
-using ApiSdk.Education.Me.Assignments.Item.SetUpFeedbackResourcesFolder;
-using ApiSdk.Education.Me.Assignments.Item.SetUpResourcesFolder;
 using ApiSdk.Education.Me.Assignments.Item.Submissions;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -42,6 +42,7 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             command.AddCommand(builder.BuildRefCommand());
             return command;
         }
@@ -132,11 +133,41 @@ namespace ApiSdk.Education.Me.Assignments.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the publish method.
+        /// </summary>
+        public Command BuildMicrosoftGraphPublishCommand() {
+            var command = new Command("microsoft-graph-publish");
+            command.Description = "Provides operations to call the publish method.";
+            var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUpFeedbackResourcesFolder method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSetUpFeedbackResourcesFolderCommand() {
+            var command = new Command("microsoft-graph-set-up-feedback-resources-folder");
+            command.Description = "Provides operations to call the setUpFeedbackResourcesFolder method.";
+            var builder = new SetUpFeedbackResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUpResourcesFolder method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSetUpResourcesFolderCommand() {
+            var command = new Command("microsoft-graph-set-up-resources-folder");
+            command.Description = "Provides operations to call the setUpResourcesFolder method.";
+            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -150,7 +181,7 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -188,21 +219,11 @@ namespace ApiSdk.Education.Me.Assignments.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the publish method.
-        /// </summary>
-        public Command BuildPublishCommand() {
-            var command = new Command("publish");
-            command.Description = "Provides operations to call the publish method.";
-            var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -229,26 +250,6 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildRefCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setUpFeedbackResourcesFolder method.
-        /// </summary>
-        public Command BuildSetUpFeedbackResourcesFolderCommand() {
-            var command = new Command("set-up-feedback-resources-folder");
-            command.Description = "Provides operations to call the setUpFeedbackResourcesFolder method.";
-            var builder = new SetUpFeedbackResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setUpResourcesFolder method.
-        /// </summary>
-        public Command BuildSetUpResourcesFolderCommand() {
-            var command = new Command("set-up-resources-folder");
-            command.Description = "Provides operations to call the setUpResourcesFolder method.";
-            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -330,10 +331,11 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Update the navigation property assignments in education
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EducationAssignment? body, Action<EducationAssignmentItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<EducationAssignmentItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<EducationAssignmentItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

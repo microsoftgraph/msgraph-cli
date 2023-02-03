@@ -1,7 +1,7 @@
 using ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item.HostedContents;
+using ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item.MicrosoftGraphSoftDelete;
+using ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item.MicrosoftGraphUndoSoftDelete;
 using ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item.Replies;
-using ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item.SoftDelete;
-using ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item.UndoSoftDelete;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -139,7 +139,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -157,6 +157,26 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the softDelete method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSoftDeleteCommand() {
+            var command = new Command("microsoft-graph-soft-delete");
+            command.Description = "Provides operations to call the softDelete method.";
+            var builder = new SoftDeleteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the undoSoftDelete method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUndoSoftDeleteCommand() {
+            var command = new Command("microsoft-graph-undo-soft-delete");
+            command.Description = "Provides operations to call the undoSoftDelete method.";
+            var builder = new UndoSoftDeleteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -178,7 +198,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -220,7 +240,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -238,26 +258,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the softDelete method.
-        /// </summary>
-        public Command BuildSoftDeleteCommand() {
-            var command = new Command("soft-delete");
-            command.Description = "Provides operations to call the softDelete method.";
-            var builder = new SoftDeleteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the undoSoftDelete method.
-        /// </summary>
-        public Command BuildUndoSoftDeleteCommand() {
-            var command = new Command("undo-soft-delete");
-            command.Description = "Provides operations to call the undoSoftDelete method.";
-            var builder = new UndoSoftDeleteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -326,10 +327,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Messages.Item {
         /// <summary>
         /// Update the navigation property messages in me
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ChatMessage? body, Action<ChatMessageItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ChatMessage body, Action<ChatMessageItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ChatMessage body, Action<ChatMessageItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

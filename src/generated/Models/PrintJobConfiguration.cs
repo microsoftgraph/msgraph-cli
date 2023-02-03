@@ -27,6 +27,7 @@ namespace ApiSdk.Models {
 #else
         public List<PrintFinishing?> Finishings { get; set; }
 #endif
+        /// <summary>The fitPdfToPage property</summary>
         public bool? FitPdfToPage { get; set; }
         /// <summary>The input bin (tray) to use when printing. See the printer&apos;s capabilities for a list of supported input bins.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -52,6 +53,7 @@ namespace ApiSdk.Models {
 #else
         public string MediaSize { get; set; }
 #endif
+        /// <summary>The mediaType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MediaType { get; set; }
@@ -59,7 +61,9 @@ namespace ApiSdk.Models {
 #else
         public string MediaType { get; set; }
 #endif
+        /// <summary>The multipageLayout property</summary>
         public PrintMultipageLayout? MultipageLayout { get; set; }
+        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -67,7 +71,9 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
+        /// <summary>The orientation property</summary>
         public PrintOrientation? Orientation { get; set; }
+        /// <summary>The outputBin property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OutputBin { get; set; }
@@ -75,6 +81,7 @@ namespace ApiSdk.Models {
 #else
         public string OutputBin { get; set; }
 #endif
+        /// <summary>The pageRanges property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<IntegerRange>? PageRanges { get; set; }
@@ -82,8 +89,11 @@ namespace ApiSdk.Models {
 #else
         public List<IntegerRange> PageRanges { get; set; }
 #endif
+        /// <summary>The pagesPerSheet property</summary>
         public int? PagesPerSheet { get; set; }
+        /// <summary>The quality property</summary>
         public PrintQuality? Quality { get; set; }
+        /// <summary>The scaling property</summary>
         public PrintScaling? Scaling { get; set; }
         /// <summary>
         /// Instantiates a new printJobConfiguration and sets the default values.
@@ -95,13 +105,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static PrintJobConfiguration CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static PrintJobConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrintJobConfiguration();
         }

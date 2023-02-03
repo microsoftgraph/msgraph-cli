@@ -11,6 +11,7 @@ namespace ApiSdk.Models {
         public bool? EnableModification { get; set; }
         /// <summary>Indicates whether spelling suggestions are enabled. If enabled, the user will get the search results for the original search query and suggestions for spelling correction in the queryAlterationResponse property of the response for the typos in the query. Optional.</summary>
         public bool? EnableSuggestion { get; set; }
+        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -28,13 +29,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static SearchAlterationOptions CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static SearchAlterationOptions CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SearchAlterationOptions();
         }

@@ -82,11 +82,11 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             return command;
         }
         /// <summary>
-        /// Get attachments from me
+        /// A collection of file attachments for the task.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get attachments from me";
+            command.Description = "A collection of file attachments for the task.";
             // Create options for all the parameters
             var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
             };
@@ -140,7 +140,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -185,7 +185,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get attachments from me
+        /// A collection of file attachments for the task.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +227,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             }
         }
         /// <summary>
-        /// Get attachments from me
+        /// A collection of file attachments for the task.
         /// </summary>
         public class AttachmentBaseItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

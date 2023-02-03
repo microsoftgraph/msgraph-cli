@@ -1,20 +1,20 @@
 using ApiSdk.Groups.Item.Team.AllChannels;
-using ApiSdk.Groups.Item.Team.Archive;
 using ApiSdk.Groups.Item.Team.Channels;
-using ApiSdk.Groups.Item.Team.Clone;
-using ApiSdk.Groups.Item.Team.CompleteMigration;
 using ApiSdk.Groups.Item.Team.Group;
 using ApiSdk.Groups.Item.Team.IncomingChannels;
 using ApiSdk.Groups.Item.Team.InstalledApps;
 using ApiSdk.Groups.Item.Team.Members;
+using ApiSdk.Groups.Item.Team.MicrosoftGraphArchive;
+using ApiSdk.Groups.Item.Team.MicrosoftGraphClone;
+using ApiSdk.Groups.Item.Team.MicrosoftGraphCompleteMigration;
+using ApiSdk.Groups.Item.Team.MicrosoftGraphSendActivityNotification;
+using ApiSdk.Groups.Item.Team.MicrosoftGraphUnarchive;
 using ApiSdk.Groups.Item.Team.Operations;
 using ApiSdk.Groups.Item.Team.Photo;
 using ApiSdk.Groups.Item.Team.PrimaryChannel;
 using ApiSdk.Groups.Item.Team.Schedule;
-using ApiSdk.Groups.Item.Team.SendActivityNotification;
 using ApiSdk.Groups.Item.Team.Tags;
 using ApiSdk.Groups.Item.Team.Template;
-using ApiSdk.Groups.Item.Team.Unarchive;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,16 +54,6 @@ namespace ApiSdk.Groups.Item.Team {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the archive method.
-        /// </summary>
-        public Command BuildArchiveCommand() {
-            var command = new Command("archive");
-            command.Description = "Provides operations to call the archive method.";
-            var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the channels property of the microsoft.graph.team entity.
         /// </summary>
         public Command BuildChannelsCommand() {
@@ -74,26 +64,7 @@ namespace ApiSdk.Groups.Item.Team {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the clone method.
-        /// </summary>
-        public Command BuildCloneCommand() {
-            var command = new Command("clone");
-            command.Description = "Provides operations to call the clone method.";
-            var builder = new CloneRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the completeMigration method.
-        /// </summary>
-        public Command BuildCompleteMigrationCommand() {
-            var command = new Command("complete-migration");
-            command.Description = "Provides operations to call the completeMigration method.";
-            var builder = new CompleteMigrationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAllMessagesCommand());
             return command;
         }
         /// <summary>
@@ -183,7 +154,7 @@ namespace ApiSdk.Groups.Item.Team {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -232,11 +203,61 @@ namespace ApiSdk.Groups.Item.Team {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.team entity.";
             var builder = new MembersRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the archive method.
+        /// </summary>
+        public Command BuildMicrosoftGraphArchiveCommand() {
+            var command = new Command("microsoft-graph-archive");
+            command.Description = "Provides operations to call the archive method.";
+            var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the clone method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCloneCommand() {
+            var command = new Command("microsoft-graph-clone");
+            command.Description = "Provides operations to call the clone method.";
+            var builder = new CloneRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the completeMigration method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCompleteMigrationCommand() {
+            var command = new Command("microsoft-graph-complete-migration");
+            command.Description = "Provides operations to call the completeMigration method.";
+            var builder = new CompleteMigrationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendActivityNotification method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSendActivityNotificationCommand() {
+            var command = new Command("microsoft-graph-send-activity-notification");
+            command.Description = "Provides operations to call the sendActivityNotification method.";
+            var builder = new SendActivityNotificationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unarchive method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUnarchiveCommand() {
+            var command = new Command("microsoft-graph-unarchive");
+            command.Description = "Provides operations to call the unarchive method.";
+            var builder = new UnarchiveRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -264,7 +285,7 @@ namespace ApiSdk.Groups.Item.Team {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -302,7 +323,7 @@ namespace ApiSdk.Groups.Item.Team {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -329,15 +350,16 @@ namespace ApiSdk.Groups.Item.Team {
             var command = new Command("primary-channel");
             command.Description = "Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.";
             var builder = new PrimaryChannelRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCompleteMigrationCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFilesFolderCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildMessagesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCompleteMigrationCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphProvisionEmailCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRemoveEmailCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildProvisionEmailCommand());
-            command.AddCommand(builder.BuildRemoveEmailCommand());
             command.AddCommand(builder.BuildSharedWithTeamsCommand());
             command.AddCommand(builder.BuildTabsCommand());
             return command;
@@ -351,27 +373,17 @@ namespace ApiSdk.Groups.Item.Team {
             var builder = new ScheduleRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphShareCommand());
             command.AddCommand(builder.BuildOfferShiftRequestsCommand());
             command.AddCommand(builder.BuildOpenShiftChangeRequestsCommand());
             command.AddCommand(builder.BuildOpenShiftsCommand());
             command.AddCommand(builder.BuildPutCommand());
             command.AddCommand(builder.BuildSchedulingGroupsCommand());
-            command.AddCommand(builder.BuildShareCommand());
             command.AddCommand(builder.BuildShiftsCommand());
             command.AddCommand(builder.BuildSwapShiftsChangeRequestsCommand());
             command.AddCommand(builder.BuildTimeOffReasonsCommand());
             command.AddCommand(builder.BuildTimeOffRequestsCommand());
             command.AddCommand(builder.BuildTimesOffCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sendActivityNotification method.
-        /// </summary>
-        public Command BuildSendActivityNotificationCommand() {
-            var command = new Command("send-activity-notification");
-            command.Description = "Provides operations to call the sendActivityNotification method.";
-            var builder = new SendActivityNotificationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -395,16 +407,6 @@ namespace ApiSdk.Groups.Item.Team {
             command.Description = "Provides operations to manage the template property of the microsoft.graph.team entity.";
             var builder = new TemplateRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unarchive method.
-        /// </summary>
-        public Command BuildUnarchiveCommand() {
-            var command = new Command("unarchive");
-            command.Description = "Provides operations to call the unarchive method.";
-            var builder = new UnarchiveRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -473,10 +475,11 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Create a new team under a group. In order to create a team, the group must have a least one owner. If the group was created less than 15 minutes ago, it&apos;s possible for the Create team call to fail with a 404 error code due to replication delays. The recommended pattern is to retry the Create team call three times, with a 10 second delay between calls.
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Team? body, Action<TeamRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Team body, Action<TeamRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Team body, Action<TeamRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class ServiceHealthIssue : ServiceAnnouncementBase, IParsable {
+        /// <summary>The classification property</summary>
         public ServiceHealthClassificationType? Classification { get; set; }
         /// <summary>The feature name of the service issue.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -32,6 +33,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Indicates whether the issue is resolved.</summary>
         public bool? IsResolved { get; set; }
+        /// <summary>The origin property</summary>
         public ServiceHealthOrigin? Origin { get; set; }
         /// <summary>Collection of historical posts for the service issue.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -49,6 +51,7 @@ namespace ApiSdk.Models {
 #else
         public string Service { get; set; }
 #endif
+        /// <summary>The status property</summary>
         public ServiceHealthStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new ServiceHealthIssue and sets the default values.
@@ -60,13 +63,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new ServiceHealthIssue CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new ServiceHealthIssue CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ServiceHealthIssue();
         }

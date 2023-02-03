@@ -1,7 +1,7 @@
-using ApiSdk.IdentityProtection.RiskyServicePrincipals.ConfirmCompromised;
 using ApiSdk.IdentityProtection.RiskyServicePrincipals.Count;
-using ApiSdk.IdentityProtection.RiskyServicePrincipals.Dismiss;
 using ApiSdk.IdentityProtection.RiskyServicePrincipals.Item;
+using ApiSdk.IdentityProtection.RiskyServicePrincipals.MicrosoftGraphConfirmCompromised;
+using ApiSdk.IdentityProtection.RiskyServicePrincipals.MicrosoftGraphDismiss;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,16 +41,6 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the confirmCompromised method.
-        /// </summary>
-        public Command BuildConfirmCompromisedCommand() {
-            var command = new Command("confirm-compromised");
-            command.Description = "Provides operations to call the confirmCompromised method.";
-            var builder = new ConfirmCompromisedRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
         public Command BuildCountCommand() {
@@ -67,7 +57,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals {
             var command = new Command("create");
             command.Description = "Create new navigation property to riskyServicePrincipals for identityProtection";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -103,21 +93,11 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dismiss method.
-        /// </summary>
-        public Command BuildDismissCommand() {
-            var command = new Command("dismiss");
-            command.Description = "Provides operations to call the dismiss method.";
-            var builder = new DismissRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -216,13 +196,33 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the confirmCompromised method.
+        /// </summary>
+        public Command BuildMicrosoftGraphConfirmCompromisedCommand() {
+            var command = new Command("microsoft-graph-confirm-compromised");
+            command.Description = "Provides operations to call the confirmCompromised method.";
+            var builder = new ConfirmCompromisedRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dismiss method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDismissCommand() {
+            var command = new Command("microsoft-graph-dismiss");
+            command.Description = "Provides operations to call the dismiss method.";
+            var builder = new DismissRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -267,10 +267,11 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals {
         /// <summary>
         /// Create new navigation property to riskyServicePrincipals for identityProtection
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(RiskyServicePrincipal? body, Action<RiskyServicePrincipalsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(RiskyServicePrincipal body, Action<RiskyServicePrincipalsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(RiskyServicePrincipal body, Action<RiskyServicePrincipalsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

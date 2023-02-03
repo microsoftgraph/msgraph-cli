@@ -17,6 +17,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string BasicServiceSetIdentifier { get; set; }
 #endif
+        /// <summary>The connectionType property</summary>
         public NetworkConnectionType? ConnectionType { get; set; }
         /// <summary>Fraction of the call that the media endpoint detected the network delay was significant enough to impact the ability to have real-time two-way communication.</summary>
         public float? DelayEventRatio { get; set; }
@@ -46,7 +47,9 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string MacAddress { get; set; }
 #endif
+        /// <summary>The networkTransportProtocol property</summary>
         public ApiSdk.Models.CallRecords.NetworkTransportProtocol? NetworkTransportProtocol { get; set; }
+        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -94,6 +97,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public List<TraceRouteHop> TraceRouteHops { get; set; }
 #endif
+        /// <summary>The wifiBand property</summary>
         public ApiSdk.Models.CallRecords.WifiBand? WifiBand { get; set; }
         /// <summary>Estimated remaining battery charge in percentage reported by the media endpoint.</summary>
         public int? WifiBatteryCharge { get; set; }
@@ -115,6 +119,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string WifiMicrosoftDriverVersion { get; set; }
 #endif
+        /// <summary>The wifiRadioType property</summary>
         public ApiSdk.Models.CallRecords.WifiRadioType? WifiRadioType { get; set; }
         /// <summary>WiFi signal strength in percentage reported by the media endpoint.</summary>
         public int? WifiSignalStrength { get; set; }
@@ -144,13 +149,7 @@ namespace ApiSdk.Models.CallRecords {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static NetworkInfo CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static NetworkInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new NetworkInfo();
         }

@@ -1,9 +1,9 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.AccessPackagesIncompatibleWith;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.AssignmentPolicies;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Catalog;
-using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.GetApplicablePolicyRequirements;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.IncompatibleAccessPackages;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.IncompatibleGroups;
+using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.MicrosoftGraphGetApplicablePolicyRequirements;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -99,16 +99,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the getApplicablePolicyRequirements method.
-        /// </summary>
-        public Command BuildGetApplicablePolicyRequirementsCommand() {
-            var command = new Command("get-applicable-policy-requirements");
-            command.Description = "Provides operations to call the getApplicablePolicyRequirements method.";
-            var builder = new GetApplicablePolicyRequirementsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
         /// </summary>
         public Command BuildGetCommand() {
@@ -162,7 +152,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -196,6 +186,16 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getApplicablePolicyRequirements method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetApplicablePolicyRequirementsCommand() {
+            var command = new Command("microsoft-graph-get-applicable-policy-requirements");
+            command.Description = "Provides operations to call the getApplicablePolicyRequirements method.";
+            var builder = new GetApplicablePolicyRequirementsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Update the navigation property accessPackages in identityGovernance
         /// </summary>
         public Command BuildPatchCommand() {
@@ -206,7 +206,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -244,7 +244,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -317,10 +317,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// <summary>
         /// Update the navigation property accessPackages in identityGovernance
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AccessPackage? body, Action<AccessPackageItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AccessPackage body, Action<AccessPackageItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AccessPackage body, Action<AccessPackageItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

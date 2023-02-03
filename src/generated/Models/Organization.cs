@@ -101,6 +101,7 @@ namespace ApiSdk.Models {
         public DateTimeOffset? OnPremisesLastSyncDateTime { get; set; }
         /// <summary>true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced. Nullable. null if this object has never been synced from an on-premises directory (default).</summary>
         public bool? OnPremisesSyncEnabled { get; set; }
+        /// <summary>The type of partnership this tenant has with Microsoft. The possible values are: microsoftSupport, syndicatePartner, breadthPartner, breadthPartnerDelegatedAdmin, resellerPartnerDelegatedAdmin, valueAddedResellerPartnerDelegatedAdmin, unknownFutureValue. Nullable. For more information about the possible types, see partnerTenantType values.</summary>
         public ApiSdk.Models.PartnerTenantType? PartnerTenantType { get; set; }
         /// <summary>Postal code of the address for the organization.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -134,6 +135,7 @@ namespace ApiSdk.Models {
 #else
         public List<ProvisionedPlan> ProvisionedPlans { get; set; }
 #endif
+        /// <summary>The securityComplianceNotificationMails property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? SecurityComplianceNotificationMails { get; set; }
@@ -141,6 +143,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> SecurityComplianceNotificationMails { get; set; }
 #endif
+        /// <summary>The securityComplianceNotificationPhones property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? SecurityComplianceNotificationPhones { get; set; }
@@ -172,6 +175,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> TechnicalNotificationMails { get; set; }
 #endif
+        /// <summary>Not nullable. The tenant type option that was selected when the tenant was created. The possible values are:  AAD - An enterprise identity access management (IAM) service that serves business-to-employee and business-to-business (B2B) scenarios.  AAD B2C A customer identity access management (CIAM) service that serves business-to-consumer (B2C) scenarios.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TenantType { get; set; }
@@ -197,13 +201,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new Organization CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new Organization CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Organization();
         }

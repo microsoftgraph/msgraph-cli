@@ -1,4 +1,4 @@
-using ApiSdk.Me.Onenote.Notebooks.Item.CopyNotebook;
+using ApiSdk.Me.Onenote.Notebooks.Item.MicrosoftGraphCopyNotebook;
 using ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups;
 using ApiSdk.Me.Onenote.Notebooks.Item.Sections;
 using ApiSdk.Models;
@@ -27,16 +27,6 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the copyNotebook method.
-        /// </summary>
-        public Command BuildCopyNotebookCommand() {
-            var command = new Command("copy-notebook");
-            command.Description = "Provides operations to call the copyNotebook method.";
-            var builder = new CopyNotebookRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Delete navigation property notebooks for me
         /// </summary>
@@ -124,11 +114,21 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the copyNotebook method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCopyNotebookCommand() {
+            var command = new Command("microsoft-graph-copy-notebook");
+            command.Description = "Provides operations to call the copyNotebook method.";
+            var builder = new CopyNotebookRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -142,7 +142,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -180,7 +180,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -279,10 +279,11 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item {
         /// <summary>
         /// Update the navigation property notebooks in me
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Notebook? body, Action<NotebookItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Notebook body, Action<NotebookItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(Notebook body, Action<NotebookItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

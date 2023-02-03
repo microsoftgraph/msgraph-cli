@@ -1,10 +1,10 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.MailFolders.Item.ChildFolders;
-using ApiSdk.Users.Item.MailFolders.Item.Copy;
 using ApiSdk.Users.Item.MailFolders.Item.MessageRules;
 using ApiSdk.Users.Item.MailFolders.Item.Messages;
-using ApiSdk.Users.Item.MailFolders.Item.Move;
+using ApiSdk.Users.Item.MailFolders.Item.MicrosoftGraphCopy;
+using ApiSdk.Users.Item.MailFolders.Item.MicrosoftGraphMove;
 using ApiSdk.Users.Item.MailFolders.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.MailFolders.Item.SingleValueExtendedProperties;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,16 +42,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copy method.
-        /// </summary>
-        public Command BuildCopyCommand() {
-            var command = new Command("copy");
-            command.Description = "Provides operations to call the copy method.";
-            var builder = new CopyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -146,7 +137,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -177,13 +168,24 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the copy method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCopyCommand() {
+            var command = new Command("microsoft-graph-copy");
+            command.Description = "Provides operations to call the copy method.";
+            var builder = new CopyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the move method.
         /// </summary>
-        public Command BuildMoveCommand() {
-            var command = new Command("move");
+        public Command BuildMicrosoftGraphMoveCommand() {
+            var command = new Command("microsoft-graph-move");
             command.Description = "Provides operations to call the move method.";
             var builder = new MoveRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -217,7 +219,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -257,7 +259,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -343,10 +345,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
         /// <summary>
         /// Update the navigation property mailFolders in users
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(MailFolder? body, Action<MailFolderItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(MailFolder body, Action<MailFolderItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(MailFolder body, Action<MailFolderItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

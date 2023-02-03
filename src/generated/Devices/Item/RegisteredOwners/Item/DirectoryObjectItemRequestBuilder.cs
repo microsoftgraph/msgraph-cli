@@ -1,8 +1,8 @@
-using ApiSdk.Devices.Item.RegisteredOwners.Item.AppRoleAssignment;
-using ApiSdk.Devices.Item.RegisteredOwners.Item.Endpoint;
+using ApiSdk.Devices.Item.RegisteredOwners.Item.MicrosoftGraphAppRoleAssignment;
+using ApiSdk.Devices.Item.RegisteredOwners.Item.MicrosoftGraphEndpoint;
+using ApiSdk.Devices.Item.RegisteredOwners.Item.MicrosoftGraphServicePrincipal;
+using ApiSdk.Devices.Item.RegisteredOwners.Item.MicrosoftGraphUser;
 using ApiSdk.Devices.Item.RegisteredOwners.Item.Ref;
-using ApiSdk.Devices.Item.RegisteredOwners.Item.ServicePrincipal;
-using ApiSdk.Devices.Item.RegisteredOwners.Item.User;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -28,8 +28,8 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Item {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildAppRoleAssignmentCommand() {
-            var command = new Command("app-role-assignment");
+        public Command BuildMicrosoftGraphAppRoleAssignmentCommand() {
+            var command = new Command("microsoft-graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -38,10 +38,30 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Item {
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildEndpointCommand() {
-            var command = new Command("endpoint");
+        public Command BuildMicrosoftGraphEndpointCommand() {
+            var command = new Command("microsoft-graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to servicePrincipal.
+        /// </summary>
+        public Command BuildMicrosoftGraphServicePrincipalCommand() {
+            var command = new Command("microsoft-graph-service-principal");
+            command.Description = "Casts the previous resource to servicePrincipal.";
+            var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to user.
+        /// </summary>
+        public Command BuildMicrosoftGraphUserCommand() {
+            var command = new Command("microsoft-graph-user");
+            command.Description = "Casts the previous resource to user.";
+            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -53,26 +73,6 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Item {
             command.Description = "Provides operations to manage the collection of device entities.";
             var builder = new RefRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to servicePrincipal.
-        /// </summary>
-        public Command BuildServicePrincipalCommand() {
-            var command = new Command("service-principal");
-            command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to user.
-        /// </summary>
-        public Command BuildUserCommand() {
-            var command = new Command("user");
-            command.Description = "Casts the previous resource to user.";
-            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

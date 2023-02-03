@@ -1,13 +1,13 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.Activate;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.ApplyHold;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOperation;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.Release;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.RemoveHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityActivate;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityApplyHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityRelease;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityRemoveHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityUpdateIndex;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UnifiedGroupSources;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UpdateIndex;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UserSources;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,26 +33,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the activate method.
-        /// </summary>
-        public Command BuildActivateCommand() {
-            var command = new Command("activate");
-            command.Description = "Provides operations to call the activate method.";
-            var builder = new ActivateRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyHold method.
-        /// </summary>
-        public Command BuildApplyHoldCommand() {
-            var command = new Command("apply-hold");
-            command.Description = "Provides operations to call the applyHold method.";
-            var builder = new ApplyHoldRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Delete navigation property custodians for security
         /// </summary>
@@ -152,7 +132,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -170,6 +150,56 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the activate method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityActivateCommand() {
+            var command = new Command("microsoft-graph-security-activate");
+            command.Description = "Provides operations to call the activate method.";
+            var builder = new ActivateRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyHold method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityApplyHoldCommand() {
+            var command = new Command("microsoft-graph-security-apply-hold");
+            command.Description = "Provides operations to call the applyHold method.";
+            var builder = new ApplyHoldRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the release method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityReleaseCommand() {
+            var command = new Command("microsoft-graph-security-release");
+            command.Description = "Provides operations to call the release method.";
+            var builder = new ReleaseRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removeHold method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityRemoveHoldCommand() {
+            var command = new Command("microsoft-graph-security-remove-hold");
+            command.Description = "Provides operations to call the removeHold method.";
+            var builder = new RemoveHoldRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the updateIndex method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityUpdateIndexCommand() {
+            var command = new Command("microsoft-graph-security-update-index");
+            command.Description = "Provides operations to call the updateIndex method.";
+            var builder = new UpdateIndexRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Update the navigation property custodians in security
         /// </summary>
         public Command BuildPatchCommand() {
@@ -184,7 +214,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -224,31 +254,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the release method.
-        /// </summary>
-        public Command BuildReleaseCommand() {
-            var command = new Command("release");
-            command.Description = "Provides operations to call the release method.";
-            var builder = new ReleaseRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removeHold method.
-        /// </summary>
-        public Command BuildRemoveHoldCommand() {
-            var command = new Command("remove-hold");
-            command.Description = "Provides operations to call the removeHold method.";
-            var builder = new RemoveHoldRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -275,16 +285,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the updateIndex method.
-        /// </summary>
-        public Command BuildUpdateIndexCommand() {
-            var command = new Command("update-index");
-            command.Description = "Provides operations to call the updateIndex method.";
-            var builder = new UpdateIndexRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -366,10 +366,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Update the navigation property custodians in security
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EdiscoveryCustodian? body, Action<EdiscoveryCustodianItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EdiscoveryCustodian body, Action<EdiscoveryCustodianItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(EdiscoveryCustodian body, Action<EdiscoveryCustodianItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

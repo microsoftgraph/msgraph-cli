@@ -1,11 +1,11 @@
-using ApiSdk.Admin.ServiceAnnouncement.Messages.Archive;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Count;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Item;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphArchive;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphFavorite;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphMarkRead;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphMarkUnread;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphUnarchive;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphUnfavorite;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,16 +32,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the archive method.
-        /// </summary>
-        public Command BuildArchiveCommand() {
-            var command = new Command("archive");
-            command.Description = "Provides operations to call the archive method.";
-            var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
@@ -72,7 +62,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
             var command = new Command("create");
             command.Description = "Create new navigation property to messages for admin";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -108,21 +98,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the favorite method.
-        /// </summary>
-        public Command BuildFavoriteCommand() {
-            var command = new Command("favorite");
-            command.Description = "Provides operations to call the favorite method.";
-            var builder = new FavoriteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -221,7 +201,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -231,10 +211,30 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the archive method.
+        /// </summary>
+        public Command BuildMicrosoftGraphArchiveCommand() {
+            var command = new Command("microsoft-graph-archive");
+            command.Description = "Provides operations to call the archive method.";
+            var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the favorite method.
+        /// </summary>
+        public Command BuildMicrosoftGraphFavoriteCommand() {
+            var command = new Command("microsoft-graph-favorite");
+            command.Description = "Provides operations to call the favorite method.";
+            var builder = new FavoriteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the markRead method.
         /// </summary>
-        public Command BuildMarkReadCommand() {
-            var command = new Command("mark-read");
+        public Command BuildMicrosoftGraphMarkReadCommand() {
+            var command = new Command("microsoft-graph-mark-read");
             command.Description = "Provides operations to call the markRead method.";
             var builder = new MarkReadRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -243,8 +243,8 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the markUnread method.
         /// </summary>
-        public Command BuildMarkUnreadCommand() {
-            var command = new Command("mark-unread");
+        public Command BuildMicrosoftGraphMarkUnreadCommand() {
+            var command = new Command("microsoft-graph-mark-unread");
             command.Description = "Provides operations to call the markUnread method.";
             var builder = new MarkUnreadRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -253,8 +253,8 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the unarchive method.
         /// </summary>
-        public Command BuildUnarchiveCommand() {
-            var command = new Command("unarchive");
+        public Command BuildMicrosoftGraphUnarchiveCommand() {
+            var command = new Command("microsoft-graph-unarchive");
             command.Description = "Provides operations to call the unarchive method.";
             var builder = new UnarchiveRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -263,8 +263,8 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the unfavorite method.
         /// </summary>
-        public Command BuildUnfavoriteCommand() {
-            var command = new Command("unfavorite");
+        public Command BuildMicrosoftGraphUnfavoriteCommand() {
+            var command = new Command("microsoft-graph-unfavorite");
             command.Description = "Provides operations to call the unfavorite method.";
             var builder = new UnfavoriteRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -312,10 +312,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Create new navigation property to messages for admin
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ServiceUpdateMessage? body, Action<MessagesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ServiceUpdateMessage body, Action<MessagesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(ServiceUpdateMessage body, Action<MessagesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

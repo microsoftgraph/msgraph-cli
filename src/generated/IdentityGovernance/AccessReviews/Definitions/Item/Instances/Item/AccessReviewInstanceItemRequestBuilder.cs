@@ -1,12 +1,12 @@
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.AcceptRecommendations;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ApplyDecisions;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.BatchRecordDecisions;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ContactedReviewers;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Decisions;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ResetDecisions;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.SendReminder;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphAcceptRecommendations;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphApplyDecisions;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphBatchRecordDecisions;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphResetDecisions;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphSendReminder;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphStop;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stages;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stop;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,36 +33,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the acceptRecommendations method.
-        /// </summary>
-        public Command BuildAcceptRecommendationsCommand() {
-            var command = new Command("accept-recommendations");
-            command.Description = "Provides operations to call the acceptRecommendations method.";
-            var builder = new AcceptRecommendationsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyDecisions method.
-        /// </summary>
-        public Command BuildApplyDecisionsCommand() {
-            var command = new Command("apply-decisions");
-            command.Description = "Provides operations to call the applyDecisions method.";
-            var builder = new ApplyDecisionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the batchRecordDecisions method.
-        /// </summary>
-        public Command BuildBatchRecordDecisionsCommand() {
-            var command = new Command("batch-record-decisions");
-            command.Description = "Provides operations to call the batchRecordDecisions method.";
-            var builder = new BatchRecordDecisionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Provides operations to manage the contactedReviewers property of the microsoft.graph.accessReviewInstance entity.
         /// </summary>
@@ -188,11 +158,71 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the acceptRecommendations method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAcceptRecommendationsCommand() {
+            var command = new Command("microsoft-graph-accept-recommendations");
+            command.Description = "Provides operations to call the acceptRecommendations method.";
+            var builder = new AcceptRecommendationsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyDecisions method.
+        /// </summary>
+        public Command BuildMicrosoftGraphApplyDecisionsCommand() {
+            var command = new Command("microsoft-graph-apply-decisions");
+            command.Description = "Provides operations to call the applyDecisions method.";
+            var builder = new ApplyDecisionsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the batchRecordDecisions method.
+        /// </summary>
+        public Command BuildMicrosoftGraphBatchRecordDecisionsCommand() {
+            var command = new Command("microsoft-graph-batch-record-decisions");
+            command.Description = "Provides operations to call the batchRecordDecisions method.";
+            var builder = new BatchRecordDecisionsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the resetDecisions method.
+        /// </summary>
+        public Command BuildMicrosoftGraphResetDecisionsCommand() {
+            var command = new Command("microsoft-graph-reset-decisions");
+            command.Description = "Provides operations to call the resetDecisions method.";
+            var builder = new ResetDecisionsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendReminder method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSendReminderCommand() {
+            var command = new Command("microsoft-graph-send-reminder");
+            command.Description = "Provides operations to call the sendReminder method.";
+            var builder = new SendReminderRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stop method.
+        /// </summary>
+        public Command BuildMicrosoftGraphStopCommand() {
+            var command = new Command("microsoft-graph-stop");
+            command.Description = "Provides operations to call the stop method.";
+            var builder = new StopRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -210,7 +240,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -250,31 +280,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the resetDecisions method.
-        /// </summary>
-        public Command BuildResetDecisionsCommand() {
-            var command = new Command("reset-decisions");
-            command.Description = "Provides operations to call the resetDecisions method.";
-            var builder = new ResetDecisionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sendReminder method.
-        /// </summary>
-        public Command BuildSendReminderCommand() {
-            var command = new Command("send-reminder");
-            command.Description = "Provides operations to call the sendReminder method.";
-            var builder = new SendReminderRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -288,16 +298,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the stop method.
-        /// </summary>
-        public Command BuildStopCommand() {
-            var command = new Command("stop");
-            command.Description = "Provides operations to call the stop method.";
-            var builder = new StopRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -366,10 +366,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Update the navigation property instances in identityGovernance
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AccessReviewInstance? body, Action<AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AccessReviewInstance body, Action<AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(AccessReviewInstance body, Action<AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

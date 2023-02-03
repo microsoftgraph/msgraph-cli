@@ -4,11 +4,11 @@ using ApiSdk.Solutions.BookingBusinesses.Item.Appointments;
 using ApiSdk.Solutions.BookingBusinesses.Item.CalendarView;
 using ApiSdk.Solutions.BookingBusinesses.Item.Customers;
 using ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions;
-using ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability;
-using ApiSdk.Solutions.BookingBusinesses.Item.Publish;
+using ApiSdk.Solutions.BookingBusinesses.Item.MicrosoftGraphGetStaffAvailability;
+using ApiSdk.Solutions.BookingBusinesses.Item.MicrosoftGraphPublish;
+using ApiSdk.Solutions.BookingBusinesses.Item.MicrosoftGraphUnpublish;
 using ApiSdk.Solutions.BookingBusinesses.Item.Services;
 using ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers;
-using ApiSdk.Solutions.BookingBusinesses.Item.Unpublish;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -172,7 +172,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -182,10 +182,30 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to call the getStaffAvailability method.
         /// </summary>
-        public Command BuildGetStaffAvailabilityCommand() {
-            var command = new Command("get-staff-availability");
+        public Command BuildMicrosoftGraphGetStaffAvailabilityCommand() {
+            var command = new Command("microsoft-graph-get-staff-availability");
             command.Description = "Provides operations to call the getStaffAvailability method.";
             var builder = new GetStaffAvailabilityRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the publish method.
+        /// </summary>
+        public Command BuildMicrosoftGraphPublishCommand() {
+            var command = new Command("microsoft-graph-publish");
+            command.Description = "Provides operations to call the publish method.";
+            var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unpublish method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUnpublishCommand() {
+            var command = new Command("microsoft-graph-unpublish");
+            command.Description = "Provides operations to call the unpublish method.";
+            var builder = new UnpublishRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -200,7 +220,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -238,21 +258,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the publish method.
-        /// </summary>
-        public Command BuildPublishCommand() {
-            var command = new Command("publish");
-            command.Description = "Provides operations to call the publish method.";
-            var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -279,16 +289,6 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unpublish method.
-        /// </summary>
-        public Command BuildUnpublishCommand() {
-            var command = new Command("unpublish");
-            command.Description = "Provides operations to call the unpublish method.";
-            var builder = new UnpublishRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -357,10 +357,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Update the navigation property bookingBusinesses in solutions
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(BookingBusiness? body, Action<BookingBusinessItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(BookingBusiness body, Action<BookingBusinessItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(BookingBusiness body, Action<BookingBusinessItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

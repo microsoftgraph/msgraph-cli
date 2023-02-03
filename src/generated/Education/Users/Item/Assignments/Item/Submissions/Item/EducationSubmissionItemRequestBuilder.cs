@@ -1,11 +1,11 @@
+using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.MicrosoftGraphReassign;
+using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.MicrosoftGraphReturn;
+using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.MicrosoftGraphSetUpResourcesFolder;
+using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.MicrosoftGraphSubmit;
+using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.MicrosoftGraphUnsubmit;
 using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Outcomes;
-using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Reassign;
 using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resources;
-using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Return;
-using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.SetUpResourcesFolder;
-using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submit;
 using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.SubmittedResources;
-using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Unsubmit;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -143,11 +143,61 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reassign method.
+        /// </summary>
+        public Command BuildMicrosoftGraphReassignCommand() {
+            var command = new Command("microsoft-graph-reassign");
+            command.Description = "Provides operations to call the reassign method.";
+            var builder = new ReassignRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the return method.
+        /// </summary>
+        public Command BuildMicrosoftGraphReturnCommand() {
+            var command = new Command("microsoft-graph-return");
+            command.Description = "Provides operations to call the return method.";
+            var builder = new ReturnRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUpResourcesFolder method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSetUpResourcesFolderCommand() {
+            var command = new Command("microsoft-graph-set-up-resources-folder");
+            command.Description = "Provides operations to call the setUpResourcesFolder method.";
+            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the submit method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSubmitCommand() {
+            var command = new Command("microsoft-graph-submit");
+            command.Description = "Provides operations to call the submit method.";
+            var builder = new SubmitRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unsubmit method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUnsubmitCommand() {
+            var command = new Command("microsoft-graph-unsubmit");
+            command.Description = "Provides operations to call the unsubmit method.";
+            var builder = new UnsubmitRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -182,7 +232,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -224,21 +274,11 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reassign method.
-        /// </summary>
-        public Command BuildReassignCommand() {
-            var command = new Command("reassign");
-            command.Description = "Provides operations to call the reassign method.";
-            var builder = new ReassignRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -255,36 +295,6 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the return method.
-        /// </summary>
-        public Command BuildReturnCommand() {
-            var command = new Command("return");
-            command.Description = "Provides operations to call the return method.";
-            var builder = new ReturnRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setUpResourcesFolder method.
-        /// </summary>
-        public Command BuildSetUpResourcesFolderCommand() {
-            var command = new Command("set-up-resources-folder");
-            command.Description = "Provides operations to call the setUpResourcesFolder method.";
-            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the submit method.
-        /// </summary>
-        public Command BuildSubmitCommand() {
-            var command = new Command("submit");
-            command.Description = "Provides operations to call the submit method.";
-            var builder = new SubmitRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the submittedResources property of the microsoft.graph.educationSubmission entity.
         /// </summary>
         public Command BuildSubmittedResourcesCommand() {
@@ -295,16 +305,6 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unsubmit method.
-        /// </summary>
-        public Command BuildUnsubmitCommand() {
-            var command = new Command("unsubmit");
-            command.Description = "Provides operations to call the unsubmit method.";
-            var builder = new UnsubmitRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -373,10 +373,11 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Update the navigation property submissions in education
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EducationSubmission? body, Action<EducationSubmissionItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationSubmission body, Action<EducationSubmissionItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(EducationSubmission body, Action<EducationSubmissionItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

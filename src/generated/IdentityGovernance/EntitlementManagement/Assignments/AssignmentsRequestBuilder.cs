@@ -1,8 +1,8 @@
-using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.AdditionalAccess;
-using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageId;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Count;
-using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.MicrosoftGraphAdditionalAccess;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.MicrosoftGraphAdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageId;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.MicrosoftGraphFilterByCurrentUserWithOn;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,28 +30,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the additionalAccess method.
-        /// </summary>
-        public AdditionalAccessRequestBuilder AdditionalAccess() {
-            return new AdditionalAccessRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the additionalAccess method.
-        /// </summary>
-        /// <param name="accessPackageId">Usage: accessPackageId=&apos;{accessPackageId}&apos;</param>
-        /// <param name="incompatibleAccessPackageId">Usage: incompatibleAccessPackageId=&apos;{incompatibleAccessPackageId}&apos;</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageId(string? accessPackageId, string? incompatibleAccessPackageId) {
-#nullable restore
-#else
-        public AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageId(string accessPackageId, string incompatibleAccessPackageId) {
-#endif
-            if(string.IsNullOrEmpty(accessPackageId)) throw new ArgumentNullException(nameof(accessPackageId));
-            if(string.IsNullOrEmpty(incompatibleAccessPackageId)) throw new ArgumentNullException(nameof(incompatibleAccessPackageId));
-            return new AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder(PathParameters, RequestAdapter, accessPackageId, incompatibleAccessPackageId);
-        }
-        /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
         public Command BuildCommand() {
@@ -61,8 +39,8 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             command.AddCommand(builder.BuildAssignmentPolicyCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphReprocessCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildReprocessCommand());
             command.AddCommand(builder.BuildTargetCommand());
             return command;
         }
@@ -83,7 +61,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             var command = new Command("create");
             command.Description = "Create new navigation property to assignments for identityGovernance";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -119,7 +97,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -222,13 +200,23 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the additionalAccess method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAdditionalAccessCommand() {
+            var command = new Command("microsoft-graph-additional-access");
+            command.Description = "Provides operations to call the additionalAccess method.";
+            var builder = new AdditionalAccessRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -245,16 +233,20 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
+        /// Provides operations to call the additionalAccess method.
+        /// </summary>
+        /// <param name="accessPackageId">Usage: accessPackageId=&apos;{accessPackageId}&apos;</param>
+        /// <param name="incompatibleAccessPackageId">Usage: incompatibleAccessPackageId=&apos;{incompatibleAccessPackageId}&apos;</param>
+        public AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder MicrosoftGraphAdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageId(string accessPackageId, string incompatibleAccessPackageId) {
+            if(string.IsNullOrEmpty(accessPackageId)) throw new ArgumentNullException(nameof(accessPackageId));
+            if(string.IsNullOrEmpty(incompatibleAccessPackageId)) throw new ArgumentNullException(nameof(incompatibleAccessPackageId));
+            return new AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder(PathParameters, RequestAdapter, accessPackageId, incompatibleAccessPackageId);
+        }
+        /// <summary>
         /// Provides operations to call the filterByCurrentUser method.
         /// </summary>
         /// <param name="on">Usage: on=&apos;{on}&apos;</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public FilterByCurrentUserWithOnRequestBuilder FilterByCurrentUserWithOn(string? on) {
-#nullable restore
-#else
-        public FilterByCurrentUserWithOnRequestBuilder FilterByCurrentUserWithOn(string on) {
-#endif
+        public FilterByCurrentUserWithOnRequestBuilder MicrosoftGraphFilterByCurrentUserWithOn(string on) {
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
@@ -287,10 +279,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
         /// <summary>
         /// Create new navigation property to assignments for identityGovernance
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AccessPackageAssignment? body, Action<AssignmentsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AccessPackageAssignment body, Action<AssignmentsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(AccessPackageAssignment body, Action<AssignmentsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

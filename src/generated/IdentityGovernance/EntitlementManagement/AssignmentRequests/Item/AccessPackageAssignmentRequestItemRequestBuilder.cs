@@ -1,7 +1,7 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.AccessPackage;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Assignment;
-using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Cancel;
-using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Reprocess;
+using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.MicrosoftGraphCancel;
+using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.MicrosoftGraphReprocess;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Requestor;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -47,16 +47,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             command.Description = "Provides operations to manage the assignment property of the microsoft.graph.accessPackageAssignmentRequest entity.";
             var builder = new AssignmentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the cancel method.
-        /// </summary>
-        public Command BuildCancelCommand() {
-            var command = new Command("cancel");
-            command.Description = "Provides operations to call the cancel method.";
-            var builder = new CancelRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -146,11 +136,31 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the cancel method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCancelCommand() {
+            var command = new Command("microsoft-graph-cancel");
+            command.Description = "Provides operations to call the cancel method.";
+            var builder = new CancelRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reprocess method.
+        /// </summary>
+        public Command BuildMicrosoftGraphReprocessCommand() {
+            var command = new Command("microsoft-graph-reprocess");
+            command.Description = "Provides operations to call the reprocess method.";
+            var builder = new ReprocessRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -164,7 +174,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             };
             accessPackageAssignmentRequestIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentRequestIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -202,21 +212,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reprocess method.
-        /// </summary>
-        public Command BuildReprocessCommand() {
-            var command = new Command("reprocess");
-            command.Description = "Provides operations to call the reprocess method.";
-            var builder = new ReprocessRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -295,10 +295,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// <summary>
         /// Update the navigation property assignmentRequests in identityGovernance
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AccessPackageAssignmentRequest? body, Action<AccessPackageAssignmentRequestItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AccessPackageAssignmentRequest body, Action<AccessPackageAssignmentRequestItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(AccessPackageAssignmentRequest body, Action<AccessPackageAssignmentRequestItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

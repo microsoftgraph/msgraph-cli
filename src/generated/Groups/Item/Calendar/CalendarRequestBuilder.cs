@@ -1,8 +1,8 @@
-using ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Groups.Item.Calendar.CalendarPermissions;
 using ApiSdk.Groups.Item.Calendar.CalendarView;
 using ApiSdk.Groups.Item.Calendar.Events;
-using ApiSdk.Groups.Item.Calendar.GetSchedule;
+using ApiSdk.Groups.Item.Calendar.MicrosoftGraphAllowedCalendarSharingRolesWithUser;
+using ApiSdk.Groups.Item.Calendar.MicrosoftGraphGetSchedule;
 using ApiSdk.Groups.Item.Calendar.MultiValueExtendedProperties;
 using ApiSdk.Groups.Item.Calendar.SingleValueExtendedProperties;
 using ApiSdk.Models;
@@ -32,20 +32,6 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the allowedCalendarSharingRoles method.
-        /// </summary>
-        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public AllowedCalendarSharingRolesWithUserRequestBuilder AllowedCalendarSharingRolesWithUser(string? user) {
-#nullable restore
-#else
-        public AllowedCalendarSharingRolesWithUserRequestBuilder AllowedCalendarSharingRolesWithUser(string user) {
-#endif
-            if(string.IsNullOrEmpty(user)) throw new ArgumentNullException(nameof(user));
-            return new AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters, RequestAdapter, user);
-        }
-        /// <summary>
         /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
         /// </summary>
         public Command BuildCalendarPermissionsCommand() {
@@ -68,6 +54,7 @@ namespace ApiSdk.Groups.Item.Calendar {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -81,6 +68,7 @@ namespace ApiSdk.Groups.Item.Calendar {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -130,7 +118,7 @@ namespace ApiSdk.Groups.Item.Calendar {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -140,8 +128,8 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>
         /// Provides operations to call the getSchedule method.
         /// </summary>
-        public Command BuildGetScheduleCommand() {
-            var command = new Command("get-schedule");
+        public Command BuildMicrosoftGraphGetScheduleCommand() {
+            var command = new Command("microsoft-graph-get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
             var builder = new GetScheduleRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -185,6 +173,14 @@ namespace ApiSdk.Groups.Item.Calendar {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Provides operations to call the allowedCalendarSharingRoles method.
+        /// </summary>
+        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
+        public AllowedCalendarSharingRolesWithUserRequestBuilder MicrosoftGraphAllowedCalendarSharingRolesWithUser(string user) {
+            if(string.IsNullOrEmpty(user)) throw new ArgumentNullException(nameof(user));
+            return new AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters, RequestAdapter, user);
         }
         /// <summary>
         /// The group&apos;s calendar. Read-only.

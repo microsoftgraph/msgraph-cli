@@ -1,8 +1,8 @@
 using ApiSdk.DirectoryRoleTemplates.Count;
-using ApiSdk.DirectoryRoleTemplates.GetAvailableExtensionProperties;
-using ApiSdk.DirectoryRoleTemplates.GetByIds;
 using ApiSdk.DirectoryRoleTemplates.Item;
-using ApiSdk.DirectoryRoleTemplates.ValidateProperties;
+using ApiSdk.DirectoryRoleTemplates.MicrosoftGraphGetAvailableExtensionProperties;
+using ApiSdk.DirectoryRoleTemplates.MicrosoftGraphGetByIds;
+using ApiSdk.DirectoryRoleTemplates.MicrosoftGraphValidateProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,14 +35,14 @@ namespace ApiSdk.DirectoryRoleTemplates {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new DirectoryRoleTemplateItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberGroupsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberObjectsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMemberGroupsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMemberObjectsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
             return command;
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
             var command = new Command("create");
             command.Description = "Add new entity to directoryRoleTemplates";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -98,31 +98,11 @@ namespace ApiSdk.DirectoryRoleTemplates {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAvailableExtensionProperties method.
-        /// </summary>
-        public Command BuildGetAvailableExtensionPropertiesCommand() {
-            var command = new Command("get-available-extension-properties");
-            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
-            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getByIds method.
-        /// </summary>
-        public Command BuildGetByIdsCommand() {
-            var command = new Command("get-by-ids");
-            command.Description = "Provides operations to call the getByIds method.";
-            var builder = new GetByIdsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -215,7 +195,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -225,10 +205,30 @@ namespace ApiSdk.DirectoryRoleTemplates {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getAvailableExtensionProperties method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand() {
+            var command = new Command("microsoft-graph-get-available-extension-properties");
+            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
+            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getByIds method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetByIdsCommand() {
+            var command = new Command("microsoft-graph-get-by-ids");
+            command.Description = "Provides operations to call the getByIds method.";
+            var builder = new GetByIdsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesCommand() {
-            var command = new Command("validate-properties");
+        public Command BuildMicrosoftGraphValidatePropertiesCommand() {
+            var command = new Command("microsoft-graph-validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -276,10 +276,11 @@ namespace ApiSdk.DirectoryRoleTemplates {
         /// <summary>
         /// Add new entity to directoryRoleTemplates
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(DirectoryRoleTemplate? body, Action<DirectoryRoleTemplatesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(DirectoryRoleTemplate body, Action<DirectoryRoleTemplatesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(DirectoryRoleTemplate body, Action<DirectoryRoleTemplatesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

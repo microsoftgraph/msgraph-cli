@@ -75,6 +75,7 @@ namespace ApiSdk.Models {
 #else
         public string ICalUId { get; set; }
 #endif
+        /// <summary>The importance property</summary>
         public ApiSdk.Models.Importance? Importance { get; set; }
         /// <summary>The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -84,12 +85,19 @@ namespace ApiSdk.Models {
 #else
         public List<Event> Instances { get; set; }
 #endif
+        /// <summary>The isAllDay property</summary>
         public bool? IsAllDay { get; set; }
+        /// <summary>The isCancelled property</summary>
         public bool? IsCancelled { get; set; }
+        /// <summary>The isDraft property</summary>
         public bool? IsDraft { get; set; }
+        /// <summary>The isOnlineMeeting property</summary>
         public bool? IsOnlineMeeting { get; set; }
+        /// <summary>The isOrganizer property</summary>
         public bool? IsOrganizer { get; set; }
+        /// <summary>The isReminderOn property</summary>
         public bool? IsReminderOn { get; set; }
+        /// <summary>The location property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Location? Location { get; set; }
@@ -97,6 +105,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.Location Location { get; set; }
 #endif
+        /// <summary>The locations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ApiSdk.Models.Location>? Locations { get; set; }
@@ -112,6 +121,7 @@ namespace ApiSdk.Models {
 #else
         public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
 #endif
+        /// <summary>The onlineMeeting property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public OnlineMeetingInfo? OnlineMeeting { get; set; }
@@ -119,7 +129,9 @@ namespace ApiSdk.Models {
 #else
         public OnlineMeetingInfo OnlineMeeting { get; set; }
 #endif
+        /// <summary>The onlineMeetingProvider property</summary>
         public OnlineMeetingProviderType? OnlineMeetingProvider { get; set; }
+        /// <summary>The onlineMeetingUrl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OnlineMeetingUrl { get; set; }
@@ -127,6 +139,7 @@ namespace ApiSdk.Models {
 #else
         public string OnlineMeetingUrl { get; set; }
 #endif
+        /// <summary>The organizer property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Recipient? Organizer { get; set; }
@@ -134,6 +147,7 @@ namespace ApiSdk.Models {
 #else
         public Recipient Organizer { get; set; }
 #endif
+        /// <summary>The originalEndTimeZone property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OriginalEndTimeZone { get; set; }
@@ -141,7 +155,9 @@ namespace ApiSdk.Models {
 #else
         public string OriginalEndTimeZone { get; set; }
 #endif
+        /// <summary>The originalStart property</summary>
         public DateTimeOffset? OriginalStart { get; set; }
+        /// <summary>The originalStartTimeZone property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OriginalStartTimeZone { get; set; }
@@ -149,6 +165,7 @@ namespace ApiSdk.Models {
 #else
         public string OriginalStartTimeZone { get; set; }
 #endif
+        /// <summary>The recurrence property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PatternedRecurrence? Recurrence { get; set; }
@@ -156,8 +173,11 @@ namespace ApiSdk.Models {
 #else
         public PatternedRecurrence Recurrence { get; set; }
 #endif
+        /// <summary>The reminderMinutesBeforeStart property</summary>
         public int? ReminderMinutesBeforeStart { get; set; }
+        /// <summary>The responseRequested property</summary>
         public bool? ResponseRequested { get; set; }
+        /// <summary>The responseStatus property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.ResponseStatus? ResponseStatus { get; set; }
@@ -165,7 +185,9 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.ResponseStatus ResponseStatus { get; set; }
 #endif
+        /// <summary>The sensitivity property</summary>
         public ApiSdk.Models.Sensitivity? Sensitivity { get; set; }
+        /// <summary>The seriesMasterId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SeriesMasterId { get; set; }
@@ -173,6 +195,7 @@ namespace ApiSdk.Models {
 #else
         public string SeriesMasterId { get; set; }
 #endif
+        /// <summary>The showAs property</summary>
         public FreeBusyStatus? ShowAs { get; set; }
         /// <summary>The collection of single-value extended properties defined for the event. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -182,6 +205,7 @@ namespace ApiSdk.Models {
 #else
         public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
 #endif
+        /// <summary>The start property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DateTimeTimeZone? Start { get; set; }
@@ -189,6 +213,7 @@ namespace ApiSdk.Models {
 #else
         public DateTimeTimeZone Start { get; set; }
 #endif
+        /// <summary>The subject property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Subject { get; set; }
@@ -196,6 +221,7 @@ namespace ApiSdk.Models {
 #else
         public string Subject { get; set; }
 #endif
+        /// <summary>The transactionId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TransactionId { get; set; }
@@ -203,7 +229,9 @@ namespace ApiSdk.Models {
 #else
         public string TransactionId { get; set; }
 #endif
+        /// <summary>The type property</summary>
         public EventType? Type { get; set; }
+        /// <summary>The webLink property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? WebLink { get; set; }
@@ -221,13 +249,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new Event CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new Event CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Event();
         }

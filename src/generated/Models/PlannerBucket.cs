@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Hint used to order items of this type in a list view. The format is defined as outlined here.</summary>
+        /// <summary>Hint used to order items of this type in a list view. For details about the supported format, see Using order hints in Planner.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OrderHint { get; set; }
@@ -41,13 +41,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new PlannerBucket CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new PlannerBucket CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PlannerBucket();
         }

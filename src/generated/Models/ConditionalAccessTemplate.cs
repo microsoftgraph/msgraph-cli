@@ -13,6 +13,7 @@ namespace ApiSdk.Models {
 #else
         public string Description { get; set; }
 #endif
+        /// <summary>The details property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ConditionalAccessPolicyDetail? Details { get; set; }
@@ -28,18 +29,13 @@ namespace ApiSdk.Models {
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>The scenarios property</summary>
         public TemplateScenarios? Scenarios { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new ConditionalAccessTemplate CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new ConditionalAccessTemplate CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConditionalAccessTemplate();
         }

@@ -1,10 +1,10 @@
 using ApiSdk.Domains.Item.DomainNameReferences;
 using ApiSdk.Domains.Item.FederationConfiguration;
-using ApiSdk.Domains.Item.ForceDelete;
-using ApiSdk.Domains.Item.Promote;
+using ApiSdk.Domains.Item.MicrosoftGraphForceDelete;
+using ApiSdk.Domains.Item.MicrosoftGraphPromote;
+using ApiSdk.Domains.Item.MicrosoftGraphVerify;
 using ApiSdk.Domains.Item.ServiceConfigurationRecords;
 using ApiSdk.Domains.Item.VerificationDnsRecords;
-using ApiSdk.Domains.Item.Verify;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -91,16 +91,6 @@ namespace ApiSdk.Domains.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the forceDelete method.
-        /// </summary>
-        public Command BuildForceDeleteCommand() {
-            var command = new Command("force-delete");
-            command.Description = "Provides operations to call the forceDelete method.";
-            var builder = new ForceDeleteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Retrieve the properties and relationships of domain object.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/domain-get?view=graph-rest-1.0" />
         /// </summary>
@@ -155,11 +145,41 @@ namespace ApiSdk.Domains.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the forceDelete method.
+        /// </summary>
+        public Command BuildMicrosoftGraphForceDeleteCommand() {
+            var command = new Command("microsoft-graph-force-delete");
+            command.Description = "Provides operations to call the forceDelete method.";
+            var builder = new ForceDeleteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the promote method.
+        /// </summary>
+        public Command BuildMicrosoftGraphPromoteCommand() {
+            var command = new Command("microsoft-graph-promote");
+            command.Description = "Provides operations to call the promote method.";
+            var builder = new PromoteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the verify method.
+        /// </summary>
+        public Command BuildMicrosoftGraphVerifyCommand() {
+            var command = new Command("microsoft-graph-verify");
+            command.Description = "Provides operations to call the verify method.";
+            var builder = new VerifyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -174,7 +194,7 @@ namespace ApiSdk.Domains.Item {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -212,21 +232,11 @@ namespace ApiSdk.Domains.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the promote method.
-        /// </summary>
-        public Command BuildPromoteCommand() {
-            var command = new Command("promote");
-            command.Description = "Provides operations to call the promote method.";
-            var builder = new PromoteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -253,16 +263,6 @@ namespace ApiSdk.Domains.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the verify method.
-        /// </summary>
-        public Command BuildVerifyCommand() {
-            var command = new Command("verify");
-            command.Description = "Provides operations to call the verify method.";
-            var builder = new VerifyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -331,10 +331,11 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Update the properties of domain object.
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Domain? body, Action<DomainItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Domain body, Action<DomainItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(Domain body, Action<DomainItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

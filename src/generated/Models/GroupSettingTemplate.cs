@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public List<SettingTemplateValue> Values { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new groupSettingTemplate and sets the default values.
+        /// Instantiates a new GroupSettingTemplate and sets the default values.
         /// </summary>
         public GroupSettingTemplate() : base() {
             OdataType = "#microsoft.graph.groupSettingTemplate";
@@ -39,13 +39,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new GroupSettingTemplate CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new GroupSettingTemplate CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new GroupSettingTemplate();
         }

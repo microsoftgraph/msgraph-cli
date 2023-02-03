@@ -1,7 +1,7 @@
 using ApiSdk.DeviceAppManagement.MobileApps.Count;
 using ApiSdk.DeviceAppManagement.MobileApps.Item;
-using ApiSdk.DeviceAppManagement.MobileApps.ManagedMobileLobApp;
-using ApiSdk.DeviceAppManagement.MobileApps.MobileLobApp;
+using ApiSdk.DeviceAppManagement.MobileApps.MicrosoftGraphManagedMobileLobApp;
+using ApiSdk.DeviceAppManagement.MobileApps.MicrosoftGraphMobileLobApp;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,13 +34,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new MobileAppItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAssignCommand());
             command.AddCommand(builder.BuildAssignmentsCommand());
             command.AddCommand(builder.BuildCategoriesCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildManagedMobileLobAppCommand());
-            command.AddCommand(builder.BuildMobileLobAppCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAssignCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphManagedMobileLobAppCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphMobileLobAppCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -61,7 +61,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             var command = new Command("create");
             command.Description = "Create new navigation property to mobileApps for deviceAppManagement";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -97,7 +97,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -199,7 +199,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -211,8 +211,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         /// <summary>
         /// Casts the previous resource to managedMobileLobApp.
         /// </summary>
-        public Command BuildManagedMobileLobAppCommand() {
-            var command = new Command("managed-mobile-lob-app");
+        public Command BuildMicrosoftGraphManagedMobileLobAppCommand() {
+            var command = new Command("microsoft-graph-managed-mobile-lob-app");
             command.Description = "Casts the previous resource to managedMobileLobApp.";
             var builder = new ManagedMobileLobAppRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCountCommand());
@@ -222,8 +222,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         /// <summary>
         /// Casts the previous resource to mobileLobApp.
         /// </summary>
-        public Command BuildMobileLobAppCommand() {
-            var command = new Command("mobile-lob-app");
+        public Command BuildMicrosoftGraphMobileLobAppCommand() {
+            var command = new Command("microsoft-graph-mobile-lob-app");
             command.Description = "Casts the previous resource to mobileLobApp.";
             var builder = new MobileLobAppRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCountCommand());
@@ -272,10 +272,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         /// <summary>
         /// Create new navigation property to mobileApps for deviceAppManagement
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(MobileApp? body, Action<MobileAppsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(MobileApp body, Action<MobileAppsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(MobileApp body, Action<MobileAppsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

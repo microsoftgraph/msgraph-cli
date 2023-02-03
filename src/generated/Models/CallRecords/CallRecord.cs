@@ -51,6 +51,7 @@ namespace ApiSdk.Models.CallRecords {
 #endif
         /// <summary>UTC time when the first user joined the call. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
+        /// <summary>The type property</summary>
         public CallType? Type { get; set; }
         /// <summary>Monotonically increasing version of the call record. Higher version call records with the same id includes additional data compared to the lower version.</summary>
         public long? Version { get; set; }
@@ -58,13 +59,7 @@ namespace ApiSdk.Models.CallRecords {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new CallRecord CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new CallRecord CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CallRecord();
         }

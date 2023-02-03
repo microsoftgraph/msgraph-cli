@@ -27,11 +27,13 @@ namespace ApiSdk.Models {
 #else
         public string DeviceName { get; set; }
 #endif
+        /// <summary>The diskType property</summary>
         public ApiSdk.Models.DiskType? DiskType { get; set; }
         /// <summary>The user experience analytics device group policy boot time in milliseconds.</summary>
         public int? GroupPolicyBootTimeInMs { get; set; }
         /// <summary>The user experience analytics device group policy login time in milliseconds.</summary>
         public int? GroupPolicyLoginTimeInMs { get; set; }
+        /// <summary>The healthStatus property</summary>
         public UserExperienceAnalyticsHealthState? HealthStatus { get; set; }
         /// <summary>The user experience analytics device login score.</summary>
         public int? LoginScore { get; set; }
@@ -71,13 +73,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new UserExperienceAnalyticsDevicePerformance CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new UserExperienceAnalyticsDevicePerformance CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UserExperienceAnalyticsDevicePerformance();
         }

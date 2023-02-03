@@ -25,7 +25,6 @@ namespace ApiSdk.Drives.Item.Bundles.Item.Content {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// The content stream, if the item represents a file.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bundle-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");

@@ -1,6 +1,6 @@
 using ApiSdk.Me.Chats.Count;
-using ApiSdk.Me.Chats.GetAllMessages;
 using ApiSdk.Me.Chats.Item;
+using ApiSdk.Me.Chats.MicrosoftGraphGetAllMessages;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,18 +35,18 @@ namespace ApiSdk.Me.Chats {
             var builder = new ChatItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildHideForUserCommand());
             command.AddCommand(builder.BuildInstalledAppsCommand());
             command.AddCommand(builder.BuildLastMessagePreviewCommand());
-            command.AddCommand(builder.BuildMarkChatReadForUserCommand());
-            command.AddCommand(builder.BuildMarkChatUnreadForUserCommand());
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildMessagesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphHideForUserCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphMarkChatReadForUserCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphMarkChatUnreadForUserCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSendActivityNotificationCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphUnhideForUserCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPinnedMessagesCommand());
-            command.AddCommand(builder.BuildSendActivityNotificationCommand());
             command.AddCommand(builder.BuildTabsCommand());
-            command.AddCommand(builder.BuildUnhideForUserCommand());
             return command;
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace ApiSdk.Me.Chats {
             var command = new Command("create");
             command.Description = "Create new navigation property to chats for me";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -102,7 +102,7 @@ namespace ApiSdk.Me.Chats {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -205,13 +205,23 @@ namespace ApiSdk.Me.Chats {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAllMessages method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAllMessagesCommand() {
+            var command = new Command("microsoft-graph-get-all-messages");
+            command.Description = "Provides operations to call the getAllMessages method.";
+            var builder = new GetAllMessagesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -226,12 +236,6 @@ namespace ApiSdk.Me.Chats {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the getAllMessages method.
-        /// </summary>
-        public GetAllMessagesRequestBuilder GetAllMessages() {
-            return new GetAllMessagesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
@@ -262,10 +266,11 @@ namespace ApiSdk.Me.Chats {
         /// <summary>
         /// Create new navigation property to chats for me
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Chat? body, Action<ChatsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Chat body, Action<ChatsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(ApiSdk.Models.Chat body, Action<ChatsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

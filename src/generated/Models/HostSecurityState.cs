@@ -15,7 +15,9 @@ namespace ApiSdk.Models {
 #else
         public string Fqdn { get; set; }
 #endif
+        /// <summary>The isAzureAdJoined property</summary>
         public bool? IsAzureAdJoined { get; set; }
+        /// <summary>The isAzureAdRegistered property</summary>
         public bool? IsAzureAdRegistered { get; set; }
         /// <summary>True if the host is domain joined to an on-premises Active Directory domain.</summary>
         public bool? IsHybridAzureDomainJoined { get; set; }
@@ -27,6 +29,7 @@ namespace ApiSdk.Models {
 #else
         public string NetBiosName { get; set; }
 #endif
+        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -76,13 +79,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static HostSecurityState CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static HostSecurityState CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new HostSecurityState();
         }

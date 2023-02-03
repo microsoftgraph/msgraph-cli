@@ -1,7 +1,7 @@
 using ApiSdk.Me.Onenote.Notebooks.Count;
-using ApiSdk.Me.Onenote.Notebooks.GetNotebookFromWebUrl;
-using ApiSdk.Me.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks;
 using ApiSdk.Me.Onenote.Notebooks.Item;
+using ApiSdk.Me.Onenote.Notebooks.MicrosoftGraphGetNotebookFromWebUrl;
+using ApiSdk.Me.Onenote.Notebooks.MicrosoftGraphGetRecentNotebooksWithIncludePersonalNotebooks;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,9 +34,9 @@ namespace ApiSdk.Me.Onenote.Notebooks {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new NotebookItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCopyNotebookCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCopyNotebookCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSectionGroupsCommand());
             command.AddCommand(builder.BuildSectionsCommand());
@@ -60,7 +60,7 @@ namespace ApiSdk.Me.Onenote.Notebooks {
             var command = new Command("create");
             command.Description = "Create a new OneNote notebook.";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -96,21 +96,11 @@ namespace ApiSdk.Me.Onenote.Notebooks {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getNotebookFromWebUrl method.
-        /// </summary>
-        public Command BuildGetNotebookFromWebUrlCommand() {
-            var command = new Command("get-notebook-from-web-url");
-            command.Description = "Provides operations to call the getNotebookFromWebUrl method.";
-            var builder = new GetNotebookFromWebUrlRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -209,13 +199,23 @@ namespace ApiSdk.Me.Onenote.Notebooks {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getNotebookFromWebUrl method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetNotebookFromWebUrlCommand() {
+            var command = new Command("microsoft-graph-get-notebook-from-web-url");
+            command.Description = "Provides operations to call the getNotebookFromWebUrl method.";
+            var builder = new GetNotebookFromWebUrlRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -235,13 +235,7 @@ namespace ApiSdk.Me.Onenote.Notebooks {
         /// Provides operations to call the getRecentNotebooks method.
         /// </summary>
         /// <param name="includePersonalNotebooks">Usage: includePersonalNotebooks={includePersonalNotebooks}</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder GetRecentNotebooksWithIncludePersonalNotebooks(bool? includePersonalNotebooks) {
-#nullable restore
-#else
-        public GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder GetRecentNotebooksWithIncludePersonalNotebooks(bool includePersonalNotebooks) {
-#endif
+        public GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder MicrosoftGraphGetRecentNotebooksWithIncludePersonalNotebooks(bool? includePersonalNotebooks) {
             _ = includePersonalNotebooks ?? throw new ArgumentNullException(nameof(includePersonalNotebooks));
             return new GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(PathParameters, RequestAdapter, includePersonalNotebooks);
         }
@@ -274,10 +268,11 @@ namespace ApiSdk.Me.Onenote.Notebooks {
         /// <summary>
         /// Create a new OneNote notebook.
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Notebook? body, Action<NotebooksRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Notebook body, Action<NotebooksRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(Notebook body, Action<NotebooksRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

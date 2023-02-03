@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class OrgContact : DirectoryObject, IParsable {
+        /// <summary>The addresses property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<PhysicalOfficeAddress>? Addresses { get; set; }
@@ -12,6 +13,7 @@ namespace ApiSdk.Models {
 #else
         public List<PhysicalOfficeAddress> Addresses { get; set; }
 #endif
+        /// <summary>The companyName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CompanyName { get; set; }
@@ -19,6 +21,7 @@ namespace ApiSdk.Models {
 #else
         public string CompanyName { get; set; }
 #endif
+        /// <summary>The department property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Department { get; set; }
@@ -26,6 +29,7 @@ namespace ApiSdk.Models {
 #else
         public string Department { get; set; }
 #endif
+        /// <summary>The directReports property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DirectoryObject>? DirectReports { get; set; }
@@ -33,6 +37,7 @@ namespace ApiSdk.Models {
 #else
         public List<DirectoryObject> DirectReports { get; set; }
 #endif
+        /// <summary>The displayName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -40,6 +45,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
+        /// <summary>The givenName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? GivenName { get; set; }
@@ -47,6 +53,7 @@ namespace ApiSdk.Models {
 #else
         public string GivenName { get; set; }
 #endif
+        /// <summary>The jobTitle property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? JobTitle { get; set; }
@@ -54,6 +61,7 @@ namespace ApiSdk.Models {
 #else
         public string JobTitle { get; set; }
 #endif
+        /// <summary>The mail property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Mail { get; set; }
@@ -61,6 +69,7 @@ namespace ApiSdk.Models {
 #else
         public string Mail { get; set; }
 #endif
+        /// <summary>The mailNickname property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MailNickname { get; set; }
@@ -68,6 +77,7 @@ namespace ApiSdk.Models {
 #else
         public string MailNickname { get; set; }
 #endif
+        /// <summary>The manager property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DirectoryObject? Manager { get; set; }
@@ -75,6 +85,7 @@ namespace ApiSdk.Models {
 #else
         public DirectoryObject Manager { get; set; }
 #endif
+        /// <summary>The memberOf property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DirectoryObject>? MemberOf { get; set; }
@@ -82,7 +93,9 @@ namespace ApiSdk.Models {
 #else
         public List<DirectoryObject> MemberOf { get; set; }
 #endif
+        /// <summary>The onPremisesLastSyncDateTime property</summary>
         public DateTimeOffset? OnPremisesLastSyncDateTime { get; set; }
+        /// <summary>The onPremisesProvisioningErrors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<OnPremisesProvisioningError>? OnPremisesProvisioningErrors { get; set; }
@@ -90,7 +103,9 @@ namespace ApiSdk.Models {
 #else
         public List<OnPremisesProvisioningError> OnPremisesProvisioningErrors { get; set; }
 #endif
+        /// <summary>The onPremisesSyncEnabled property</summary>
         public bool? OnPremisesSyncEnabled { get; set; }
+        /// <summary>The phones property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Phone>? Phones { get; set; }
@@ -98,6 +113,7 @@ namespace ApiSdk.Models {
 #else
         public List<Phone> Phones { get; set; }
 #endif
+        /// <summary>The proxyAddresses property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? ProxyAddresses { get; set; }
@@ -105,6 +121,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> ProxyAddresses { get; set; }
 #endif
+        /// <summary>The surname property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Surname { get; set; }
@@ -112,6 +129,7 @@ namespace ApiSdk.Models {
 #else
         public string Surname { get; set; }
 #endif
+        /// <summary>The transitiveMemberOf property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DirectoryObject>? TransitiveMemberOf { get; set; }
@@ -129,13 +147,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new OrgContact CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new OrgContact CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OrgContact();
         }

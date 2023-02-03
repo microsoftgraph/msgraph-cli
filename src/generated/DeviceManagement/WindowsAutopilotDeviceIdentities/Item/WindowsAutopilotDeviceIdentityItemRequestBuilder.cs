@@ -1,6 +1,6 @@
-using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUserToDevice;
-using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UnassignUserFromDevice;
-using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDeviceProperties;
+using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.MicrosoftGraphAssignUserToDevice;
+using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.MicrosoftGraphUnassignUserFromDevice;
+using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.MicrosoftGraphUpdateDeviceProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,16 +27,6 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the assignUserToDevice method.
-        /// </summary>
-        public Command BuildAssignUserToDeviceCommand() {
-            var command = new Command("assign-user-to-device");
-            command.Description = "Provides operations to call the assignUserToDevice method.";
-            var builder = new AssignUserToDeviceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Delete navigation property windowsAutopilotDeviceIdentities for deviceManagement
         /// </summary>
@@ -124,11 +114,41 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the assignUserToDevice method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAssignUserToDeviceCommand() {
+            var command = new Command("microsoft-graph-assign-user-to-device");
+            command.Description = "Provides operations to call the assignUserToDevice method.";
+            var builder = new AssignUserToDeviceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unassignUserFromDevice method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUnassignUserFromDeviceCommand() {
+            var command = new Command("microsoft-graph-unassign-user-from-device");
+            command.Description = "Provides operations to call the unassignUserFromDevice method.";
+            var builder = new UnassignUserFromDeviceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the updateDeviceProperties method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUpdateDevicePropertiesCommand() {
+            var command = new Command("microsoft-graph-update-device-properties");
+            command.Description = "Provides operations to call the updateDeviceProperties method.";
+            var builder = new UpdateDevicePropertiesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -142,7 +162,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
             };
             windowsAutopilotDeviceIdentityIdOption.IsRequired = true;
             command.AddOption(windowsAutopilotDeviceIdentityIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -180,31 +200,11 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unassignUserFromDevice method.
-        /// </summary>
-        public Command BuildUnassignUserFromDeviceCommand() {
-            var command = new Command("unassign-user-from-device");
-            command.Description = "Provides operations to call the unassignUserFromDevice method.";
-            var builder = new UnassignUserFromDeviceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the updateDeviceProperties method.
-        /// </summary>
-        public Command BuildUpdateDevicePropertiesCommand() {
-            var command = new Command("update-device-properties");
-            command.Description = "Provides operations to call the updateDeviceProperties method.";
-            var builder = new UpdateDevicePropertiesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -273,10 +273,11 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// <summary>
         /// Update the navigation property windowsAutopilotDeviceIdentities in deviceManagement
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(WindowsAutopilotDeviceIdentity? body, Action<WindowsAutopilotDeviceIdentityItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(WindowsAutopilotDeviceIdentity body, Action<WindowsAutopilotDeviceIdentityItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(WindowsAutopilotDeviceIdentity body, Action<WindowsAutopilotDeviceIdentityItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

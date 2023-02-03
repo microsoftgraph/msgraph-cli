@@ -11,6 +11,7 @@ namespace ApiSdk.Models {
         public int? Bottom { get; set; }
         /// <summary>The margin in microns from the left edge.</summary>
         public int? Left { get; set; }
+        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -32,13 +33,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static PrintMargin CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static PrintMargin CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrintMargin();
         }

@@ -1,7 +1,7 @@
-using ApiSdk.Communications.Presences.Item.ClearPresence;
-using ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence;
-using ApiSdk.Communications.Presences.Item.SetPresence;
-using ApiSdk.Communications.Presences.Item.SetUserPreferredPresence;
+using ApiSdk.Communications.Presences.Item.MicrosoftGraphClearPresence;
+using ApiSdk.Communications.Presences.Item.MicrosoftGraphClearUserPreferredPresence;
+using ApiSdk.Communications.Presences.Item.MicrosoftGraphSetPresence;
+using ApiSdk.Communications.Presences.Item.MicrosoftGraphSetUserPreferredPresence;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,26 +28,6 @@ namespace ApiSdk.Communications.Presences.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the clearPresence method.
-        /// </summary>
-        public Command BuildClearPresenceCommand() {
-            var command = new Command("clear-presence");
-            command.Description = "Provides operations to call the clearPresence method.";
-            var builder = new ClearPresenceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the clearUserPreferredPresence method.
-        /// </summary>
-        public Command BuildClearUserPreferredPresenceCommand() {
-            var command = new Command("clear-user-preferred-presence");
-            command.Description = "Provides operations to call the clearUserPreferredPresence method.";
-            var builder = new ClearUserPreferredPresenceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Delete navigation property presences for communications
         /// </summary>
@@ -135,11 +115,51 @@ namespace ApiSdk.Communications.Presences.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the clearPresence method.
+        /// </summary>
+        public Command BuildMicrosoftGraphClearPresenceCommand() {
+            var command = new Command("microsoft-graph-clear-presence");
+            command.Description = "Provides operations to call the clearPresence method.";
+            var builder = new ClearPresenceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the clearUserPreferredPresence method.
+        /// </summary>
+        public Command BuildMicrosoftGraphClearUserPreferredPresenceCommand() {
+            var command = new Command("microsoft-graph-clear-user-preferred-presence");
+            command.Description = "Provides operations to call the clearUserPreferredPresence method.";
+            var builder = new ClearUserPreferredPresenceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setPresence method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSetPresenceCommand() {
+            var command = new Command("microsoft-graph-set-presence");
+            command.Description = "Provides operations to call the setPresence method.";
+            var builder = new SetPresenceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUserPreferredPresence method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSetUserPreferredPresenceCommand() {
+            var command = new Command("microsoft-graph-set-user-preferred-presence");
+            command.Description = "Provides operations to call the setUserPreferredPresence method.";
+            var builder = new SetUserPreferredPresenceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -153,7 +173,7 @@ namespace ApiSdk.Communications.Presences.Item {
             };
             presenceIdOption.IsRequired = true;
             command.AddOption(presenceIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -191,31 +211,11 @@ namespace ApiSdk.Communications.Presences.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setPresence method.
-        /// </summary>
-        public Command BuildSetPresenceCommand() {
-            var command = new Command("set-presence");
-            command.Description = "Provides operations to call the setPresence method.";
-            var builder = new SetPresenceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setUserPreferredPresence method.
-        /// </summary>
-        public Command BuildSetUserPreferredPresenceCommand() {
-            var command = new Command("set-user-preferred-presence");
-            command.Description = "Provides operations to call the setUserPreferredPresence method.";
-            var builder = new SetUserPreferredPresenceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -284,10 +284,11 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Update the navigation property presences in communications
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Presence? body, Action<PresenceItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Presence body, Action<PresenceItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Presence body, Action<PresenceItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

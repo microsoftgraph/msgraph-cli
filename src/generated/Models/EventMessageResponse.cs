@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class EventMessageResponse : EventMessage, IParsable {
+        /// <summary>The proposedNewTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public TimeSlot? ProposedNewTime { get; set; }
@@ -12,6 +13,7 @@ namespace ApiSdk.Models {
 #else
         public TimeSlot ProposedNewTime { get; set; }
 #endif
+        /// <summary>The responseType property</summary>
         public ApiSdk.Models.ResponseType? ResponseType { get; set; }
         /// <summary>
         /// Instantiates a new EventMessageResponse and sets the default values.
@@ -23,13 +25,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new EventMessageResponse CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new EventMessageResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EventMessageResponse();
         }

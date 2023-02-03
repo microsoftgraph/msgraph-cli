@@ -55,7 +55,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers {
             var command = new Command("create");
             command.Description = "Create new navigation property to delegatedAdminCustomers for tenantRelationships";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -91,7 +91,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -99,11 +99,12 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers {
             return command;
         }
         /// <summary>
-        /// Get delegatedAdminCustomers from tenantRelationships
+        /// Get a list of the delegatedAdminCustomer objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/tenantrelationship-list-delegatedadmincustomers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get delegatedAdminCustomers from tenantRelationships";
+            command.Description = "Get a list of the delegatedAdminCustomer objects and their properties.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -193,7 +194,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -216,7 +217,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get delegatedAdminCustomers from tenantRelationships
+        /// Get a list of the delegatedAdminCustomer objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -244,10 +245,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers {
         /// <summary>
         /// Create new navigation property to delegatedAdminCustomers for tenantRelationships
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(DelegatedAdminCustomer? body, Action<DelegatedAdminCustomersRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(DelegatedAdminCustomer body, Action<DelegatedAdminCustomersRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(DelegatedAdminCustomer body, Action<DelegatedAdminCustomersRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
@@ -269,7 +271,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers {
             return requestInfo;
         }
         /// <summary>
-        /// Get delegatedAdminCustomers from tenantRelationships
+        /// Get a list of the delegatedAdminCustomer objects and their properties.
         /// </summary>
         public class DelegatedAdminCustomersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

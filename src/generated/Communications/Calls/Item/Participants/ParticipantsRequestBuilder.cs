@@ -1,6 +1,6 @@
 using ApiSdk.Communications.Calls.Item.Participants.Count;
-using ApiSdk.Communications.Calls.Item.Participants.Invite;
 using ApiSdk.Communications.Calls.Item.Participants.Item;
+using ApiSdk.Communications.Calls.Item.Participants.MicrosoftGraphInvite;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,10 +35,10 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             var builder = new ParticipantItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMuteCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphMuteCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphStartHoldMusicCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphStopHoldMusicCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildStartHoldMusicCommand());
-            command.AddCommand(builder.BuildStopHoldMusicCommand());
             return command;
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -100,21 +100,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the invite method.
-        /// </summary>
-        public Command BuildInviteCommand() {
-            var command = new Command("invite");
-            command.Description = "Provides operations to call the invite method.";
-            var builder = new InviteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -219,13 +209,23 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the invite method.
+        /// </summary>
+        public Command BuildMicrosoftGraphInviteCommand() {
+            var command = new Command("microsoft-graph-invite");
+            command.Description = "Provides operations to call the invite method.";
+            var builder = new InviteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -270,10 +270,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
         /// <summary>
         /// Create new navigation property to participants for communications
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Participant? body, Action<ParticipantsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Participant body, Action<ParticipantsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(Participant body, Action<ParticipantsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

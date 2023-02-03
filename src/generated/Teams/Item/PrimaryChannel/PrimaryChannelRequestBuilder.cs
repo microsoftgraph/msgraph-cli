@@ -1,12 +1,12 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Teams.Item.PrimaryChannel.CompleteMigration;
-using ApiSdk.Teams.Item.PrimaryChannel.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName;
 using ApiSdk.Teams.Item.PrimaryChannel.FilesFolder;
 using ApiSdk.Teams.Item.PrimaryChannel.Members;
 using ApiSdk.Teams.Item.PrimaryChannel.Messages;
-using ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail;
-using ApiSdk.Teams.Item.PrimaryChannel.RemoveEmail;
+using ApiSdk.Teams.Item.PrimaryChannel.MicrosoftGraphCompleteMigration;
+using ApiSdk.Teams.Item.PrimaryChannel.MicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName;
+using ApiSdk.Teams.Item.PrimaryChannel.MicrosoftGraphProvisionEmail;
+using ApiSdk.Teams.Item.PrimaryChannel.MicrosoftGraphRemoveEmail;
 using ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams;
 using ApiSdk.Teams.Item.PrimaryChannel.Tabs;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,16 +33,6 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the completeMigration method.
-        /// </summary>
-        public Command BuildCompleteMigrationCommand() {
-            var command = new Command("complete-migration");
-            command.Description = "Provides operations to call the completeMigration method.";
-            var builder = new CompleteMigrationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Delete navigation property primaryChannel for teams
         /// </summary>
@@ -142,7 +132,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -156,11 +146,11 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.channel entity.";
             var builder = new MembersRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
             return command;
         }
         /// <summary>
@@ -174,6 +164,47 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the completeMigration method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCompleteMigrationCommand() {
+            var command = new Command("microsoft-graph-complete-migration");
+            command.Description = "Provides operations to call the completeMigration method.";
+            var builder = new CompleteMigrationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the doesUserHaveAccess method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand() {
+            var command = new Command("microsoft-graph-does-user-have-accessuser-id-user-id-tenant-id-tenant-id-user-principal-name-user-principal-name");
+            command.Description = "Provides operations to call the doesUserHaveAccess method.";
+            var builder = new DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the provisionEmail method.
+        /// </summary>
+        public Command BuildMicrosoftGraphProvisionEmailCommand() {
+            var command = new Command("microsoft-graph-provision-email");
+            command.Description = "Provides operations to call the provisionEmail method.";
+            var builder = new ProvisionEmailRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removeEmail method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRemoveEmailCommand() {
+            var command = new Command("microsoft-graph-remove-email");
+            command.Description = "Provides operations to call the removeEmail method.";
+            var builder = new RemoveEmailRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -187,7 +218,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -225,31 +256,11 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the provisionEmail method.
-        /// </summary>
-        public Command BuildProvisionEmailCommand() {
-            var command = new Command("provision-email");
-            command.Description = "Provides operations to call the provisionEmail method.";
-            var builder = new ProvisionEmailRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removeEmail method.
-        /// </summary>
-        public Command BuildRemoveEmailCommand() {
-            var command = new Command("remove-email");
-            command.Description = "Provides operations to call the removeEmail method.";
-            var builder = new RemoveEmailRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -290,12 +301,6 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the doesUserHaveAccess method.
-        /// </summary>
-        public DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName() {
-            return new DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Delete navigation property primaryChannel for teams
@@ -350,10 +355,11 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
         /// <summary>
         /// Update the navigation property primaryChannel in teams
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Channel? body, Action<PrimaryChannelRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Channel body, Action<PrimaryChannelRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(Channel body, Action<PrimaryChannelRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

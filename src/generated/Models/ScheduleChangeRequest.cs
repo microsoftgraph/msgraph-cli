@@ -5,8 +5,11 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class ScheduleChangeRequest : ChangeTrackedEntity, IParsable {
+        /// <summary>The assignedTo property</summary>
         public ScheduleChangeRequestActor? AssignedTo { get; set; }
+        /// <summary>The managerActionDateTime property</summary>
         public DateTimeOffset? ManagerActionDateTime { get; private set; }
+        /// <summary>The managerActionMessage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ManagerActionMessage { get; set; }
@@ -14,6 +17,7 @@ namespace ApiSdk.Models {
 #else
         public string ManagerActionMessage { get; set; }
 #endif
+        /// <summary>The managerUserId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ManagerUserId { get; private set; }
@@ -21,7 +25,9 @@ namespace ApiSdk.Models {
 #else
         public string ManagerUserId { get; private set; }
 #endif
+        /// <summary>The senderDateTime property</summary>
         public DateTimeOffset? SenderDateTime { get; private set; }
+        /// <summary>The senderMessage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SenderMessage { get; set; }
@@ -29,6 +35,7 @@ namespace ApiSdk.Models {
 #else
         public string SenderMessage { get; set; }
 #endif
+        /// <summary>The senderUserId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SenderUserId { get; private set; }
@@ -36,6 +43,7 @@ namespace ApiSdk.Models {
 #else
         public string SenderUserId { get; private set; }
 #endif
+        /// <summary>The state property</summary>
         public ScheduleChangeState? State { get; set; }
         /// <summary>
         /// Instantiates a new ScheduleChangeRequest and sets the default values.
@@ -47,13 +55,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new ScheduleChangeRequest CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new ScheduleChangeRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {

@@ -1,6 +1,6 @@
-using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assign;
 using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignments;
-using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.SetPriority;
+using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.MicrosoftGraphAssign;
+using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.MicrosoftGraphSetPriority;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,16 +27,6 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the assign method.
-        /// </summary>
-        public Command BuildAssignCommand() {
-            var command = new Command("assign");
-            command.Description = "Provides operations to call the assign method.";
-            var builder = new AssignRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.deviceEnrollmentConfiguration entity.
         /// </summary>
@@ -137,11 +127,31 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the assign method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAssignCommand() {
+            var command = new Command("microsoft-graph-assign");
+            command.Description = "Provides operations to call the assign method.";
+            var builder = new AssignRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setPriority method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSetPriorityCommand() {
+            var command = new Command("microsoft-graph-set-priority");
+            command.Description = "Provides operations to call the setPriority method.";
+            var builder = new SetPriorityRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -155,7 +165,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceEnrollmentConfigurationIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -193,21 +203,11 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setPriority method.
-        /// </summary>
-        public Command BuildSetPriorityCommand() {
-            var command = new Command("set-priority");
-            command.Description = "Provides operations to call the setPriority method.";
-            var builder = new SetPriorityRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -276,10 +276,11 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         /// <summary>
         /// Update the navigation property deviceEnrollmentConfigurations in deviceManagement
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(DeviceEnrollmentConfiguration? body, Action<DeviceEnrollmentConfigurationItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(DeviceEnrollmentConfiguration body, Action<DeviceEnrollmentConfigurationItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(DeviceEnrollmentConfiguration body, Action<DeviceEnrollmentConfigurationItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

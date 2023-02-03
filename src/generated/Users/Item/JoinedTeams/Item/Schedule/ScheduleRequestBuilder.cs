@@ -1,10 +1,10 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.MicrosoftGraphShare;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShiftChangeRequests;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups;
-using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Share;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffReasons;
@@ -134,11 +134,21 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the share method.
+        /// </summary>
+        public Command BuildMicrosoftGraphShareCommand() {
+            var command = new Command("microsoft-graph-share");
+            command.Description = "Provides operations to call the share method.";
+            var builder = new ShareRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -195,7 +205,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -235,7 +245,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -253,16 +263,6 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the share method.
-        /// </summary>
-        public Command BuildShareCommand() {
-            var command = new Command("share");
-            command.Description = "Provides operations to call the share method.";
-            var builder = new ShareRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -396,10 +396,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Update the navigation property schedule in users
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Schedule? body, Action<ScheduleRequestBuilderPutRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Schedule body, Action<ScheduleRequestBuilderPutRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPutRequestInformation(ApiSdk.Models.Schedule body, Action<ScheduleRequestBuilderPutRequestConfiguration> requestConfiguration = default) {

@@ -5,8 +5,11 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class UserSettings : Entity, IParsable {
+        /// <summary>The contributionToContentDiscoveryAsOrganizationDisabled property</summary>
         public bool? ContributionToContentDiscoveryAsOrganizationDisabled { get; set; }
+        /// <summary>The contributionToContentDiscoveryDisabled property</summary>
         public bool? ContributionToContentDiscoveryDisabled { get; set; }
+        /// <summary>The shiftPreferences property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.ShiftPreferences? ShiftPreferences { get; set; }
@@ -18,13 +21,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new UserSettings CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new UserSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UserSettings();
         }

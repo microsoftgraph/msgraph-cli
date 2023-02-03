@@ -1,15 +1,15 @@
 using ApiSdk.Me.MailFolders.Item.Messages.Item.Attachments;
-using ApiSdk.Me.MailFolders.Item.Messages.Item.Copy;
-using ApiSdk.Me.MailFolders.Item.Messages.Item.CreateForward;
-using ApiSdk.Me.MailFolders.Item.Messages.Item.CreateReply;
-using ApiSdk.Me.MailFolders.Item.Messages.Item.CreateReplyAll;
 using ApiSdk.Me.MailFolders.Item.Messages.Item.Extensions;
-using ApiSdk.Me.MailFolders.Item.Messages.Item.Forward;
-using ApiSdk.Me.MailFolders.Item.Messages.Item.Move;
+using ApiSdk.Me.MailFolders.Item.Messages.Item.MicrosoftGraphCopy;
+using ApiSdk.Me.MailFolders.Item.Messages.Item.MicrosoftGraphCreateForward;
+using ApiSdk.Me.MailFolders.Item.Messages.Item.MicrosoftGraphCreateReply;
+using ApiSdk.Me.MailFolders.Item.Messages.Item.MicrosoftGraphCreateReplyAll;
+using ApiSdk.Me.MailFolders.Item.Messages.Item.MicrosoftGraphForward;
+using ApiSdk.Me.MailFolders.Item.Messages.Item.MicrosoftGraphMove;
+using ApiSdk.Me.MailFolders.Item.Messages.Item.MicrosoftGraphReply;
+using ApiSdk.Me.MailFolders.Item.Messages.Item.MicrosoftGraphReplyAll;
+using ApiSdk.Me.MailFolders.Item.Messages.Item.MicrosoftGraphSend;
 using ApiSdk.Me.MailFolders.Item.Messages.Item.MultiValueExtendedProperties;
-using ApiSdk.Me.MailFolders.Item.Messages.Item.Reply;
-using ApiSdk.Me.MailFolders.Item.Messages.Item.ReplyAll;
-using ApiSdk.Me.MailFolders.Item.Messages.Item.Send;
 using ApiSdk.Me.MailFolders.Item.Messages.Item.SingleValueExtendedProperties;
 using ApiSdk.Me.MailFolders.Item.Messages.Item.Value;
 using ApiSdk.Models;
@@ -48,8 +48,8 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCreateUploadSessionCommand());
             return command;
         }
         /// <summary>
@@ -61,46 +61,6 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             var builder = new ContentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPutCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copy method.
-        /// </summary>
-        public Command BuildCopyCommand() {
-            var command = new Command("copy");
-            command.Description = "Provides operations to call the copy method.";
-            var builder = new CopyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createForward method.
-        /// </summary>
-        public Command BuildCreateForwardCommand() {
-            var command = new Command("create-forward");
-            command.Description = "Provides operations to call the createForward method.";
-            var builder = new CreateForwardRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createReplyAll method.
-        /// </summary>
-        public Command BuildCreateReplyAllCommand() {
-            var command = new Command("create-reply-all");
-            command.Description = "Provides operations to call the createReplyAll method.";
-            var builder = new CreateReplyAllRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createReply method.
-        /// </summary>
-        public Command BuildCreateReplyCommand() {
-            var command = new Command("create-reply");
-            command.Description = "Provides operations to call the createReply method.";
-            var builder = new CreateReplyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -153,16 +113,6 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the forward method.
-        /// </summary>
-        public Command BuildForwardCommand() {
-            var command = new Command("forward");
-            command.Description = "Provides operations to call the forward method.";
-            var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -225,7 +175,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -233,12 +183,92 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the copy method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCopyCommand() {
+            var command = new Command("microsoft-graph-copy");
+            command.Description = "Provides operations to call the copy method.";
+            var builder = new CopyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createForward method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCreateForwardCommand() {
+            var command = new Command("microsoft-graph-create-forward");
+            command.Description = "Provides operations to call the createForward method.";
+            var builder = new CreateForwardRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createReplyAll method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCreateReplyAllCommand() {
+            var command = new Command("microsoft-graph-create-reply-all");
+            command.Description = "Provides operations to call the createReplyAll method.";
+            var builder = new CreateReplyAllRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createReply method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCreateReplyCommand() {
+            var command = new Command("microsoft-graph-create-reply");
+            command.Description = "Provides operations to call the createReply method.";
+            var builder = new CreateReplyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the forward method.
+        /// </summary>
+        public Command BuildMicrosoftGraphForwardCommand() {
+            var command = new Command("microsoft-graph-forward");
+            command.Description = "Provides operations to call the forward method.";
+            var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the move method.
         /// </summary>
-        public Command BuildMoveCommand() {
-            var command = new Command("move");
+        public Command BuildMicrosoftGraphMoveCommand() {
+            var command = new Command("microsoft-graph-move");
             command.Description = "Provides operations to call the move method.";
             var builder = new MoveRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the replyAll method.
+        /// </summary>
+        public Command BuildMicrosoftGraphReplyAllCommand() {
+            var command = new Command("microsoft-graph-reply-all");
+            command.Description = "Provides operations to call the replyAll method.";
+            var builder = new ReplyAllRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reply method.
+        /// </summary>
+        public Command BuildMicrosoftGraphReplyCommand() {
+            var command = new Command("microsoft-graph-reply");
+            command.Description = "Provides operations to call the reply method.";
+            var builder = new ReplyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the send method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSendCommand() {
+            var command = new Command("microsoft-graph-send");
+            command.Description = "Provides operations to call the send method.";
+            var builder = new SendRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -270,7 +300,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -310,41 +340,11 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the replyAll method.
-        /// </summary>
-        public Command BuildReplyAllCommand() {
-            var command = new Command("reply-all");
-            command.Description = "Provides operations to call the replyAll method.";
-            var builder = new ReplyAllRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reply method.
-        /// </summary>
-        public Command BuildReplyCommand() {
-            var command = new Command("reply");
-            command.Description = "Provides operations to call the reply method.";
-            var builder = new ReplyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the send method.
-        /// </summary>
-        public Command BuildSendCommand() {
-            var command = new Command("send");
-            command.Description = "Provides operations to call the send method.";
-            var builder = new SendRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -426,10 +426,11 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item {
         /// <summary>
         /// Update the navigation property messages in me
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Message? body, Action<MessageItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Message body, Action<MessageItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Message body, Action<MessageItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

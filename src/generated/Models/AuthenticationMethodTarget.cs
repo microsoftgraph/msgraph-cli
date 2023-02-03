@@ -7,18 +7,13 @@ namespace ApiSdk.Models {
     public class AuthenticationMethodTarget : Entity, IParsable {
         /// <summary>Determines if the user is enforced to register the authentication method.</summary>
         public bool? IsRegistrationRequired { get; set; }
+        /// <summary>The targetType property</summary>
         public AuthenticationMethodTargetType? TargetType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new AuthenticationMethodTarget CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new AuthenticationMethodTarget CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {

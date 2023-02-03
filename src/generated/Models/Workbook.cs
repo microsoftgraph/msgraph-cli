@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class Workbook : Entity, IParsable {
+        /// <summary>The application property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public WorkbookApplication? Application { get; set; }
@@ -12,6 +13,7 @@ namespace ApiSdk.Models {
 #else
         public WorkbookApplication Application { get; set; }
 #endif
+        /// <summary>The comments property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<WorkbookComment>? Comments { get; set; }
@@ -19,6 +21,7 @@ namespace ApiSdk.Models {
 #else
         public List<WorkbookComment> Comments { get; set; }
 #endif
+        /// <summary>The functions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public WorkbookFunctions? Functions { get; set; }
@@ -62,13 +65,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new Workbook CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new Workbook CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Workbook();
         }

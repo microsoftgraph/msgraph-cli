@@ -13,6 +13,7 @@ namespace ApiSdk.Models {
 #else
         public SharingDetail LastShared { get; set; }
 #endif
+        /// <summary>The lastSharedMethod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Entity? LastSharedMethod { get; set; }
@@ -44,6 +45,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.ResourceVisualization ResourceVisualization { get; private set; }
 #endif
+        /// <summary>The sharingHistory property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SharingDetail>? SharingHistory { get; set; }
@@ -55,13 +57,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new SharedInsight CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new SharedInsight CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SharedInsight();
         }

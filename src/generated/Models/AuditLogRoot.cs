@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    public class AuditLogRoot : Entity, IParsable {
+    public class AuditLogRoot : Entity, IAdditionalDataHolder, IParsable {
+        /// <summary>The directoryAudits property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DirectoryAudit>? DirectoryAudits { get; set; }
@@ -12,6 +13,7 @@ namespace ApiSdk.Models {
 #else
         public List<DirectoryAudit> DirectoryAudits { get; set; }
 #endif
+        /// <summary>The provisioning property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ProvisioningObjectSummary>? Provisioning { get; set; }
@@ -19,6 +21,7 @@ namespace ApiSdk.Models {
 #else
         public List<ProvisioningObjectSummary> Provisioning { get; set; }
 #endif
+        /// <summary>The signIns property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SignIn>? SignIns { get; set; }
@@ -27,16 +30,16 @@ namespace ApiSdk.Models {
         public List<SignIn> SignIns { get; set; }
 #endif
         /// <summary>
+        /// Instantiates a new auditLogRoot and sets the default values.
+        /// </summary>
+        public AuditLogRoot() : base() {
+            AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new AuditLogRoot CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new AuditLogRoot CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AuditLogRoot();
         }
@@ -60,6 +63,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<DirectoryAudit>("directoryAudits", DirectoryAudits);
             writer.WriteCollectionOfObjectValues<ProvisioningObjectSummary>("provisioning", Provisioning);
             writer.WriteCollectionOfObjectValues<SignIn>("signIns", SignIns);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

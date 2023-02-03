@@ -5,7 +5,7 @@ using ApiSdk.Security.Alerts;
 using ApiSdk.Security.AttackSimulation;
 using ApiSdk.Security.Cases;
 using ApiSdk.Security.Incidents;
-using ApiSdk.Security.RunHuntingQuery;
+using ApiSdk.Security.MicrosoftGraphSecurityRunHuntingQuery;
 using ApiSdk.Security.SecureScoreControlProfiles;
 using ApiSdk.Security.SecureScores;
 using Microsoft.Extensions.DependencyInjection;
@@ -133,7 +133,7 @@ namespace ApiSdk.Security {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -154,13 +154,23 @@ namespace ApiSdk.Security {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the runHuntingQuery method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityRunHuntingQueryCommand() {
+            var command = new Command("microsoft-graph-security-run-hunting-query");
+            command.Description = "Provides operations to call the runHuntingQuery method.";
+            var builder = new RunHuntingQueryRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Update security
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update security";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -196,21 +206,11 @@ namespace ApiSdk.Security {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the runHuntingQuery method.
-        /// </summary>
-        public Command BuildRunHuntingQueryCommand() {
-            var command = new Command("run-hunting-query");
-            command.Description = "Provides operations to call the runHuntingQuery method.";
-            var builder = new RunHuntingQueryRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -281,10 +281,11 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Update security
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.Security? body, Action<SecurityRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.Security body, Action<SecurityRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.Security body, Action<SecurityRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

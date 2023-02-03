@@ -1,5 +1,5 @@
-using ApiSdk.Me.Authentication.PhoneMethods.Item.DisableSmsSignIn;
-using ApiSdk.Me.Authentication.PhoneMethods.Item.EnableSmsSignIn;
+using ApiSdk.Me.Authentication.PhoneMethods.Item.MicrosoftGraphDisableSmsSignIn;
+using ApiSdk.Me.Authentication.PhoneMethods.Item.MicrosoftGraphEnableSmsSignIn;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,26 +60,6 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the disableSmsSignIn method.
-        /// </summary>
-        public Command BuildDisableSmsSignInCommand() {
-            var command = new Command("disable-sms-sign-in");
-            command.Description = "Provides operations to call the disableSmsSignIn method.";
-            var builder = new DisableSmsSignInRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the enableSmsSignIn method.
-        /// </summary>
-        public Command BuildEnableSmsSignInCommand() {
-            var command = new Command("enable-sms-sign-in");
-            command.Description = "Provides operations to call the enableSmsSignIn method.";
-            var builder = new EnableSmsSignInRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// The phone numbers registered to a user for authentication.
         /// </summary>
         public Command BuildGetCommand() {
@@ -133,11 +113,31 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the disableSmsSignIn method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDisableSmsSignInCommand() {
+            var command = new Command("microsoft-graph-disable-sms-sign-in");
+            command.Description = "Provides operations to call the disableSmsSignIn method.";
+            var builder = new DisableSmsSignInRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the enableSmsSignIn method.
+        /// </summary>
+        public Command BuildMicrosoftGraphEnableSmsSignInCommand() {
+            var command = new Command("microsoft-graph-enable-sms-sign-in");
+            command.Description = "Provides operations to call the enableSmsSignIn method.";
+            var builder = new EnableSmsSignInRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -151,7 +151,7 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item {
             };
             phoneAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(phoneAuthenticationMethodIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -189,7 +189,7 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -262,10 +262,11 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item {
         /// <summary>
         /// Update the navigation property phoneMethods in me
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PhoneAuthenticationMethod? body, Action<PhoneAuthenticationMethodItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PhoneAuthenticationMethod body, Action<PhoneAuthenticationMethodItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(PhoneAuthenticationMethod body, Action<PhoneAuthenticationMethodItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

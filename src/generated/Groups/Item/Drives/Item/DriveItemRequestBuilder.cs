@@ -1,12 +1,3 @@
-using ApiSdk.Groups.Item.Drives.Item.Bundles;
-using ApiSdk.Groups.Item.Drives.Item.Following;
-using ApiSdk.Groups.Item.Drives.Item.Items;
-using ApiSdk.Groups.Item.Drives.Item.List;
-using ApiSdk.Groups.Item.Drives.Item.Recent;
-using ApiSdk.Groups.Item.Drives.Item.Root;
-using ApiSdk.Groups.Item.Drives.Item.SearchWithQ;
-using ApiSdk.Groups.Item.Drives.Item.SharedWithMe;
-using ApiSdk.Groups.Item.Drives.Item.Special;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,69 +24,6 @@ namespace ApiSdk.Groups.Item.Drives.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to manage the bundles property of the microsoft.graph.drive entity.
-        /// </summary>
-        public Command BuildBundlesCommand() {
-            var command = new Command("bundles");
-            command.Description = "Provides operations to manage the bundles property of the microsoft.graph.drive entity.";
-            var builder = new BundlesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Delete navigation property drives for groups
-        /// </summary>
-        public Command BuildDeleteCommand() {
-            var command = new Command("delete");
-            command.Description = "Delete navigation property drives for groups";
-            // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
-            };
-            groupIdOption.IsRequired = true;
-            command.AddOption(groupIdOption);
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
-            };
-            driveIdOption.IsRequired = true;
-            command.AddOption(driveIdOption);
-            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
-                Arity = ArgumentArity.ZeroOrMore
-            };
-            ifMatchOption.IsRequired = false;
-            command.AddOption(ifMatchOption);
-            command.SetHandler(async (invocationContext) => {
-                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
-                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
-                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var requestInfo = ToDeleteRequestInformation(q => {
-                });
-                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
-                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
-                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the following property of the microsoft.graph.drive entity.
-        /// </summary>
-        public Command BuildFollowingCommand() {
-            var command = new Command("following");
-            command.Description = "Provides operations to manage the following property of the microsoft.graph.drive entity.";
-            var builder = new FollowingRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
         /// <summary>
         /// The group&apos;s drives. Read-only.
         /// </summary>
@@ -156,147 +84,11 @@ namespace ApiSdk.Groups.Item.Drives.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the items property of the microsoft.graph.drive entity.
-        /// </summary>
-        public Command BuildItemsCommand() {
-            var command = new Command("items");
-            command.Description = "Provides operations to manage the items property of the microsoft.graph.drive entity.";
-            var builder = new ItemsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the list property of the microsoft.graph.drive entity.
-        /// </summary>
-        public Command BuildListCommand() {
-            var command = new Command("list");
-            command.Description = "Provides operations to manage the list property of the microsoft.graph.drive entity.";
-            var builder = new ListRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildColumnsCommand());
-            command.AddCommand(builder.BuildContentTypesCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDriveCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildItemsCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSubscriptionsCommand());
-            return command;
-        }
-        /// <summary>
-        /// Update the navigation property drives in groups
-        /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
-            command.Description = "Update the navigation property drives in groups";
-            // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
-            };
-            groupIdOption.IsRequired = true;
-            command.AddOption(groupIdOption);
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
-            };
-            driveIdOption.IsRequired = true;
-            command.AddOption(driveIdOption);
-            var bodyOption = new Option<string>("--body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (invocationContext) => {
-                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
-                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
-                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
-                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var cancellationToken = invocationContext.GetCancellationToken();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
-                var requestInfo = ToPatchRequestInformation(model, q => {
-                });
-                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
-                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the root property of the microsoft.graph.drive entity.
-        /// </summary>
-        public Command BuildRootCommand() {
-            var command = new Command("root");
-            command.Description = "Provides operations to manage the root property of the microsoft.graph.drive entity.";
-            var builder = new RootRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAnalyticsCommand());
-            command.AddCommand(builder.BuildCheckinCommand());
-            command.AddCommand(builder.BuildCheckoutCommand());
-            command.AddCommand(builder.BuildChildrenCommand());
-            command.AddCommand(builder.BuildContentCommand());
-            command.AddCommand(builder.BuildCopyCommand());
-            command.AddCommand(builder.BuildCreateLinkCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFollowCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildInviteCommand());
-            command.AddCommand(builder.BuildListItemCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPermissionsCommand());
-            command.AddCommand(builder.BuildPreviewCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
-            command.AddCommand(builder.BuildSubscriptionsCommand());
-            command.AddCommand(builder.BuildThumbnailsCommand());
-            command.AddCommand(builder.BuildUnfollowCommand());
-            command.AddCommand(builder.BuildValidatePermissionCommand());
-            command.AddCommand(builder.BuildVersionsCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the special property of the microsoft.graph.drive entity.
-        /// </summary>
-        public Command BuildSpecialCommand() {
-            var command = new Command("special");
-            command.Description = "Provides operations to manage the special property of the microsoft.graph.drive entity.";
-            var builder = new SpecialRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -311,56 +103,6 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the recent method.
-        /// </summary>
-        public RecentRequestBuilder Recent() {
-            return new RecentRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the search method.
-        /// </summary>
-        /// <param name="q">Usage: q=&apos;{q}&apos;</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public SearchWithQRequestBuilder SearchWithQ(string? q) {
-#nullable restore
-#else
-        public SearchWithQRequestBuilder SearchWithQ(string q) {
-#endif
-            if(string.IsNullOrEmpty(q)) throw new ArgumentNullException(nameof(q));
-            return new SearchWithQRequestBuilder(PathParameters, RequestAdapter, q);
-        }
-        /// <summary>
-        /// Provides operations to call the sharedWithMe method.
-        /// </summary>
-        public SharedWithMeRequestBuilder SharedWithMe() {
-            return new SharedWithMeRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Delete navigation property drives for groups
-        /// </summary>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<DriveItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
-#nullable restore
-#else
-        public RequestInformation ToDeleteRequestInformation(Action<DriveItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
-#endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.DELETE,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new DriveItemRequestBuilderDeleteRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
         }
         /// <summary>
         /// The group&apos;s drives. Read-only.
@@ -387,49 +129,6 @@ namespace ApiSdk.Groups.Item.Drives.Item {
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Update the navigation property drives in groups
-        /// </summary>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Drive? body, Action<DriveItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
-#nullable restore
-#else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Drive body, Action<DriveItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
-#endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            if (requestConfiguration != null) {
-                var requestConfig = new DriveItemRequestBuilderPatchRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class DriveItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new DriveItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public DriveItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// The group&apos;s drives. Read-only.
@@ -470,22 +169,6 @@ namespace ApiSdk.Groups.Item.Drives.Item {
             /// Instantiates a new DriveItemRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public DriveItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class DriveItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new DriveItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public DriveItemRequestBuilderPatchRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new RequestHeaders();
             }

@@ -25,6 +25,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item.Value {
         private string UrlTemplate { get; set; }
         /// <summary>
         /// Get media content for the navigation property attachments from me
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/todotask-list-attachments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");

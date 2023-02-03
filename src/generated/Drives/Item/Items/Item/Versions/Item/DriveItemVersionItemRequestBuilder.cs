@@ -1,5 +1,5 @@
 using ApiSdk.Drives.Item.Items.Item.Versions.Item.Content;
-using ApiSdk.Drives.Item.Items.Item.Versions.Item.RestoreVersion;
+using ApiSdk.Drives.Item.Items.Item.Versions.Item.MicrosoftGraphRestoreVersion;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -148,11 +148,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restoreVersion method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRestoreVersionCommand() {
+            var command = new Command("microsoft-graph-restore-version");
+            command.Description = "Provides operations to call the restoreVersion method.";
+            var builder = new RestoreVersionRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -174,7 +184,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
             };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -216,21 +226,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restoreVersion method.
-        /// </summary>
-        public Command BuildRestoreVersionCommand() {
-            var command = new Command("restore-version");
-            command.Description = "Provides operations to call the restoreVersion method.";
-            var builder = new RestoreVersionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -299,10 +299,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
         /// <summary>
         /// Update the navigation property versions in drives
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(DriveItemVersion? body, Action<DriveItemVersionItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(DriveItemVersion body, Action<DriveItemVersionItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(DriveItemVersion body, Action<DriveItemVersionItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

@@ -1,17 +1,19 @@
 namespace ApiSdk.Models {
     /// <summary>Branding Options for the Message Template. Branding is defined in the Intune Admin Console.</summary>
     public enum NotificationTemplateBrandingOptions {
-        /// <summary>No Branding.</summary>
+        /// <summary>Indicates that no branding options are set in the message template.</summary>
         None,
-        /// <summary>Include Company Logo.</summary>
+        /// <summary>Indicates to include company logo in the message template.</summary>
         IncludeCompanyLogo,
-        /// <summary>Include Company Name.</summary>
+        /// <summary>Indicates to include company name in the message template.</summary>
         IncludeCompanyName,
-        /// <summary>Include Contact Info.</summary>
+        /// <summary>Indicates to include contact information in the message template.</summary>
         IncludeContactInformation,
-        /// <summary>Include Company Portal Link.</summary>
+        /// <summary>Indicates to include company portal website link in the message template.</summary>
         IncludeCompanyPortalLink,
-        /// <summary>Include Device Details.</summary>
+        /// <summary>Indicates to include device details in the message template.</summary>
         IncludeDeviceDetails,
+        /// <summary>Evolvable enumeration sentinel value. Do not use.</summary>
+        UnknownFutureValue,
     }
 }

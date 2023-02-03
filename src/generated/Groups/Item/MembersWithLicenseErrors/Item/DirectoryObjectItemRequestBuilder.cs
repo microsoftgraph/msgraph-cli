@@ -1,9 +1,9 @@
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.Application;
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.Device;
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.Group;
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.OrgContact;
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.ServicePrincipal;
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.User;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.MicrosoftGraphApplication;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.MicrosoftGraphDevice;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.MicrosoftGraphGroup;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.MicrosoftGraphOrgContact;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.MicrosoftGraphServicePrincipal;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.MicrosoftGraphUser;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,26 +30,6 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Casts the previous resource to application.
-        /// </summary>
-        public Command BuildApplicationCommand() {
-            var command = new Command("application");
-            command.Description = "Casts the previous resource to application.";
-            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to device.
-        /// </summary>
-        public Command BuildDeviceCommand() {
-            var command = new Command("device");
-            command.Description = "Casts the previous resource to device.";
-            var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
         /// <summary>
         /// A list of group members with license errors from this group-based license assignment. Read-only.
         /// </summary>
@@ -117,7 +97,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -125,10 +105,30 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to application.
+        /// </summary>
+        public Command BuildMicrosoftGraphApplicationCommand() {
+            var command = new Command("microsoft-graph-application");
+            command.Description = "Casts the previous resource to application.";
+            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to device.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeviceCommand() {
+            var command = new Command("microsoft-graph-device");
+            command.Description = "Casts the previous resource to device.";
+            var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGroupCommand() {
-            var command = new Command("group");
+        public Command BuildMicrosoftGraphGroupCommand() {
+            var command = new Command("microsoft-graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -137,8 +137,8 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildOrgContactCommand() {
-            var command = new Command("org-contact");
+        public Command BuildMicrosoftGraphOrgContactCommand() {
+            var command = new Command("microsoft-graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new OrgContactRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -147,8 +147,8 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildServicePrincipalCommand() {
-            var command = new Command("service-principal");
+        public Command BuildMicrosoftGraphServicePrincipalCommand() {
+            var command = new Command("microsoft-graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -157,8 +157,8 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildUserCommand() {
-            var command = new Command("user");
+        public Command BuildMicrosoftGraphUserCommand() {
+            var command = new Command("microsoft-graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());

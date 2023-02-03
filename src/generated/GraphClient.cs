@@ -25,7 +25,6 @@ using ApiSdk.DirectoryRoles;
 using ApiSdk.DirectoryRoleTemplates;
 using ApiSdk.DomainDnsRecords;
 using ApiSdk.Domains;
-using ApiSdk.Drive;
 using ApiSdk.Drives;
 using ApiSdk.Education;
 using ApiSdk.External;
@@ -150,10 +149,11 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -247,6 +247,7 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAllMessagesCommand());
             return command;
         }
         /// <summary>
@@ -259,7 +260,7 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCallRecordsCommand());
             command.AddCommand(builder.BuildCallsCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetPresencesByUserIdCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetPresencesByUserIdCommand());
             command.AddCommand(builder.BuildOnlineMeetingsCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPresencesCommand());
@@ -299,10 +300,11 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -315,10 +317,10 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -350,11 +352,11 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildManagedAppStatusesCommand());
             command.AddCommand(builder.BuildManagedEBooksCommand());
             command.AddCommand(builder.BuildMdmWindowsInformationProtectionPoliciesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSyncMicrosoftStoreForBusinessAppsCommand());
             command.AddCommand(builder.BuildMobileAppCategoriesCommand());
             command.AddCommand(builder.BuildMobileAppConfigurationsCommand());
             command.AddCommand(builder.BuildMobileAppsCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSyncMicrosoftStoreForBusinessAppsCommand());
             command.AddCommand(builder.BuildTargetedManagedAppConfigurationsCommand());
             command.AddCommand(builder.BuildVppTokensCommand());
             command.AddCommand(builder.BuildWindowsInformationProtectionPoliciesCommand());
@@ -413,10 +415,11 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -443,10 +446,10 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -459,10 +462,11 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -475,10 +479,10 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -505,23 +509,6 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the drive singleton.
-        /// </summary>
-        public Command BuildDriveCommand() {
-            var command = new Command("drive");
-            command.Description = "Provides operations to manage the drive singleton.";
-            var builder = new DriveRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildBundlesCommand());
-            command.AddCommand(builder.BuildFollowingCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildItemsCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRootCommand());
-            command.AddCommand(builder.BuildSpecialCommand());
             return command;
         }
         /// <summary>
@@ -587,10 +574,11 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -616,10 +604,10 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -679,6 +667,7 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAvailableProviderTypesCommand());
             return command;
         }
         /// <summary>
@@ -730,16 +719,12 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildActivitiesCommand());
             command.AddCommand(builder.BuildAgreementAcceptancesCommand());
             command.AddCommand(builder.BuildAppRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildAssignLicenseCommand());
             command.AddCommand(builder.BuildAuthenticationCommand());
             command.AddCommand(builder.BuildCalendarCommand());
             command.AddCommand(builder.BuildCalendarGroupsCommand());
             command.AddCommand(builder.BuildCalendarsCommand());
             command.AddCommand(builder.BuildCalendarViewCommand());
-            command.AddCommand(builder.BuildChangePasswordCommand());
             command.AddCommand(builder.BuildChatsCommand());
-            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
             command.AddCommand(builder.BuildContactFoldersCommand());
             command.AddCommand(builder.BuildContactsCommand());
             command.AddCommand(builder.BuildCreatedObjectsCommand());
@@ -748,14 +733,9 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildDriveCommand());
             command.AddCommand(builder.BuildDrivesCommand());
             command.AddCommand(builder.BuildEventsCommand());
-            command.AddCommand(builder.BuildExportPersonalDataCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildFindMeetingTimesCommand());
             command.AddCommand(builder.BuildFollowedSitesCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMailTipsCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsCommand());
             command.AddCommand(builder.BuildInferenceClassificationCommand());
             command.AddCommand(builder.BuildInsightsCommand());
             command.AddCommand(builder.BuildJoinedTeamsCommand());
@@ -766,6 +746,26 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildManagerCommand());
             command.AddCommand(builder.BuildMemberOfCommand());
             command.AddCommand(builder.BuildMessagesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAssignLicenseCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphChangePasswordCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberGroupsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberObjectsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphExportDeviceAndAppManagementDataCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphExportPersonalDataCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphFindMeetingTimesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMailTipsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetManagedAppDiagnosticStatusesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetManagedAppPoliciesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetManagedDevicesWithAppFailuresCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMemberGroupsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMemberObjectsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRemoveAllDevicesFromManagementCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphReprocessLicenseAssignmentCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRevokeSignInSessionsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSendMailCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphTranslateExchangeIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphWipeManagedAppRegistrationsByDeviceTagCommand());
             command.AddCommand(builder.BuildOauth2PermissionGrantsCommand());
             command.AddCommand(builder.BuildOnenoteCommand());
             command.AddCommand(builder.BuildOnlineMeetingsCommand());
@@ -779,18 +779,11 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildPlannerCommand());
             command.AddCommand(builder.BuildPresenceCommand());
             command.AddCommand(builder.BuildRegisteredDevicesCommand());
-            command.AddCommand(builder.BuildRemoveAllDevicesFromManagementCommand());
-            command.AddCommand(builder.BuildReprocessLicenseAssignmentCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
-            command.AddCommand(builder.BuildRevokeSignInSessionsCommand());
             command.AddCommand(builder.BuildScopedRoleMemberOfCommand());
-            command.AddCommand(builder.BuildSendMailCommand());
             command.AddCommand(builder.BuildSettingsCommand());
             command.AddCommand(builder.BuildTeamworkCommand());
             command.AddCommand(builder.BuildTodoCommand());
             command.AddCommand(builder.BuildTransitiveMemberOfCommand());
-            command.AddCommand(builder.BuildTranslateExchangeIdsCommand());
-            command.AddCommand(builder.BuildWipeManagedAppRegistrationsByDeviceTagCommand());
             return command;
         }
         /// <summary>
@@ -804,6 +797,7 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -816,10 +810,10 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -831,10 +825,10 @@ namespace ApiSdk {
             var builder = new PermissionGrantsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -848,7 +842,7 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRoomCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRoomCommand());
             return command;
         }
         /// <summary>
@@ -931,6 +925,13 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildDailyPrintUsageByPrinterCommand());
             command.AddCommand(builder.BuildDailyPrintUsageByUserCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeviceConfigurationDeviceActivityCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeviceConfigurationUserActivityCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetOffice365ActivationCountsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetOffice365ActivationsUserCountsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetOffice365ActivationsUserDetailCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphManagedDeviceEnrollmentFailureDetailsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphManagedDeviceEnrollmentTopFailuresCommand());
             command.AddCommand(builder.BuildMonthlyPrintUsageByPrinterCommand());
             command.AddCommand(builder.BuildMonthlyPrintUsageByUserCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -983,7 +984,6 @@ namespace ApiSdk {
             command.AddCommand(BuildDirectoryRoleTemplatesCommand());
             command.AddCommand(BuildDomainDnsRecordsCommand());
             command.AddCommand(BuildDomainsCommand());
-            command.AddCommand(BuildDriveCommand());
             command.AddCommand(BuildDrivesCommand());
             command.AddCommand(BuildEducationCommand());
             command.AddCommand(BuildExternalCommand());
@@ -1060,8 +1060,8 @@ namespace ApiSdk {
             command.Description = "Provides operations to manage the searchEntity singleton.";
             var builder = new SearchRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphQueryCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildQueryCommand());
             return command;
         }
         /// <summary>
@@ -1077,8 +1077,8 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCasesCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildIncidentsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSecurityRunHuntingQueryCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRunHuntingQueryCommand());
             command.AddCommand(builder.BuildSecureScoreControlProfilesCommand());
             command.AddCommand(builder.BuildSecureScoresCommand());
             return command;
@@ -1093,10 +1093,11 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -1119,11 +1120,11 @@ namespace ApiSdk {
             var command = new Command("sites");
             command.Description = "Provides operations to manage the collection of site entities.";
             var builder = new SitesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRemoveCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRemoveCommand());
             return command;
         }
         /// <summary>
@@ -1174,6 +1175,7 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAllMessagesCommand());
             return command;
         }
         /// <summary>
@@ -1197,8 +1199,8 @@ namespace ApiSdk {
             command.Description = "Provides operations to manage the teamwork singleton.";
             var builder = new TeamworkRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSendActivityNotificationToRecipientsCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSendActivityNotificationToRecipientsCommand());
             command.AddCommand(builder.BuildWorkforceIntegrationsCommand());
             return command;
         }
@@ -1225,10 +1227,11 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             return command;
         }
         /// <summary>

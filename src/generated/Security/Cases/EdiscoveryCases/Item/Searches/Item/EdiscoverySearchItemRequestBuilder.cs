@@ -3,10 +3,10 @@ using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSources;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AddToReviewSetOperation;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSources;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.EstimateStatistics;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateStatisticsOperation;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGraphSecurityEstimateStatistics;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGraphSecurityPurgeData;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.NoncustodialSources;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.PurgeData;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -106,16 +106,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the estimateStatistics method.
-        /// </summary>
-        public Command BuildEstimateStatisticsCommand() {
-            var command = new Command("estimate-statistics");
-            command.Description = "Provides operations to call the estimateStatistics method.";
-            var builder = new EstimateStatisticsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Returns a list of eDiscoverySearch objects associated with this case.
         /// </summary>
         public Command BuildGetCommand() {
@@ -175,7 +165,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -190,6 +180,26 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
             command.Description = "Provides operations to manage the lastEstimateStatisticsOperation property of the microsoft.graph.security.ediscoverySearch entity.";
             var builder = new LastEstimateStatisticsOperationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the estimateStatistics method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityEstimateStatisticsCommand() {
+            var command = new Command("microsoft-graph-security-estimate-statistics");
+            command.Description = "Provides operations to call the estimateStatistics method.";
+            var builder = new EstimateStatisticsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the purgeData method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityPurgeDataCommand() {
+            var command = new Command("microsoft-graph-security-purge-data");
+            command.Description = "Provides operations to call the purgeData method.";
+            var builder = new PurgeDataRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -219,7 +229,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
             };
             ediscoverySearchIdOption.IsRequired = true;
             command.AddOption(ediscoverySearchIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -259,21 +269,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the purgeData method.
-        /// </summary>
-        public Command BuildPurgeDataCommand() {
-            var command = new Command("purge-data");
-            command.Description = "Provides operations to call the purgeData method.";
-            var builder = new PurgeDataRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -342,10 +342,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Update the navigation property searches in security
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EdiscoverySearch? body, Action<EdiscoverySearchItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EdiscoverySearch body, Action<EdiscoverySearchItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(EdiscoverySearch body, Action<EdiscoverySearchItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

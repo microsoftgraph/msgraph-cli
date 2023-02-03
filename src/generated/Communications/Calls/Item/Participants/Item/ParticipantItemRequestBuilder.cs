@@ -1,6 +1,6 @@
-using ApiSdk.Communications.Calls.Item.Participants.Item.Mute;
-using ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic;
-using ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic;
+using ApiSdk.Communications.Calls.Item.Participants.Item.MicrosoftGraphMute;
+using ApiSdk.Communications.Calls.Item.Participants.Item.MicrosoftGraphStartHoldMusic;
+using ApiSdk.Communications.Calls.Item.Participants.Item.MicrosoftGraphStopHoldMusic;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -126,7 +126,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -136,10 +136,30 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
         /// <summary>
         /// Provides operations to call the mute method.
         /// </summary>
-        public Command BuildMuteCommand() {
-            var command = new Command("mute");
+        public Command BuildMicrosoftGraphMuteCommand() {
+            var command = new Command("microsoft-graph-mute");
             command.Description = "Provides operations to call the mute method.";
             var builder = new MuteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the startHoldMusic method.
+        /// </summary>
+        public Command BuildMicrosoftGraphStartHoldMusicCommand() {
+            var command = new Command("microsoft-graph-start-hold-music");
+            command.Description = "Provides operations to call the startHoldMusic method.";
+            var builder = new StartHoldMusicRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stopHoldMusic method.
+        /// </summary>
+        public Command BuildMicrosoftGraphStopHoldMusicCommand() {
+            var command = new Command("microsoft-graph-stop-hold-music");
+            command.Description = "Provides operations to call the stopHoldMusic method.";
+            var builder = new StopHoldMusicRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -158,7 +178,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
             };
             participantIdOption.IsRequired = true;
             command.AddOption(participantIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -198,31 +218,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the startHoldMusic method.
-        /// </summary>
-        public Command BuildStartHoldMusicCommand() {
-            var command = new Command("start-hold-music");
-            command.Description = "Provides operations to call the startHoldMusic method.";
-            var builder = new StartHoldMusicRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the stopHoldMusic method.
-        /// </summary>
-        public Command BuildStopHoldMusicCommand() {
-            var command = new Command("stop-hold-music");
-            command.Description = "Provides operations to call the stopHoldMusic method.";
-            var builder = new StopHoldMusicRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -291,10 +291,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
         /// <summary>
         /// Update the navigation property participants in communications
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Participant? body, Action<ParticipantItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Participant body, Action<ParticipantItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(Participant body, Action<ParticipantItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

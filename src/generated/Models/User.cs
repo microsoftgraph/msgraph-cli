@@ -71,6 +71,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.Authentication Authentication { get; set; }
 #endif
+        /// <summary>The authorizationInfo property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.AuthorizationInfo? AuthorizationInfo { get; set; }
@@ -120,6 +121,7 @@ namespace ApiSdk.Models {
 #else
         public List<Event> CalendarView { get; set; }
 #endif
+        /// <summary>The chats property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Chat>? Chats { get; set; }
@@ -253,6 +255,8 @@ namespace ApiSdk.Models {
 #else
         public string EmployeeId { get; set; }
 #endif
+        /// <summary>The employeeLeaveDateTime property</summary>
+        public DateTimeOffset? EmployeeLeaveDateTime { get; set; }
         /// <summary>Represents organization data (e.g. division and costCenter) associated with a user. Returned only on $select. Supports $filter (eq, ne, not , ge, le, in).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -303,6 +307,7 @@ namespace ApiSdk.Models {
 #else
         public string FaxNumber { get; set; }
 #endif
+        /// <summary>The followedSites property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Site>? FollowedSites { get; set; }
@@ -344,6 +349,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.InferenceClassification InferenceClassification { get; set; }
 #endif
+        /// <summary>The insights property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public OfficeGraphInsights? Insights { get; set; }
@@ -369,6 +375,7 @@ namespace ApiSdk.Models {
 #else
         public string JobTitle { get; set; }
 #endif
+        /// <summary>The joinedTeams property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Team>? JoinedTeams { get; set; }
@@ -490,6 +497,7 @@ namespace ApiSdk.Models {
 #else
         public string MySite { get; set; }
 #endif
+        /// <summary>The oauth2PermissionGrants property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<OAuth2PermissionGrant>? Oauth2PermissionGrants { get; set; }
@@ -505,6 +513,7 @@ namespace ApiSdk.Models {
 #else
         public string OfficeLocation { get; set; }
 #endif
+        /// <summary>The onenote property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Onenote? Onenote { get; set; }
@@ -512,6 +521,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.Onenote Onenote { get; set; }
 #endif
+        /// <summary>The onlineMeetings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<OnlineMeeting>? OnlineMeetings { get; set; }
@@ -595,6 +605,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> OtherMails { get; set; }
 #endif
+        /// <summary>The outlook property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public OutlookUser? Outlook { get; set; }
@@ -658,6 +669,7 @@ namespace ApiSdk.Models {
 #else
         public ProfilePhoto Photo { get; set; }
 #endif
+        /// <summary>The photos property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ProfilePhoto>? Photos { get; set; }
@@ -705,6 +717,7 @@ namespace ApiSdk.Models {
 #else
         public string PreferredName { get; set; }
 #endif
+        /// <summary>The presence property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Presence? Presence { get; set; }
@@ -752,6 +765,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> Schools { get; set; }
 #endif
+        /// <summary>The scopedRoleMemberOf property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ScopedRoleMembership>? ScopedRoleMemberOf { get; set; }
@@ -767,6 +781,7 @@ namespace ApiSdk.Models {
 #else
         public string SecurityIdentifier { get; set; }
 #endif
+        /// <summary>The settings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public UserSettings? Settings { get; set; }
@@ -810,6 +825,7 @@ namespace ApiSdk.Models {
 #else
         public string Surname { get; set; }
 #endif
+        /// <summary>The teamwork property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public UserTeamwork? Teamwork { get; set; }
@@ -867,13 +883,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new User CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new User CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new User();
         }
@@ -917,6 +927,7 @@ namespace ApiSdk.Models {
                 {"drives", n => { Drives = n.GetCollectionOfObjectValues<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"employeeHireDate", n => { EmployeeHireDate = n.GetDateTimeOffsetValue(); } },
                 {"employeeId", n => { EmployeeId = n.GetStringValue(); } },
+                {"employeeLeaveDateTime", n => { EmployeeLeaveDateTime = n.GetDateTimeOffsetValue(); } },
                 {"employeeOrgData", n => { EmployeeOrgData = n.GetObjectValue<ApiSdk.Models.EmployeeOrgData>(ApiSdk.Models.EmployeeOrgData.CreateFromDiscriminatorValue); } },
                 {"employeeType", n => { EmployeeType = n.GetStringValue(); } },
                 {"events", n => { Events = n.GetCollectionOfObjectValues<Event>(Event.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -1044,6 +1055,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Drive>("drives", Drives);
             writer.WriteDateTimeOffsetValue("employeeHireDate", EmployeeHireDate);
             writer.WriteStringValue("employeeId", EmployeeId);
+            writer.WriteDateTimeOffsetValue("employeeLeaveDateTime", EmployeeLeaveDateTime);
             writer.WriteObjectValue<ApiSdk.Models.EmployeeOrgData>("employeeOrgData", EmployeeOrgData);
             writer.WriteStringValue("employeeType", EmployeeType);
             writer.WriteCollectionOfObjectValues<Event>("events", Events);

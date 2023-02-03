@@ -33,27 +33,30 @@ namespace ApiSdk.Drives.Item.Items {
             var command = new Command("item");
             var builder = new DriveItemItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAnalyticsCommand());
-            command.AddCommand(builder.BuildCheckinCommand());
-            command.AddCommand(builder.BuildCheckoutCommand());
             command.AddCommand(builder.BuildChildrenCommand());
             command.AddCommand(builder.BuildContentCommand());
-            command.AddCommand(builder.BuildCopyCommand());
-            command.AddCommand(builder.BuildCreateLinkCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFollowCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildInviteCommand());
             command.AddCommand(builder.BuildListItemCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckinCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckoutCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCopyCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCreateLinkCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCreateUploadSessionCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphFollowCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetActivitiesByIntervalCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphInviteCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphPreviewCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphUnfollowCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePermissionCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPermissionsCommand());
-            command.AddCommand(builder.BuildPreviewCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
             command.AddCommand(builder.BuildSubscriptionsCommand());
             command.AddCommand(builder.BuildThumbnailsCommand());
-            command.AddCommand(builder.BuildUnfollowCommand());
-            command.AddCommand(builder.BuildValidatePermissionCommand());
             command.AddCommand(builder.BuildVersionsCommand());
+            command.AddCommand(builder.BuildWorkbookCommand());
             return command;
         }
         /// <summary>
@@ -77,7 +80,7 @@ namespace ApiSdk.Drives.Item.Items {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -115,7 +118,7 @@ namespace ApiSdk.Drives.Item.Items {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -223,7 +226,7 @@ namespace ApiSdk.Drives.Item.Items {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -274,10 +277,11 @@ namespace ApiSdk.Drives.Item.Items {
         /// <summary>
         /// Create new navigation property to items for drives
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DriveItem? body, Action<ItemsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DriveItem body, Action<ItemsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(ApiSdk.Models.DriveItem body, Action<ItemsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

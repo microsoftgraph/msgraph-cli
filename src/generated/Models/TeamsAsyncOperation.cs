@@ -19,7 +19,9 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Time when the async operation was last updated.</summary>
         public DateTimeOffset? LastActionDateTime { get; set; }
+        /// <summary>The operationType property</summary>
         public TeamsAsyncOperationType? OperationType { get; set; }
+        /// <summary>The status property</summary>
         public TeamsAsyncOperationStatus? Status { get; set; }
         /// <summary>The ID of the object that&apos;s created or modified as result of this async operation, typically a team.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,13 +43,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new TeamsAsyncOperation CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new TeamsAsyncOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TeamsAsyncOperation();
         }

@@ -1,10 +1,10 @@
-using ApiSdk.DirectoryRoles.Item.Members.Item.Application;
-using ApiSdk.DirectoryRoles.Item.Members.Item.Device;
-using ApiSdk.DirectoryRoles.Item.Members.Item.Group;
-using ApiSdk.DirectoryRoles.Item.Members.Item.OrgContact;
+using ApiSdk.DirectoryRoles.Item.Members.Item.MicrosoftGraphApplication;
+using ApiSdk.DirectoryRoles.Item.Members.Item.MicrosoftGraphDevice;
+using ApiSdk.DirectoryRoles.Item.Members.Item.MicrosoftGraphGroup;
+using ApiSdk.DirectoryRoles.Item.Members.Item.MicrosoftGraphOrgContact;
+using ApiSdk.DirectoryRoles.Item.Members.Item.MicrosoftGraphServicePrincipal;
+using ApiSdk.DirectoryRoles.Item.Members.Item.MicrosoftGraphUser;
 using ApiSdk.DirectoryRoles.Item.Members.Item.Ref;
-using ApiSdk.DirectoryRoles.Item.Members.Item.ServicePrincipal;
-using ApiSdk.DirectoryRoles.Item.Members.Item.User;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -30,8 +30,8 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        public Command BuildApplicationCommand() {
-            var command = new Command("application");
+        public Command BuildMicrosoftGraphApplicationCommand() {
+            var command = new Command("microsoft-graph-application");
             command.Description = "Casts the previous resource to application.";
             var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -40,8 +40,8 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        public Command BuildDeviceCommand() {
-            var command = new Command("device");
+        public Command BuildMicrosoftGraphDeviceCommand() {
+            var command = new Command("microsoft-graph-device");
             command.Description = "Casts the previous resource to device.";
             var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -50,8 +50,8 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGroupCommand() {
-            var command = new Command("group");
+        public Command BuildMicrosoftGraphGroupCommand() {
+            var command = new Command("microsoft-graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -60,10 +60,30 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildOrgContactCommand() {
-            var command = new Command("org-contact");
+        public Command BuildMicrosoftGraphOrgContactCommand() {
+            var command = new Command("microsoft-graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new OrgContactRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to servicePrincipal.
+        /// </summary>
+        public Command BuildMicrosoftGraphServicePrincipalCommand() {
+            var command = new Command("microsoft-graph-service-principal");
+            command.Description = "Casts the previous resource to servicePrincipal.";
+            var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to user.
+        /// </summary>
+        public Command BuildMicrosoftGraphUserCommand() {
+            var command = new Command("microsoft-graph-user");
+            command.Description = "Casts the previous resource to user.";
+            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -75,26 +95,6 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
             command.Description = "Provides operations to manage the collection of directoryRole entities.";
             var builder = new RefRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to servicePrincipal.
-        /// </summary>
-        public Command BuildServicePrincipalCommand() {
-            var command = new Command("service-principal");
-            command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to user.
-        /// </summary>
-        public Command BuildUserCommand() {
-            var command = new Command("user");
-            command.Description = "Casts the previous resource to user.";
-            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

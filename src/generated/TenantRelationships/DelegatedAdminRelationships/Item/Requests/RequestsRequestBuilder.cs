@@ -48,17 +48,18 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to requests for tenantRelationships
+        /// Create a new delegatedAdminRelationshipRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/delegatedadminrelationship-post-requests?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to requests for tenantRelationships";
+            command.Description = "Create a new delegatedAdminRelationshipRequest object.";
             // Create options for all the parameters
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -96,7 +97,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -104,11 +105,12 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return command;
         }
         /// <summary>
-        /// Get requests from tenantRelationships
+        /// Get a list of the delegatedAdminRelationshipRequest objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/delegatedadminrelationship-list-requests?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get requests from tenantRelationships";
+            command.Description = "Get a list of the delegatedAdminRelationshipRequest objects and their properties.";
             // Create options for all the parameters
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
             };
@@ -204,7 +206,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -227,7 +229,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get requests from tenantRelationships
+        /// Get a list of the delegatedAdminRelationshipRequest objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -253,12 +255,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to requests for tenantRelationships
+        /// Create a new delegatedAdminRelationshipRequest object.
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(DelegatedAdminRelationshipRequest? body, Action<RequestsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(DelegatedAdminRelationshipRequest body, Action<RequestsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(DelegatedAdminRelationshipRequest body, Action<RequestsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
@@ -280,7 +283,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return requestInfo;
         }
         /// <summary>
-        /// Get requests from tenantRelationships
+        /// Get a list of the delegatedAdminRelationshipRequest objects and their properties.
         /// </summary>
         public class RequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

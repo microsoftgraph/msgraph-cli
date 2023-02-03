@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class DelegatedAdminRelationshipOperation : Entity, IParsable {
+        /// <summary>The time in ISO 8601 format and in UTC time when the long-running operation was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
+        /// <summary>The data (payload) for the operation. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Data { get; set; }
@@ -13,20 +15,17 @@ namespace ApiSdk.Models {
 #else
         public string Data { get; set; }
 #endif
+        /// <summary>The time in ISO 8601 format and in UTC time when the long-running operation was last modified. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
+        /// <summary>The operationType property</summary>
         public DelegatedAdminRelationshipOperationType? OperationType { get; set; }
+        /// <summary>The status property</summary>
         public LongRunningOperationStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new DelegatedAdminRelationshipOperation CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new DelegatedAdminRelationshipOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DelegatedAdminRelationshipOperation();
         }

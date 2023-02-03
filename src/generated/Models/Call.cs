@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class Call : Entity, IParsable {
+        /// <summary>The audioRoutingGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AudioRoutingGroup>? AudioRoutingGroups { get; set; }
@@ -52,6 +53,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.ChatInfo ChatInfo { get; set; }
 #endif
+        /// <summary>The contentSharingSessions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ContentSharingSession>? ContentSharingSessions { get; set; }
@@ -93,6 +95,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.MeetingInfo MeetingInfo { get; set; }
 #endif
+        /// <summary>The myParticipantId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MyParticipantId { get; set; }
@@ -100,6 +103,7 @@ namespace ApiSdk.Models {
 #else
         public string MyParticipantId { get; set; }
 #endif
+        /// <summary>The operations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CommsOperation>? Operations { get; set; }
@@ -107,6 +111,7 @@ namespace ApiSdk.Models {
 #else
         public List<CommsOperation> Operations { get; set; }
 #endif
+        /// <summary>The participants property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Participant>? Participants { get; set; }
@@ -156,6 +161,7 @@ namespace ApiSdk.Models {
 #else
         public List<InvitationParticipantInfo> Targets { get; set; }
 #endif
+        /// <summary>The tenantId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TenantId { get; set; }
@@ -163,6 +169,7 @@ namespace ApiSdk.Models {
 #else
         public string TenantId { get; set; }
 #endif
+        /// <summary>The toneInfo property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.ToneInfo? ToneInfo { get; set; }
@@ -182,13 +189,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new Call CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new Call CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Call();
         }

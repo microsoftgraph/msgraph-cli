@@ -23,6 +23,7 @@ namespace ApiSdk.Models {
 #else
         public List<AuthenticationMethodsRegistrationCampaignIncludeTarget> IncludeTargets { get; set; }
 #endif
+        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -32,6 +33,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Specifies the number of days that the user sees a prompt again if they select &apos;Not now&apos; and snoozes the prompt. Minimum: 0 days. Maximum: 14 days. If the value is &apos;0&apos;, the user is prompted during every MFA attempt.</summary>
         public int? SnoozeDurationInDays { get; set; }
+        /// <summary>The state property</summary>
         public AdvancedConfigState? State { get; set; }
         /// <summary>
         /// Instantiates a new authenticationMethodsRegistrationCampaign and sets the default values.
@@ -43,13 +45,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static AuthenticationMethodsRegistrationCampaign CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static AuthenticationMethodsRegistrationCampaign CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AuthenticationMethodsRegistrationCampaign();
         }

@@ -1,5 +1,5 @@
-using ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.BeginOnboarding;
-using ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect;
+using ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.MicrosoftGraphBeginOnboarding;
+using ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.MicrosoftGraphDisconnect;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,16 +26,6 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the beginOnboarding method.
-        /// </summary>
-        public Command BuildBeginOnboardingCommand() {
-            var command = new Command("begin-onboarding");
-            command.Description = "Provides operations to call the beginOnboarding method.";
-            var builder = new BeginOnboardingRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Delete navigation property remoteAssistancePartners for deviceManagement
         /// </summary>
@@ -67,16 +57,6 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the disconnect method.
-        /// </summary>
-        public Command BuildDisconnectCommand() {
-            var command = new Command("disconnect");
-            command.Description = "Provides operations to call the disconnect method.";
-            var builder = new DisconnectRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -133,11 +113,31 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the beginOnboarding method.
+        /// </summary>
+        public Command BuildMicrosoftGraphBeginOnboardingCommand() {
+            var command = new Command("microsoft-graph-begin-onboarding");
+            command.Description = "Provides operations to call the beginOnboarding method.";
+            var builder = new BeginOnboardingRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the disconnect method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDisconnectCommand() {
+            var command = new Command("microsoft-graph-disconnect");
+            command.Description = "Provides operations to call the disconnect method.";
+            var builder = new DisconnectRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -151,7 +151,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             };
             remoteAssistancePartnerIdOption.IsRequired = true;
             command.AddOption(remoteAssistancePartnerIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -189,7 +189,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -262,10 +262,11 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         /// <summary>
         /// Update the navigation property remoteAssistancePartners in deviceManagement
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(RemoteAssistancePartner? body, Action<RemoteAssistancePartnerItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(RemoteAssistancePartner body, Action<RemoteAssistancePartnerItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(RemoteAssistancePartner body, Action<RemoteAssistancePartnerItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

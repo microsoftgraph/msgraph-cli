@@ -7,6 +7,7 @@ namespace ApiSdk.Models {
     public class Schedule : Entity, IParsable {
         /// <summary>Indicates whether the schedule is enabled for the team. Required.</summary>
         public bool? Enabled { get; set; }
+        /// <summary>The offerShiftRequests property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<OfferShiftRequest>? OfferShiftRequests { get; set; }
@@ -16,6 +17,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Indicates whether offer shift requests are enabled for the schedule.</summary>
         public bool? OfferShiftRequestsEnabled { get; set; }
+        /// <summary>The openShiftChangeRequests property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<OpenShiftChangeRequest>? OpenShiftChangeRequests { get; set; }
@@ -23,6 +25,7 @@ namespace ApiSdk.Models {
 #else
         public List<OpenShiftChangeRequest> OpenShiftChangeRequests { get; set; }
 #endif
+        /// <summary>The openShifts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<OpenShift>? OpenShifts { get; set; }
@@ -58,6 +61,7 @@ namespace ApiSdk.Models {
 #else
         public List<Shift> Shifts { get; set; }
 #endif
+        /// <summary>The swapShiftsChangeRequests property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SwapShiftsChangeRequest>? SwapShiftsChangeRequests { get; set; }
@@ -77,6 +81,7 @@ namespace ApiSdk.Models {
 #else
         public List<TimeOffReason> TimeOffReasons { get; set; }
 #endif
+        /// <summary>The timeOffRequests property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<TimeOffRequest>? TimeOffRequests { get; set; }
@@ -102,6 +107,7 @@ namespace ApiSdk.Models {
 #else
         public string TimeZone { get; set; }
 #endif
+        /// <summary>The workforceIntegrationIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? WorkforceIntegrationIds { get; set; }
@@ -113,13 +119,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new Schedule CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new Schedule CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Schedule();
         }

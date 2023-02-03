@@ -32,31 +32,31 @@ namespace ApiSdk.Me.ManagedDevices {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ManagedDeviceItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildBypassActivationLockCommand());
-            command.AddCommand(builder.BuildCleanWindowsDeviceCommand());
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDeleteUserFromSharedAppleDeviceCommand());
             command.AddCommand(builder.BuildDeviceCategoryCommand());
             command.AddCommand(builder.BuildDeviceCompliancePolicyStatesCommand());
             command.AddCommand(builder.BuildDeviceConfigurationStatesCommand());
-            command.AddCommand(builder.BuildDisableLostModeCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLocateDeviceCommand());
-            command.AddCommand(builder.BuildLogoutSharedAppleDeviceActiveUserCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphBypassActivationLockCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCleanWindowsDeviceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeleteUserFromSharedAppleDeviceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDisableLostModeCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphLocateDeviceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphLogoutSharedAppleDeviceActiveUserCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRebootNowCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRecoverPasscodeCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRemoteLockCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRequestRemoteAssistanceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphResetPasscodeCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRetireCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphShutDownCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSyncDeviceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphUpdateWindowsDeviceAccountCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphWindowsDefenderScanCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphWindowsDefenderUpdateSignaturesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphWipeCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRebootNowCommand());
-            command.AddCommand(builder.BuildRecoverPasscodeCommand());
-            command.AddCommand(builder.BuildRemoteLockCommand());
-            command.AddCommand(builder.BuildRequestRemoteAssistanceCommand());
-            command.AddCommand(builder.BuildResetPasscodeCommand());
-            command.AddCommand(builder.BuildRetireCommand());
-            command.AddCommand(builder.BuildShutDownCommand());
-            command.AddCommand(builder.BuildSyncDeviceCommand());
-            command.AddCommand(builder.BuildUpdateWindowsDeviceAccountCommand());
             command.AddCommand(builder.BuildUsersCommand());
-            command.AddCommand(builder.BuildWindowsDefenderScanCommand());
-            command.AddCommand(builder.BuildWindowsDefenderUpdateSignaturesCommand());
-            command.AddCommand(builder.BuildWipeCommand());
             return command;
         }
         /// <summary>
@@ -76,7 +76,7 @@ namespace ApiSdk.Me.ManagedDevices {
             var command = new Command("create");
             command.Description = "Create new navigation property to managedDevices for me";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -112,7 +112,7 @@ namespace ApiSdk.Me.ManagedDevices {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -214,7 +214,7 @@ namespace ApiSdk.Me.ManagedDevices {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -265,10 +265,11 @@ namespace ApiSdk.Me.ManagedDevices {
         /// <summary>
         /// Create new navigation property to managedDevices for me
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ManagedDevice? body, Action<ManagedDevicesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ManagedDevice body, Action<ManagedDevicesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(ManagedDevice body, Action<ManagedDevicesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

@@ -15,6 +15,7 @@ namespace ApiSdk.Models {
 #else
         public string Address { get; set; }
 #endif
+        /// <summary>The itemId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ItemId { get; set; }
@@ -22,6 +23,7 @@ namespace ApiSdk.Models {
 #else
         public string ItemId { get; set; }
 #endif
+        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -31,6 +33,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The relevance score of the email address. A relevance score is used as a sort key, in relation to the other returned results. A higher relevance score value corresponds to a more relevant result. Relevance is determined by the user’s communication and collaboration patterns and business relationships.</summary>
         public double? RelevanceScore { get; set; }
+        /// <summary>The selectionLikelihood property</summary>
         public SelectionLikelihoodInfo? SelectionLikelihood { get; set; }
         /// <summary>
         /// Instantiates a new scoredEmailAddress and sets the default values.
@@ -42,13 +45,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static ScoredEmailAddress CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static ScoredEmailAddress CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ScoredEmailAddress();
         }

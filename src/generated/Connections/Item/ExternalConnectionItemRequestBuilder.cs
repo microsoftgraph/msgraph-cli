@@ -29,11 +29,11 @@ namespace ApiSdk.Connections.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from connections by key (id)
+        /// Delete entity from connections
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from connections by key (id)";
+            command.Description = "Delete entity from connections";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
             };
@@ -62,11 +62,11 @@ namespace ApiSdk.Connections.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from connections by key (id)
+        /// Get entity from connections by key
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from connections by key (id)";
+            command.Description = "Get entity from connections by key";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
             };
@@ -115,7 +115,7 @@ namespace ApiSdk.Connections.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -162,17 +162,17 @@ namespace ApiSdk.Connections.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in connections by key (id)
+        /// Update entity in connections
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in connections by key (id)";
+            command.Description = "Update entity in connections";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -210,7 +210,7 @@ namespace ApiSdk.Connections.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -243,7 +243,7 @@ namespace ApiSdk.Connections.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from connections by key (id)
+        /// Delete entity from connections
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -267,7 +267,7 @@ namespace ApiSdk.Connections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from connections by key (id)
+        /// Get entity from connections by key
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -293,12 +293,13 @@ namespace ApiSdk.Connections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in connections by key (id)
+        /// Update entity in connections
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ExternalConnection? body, Action<ExternalConnectionItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ExternalConnection body, Action<ExternalConnectionItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ExternalConnection body, Action<ExternalConnectionItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
@@ -336,7 +337,7 @@ namespace ApiSdk.Connections.Item {
             }
         }
         /// <summary>
-        /// Get entity from connections by key (id)
+        /// Get entity from connections by key
         /// </summary>
         public class ExternalConnectionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

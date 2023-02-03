@@ -24,11 +24,11 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.Content {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Get content for the navigation property attachmentSessions from me
+        /// The content streams that are uploaded.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get content for the navigation property attachmentSessions from me";
+            command.Description = "The content streams that are uploaded.";
             // Create options for all the parameters
             var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
             };
@@ -74,11 +74,11 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.Content {
             return command;
         }
         /// <summary>
-        /// Update content for the navigation property attachmentSessions in me
+        /// The content streams that are uploaded.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "Update content for the navigation property attachmentSessions in me";
+            command.Description = "The content streams that are uploaded.";
             // Create options for all the parameters
             var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
             };
@@ -132,7 +132,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.Content {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get content for the navigation property attachmentSessions from me
+        /// The content streams that are uploaded.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -156,7 +156,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.Content {
             return requestInfo;
         }
         /// <summary>
-        /// Update content for the navigation property attachmentSessions in me
+        /// The content streams that are uploaded.
         /// </summary>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

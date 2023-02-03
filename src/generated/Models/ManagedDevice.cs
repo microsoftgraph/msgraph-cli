@@ -128,7 +128,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Enrollment time of the device. This property is read-only.</summary>
         public DateTimeOffset? EnrolledDateTime { get; private set; }
-        /// <summary>Ethernet MAC. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.</summary>
+        /// <summary>Indicates Ethernet MAC Address of the device. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? EthernetMacAddress { get; private set; }
@@ -184,6 +184,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Owner type of device.</summary>
         public ApiSdk.Models.ManagedDeviceOwnerType? ManagedDeviceOwnerType { get; set; }
+        /// <summary>The managementAgent property</summary>
         public ManagementAgentType? ManagementAgent { get; set; }
         /// <summary>Reports device management certificate expiration date. This property is read-only.</summary>
         public DateTimeOffset? ManagementCertificateExpirationDate { get; private set; }
@@ -335,13 +336,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new ManagedDevice CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new ManagedDevice CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ManagedDevice();
         }

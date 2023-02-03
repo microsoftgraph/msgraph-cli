@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>
-    /// The resource that represents an instance of Enrollment Failure Reports.
-    /// </summary>
     public class ReportRoot : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The dailyPrintUsageByPrinter property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<PrintUsageByPrinter>? DailyPrintUsageByPrinter { get; set; }
@@ -17,6 +15,7 @@ namespace ApiSdk.Models {
 #else
         public List<PrintUsageByPrinter> DailyPrintUsageByPrinter { get; set; }
 #endif
+        /// <summary>The dailyPrintUsageByUser property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<PrintUsageByUser>? DailyPrintUsageByUser { get; set; }
@@ -24,6 +23,7 @@ namespace ApiSdk.Models {
 #else
         public List<PrintUsageByUser> DailyPrintUsageByUser { get; set; }
 #endif
+        /// <summary>The monthlyPrintUsageByPrinter property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<PrintUsageByPrinter>? MonthlyPrintUsageByPrinter { get; set; }
@@ -31,6 +31,7 @@ namespace ApiSdk.Models {
 #else
         public List<PrintUsageByPrinter> MonthlyPrintUsageByPrinter { get; set; }
 #endif
+        /// <summary>The monthlyPrintUsageByUser property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<PrintUsageByUser>? MonthlyPrintUsageByUser { get; set; }
@@ -38,6 +39,7 @@ namespace ApiSdk.Models {
 #else
         public List<PrintUsageByUser> MonthlyPrintUsageByUser { get; set; }
 #endif
+        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -45,6 +47,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
+        /// <summary>The security property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public SecurityReportsRoot? Security { get; set; }
@@ -62,13 +65,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static ReportRoot CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static ReportRoot CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ReportRoot();
         }

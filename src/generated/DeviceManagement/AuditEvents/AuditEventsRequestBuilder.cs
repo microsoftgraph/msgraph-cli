@@ -1,7 +1,7 @@
 using ApiSdk.DeviceManagement.AuditEvents.Count;
-using ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory;
-using ApiSdk.DeviceManagement.AuditEvents.GetAuditCategories;
 using ApiSdk.DeviceManagement.AuditEvents.Item;
+using ApiSdk.DeviceManagement.AuditEvents.MicrosoftGraphGetAuditActivityTypesWithCategory;
+using ApiSdk.DeviceManagement.AuditEvents.MicrosoftGraphGetAuditCategories;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -56,7 +56,7 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
             var command = new Command("create");
             command.Description = "Create new navigation property to auditEvents for deviceManagement";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -92,7 +92,7 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -194,13 +194,23 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAuditCategories method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAuditCategoriesCommand() {
+            var command = new Command("microsoft-graph-get-audit-categories");
+            command.Description = "Provides operations to call the getAuditCategories method.";
+            var builder = new GetAuditCategoriesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -220,21 +230,9 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
         /// Provides operations to call the getAuditActivityTypes method.
         /// </summary>
         /// <param name="category">Usage: category=&apos;{category}&apos;</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public GetAuditActivityTypesWithCategoryRequestBuilder GetAuditActivityTypesWithCategory(string? category) {
-#nullable restore
-#else
-        public GetAuditActivityTypesWithCategoryRequestBuilder GetAuditActivityTypesWithCategory(string category) {
-#endif
+        public GetAuditActivityTypesWithCategoryRequestBuilder MicrosoftGraphGetAuditActivityTypesWithCategory(string category) {
             if(string.IsNullOrEmpty(category)) throw new ArgumentNullException(nameof(category));
             return new GetAuditActivityTypesWithCategoryRequestBuilder(PathParameters, RequestAdapter, category);
-        }
-        /// <summary>
-        /// Provides operations to call the getAuditCategories method.
-        /// </summary>
-        public GetAuditCategoriesRequestBuilder GetAuditCategories() {
-            return new GetAuditCategoriesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// The Audit Events
@@ -265,10 +263,11 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
         /// <summary>
         /// Create new navigation property to auditEvents for deviceManagement
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AuditEvent? body, Action<AuditEventsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AuditEvent body, Action<AuditEventsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(AuditEvent body, Action<AuditEventsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

@@ -1,6 +1,6 @@
+using ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item.MicrosoftGraphUpgrade;
 using ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item.TeamsApp;
 using ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item.TeamsAppDefinition;
-using ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item.Upgrade;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -126,11 +126,21 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the upgrade method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUpgradeCommand() {
+            var command = new Command("microsoft-graph-upgrade");
+            command.Description = "Provides operations to call the upgrade method.";
+            var builder = new UpgradeRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -148,7 +158,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item {
             };
             teamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(teamsAppInstallationIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -188,7 +198,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -213,16 +223,6 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item {
             command.Description = "Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.";
             var builder = new TeamsAppDefinitionRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the upgrade method.
-        /// </summary>
-        public Command BuildUpgradeCommand() {
-            var command = new Command("upgrade");
-            command.Description = "Provides operations to call the upgrade method.";
-            var builder = new UpgradeRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -291,10 +291,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps.Item {
         /// <summary>
         /// Update the navigation property installedApps in me
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(TeamsAppInstallation? body, Action<TeamsAppInstallationItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(TeamsAppInstallation body, Action<TeamsAppInstallationItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(TeamsAppInstallation body, Action<TeamsAppInstallationItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

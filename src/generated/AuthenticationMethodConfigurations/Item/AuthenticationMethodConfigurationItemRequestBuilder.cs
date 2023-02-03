@@ -25,11 +25,11 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from authenticationMethodConfigurations by key (id)
+        /// Delete entity from authenticationMethodConfigurations
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from authenticationMethodConfigurations by key (id)";
+            command.Description = "Delete entity from authenticationMethodConfigurations";
             // Create options for all the parameters
             var authenticationMethodConfigurationIdOption = new Option<string>("--authentication-method-configuration-id", description: "key: id of authenticationMethodConfiguration") {
             };
@@ -58,11 +58,11 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from authenticationMethodConfigurations by key (id)
+        /// Get entity from authenticationMethodConfigurations by key
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from authenticationMethodConfigurations by key (id)";
+            command.Description = "Get entity from authenticationMethodConfigurations by key";
             // Create options for all the parameters
             var authenticationMethodConfigurationIdOption = new Option<string>("--authentication-method-configuration-id", description: "key: id of authenticationMethodConfiguration") {
             };
@@ -111,7 +111,7 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -119,17 +119,17 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in authenticationMethodConfigurations by key (id)
+        /// Update entity in authenticationMethodConfigurations
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in authenticationMethodConfigurations by key (id)";
+            command.Description = "Update entity in authenticationMethodConfigurations";
             // Create options for all the parameters
             var authenticationMethodConfigurationIdOption = new Option<string>("--authentication-method-configuration-id", description: "key: id of authenticationMethodConfiguration") {
             };
             authenticationMethodConfigurationIdOption.IsRequired = true;
             command.AddOption(authenticationMethodConfigurationIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -167,7 +167,7 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -188,7 +188,7 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from authenticationMethodConfigurations by key (id)
+        /// Delete entity from authenticationMethodConfigurations
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -212,7 +212,7 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from authenticationMethodConfigurations by key (id)
+        /// Get entity from authenticationMethodConfigurations by key
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -238,12 +238,13 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in authenticationMethodConfigurations by key (id)
+        /// Update entity in authenticationMethodConfigurations
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AuthenticationMethodConfiguration? body, Action<AuthenticationMethodConfigurationItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AuthenticationMethodConfiguration body, Action<AuthenticationMethodConfigurationItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(AuthenticationMethodConfiguration body, Action<AuthenticationMethodConfigurationItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
@@ -281,7 +282,7 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             }
         }
         /// <summary>
-        /// Get entity from authenticationMethodConfigurations by key (id)
+        /// Get entity from authenticationMethodConfigurations by key
         /// </summary>
         public class AuthenticationMethodConfigurationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

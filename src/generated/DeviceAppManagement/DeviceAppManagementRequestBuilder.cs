@@ -6,10 +6,10 @@ using ApiSdk.DeviceAppManagement.ManagedAppRegistrations;
 using ApiSdk.DeviceAppManagement.ManagedAppStatuses;
 using ApiSdk.DeviceAppManagement.ManagedEBooks;
 using ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies;
+using ApiSdk.DeviceAppManagement.MicrosoftGraphSyncMicrosoftStoreForBusinessApps;
 using ApiSdk.DeviceAppManagement.MobileAppCategories;
 using ApiSdk.DeviceAppManagement.MobileAppConfigurations;
 using ApiSdk.DeviceAppManagement.MobileApps;
-using ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps;
 using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations;
 using ApiSdk.DeviceAppManagement.VppTokens;
 using ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies;
@@ -113,7 +113,7 @@ namespace ApiSdk.DeviceAppManagement {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -157,6 +157,7 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetUserIdsWithFlaggedAppRegistrationCommand());
             return command;
         }
         /// <summary>
@@ -199,6 +200,16 @@ namespace ApiSdk.DeviceAppManagement {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the syncMicrosoftStoreForBusinessApps method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSyncMicrosoftStoreForBusinessAppsCommand() {
+            var command = new Command("microsoft-graph-sync-microsoft-store-for-business-apps");
+            command.Description = "Provides operations to call the syncMicrosoftStoreForBusinessApps method.";
+            var builder = new SyncMicrosoftStoreForBusinessAppsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
         public Command BuildMobileAppCategoriesCommand() {
@@ -235,8 +246,8 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildManagedMobileLobAppCommand());
-            command.AddCommand(builder.BuildMobileLobAppCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphManagedMobileLobAppCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphMobileLobAppCommand());
             return command;
         }
         /// <summary>
@@ -246,7 +257,7 @@ namespace ApiSdk.DeviceAppManagement {
             var command = new Command("patch");
             command.Description = "Update deviceAppManagement";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -282,21 +293,11 @@ namespace ApiSdk.DeviceAppManagement {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the syncMicrosoftStoreForBusinessApps method.
-        /// </summary>
-        public Command BuildSyncMicrosoftStoreForBusinessAppsCommand() {
-            var command = new Command("sync-microsoft-store-for-business-apps");
-            command.Description = "Provides operations to call the syncMicrosoftStoreForBusinessApps method.";
-            var builder = new SyncMicrosoftStoreForBusinessAppsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -380,10 +381,11 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Update deviceAppManagement
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceAppManagement? body, Action<DeviceAppManagementRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceAppManagement body, Action<DeviceAppManagementRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceAppManagement body, Action<DeviceAppManagementRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

@@ -9,5 +9,7 @@ namespace ApiSdk.Models {
         Connected,
         /// <summary>Disconnected from the Exchange Environment</summary>
         Disconnected,
+        /// <summary>Evolvable enumeration sentinel value. Do not use.</summary>
+        UnknownFutureValue,
     }
 }

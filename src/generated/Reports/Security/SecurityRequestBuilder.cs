@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders;
-using ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage;
-using ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage;
+using ApiSdk.Reports.Security.MicrosoftGraphGetAttackSimulationRepeatOffenders;
+using ApiSdk.Reports.Security.MicrosoftGraphGetAttackSimulationSimulationUserCoverage;
+using ApiSdk.Reports.Security.MicrosoftGraphGetAttackSimulationTrainingUserCoverage;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -102,11 +102,41 @@ namespace ApiSdk.Reports.Security {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAttackSimulationRepeatOffenders method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAttackSimulationRepeatOffendersCommand() {
+            var command = new Command("microsoft-graph-get-attack-simulation-repeat-offenders");
+            command.Description = "Provides operations to call the getAttackSimulationRepeatOffenders method.";
+            var builder = new GetAttackSimulationRepeatOffendersRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAttackSimulationSimulationUserCoverage method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAttackSimulationSimulationUserCoverageCommand() {
+            var command = new Command("microsoft-graph-get-attack-simulation-simulation-user-coverage");
+            command.Description = "Provides operations to call the getAttackSimulationSimulationUserCoverage method.";
+            var builder = new GetAttackSimulationSimulationUserCoverageRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAttackSimulationTrainingUserCoverage method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAttackSimulationTrainingUserCoverageCommand() {
+            var command = new Command("microsoft-graph-get-attack-simulation-training-user-coverage");
+            command.Description = "Provides operations to call the getAttackSimulationTrainingUserCoverage method.";
+            var builder = new GetAttackSimulationTrainingUserCoverageRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -116,7 +146,7 @@ namespace ApiSdk.Reports.Security {
             var command = new Command("patch");
             command.Description = "Update the navigation property security in reports";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -152,7 +182,7 @@ namespace ApiSdk.Reports.Security {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -171,24 +201,6 @@ namespace ApiSdk.Reports.Security {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the getAttackSimulationRepeatOffenders method.
-        /// </summary>
-        public GetAttackSimulationRepeatOffendersRequestBuilder GetAttackSimulationRepeatOffenders() {
-            return new GetAttackSimulationRepeatOffendersRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the getAttackSimulationSimulationUserCoverage method.
-        /// </summary>
-        public GetAttackSimulationSimulationUserCoverageRequestBuilder GetAttackSimulationSimulationUserCoverage() {
-            return new GetAttackSimulationSimulationUserCoverageRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the getAttackSimulationTrainingUserCoverage method.
-        /// </summary>
-        public GetAttackSimulationTrainingUserCoverageRequestBuilder GetAttackSimulationTrainingUserCoverage() {
-            return new GetAttackSimulationTrainingUserCoverageRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Delete navigation property security for reports
@@ -243,10 +255,11 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Update the navigation property security in reports
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(SecurityReportsRoot? body, Action<SecurityRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(SecurityReportsRoot body, Action<SecurityRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(SecurityReportsRoot body, Action<SecurityRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

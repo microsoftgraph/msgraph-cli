@@ -87,8 +87,11 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Indicates whether the message has attachments. This property doesn&apos;t include inline attachments, so if a message contains only inline attachments, this property is false. To verify the existence of inline attachments, parse the body property to look for a src attribute, such as &lt;IMG src=&apos;cid:image001.jpg@01D26CD8.6C05F070&apos;&gt;.</summary>
         public bool? HasAttachments { get; set; }
+        /// <summary>The importance property</summary>
         public ApiSdk.Models.Importance? Importance { get; set; }
+        /// <summary>The inferenceClassification property</summary>
         public InferenceClassificationType? InferenceClassification { get; set; }
+        /// <summary>The internetMessageHeaders property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<InternetMessageHeader>? InternetMessageHeaders { get; set; }
@@ -96,6 +99,7 @@ namespace ApiSdk.Models {
 #else
         public List<InternetMessageHeader> InternetMessageHeaders { get; set; }
 #endif
+        /// <summary>The internetMessageId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? InternetMessageId { get; set; }
@@ -103,9 +107,13 @@ namespace ApiSdk.Models {
 #else
         public string InternetMessageId { get; set; }
 #endif
+        /// <summary>The isDeliveryReceiptRequested property</summary>
         public bool? IsDeliveryReceiptRequested { get; set; }
+        /// <summary>The isDraft property</summary>
         public bool? IsDraft { get; set; }
+        /// <summary>The isRead property</summary>
         public bool? IsRead { get; set; }
+        /// <summary>The isReadReceiptRequested property</summary>
         public bool? IsReadReceiptRequested { get; set; }
         /// <summary>The collection of multi-value extended properties defined for the message. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -115,6 +123,7 @@ namespace ApiSdk.Models {
 #else
         public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
 #endif
+        /// <summary>The parentFolderId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ParentFolderId { get; set; }
@@ -122,7 +131,9 @@ namespace ApiSdk.Models {
 #else
         public string ParentFolderId { get; set; }
 #endif
+        /// <summary>The receivedDateTime property</summary>
         public DateTimeOffset? ReceivedDateTime { get; set; }
+        /// <summary>The replyTo property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Recipient>? ReplyTo { get; set; }
@@ -130,6 +141,7 @@ namespace ApiSdk.Models {
 #else
         public List<Recipient> ReplyTo { get; set; }
 #endif
+        /// <summary>The sender property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Recipient? Sender { get; set; }
@@ -137,6 +149,7 @@ namespace ApiSdk.Models {
 #else
         public Recipient Sender { get; set; }
 #endif
+        /// <summary>The sentDateTime property</summary>
         public DateTimeOffset? SentDateTime { get; set; }
         /// <summary>The collection of single-value extended properties defined for the message. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -146,6 +159,7 @@ namespace ApiSdk.Models {
 #else
         public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
 #endif
+        /// <summary>The subject property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Subject { get; set; }
@@ -153,6 +167,7 @@ namespace ApiSdk.Models {
 #else
         public string Subject { get; set; }
 #endif
+        /// <summary>The toRecipients property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Recipient>? ToRecipients { get; set; }
@@ -160,6 +175,7 @@ namespace ApiSdk.Models {
 #else
         public List<Recipient> ToRecipients { get; set; }
 #endif
+        /// <summary>The uniqueBody property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ItemBody? UniqueBody { get; set; }
@@ -167,6 +183,7 @@ namespace ApiSdk.Models {
 #else
         public ItemBody UniqueBody { get; set; }
 #endif
+        /// <summary>The webLink property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? WebLink { get; set; }
@@ -184,13 +201,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new Message CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new Message CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {

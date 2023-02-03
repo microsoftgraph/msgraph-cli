@@ -1,8 +1,8 @@
-using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.AddCopy;
-using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub;
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Count;
-using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.GetCompatibleHubContentTypes;
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item;
+using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.MicrosoftGraphAddCopy;
+using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.MicrosoftGraphAddCopyFromContentTypeHub;
+using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.MicrosoftGraphGetCompatibleHubContentTypes;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,43 +30,24 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the addCopy method.
-        /// </summary>
-        public Command BuildAddCopyCommand() {
-            var command = new Command("add-copy");
-            command.Description = "Provides operations to call the addCopy method.";
-            var builder = new AddCopyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the addCopyFromContentTypeHub method.
-        /// </summary>
-        public Command BuildAddCopyFromContentTypeHubCommand() {
-            var command = new Command("add-copy-from-content-type-hub");
-            command.Description = "Provides operations to call the addCopyFromContentTypeHub method.";
-            var builder = new AddCopyFromContentTypeHubRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the contentTypes property of the microsoft.graph.list entity.
         /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ContentTypeItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAssociateWithHubSitesCommand());
             command.AddCommand(builder.BuildBaseCommand());
             command.AddCommand(builder.BuildBaseTypesCommand());
             command.AddCommand(builder.BuildColumnLinksCommand());
             command.AddCommand(builder.BuildColumnPositionsCommand());
             command.AddCommand(builder.BuildColumnsCommand());
-            command.AddCommand(builder.BuildCopyToDefaultContentLocationCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAssociateWithHubSitesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCopyToDefaultContentLocationCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphIsPublishedCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphPublishCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphUnpublishCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPublishCommand());
-            command.AddCommand(builder.BuildUnpublishCommand());
             return command;
         }
         /// <summary>
@@ -98,7 +79,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -140,7 +121,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -261,13 +242,43 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the addCopy method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAddCopyCommand() {
+            var command = new Command("microsoft-graph-add-copy");
+            command.Description = "Provides operations to call the addCopy method.";
+            var builder = new AddCopyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the addCopyFromContentTypeHub method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAddCopyFromContentTypeHubCommand() {
+            var command = new Command("microsoft-graph-add-copy-from-content-type-hub");
+            command.Description = "Provides operations to call the addCopyFromContentTypeHub method.";
+            var builder = new AddCopyFromContentTypeHubRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getCompatibleHubContentTypes method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetCompatibleHubContentTypesCommand() {
+            var command = new Command("microsoft-graph-get-compatible-hub-content-types");
+            command.Description = "Provides operations to call the getCompatibleHubContentTypes method.";
+            var builder = new GetCompatibleHubContentTypesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -282,12 +293,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the getCompatibleHubContentTypes method.
-        /// </summary>
-        public GetCompatibleHubContentTypesRequestBuilder GetCompatibleHubContentTypes() {
-            return new GetCompatibleHubContentTypesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Get the collection of [contentType][contentType] resources in a [list][].
@@ -318,10 +323,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes {
         /// <summary>
         /// Create new navigation property to contentTypes for groups
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ContentType? body, Action<ContentTypesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ContentType body, Action<ContentTypesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(ContentType body, Action<ContentTypesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class EventMessage : Message, IParsable {
+        /// <summary>The endDateTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DateTimeTimeZone? EndDateTime { get; set; }
@@ -20,9 +21,13 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.Event Event { get; set; }
 #endif
+        /// <summary>The isAllDay property</summary>
         public bool? IsAllDay { get; set; }
+        /// <summary>The isDelegated property</summary>
         public bool? IsDelegated { get; set; }
+        /// <summary>The isOutOfDate property</summary>
         public bool? IsOutOfDate { get; set; }
+        /// <summary>The location property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Location? Location { get; set; }
@@ -30,7 +35,9 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.Location Location { get; set; }
 #endif
+        /// <summary>The meetingMessageType property</summary>
         public ApiSdk.Models.MeetingMessageType? MeetingMessageType { get; set; }
+        /// <summary>The recurrence property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PatternedRecurrence? Recurrence { get; set; }
@@ -38,6 +45,7 @@ namespace ApiSdk.Models {
 #else
         public PatternedRecurrence Recurrence { get; set; }
 #endif
+        /// <summary>The startDateTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DateTimeTimeZone? StartDateTime { get; set; }
@@ -45,6 +53,7 @@ namespace ApiSdk.Models {
 #else
         public DateTimeTimeZone StartDateTime { get; set; }
 #endif
+        /// <summary>The type property</summary>
         public EventType? Type { get; set; }
         /// <summary>
         /// Instantiates a new EventMessage and sets the default values.
@@ -56,13 +65,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new EventMessage CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new EventMessage CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {

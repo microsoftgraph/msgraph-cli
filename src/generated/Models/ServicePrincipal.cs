@@ -99,6 +99,7 @@ namespace ApiSdk.Models {
 #else
         public List<DirectoryObject> CreatedObjects { get; set; }
 #endif
+        /// <summary>The delegatedPermissionClassifications property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DelegatedPermissionClassification>? DelegatedPermissionClassifications { get; set; }
@@ -130,6 +131,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
+        /// <summary>The endpoints property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Endpoint>? Endpoints { get; set; }
@@ -347,6 +349,7 @@ namespace ApiSdk.Models {
 #else
         public List<TokenLifetimePolicy> TokenLifetimePolicies { get; set; }
 #endif
+        /// <summary>The transitiveMemberOf property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DirectoryObject>? TransitiveMemberOf { get; set; }
@@ -372,13 +375,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new ServicePrincipal CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new ServicePrincipal CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ServicePrincipal();
         }

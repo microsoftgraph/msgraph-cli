@@ -1,25 +1,25 @@
-using ApiSdk.DeviceManagement.ManagedDevices.Item.BypassActivationLock;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.DeleteUserFromSharedAppleDevice;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCategory;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCompliancePolicyStates;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceConfigurationStates;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.DisableLostMode;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.LocateDevice;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.LogoutSharedAppleDeviceActiveUser;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.RebootNow;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.RecoverPasscode;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.RemoteLock;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.RequestRemoteAssistance;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.ResetPasscode;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.Retire;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.ShutDown;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.SyncDevice;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.UpdateWindowsDeviceAccount;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphBypassActivationLock;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphCleanWindowsDevice;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphDeleteUserFromSharedAppleDevice;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphDisableLostMode;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphLocateDevice;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphLogoutSharedAppleDeviceActiveUser;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphRebootNow;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphRecoverPasscode;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphRemoteLock;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphRequestRemoteAssistance;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphResetPasscode;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphRetire;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphShutDown;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphSyncDevice;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphUpdateWindowsDeviceAccount;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphWindowsDefenderScan;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphWindowsDefenderUpdateSignatures;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.MicrosoftGraphWipe;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.Users;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsDefenderScan;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsDefenderUpdateSignatures;
-using ApiSdk.DeviceManagement.ManagedDevices.Item.Wipe;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,26 +46,6 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the bypassActivationLock method.
-        /// </summary>
-        public Command BuildBypassActivationLockCommand() {
-            var command = new Command("bypass-activation-lock");
-            command.Description = "Provides operations to call the bypassActivationLock method.";
-            var builder = new BypassActivationLockRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the cleanWindowsDevice method.
-        /// </summary>
-        public Command BuildCleanWindowsDeviceCommand() {
-            var command = new Command("clean-windows-device");
-            command.Description = "Provides operations to call the cleanWindowsDevice method.";
-            var builder = new CleanWindowsDeviceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Delete navigation property managedDevices for deviceManagement
         /// </summary>
@@ -97,16 +77,6 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the deleteUserFromSharedAppleDevice method.
-        /// </summary>
-        public Command BuildDeleteUserFromSharedAppleDeviceCommand() {
-            var command = new Command("delete-user-from-shared-apple-device");
-            command.Description = "Provides operations to call the deleteUserFromSharedAppleDevice method.";
-            var builder = new DeleteUserFromSharedAppleDeviceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -145,16 +115,6 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the disableLostMode method.
-        /// </summary>
-        public Command BuildDisableLostModeCommand() {
-            var command = new Command("disable-lost-mode");
-            command.Description = "Provides operations to call the disableLostMode method.";
-            var builder = new DisableLostModeRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -211,7 +171,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -219,10 +179,50 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the bypassActivationLock method.
+        /// </summary>
+        public Command BuildMicrosoftGraphBypassActivationLockCommand() {
+            var command = new Command("microsoft-graph-bypass-activation-lock");
+            command.Description = "Provides operations to call the bypassActivationLock method.";
+            var builder = new BypassActivationLockRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the cleanWindowsDevice method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCleanWindowsDeviceCommand() {
+            var command = new Command("microsoft-graph-clean-windows-device");
+            command.Description = "Provides operations to call the cleanWindowsDevice method.";
+            var builder = new CleanWindowsDeviceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the deleteUserFromSharedAppleDevice method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeleteUserFromSharedAppleDeviceCommand() {
+            var command = new Command("microsoft-graph-delete-user-from-shared-apple-device");
+            command.Description = "Provides operations to call the deleteUserFromSharedAppleDevice method.";
+            var builder = new DeleteUserFromSharedAppleDeviceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the disableLostMode method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDisableLostModeCommand() {
+            var command = new Command("microsoft-graph-disable-lost-mode");
+            command.Description = "Provides operations to call the disableLostMode method.";
+            var builder = new DisableLostModeRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the locateDevice method.
         /// </summary>
-        public Command BuildLocateDeviceCommand() {
-            var command = new Command("locate-device");
+        public Command BuildMicrosoftGraphLocateDeviceCommand() {
+            var command = new Command("microsoft-graph-locate-device");
             command.Description = "Provides operations to call the locateDevice method.";
             var builder = new LocateDeviceRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -231,10 +231,130 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the logoutSharedAppleDeviceActiveUser method.
         /// </summary>
-        public Command BuildLogoutSharedAppleDeviceActiveUserCommand() {
-            var command = new Command("logout-shared-apple-device-active-user");
+        public Command BuildMicrosoftGraphLogoutSharedAppleDeviceActiveUserCommand() {
+            var command = new Command("microsoft-graph-logout-shared-apple-device-active-user");
             command.Description = "Provides operations to call the logoutSharedAppleDeviceActiveUser method.";
             var builder = new LogoutSharedAppleDeviceActiveUserRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the rebootNow method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRebootNowCommand() {
+            var command = new Command("microsoft-graph-reboot-now");
+            command.Description = "Provides operations to call the rebootNow method.";
+            var builder = new RebootNowRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the recoverPasscode method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRecoverPasscodeCommand() {
+            var command = new Command("microsoft-graph-recover-passcode");
+            command.Description = "Provides operations to call the recoverPasscode method.";
+            var builder = new RecoverPasscodeRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the remoteLock method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRemoteLockCommand() {
+            var command = new Command("microsoft-graph-remote-lock");
+            command.Description = "Provides operations to call the remoteLock method.";
+            var builder = new RemoteLockRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the requestRemoteAssistance method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRequestRemoteAssistanceCommand() {
+            var command = new Command("microsoft-graph-request-remote-assistance");
+            command.Description = "Provides operations to call the requestRemoteAssistance method.";
+            var builder = new RequestRemoteAssistanceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the resetPasscode method.
+        /// </summary>
+        public Command BuildMicrosoftGraphResetPasscodeCommand() {
+            var command = new Command("microsoft-graph-reset-passcode");
+            command.Description = "Provides operations to call the resetPasscode method.";
+            var builder = new ResetPasscodeRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the retire method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRetireCommand() {
+            var command = new Command("microsoft-graph-retire");
+            command.Description = "Provides operations to call the retire method.";
+            var builder = new RetireRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the shutDown method.
+        /// </summary>
+        public Command BuildMicrosoftGraphShutDownCommand() {
+            var command = new Command("microsoft-graph-shut-down");
+            command.Description = "Provides operations to call the shutDown method.";
+            var builder = new ShutDownRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the syncDevice method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSyncDeviceCommand() {
+            var command = new Command("microsoft-graph-sync-device");
+            command.Description = "Provides operations to call the syncDevice method.";
+            var builder = new SyncDeviceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the updateWindowsDeviceAccount method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUpdateWindowsDeviceAccountCommand() {
+            var command = new Command("microsoft-graph-update-windows-device-account");
+            command.Description = "Provides operations to call the updateWindowsDeviceAccount method.";
+            var builder = new UpdateWindowsDeviceAccountRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the windowsDefenderScan method.
+        /// </summary>
+        public Command BuildMicrosoftGraphWindowsDefenderScanCommand() {
+            var command = new Command("microsoft-graph-windows-defender-scan");
+            command.Description = "Provides operations to call the windowsDefenderScan method.";
+            var builder = new WindowsDefenderScanRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the windowsDefenderUpdateSignatures method.
+        /// </summary>
+        public Command BuildMicrosoftGraphWindowsDefenderUpdateSignaturesCommand() {
+            var command = new Command("microsoft-graph-windows-defender-update-signatures");
+            command.Description = "Provides operations to call the windowsDefenderUpdateSignatures method.";
+            var builder = new WindowsDefenderUpdateSignaturesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the wipe method.
+        /// </summary>
+        public Command BuildMicrosoftGraphWipeCommand() {
+            var command = new Command("microsoft-graph-wipe");
+            command.Description = "Provides operations to call the wipe method.";
+            var builder = new WipeRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -249,7 +369,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -287,101 +407,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the rebootNow method.
-        /// </summary>
-        public Command BuildRebootNowCommand() {
-            var command = new Command("reboot-now");
-            command.Description = "Provides operations to call the rebootNow method.";
-            var builder = new RebootNowRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the recoverPasscode method.
-        /// </summary>
-        public Command BuildRecoverPasscodeCommand() {
-            var command = new Command("recover-passcode");
-            command.Description = "Provides operations to call the recoverPasscode method.";
-            var builder = new RecoverPasscodeRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the remoteLock method.
-        /// </summary>
-        public Command BuildRemoteLockCommand() {
-            var command = new Command("remote-lock");
-            command.Description = "Provides operations to call the remoteLock method.";
-            var builder = new RemoteLockRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the requestRemoteAssistance method.
-        /// </summary>
-        public Command BuildRequestRemoteAssistanceCommand() {
-            var command = new Command("request-remote-assistance");
-            command.Description = "Provides operations to call the requestRemoteAssistance method.";
-            var builder = new RequestRemoteAssistanceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the resetPasscode method.
-        /// </summary>
-        public Command BuildResetPasscodeCommand() {
-            var command = new Command("reset-passcode");
-            command.Description = "Provides operations to call the resetPasscode method.";
-            var builder = new ResetPasscodeRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the retire method.
-        /// </summary>
-        public Command BuildRetireCommand() {
-            var command = new Command("retire");
-            command.Description = "Provides operations to call the retire method.";
-            var builder = new RetireRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the shutDown method.
-        /// </summary>
-        public Command BuildShutDownCommand() {
-            var command = new Command("shut-down");
-            command.Description = "Provides operations to call the shutDown method.";
-            var builder = new ShutDownRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the syncDevice method.
-        /// </summary>
-        public Command BuildSyncDeviceCommand() {
-            var command = new Command("sync-device");
-            command.Description = "Provides operations to call the syncDevice method.";
-            var builder = new SyncDeviceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the updateWindowsDeviceAccount method.
-        /// </summary>
-        public Command BuildUpdateWindowsDeviceAccountCommand() {
-            var command = new Command("update-windows-device-account");
-            command.Description = "Provides operations to call the updateWindowsDeviceAccount method.";
-            var builder = new UpdateWindowsDeviceAccountRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -392,36 +422,6 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             command.Description = "Provides operations to manage the users property of the microsoft.graph.managedDevice entity.";
             var builder = new UsersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the windowsDefenderScan method.
-        /// </summary>
-        public Command BuildWindowsDefenderScanCommand() {
-            var command = new Command("windows-defender-scan");
-            command.Description = "Provides operations to call the windowsDefenderScan method.";
-            var builder = new WindowsDefenderScanRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the windowsDefenderUpdateSignatures method.
-        /// </summary>
-        public Command BuildWindowsDefenderUpdateSignaturesCommand() {
-            var command = new Command("windows-defender-update-signatures");
-            command.Description = "Provides operations to call the windowsDefenderUpdateSignatures method.";
-            var builder = new WindowsDefenderUpdateSignaturesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the wipe method.
-        /// </summary>
-        public Command BuildWipeCommand() {
-            var command = new Command("wipe");
-            command.Description = "Provides operations to call the wipe method.";
-            var builder = new WipeRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -490,10 +490,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         /// <summary>
         /// Update the navigation property managedDevices in deviceManagement
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ManagedDevice? body, Action<ManagedDeviceItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ManagedDevice body, Action<ManagedDeviceItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ManagedDevice body, Action<ManagedDeviceItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

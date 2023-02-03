@@ -1,6 +1,6 @@
 using ApiSdk.Communications.CallRecords;
 using ApiSdk.Communications.Calls;
-using ApiSdk.Communications.GetPresencesByUserId;
+using ApiSdk.Communications.MicrosoftGraphGetPresencesByUserId;
 using ApiSdk.Communications.OnlineMeetings;
 using ApiSdk.Communications.Presences;
 using ApiSdk.Models;
@@ -53,7 +53,7 @@ namespace ApiSdk.Communications {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildLogTeleconferenceDeviceQualityCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphLogTeleconferenceDeviceQualityCommand());
             return command;
         }
         /// <summary>
@@ -104,7 +104,7 @@ namespace ApiSdk.Communications {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -114,8 +114,8 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to call the getPresencesByUserId method.
         /// </summary>
-        public Command BuildGetPresencesByUserIdCommand() {
-            var command = new Command("get-presences-by-user-id");
+        public Command BuildMicrosoftGraphGetPresencesByUserIdCommand() {
+            var command = new Command("microsoft-graph-get-presences-by-user-id");
             command.Description = "Provides operations to call the getPresencesByUserId method.";
             var builder = new GetPresencesByUserIdRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -131,8 +131,8 @@ namespace ApiSdk.Communications {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateOrGetCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCreateOrGetCommand());
             return command;
         }
         /// <summary>
@@ -142,7 +142,7 @@ namespace ApiSdk.Communications {
             var command = new Command("patch");
             command.Description = "Update communications";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -178,7 +178,7 @@ namespace ApiSdk.Communications {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -240,10 +240,11 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Update communications
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(CloudCommunications? body, Action<CommunicationsRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(CloudCommunications body, Action<CommunicationsRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(CloudCommunications body, Action<CommunicationsRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

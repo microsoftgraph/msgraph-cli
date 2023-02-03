@@ -1,15 +1,15 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWithHubSites;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Base;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnPositions;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns;
-using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocation;
-using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.IsPublished;
-using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Publish;
-using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Unpublish;
+using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.MicrosoftGraphAssociateWithHubSites;
+using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.MicrosoftGraphCopyToDefaultContentLocation;
+using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.MicrosoftGraphIsPublished;
+using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.MicrosoftGraphPublish;
+using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.MicrosoftGraphUnpublish;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -34,16 +34,6 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the associateWithHubSites method.
-        /// </summary>
-        public Command BuildAssociateWithHubSitesCommand() {
-            var command = new Command("associate-with-hub-sites");
-            command.Description = "Provides operations to call the associateWithHubSites method.";
-            var builder = new AssociateWithHubSitesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Provides operations to manage the base property of the microsoft.graph.contentType entity.
         /// </summary>
@@ -102,16 +92,6 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copyToDefaultContentLocation method.
-        /// </summary>
-        public Command BuildCopyToDefaultContentLocationCommand() {
-            var command = new Command("copy-to-default-content-location");
-            command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
-            var builder = new CopyToDefaultContentLocationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -225,11 +205,61 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the associateWithHubSites method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAssociateWithHubSitesCommand() {
+            var command = new Command("microsoft-graph-associate-with-hub-sites");
+            command.Description = "Provides operations to call the associateWithHubSites method.";
+            var builder = new AssociateWithHubSitesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the copyToDefaultContentLocation method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCopyToDefaultContentLocationCommand() {
+            var command = new Command("microsoft-graph-copy-to-default-content-location");
+            command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
+            var builder = new CopyToDefaultContentLocationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the isPublished method.
+        /// </summary>
+        public Command BuildMicrosoftGraphIsPublishedCommand() {
+            var command = new Command("microsoft-graph-is-published");
+            command.Description = "Provides operations to call the isPublished method.";
+            var builder = new IsPublishedRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the publish method.
+        /// </summary>
+        public Command BuildMicrosoftGraphPublishCommand() {
+            var command = new Command("microsoft-graph-publish");
+            command.Description = "Provides operations to call the publish method.";
+            var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unpublish method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUnpublishCommand() {
+            var command = new Command("microsoft-graph-unpublish");
+            command.Description = "Provides operations to call the unpublish method.";
+            var builder = new UnpublishRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -251,7 +281,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -293,31 +323,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the publish method.
-        /// </summary>
-        public Command BuildPublishCommand() {
-            var command = new Command("publish");
-            command.Description = "Provides operations to call the publish method.";
-            var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unpublish method.
-        /// </summary>
-        public Command BuildUnpublishCommand() {
-            var command = new Command("unpublish");
-            command.Description = "Provides operations to call the unpublish method.";
-            var builder = new UnpublishRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -332,12 +342,6 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the isPublished method.
-        /// </summary>
-        public IsPublishedRequestBuilder IsPublished() {
-            return new IsPublishedRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Delete navigation property contentTypes for sites
@@ -392,10 +396,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         /// <summary>
         /// Update the navigation property contentTypes in sites
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ContentType? body, Action<ContentTypeItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ContentType body, Action<ContentTypeItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(ContentType body, Action<ContentTypeItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

@@ -23,6 +23,7 @@ namespace ApiSdk.Models {
         public bool? IsPublisherAttested { get; set; }
         /// <summary>The timestamp when the certification for the application was most recently added or updated.</summary>
         public DateTimeOffset? LastCertificationDateTime { get; set; }
+        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -40,13 +41,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static Certification CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static Certification CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Certification();
         }

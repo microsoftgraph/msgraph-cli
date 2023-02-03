@@ -1,7 +1,7 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Users.Item.Onenote.Sections.Item.CopyToNotebook;
-using ApiSdk.Users.Item.Onenote.Sections.Item.CopyToSectionGroup;
+using ApiSdk.Users.Item.Onenote.Sections.Item.MicrosoftGraphCopyToNotebook;
+using ApiSdk.Users.Item.Onenote.Sections.Item.MicrosoftGraphCopyToSectionGroup;
 using ApiSdk.Users.Item.Onenote.Sections.Item.Pages;
 using ApiSdk.Users.Item.Onenote.Sections.Item.ParentNotebook;
 using ApiSdk.Users.Item.Onenote.Sections.Item.ParentSectionGroup;
@@ -29,26 +29,6 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the copyToNotebook method.
-        /// </summary>
-        public Command BuildCopyToNotebookCommand() {
-            var command = new Command("copy-to-notebook");
-            command.Description = "Provides operations to call the copyToNotebook method.";
-            var builder = new CopyToNotebookRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copyToSectionGroup method.
-        /// </summary>
-        public Command BuildCopyToSectionGroupCommand() {
-            var command = new Command("copy-to-section-group");
-            command.Description = "Provides operations to call the copyToSectionGroup method.";
-            var builder = new CopyToSectionGroupRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Delete navigation property sections for users
         /// </summary>
@@ -148,11 +128,31 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the copyToNotebook method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCopyToNotebookCommand() {
+            var command = new Command("microsoft-graph-copy-to-notebook");
+            command.Description = "Provides operations to call the copyToNotebook method.";
+            var builder = new CopyToNotebookRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the copyToSectionGroup method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCopyToSectionGroupCommand() {
+            var command = new Command("microsoft-graph-copy-to-section-group");
+            command.Description = "Provides operations to call the copyToSectionGroup method.";
+            var builder = new CopyToSectionGroupRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -203,7 +203,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -243,7 +243,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -316,10 +316,11 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item {
         /// <summary>
         /// Update the navigation property sections in users
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(OnenoteSection? body, Action<OnenoteSectionItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(OnenoteSection body, Action<OnenoteSectionItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPatchRequestInformation(OnenoteSection body, Action<OnenoteSectionItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {

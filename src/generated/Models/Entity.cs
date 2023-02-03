@@ -19,6 +19,7 @@ namespace ApiSdk.Models {
 #else
         public string Id { get; set; }
 #endif
+        /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OdataType { get; set; }
@@ -36,13 +37,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static Entity CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static Entity CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
@@ -304,6 +299,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.iosCustomConfiguration" => new IosCustomConfiguration(),
                 "#microsoft.graph.iosDeviceFeaturesConfiguration" => new IosDeviceFeaturesConfiguration(),
                 "#microsoft.graph.iosGeneralDeviceConfiguration" => new IosGeneralDeviceConfiguration(),
+                "#microsoft.graph.iosiPadOSWebClip" => new IosiPadOSWebClip(),
                 "#microsoft.graph.iosLobApp" => new IosLobApp(),
                 "#microsoft.graph.iosManagedAppProtection" => new IosManagedAppProtection(),
                 "#microsoft.graph.iosManagedAppRegistration" => new IosManagedAppRegistration(),
@@ -646,6 +642,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.windowsUniversalAppX" => new WindowsUniversalAppX(),
                 "#microsoft.graph.windowsUniversalAppXContainedApp" => new WindowsUniversalAppXContainedApp(),
                 "#microsoft.graph.windowsUpdateForBusinessConfiguration" => new WindowsUpdateForBusinessConfiguration(),
+                "#microsoft.graph.windowsWebApp" => new WindowsWebApp(),
                 "#microsoft.graph.workbook" => new Workbook(),
                 "#microsoft.graph.workbookApplication" => new WorkbookApplication(),
                 "#microsoft.graph.workbookChart" => new WorkbookChart(),

@@ -58,7 +58,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             };
             delegatedAdminCustomerIdOption.IsRequired = true;
             command.AddOption(delegatedAdminCustomerIdOption);
-            var bodyOption = new Option<string>("--body") {
+            var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
@@ -96,7 +96,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -104,11 +104,12 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             return command;
         }
         /// <summary>
-        /// Get serviceManagementDetails from tenantRelationships
+        /// Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get serviceManagementDetails from tenantRelationships";
+            command.Description = "Get a list of the delegatedAdminServiceManagementDetail objects and their properties.";
             // Create options for all the parameters
             var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "key: id of delegatedAdminCustomer") {
             };
@@ -204,7 +205,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = (response is not null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -227,7 +228,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get serviceManagementDetails from tenantRelationships
+        /// Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,10 +256,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
         /// <summary>
         /// Create new navigation property to serviceManagementDetails for tenantRelationships
         /// </summary>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(DelegatedAdminServiceManagementDetail? body, Action<ServiceManagementDetailsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(DelegatedAdminServiceManagementDetail body, Action<ServiceManagementDetailsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
         public RequestInformation ToPostRequestInformation(DelegatedAdminServiceManagementDetail body, Action<ServiceManagementDetailsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
@@ -280,7 +282,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             return requestInfo;
         }
         /// <summary>
-        /// Get serviceManagementDetails from tenantRelationships
+        /// Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
         /// </summary>
         public class ServiceManagementDetailsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

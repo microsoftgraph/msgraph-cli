@@ -23,6 +23,7 @@ namespace ApiSdk.Models {
 #else
         public byte[] AttachmentsArchive { get; set; }
 #endif
+        /// <summary>The body property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ItemBody? Body { get; set; }
@@ -30,6 +31,7 @@ namespace ApiSdk.Models {
 #else
         public ItemBody Body { get; set; }
 #endif
+        /// <summary>The category property</summary>
         public ServiceUpdateCategory? Category { get; set; }
         /// <summary>Indicates whether the message has any attachment.</summary>
         public bool? HasAttachments { get; set; }
@@ -43,6 +45,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> Services { get; set; }
 #endif
+        /// <summary>The severity property</summary>
         public ServiceUpdateSeverity? Severity { get; set; }
         /// <summary>A collection of tags for the service message. Tags are provided by the service team/support team who post the message to tell whether this message contains privacy data, or whether this message is for a service new feature update, and so on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -70,13 +73,7 @@ namespace ApiSdk.Models {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public static new ServiceUpdateMessage CreateFromDiscriminatorValue(IParseNode? parseNode) {
-#nullable restore
-#else
         public static new ServiceUpdateMessage CreateFromDiscriminatorValue(IParseNode parseNode) {
-#endif
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ServiceUpdateMessage();
         }
