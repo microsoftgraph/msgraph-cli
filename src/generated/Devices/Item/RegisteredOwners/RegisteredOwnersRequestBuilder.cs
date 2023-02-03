@@ -60,7 +60,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner. Read-only. Nullable. Supports $expand.";
+            command.Description = "The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };

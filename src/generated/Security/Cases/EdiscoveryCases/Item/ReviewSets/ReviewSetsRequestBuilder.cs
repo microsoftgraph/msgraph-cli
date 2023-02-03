@@ -55,7 +55,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new ediscoveryReviewSet object.";
+            command.Description = "Create a new ediscoveryReviewSet object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -112,7 +112,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.";
+            command.Description = "Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

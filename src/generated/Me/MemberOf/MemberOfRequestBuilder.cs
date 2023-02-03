@@ -63,7 +63,7 @@ namespace ApiSdk.Me.MemberOf {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.";
+            command.Description = "The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-memberof?view=graph-rest-1.0";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore

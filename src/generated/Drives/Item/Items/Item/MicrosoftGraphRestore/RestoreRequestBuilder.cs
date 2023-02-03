@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.MicrosoftGraphRestore {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Restore a driveItem that has been deleted and is currently in the recycle bin. **NOTE**: This functionality is currently only available for OneDrive Personal.";
+            command.Description = "Restore a driveItem that has been deleted and is currently in the recycle bin. **NOTE**: This functionality is currently only available for OneDrive Personal.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-restore?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

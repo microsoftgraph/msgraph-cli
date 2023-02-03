@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    public class AuthenticationMethodsPolicy : Entity, IAdditionalDataHolder, IParsable {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
+    public class AuthenticationMethodsPolicy : Entity, IParsable {
         /// <summary>Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,12 +50,6 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.RegistrationEnforcement RegistrationEnforcement { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new authenticationMethodsPolicy and sets the default values.
-        /// </summary>
-        public AuthenticationMethodsPolicy() : base() {
-            AdditionalData = new Dictionary<string, object>();
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
@@ -93,7 +85,6 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("policyVersion", PolicyVersion);
             writer.WriteIntValue("reconfirmationInDays", ReconfirmationInDays);
             writer.WriteObjectValue<ApiSdk.Models.RegistrationEnforcement>("registrationEnforcement", RegistrationEnforcement);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string SenderShiftId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new offerShiftRequest and sets the default values.
+        /// Instantiates a new OfferShiftRequest and sets the default values.
         /// </summary>
         public OfferShiftRequest() : base() {
             OdataType = "#microsoft.graph.offerShiftRequest";

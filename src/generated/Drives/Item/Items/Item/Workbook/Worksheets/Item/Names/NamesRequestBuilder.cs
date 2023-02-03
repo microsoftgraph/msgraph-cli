@@ -125,7 +125,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of named item associated with the worksheet. ";
+            command.Description = "Retrieve a list of named item associated with the worksheet. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheet-list-names?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

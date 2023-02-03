@@ -58,7 +58,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the posts of the specified thread. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation.";
+            command.Description = "Get the posts of the specified thread. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conversationthread-list-posts?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

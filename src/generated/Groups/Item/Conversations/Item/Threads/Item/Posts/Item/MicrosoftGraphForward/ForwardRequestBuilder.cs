@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.Microsof
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Forward a post to a recipient. You can specify both the parent conversation and thread in the request, or, you can specify just the parent thread without the parent conversation. ";
+            command.Description = "Forward a post to a recipient. You can specify both the parent conversation and thread in the request, or, you can specify just the parent thread without the parent conversation. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/post-forward?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

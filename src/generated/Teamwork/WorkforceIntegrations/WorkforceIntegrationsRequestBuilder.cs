@@ -53,7 +53,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new workforceIntegration object.You can set up which entities you want to receive Shifts synchronous change notifications on and set entities to configure filtering by WFM rules eligibility for, including swap requests.";
+            command.Description = "Create a new workforceIntegration object.You can set up which entities you want to receive Shifts synchronous change notifications on and set entities to configure filtering by WFM rules eligibility for, including swap requests.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workforceintegration-post?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -104,7 +104,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of workforceIntegration objects.";
+            command.Description = "Retrieve a list of workforceIntegration objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workforceintegration-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

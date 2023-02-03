@@ -32,7 +32,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a groupLifecyclePolicy.";
+            command.Description = "Delete a groupLifecyclePolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };
@@ -66,7 +66,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a groupLifecyclePolicies object.";
+            command.Description = "Retrieve the properties and relationships of a groupLifecyclePolicies object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };
@@ -148,7 +148,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a groupLifecyclePolicygroupLifecyclePolicy resource type object.";
+            command.Description = "Update the properties of a groupLifecyclePolicygroupLifecyclePolicy resource type object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };

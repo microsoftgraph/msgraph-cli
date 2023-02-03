@@ -117,7 +117,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.";
+            command.Description = "List all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-permissiongrants?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

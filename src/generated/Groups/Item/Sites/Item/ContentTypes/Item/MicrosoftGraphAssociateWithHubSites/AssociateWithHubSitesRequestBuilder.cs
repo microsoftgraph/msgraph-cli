@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.MicrosoftGraphAssociat
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Associate a published [content type][contentType] present in a content type hub with a list of hub sites.";
+            command.Description = "Associate a published [content type][contentType] present in a content type hub with a list of hub sites.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

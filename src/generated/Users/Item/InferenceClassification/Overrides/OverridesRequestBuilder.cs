@@ -53,7 +53,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. **Note**";
+            command.Description = "Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. **Note**\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.";
+            command.Description = "Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

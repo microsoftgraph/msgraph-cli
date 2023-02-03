@@ -110,7 +110,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of sessions associated with a callRecord object.";
+            command.Description = "Retrieve the list of sessions associated with a callRecord object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/callrecords-session-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
             };

@@ -68,7 +68,7 @@ namespace ApiSdk.Contracts.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of contract object.";
+            command.Description = "Retrieve the properties and relationships of contract object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contract-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var contractIdOption = new Option<string>("--contract-id", description: "key: id of contract") {
             };

@@ -53,7 +53,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Attachment
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. ";
+            command.Description = "Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/eventmessage-post-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -122,7 +122,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Attachment
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of attachment objects attached to an event.";
+            command.Description = "Retrieve a list of attachment objects attached to an event.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-list-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

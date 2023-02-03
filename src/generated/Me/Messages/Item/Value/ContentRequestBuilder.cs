@@ -29,7 +29,7 @@ namespace ApiSdk.Me.Messages.Item.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property messages from me";
+            command.Description = "Get media content for the navigation property messages from me\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/opentypeextension-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
             };

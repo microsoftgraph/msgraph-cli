@@ -30,7 +30,7 @@ namespace ApiSdk.Communications.Calls.Item.MicrosoftGraphAddLargeGalleryView {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add the large gallery view to a call.  For details about how to identify a large gallery view participant in a roster so that you can retrieve the relevant data to subscribe to the video feed, see Identify large gallery view participants in a roster.";
+            command.Description = "Add the large gallery view to a call.  For details about how to identify a large gallery view participant in a roster so that you can retrieve the relevant data to subscribe to the video feed, see Identify large gallery view participants in a roster.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-addlargegalleryview?view=graph-rest-1.0";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };

@@ -29,7 +29,7 @@ namespace ApiSdk.Communications.Calls.Item.MicrosoftGraphTransfer {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly.";
+            command.Description = "Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-transfer?view=graph-rest-1.0";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };

@@ -29,7 +29,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.MicrosoftGraphArchive {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Archive the specified team. When a team is archived, users can no longer send or like messages on any channel in the team, edit the team's name, description, or other settings, or in general make most changes to the team.Membership changes to the team continue to be allowed. Archiving is an async operation. A team is archived once the async operation completes successfully, which may occur subsequent to a response from this API. To archive a team, the team and group must have an owner. To restore a team from its archived state, use the API to unarchive.";
+            command.Description = "Archive the specified team. When a team is archived, users can no longer send or like messages on any channel in the team, edit the team's name, description, or other settings, or in general make most changes to the team.Membership changes to the team continue to be allowed. Archiving is an async operation. A team is archived once the async operation completes successfully, which may occur subsequent to a response from this API. To archive a team, the team and group must have an owner. To restore a team from its archived state, use the API to unarchive.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-archive?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

@@ -29,7 +29,7 @@ namespace ApiSdk.ServicePrincipals.MicrosoftGraphGetAvailableExtensionProperties
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:+ user+ group+ administrativeUnit+ application+ device+ organization";
+            command.Description = "Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:+ user+ group+ administrativeUnit+ application+ device+ organization\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

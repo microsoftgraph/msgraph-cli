@@ -68,7 +68,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a directoryroletemplate object.";
+            command.Description = "Retrieve the properties and relationships of a directoryroletemplate object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryroletemplate-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var directoryRoleTemplateIdOption = new Option<string>("--directory-role-template-id", description: "key: id of directoryRoleTemplate") {
             };

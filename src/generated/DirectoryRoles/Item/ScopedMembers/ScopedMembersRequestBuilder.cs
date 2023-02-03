@@ -109,7 +109,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of scopedRoleMembership objects for a directory role.";
+            command.Description = "Retrieve a list of scopedRoleMembership objects for a directory role.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0";
             // Create options for all the parameters
             var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
             };

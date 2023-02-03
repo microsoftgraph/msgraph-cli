@@ -29,7 +29,7 @@ namespace ApiSdk.Me.MicrosoftGraphExportPersonalData {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Submit a data policy operation request from a company administrator or an application to export an organizational user's data. This data includes the user's data stored in OneDrive and their activity reports. For more guidance about exporting data while complying with regulations, see Data Subject Requests and the GDPR and CCPA.";
+            command.Description = "Submit a data policy operation request from a company administrator or an application to export an organizational user's data. This data includes the user's data stored in OneDrive and their activity reports. For more guidance about exporting data while complying with regulations, see Data Subject Requests and the GDPR and CCPA.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-exportpersonaldata?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

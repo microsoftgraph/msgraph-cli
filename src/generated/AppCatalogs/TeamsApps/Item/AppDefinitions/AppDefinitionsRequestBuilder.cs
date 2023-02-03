@@ -54,7 +54,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Update an app previously published to the Microsoft Teams app catalog. To update an app, the **distributionMethod** property for the app must be set to `organization`. This API specifically updates an app published to your organization's app catalog (the tenant app catalog).";
+            command.Description = "Update an app previously published to the Microsoft Teams app catalog. To update an app, the **distributionMethod** property for the app must be set to `organization`. This API specifically updates an app published to your organization's app catalog (the tenant app catalog).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamsapp-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
             };

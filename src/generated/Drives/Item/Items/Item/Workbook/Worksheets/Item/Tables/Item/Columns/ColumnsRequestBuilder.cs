@@ -60,7 +60,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new TableColumn.";
+            command.Description = "Use this API to create a new TableColumn.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-post-columns?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -135,7 +135,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of tablecolumn objects.";
+            command.Description = "Retrieve a list of tablecolumn objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tablecolumn-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

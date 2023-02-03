@@ -53,7 +53,7 @@ namespace ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create an instance of a swapShiftsChangeRequest object.";
+            command.Description = "Create an instance of a swapShiftsChangeRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/swapshiftschangerequest-post?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of swapShiftsChangeRequest objects in the team.";
+            command.Description = "Retrieve a list of swapShiftsChangeRequest objects in the team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

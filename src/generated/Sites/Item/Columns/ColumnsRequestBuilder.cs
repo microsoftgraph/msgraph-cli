@@ -54,7 +54,7 @@ namespace ApiSdk.Sites.Item.Columns {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a column for a [site][site] with a request that specifies a [columnDefinition][columnDefinition].";
+            command.Description = "Create a column for a [site][site] with a request that specifies a [columnDefinition][columnDefinition].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-post-columns?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -111,7 +111,7 @@ namespace ApiSdk.Sites.Item.Columns {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [site][site].";
+            command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [site][site].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-list-columns?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

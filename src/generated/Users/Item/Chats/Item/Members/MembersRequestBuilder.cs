@@ -54,7 +54,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a conversationMember to a chat.";
+            command.Description = "Add a conversationMember to a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-post-members?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -117,7 +117,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all conversation members in a chat. This method supports federation. For one-on-one chats, at least one chat member must belong to the tenant the request initiates from. For group chats, the chat must be initiated by a user in the tenant the request initiates from.";
+            command.Description = "List all conversation members in a chat. This method supports federation. For one-on-one chats, at least one chat member must belong to the tenant the request initiates from. For group chats, the chat must be initiated by a user in the tenant the request initiates from.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-list-members?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

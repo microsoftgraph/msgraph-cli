@@ -65,7 +65,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

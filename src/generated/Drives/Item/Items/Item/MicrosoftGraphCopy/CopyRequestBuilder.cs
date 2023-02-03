@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.MicrosoftGraphCopy {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Asynchronously creates a copy of an [driveItem][item-resource] (including any children), under a new parent item or with a new name.";
+            command.Description = "Asynchronously creates a copy of an [driveItem][item-resource] (including any children), under a new parent item or with a new name.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-copy?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

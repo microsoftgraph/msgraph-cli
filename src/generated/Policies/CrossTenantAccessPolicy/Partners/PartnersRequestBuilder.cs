@@ -53,7 +53,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new partner configuration in a cross-tenant access policy.";
+            command.Description = "Create a new partner configuration in a cross-tenant access policy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/crosstenantaccesspolicy-post-partners?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -104,7 +104,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of all partner configurations within a cross-tenant access policy.";
+            command.Description = "Get a list of all partner configurations within a cross-tenant access policy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/crosstenantaccesspolicy-list-partners?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

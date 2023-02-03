@@ -57,7 +57,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new reply to a chatMessage in a specified channel.";
+            command.Description = "Create a new reply to a chatMessage in a specified channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -126,7 +126,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.";
+            command.Description = "List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-list-replies?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

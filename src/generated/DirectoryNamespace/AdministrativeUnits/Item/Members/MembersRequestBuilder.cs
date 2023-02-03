@@ -64,7 +64,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.";
+            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0";
             // Create options for all the parameters
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
             };

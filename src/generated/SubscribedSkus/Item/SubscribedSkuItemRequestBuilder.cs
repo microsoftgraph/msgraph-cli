@@ -63,7 +63,7 @@ namespace ApiSdk.SubscribedSkus.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a specific commercial subscription that an organization has acquired.";
+            command.Description = "Get a specific commercial subscription that an organization has acquired.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subscribedsku-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
             };

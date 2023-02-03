@@ -111,7 +111,7 @@ namespace ApiSdk.GroupSettingTemplates {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects.";
+            command.Description = "Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsettingtemplate-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

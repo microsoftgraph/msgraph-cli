@@ -125,7 +125,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the set objects and their properties.";
+            command.Description = "Get a list of the set objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-group-list-sets?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

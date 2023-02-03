@@ -29,7 +29,7 @@ namespace ApiSdk.Communications.MicrosoftGraphGetPresencesByUserId {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Get the presence information for multiple users.";
+            command.Description = "Get the presence information for multiple users.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

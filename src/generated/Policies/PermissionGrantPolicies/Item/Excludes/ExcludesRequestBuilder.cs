@@ -53,7 +53,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add conditions under which a permission grant event is *excluded* in a permission grant policy. You do this by adding a permissionGrantConditionSet to the **excludes** collection of a  permissionGrantPolicy.";
+            command.Description = "Add conditions under which a permission grant event is *excluded* in a permission grant policy. You do this by adding a permissionGrantConditionSet to the **excludes** collection of a  permissionGrantPolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permissiongrantpolicy-post-excludes?view=graph-rest-1.0";
             // Create options for all the parameters
             var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the condition sets which are *excluded* in a permissionGrantPolicy.";
+            command.Description = "Retrieve the condition sets which are *excluded* in a permissionGrantPolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permissiongrantpolicy-list-excludes?view=graph-rest-1.0";
             // Create options for all the parameters
             var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
             };

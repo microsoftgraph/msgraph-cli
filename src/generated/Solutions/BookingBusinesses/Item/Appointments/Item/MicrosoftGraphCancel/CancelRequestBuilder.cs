@@ -29,7 +29,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.MicrosoftGra
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.";
+            command.Description = "Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingappointment-cancel?view=graph-rest-1.0";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };

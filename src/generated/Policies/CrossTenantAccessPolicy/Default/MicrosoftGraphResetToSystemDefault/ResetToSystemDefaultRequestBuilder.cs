@@ -29,7 +29,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.MicrosoftGraphResetToS
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.";
+            command.Description = "Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-resettosystemdefault?view=graph-rest-1.0";
             // Create options for all the parameters
             command.SetHandler(async (invocationContext) => {
                 var cancellationToken = invocationContext.GetCancellationToken();

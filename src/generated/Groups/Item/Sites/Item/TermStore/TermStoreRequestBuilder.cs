@@ -71,7 +71,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a store object.";
+            command.Description = "Read the properties and relationships of a store object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-store-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -152,7 +152,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a store object.";
+            command.Description = "Update the properties of a store object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-store-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

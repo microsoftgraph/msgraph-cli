@@ -82,7 +82,7 @@ namespace ApiSdk.ServicePrincipals {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new servicePrincipal object.";
+            command.Description = "Create a new servicePrincipal object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-post-serviceprincipals?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -133,7 +133,7 @@ namespace ApiSdk.ServicePrincipals {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of servicePrincipal objects.";
+            command.Description = "Retrieve a list of servicePrincipal objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore

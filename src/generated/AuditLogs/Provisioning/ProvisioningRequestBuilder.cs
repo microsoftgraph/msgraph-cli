@@ -103,7 +103,7 @@ namespace ApiSdk.AuditLogs.Provisioning {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. ";
+            command.Description = "Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

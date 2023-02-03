@@ -29,7 +29,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.MicrosoftGraphSnooz
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Postpone a reminder for an event in a user calendar until a new time.";
+            command.Description = "Postpone a reminder for an event in a user calendar until a new time.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-snoozereminder?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.MicrosoftGraphSetUpResour
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create a SharePoint folder to upload files for a given educationAssignment. Only teachers can perform this operation. The teacher determines the resources to upload in the assignment's folder. ";
+            command.Description = "Create a SharePoint folder to upload files for a given educationAssignment. Only teachers can perform this operation. The teacher determines the resources to upload in the assignment's folder. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };

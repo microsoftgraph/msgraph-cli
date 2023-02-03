@@ -69,7 +69,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.";
+            command.Description = "Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
             };
@@ -137,7 +137,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property progressTaskBoardFormat in planner";
+            command.Description = "Update the navigation property progressTaskBoardFormat in planner\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
             };

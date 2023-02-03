@@ -51,7 +51,7 @@ namespace ApiSdk.Education.Users.Item.Schools {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of schools for a user.";
+            command.Description = "Retrieve a list of schools for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationuser-list-schools?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };

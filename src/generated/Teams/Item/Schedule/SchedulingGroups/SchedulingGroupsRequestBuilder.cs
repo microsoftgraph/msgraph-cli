@@ -53,7 +53,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new schedulingGroup.";
+            command.Description = "Create a new schedulingGroup.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-post-schedulinggroups?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of schedulingGroups in this schedule.";
+            command.Description = "Get the list of schedulingGroups in this schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

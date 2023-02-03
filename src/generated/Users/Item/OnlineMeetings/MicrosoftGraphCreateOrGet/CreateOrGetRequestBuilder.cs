@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.MicrosoftGraphCreateOrGet {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. ";
+            command.Description = "Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onlinemeeting-createorget?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

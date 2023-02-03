@@ -74,7 +74,7 @@ namespace ApiSdk.Chats.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.";
+            command.Description = "Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -239,7 +239,7 @@ namespace ApiSdk.Chats.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a chat object.";
+            command.Description = "Update the properties of a chat object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-patch?view=graph-rest-1.0";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };

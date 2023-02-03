@@ -62,7 +62,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new ediscoveryCase object.";
+            command.Description = "Create a new ediscoveryCase object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-casesroot-post-ediscoverycases?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -113,7 +113,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the ediscoveryCase objects and their properties.";
+            command.Description = "Get a list of the ediscoveryCase objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

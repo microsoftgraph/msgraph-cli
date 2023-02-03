@@ -60,7 +60,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new ediscoverySearch object.";
+            command.Description = "Create a new ediscoverySearch object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -117,7 +117,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of ediscoverySearch resources from an eDiscoveryCase object.";
+            command.Description = "Get the list of ediscoverySearch resources from an eDiscoveryCase object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

@@ -65,7 +65,7 @@ namespace ApiSdk.Me.Calendar.CalendarView {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0";
             // Create options for all the parameters
             var startDateTimeOption = new Option<string>("--start-date-time", description: "The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00") {
             };

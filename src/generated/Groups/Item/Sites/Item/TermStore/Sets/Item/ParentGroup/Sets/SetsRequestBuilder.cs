@@ -124,7 +124,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the set objects and their properties.";
+            command.Description = "Get a list of the set objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-group-list-sets?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

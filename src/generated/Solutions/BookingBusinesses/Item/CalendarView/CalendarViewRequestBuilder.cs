@@ -110,7 +110,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.";
+            command.Description = "Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };

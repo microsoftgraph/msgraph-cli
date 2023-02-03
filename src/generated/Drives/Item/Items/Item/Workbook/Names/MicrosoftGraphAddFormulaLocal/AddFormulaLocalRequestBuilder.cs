@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.MicrosoftGraphAddFormulaL
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Adds a new name to the collection of the given scope using the user's locale for the formula.";
+            command.Description = "Adds a new name to the collection of the given scope using the user's locale for the formula.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/nameditem-addformulalocal?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

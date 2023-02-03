@@ -103,7 +103,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties of a collection of servicePrincipalRiskDetection objects.";
+            command.Description = "Retrieve the properties of a collection of servicePrincipalRiskDetection objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

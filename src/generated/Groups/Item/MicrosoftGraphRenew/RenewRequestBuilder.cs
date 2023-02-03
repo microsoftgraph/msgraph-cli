@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.MicrosoftGraphRenew {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Renews a group's expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.";
+            command.Description = "Renews a group's expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-renew?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

@@ -113,7 +113,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of plannerTask objects associated to a plannerBucket object.";
+            command.Description = "Retrieve a list of plannerTask objects associated to a plannerBucket object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0";
             // Create options for all the parameters
             var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
             };

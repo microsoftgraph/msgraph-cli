@@ -63,7 +63,7 @@ namespace ApiSdk.Planner.Tasks.Item.Details {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a **plannerTaskDetails** object.";
+            command.Description = "Retrieve the properties and relationships of a **plannerTaskDetails** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannertaskdetails-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
             };
@@ -125,7 +125,7 @@ namespace ApiSdk.Planner.Tasks.Item.Details {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property details in planner";
+            command.Description = "Update the navigation property details in planner\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
             };

@@ -103,7 +103,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of daily print usage summaries, grouped by printer.";
+            command.Description = "Retrieve a list of daily print usage summaries, grouped by printer.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

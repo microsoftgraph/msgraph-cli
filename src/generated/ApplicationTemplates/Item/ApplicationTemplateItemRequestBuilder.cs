@@ -64,7 +64,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of an applicationTemplate object.";
+            command.Description = "Retrieve the properties of an applicationTemplate object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/applicationtemplate-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "key: id of applicationTemplate") {
             };

@@ -29,7 +29,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.MicrosoftGraphGetStaffAvailabi
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Get the availability information of staff members of a Microsoft Bookings calendar.";
+            command.Description = "Get the availability information of staff members of a Microsoft Bookings calendar.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-getstaffavailability?view=graph-rest-1.0";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };

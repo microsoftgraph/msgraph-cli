@@ -115,7 +115,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item.Atten
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of attendanceRecord objects and their properties.";
+            command.Description = "Get a list of attendanceRecord objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/attendancerecord-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
             };

@@ -29,7 +29,7 @@ namespace ApiSdk.Applications.Item.MicrosoftGraphUnsetVerifiedPublisher {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.";
+            command.Description = "Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-unsetverifiedpublisher?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };

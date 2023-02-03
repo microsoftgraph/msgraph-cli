@@ -53,7 +53,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new directory extension definition, represented by an extensionProperty object.";
+            command.Description = "Create a new directory extension definition, represented by an extensionProperty object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-post-extensionproperty?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of directory extension definitions, represented by extensionProperty objects on an application.";
+            command.Description = "Retrieve the list of directory extension definitions, represented by extensionProperty objects on an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-list-extensionproperty?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };

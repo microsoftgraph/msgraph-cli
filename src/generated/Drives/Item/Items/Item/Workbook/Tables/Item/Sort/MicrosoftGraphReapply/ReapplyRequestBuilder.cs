@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort.MicrosoftGraph
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reapplies the current sorting parameters to the table.";
+            command.Description = "Reapplies the current sorting parameters to the table.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tablesort-reapply?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

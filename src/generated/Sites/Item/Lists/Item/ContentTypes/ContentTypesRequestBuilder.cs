@@ -128,7 +128,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of [contentType][contentType] resources in a [list][].";
+            command.Description = "Get the collection of [contentType][contentType] resources in a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-list-contenttypes?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

@@ -68,7 +68,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new Message in a mailfolder.";
+            command.Description = "Use this API to create a new Message in a mailfolder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -137,7 +137,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.";
+            command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

@@ -37,7 +37,7 @@ namespace ApiSdk.Domains.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a domain from a tenant.";
+            command.Description = "Deletes a domain from a tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };
@@ -96,7 +96,7 @@ namespace ApiSdk.Domains.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of domain object.";
+            command.Description = "Retrieve the properties and relationships of domain object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };
@@ -188,7 +188,7 @@ namespace ApiSdk.Domains.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of domain object.";
+            command.Description = "Update the properties of domain object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };

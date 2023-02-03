@@ -57,7 +57,7 @@ namespace ApiSdk.Users.Item.RegisteredDevices {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Devices that are registered for the user. Read-only. Nullable. Supports $expand.";
+            command.Description = "Devices that are registered for the user. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-registereddevices?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

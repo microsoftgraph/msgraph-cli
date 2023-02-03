@@ -54,7 +54,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new task trigger on the specified printer. Currently, only **one** task trigger can be specified per printer, but this limit might be removed in the future. ";
+            command.Description = "Create a new task trigger on the specified printer. Currently, only **one** task trigger can be specified per printer, but this limit might be removed in the future. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printer-post-tasktriggers?view=graph-rest-1.0";
             // Create options for all the parameters
             var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
             };
@@ -111,7 +111,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of task triggers associated with the printer. The list of task triggers defines which tasks will be triggered as a result of events that occur during printing. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.";
+            command.Description = "Retrieve a list of task triggers associated with the printer. The list of task triggers defines which tasks will be triggered as a result of events that occur during printing. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printer-list-tasktriggers?view=graph-rest-1.0";
             // Create options for all the parameters
             var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
             };

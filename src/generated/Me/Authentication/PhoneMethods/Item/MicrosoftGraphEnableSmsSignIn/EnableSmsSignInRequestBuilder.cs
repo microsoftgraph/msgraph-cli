@@ -29,7 +29,7 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item.MicrosoftGraphEnableSmsSign
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Enable SMS sign-in for an existing `mobile` phone number registered to a user. To be successfully enabled:";
+            command.Description = "Enable SMS sign-in for an existing `mobile` phone number registered to a user. To be successfully enabled:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/phoneauthenticationmethod-enablesmssignin?view=graph-rest-1.0";
             // Create options for all the parameters
             var phoneAuthenticationMethodIdOption = new Option<string>("--phone-authentication-method-id", description: "key: id of phoneAuthenticationMethod") {
             };

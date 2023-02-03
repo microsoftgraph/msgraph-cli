@@ -58,7 +58,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new OneNote notebook.";
+            command.Description = "Create a new OneNote notebook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onenote-post-notebooks?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -115,7 +115,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of notebook objects.";
+            command.Description = "Retrieve a list of notebook objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onenote-list-notebooks?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

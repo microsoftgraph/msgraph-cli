@@ -30,7 +30,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.MicrosoftGraphMove {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Move a message to another folder within the specified user's mailbox. This creates a new copy of the message in the destination folder and removes the original message.";
+            command.Description = "Move a message to another folder within the specified user's mailbox. This creates a new copy of the message in the destination folder and removes the original message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-move?view=graph-rest-1.0";
             // Create options for all the parameters
             var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };

@@ -51,7 +51,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.SectionGroups {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of section groups from the specified section group.";
+            command.Description = "Retrieve a list of section groups from the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-list-sectiongroups?view=graph-rest-1.0";
             // Create options for all the parameters
             var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
             };

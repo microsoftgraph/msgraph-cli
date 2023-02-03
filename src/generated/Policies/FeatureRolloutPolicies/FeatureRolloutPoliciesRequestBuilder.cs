@@ -54,7 +54,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new featureRolloutPolicy object.";
+            command.Description = "Create a new featureRolloutPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -105,7 +105,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of featureRolloutPolicy objects.";
+            command.Description = "Retrieve a list of featureRolloutPolicy objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/featurerolloutpolicies-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

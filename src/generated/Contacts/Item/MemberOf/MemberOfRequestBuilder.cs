@@ -63,7 +63,7 @@ namespace ApiSdk.Contacts.Item.MemberOf {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get memberOf from contacts";
+            command.Description = "Get memberOf from contacts\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/orgcontact-list-memberof?view=graph-rest-1.0";
             // Create options for all the parameters
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
             };

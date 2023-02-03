@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the chat of the specified user and Teams app.";
+            command.Description = "Retrieve the chat of the specified user and Teams app.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

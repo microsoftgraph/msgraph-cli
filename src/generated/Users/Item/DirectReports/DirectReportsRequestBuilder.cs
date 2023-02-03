@@ -55,7 +55,7 @@ namespace ApiSdk.Users.Item.DirectReports {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The users and contacts that report to the user. (The users and contacts that have their manager property set to this user.) Read-only. Nullable. Supports $expand.";
+            command.Description = "The users and contacts that report to the user. (The users and contacts that have their manager property set to this user.) Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-directreports?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

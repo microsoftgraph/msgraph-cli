@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.Sites.MicrosoftGraphAdd {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Follow a user's site or multiple sites.";
+            command.Description = "Follow a user's site or multiple sites.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-follow?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

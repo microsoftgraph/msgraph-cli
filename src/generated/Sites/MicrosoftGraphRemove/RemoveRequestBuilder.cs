@@ -29,7 +29,7 @@ namespace ApiSdk.Sites.MicrosoftGraphRemove {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Unfollow a user's site or multiple sites.";
+            command.Description = "Unfollow a user's site or multiple sites.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-unfollow?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

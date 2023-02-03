@@ -56,7 +56,7 @@ namespace ApiSdk.Planner.Plans {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new **plannerPlan**.";
+            command.Description = "Use this API to create a new **plannerPlan**.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/planner-post-plans?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -107,7 +107,7 @@ namespace ApiSdk.Planner.Plans {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of **plannerplan** objects.";
+            command.Description = "Retrieve a list of **plannerplan** objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/planner-list-plans?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

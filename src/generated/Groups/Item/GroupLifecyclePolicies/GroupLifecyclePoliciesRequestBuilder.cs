@@ -111,7 +111,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieves a list of groupLifecyclePolicy objects to which a group belongs.";
+            command.Description = "Retrieves a list of groupLifecyclePolicy objects to which a group belongs.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

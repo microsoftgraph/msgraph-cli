@@ -30,7 +30,7 @@ namespace ApiSdk.Communications.Calls.Item.MicrosoftGraphPlayPrompt {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Play a prompt in the call. For more information about how to handle operations, see commsOperation";
+            command.Description = "Play a prompt in the call. For more information about how to handle operations, see commsOperation\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-playprompt?view=graph-rest-1.0";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };

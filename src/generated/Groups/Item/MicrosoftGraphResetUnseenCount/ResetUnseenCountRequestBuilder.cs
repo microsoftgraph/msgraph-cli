@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.MicrosoftGraphResetUnseenCount {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reset the unseenCount of all the posts that the current user has not seen since their last visit. Supported for Microsoft 365 groups only.";
+            command.Description = "Reset the unseenCount of all the posts that the current user has not seen since their last visit. Supported for Microsoft 365 groups only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-resetunseencount?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

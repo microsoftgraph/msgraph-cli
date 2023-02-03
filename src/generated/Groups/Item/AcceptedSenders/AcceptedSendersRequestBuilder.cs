@@ -52,7 +52,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Users in the accepted senders list can post to conversations of the group (identified in the GET request URL).Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.";
+            command.Description = "Users in the accepted senders list can post to conversations of the group (identified in the GET request URL).Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-acceptedsenders?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

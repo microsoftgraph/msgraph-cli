@@ -129,7 +129,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.";
+            command.Description = "SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-list-versions?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

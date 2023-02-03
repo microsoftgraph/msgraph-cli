@@ -54,7 +54,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Creates a new educationCategory on an educationClass. Only teachers can perform this operation.";
+            command.Description = "Creates a new educationCategory on an educationClass. Only teachers can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-post-category?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
@@ -111,7 +111,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of educationCategory objects. Only teachers can perform this operation.";
+            command.Description = "Retrieve a list of educationCategory objects. Only teachers can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-list-categories?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };

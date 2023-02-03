@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.Sections.Item.MicrosoftGraphCopyToSec
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.";
+            command.Description = "For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/section-copytosectiongroup?view=graph-rest-1.0";
             // Create options for all the parameters
             var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
             };

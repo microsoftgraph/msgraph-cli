@@ -29,7 +29,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.MicrosoftGraphPublish {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Publishes a [contentType][] present in the content type hub site.";
+            command.Description = "Publishes a [contentType][] present in the content type hub site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-publish?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

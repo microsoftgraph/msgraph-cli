@@ -53,7 +53,7 @@ namespace ApiSdk.Me.Outlook.MasterCategories {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create an outlookCategory object in the user's master list of categories.";
+            command.Description = "Create an outlookCategory object in the user's master list of categories.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -104,7 +104,7 @@ namespace ApiSdk.Me.Outlook.MasterCategories {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the categories that have been defined for the user.";
+            command.Description = "Get all the categories that have been defined for the user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

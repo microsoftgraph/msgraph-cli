@@ -52,7 +52,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Children {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to children for drives";
+            command.Description = "Create new navigation property to children for drives\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-post-children?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -115,7 +115,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Children {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Return a collection of DriveItems in the **children** relationship of a DriveItem. DriveItems with a non-null **folder** or **package** facet can have one or more child DriveItems.";
+            command.Description = "Return a collection of DriveItems in the **children** relationship of a DriveItem. DriveItems with a non-null **folder** or **package** facet can have one or more child DriveItems.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-list-children?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

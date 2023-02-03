@@ -57,7 +57,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new section group in the specified notebook.";
+            command.Description = "Create a new section group in the specified notebook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/notebook-post-sectiongroups?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -120,7 +120,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of section groups from the specified notebook.";
+            command.Description = "Retrieve a list of section groups from the specified notebook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

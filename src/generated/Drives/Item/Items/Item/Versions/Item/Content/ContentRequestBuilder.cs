@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.Content {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The content stream for this version of the item.";
+            command.Description = "The content stream for this version of the item.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-list-versions?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

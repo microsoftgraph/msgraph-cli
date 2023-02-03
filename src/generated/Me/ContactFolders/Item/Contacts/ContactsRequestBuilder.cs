@@ -58,7 +58,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a contact to the root Contacts folder or to the `contacts` endpoint of another contact folder.";
+            command.Description = "Add a contact to the root Contacts folder or to the `contacts` endpoint of another contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-post-contacts?view=graph-rest-1.0";
             // Create options for all the parameters
             var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
             };
@@ -115,7 +115,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a contact collection from the default Contacts folder of the signed-in user (`.../me/contacts`), or from the specified contact folder.";
+            command.Description = "Get a contact collection from the default Contacts folder of the signed-in user (`.../me/contacts`), or from the specified contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-list-contacts?view=graph-rest-1.0";
             // Create options for all the parameters
             var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
             };

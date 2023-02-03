@@ -121,7 +121,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Submit
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List the educationSubmissionResource objects that have officially been submitted for grading. Only teachers, students, and applications with application permissions can perform this operation. The student who owns the submission cannot change the submitted list without resubmitting the assignment. This is a wrapper around the real resource and can contain a pointer back to the actual assignment resource if this resource was copied from the assignment.";
+            command.Description = "List the educationSubmissionResource objects that have officially been submitted for grading. Only teachers, students, and applications with application permissions can perform this operation. The student who owns the submission cannot change the submitted list without resubmitting the assignment. This is a wrapper around the real resource and can contain a pointer back to the actual assignment resource if this resource was copied from the assignment.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };

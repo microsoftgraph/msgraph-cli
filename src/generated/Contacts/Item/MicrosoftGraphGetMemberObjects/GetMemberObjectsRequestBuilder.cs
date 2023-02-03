@@ -29,7 +29,7 @@ namespace ApiSdk.Contacts.Item.MicrosoftGraphGetMemberObjects {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Return all IDs for the groups, administrative units, and directory roles that a user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. **Note:** Only users and role-enabled groups can be members of directory roles.";
+            command.Description = "Return all IDs for the groups, administrative units, and directory roles that a user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. **Note:** Only users and role-enabled groups can be members of directory roles.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0";
             // Create options for all the parameters
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
             };

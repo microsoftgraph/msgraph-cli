@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application.MicrosoftGraphCalcu
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Recalculate all currently opened workbooks in Excel.";
+            command.Description = "Recalculate all currently opened workbooks in Excel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookapplication-calculate?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

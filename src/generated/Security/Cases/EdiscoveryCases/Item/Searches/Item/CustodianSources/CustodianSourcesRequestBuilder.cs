@@ -51,7 +51,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of custodial data sources associated with an eDiscovery search.";
+            command.Description = "Get the list of custodial data sources associated with an eDiscovery search.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

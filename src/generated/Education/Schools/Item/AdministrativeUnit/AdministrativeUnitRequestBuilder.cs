@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a list of **administrativeUnits** associated with an educationSchool object.";
+            command.Description = "Get a list of **administrativeUnits** associated with an educationSchool object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-list-administrativeunit?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
             };

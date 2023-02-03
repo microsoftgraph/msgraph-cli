@@ -30,7 +30,7 @@ namespace ApiSdk.ServicePrincipals.Item.MicrosoftGraphAddPassword {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add a strong password or secret to a servicePrincipal object.";
+            command.Description = "Add a strong password or secret to a servicePrincipal object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };

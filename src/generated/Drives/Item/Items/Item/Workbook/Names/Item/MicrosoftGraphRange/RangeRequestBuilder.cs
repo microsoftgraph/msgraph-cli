@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item.MicrosoftGraphRange 
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Returns the range object that is associated with the name. Throws an exception if the named item's type is not a range.";
+            command.Description = "Returns the range object that is associated with the name. Throws an exception if the named item's type is not a range.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/nameditem-range?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

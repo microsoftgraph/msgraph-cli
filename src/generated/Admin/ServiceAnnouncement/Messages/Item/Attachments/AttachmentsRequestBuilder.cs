@@ -110,7 +110,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of attachments associated with a service message.";
+            command.Description = "Get the list of attachments associated with a service message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-list-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
             var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
             };

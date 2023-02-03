@@ -57,7 +57,7 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an authenticationFlowsPolicy object.";
+            command.Description = "Read the properties and relationships of an authenticationFlowsPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authenticationflowspolicy-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -113,7 +113,7 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the **selfServiceSignUp** property of an authenticationFlowsPolicy object. The properties **id**, **type**, and **description** cannot be modified.";
+            command.Description = "Update the **selfServiceSignUp** property of an authenticationFlowsPolicy object. The properties **id**, **type**, and **description** cannot be modified.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authenticationflowspolicy-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

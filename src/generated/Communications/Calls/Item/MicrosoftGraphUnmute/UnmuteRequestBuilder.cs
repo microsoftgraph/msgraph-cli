@@ -30,7 +30,7 @@ namespace ApiSdk.Communications.Calls.Item.MicrosoftGraphUnmute {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Allow the application to unmute itself. This is a server unmute, meaning that the server will start sending audio packets for this participant to other participants again. For more information about how to handle unmute operations, see unmuteParticipantOperation.";
+            command.Description = "Allow the application to unmute itself. This is a server unmute, meaning that the server will start sending audio packets for this participant to other participants again. For more information about how to handle unmute operations, see unmuteParticipantOperation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-unmute?view=graph-rest-1.0";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };

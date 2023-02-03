@@ -113,7 +113,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of participant objects in the call.";
+            command.Description = "Retrieve a list of participant objects in the call.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-list-participants?view=graph-rest-1.0";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };

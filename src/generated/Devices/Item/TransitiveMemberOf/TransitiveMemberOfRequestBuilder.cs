@@ -63,7 +63,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.";
+            command.Description = "Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-list-transitivememberof?view=graph-rest-1.0";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };

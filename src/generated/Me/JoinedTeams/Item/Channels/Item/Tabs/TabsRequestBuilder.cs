@@ -116,7 +116,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.Tabs {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of tabs in the specified channel within a team. ";
+            command.Description = "Retrieve the list of tabs in the specified channel within a team. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-list-tabs?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

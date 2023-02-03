@@ -40,7 +40,7 @@ namespace ApiSdk.Devices.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a registered device.";
+            command.Description = "Delete a registered device.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-delete?view=graph-rest-1.0";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };
@@ -87,7 +87,7 @@ namespace ApiSdk.Devices.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a device object.";
+            command.Description = "Get the properties and relationships of a device object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };
@@ -217,7 +217,7 @@ namespace ApiSdk.Devices.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.";
+            command.Description = "Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };

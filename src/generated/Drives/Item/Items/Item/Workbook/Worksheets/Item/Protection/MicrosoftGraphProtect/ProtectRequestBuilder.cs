@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Micr
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Protect a worksheet. It throws if the worksheet has been protected.";
+            command.Description = "Protect a worksheet. It throws if the worksheet has been protected.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheetprotection-protect?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

@@ -64,7 +64,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.";
+            command.Description = "Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-list-instances?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

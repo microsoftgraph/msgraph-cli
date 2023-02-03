@@ -63,7 +63,7 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The groups that a group is a member of, either directly and through nested membership. Nullable.";
+            command.Description = "The groups that a group is a member of, either directly and through nested membership. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-transitivememberof?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

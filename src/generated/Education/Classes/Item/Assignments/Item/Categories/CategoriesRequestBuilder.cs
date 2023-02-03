@@ -115,7 +115,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.";
+            command.Description = "List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };

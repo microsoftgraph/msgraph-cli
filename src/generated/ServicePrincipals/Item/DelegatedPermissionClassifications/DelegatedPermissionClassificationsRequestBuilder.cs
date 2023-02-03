@@ -53,7 +53,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Classify a delegated permission by adding a delegatedPermissionClassification to the servicePrincipal representing the API.";
+            command.Description = "Classify a delegated permission by adding a delegatedPermissionClassification to the servicePrincipal representing the API.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-post-delegatedpermissionclassifications?view=graph-rest-1.0";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.";
+            command.Description = "Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-delegatedpermissionclassifications?view=graph-rest-1.0";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };

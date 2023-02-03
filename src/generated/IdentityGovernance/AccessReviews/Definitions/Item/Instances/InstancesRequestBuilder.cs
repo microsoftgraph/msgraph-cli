@@ -119,7 +119,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the accessReviewInstance objects and their properties.";
+            command.Description = "Get a list of the accessReviewInstance objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0";
             // Create options for all the parameters
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
             };

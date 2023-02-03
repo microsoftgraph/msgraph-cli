@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.MicrosoftGraphInvite {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Sends a sharing invitation for a **driveItem**.A sharing invitation provides permissions to the recipients and optionally sends them an email with a [sharing link][].";
+            command.Description = "Sends a sharing invitation for a **driveItem**.A sharing invitation provides permissions to the recipients and optionally sends them an email with a [sharing link][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-invite?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

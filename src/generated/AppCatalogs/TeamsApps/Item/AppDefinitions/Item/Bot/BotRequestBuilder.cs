@@ -69,7 +69,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the bot associated with a specific definition of the  TeamsApp.";
+            command.Description = "Get the bot associated with a specific definition of the  TeamsApp.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworkbot-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
             };

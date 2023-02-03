@@ -109,7 +109,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.OpenShifts {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List openShift objects in a team.";
+            command.Description = "List openShift objects in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/openshift-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

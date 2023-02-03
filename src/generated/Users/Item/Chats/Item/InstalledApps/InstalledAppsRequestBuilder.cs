@@ -56,7 +56,7 @@ namespace ApiSdk.Users.Item.Chats.Item.InstalledApps {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Install a teamsApp to the specified chat.";
+            command.Description = "Install a teamsApp to the specified chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-post-installedapps?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -119,7 +119,7 @@ namespace ApiSdk.Users.Item.Chats.Item.InstalledApps {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all app installations within a chat.";
+            command.Description = "List all app installations within a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-list-installedapps?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

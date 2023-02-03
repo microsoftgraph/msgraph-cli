@@ -67,7 +67,7 @@ namespace ApiSdk.Groups.Item.Events {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new event.";
+            command.Description = "Use this API to create a new event.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-post-events?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -124,7 +124,7 @@ namespace ApiSdk.Groups.Item.Events {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of event objects.";
+            command.Description = "Retrieve a list of event objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-events?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

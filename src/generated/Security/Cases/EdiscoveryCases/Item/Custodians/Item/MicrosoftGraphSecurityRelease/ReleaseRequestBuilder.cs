@@ -29,7 +29,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGr
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Release a custodian from a case. For details, see Release a custodian from a case.";
+            command.Description = "Release a custodian from a case. For details, see Release a custodian from a case.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycustodian-release?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

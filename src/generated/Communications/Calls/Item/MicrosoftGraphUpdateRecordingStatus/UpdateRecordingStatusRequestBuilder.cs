@@ -30,7 +30,7 @@ namespace ApiSdk.Communications.Calls.Item.MicrosoftGraphUpdateRecordingStatus {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Update the application's recording status associated with a call. This requires the use of the Teams policy-based recording solution.";
+            command.Description = "Update the application's recording status associated with a call. This requires the use of the Teams policy-based recording solution.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-updaterecordingstatus?view=graph-rest-1.0";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };

@@ -53,7 +53,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create an identity resource for a new member in an externalGroup.";
+            command.Description = "Create an identity resource for a new member in an externalGroup.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-externalgroup-post-members?view=graph-rest-1.0";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
             };

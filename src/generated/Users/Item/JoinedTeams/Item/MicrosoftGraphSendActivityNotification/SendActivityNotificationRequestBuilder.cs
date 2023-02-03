@@ -29,7 +29,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.MicrosoftGraphSendActivityNotificat
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications.";
+            command.Description = "Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-sendactivitynotification?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

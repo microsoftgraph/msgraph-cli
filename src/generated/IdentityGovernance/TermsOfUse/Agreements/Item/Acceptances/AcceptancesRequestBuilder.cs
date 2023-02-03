@@ -109,7 +109,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Acceptances {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the details about the acceptance records for a specific agreement.";
+            command.Description = "Get the details about the acceptance records for a specific agreement.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/agreement-list-acceptances?view=graph-rest-1.0";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
             };

@@ -29,7 +29,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Trigger an indexOperation to make a non-custodial data source and its associated data source searchable.";
+            command.Description = "Trigger an indexOperation to make a non-custodial data source and its associated data source searchable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverynoncustodialdatasource-updateindex?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

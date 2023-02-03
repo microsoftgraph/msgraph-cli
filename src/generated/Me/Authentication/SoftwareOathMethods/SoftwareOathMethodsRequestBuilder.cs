@@ -52,7 +52,7 @@ namespace ApiSdk.Me.Authentication.SoftwareOathMethods {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of a user's software OATH token authentication method objects and their properties.";
+            command.Description = "Retrieve a list of a user's software OATH token authentication method objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authentication-list-softwareoathmethods?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

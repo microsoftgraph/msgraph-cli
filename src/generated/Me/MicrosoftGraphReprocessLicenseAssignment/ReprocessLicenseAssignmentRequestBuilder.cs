@@ -30,7 +30,7 @@ namespace ApiSdk.Me.MicrosoftGraphReprocessLicenseAssignment {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Azure Active Directory. Also see Identify and resolve license assignment problems for a group in Azure Active Directory for more details.";
+            command.Description = "Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Azure Active Directory. Also see Identify and resolve license assignment problems for a group in Azure Active Directory for more details.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0";
             // Create options for all the parameters
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true

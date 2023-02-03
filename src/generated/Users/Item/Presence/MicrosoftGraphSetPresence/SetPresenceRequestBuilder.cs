@@ -29,7 +29,7 @@ namespace ApiSdk.Users.Item.Presence.MicrosoftGraphSetPresence {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Set the state of a user's presence session as an application.";
+            command.Description = "Set the state of a user's presence session as an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/presence-setpresence?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

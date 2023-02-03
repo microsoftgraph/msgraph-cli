@@ -63,7 +63,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item.BucketTaskBoardFormat {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of **plannerBucketTaskBoardTaskFormat** object.";
+            command.Description = "Retrieve the properties and relationships of **plannerBucketTaskBoardTaskFormat** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
             };
@@ -125,7 +125,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item.BucketTaskBoardFormat {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property bucketTaskBoardFormat in me";
+            command.Description = "Update the navigation property bucketTaskBoardFormat in me\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
             };

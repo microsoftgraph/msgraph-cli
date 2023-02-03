@@ -136,7 +136,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Re
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the different relation of a [term] or [set] from the relations navigation property.";
+            command.Description = "Get the different relation of a [term] or [set] from the relations navigation property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-term-list-relations?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

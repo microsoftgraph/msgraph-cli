@@ -58,7 +58,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Send a new chatMessage in the specified channel.";
+            command.Description = "Send a new chatMessage in the specified channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post-messages?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -115,7 +115,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API.  This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).";
+            command.Description = "Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API.  This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-list-messages?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

@@ -92,7 +92,7 @@ namespace ApiSdk.SubscribedSkus {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of commercial subscriptions that an organization has acquired. For the mapping of license names as displayed on the Azure portal or the Microsoft 365 admin center against their Microsoft Graph **skuId** and **skuPartNumber** properties, see Product names and service plan identifiers for licensing.";
+            command.Description = "Get the list of commercial subscriptions that an organization has acquired. For the mapping of license names as displayed on the Azure portal or the Microsoft 365 admin center against their Microsoft Graph **skuId** and **skuPartNumber** properties, see Product names and service plan identifiers for licensing.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
             };

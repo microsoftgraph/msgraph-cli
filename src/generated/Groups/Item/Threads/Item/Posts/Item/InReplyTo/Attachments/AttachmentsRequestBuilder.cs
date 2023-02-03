@@ -121,7 +121,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of attachment objects attached to a post.";
+            command.Description = "Retrieve a list of attachment objects attached to a post.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/post-list-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

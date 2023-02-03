@@ -30,7 +30,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.MicrosoftGraphGetNotebookFromWebUr
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.";
+            command.Description = "Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/notebook-getnotebookfromweburl?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

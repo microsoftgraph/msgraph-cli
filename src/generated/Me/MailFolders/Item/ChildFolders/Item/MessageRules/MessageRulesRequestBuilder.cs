@@ -53,7 +53,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.MessageRules {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a messageRule object by specifying a set of conditions and actions.  Outlook carries out those actions if an incoming message in the user's Inbox meets the specified conditions.";
+            command.Description = "Create a messageRule object by specifying a set of conditions and actions.  Outlook carries out those actions if an incoming message in the user's Inbox meets the specified conditions.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-post-messagerules?view=graph-rest-1.0";
             // Create options for all the parameters
             var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };
@@ -116,7 +116,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.MessageRules {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the messageRule objects defined for the user's inbox.";
+            command.Description = "Get all the messageRule objects defined for the user's inbox.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0";
             // Create options for all the parameters
             var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };

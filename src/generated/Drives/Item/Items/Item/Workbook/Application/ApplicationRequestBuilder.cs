@@ -70,7 +70,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a workbookApplication object.";
+            command.Description = "Retrieve the properties and relationships of a workbookApplication object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookapplication-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

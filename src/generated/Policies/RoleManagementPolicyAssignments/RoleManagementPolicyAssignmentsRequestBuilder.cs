@@ -104,7 +104,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.";
+            command.Description = "Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

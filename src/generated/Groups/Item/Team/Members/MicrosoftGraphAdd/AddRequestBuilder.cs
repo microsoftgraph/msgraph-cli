@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.Team.Members.MicrosoftGraphAdd {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add multiple members in a single request to a team. The response provides details about which memberships could and couldn't be created.";
+            command.Description = "Add multiple members in a single request to a team. The response provides details about which memberships could and couldn't be created.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conversationmembers-add?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.MicrosoftGraphCreateLink {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "You can use **createLink** action to share a DriveItem via a sharing link. The **createLink** action will create a new sharing link if the specified link type doesn't already exist for the calling application.If a sharing link of the specified type already exists for the app, the existing sharing link will be returned. DriveItem resources inherit sharing permissions from their ancestors.";
+            command.Description = "You can use **createLink** action to share a DriveItem via a sharing link. The **createLink** action will create a new sharing link if the specified link type doesn't already exist for the calling application.If a sharing link of the specified type already exists for the app, the existing sharing link will be returned. DriveItem resources inherit sharing permissions from their ancestors.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-createlink?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

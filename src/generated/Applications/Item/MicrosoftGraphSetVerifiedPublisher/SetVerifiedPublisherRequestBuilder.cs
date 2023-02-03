@@ -29,7 +29,7 @@ namespace ApiSdk.Applications.Item.MicrosoftGraphSetVerifiedPublisher {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.";
+            command.Description = "Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-setverifiedpublisher?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };

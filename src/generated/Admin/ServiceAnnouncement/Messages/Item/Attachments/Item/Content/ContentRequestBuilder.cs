@@ -29,7 +29,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The attachment content.";
+            command.Description = "The attachment content.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-list-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
             var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
             };

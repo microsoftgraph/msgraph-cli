@@ -106,7 +106,7 @@ namespace ApiSdk.Teams.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of the specified team.";
+            command.Description = "Retrieve the properties and relationships of the specified team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -280,7 +280,7 @@ namespace ApiSdk.Teams.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of the specified team.";
+            command.Description = "Update the properties of the specified team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

@@ -29,7 +29,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.MicrosoftGraphPublish {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Make the scheduling page of a business available to external customers. Set the **isPublished** property to `true`, and the **publicUrl** property to the URL of the scheduling page.";
+            command.Description = "Make the scheduling page of a business available to external customers. Set the **isPublished** property to `true`, and the **publicUrl** property to the URL of the scheduling page.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-publish?view=graph-rest-1.0";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };

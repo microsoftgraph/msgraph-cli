@@ -116,7 +116,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List the effective sharing permissions on a driveItem.";
+            command.Description = "List the effective sharing permissions on a driveItem.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-list-permissions?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

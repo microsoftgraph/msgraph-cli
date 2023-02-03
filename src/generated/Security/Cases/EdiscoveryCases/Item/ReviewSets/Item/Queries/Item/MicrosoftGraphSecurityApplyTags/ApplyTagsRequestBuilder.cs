@@ -29,7 +29,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Apply tags to files in an eDiscovery review set. For details, see Tag documents in a review set in eDiscovery.";
+            command.Description = "Apply tags to files in an eDiscovery review set. For details, see Tag documents in a review set in eDiscovery.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoveryreviewsetquery-applytags?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

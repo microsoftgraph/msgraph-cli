@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a list teachers for a class. Delegated tokens must be members of the class to get the teacher list.";
+            command.Description = "Retrieve a list teachers for a class. Delegated tokens must be members of the class to get the teacher list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };

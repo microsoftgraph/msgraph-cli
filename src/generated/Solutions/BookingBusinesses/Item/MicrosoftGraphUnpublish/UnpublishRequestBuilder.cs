@@ -29,7 +29,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.MicrosoftGraphUnpublish {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Make the scheduling page of this business not available to external customers. Set the **isPublished** property to `false`, and the **publicUrl** property to `null`.";
+            command.Description = "Make the scheduling page of this business not available to external customers. Set the **isPublished** property to `false`, and the **publicUrl** property to `null`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };

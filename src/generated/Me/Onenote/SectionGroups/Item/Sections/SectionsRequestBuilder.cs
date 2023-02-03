@@ -58,7 +58,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.Sections {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new onenoteSection in the specified section group.";
+            command.Description = "Create a new onenoteSection in the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-post-sections?view=graph-rest-1.0";
             // Create options for all the parameters
             var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
             };
@@ -115,7 +115,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.Sections {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of onenoteSection objects from the specified section group.";
+            command.Description = "Retrieve a list of onenoteSection objects from the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-list-sections?view=graph-rest-1.0";
             // Create options for all the parameters
             var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
             };

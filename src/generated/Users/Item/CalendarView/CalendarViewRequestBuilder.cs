@@ -65,7 +65,7 @@ namespace ApiSdk.Users.Item.CalendarView {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Read-only. Nullable.";
+            command.Description = "The calendar view for the calendar. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-calendarview?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

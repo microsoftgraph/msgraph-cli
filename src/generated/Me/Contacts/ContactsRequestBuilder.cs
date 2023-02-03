@@ -58,7 +58,7 @@ namespace ApiSdk.Me.Contacts {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.";
+            command.Description = "Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-contacts?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -109,7 +109,7 @@ namespace ApiSdk.Me.Contacts {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a contact collection from the default contacts folder of the signed-in user. There are two scenarios where an app can get contacts in another user's contact folder:";
+            command.Description = "Get a contact collection from the default contacts folder of the signed-in user. There are two scenarios where an app can get contacts in another user's contact folder:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-contacts?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

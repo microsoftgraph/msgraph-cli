@@ -67,7 +67,7 @@ namespace ApiSdk.Devices {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create and register a new device in the organization.";
+            command.Description = "Create and register a new device in the organization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-post-devices?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -118,7 +118,7 @@ namespace ApiSdk.Devices {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of device objects registered in the organization.";
+            command.Description = "Retrieve a list of device objects registered in the organization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore

@@ -30,7 +30,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.";
+            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0";
             // Create options for all the parameters
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
             };
@@ -134,7 +134,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Use this API to add a member (user, group, or device) to an administrative unit. Currently it's only possible to add one member at a time to an administrative unit.";
+            command.Description = "Use this API to add a member (user, group, or device) to an administrative unit. Currently it's only possible to add one member at a time to an administrative unit.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0";
             // Create options for all the parameters
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
             };

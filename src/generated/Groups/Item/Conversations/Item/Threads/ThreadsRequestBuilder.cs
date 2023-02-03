@@ -55,7 +55,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new thread in the specified conversation.  A thread and post are created as specified. Use reply thread to further post to that thread. Or, if you get the post ID, you can also reply to that post in that thread. Note: You can also start a new conversation by first creating a thread.";
+            command.Description = "Create a new thread in the specified conversation.  A thread and post are created as specified. Use reply thread to further post to that thread. Or, if you get the post ID, you can also reply to that post in that thread. Note: You can also start a new conversation by first creating a thread.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conversation-post-threads?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -118,7 +118,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the threads in a group conversation. Note: You can also get all the threads of a group.";
+            command.Description = "Get all the threads in a group conversation. Note: You can also get all the threads of a group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conversation-list-threads?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

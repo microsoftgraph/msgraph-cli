@@ -109,7 +109,7 @@ namespace ApiSdk.Sites.Item.Operations {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of rich long-running operations associated with a site.";
+            command.Description = "Get a list of rich long-running operations associated with a site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-list-operations?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

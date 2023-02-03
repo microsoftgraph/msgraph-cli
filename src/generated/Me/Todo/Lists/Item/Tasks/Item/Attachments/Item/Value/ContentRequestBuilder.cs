@@ -29,7 +29,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property attachments from me";
+            command.Description = "Get media content for the navigation property attachments from me\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todotask-list-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
             var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
             };

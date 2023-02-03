@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.MicrosoftGraphAddFavorite {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add the group to the list of the current user's favorite groups. Supported for Microsoft 365 groups only.";
+            command.Description = "Add the group to the list of the current user's favorite groups. Supported for Microsoft 365 groups only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-addfavorite?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

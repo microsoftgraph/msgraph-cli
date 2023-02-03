@@ -29,7 +29,7 @@ namespace ApiSdk.Chats.Item.MicrosoftGraphSendActivityNotification {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Send an activity feed notification in scope of a chat. For more details about sending notifications and the requirements for doing so, see sending Teams activity notifications.";
+            command.Description = "Send an activity feed notification in scope of a chat. For more details about sending notifications and the requirements for doing so, see sending Teams activity notifications.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-sendactivitynotification?view=graph-rest-1.0";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };

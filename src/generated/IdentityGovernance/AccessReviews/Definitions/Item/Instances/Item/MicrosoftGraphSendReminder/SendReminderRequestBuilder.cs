@@ -29,7 +29,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Send a reminder to the reviewers of an active accessReviewInstance.";
+            command.Description = "Send a reminder to the reviewers of an active accessReviewInstance.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewinstance-sendreminder?view=graph-rest-1.0";
             // Create options for all the parameters
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
             };

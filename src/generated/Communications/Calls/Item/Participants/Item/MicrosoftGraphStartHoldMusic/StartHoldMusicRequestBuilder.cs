@@ -30,7 +30,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.MicrosoftGraphStart
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Put a participant on hold and play music in the background.";
+            command.Description = "Put a participant on hold and play music in the background.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/participant-startholdmusic?view=graph-rest-1.0";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };

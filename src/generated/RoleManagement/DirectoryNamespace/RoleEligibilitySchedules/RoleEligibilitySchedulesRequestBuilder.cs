@@ -104,7 +104,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.";
+            command.Description = "Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

@@ -30,7 +30,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "List the claimsMappingPolicy objects that are assigned to a servicePrincipal.";
+            command.Description = "List the claimsMappingPolicy objects that are assigned to a servicePrincipal.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };

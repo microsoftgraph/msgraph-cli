@@ -29,7 +29,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGrap
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium).";
+            command.Description = "Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverysearch-estimatestatistics?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

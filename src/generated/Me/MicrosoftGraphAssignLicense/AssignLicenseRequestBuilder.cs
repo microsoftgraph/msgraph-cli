@@ -30,7 +30,7 @@ namespace ApiSdk.Me.MicrosoftGraphAssignLicense {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action assignLicense";
+            command.Description = "Invoke action assignLicense\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-assignlicense?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

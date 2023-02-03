@@ -29,7 +29,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property messages from me";
+            command.Description = "Get media content for the navigation property messages from me\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0";
             // Create options for all the parameters
             var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };

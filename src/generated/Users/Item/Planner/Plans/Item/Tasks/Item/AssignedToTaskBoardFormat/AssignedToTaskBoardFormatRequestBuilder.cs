@@ -75,7 +75,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a **plannerAssignedToTaskBoardTaskFormat** object.";
+            command.Description = "Retrieve the properties and relationships of a **plannerAssignedToTaskBoardTaskFormat** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -149,7 +149,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFor
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property assignedToTaskBoardFormat in users";
+            command.Description = "Update the navigation property assignedToTaskBoardFormat in users\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

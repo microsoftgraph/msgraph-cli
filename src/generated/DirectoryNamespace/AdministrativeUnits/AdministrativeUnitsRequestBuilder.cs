@@ -57,7 +57,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new administrativeUnit.";
+            command.Description = "Use this API to create a new administrativeUnit.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directory-post-administrativeunits?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -108,7 +108,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of administrativeUnit objects.";
+            command.Description = "Retrieve a list of administrativeUnit objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directory-list-administrativeunits?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

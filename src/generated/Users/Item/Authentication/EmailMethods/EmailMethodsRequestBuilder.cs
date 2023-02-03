@@ -53,7 +53,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Set a user's emailAuthenticationMethod object. Email authentication is a self-service password reset method. A user may only have one email authentication method.";
+            command.Description = "Set a user's emailAuthenticationMethod object. Email authentication is a self-service password reset method. A user may only have one email authentication method.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authentication-post-emailmethods?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of a user's emailAuthenticationMethod objects and their properties. This API will return only a single object in the collection as only one email method can be set for a user.";
+            command.Description = "Retrieve a list of a user's emailAuthenticationMethod objects and their properties. This API will return only a single object in the collection as only one email method can be set for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authentication-list-emailmethods?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

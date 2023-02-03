@@ -109,7 +109,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of endpoints exposed by a print service.";
+            command.Description = "Retrieve a list of endpoints exposed by a print service.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printservice-list-endpoints?view=graph-rest-1.0";
             // Create options for all the parameters
             var printServiceIdOption = new Option<string>("--print-service-id", description: "key: id of printService") {
             };

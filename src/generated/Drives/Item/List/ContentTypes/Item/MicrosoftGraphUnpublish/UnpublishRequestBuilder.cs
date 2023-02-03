@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.MicrosoftGraphUnpublish {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Unpublish a [contentType][] from a content type hub site.";
+            command.Description = "Unpublish a [contentType][] from a content type hub site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

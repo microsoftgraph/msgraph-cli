@@ -30,7 +30,7 @@ namespace ApiSdk.GroupSettings.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a tenant-level or group-specific groupSetting object.";
+            command.Description = "Delete a tenant-level or group-specific groupSetting object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsetting-delete?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupSettingIdOption = new Option<string>("--group-setting-id", description: "key: id of groupSetting") {
             };
@@ -64,7 +64,7 @@ namespace ApiSdk.GroupSettings.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of a specific group setting object. The setting can be a tenant-level or group-specific setting.";
+            command.Description = "Retrieve the properties of a specific group setting object. The setting can be a tenant-level or group-specific setting.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsetting-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupSettingIdOption = new Option<string>("--group-setting-id", description: "key: id of groupSetting") {
             };
@@ -126,7 +126,7 @@ namespace ApiSdk.GroupSettings.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a groupSetting object for tenant-wide group settings or a specific group setting.";
+            command.Description = "Update the properties of a groupSetting object for tenant-wide group settings or a specific group setting.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsetting-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupSettingIdOption = new Option<string>("--group-setting-id", description: "key: id of groupSetting") {
             };

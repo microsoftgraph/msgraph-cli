@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.MicrosoftGraphAdd {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Adds a new worksheet to the workbook. The worksheet will be added at the end of existing worksheets. If you wish to activate the newly added worksheet, call .activate() on it.";
+            command.Description = "Adds a new worksheet to the workbook. The worksheet will be added at the end of existing worksheets. If you wish to activate the newly added worksheet, call .activate() on it.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheetcollection-add?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

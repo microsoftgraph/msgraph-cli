@@ -1,6 +1,6 @@
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Count;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.MicrosoftGraphAdd;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.MicrosoftGraphCount;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.MicrosoftGraphItemAtWithIndex;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -128,7 +128,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of table objects.";
+            command.Description = "Retrieve a list of table objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

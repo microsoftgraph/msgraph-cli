@@ -104,7 +104,7 @@ namespace ApiSdk.Print.Services {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of **printService** objects that represent the services available to your tenant.";
+            command.Description = "Retrieve a list of **printService** objects that represent the services available to your tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/print-list-services?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

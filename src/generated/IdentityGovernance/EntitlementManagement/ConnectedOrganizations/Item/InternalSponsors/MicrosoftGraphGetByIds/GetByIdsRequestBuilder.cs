@@ -29,7 +29,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Return the directory objects specified in a list of IDs. Some common uses for this function are to:";
+            command.Description = "Return the directory objects specified in a list of IDs. Some common uses for this function are to:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-getbyids?view=graph-rest-1.0";
             // Create options for all the parameters
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
             };

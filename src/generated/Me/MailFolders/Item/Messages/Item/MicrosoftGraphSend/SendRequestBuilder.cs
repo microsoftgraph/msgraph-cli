@@ -29,7 +29,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.MicrosoftGraphSend {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Send an existing draft message.  The draft message can be a new message draft, reply draft, reply-all draft, or a forward draft. This method saves the message in the **Sent Items** folder. Alternatively, send a new message in a single operation.";
+            command.Description = "Send an existing draft message.  The draft message can be a new message draft, reply draft, reply-all draft, or a forward draft. This method saves the message in the **Sent Items** folder. Alternatively, send a new message in a single operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-send?view=graph-rest-1.0";
             // Create options for all the parameters
             var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };

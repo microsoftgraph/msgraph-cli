@@ -29,7 +29,7 @@ namespace ApiSdk.Users.Item.Chats.Item.MicrosoftGraphUnhideForUser {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Unhide a chat for a user.";
+            command.Description = "Unhide a chat for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-unhideforuser?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

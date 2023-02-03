@@ -29,7 +29,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.MicrosoftGraphCopyToDefaultContent
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.";
+            command.Description = "Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

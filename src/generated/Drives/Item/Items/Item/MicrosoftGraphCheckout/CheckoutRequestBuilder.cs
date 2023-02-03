@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.MicrosoftGraphCheckout {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Check out a **driveItem** resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.";
+            command.Description = "Check out a **driveItem** resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-checkout?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

@@ -53,7 +53,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new additional source associated with an eDiscovery search.";
+            command.Description = "Create a new additional source associated with an eDiscovery search.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverysearch-post-additionalsources?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -116,7 +116,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of additional sources associated with an eDiscovery search.";
+            command.Description = "Get the list of additional sources associated with an eDiscovery search.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

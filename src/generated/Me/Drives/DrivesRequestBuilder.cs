@@ -51,7 +51,7 @@ namespace ApiSdk.Me.Drives {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of Drive resources available for a target User, Group, or Site.";
+            command.Description = "Retrieve the list of Drive resources available for a target User, Group, or Site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/drive-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

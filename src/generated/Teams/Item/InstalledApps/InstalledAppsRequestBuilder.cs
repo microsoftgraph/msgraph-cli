@@ -56,7 +56,7 @@ namespace ApiSdk.Teams.Item.InstalledApps {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Install an app to the specified team.";
+            command.Description = "Install an app to the specified team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-post-installedapps?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -113,7 +113,7 @@ namespace ApiSdk.Teams.Item.InstalledApps {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of apps installed in the specified team.";
+            command.Description = "Retrieve a list of apps installed in the specified team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-list-installedapps?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

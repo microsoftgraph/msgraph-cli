@@ -63,7 +63,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each **assignment** creation if they don't want the default behaviors. Only teachers can perform this operation.";
+            command.Description = "Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each **assignment** creation if they don't want the default behaviors. Only teachers can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
@@ -125,7 +125,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.";
+            command.Description = "Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignmentdefaults-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };

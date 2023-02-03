@@ -112,7 +112,7 @@ namespace ApiSdk.Users.Item.Planner.Plans {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of **plannerplan** objects shared with a user object.";
+            command.Description = "Retrieve a list of **plannerplan** objects shared with a user object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/planneruser-list-plans?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

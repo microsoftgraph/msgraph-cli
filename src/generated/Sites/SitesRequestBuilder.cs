@@ -69,7 +69,7 @@ namespace ApiSdk.Sites {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is **createdDateTime**. The search filter is a free text search that uses multiple properties when retrieving the search results.";
+            command.Description = "Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is **createdDateTime**. The search filter is a free text search that uses multiple properties when retrieving the search results.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-search?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

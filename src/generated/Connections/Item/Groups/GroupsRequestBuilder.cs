@@ -54,7 +54,7 @@ namespace ApiSdk.Connections.Item.Groups {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new externalGroup object.";
+            command.Description = "Create a new externalGroup object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-externalconnection-post-groups?view=graph-rest-1.0";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
             };

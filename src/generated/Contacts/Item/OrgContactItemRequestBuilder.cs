@@ -86,7 +86,7 @@ namespace ApiSdk.Contacts.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of an organizational contact.";
+            command.Description = "Get the properties and relationships of an organizational contact.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/orgcontact-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
             };

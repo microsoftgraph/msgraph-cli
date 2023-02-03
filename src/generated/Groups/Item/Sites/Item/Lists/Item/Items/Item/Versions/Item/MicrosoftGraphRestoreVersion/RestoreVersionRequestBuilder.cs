@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item.Micr
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item.";
+            command.Description = "Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitemversion-restore?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.MicrosoftGraphConve
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Converts the table into a normal range of cells. All data is preserved.";
+            command.Description = "Converts the table into a normal range of cells. All data is preserved.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-converttorange?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

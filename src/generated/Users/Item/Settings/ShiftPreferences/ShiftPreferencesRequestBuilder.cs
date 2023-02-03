@@ -63,7 +63,7 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a shiftPreferences object by ID.";
+            command.Description = "Retrieve the properties and relationships of a shiftPreferences object by ID.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/shiftpreferences-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -125,7 +125,7 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties and relationships of a shiftPreferences object.";
+            command.Description = "Update the properties and relationships of a shiftPreferences object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/shiftpreferences-put?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

@@ -54,7 +54,7 @@ namespace ApiSdk.Shares.Item.List.Columns {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a column for a [list][list] with a request that specifies a [columnDefinition][columnDefinition].";
+            command.Description = "Create a column for a [list][list] with a request that specifies a [columnDefinition][columnDefinition].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-post-columns?view=graph-rest-1.0";
             // Create options for all the parameters
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
             };
@@ -111,7 +111,7 @@ namespace ApiSdk.Shares.Item.List.Columns {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].";
+            command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-list-columns?view=graph-rest-1.0";
             // Create options for all the parameters
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
             };

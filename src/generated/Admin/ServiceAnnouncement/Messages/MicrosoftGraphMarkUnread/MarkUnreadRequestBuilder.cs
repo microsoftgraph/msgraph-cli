@@ -29,7 +29,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphMarkUnread {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Mark a list of serviceUpdateMessages as **unread** for the signed in user.";
+            command.Description = "Mark a list of serviceUpdateMessages as **unread** for the signed in user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

@@ -54,7 +54,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new accessReviewHistoryDefinition object.";
+            command.Description = "Create a new accessReviewHistoryDefinition object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewset-post-historydefinitions?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -105,7 +105,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.";
+            command.Description = "Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

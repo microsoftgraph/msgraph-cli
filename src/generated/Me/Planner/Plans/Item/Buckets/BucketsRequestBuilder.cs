@@ -110,7 +110,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of plannerBucket objects contained by a plannerPlan object.";
+            command.Description = "Retrieve a list of plannerBucket objects contained by a plannerPlan object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerplan-list-buckets?view=graph-rest-1.0";
             // Create options for all the parameters
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
             };

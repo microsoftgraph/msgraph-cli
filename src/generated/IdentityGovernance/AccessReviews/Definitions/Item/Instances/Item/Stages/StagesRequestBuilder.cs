@@ -118,7 +118,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the stages in a multi-stage access review instance.";
+            command.Description = "Retrieve the stages in a multi-stage access review instance.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewinstance-list-stages?view=graph-rest-1.0";
             // Create options for all the parameters
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
             };

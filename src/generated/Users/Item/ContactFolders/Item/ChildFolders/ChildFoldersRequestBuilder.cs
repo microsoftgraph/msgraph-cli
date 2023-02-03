@@ -57,7 +57,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user's default contact folder.";
+            command.Description = "Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user's default contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -120,7 +120,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a collection of child folders under the specified contact folder.";
+            command.Description = "Get a collection of child folders under the specified contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

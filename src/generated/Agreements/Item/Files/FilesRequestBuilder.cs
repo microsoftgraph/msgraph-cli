@@ -54,7 +54,7 @@ namespace ApiSdk.Agreements.Item.Files {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new localized agreement file.";
+            command.Description = "Create a new localized agreement file.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/agreement-post-files?view=graph-rest-1.0";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
             };

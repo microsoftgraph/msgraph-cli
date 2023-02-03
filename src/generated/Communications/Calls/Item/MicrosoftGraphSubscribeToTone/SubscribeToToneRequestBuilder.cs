@@ -30,7 +30,7 @@ namespace ApiSdk.Communications.Calls.Item.MicrosoftGraphSubscribeToTone {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Subscribe to DTMF (dual-tone multi-frequency signaling). This allows you to be notified when the user presses keys on a 'dialpad'.";
+            command.Description = "Subscribe to DTMF (dual-tone multi-frequency signaling). This allows you to be notified when the user presses keys on a 'dialpad'.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-subscribetotone?view=graph-rest-1.0";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };

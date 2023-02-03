@@ -29,7 +29,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item.MicrosoftGraphGrant {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Grant users access to a link represented by a [permission][].";
+            command.Description = "Grant users access to a link represented by a [permission][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

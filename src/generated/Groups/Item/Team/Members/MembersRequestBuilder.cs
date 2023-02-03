@@ -54,7 +54,7 @@ namespace ApiSdk.Groups.Item.Team.Members {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a new conversationMember to a team.";
+            command.Description = "Add a new conversationMember to a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-post-members?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -111,7 +111,7 @@ namespace ApiSdk.Groups.Item.Team.Members {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the conversationMember collection of a team.";
+            command.Description = "Get the conversationMember collection of a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-list-members?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

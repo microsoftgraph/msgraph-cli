@@ -29,7 +29,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.MicrosoftGrap
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a set of contacts that have been added, deleted, or updated in a specified folder. A **delta** function call for contacts in a folder is similar to a GET request, except that by appropriately applying state tokens in one or more of these calls, you can query for incremental changes in the contacts in that folder. This allows you to maintain and synchronize a local store of a user's contacts without having to fetch the entire set of contacts from the server every time.  ";
+            command.Description = "Get a set of contacts that have been added, deleted, or updated in a specified folder. A **delta** function call for contacts in a folder is similar to a GET request, except that by appropriately applying state tokens in one or more of these calls, you can query for incremental changes in the contacts in that folder. This allows you to maintain and synchronize a local store of a user's contacts without having to fetch the entire set of contacts from the server every time.  \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contact-delta?view=graph-rest-1.0";
             // Create options for all the parameters
             var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
             };

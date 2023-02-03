@@ -53,7 +53,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new internalDomainFederation object.";
+            command.Description = "Create a new internalDomainFederation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };

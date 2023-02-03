@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item.MicrosoftGraphCopyToSection
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Copy a page to a specific section. For copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.";
+            command.Description = "Copy a page to a specific section. For copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/page-copytosection?view=graph-rest-1.0";
             // Create options for all the parameters
             var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
             };

@@ -57,7 +57,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new unifiedRoleAssignment object.";
+            command.Description = "Create a new unifiedRoleAssignment object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -108,7 +108,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of unifiedRoleAssignment objects for the RBAC provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)";
+            command.Description = "Get a list of unifiedRoleAssignment objects for the RBAC provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

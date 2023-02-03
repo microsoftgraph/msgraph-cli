@@ -59,7 +59,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new calendar in a calendar group for a user.";
+            command.Description = "Use this API to create a new calendar in a calendar group for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendargroup-post-calendars?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -122,7 +122,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of calendars belonging to a calendar group.";
+            command.Description = "Retrieve a list of calendars belonging to a calendar group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendargroup-list-calendars?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

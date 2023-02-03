@@ -116,7 +116,7 @@ namespace ApiSdk.Contacts {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of organizational contacts for this organization.";
+            command.Description = "Get the list of organizational contacts for this organization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/orgcontact-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore

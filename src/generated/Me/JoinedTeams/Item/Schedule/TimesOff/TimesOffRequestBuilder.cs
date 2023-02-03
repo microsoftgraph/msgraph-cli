@@ -53,7 +53,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.TimesOff {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new timeOff instance in a schedule.";
+            command.Description = "Create a new timeOff instance in a schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-post-timesoff?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.TimesOff {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of timeOff instances in a schedule.";
+            command.Description = "Get the list of timeOff instances in a schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-list-timesoff?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

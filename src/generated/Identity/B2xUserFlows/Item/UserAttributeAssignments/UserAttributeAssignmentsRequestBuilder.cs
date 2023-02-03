@@ -56,7 +56,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.";
+            command.Description = "Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-post-userattributeassignments?view=graph-rest-1.0";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
@@ -113,7 +113,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.";
+            command.Description = "Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };

@@ -96,7 +96,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Tit
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of charttitle object.";
+            command.Description = "Retrieve the properties and relationships of charttitle object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/charttitle-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -176,7 +176,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Tit
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of charttitle object.";
+            command.Description = "Update the properties of charttitle object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/charttitle-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

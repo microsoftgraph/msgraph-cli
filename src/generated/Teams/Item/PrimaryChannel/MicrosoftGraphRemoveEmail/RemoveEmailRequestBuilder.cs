@@ -29,7 +29,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.MicrosoftGraphRemoveEmail {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Remove the email address of a channel. You can remove an email address only if it was provisioned using the provisionEmail method or through the Microsoft Teams client.";
+            command.Description = "Remove the email address of a channel. You can remove an email address only if it was provisioned using the provisionEmail method or through the Microsoft Teams client.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-removeemail?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

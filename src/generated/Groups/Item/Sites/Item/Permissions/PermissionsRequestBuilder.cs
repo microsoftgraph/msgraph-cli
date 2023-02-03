@@ -54,7 +54,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new permission object on a site.";
+            command.Description = "Create a new permission object on a site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-post-permissions?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -117,7 +117,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the permission resources from the permissions navigation property on a site.";
+            command.Description = "Get the permission resources from the permissions navigation property on a site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-list-permissions?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

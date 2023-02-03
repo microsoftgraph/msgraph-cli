@@ -59,7 +59,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new [listItem][] in a [list][].";
+            command.Description = "Create a new [listItem][] in a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -122,7 +122,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of [items][item] in a [list][].";
+            command.Description = "Get the collection of [items][item] in a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

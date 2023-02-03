@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Me.User {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the simple directory **user** that corresponds to this **educationUser**.";
+            command.Description = "Retrieve the simple directory **user** that corresponds to this **educationUser**.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationuser-get-user?view=graph-rest-1.0";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore

@@ -57,7 +57,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of an entitlementManagementSettings object.";
+            command.Description = "Retrieve the properties of an entitlementManagementSettings object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -113,7 +113,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update an existing entitlementManagementSettings object to change one or more of its properties.";
+            command.Description = "Update an existing entitlementManagementSettings object to change one or more of its properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagementsettings-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

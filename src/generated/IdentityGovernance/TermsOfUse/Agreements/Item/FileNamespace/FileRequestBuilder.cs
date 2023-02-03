@@ -64,7 +64,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the details of the default file for an agreement, including the language and version information. The file information is specified through the agreementFile object.";
+            command.Description = "Retrieve the details of the default file for an agreement, including the language and version information. The file information is specified through the agreementFile object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/agreementfile-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
             };

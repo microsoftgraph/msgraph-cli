@@ -51,7 +51,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of directoryObject with a reference to the domain. The returned list will contain all directory objects that have a dependency on the domain.";
+            command.Description = "Retrieve a list of directoryObject with a reference to the domain. The returned list will contain all directory objects that have a dependency on the domain.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-list-domainnamereferences?view=graph-rest-1.0";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };

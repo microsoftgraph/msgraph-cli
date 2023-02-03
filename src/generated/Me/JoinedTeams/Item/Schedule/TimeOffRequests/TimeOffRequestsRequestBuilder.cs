@@ -109,7 +109,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.TimeOffRequests {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of timeOffRequest objects in the team.";
+            command.Description = "Retrieve a list of timeOffRequest objects in the team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/timeoffrequest-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    public class AuditLogRoot : Entity, IAdditionalDataHolder, IParsable {
+    public class AuditLogRoot : Entity, IParsable {
         /// <summary>The directoryAudits property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -29,12 +29,6 @@ namespace ApiSdk.Models {
 #else
         public List<SignIn> SignIns { get; set; }
 #endif
-        /// <summary>
-        /// Instantiates a new auditLogRoot and sets the default values.
-        /// </summary>
-        public AuditLogRoot() : base() {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -63,7 +57,6 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<DirectoryAudit>("directoryAudits", DirectoryAudits);
             writer.WriteCollectionOfObjectValues<ProvisioningObjectSummary>("provisioning", Provisioning);
             writer.WriteCollectionOfObjectValues<SignIn>("signIns", SignIns);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

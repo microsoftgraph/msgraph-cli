@@ -53,7 +53,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new delegatedAdminRelationshipRequest object.";
+            command.Description = "Create a new delegatedAdminRelationshipRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/delegatedadminrelationship-post-requests?view=graph-rest-1.0";
             // Create options for all the parameters
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the delegatedAdminRelationshipRequest objects and their properties.";
+            command.Description = "Get a list of the delegatedAdminRelationshipRequest objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/delegatedadminrelationship-list-requests?view=graph-rest-1.0";
             // Create options for all the parameters
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
             };

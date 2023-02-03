@@ -1,5 +1,5 @@
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Count;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.MicrosoftGraphCount;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.MicrosoftGraphItemAtWithIndex;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -56,7 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new ChartSeries.";
+            command.Description = "Use this API to create a new ChartSeries.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chart-post-series?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -131,7 +131,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of chartseries objects.";
+            command.Description = "Retrieve a list of chartseries objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chart-list-series?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

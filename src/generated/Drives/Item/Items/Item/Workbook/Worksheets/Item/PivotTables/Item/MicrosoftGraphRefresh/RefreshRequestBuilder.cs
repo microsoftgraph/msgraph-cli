@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Refreshes the PivotTable.";
+            command.Description = "Refreshes the PivotTable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookpivottable-refresh?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

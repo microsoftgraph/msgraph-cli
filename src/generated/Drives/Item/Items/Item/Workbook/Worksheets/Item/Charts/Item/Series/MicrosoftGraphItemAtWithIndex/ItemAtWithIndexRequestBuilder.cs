@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Invoke function itemAt";
+            command.Description = "Invoke function itemAt\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartseriescollection-itemat?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

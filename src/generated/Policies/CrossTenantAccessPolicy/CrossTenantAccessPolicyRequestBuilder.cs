@@ -72,7 +72,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a crossTenantAccessPolicy object.";
+            command.Description = "Read the properties and relationships of a crossTenantAccessPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -141,7 +141,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a cross-tenant access policy.";
+            command.Description = "Update the properties of a cross-tenant access policy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

@@ -136,7 +136,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties on a **[listItem][]**.";
+            command.Description = "Update the properties on a **[listItem][]**.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

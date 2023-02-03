@@ -54,7 +54,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a conversationMember to a channel.";
+            command.Description = "Add a conversationMember to a channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conversationmember-add?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -123,7 +123,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of conversationMembers from a channel. This method supports federation. Only a user who is a member of the shared channel can retrieve the channel member list.";
+            command.Description = "Retrieve a list of conversationMembers from a channel. This method supports federation. Only a user who is a member of the shared channel can retrieve the channel member list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-list-members?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

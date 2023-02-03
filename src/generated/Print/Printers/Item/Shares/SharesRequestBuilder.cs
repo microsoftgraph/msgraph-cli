@@ -51,7 +51,7 @@ namespace ApiSdk.Print.Printers.Item.Shares {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of printer shares associated with the printer.";
+            command.Description = "Retrieve a list of printer shares associated with the printer.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printer-list-shares?view=graph-rest-1.0";
             // Create options for all the parameters
             var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
             };

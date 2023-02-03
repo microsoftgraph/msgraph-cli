@@ -104,7 +104,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.";
+            command.Description = "Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

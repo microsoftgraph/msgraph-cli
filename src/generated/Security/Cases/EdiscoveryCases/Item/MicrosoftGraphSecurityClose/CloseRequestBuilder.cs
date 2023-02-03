@@ -29,7 +29,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityClose
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Close an eDiscovery case. For details, see Close a case.";
+            command.Description = "Close an eDiscovery case. For details, see Close a case.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-close?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

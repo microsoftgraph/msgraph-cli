@@ -51,7 +51,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.SectionGroups {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of section groups from the specified section group.";
+            command.Description = "Retrieve a list of section groups from the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-list-sectiongroups?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

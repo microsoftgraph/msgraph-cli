@@ -30,7 +30,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.";
+            command.Description = "Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

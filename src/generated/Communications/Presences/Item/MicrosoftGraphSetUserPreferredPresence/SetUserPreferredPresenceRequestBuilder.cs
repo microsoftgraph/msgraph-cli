@@ -29,7 +29,7 @@ namespace ApiSdk.Communications.Presences.Item.MicrosoftGraphSetUserPreferredPre
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Set the preferred availability and activity status for a user. If the preferred presence of a user is set, the user's presence shows as the preferred status. Preferred presence takes effect only when at least one presence session exists for the user. Otherwise, the user's presence shows as `Offline`. A presence session is created as a result of a successful setPresence operation, or if the user is signed in on a Microsoft Teams client. For more details, see presence sessions and time-out and expiration.";
+            command.Description = "Set the preferred availability and activity status for a user. If the preferred presence of a user is set, the user's presence shows as the preferred status. Preferred presence takes effect only when at least one presence session exists for the user. Otherwise, the user's presence shows as `Offline`. A presence session is created as a result of a successful setPresence operation, or if the user is signed in on a Microsoft Teams client. For more details, see presence sessions and time-out and expiration.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/presence-setuserpreferredpresence?view=graph-rest-1.0";
             // Create options for all the parameters
             var presenceIdOption = new Option<string>("--presence-id", description: "key: id of presence") {
             };

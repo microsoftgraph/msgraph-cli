@@ -29,7 +29,7 @@ namespace ApiSdk.Me.MicrosoftGraphChangePassword {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Enable the user to update their password. Any user can update their password without belonging to any administrator role.";
+            command.Description = "Enable the user to update their password. Any user can update their password without belonging to any administrator role.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-changepassword?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

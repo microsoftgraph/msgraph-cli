@@ -54,7 +54,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a column to a [content type][contentType] in a site, or a list with a request that specifies a [columnDefinition][columnDefinition].";
+            command.Description = "Add a column to a [content type][contentType] in a site, or a list with a request that specifies a [columnDefinition][columnDefinition].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-post-columns?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -117,7 +117,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [content type][contentType].";
+            command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [content type][contentType].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-list-columns?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.MicrosoftGraphAssignLicense {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action assignLicense";
+            command.Description = "Invoke action assignLicense\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-assignlicense?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

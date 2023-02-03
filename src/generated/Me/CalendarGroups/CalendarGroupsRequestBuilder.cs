@@ -54,7 +54,7 @@ namespace ApiSdk.Me.CalendarGroups {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new CalendarGroup.";
+            command.Description = "Use this API to create a new CalendarGroup.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-calendargroups?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -105,7 +105,7 @@ namespace ApiSdk.Me.CalendarGroups {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the user's calendar groups.";
+            command.Description = "Get the user's calendar groups.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-calendargroups?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

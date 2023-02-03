@@ -51,7 +51,7 @@ namespace ApiSdk.Me.Oauth2PermissionGrants {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of oAuth2PermissionGrant entities, which represent delegated permissions granted to enable a client application to access an API on behalf of the user.";
+            command.Description = "Retrieve a list of oAuth2PermissionGrant entities, which represent delegated permissions granted to enable a client application to access an API on behalf of the user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

@@ -57,7 +57,7 @@ namespace ApiSdk.Policies.AdminConsentRequestPolicy {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an adminConsentRequestPolicy object.";
+            command.Description = "Read the properties and relationships of an adminConsentRequestPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -113,7 +113,7 @@ namespace ApiSdk.Policies.AdminConsentRequestPolicy {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an adminConsentRequestPolicy object.";
+            command.Description = "Update the properties of an adminConsentRequestPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/adminconsentrequestpolicy-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

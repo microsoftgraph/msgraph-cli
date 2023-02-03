@@ -110,7 +110,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the instances of an access review history definition created in the last 30 days.";
+            command.Description = "Retrieve the instances of an access review history definition created in the last 30 days.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0";
             // Create options for all the parameters
             var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "key: id of accessReviewHistoryDefinition") {
             };

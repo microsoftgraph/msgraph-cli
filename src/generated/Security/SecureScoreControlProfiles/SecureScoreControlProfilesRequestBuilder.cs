@@ -103,7 +103,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of a secureScoreControlProfiles object.";
+            command.Description = "Retrieve the properties and relationships of a secureScoreControlProfiles object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-list-securescorecontrolprofiles?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

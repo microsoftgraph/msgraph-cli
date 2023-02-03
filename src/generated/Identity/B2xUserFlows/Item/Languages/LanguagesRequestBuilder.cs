@@ -111,7 +111,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of languages supported for customization in a B2X user flow.";
+            command.Description = "Retrieve a list of languages supported for customization in a B2X user flow.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };

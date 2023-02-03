@@ -64,7 +64,7 @@ namespace ApiSdk.Places.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a place object specified by either its ID or email address. The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object.";
+            command.Description = "Get the properties and relationships of a place object specified by either its ID or email address. The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/place-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var placeIdOption = new Option<string>("--place-id", description: "key: id of place") {
             };
@@ -136,7 +136,7 @@ namespace ApiSdk.Places.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of place object, which can be a room or roomList. You can identify the **room** or **roomList** by specifying the **id** or **emailAddress** property.";
+            command.Description = "Update the properties of place object, which can be a room or roomList. You can identify the **room** or **roomList** by specifying the **id** or **emailAddress** property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/place-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var placeIdOption = new Option<string>("--place-id", description: "key: id of place") {
             };

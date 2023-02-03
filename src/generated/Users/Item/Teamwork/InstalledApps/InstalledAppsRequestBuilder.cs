@@ -54,7 +54,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Install an app in the personal scope of the specified user.";
+            command.Description = "Install an app in the personal scope of the specified user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -111,7 +111,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of apps installed in the personal scope of the specified user.";
+            command.Description = "Retrieve the list of apps installed in the personal scope of the specified user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/userteamwork-list-installedapps?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

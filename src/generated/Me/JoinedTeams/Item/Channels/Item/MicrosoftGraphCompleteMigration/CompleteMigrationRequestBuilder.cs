@@ -29,7 +29,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels.Item.MicrosoftGraphCompleteMigrati
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Complete the message migration process by removing `migration mode` from a channel in a team. `Migration mode` is a special state that prevents certain operations, like sending messages and adding members, during the data migration process. After a **completeMigration** request is made, you cannot import additional messages into the team. You can add members to the team after the request returns a successful response.";
+            command.Description = "Complete the message migration process by removing `migration mode` from a channel in a team. `Migration mode` is a special state that prevents certain operations, like sending messages and adding members, during the data migration process. After a **completeMigration** request is made, you cannot import additional messages into the team. You can add members to the team after the request returns a successful response.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-completemigration?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

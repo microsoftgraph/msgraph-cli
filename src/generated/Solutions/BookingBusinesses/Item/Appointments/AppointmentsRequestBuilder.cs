@@ -54,7 +54,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new bookingAppointment for the specified bookingBusiness.";
+            command.Description = "Create a new bookingAppointment for the specified bookingBusiness.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-post-appointments?view=graph-rest-1.0";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
@@ -111,7 +111,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of bookingAppointment objects for the specified bookingBusiness.";
+            command.Description = "Get a list of bookingAppointment objects for the specified bookingBusiness.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0";
             // Create options for all the parameters
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };

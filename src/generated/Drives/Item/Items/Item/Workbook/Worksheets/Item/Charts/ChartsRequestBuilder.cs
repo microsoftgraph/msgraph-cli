@@ -66,7 +66,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new Chart.";
+            command.Description = "Use this API to create a new Chart.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheet-post-charts?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -135,7 +135,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of chart objects.";
+            command.Description = "Retrieve a list of chart objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chart-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

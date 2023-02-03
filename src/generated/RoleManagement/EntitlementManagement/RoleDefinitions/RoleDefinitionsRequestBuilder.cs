@@ -54,7 +54,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new custom unifiedRoleDefinition object. This feature requires an Azure AD Premium P1 or P2 license.";
+            command.Description = "Create a new custom unifiedRoleDefinition object. This feature requires an Azure AD Premium P1 or P2 license.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/rbacapplication-post-roledefinitions?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -105,7 +105,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of unifiedRoleDefinition objects for the provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)";
+            command.Description = "Get a list of unifiedRoleDefinition objects for the provider. The following RBAC providers are currently supported:- directory (Azure AD)- entitlement management (Azure AD)\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

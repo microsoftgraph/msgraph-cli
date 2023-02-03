@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item.Microsoft
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Postpone a reminder for an event in a user calendar until a new time.";
+            command.Description = "Postpone a reminder for an event in a user calendar until a new time.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-snoozereminder?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

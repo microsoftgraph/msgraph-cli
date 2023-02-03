@@ -109,7 +109,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "In Azure AD entitlement management, list the approvalStage objects associated with an approval object. This call can be made by an approver, providing the identifier of the access package assignment request.";
+            command.Description = "In Azure AD entitlement management, list the approvalStage objects associated with an approval object. This call can be made by an approver, providing the identifier of the access package assignment request.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/approval-list-stages?view=graph-rest-1.0";
             // Create options for all the parameters
             var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
             };

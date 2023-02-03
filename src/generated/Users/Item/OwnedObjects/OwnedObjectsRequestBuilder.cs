@@ -57,7 +57,7 @@ namespace ApiSdk.Users.Item.OwnedObjects {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Directory objects that are owned by the user. Read-only. Nullable. Supports $expand.";
+            command.Description = "Directory objects that are owned by the user. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-ownedobjects?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

@@ -134,7 +134,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of table objects.";
+            command.Description = "Retrieve a list of table objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheet-list-tables?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

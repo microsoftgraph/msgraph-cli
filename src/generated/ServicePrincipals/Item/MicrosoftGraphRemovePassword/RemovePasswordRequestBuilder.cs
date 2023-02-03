@@ -29,7 +29,7 @@ namespace ApiSdk.ServicePrincipals.Item.MicrosoftGraphRemovePassword {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Remove a password from a servicePrincipal object.";
+            command.Description = "Remove a password from a servicePrincipal object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };

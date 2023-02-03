@@ -58,7 +58,7 @@ namespace ApiSdk.Me.ContactFolders {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new contactFolder under the user's default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.";
+            command.Description = "Create a new contactFolder under the user's default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-contactfolders?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -109,7 +109,7 @@ namespace ApiSdk.Me.ContactFolders {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the contact folder collection in the default Contacts folder of the signed-in user.";
+            command.Description = "Get the contact folder collection in the default Contacts folder of the signed-in user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-contactfolders?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

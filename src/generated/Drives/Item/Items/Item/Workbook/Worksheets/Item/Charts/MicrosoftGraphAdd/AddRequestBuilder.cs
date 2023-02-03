@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Microsof
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Creates a new chart.";
+            command.Description = "Creates a new chart.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartcollection-add?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

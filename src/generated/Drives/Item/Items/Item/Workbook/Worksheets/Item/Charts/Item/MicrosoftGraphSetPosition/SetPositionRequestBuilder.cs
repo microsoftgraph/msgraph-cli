@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Mic
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Positions the chart relative to cells on the worksheet.";
+            command.Description = "Positions the chart relative to cells on the worksheet.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chart-setposition?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

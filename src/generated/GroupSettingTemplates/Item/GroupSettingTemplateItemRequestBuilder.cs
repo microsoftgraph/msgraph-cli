@@ -68,7 +68,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults.";
+            command.Description = "A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsettingtemplate-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupSettingTemplateIdOption = new Option<string>("--group-setting-template-id", description: "key: id of groupSettingTemplate") {
             };

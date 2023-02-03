@@ -53,7 +53,7 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new federatedIdentityCredential object for an application. By configuring a trust relationship between your Azure AD application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.";
+            command.Description = "Create a new federatedIdentityCredential object for an application. By configuring a trust relationship between your Azure AD application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-post-federatedidentitycredentials?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the federatedIdentityCredential objects and their properties.";
+            command.Description = "Get a list of the federatedIdentityCredential objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-list-federatedidentitycredentials?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };

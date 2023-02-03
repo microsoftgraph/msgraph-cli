@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.MicrosoftGraphCheckin {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Check in a checked out **driveItem** resource, which makes the version of the document available to others.";
+            command.Description = "Check in a checked out **driveItem** resource, which makes the version of the document available to others.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-checkin?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

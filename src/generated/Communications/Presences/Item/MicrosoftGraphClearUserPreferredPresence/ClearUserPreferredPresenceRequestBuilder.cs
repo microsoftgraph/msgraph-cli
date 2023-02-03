@@ -29,7 +29,7 @@ namespace ApiSdk.Communications.Presences.Item.MicrosoftGraphClearUserPreferredP
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Clear the preferred availability and activity status for a user.";
+            command.Description = "Clear the preferred availability and activity status for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0";
             // Create options for all the parameters
             var presenceIdOption = new Option<string>("--presence-id", description: "key: id of presence") {
             };

@@ -64,7 +64,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an ediscoveryCaseSettings object.";
+            command.Description = "Read the properties and relationships of an ediscoveryCaseSettings object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycasesettings-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -136,7 +136,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an ediscoveryCaseSettings object.";
+            command.Description = "Update the properties of an ediscoveryCaseSettings object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycasesettings-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

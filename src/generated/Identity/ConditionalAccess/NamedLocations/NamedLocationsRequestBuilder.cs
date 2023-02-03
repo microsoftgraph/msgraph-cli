@@ -53,7 +53,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new namedLocation object. Named locations can be either ipNamedLocation or countryNamedLocation objects.";
+            command.Description = "Create a new namedLocation object. Named locations can be either ipNamedLocation or countryNamedLocation objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conditionalaccessroot-post-namedlocations?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -104,7 +104,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of namedLocation objects.";
+            command.Description = "Get a list of namedLocation objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

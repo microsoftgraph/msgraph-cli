@@ -81,7 +81,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTas
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of **plannerBucketTaskBoardTaskFormat** object.";
+            command.Description = "Retrieve the properties and relationships of **plannerBucketTaskBoardTaskFormat** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -161,7 +161,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTas
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property bucketTaskBoardFormat in users";
+            command.Description = "Update the navigation property bucketTaskBoardFormat in users\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

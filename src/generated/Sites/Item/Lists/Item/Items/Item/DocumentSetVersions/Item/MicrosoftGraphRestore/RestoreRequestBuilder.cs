@@ -29,7 +29,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions.Item.Micro
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Restore a document set version.";
+            command.Description = "Restore a document set version.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/documentsetversion-restore?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

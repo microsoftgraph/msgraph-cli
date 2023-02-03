@@ -29,7 +29,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphUnarchive {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Unarchive a list of serviceUpdateMessages for the signed in user.";
+            command.Description = "Unarchive a list of serviceUpdateMessages for the signed in user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-unarchive?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

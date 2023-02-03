@@ -69,7 +69,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item.Details {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a **plannerTaskDetails** object.";
+            command.Description = "Retrieve the properties and relationships of a **plannerTaskDetails** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannertaskdetails-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -137,7 +137,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item.Details {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property details in users";
+            command.Description = "Update the navigation property details in users\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

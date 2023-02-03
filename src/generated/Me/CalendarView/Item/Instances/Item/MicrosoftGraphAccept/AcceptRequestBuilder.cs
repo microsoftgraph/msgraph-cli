@@ -29,7 +29,7 @@ namespace ApiSdk.Me.CalendarView.Item.Instances.Item.MicrosoftGraphAccept {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Accept the specified event in a user calendar.";
+            command.Description = "Accept the specified event in a user calendar.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-accept?view=graph-rest-1.0";
             // Create options for all the parameters
             var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
             };

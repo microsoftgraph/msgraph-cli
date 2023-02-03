@@ -54,7 +54,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new version of a document set item in a list.";
+            command.Description = "Create a new version of a document set item in a list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0";
             // Create options for all the parameters
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
             };
@@ -117,7 +117,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the versions of a document set item in a list.";
+            command.Description = "Get a list of the versions of a document set item in a list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0";
             // Create options for all the parameters
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
             };

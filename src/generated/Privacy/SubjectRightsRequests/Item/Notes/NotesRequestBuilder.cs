@@ -53,7 +53,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new authoredNote object.";
+            command.Description = "Create a new authoredNote object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-post-notes?view=graph-rest-1.0";
             // Create options for all the parameters
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of authored notes assoicated with a subject rights request. ";
+            command.Description = "Get the list of authored notes assoicated with a subject rights request. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0";
             // Create options for all the parameters
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
             };

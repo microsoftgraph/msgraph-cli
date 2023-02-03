@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item.MicrosoftGraphGrant {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Grant users access to a link represented by a [permission][].";
+            command.Description = "Grant users access to a link represented by a [permission][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

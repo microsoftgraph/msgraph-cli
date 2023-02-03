@@ -54,7 +54,7 @@ namespace ApiSdk.Invitations {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new invitation. Invitation adds an external user to the organization. When creating a new invitation you have several options available:";
+            command.Description = "Use this API to create a new invitation. Invitation adds an external user to the organization. When creating a new invitation you have several options available:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/invitation-post?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

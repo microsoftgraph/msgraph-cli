@@ -67,7 +67,7 @@ namespace ApiSdk.Users.Item.Presence {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a user's presence information.";
+            command.Description = "Get a user's presence information.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/presence-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

@@ -64,7 +64,7 @@ namespace ApiSdk.DirectoryRoles {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Activate a directory role. To read a directory role or update its members, it must first be activated in the tenant. The Company Administrators and the implicit user directory roles (**User**, **Guest User**, and **Restricted Guest User** roles) are activated by default. To access and assign members to other directory roles, you must first activate it with its corresponding directory role template ID.";
+            command.Description = "Activate a directory role. To read a directory role or update its members, it must first be activated in the tenant. The Company Administrators and the implicit user directory roles (**User**, **Guest User**, and **Restricted Guest User** roles) are activated by default. To access and assign members to other directory roles, you must first activate it with its corresponding directory role template ID.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryrole-post-directoryroles?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -115,7 +115,7 @@ namespace ApiSdk.DirectoryRoles {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List the directory roles that are activated in the tenant. This operation only returns roles that have been activated. A role becomes activated when an admin activates the role using the Activate directoryRole API. Not all built-in roles are initially activated.  When assigning a role using the Azure portal, the role activation step is implicitly done on the admin's behalf. To get the full list of roles that are available in Azure AD, use List directoryRoleTemplates.";
+            command.Description = "List the directory roles that are activated in the tenant. This operation only returns roles that have been activated. A role becomes activated when an admin activates the role using the Activate directoryRole API. Not all built-in roles are initially activated.  When assigning a role using the Azure portal, the role activation step is implicitly done on the admin's behalf. To get the full list of roles that are available in Azure AD, use List directoryRoleTemplates.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryrole-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
             };

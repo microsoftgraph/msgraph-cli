@@ -113,7 +113,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of plannerTask objects associated with a plannerPlan object.";
+            command.Description = "Retrieve a list of plannerTask objects associated with a plannerPlan object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerplan-list-tasks?view=graph-rest-1.0";
             // Create options for all the parameters
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
             };

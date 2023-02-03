@@ -29,7 +29,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The content stream of the attendee report of a Microsoft Teams live event. Read-only.";
+            command.Description = "The content stream of the attendee report of a Microsoft Teams live event. Read-only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

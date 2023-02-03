@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.MicrosoftGraphRestoreVersi
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Restore a previous version of a DriveItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the file.";
+            command.Description = "Restore a previous version of a DriveItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the file.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitemversion-restore?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

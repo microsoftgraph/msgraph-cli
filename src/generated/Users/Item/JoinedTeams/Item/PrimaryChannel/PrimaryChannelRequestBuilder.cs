@@ -89,7 +89,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the default channel, **General**, of a team.";
+            command.Description = "Get the default channel, **General**, of a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

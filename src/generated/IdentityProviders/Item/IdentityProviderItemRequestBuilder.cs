@@ -30,7 +30,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an existing identityProvider.";
+            command.Description = "Delete an existing identityProvider.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityprovider-delete?view=graph-rest-1.0";
             // Create options for all the parameters
             var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "key: id of identityProvider") {
             };
@@ -64,7 +64,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of an existing identityProvider.";
+            command.Description = "Retrieve the properties of an existing identityProvider.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityprovider-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "key: id of identityProvider") {
             };
@@ -126,7 +126,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update properties in an existing identityProvider.";
+            command.Description = "Update properties in an existing identityProvider.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityprovider-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "key: id of identityProvider") {
             };

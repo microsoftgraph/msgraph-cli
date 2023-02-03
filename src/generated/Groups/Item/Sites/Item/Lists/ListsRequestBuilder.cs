@@ -59,7 +59,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new [list][] in a [site][].";
+            command.Description = "Create a new [list][] in a [site][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-create?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -122,7 +122,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include `system` in your `$select` statement.";
+            command.Description = "Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include `system` in your `$select` statement.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

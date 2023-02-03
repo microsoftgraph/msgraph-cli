@@ -53,7 +53,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the microsoftAuthenticatorAuthenticationMethod objects and their properties.";
+            command.Description = "Get a list of the microsoftAuthenticatorAuthenticationMethod objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

@@ -30,7 +30,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.MicrosoftGraphStopH
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reincorporate a participant previously put on hold to the call.";
+            command.Description = "Reincorporate a participant previously put on hold to the call.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/participant-stopholdmusic?view=graph-rest-1.0";
             // Create options for all the parameters
             var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
             };

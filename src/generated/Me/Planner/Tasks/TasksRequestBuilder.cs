@@ -107,7 +107,7 @@ namespace ApiSdk.Me.Planner.Tasks {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of **plannertask** objects assigned to a User.";
+            command.Description = "Retrieve a list of **plannertask** objects assigned to a User.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/planneruser-list-tasks?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

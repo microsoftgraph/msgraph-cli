@@ -109,7 +109,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the attack simulation automation runs for a tenant.";
+            command.Description = "Get a list of the attack simulation automation runs for a tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/simulationautomation-list-runs?view=graph-rest-1.0";
             // Create options for all the parameters
             var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "key: id of simulationAutomation") {
             };

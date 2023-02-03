@@ -104,7 +104,7 @@ namespace ApiSdk.ApplicationTemplates {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of applicationTemplate objects from the Azure AD application gallery.";
+            command.Description = "Retrieve a list of applicationTemplate objects from the Azure AD application gallery.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/applicationtemplate-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

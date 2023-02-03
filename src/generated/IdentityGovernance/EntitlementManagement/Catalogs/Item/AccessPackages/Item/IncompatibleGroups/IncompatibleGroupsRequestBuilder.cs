@@ -52,7 +52,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.  ";
+            command.Description = "Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.  \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0";
             // Create options for all the parameters
             var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "key: id of accessPackageCatalog") {
             };

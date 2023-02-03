@@ -65,7 +65,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0";
             // Create options for all the parameters
             var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
             };

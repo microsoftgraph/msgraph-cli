@@ -30,7 +30,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.MicrosoftGraphAddCopy {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add a copy of a [content type][contentType] from a [site][site] to a [list][list].";
+            command.Description = "Add a copy of a [content type][contentType] from a [site][site] to a [list][list].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-addcopy?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

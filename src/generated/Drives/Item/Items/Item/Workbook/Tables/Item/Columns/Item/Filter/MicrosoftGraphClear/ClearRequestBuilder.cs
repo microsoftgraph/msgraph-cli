@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Clear the filter on the given column.";
+            command.Description = "Clear the filter on the given column.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/filter-clear?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

@@ -77,7 +77,7 @@ namespace ApiSdk.Users.Item.Calendar {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:";
+            command.Description = "Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -155,7 +155,7 @@ namespace ApiSdk.Users.Item.Calendar {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.";
+            command.Description = "Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

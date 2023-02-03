@@ -29,7 +29,7 @@ namespace ApiSdk.Applications.Item.MicrosoftGraphRemovePassword {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Remove a password from an application.";
+            command.Description = "Remove a password from an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-removepassword?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };

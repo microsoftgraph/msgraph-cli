@@ -54,7 +54,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a standard tag for members in a team.";
+            command.Description = "Create a standard tag for members in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktag-post?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -117,7 +117,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the tag objects and their properties.";
+            command.Description = "Get a list of the tag objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktag-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

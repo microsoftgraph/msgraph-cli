@@ -30,7 +30,7 @@ namespace ApiSdk.Applications.Item.MicrosoftGraphAddPassword {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Adds a strong password or secret to an application.";
+            command.Description = "Adds a strong password or secret to an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-addpassword?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };

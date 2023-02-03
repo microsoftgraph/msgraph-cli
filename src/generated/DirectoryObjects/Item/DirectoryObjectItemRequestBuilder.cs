@@ -35,7 +35,7 @@ namespace ApiSdk.DirectoryObjects.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a directory object, for example, a group, user, application, or service principal.";
+            command.Description = "Delete a directory object, for example, a group, user, application, or service principal.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-delete?view=graph-rest-1.0";
             // Create options for all the parameters
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
             };
@@ -69,7 +69,7 @@ namespace ApiSdk.DirectoryObjects.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a directoryObject object.";
+            command.Description = "Retrieve the properties and relationships of a directoryObject object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
             };

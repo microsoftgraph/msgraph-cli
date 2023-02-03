@@ -54,7 +54,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new group object in a term store.";
+            command.Description = "Create a new group object in a term store.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-group-post?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -117,7 +117,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of group objects in a term store.";
+            command.Description = "Get a list of group objects in a term store.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-list-groups?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };

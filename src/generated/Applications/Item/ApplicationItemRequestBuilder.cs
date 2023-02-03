@@ -59,7 +59,7 @@ namespace ApiSdk.Applications.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.";
+            command.Description = "Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-delete?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -119,7 +119,7 @@ namespace ApiSdk.Applications.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of an application object.";
+            command.Description = "Get the properties and relationships of an application object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -331,7 +331,7 @@ namespace ApiSdk.Applications.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an application object.";
+            command.Description = "Update the properties of an application object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };

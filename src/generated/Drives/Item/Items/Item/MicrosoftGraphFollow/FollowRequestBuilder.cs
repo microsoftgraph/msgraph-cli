@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.MicrosoftGraphFollow {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Follow a driveItem.";
+            command.Description = "Follow a driveItem.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-follow?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

@@ -81,7 +81,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Progress
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.";
+            command.Description = "Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -161,7 +161,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Progress
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property progressTaskBoardFormat in groups";
+            command.Description = "Update the navigation property progressTaskBoardFormat in groups\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

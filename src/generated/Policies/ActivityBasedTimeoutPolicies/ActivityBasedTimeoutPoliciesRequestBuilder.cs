@@ -53,7 +53,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new activityBasedTimeoutPolicy object.";
+            command.Description = "Create a new activityBasedTimeoutPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/activitybasedtimeoutpolicy-post-activitybasedtimeoutpolicies?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -104,7 +104,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of activityBasedTimeoutPolicy objects.";
+            command.Description = "Get a list of activityBasedTimeoutPolicy objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/activitybasedtimeoutpolicy-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

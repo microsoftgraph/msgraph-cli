@@ -30,7 +30,7 @@ namespace ApiSdk.Me.MailFolders.Item.MicrosoftGraphMove {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Move a mailfolder and its contents to another mailfolder.";
+            command.Description = "Move a mailfolder and its contents to another mailfolder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-move?view=graph-rest-1.0";
             // Create options for all the parameters
             var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };

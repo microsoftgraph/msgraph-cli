@@ -63,7 +63,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The direct and transitive members of a group. Nullable.";
+            command.Description = "The direct and transitive members of a group. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-transitivemembers?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

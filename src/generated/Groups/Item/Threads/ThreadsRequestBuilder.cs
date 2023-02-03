@@ -55,7 +55,7 @@ namespace ApiSdk.Groups.Item.Threads {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Start a new group conversation by first creating a thread. A new conversation, conversation thread, and post are created in the group.Use reply thread or reply post to further post to that thread. Note: You can also start a new thread in an existing conversation.";
+            command.Description = "Start a new group conversation by first creating a thread. A new conversation, conversation thread, and post are created in the group.Use reply thread or reply post to further post to that thread. Note: You can also start a new thread in an existing conversation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-post-threads?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -112,7 +112,7 @@ namespace ApiSdk.Groups.Item.Threads {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the threads of a group.";
+            command.Description = "Get all the threads of a group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-threads?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

@@ -96,7 +96,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Leg
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of chartlegend object.";
+            command.Description = "Retrieve the properties and relationships of chartlegend object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartlegend-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -176,7 +176,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Leg
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of chartlegend object.";
+            command.Description = "Update the properties of chartlegend object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartlegend-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

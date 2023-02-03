@@ -53,7 +53,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new shift instance in a schedule.";
+            command.Description = "Create a new shift instance in a schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-post-shifts?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -116,7 +116,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of shift instances in a schedule.";
+            command.Description = "Get the list of shift instances in a schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-list-shifts?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

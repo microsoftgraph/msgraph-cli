@@ -121,7 +121,7 @@ namespace ApiSdk.Me.JoinedTeams {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the teams in Microsoft Teams that the user is a direct member of.";
+            command.Description = "Get the teams in Microsoft Teams that the user is a direct member of.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-joinedteams?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

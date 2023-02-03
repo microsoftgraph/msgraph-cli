@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Messages.Item.MicrosoftGraphCopy {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Copy a message to a folder within the user's mailbox.";
+            command.Description = "Copy a message to a folder within the user's mailbox.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-copy?view=graph-rest-1.0";
             // Create options for all the parameters
             var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
             };

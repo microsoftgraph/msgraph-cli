@@ -29,7 +29,7 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps.Item.MicrosoftGraphUpgrade {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Upgrade an app installation within a chat.";
+            command.Description = "Upgrade an app installation within a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };

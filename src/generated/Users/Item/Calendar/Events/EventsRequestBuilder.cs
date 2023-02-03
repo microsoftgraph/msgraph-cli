@@ -67,7 +67,7 @@ namespace ApiSdk.Users.Item.Calendar.Events {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. ";
+            command.Description = "Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-post-events?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -124,7 +124,7 @@ namespace ApiSdk.Users.Item.Calendar.Events {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of events in a calendar.  The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event.";
+            command.Description = "Retrieve a list of events in a calendar.  The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-list-events?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

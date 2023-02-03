@@ -124,7 +124,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an educationAssignmentSettings object. Only Teachers can update these settings.";
+            command.Description = "Update the properties of an educationAssignmentSettings object. Only Teachers can update these settings.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignmentsettings-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };

@@ -63,7 +63,7 @@ namespace ApiSdk.Connections.Item.Schema {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a schema object.";
+            command.Description = "Read the properties and relationships of a schema object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-schema-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
             };

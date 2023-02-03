@@ -30,7 +30,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item.MicrosoftGraphUploadClientCertifica
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Upload a PKCS 12 format key (.pfx) to an API connector's authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.";
+            command.Description = "Upload a PKCS 12 format key (.pfx) to an API connector's authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0";
             // Create options for all the parameters
             var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "key: id of identityApiConnector") {
             };

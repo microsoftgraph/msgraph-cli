@@ -42,7 +42,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the metadata for the location where the files of a channel are stored. ";
+            command.Description = "Get the metadata for the location where the files of a channel are stored. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

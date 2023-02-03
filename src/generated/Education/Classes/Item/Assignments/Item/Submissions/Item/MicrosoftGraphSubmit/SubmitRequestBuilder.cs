@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Micros
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Indicate that a student is done with the work and is ready to hand in the assignment. Only teachers, students, and applications with application permissions can perform this operation. This method changes the status of the submission from `working` to `submitted`. During the submit process, all the resources are copied to the **submittedResources** bucket. The teacher will be looking at the submitted resources list for grading. A teacher can also submit a student's assignment on their behalf.";
+            command.Description = "Indicate that a student is done with the work and is ready to hand in the assignment. Only teachers, students, and applications with application permissions can perform this operation. This method changes the status of the submission from `working` to `submitted`. During the submit process, all the resources are copied to the **submittedResources** bucket. The teacher will be looking at the submitted resources list for grading. A teacher can also submit a student's assignment on their behalf.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationsubmission-submit?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };

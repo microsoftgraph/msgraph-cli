@@ -64,7 +64,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.";
+            command.Description = "Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-custodians?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };
@@ -121,7 +121,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the custodian objects and their properties.";
+            command.Description = "Get a list of the custodian objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0";
             // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
             };

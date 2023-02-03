@@ -29,7 +29,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.MicrosoftGr
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Set the order of identityUserFlowAttributeAssignments being collected within a user flow.";
+            command.Description = "Set the order of identityUserFlowAttributeAssignments being collected within a user flow.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityuserflowattributeassignment-setorder?view=graph-rest-1.0";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };

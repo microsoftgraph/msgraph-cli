@@ -111,7 +111,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of directoryRoleTemplate objects.";
+            command.Description = "Retrieve a list of directoryRoleTemplate objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryroletemplate-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
             };

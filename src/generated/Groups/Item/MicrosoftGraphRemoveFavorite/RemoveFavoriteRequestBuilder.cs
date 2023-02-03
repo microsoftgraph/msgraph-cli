@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.MicrosoftGraphRemoveFavorite {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Remove the group from the list of the current user's favorite groups. Supported for Microsoft 365 groups only.";
+            command.Description = "Remove the group from the list of the current user's favorite groups. Supported for Microsoft 365 groups only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-removefavorite?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };

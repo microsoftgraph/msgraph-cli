@@ -111,7 +111,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a collection of userConsentRequest objects and their properties.";
+            command.Description = "Retrieve a collection of userConsentRequest objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0";
             // Create options for all the parameters
             var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
             };

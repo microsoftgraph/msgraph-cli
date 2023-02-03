@@ -53,7 +53,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create instance of an openShiftChangeRequest object.";
+            command.Description = "Create instance of an openShiftChangeRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/openshiftchangerequest-post?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of openShiftChangeRequest objects in a team.";
+            command.Description = "Retrieve a list of openShiftChangeRequest objects in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/openshiftchangerequest-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };

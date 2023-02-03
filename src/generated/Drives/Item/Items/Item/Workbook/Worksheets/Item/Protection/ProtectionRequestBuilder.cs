@@ -77,7 +77,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of worksheetprotection object.";
+            command.Description = "Retrieve the properties and relationships of worksheetprotection object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheetprotection-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

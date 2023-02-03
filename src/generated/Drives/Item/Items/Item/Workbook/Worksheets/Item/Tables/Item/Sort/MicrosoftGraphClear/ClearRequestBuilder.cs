@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Sor
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Clears the sorting that is currently on the table. While this doesn't modify the table's ordering, it clears the state of the header buttons.";
+            command.Description = "Clears the sorting that is currently on the table. While this doesn't modify the table's ordering, it clears the state of the header buttons.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tablesort-clear?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

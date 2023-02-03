@@ -53,7 +53,7 @@ namespace ApiSdk.Me.AppRoleAssignments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:";
+            command.Description = "Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-approleassignments?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -104,7 +104,7 @@ namespace ApiSdk.Me.AppRoleAssignments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.";
+            command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-approleassignments?view=graph-rest-1.0";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore

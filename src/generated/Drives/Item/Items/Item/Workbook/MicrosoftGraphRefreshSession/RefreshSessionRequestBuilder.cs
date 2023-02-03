@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.MicrosoftGraphRefreshSession {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Use this API to refresh an existing workbook session. ";
+            command.Description = "Use this API to refresh an existing workbook session. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbook-refreshsession?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

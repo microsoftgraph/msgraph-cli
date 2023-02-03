@@ -109,7 +109,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item.History {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the risk history of a riskyServicePrincipal object.";
+            command.Description = "Get the risk history of a riskyServicePrincipal object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyserviceprincipal-list-history?view=graph-rest-1.0";
             // Create options for all the parameters
             var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "key: id of riskyServicePrincipal") {
             };

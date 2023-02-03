@@ -30,7 +30,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.";
+            command.Description = "Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printershare-list-allowedgroups?view=graph-rest-1.0";
             // Create options for all the parameters
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
             };

@@ -51,7 +51,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of certificateBasedAuthConfiguration objects.";
+            command.Description = "Get a list of certificateBasedAuthConfiguration objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/certificatebasedauthconfiguration-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
             };

@@ -63,7 +63,7 @@ namespace ApiSdk.DataPolicyOperations.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of a **dataPolicyOperation** object.";
+            command.Description = "Retrieve the properties of a **dataPolicyOperation** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/datapolicyoperation-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var dataPolicyOperationIdOption = new Option<string>("--data-policy-operation-id", description: "key: id of dataPolicyOperation") {
             };

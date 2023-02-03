@@ -104,7 +104,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of attack simulation automations for a tenant.";
+            command.Description = "Get a list of attack simulation automations for a tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/attacksimulationroot-list-simulationautomations?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

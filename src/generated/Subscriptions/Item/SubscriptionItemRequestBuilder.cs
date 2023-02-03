@@ -31,7 +31,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a subscription. For the list of resources that support subscribing to change notifications, see the table in the Permissions section.";
+            command.Description = "Delete a subscription. For the list of resources that support subscribing to change notifications, see the table in the Permissions section.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subscription-delete?view=graph-rest-1.0";
             // Create options for all the parameters
             var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
             };
@@ -65,7 +65,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a subscription. See the table in the Permissions section for the list of resources that support subscribing to change notifications.";
+            command.Description = "Retrieve the properties and relationships of a subscription. See the table in the Permissions section for the list of resources that support subscribing to change notifications.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subscription-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
             };
@@ -130,7 +130,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Renew a subscription by extending its expiry time. The table in the Permissions section lists the resources that support subscribing to change notifications. Subscriptions expire after a length of time that varies by resource type. In order to avoid missing change notifications, an app should renew its subscriptions well in advance of their expiry date. See subscription for maximum length of a subscription for each resource type.";
+            command.Description = "Renew a subscription by extending its expiry time. The table in the Permissions section lists the resources that support subscribing to change notifications. Subscriptions expire after a length of time that varies by resource type. In order to avoid missing change notifications, an app should renew its subscriptions well in advance of their expiry date. See subscription for maximum length of a subscription for each resource type.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subscription-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
             };

@@ -30,7 +30,7 @@ namespace ApiSdk.ApplicationTemplates.Item.MicrosoftGraphInstantiate {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add an instance of an application from the Azure AD application gallery into your directory. You can also use this API to instantiate non-gallery apps. Use the following ID for the **applicationTemplate** object: `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`.";
+            command.Description = "Add an instance of an application from the Azure AD application gallery into your directory. You can also use this API to instantiate non-gallery apps. Use the following ID for the **applicationTemplate** object: `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/applicationtemplate-instantiate?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "key: id of applicationTemplate") {
             };

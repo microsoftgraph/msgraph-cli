@@ -29,7 +29,7 @@ namespace ApiSdk.Print.Printers.Item.MicrosoftGraphRestoreFactoryDefaults {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Restore a printer's default settings to the values specified by the manufacturer.";
+            command.Description = "Restore a printer's default settings to the values specified by the manufacturer.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0";
             // Create options for all the parameters
             var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
             };

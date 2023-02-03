@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Tit
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Sets the fill formatting of a chart element to a uniform color.";
+            command.Description = "Sets the fill formatting of a chart element to a uniform color.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartfill-setsolidcolor?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

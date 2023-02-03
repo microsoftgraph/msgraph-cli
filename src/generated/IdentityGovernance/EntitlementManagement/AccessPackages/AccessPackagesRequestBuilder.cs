@@ -60,7 +60,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog.";
+            command.Description = "Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -111,7 +111,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.";
+            command.Description = "Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

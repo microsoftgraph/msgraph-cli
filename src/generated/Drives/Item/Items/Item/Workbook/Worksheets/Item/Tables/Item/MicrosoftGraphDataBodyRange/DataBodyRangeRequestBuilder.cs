@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Mic
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Gets the range object associated with the data body of the table.";
+            command.Description = "Gets the range object associated with the data body of the table.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-databodyrange?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

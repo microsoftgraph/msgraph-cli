@@ -56,7 +56,7 @@ namespace ApiSdk.Users.Item.Todo.Lists {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new lists object.";
+            command.Description = "Create a new lists object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todo-post-lists?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -113,7 +113,7 @@ namespace ApiSdk.Users.Item.Todo.Lists {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the todoTaskList objects and their properties.";
+            command.Description = "Get a list of the todoTaskList objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todo-list-lists?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

@@ -1,6 +1,6 @@
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.Count;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.Item;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.MicrosoftGraphAdd;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.MicrosoftGraphCount;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.MicrosoftGraphItemAtWithIndex;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -56,7 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Adds rows to the end of a table.  Note that this API can accept multiple rows of data. Adding one row at a time can affect performance. The recommended approach is to batch the rows together in a single call rather than inserting single rows. For best results, collect the rows to be inserted on the application side and perform a single row add operation. Experiment with the number of rows to determine the ideal number of rows to use in a single API call.  This request might occasionally result in a `504 HTTP` error. The appropriate response to this error is to repeat the request.";
+            command.Description = "Adds rows to the end of a table.  Note that this API can accept multiple rows of data. Adding one row at a time can affect performance. The recommended approach is to batch the rows together in a single call rather than inserting single rows. For best results, collect the rows to be inserted on the application side and perform a single row add operation. Experiment with the number of rows to determine the ideal number of rows to use in a single API call.  This request might occasionally result in a `504 HTTP` error. The appropriate response to this error is to repeat the request.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-post-rows?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -125,7 +125,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of tablerow objects.";
+            command.Description = "Retrieve a list of tablerow objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-list-rows?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };

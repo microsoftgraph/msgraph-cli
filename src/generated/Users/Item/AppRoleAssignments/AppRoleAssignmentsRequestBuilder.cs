@@ -53,7 +53,7 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:";
+            command.Description = "Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-approleassignments?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -110,7 +110,7 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.";
+            command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-approleassignments?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

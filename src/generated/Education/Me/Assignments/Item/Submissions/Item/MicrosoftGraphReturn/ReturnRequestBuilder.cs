@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.MicrosoftGraphRe
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from 'submitted' to 'returned' and indicates that feedback is provided or grading is done. This action can only be done by the teacher.";
+            command.Description = "Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from 'submitted' to 'returned' and indicates that feedback is provided or grading is done. This action can only be done by the teacher.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationsubmission-return?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };

@@ -76,7 +76,7 @@ namespace ApiSdk.Applications {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new application object.";
+            command.Description = "Create a new application object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-post-applications?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -127,7 +127,7 @@ namespace ApiSdk.Applications {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of applications in this organization.";
+            command.Description = "Get the list of applications in this organization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore

@@ -112,7 +112,7 @@ namespace ApiSdk.Policies.AuthorizationPolicy {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an authorizationPolicy object.";
+            command.Description = "Update the properties of an authorizationPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authorizationpolicy-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };

@@ -51,7 +51,7 @@ namespace ApiSdk.Me.AgreementAcceptances {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the signed-in user's agreementAcceptance objects.";
+            command.Description = "Retrieve the signed-in user's agreementAcceptance objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-agreementacceptances?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

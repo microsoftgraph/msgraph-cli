@@ -53,7 +53,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the microsoftAuthenticatorAuthenticationMethod objects and their properties.";
+            command.Description = "Get a list of the microsoftAuthenticatorAuthenticationMethod objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

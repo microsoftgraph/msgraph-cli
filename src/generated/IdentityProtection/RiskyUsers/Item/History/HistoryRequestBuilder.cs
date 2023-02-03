@@ -109,7 +109,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the riskyUserHistoryItems from the history navigation property.";
+            command.Description = "Get the riskyUserHistoryItems from the history navigation property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyuser-list-history?view=graph-rest-1.0";
             // Create options for all the parameters
             var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
             };

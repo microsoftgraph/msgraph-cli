@@ -105,7 +105,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get role management policies and their details.";
+            command.Description = "Get role management policies and their details.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };

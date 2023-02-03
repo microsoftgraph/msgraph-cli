@@ -29,7 +29,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.MicrosoftGraphDismissRemi
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Dismiss a reminder that has been triggered for an event in a user calendar.";
+            command.Description = "Dismiss a reminder that has been triggered for an event in a user calendar.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-dismissreminder?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };

@@ -71,7 +71,7 @@ namespace ApiSdk.Teams {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new team.";
+            command.Description = "Create a new team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-post?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
