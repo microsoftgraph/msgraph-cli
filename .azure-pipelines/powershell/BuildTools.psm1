@@ -89,3 +89,74 @@ function Move-NonExecutableItems {
 
     Move-Item -Path $SourcePath/* -Exclude $ExecutableItemNames -Destination $DestinationPath
 }
+
+function Compress-SignedFiles {
+    param(
+        [Parameter(Mandatory)]
+        [string]
+        $ArtifactsDir,
+        [string]
+        $ReportDir,
+        [string]
+        $ExtraArtifactsDir,
+        [Parameter(Mandatory)]
+        [string]
+        $OutputFile
+    )
+
+    if (-Not (Test-Path -Path "$ArtifactsDir/*")) {
+        return
+    }
+
+    if (-Not ($OutputFile -and (Test-Path -Path "$OutputFile"))) {
+        return
+    }
+
+    if ($ReportDir -and (Test-Path -Path $ReportDir)) {
+        Move-Item -Path "$ArtifactsDir/*.md" -Destination $ReportDir
+    }
+    
+    if ($ExtraArtifactsDir -and (Test-Path -Path "$ExtraArtifactsDir/*")) {
+        Move-Item -Path "$ExtraArtifactsDir/*" -Destination "$ArtifactsDir"
+    }
+
+    Compress-Archive -Path "$ArtifactsDir/*" -DestinationPath $OutputFile
+    Remove-Item "$ArtifactsDir" -Recurse -Force
+    Remove-Item "$ExtraArtifactsDir" -Recurse -Force
+}
+
+function Update-SignedArchive {
+    param(
+        [Parameter(Mandatory)]
+        [string]
+        $InputFile,
+        [Parameter(Mandatory)]
+        [string]
+        $ArtifactsDir,
+        [string]
+        $ReportDir,
+        [Parameter(Mandatory)]
+        [string]
+        $OutputFile
+    )
+
+    if (-Not (Test-Path -Path "$InputFile")) {
+        return
+    }
+
+    if (-Not ($OutputFile -and (Test-Path -Path "$OutputFile"))) {
+        return
+    }
+
+    if (-Not (Test-Path -Path "$ArtifactsDir")) {
+        return
+    }
+
+    Expand-Archive -Path "$zipPath" -DestinationPath "$ArtifactsDir"
+
+    if ($ReportDir -and (Test-Path -Path $ReportDir)) {
+        Move-Item -Path "$ArtifactsDir/*.md" -Destination $ReportDir
+    }
+
+    Compress-SignedFiles -ArtifactsDir $ArtifactsDir -ExtraArtifactsDir $ExtraArtifactsDir -OutputFile $OutputFile
+}

@@ -129,7 +129,7 @@ stages:
       vmImage: windows-latest
     dependsOn: [build]
     # Only sign binaries if we're building a tag.
-    condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
+    # condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
     jobs:
       - job: esrpSign
         dependsOn: []
@@ -292,31 +292,19 @@ stages:
             condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), eq(variables['SHOULD_SIGN'], 'True'))
 
           - pwsh: |
+              Import-Module $(powershellScriptsDir)/BuildTools.psm1
               $artifactsPath = "$(WORKING_DIR)/artifacts"
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
-              # artifactsPath = $(artifactsDownloadLocation)/$(rid)/artifacts
-              Move-Item -Path "$artifactsPath/*.md" -Destination "$(WORKING_DIR)"
-              # Move backup back
-              # BACKUP_PATH = $(artifactsDownloadLocation)/$(rid)/backup
-              Move-Item -Path '$(BACKUP_PATH)/*' -Destination "$artifactsPath"
-              Compress-Archive -Path "$artifactsPath/*" -DestinationPath $(WORKING_DIR)/$(ZIP_NAME)
-              Remove-Item "$artifactsPath" -Recurse -Force
-              Remove-Item '$(BACKUP_PATH)' -Recurse -Force
+              Compress-SignedFiles -ArtifactsDir $artifactsPath -ReportDir '$(WORKING_DIR)' -ExtraArtifactsDir '$(BACKUP_PATH)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)'
+
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Compress signed files (Windows)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'win'))
 
           - pwsh: |
+              Import-Module $(powershellScriptsDir)/BuildTools.psm1
               $artifactsPath = "$(WORKING_DIR)/artifacts"
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
               $zipPath = Join-Path -Path $artifactsPath -ChildPath '$(ZIP_NAME)'
-              Expand-Archive -Path "$zipPath" -DestinationPath "$artifactsPath"
-              Move-Item -Path "$artifactsPath/*.md" -Destination "$(WORKING_DIR)"
-              Remove-Item -Path "$zipPath" -Force
-              Move-Item -Path '$(BACKUP_PATH)/*' -Destination "$artifactsPath"
-              Compress-Archive -Path "$artifactsPath/*" -DestinationPath $(WORKING_DIR)/$(ZIP_NAME)
-              Remove-Item "$artifactsPath" -Recurse -Force
-              Remove-Item '$(BACKUP_PATH)' -Recurse -Force
+              Update-SignedArchive -InputFile $zipPath -ArtifactsDir $artifactsPath -ReportDir '$(WORKING_DIR)' -ExtraArtifactsDir '$(BACKUP_PATH)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)'
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Update signed files (MacOS)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
