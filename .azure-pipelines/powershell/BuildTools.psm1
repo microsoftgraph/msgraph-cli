@@ -184,7 +184,7 @@ function Update-SignedArchive {
         return
     }
 
-    Expand-Archive -Path "$zipPath" -DestinationPath "$TempDir"
+    Expand-Archive -Path "$InputFile" -DestinationPath "$TempDir"
 
     if ($ReportDir -and (Test-Path -Path $ReportDir)) {
         Move-Item -Path "$TempDir/*.md" -Destination $ReportDir
