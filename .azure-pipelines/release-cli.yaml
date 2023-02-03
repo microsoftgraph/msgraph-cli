@@ -208,7 +208,6 @@ stages:
         pool:
           vmImage: $(vmImage)
         steps:
-          - checkout: none
           - pwsh: |
               Write-Verbose -Verbose 'pattern = ''$(pattern)'''
               Write-Verbose -Verbose 'zipTemplate = ''$(zipTemplate)'''
