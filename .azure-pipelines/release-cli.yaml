@@ -100,7 +100,7 @@ stages:
 
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
+              Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -SourceDir '$(outputDir)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -CleanupSource
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1

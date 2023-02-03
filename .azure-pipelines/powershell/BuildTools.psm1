@@ -28,13 +28,22 @@ function Compress-BuildOutput {
         [Parameter(Mandatory)]
         [string]
         $OutputDir,
+        [Parameter(Mandatory)]
+        [string]
+        $SourceDir,
         [string]
         $FileNameTemplate = "msgraph-cli-{0}-{1}.zip",
         [string]
         $BranchOrTagName = "latest",
         [string]
-        $RuntimeIdentifier = "unknown"
+        $RuntimeIdentifier = "unknown",
+        [switch]
+        $CleanupSource
     )
+
+    if (-Not (Test-Path -Path $SourceDir/*)) {
+        return
+    }
 
     if (-Not (Test-Path -Path $OutputDir)) {
         New-Item $OutputDir -ItemType Directory
@@ -43,8 +52,11 @@ function Compress-BuildOutput {
     $zipName = Get-ZipName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier
     $zipPath = Join-Path -Path $OutputDir -ChildPath $zipName
 
-    Compress-Archive -Path $OutputDir/* -DestinationPath $zipPath
-    Remove-Item $OutputDir/*
+    Compress-Archive -Path $SourceDir/* -DestinationPath $zipPath
+
+    if ($CleanupSource) {
+        Remove-Item $SourceDir/*
+    }
 }
 
 function Expand-EsrpArtifacts {
