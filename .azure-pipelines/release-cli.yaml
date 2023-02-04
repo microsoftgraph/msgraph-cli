@@ -36,6 +36,8 @@ variables:
     ${{ else }}: # Version from the tag. Can be a branch name. Only mainline branches use latest
       value: '$(Build.SourceBranchName)'
   - group: ESRP
+  - name: targetBranch
+    value: $(System.PullRequest.TargetBranch)
 
 #                   
 # test -> build -> | sign |
@@ -46,6 +48,8 @@ stages:
     displayName: Run tests
     dependsOn: []
     jobs:
+      - pwsh: Write-Host $(targetBranch)
+        displayName: Test
       - job: test
         displayName: Run tests
         steps:
