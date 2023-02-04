@@ -48,7 +48,8 @@ stages:
     displayName: Run tests
     dependsOn: []
     jobs:
-      - pwsh: Write-Host $(targetBranch)
+      - pwsh: |
+          Write-Host $(targetBranch)
         displayName: Test
       - job: test
         displayName: Run tests
