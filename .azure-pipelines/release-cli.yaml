@@ -101,13 +101,14 @@ stages:
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
               Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -SourceDir '$(outputDir)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
-            # Only compress build outputs if we're going to publish them
-            condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
+              Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]True"
+            # Only create artifacts if we're building a tag, building main or testing a PR targeting main
+            condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('refs/heads/main', '$(Build.SourceBranch)'), eq('main', '$(System.PullRequest.TargetBranch)')))
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
-            # Only publish artifacts if we're building a tag, building main or testing a PR targeting main
-            condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
+            # Only publish artifacts if they exist
+            condition: and(succeeded(), eq(variables['HAS_ARTIFACTS'], 'True'))
             inputs:
               artifact: build-output-$(rid)
               path: $(outputDir)-$(rid)
@@ -319,7 +320,7 @@ stages:
     pool:
       vmImage: windows-latest
     # Only scan binaries if we're building a tag, building main or testing a PR targeting main
-    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
+    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('refs/heads/main', '$(Build.SourceBranch)'), eq('main', '$(System.PullRequest.TargetBranch)')))
     jobs:
       - job: scan
         displayName: Scanning binaries
