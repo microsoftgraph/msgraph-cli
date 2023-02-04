@@ -1,22 +1,22 @@
 using ApiSdk.DeviceManagement.Reports.ExportJobs;
-using ApiSdk.DeviceManagement.Reports.GetCachedReport;
-using ApiSdk.DeviceManagement.Reports.GetCompliancePolicyNonComplianceReport;
-using ApiSdk.DeviceManagement.Reports.GetCompliancePolicyNonComplianceSummaryReport;
-using ApiSdk.DeviceManagement.Reports.GetComplianceSettingNonComplianceReport;
-using ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceReport;
-using ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSummaryReport;
-using ApiSdk.DeviceManagement.Reports.GetConfigurationSettingNonComplianceReport;
-using ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingContributingProfiles;
-using ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsReport;
-using ApiSdk.DeviceManagement.Reports.GetDeviceNonComplianceReport;
-using ApiSdk.DeviceManagement.Reports.GetDevicesWithoutCompliancePolicyReport;
-using ApiSdk.DeviceManagement.Reports.GetHistoricalReport;
-using ApiSdk.DeviceManagement.Reports.GetNoncompliantDevicesAndSettingsReport;
-using ApiSdk.DeviceManagement.Reports.GetPolicyNonComplianceMetadata;
-using ApiSdk.DeviceManagement.Reports.GetPolicyNonComplianceReport;
-using ApiSdk.DeviceManagement.Reports.GetPolicyNonComplianceSummaryReport;
-using ApiSdk.DeviceManagement.Reports.GetReportFilters;
-using ApiSdk.DeviceManagement.Reports.GetSettingNonComplianceReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetCachedReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetCompliancePolicyNonComplianceReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetCompliancePolicyNonComplianceSummaryReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetComplianceSettingNonComplianceReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetConfigurationPolicyNonComplianceReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetConfigurationPolicyNonComplianceSummaryReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetConfigurationSettingNonComplianceReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetDeviceManagementIntentPerSettingContributingProfiles;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetDeviceManagementIntentSettingsReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetDeviceNonComplianceReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetDevicesWithoutCompliancePolicyReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetHistoricalReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetNoncompliantDevicesAndSettingsReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetPolicyNonComplianceMetadata;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetPolicyNonComplianceReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetPolicyNonComplianceSummaryReport;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetReportFilters;
+using ApiSdk.DeviceManagement.Reports.MicrosoftGraphGetSettingNonComplianceReport;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,7 +60,7 @@ namespace ApiSdk.DeviceManagement.Reports {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -81,16 +81,6 @@ namespace ApiSdk.DeviceManagement.Reports {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getCachedReport method.
-        /// </summary>
-        public Command BuildGetCachedReportCommand() {
-            var command = new Command("get-cached-report");
-            command.Description = "Provides operations to call the getCachedReport method.";
-            var builder = new GetCachedReportRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -129,8 +119,8 @@ namespace ApiSdk.DeviceManagement.Reports {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
@@ -140,8 +130,8 @@ namespace ApiSdk.DeviceManagement.Reports {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -149,10 +139,20 @@ namespace ApiSdk.DeviceManagement.Reports {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getCachedReport method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetCachedReportCommand() {
+            var command = new Command("microsoft-graph-get-cached-report");
+            command.Description = "Provides operations to call the getCachedReport method.";
+            var builder = new GetCachedReportRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the getCompliancePolicyNonComplianceReport method.
         /// </summary>
-        public Command BuildGetCompliancePolicyNonComplianceReportCommand() {
-            var command = new Command("get-compliance-policy-non-compliance-report");
+        public Command BuildMicrosoftGraphGetCompliancePolicyNonComplianceReportCommand() {
+            var command = new Command("microsoft-graph-get-compliance-policy-non-compliance-report");
             command.Description = "Provides operations to call the getCompliancePolicyNonComplianceReport method.";
             var builder = new GetCompliancePolicyNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -161,8 +161,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getCompliancePolicyNonComplianceSummaryReport method.
         /// </summary>
-        public Command BuildGetCompliancePolicyNonComplianceSummaryReportCommand() {
-            var command = new Command("get-compliance-policy-non-compliance-summary-report");
+        public Command BuildMicrosoftGraphGetCompliancePolicyNonComplianceSummaryReportCommand() {
+            var command = new Command("microsoft-graph-get-compliance-policy-non-compliance-summary-report");
             command.Description = "Provides operations to call the getCompliancePolicyNonComplianceSummaryReport method.";
             var builder = new GetCompliancePolicyNonComplianceSummaryReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -171,8 +171,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getComplianceSettingNonComplianceReport method.
         /// </summary>
-        public Command BuildGetComplianceSettingNonComplianceReportCommand() {
-            var command = new Command("get-compliance-setting-non-compliance-report");
+        public Command BuildMicrosoftGraphGetComplianceSettingNonComplianceReportCommand() {
+            var command = new Command("microsoft-graph-get-compliance-setting-non-compliance-report");
             command.Description = "Provides operations to call the getComplianceSettingNonComplianceReport method.";
             var builder = new GetComplianceSettingNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -181,8 +181,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getConfigurationPolicyNonComplianceReport method.
         /// </summary>
-        public Command BuildGetConfigurationPolicyNonComplianceReportCommand() {
-            var command = new Command("get-configuration-policy-non-compliance-report");
+        public Command BuildMicrosoftGraphGetConfigurationPolicyNonComplianceReportCommand() {
+            var command = new Command("microsoft-graph-get-configuration-policy-non-compliance-report");
             command.Description = "Provides operations to call the getConfigurationPolicyNonComplianceReport method.";
             var builder = new GetConfigurationPolicyNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -191,8 +191,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getConfigurationPolicyNonComplianceSummaryReport method.
         /// </summary>
-        public Command BuildGetConfigurationPolicyNonComplianceSummaryReportCommand() {
-            var command = new Command("get-configuration-policy-non-compliance-summary-report");
+        public Command BuildMicrosoftGraphGetConfigurationPolicyNonComplianceSummaryReportCommand() {
+            var command = new Command("microsoft-graph-get-configuration-policy-non-compliance-summary-report");
             command.Description = "Provides operations to call the getConfigurationPolicyNonComplianceSummaryReport method.";
             var builder = new GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -201,8 +201,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getConfigurationSettingNonComplianceReport method.
         /// </summary>
-        public Command BuildGetConfigurationSettingNonComplianceReportCommand() {
-            var command = new Command("get-configuration-setting-non-compliance-report");
+        public Command BuildMicrosoftGraphGetConfigurationSettingNonComplianceReportCommand() {
+            var command = new Command("microsoft-graph-get-configuration-setting-non-compliance-report");
             command.Description = "Provides operations to call the getConfigurationSettingNonComplianceReport method.";
             var builder = new GetConfigurationSettingNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -211,8 +211,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.
         /// </summary>
-        public Command BuildGetDeviceManagementIntentPerSettingContributingProfilesCommand() {
-            var command = new Command("get-device-management-intent-per-setting-contributing-profiles");
+        public Command BuildMicrosoftGraphGetDeviceManagementIntentPerSettingContributingProfilesCommand() {
+            var command = new Command("microsoft-graph-get-device-management-intent-per-setting-contributing-profiles");
             command.Description = "Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.";
             var builder = new GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -221,8 +221,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDeviceManagementIntentSettingsReport method.
         /// </summary>
-        public Command BuildGetDeviceManagementIntentSettingsReportCommand() {
-            var command = new Command("get-device-management-intent-settings-report");
+        public Command BuildMicrosoftGraphGetDeviceManagementIntentSettingsReportCommand() {
+            var command = new Command("microsoft-graph-get-device-management-intent-settings-report");
             command.Description = "Provides operations to call the getDeviceManagementIntentSettingsReport method.";
             var builder = new GetDeviceManagementIntentSettingsReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -231,8 +231,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDeviceNonComplianceReport method.
         /// </summary>
-        public Command BuildGetDeviceNonComplianceReportCommand() {
-            var command = new Command("get-device-non-compliance-report");
+        public Command BuildMicrosoftGraphGetDeviceNonComplianceReportCommand() {
+            var command = new Command("microsoft-graph-get-device-non-compliance-report");
             command.Description = "Provides operations to call the getDeviceNonComplianceReport method.";
             var builder = new GetDeviceNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -241,8 +241,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDevicesWithoutCompliancePolicyReport method.
         /// </summary>
-        public Command BuildGetDevicesWithoutCompliancePolicyReportCommand() {
-            var command = new Command("get-devices-without-compliance-policy-report");
+        public Command BuildMicrosoftGraphGetDevicesWithoutCompliancePolicyReportCommand() {
+            var command = new Command("microsoft-graph-get-devices-without-compliance-policy-report");
             command.Description = "Provides operations to call the getDevicesWithoutCompliancePolicyReport method.";
             var builder = new GetDevicesWithoutCompliancePolicyReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -251,8 +251,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getHistoricalReport method.
         /// </summary>
-        public Command BuildGetHistoricalReportCommand() {
-            var command = new Command("get-historical-report");
+        public Command BuildMicrosoftGraphGetHistoricalReportCommand() {
+            var command = new Command("microsoft-graph-get-historical-report");
             command.Description = "Provides operations to call the getHistoricalReport method.";
             var builder = new GetHistoricalReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -261,8 +261,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getNoncompliantDevicesAndSettingsReport method.
         /// </summary>
-        public Command BuildGetNoncompliantDevicesAndSettingsReportCommand() {
-            var command = new Command("get-noncompliant-devices-and-settings-report");
+        public Command BuildMicrosoftGraphGetNoncompliantDevicesAndSettingsReportCommand() {
+            var command = new Command("microsoft-graph-get-noncompliant-devices-and-settings-report");
             command.Description = "Provides operations to call the getNoncompliantDevicesAndSettingsReport method.";
             var builder = new GetNoncompliantDevicesAndSettingsReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -271,8 +271,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getPolicyNonComplianceMetadata method.
         /// </summary>
-        public Command BuildGetPolicyNonComplianceMetadataCommand() {
-            var command = new Command("get-policy-non-compliance-metadata");
+        public Command BuildMicrosoftGraphGetPolicyNonComplianceMetadataCommand() {
+            var command = new Command("microsoft-graph-get-policy-non-compliance-metadata");
             command.Description = "Provides operations to call the getPolicyNonComplianceMetadata method.";
             var builder = new GetPolicyNonComplianceMetadataRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -281,8 +281,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getPolicyNonComplianceReport method.
         /// </summary>
-        public Command BuildGetPolicyNonComplianceReportCommand() {
-            var command = new Command("get-policy-non-compliance-report");
+        public Command BuildMicrosoftGraphGetPolicyNonComplianceReportCommand() {
+            var command = new Command("microsoft-graph-get-policy-non-compliance-report");
             command.Description = "Provides operations to call the getPolicyNonComplianceReport method.";
             var builder = new GetPolicyNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -291,8 +291,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getPolicyNonComplianceSummaryReport method.
         /// </summary>
-        public Command BuildGetPolicyNonComplianceSummaryReportCommand() {
-            var command = new Command("get-policy-non-compliance-summary-report");
+        public Command BuildMicrosoftGraphGetPolicyNonComplianceSummaryReportCommand() {
+            var command = new Command("microsoft-graph-get-policy-non-compliance-summary-report");
             command.Description = "Provides operations to call the getPolicyNonComplianceSummaryReport method.";
             var builder = new GetPolicyNonComplianceSummaryReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -301,8 +301,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getReportFilters method.
         /// </summary>
-        public Command BuildGetReportFiltersCommand() {
-            var command = new Command("get-report-filters");
+        public Command BuildMicrosoftGraphGetReportFiltersCommand() {
+            var command = new Command("microsoft-graph-get-report-filters");
             command.Description = "Provides operations to call the getReportFilters method.";
             var builder = new GetReportFiltersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -311,8 +311,8 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getSettingNonComplianceReport method.
         /// </summary>
-        public Command BuildGetSettingNonComplianceReportCommand() {
-            var command = new Command("get-setting-non-compliance-report");
+        public Command BuildMicrosoftGraphGetSettingNonComplianceReportCommand() {
+            var command = new Command("microsoft-graph-get-setting-non-compliance-report");
             command.Description = "Provides operations to call the getSettingNonComplianceReport method.";
             var builder = new GetSettingNonComplianceReportRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -343,24 +343,25 @@ namespace ApiSdk.DeviceManagement.Reports {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceManagementReports>(DeviceManagementReports.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);

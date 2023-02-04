@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Teams.Item.InstalledApps.Item.MicrosoftGraphUpgrade;
 using ApiSdk.Teams.Item.InstalledApps.Item.TeamsApp;
 using ApiSdk.Teams.Item.InstalledApps.Item.TeamsAppDefinition;
-using ApiSdk.Teams.Item.InstalledApps.Item.Upgrade;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -54,9 +54,9 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (teamsAppInstallationId is not null) requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,25 +112,35 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (teamsAppInstallationId is not null) requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the upgrade method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUpgradeCommand() {
+            var command = new Command("microsoft-graph-upgrade");
+            command.Description = "Provides operations to call the upgrade method.";
+            var builder = new UpgradeRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -168,26 +178,27 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
             command.SetHandler(async (invocationContext) => {
                 var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
                 var teamsAppInstallationId = invocationContext.ParseResult.GetValueForOption(teamsAppInstallationIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TeamsAppInstallation>(TeamsAppInstallation.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (teamsAppInstallationId is not null) requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -212,16 +223,6 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
             command.Description = "Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.";
             var builder = new TeamsAppDefinitionRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the upgrade method.
-        /// </summary>
-        public Command BuildUpgradeCommand() {
-            var command = new Command("upgrade");
-            command.Description = "Provides operations to call the upgrade method.";
-            var builder = new UpgradeRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

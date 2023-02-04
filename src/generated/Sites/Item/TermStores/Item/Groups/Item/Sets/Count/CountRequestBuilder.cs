@@ -56,20 +56,20 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Count {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("store%2Did", storeId);
-                requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (storeId is not null) requestInfo.PathParameters.Add("store%2Did", storeId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 var formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 await formatter.WriteOutputAsync(response, null, cancellationToken);
             });

@@ -4,5 +4,6 @@ namespace ApiSdk.Models {
         Presenter,
         UnknownFutureValue,
         Producer,
+        Coorganizer,
     }
 }

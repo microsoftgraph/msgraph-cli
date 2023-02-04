@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders;
-using ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage;
-using ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage;
+using ApiSdk.Reports.Security.MicrosoftGraphGetAttackSimulationRepeatOffenders;
+using ApiSdk.Reports.Security.MicrosoftGraphGetAttackSimulationSimulationUserCoverage;
+using ApiSdk.Reports.Security.MicrosoftGraphGetAttackSimulationTrainingUserCoverage;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -44,7 +44,7 @@ namespace ApiSdk.Reports.Security {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -90,8 +90,8 @@ namespace ApiSdk.Reports.Security {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
@@ -101,12 +101,42 @@ namespace ApiSdk.Reports.Security {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAttackSimulationRepeatOffenders method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAttackSimulationRepeatOffendersCommand() {
+            var command = new Command("microsoft-graph-get-attack-simulation-repeat-offenders");
+            command.Description = "Provides operations to call the getAttackSimulationRepeatOffenders method.";
+            var builder = new GetAttackSimulationRepeatOffendersRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAttackSimulationSimulationUserCoverage method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAttackSimulationSimulationUserCoverageCommand() {
+            var command = new Command("microsoft-graph-get-attack-simulation-simulation-user-coverage");
+            command.Description = "Provides operations to call the getAttackSimulationSimulationUserCoverage method.";
+            var builder = new GetAttackSimulationSimulationUserCoverageRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAttackSimulationTrainingUserCoverage method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAttackSimulationTrainingUserCoverageCommand() {
+            var command = new Command("microsoft-graph-get-attack-simulation-training-user-coverage");
+            command.Description = "Provides operations to call the getAttackSimulationTrainingUserCoverage method.";
+            var builder = new GetAttackSimulationTrainingUserCoverageRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -134,24 +164,25 @@ namespace ApiSdk.Reports.Security {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SecurityReportsRoot>(SecurityReportsRoot.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -170,24 +201,6 @@ namespace ApiSdk.Reports.Security {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the getAttackSimulationRepeatOffenders method.
-        /// </summary>
-        public GetAttackSimulationRepeatOffendersRequestBuilder GetAttackSimulationRepeatOffenders() {
-            return new GetAttackSimulationRepeatOffendersRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the getAttackSimulationSimulationUserCoverage method.
-        /// </summary>
-        public GetAttackSimulationSimulationUserCoverageRequestBuilder GetAttackSimulationSimulationUserCoverage() {
-            return new GetAttackSimulationSimulationUserCoverageRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the getAttackSimulationTrainingUserCoverage method.
-        /// </summary>
-        public GetAttackSimulationTrainingUserCoverageRequestBuilder GetAttackSimulationTrainingUserCoverage() {
-            return new GetAttackSimulationTrainingUserCoverageRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Delete navigation property security for reports

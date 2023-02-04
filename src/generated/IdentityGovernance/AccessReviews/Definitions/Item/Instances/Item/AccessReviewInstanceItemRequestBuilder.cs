@@ -1,12 +1,12 @@
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.AcceptRecommendations;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ApplyDecisions;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.BatchRecordDecisions;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ContactedReviewers;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Decisions;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ResetDecisions;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.SendReminder;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphAcceptRecommendations;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphApplyDecisions;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphBatchRecordDecisions;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphResetDecisions;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphSendReminder;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphStop;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stages;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stop;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,36 +33,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the acceptRecommendations method.
-        /// </summary>
-        public Command BuildAcceptRecommendationsCommand() {
-            var command = new Command("accept-recommendations");
-            command.Description = "Provides operations to call the acceptRecommendations method.";
-            var builder = new AcceptRecommendationsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyDecisions method.
-        /// </summary>
-        public Command BuildApplyDecisionsCommand() {
-            var command = new Command("apply-decisions");
-            command.Description = "Provides operations to call the applyDecisions method.";
-            var builder = new ApplyDecisionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the batchRecordDecisions method.
-        /// </summary>
-        public Command BuildBatchRecordDecisionsCommand() {
-            var command = new Command("batch-record-decisions");
-            command.Description = "Provides operations to call the batchRecordDecisions method.";
-            var builder = new BatchRecordDecisionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Provides operations to manage the contactedReviewers property of the microsoft.graph.accessReviewInstance entity.
         /// </summary>
@@ -116,9 +86,9 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
-                requestInfo.PathParameters.Add("accessReviewInstance%2Did", accessReviewInstanceId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (accessReviewScheduleDefinitionId is not null) requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
+                if (accessReviewInstanceId is not null) requestInfo.PathParameters.Add("accessReviewInstance%2Did", accessReviewInstanceId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -174,25 +144,85 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
-                requestInfo.PathParameters.Add("accessReviewInstance%2Did", accessReviewInstanceId);
+                if (accessReviewScheduleDefinitionId is not null) requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
+                if (accessReviewInstanceId is not null) requestInfo.PathParameters.Add("accessReviewInstance%2Did", accessReviewInstanceId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the acceptRecommendations method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAcceptRecommendationsCommand() {
+            var command = new Command("microsoft-graph-accept-recommendations");
+            command.Description = "Provides operations to call the acceptRecommendations method.";
+            var builder = new AcceptRecommendationsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyDecisions method.
+        /// </summary>
+        public Command BuildMicrosoftGraphApplyDecisionsCommand() {
+            var command = new Command("microsoft-graph-apply-decisions");
+            command.Description = "Provides operations to call the applyDecisions method.";
+            var builder = new ApplyDecisionsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the batchRecordDecisions method.
+        /// </summary>
+        public Command BuildMicrosoftGraphBatchRecordDecisionsCommand() {
+            var command = new Command("microsoft-graph-batch-record-decisions");
+            command.Description = "Provides operations to call the batchRecordDecisions method.";
+            var builder = new BatchRecordDecisionsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the resetDecisions method.
+        /// </summary>
+        public Command BuildMicrosoftGraphResetDecisionsCommand() {
+            var command = new Command("microsoft-graph-reset-decisions");
+            command.Description = "Provides operations to call the resetDecisions method.";
+            var builder = new ResetDecisionsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendReminder method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSendReminderCommand() {
+            var command = new Command("microsoft-graph-send-reminder");
+            command.Description = "Provides operations to call the sendReminder method.";
+            var builder = new SendReminderRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stop method.
+        /// </summary>
+        public Command BuildMicrosoftGraphStopCommand() {
+            var command = new Command("microsoft-graph-stop");
+            command.Description = "Provides operations to call the stop method.";
+            var builder = new StopRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -230,50 +260,31 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             command.SetHandler(async (invocationContext) => {
                 var accessReviewScheduleDefinitionId = invocationContext.ParseResult.GetValueForOption(accessReviewScheduleDefinitionIdOption);
                 var accessReviewInstanceId = invocationContext.ParseResult.GetValueForOption(accessReviewInstanceIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AccessReviewInstance>(AccessReviewInstance.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
-                requestInfo.PathParameters.Add("accessReviewInstance%2Did", accessReviewInstanceId);
+                if (accessReviewScheduleDefinitionId is not null) requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
+                if (accessReviewInstanceId is not null) requestInfo.PathParameters.Add("accessReviewInstance%2Did", accessReviewInstanceId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the resetDecisions method.
-        /// </summary>
-        public Command BuildResetDecisionsCommand() {
-            var command = new Command("reset-decisions");
-            command.Description = "Provides operations to call the resetDecisions method.";
-            var builder = new ResetDecisionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sendReminder method.
-        /// </summary>
-        public Command BuildSendReminderCommand() {
-            var command = new Command("send-reminder");
-            command.Description = "Provides operations to call the sendReminder method.";
-            var builder = new SendReminderRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -287,16 +298,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the stop method.
-        /// </summary>
-        public Command BuildStopCommand() {
-            var command = new Command("stop");
-            command.Description = "Provides operations to call the stop method.";
-            var builder = new StopRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

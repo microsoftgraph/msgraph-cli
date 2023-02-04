@@ -29,7 +29,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.SquareLogo {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A square version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG no larger than 240 x 240 pixels and no more than 10 KB in size. We recommend using a transparent image with no padding around the logo.";
+            command.Description = "A square version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG no larger than 240 x 240 pixels and no more than 10 KB in size. We recommend using a transparent image with no padding around the logo.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
             // Create options for all the parameters
             var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
             };
@@ -48,13 +48,13 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.SquareLogo {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("organization%2Did", organizationId);
-                requestInfo.PathParameters.Add("organizationalBrandingLocalization%2Did", organizationalBrandingLocalizationId);
+                if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                if (organizationalBrandingLocalizationId is not null) requestInfo.PathParameters.Add("organizationalBrandingLocalization%2Did", organizationalBrandingLocalizationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
@@ -92,11 +92,12 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.SquareLogo {
                 var organizationalBrandingLocalizationId = invocationContext.ParseResult.GetValueForOption(organizationalBrandingLocalizationIdOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                if (file is null || !file.Exists) return;
                 using var stream = file.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
-                requestInfo.PathParameters.Add("organization%2Did", organizationId);
-                requestInfo.PathParameters.Add("organizationalBrandingLocalization%2Did", organizationalBrandingLocalizationId);
+                if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                if (organizationalBrandingLocalizationId is not null) requestInfo.PathParameters.Add("organizationalBrandingLocalization%2Did", organizationalBrandingLocalizationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

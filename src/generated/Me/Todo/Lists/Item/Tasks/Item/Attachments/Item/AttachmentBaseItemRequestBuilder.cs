@@ -68,10 +68,10 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
-                requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
-                requestInfo.PathParameters.Add("attachmentBase%2Did", attachmentBaseId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (todoTaskListId is not null) requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
+                if (todoTaskId is not null) requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
+                if (attachmentBaseId is not null) requestInfo.PathParameters.Add("attachmentBase%2Did", attachmentBaseId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -82,11 +82,11 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             return command;
         }
         /// <summary>
-        /// Get attachments from me
+        /// A collection of file attachments for the task.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get attachments from me";
+            command.Description = "A collection of file attachments for the task.";
             // Create options for all the parameters
             var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
             };
@@ -126,21 +126,21 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
-                requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
-                requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
-                requestInfo.PathParameters.Add("attachmentBase%2Did", attachmentBaseId);
+                if (todoTaskListId is not null) requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
+                if (todoTaskId is not null) requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
+                if (attachmentBaseId is not null) requestInfo.PathParameters.Add("attachmentBase%2Did", attachmentBaseId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -185,7 +185,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get attachments from me
+        /// A collection of file attachments for the task.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +227,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             }
         }
         /// <summary>
-        /// Get attachments from me
+        /// A collection of file attachments for the task.
         /// </summary>
         public class AttachmentBaseItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

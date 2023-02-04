@@ -1,4 +1,4 @@
-using ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.IncidentReport;
+using ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.MicrosoftGraphIncidentReport;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -52,9 +52,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("serviceHealth%2Did", serviceHealthId);
-                requestInfo.PathParameters.Add("serviceHealthIssue%2Did", serviceHealthIssueId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (serviceHealthId is not null) requestInfo.PathParameters.Add("serviceHealth%2Did", serviceHealthId);
+                if (serviceHealthIssueId is not null) requestInfo.PathParameters.Add("serviceHealthIssue%2Did", serviceHealthIssueId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,25 +110,35 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("serviceHealth%2Did", serviceHealthId);
-                requestInfo.PathParameters.Add("serviceHealthIssue%2Did", serviceHealthIssueId);
+                if (serviceHealthId is not null) requestInfo.PathParameters.Add("serviceHealth%2Did", serviceHealthId);
+                if (serviceHealthIssueId is not null) requestInfo.PathParameters.Add("serviceHealthIssue%2Did", serviceHealthIssueId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the incidentReport method.
+        /// </summary>
+        public Command BuildMicrosoftGraphIncidentReportCommand() {
+            var command = new Command("microsoft-graph-incident-report");
+            command.Description = "Provides operations to call the incidentReport method.";
+            var builder = new IncidentReportRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -166,26 +176,27 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
             command.SetHandler(async (invocationContext) => {
                 var serviceHealthId = invocationContext.ParseResult.GetValueForOption(serviceHealthIdOption);
                 var serviceHealthIssueId = invocationContext.ParseResult.GetValueForOption(serviceHealthIssueIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ServiceHealthIssue>(ServiceHealthIssue.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("serviceHealth%2Did", serviceHealthId);
-                requestInfo.PathParameters.Add("serviceHealthIssue%2Did", serviceHealthIssueId);
+                if (serviceHealthId is not null) requestInfo.PathParameters.Add("serviceHealth%2Did", serviceHealthId);
+                if (serviceHealthIssueId is not null) requestInfo.PathParameters.Add("serviceHealthIssue%2Did", serviceHealthIssueId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -204,12 +215,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the incidentReport method.
-        /// </summary>
-        public IncidentReportRequestBuilder IncidentReport() {
-            return new IncidentReportRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Delete navigation property issues for admin

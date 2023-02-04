@@ -51,7 +51,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.SectionGroups {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of section groups from the specified section group.";
+            command.Description = "Retrieve a list of section groups from the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-list-sectiongroups?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -126,9 +126,9 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.SectionGroups {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -140,8 +140,8 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.SectionGroups {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("sectionGroup%2Did", sectionGroupId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (sectionGroupId is not null) requestInfo.PathParameters.Add("sectionGroup%2Did", sectionGroupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -153,7 +153,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.SectionGroups {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);

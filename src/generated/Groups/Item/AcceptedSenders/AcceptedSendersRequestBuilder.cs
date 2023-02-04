@@ -52,7 +52,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Users in the accepted senders list can post to conversations of the group (identified in the GET request URL).Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.";
+            command.Description = "Users in the accepted senders list can post to conversations of the group (identified in the GET request URL).Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-acceptedsenders?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -111,9 +111,9 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -123,7 +123,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -135,7 +135,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);

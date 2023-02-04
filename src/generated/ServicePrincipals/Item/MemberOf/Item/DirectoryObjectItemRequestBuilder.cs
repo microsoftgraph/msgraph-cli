@@ -1,11 +1,11 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.ServicePrincipals.Item.MemberOf.Item.Application;
-using ApiSdk.ServicePrincipals.Item.MemberOf.Item.Device;
-using ApiSdk.ServicePrincipals.Item.MemberOf.Item.Group;
-using ApiSdk.ServicePrincipals.Item.MemberOf.Item.OrgContact;
-using ApiSdk.ServicePrincipals.Item.MemberOf.Item.ServicePrincipal;
-using ApiSdk.ServicePrincipals.Item.MemberOf.Item.User;
+using ApiSdk.ServicePrincipals.Item.MemberOf.Item.MicrosoftGraphApplication;
+using ApiSdk.ServicePrincipals.Item.MemberOf.Item.MicrosoftGraphDevice;
+using ApiSdk.ServicePrincipals.Item.MemberOf.Item.MicrosoftGraphGroup;
+using ApiSdk.ServicePrincipals.Item.MemberOf.Item.MicrosoftGraphOrgContact;
+using ApiSdk.ServicePrincipals.Item.MemberOf.Item.MicrosoftGraphServicePrincipal;
+using ApiSdk.ServicePrincipals.Item.MemberOf.Item.MicrosoftGraphUser;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -30,26 +30,6 @@ namespace ApiSdk.ServicePrincipals.Item.MemberOf.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Casts the previous resource to application.
-        /// </summary>
-        public Command BuildApplicationCommand() {
-            var command = new Command("application");
-            command.Description = "Casts the previous resource to application.";
-            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to device.
-        /// </summary>
-        public Command BuildDeviceCommand() {
-            var command = new Command("device");
-            command.Description = "Casts the previous resource to device.";
-            var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
         /// <summary>
         /// Roles that this service principal is a member of. HTTP Methods: GET Read-only. Nullable. Supports $expand.
         /// </summary>
@@ -102,22 +82,22 @@ namespace ApiSdk.ServicePrincipals.Item.MemberOf.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
-                requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
-                requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
+                if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                if (directoryObjectId is not null) requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
+                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -125,10 +105,30 @@ namespace ApiSdk.ServicePrincipals.Item.MemberOf.Item {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to application.
+        /// </summary>
+        public Command BuildMicrosoftGraphApplicationCommand() {
+            var command = new Command("microsoft-graph-application");
+            command.Description = "Casts the previous resource to application.";
+            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to device.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeviceCommand() {
+            var command = new Command("microsoft-graph-device");
+            command.Description = "Casts the previous resource to device.";
+            var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGroupCommand() {
-            var command = new Command("group");
+        public Command BuildMicrosoftGraphGroupCommand() {
+            var command = new Command("microsoft-graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -137,8 +137,8 @@ namespace ApiSdk.ServicePrincipals.Item.MemberOf.Item {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildOrgContactCommand() {
-            var command = new Command("org-contact");
+        public Command BuildMicrosoftGraphOrgContactCommand() {
+            var command = new Command("microsoft-graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new OrgContactRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -147,8 +147,8 @@ namespace ApiSdk.ServicePrincipals.Item.MemberOf.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildServicePrincipalCommand() {
-            var command = new Command("service-principal");
+        public Command BuildMicrosoftGraphServicePrincipalCommand() {
+            var command = new Command("microsoft-graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -157,8 +157,8 @@ namespace ApiSdk.ServicePrincipals.Item.MemberOf.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildUserCommand() {
-            var command = new Command("user");
+        public Command BuildMicrosoftGraphUserCommand() {
+            var command = new Command("microsoft-graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());

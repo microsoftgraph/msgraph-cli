@@ -1,7 +1,7 @@
 using ApiSdk.DeviceManagement.AuditEvents.Count;
-using ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory;
-using ApiSdk.DeviceManagement.AuditEvents.GetAuditCategories;
 using ApiSdk.DeviceManagement.AuditEvents.Item;
+using ApiSdk.DeviceManagement.AuditEvents.MicrosoftGraphGetAuditActivityTypesWithCategory;
+using ApiSdk.DeviceManagement.AuditEvents.MicrosoftGraphGetAuditCategories;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -74,24 +74,25 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AuditEvent>(AuditEvent.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -168,9 +169,9 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -193,13 +194,23 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAuditCategories method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAuditCategoriesCommand() {
+            var command = new Command("microsoft-graph-get-audit-categories");
+            command.Description = "Provides operations to call the getAuditCategories method.";
+            var builder = new GetAuditCategoriesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -219,15 +230,9 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
         /// Provides operations to call the getAuditActivityTypes method.
         /// </summary>
         /// <param name="category">Usage: category=&apos;{category}&apos;</param>
-        public GetAuditActivityTypesWithCategoryRequestBuilder GetAuditActivityTypesWithCategory(string category) {
+        public GetAuditActivityTypesWithCategoryRequestBuilder MicrosoftGraphGetAuditActivityTypesWithCategory(string category) {
             if(string.IsNullOrEmpty(category)) throw new ArgumentNullException(nameof(category));
             return new GetAuditActivityTypesWithCategoryRequestBuilder(PathParameters, RequestAdapter, category);
-        }
-        /// <summary>
-        /// Provides operations to call the getAuditCategories method.
-        /// </summary>
-        public GetAuditCategoriesRequestBuilder GetAuditCategories() {
-            return new GetAuditCategoriesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// The Audit Events

@@ -61,11 +61,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("teamworkTag%2Did", teamworkTagId);
-                requestInfo.PathParameters.Add("teamworkTagMember%2Did", teamworkTagMemberId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (teamworkTagId is not null) requestInfo.PathParameters.Add("teamworkTag%2Did", teamworkTagId);
+                if (teamworkTagMemberId is not null) requestInfo.PathParameters.Add("teamworkTagMember%2Did", teamworkTagMemberId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -131,23 +131,23 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("teamworkTag%2Did", teamworkTagId);
-                requestInfo.PathParameters.Add("teamworkTagMember%2Did", teamworkTagMemberId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (teamworkTagId is not null) requestInfo.PathParameters.Add("teamworkTag%2Did", teamworkTagId);
+                if (teamworkTagMemberId is not null) requestInfo.PathParameters.Add("teamworkTagMember%2Did", teamworkTagMemberId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -199,28 +199,29 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members.Item {
                 var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
                 var teamworkTagId = invocationContext.ParseResult.GetValueForOption(teamworkTagIdOption);
                 var teamworkTagMemberId = invocationContext.ParseResult.GetValueForOption(teamworkTagMemberIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TeamworkTagMember>(TeamworkTagMember.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("teamworkTag%2Did", teamworkTagId);
-                requestInfo.PathParameters.Add("teamworkTagMember%2Did", teamworkTagMemberId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (teamworkTagId is not null) requestInfo.PathParameters.Add("teamworkTag%2Did", teamworkTagId);
+                if (teamworkTagMemberId is not null) requestInfo.PathParameters.Add("teamworkTagMember%2Did", teamworkTagMemberId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);

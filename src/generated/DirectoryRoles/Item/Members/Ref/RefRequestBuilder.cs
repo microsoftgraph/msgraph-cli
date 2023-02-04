@@ -30,7 +30,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.";
+            command.Description = "Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryrole-list-members?view=graph-rest-1.0";
             // Create options for all the parameters
             var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
             };
@@ -94,9 +94,9 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Ref {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -106,8 +106,8 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Ref {
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
                 });
-                requestInfo.PathParameters.Add("directoryRole%2Did", directoryRoleId);
-                requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
+                if (directoryRoleId is not null) requestInfo.PathParameters.Add("directoryRole%2Did", directoryRoleId);
+                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -119,7 +119,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Ref {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -145,14 +145,15 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Ref {
             command.AddOption(bodyOption);
             command.SetHandler(async (invocationContext) => {
                 var directoryRoleId = invocationContext.ParseResult.GetValueForOption(directoryRoleIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ReferenceCreate>(ReferenceCreate.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("directoryRole%2Did", directoryRoleId);
+                if (directoryRoleId is not null) requestInfo.PathParameters.Add("directoryRole%2Did", directoryRoleId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

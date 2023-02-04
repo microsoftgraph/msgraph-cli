@@ -29,7 +29,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item.V
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property overridesPages from identity";
+            command.Description = "Get media content for the navigation property overridesPages from identity\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/userflowlanguageconfiguration-list-overridespages?view=graph-rest-1.0";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
@@ -53,14 +53,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item.V
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
-                requestInfo.PathParameters.Add("userFlowLanguageConfiguration%2Did", userFlowLanguageConfigurationId);
-                requestInfo.PathParameters.Add("userFlowLanguagePage%2Did", userFlowLanguagePageId);
+                if (b2xIdentityUserFlowId is not null) requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
+                if (userFlowLanguageConfigurationId is not null) requestInfo.PathParameters.Add("userFlowLanguageConfiguration%2Did", userFlowLanguageConfigurationId);
+                if (userFlowLanguagePageId is not null) requestInfo.PathParameters.Add("userFlowLanguagePage%2Did", userFlowLanguagePageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
@@ -103,12 +103,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item.V
                 var userFlowLanguagePageId = invocationContext.ParseResult.GetValueForOption(userFlowLanguagePageIdOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                if (file is null || !file.Exists) return;
                 using var stream = file.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
-                requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
-                requestInfo.PathParameters.Add("userFlowLanguageConfiguration%2Did", userFlowLanguageConfigurationId);
-                requestInfo.PathParameters.Add("userFlowLanguagePage%2Did", userFlowLanguagePageId);
+                if (b2xIdentityUserFlowId is not null) requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
+                if (userFlowLanguageConfigurationId is not null) requestInfo.PathParameters.Add("userFlowLanguageConfiguration%2Did", userFlowLanguageConfigurationId);
+                if (userFlowLanguagePageId is not null) requestInfo.PathParameters.Add("userFlowLanguagePage%2Did", userFlowLanguagePageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

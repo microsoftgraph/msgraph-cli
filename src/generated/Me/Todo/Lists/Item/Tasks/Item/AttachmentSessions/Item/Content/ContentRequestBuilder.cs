@@ -24,11 +24,11 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.Content {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Get content for the navigation property attachmentSessions from me
+        /// The content streams that are uploaded.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get content for the navigation property attachmentSessions from me";
+            command.Description = "The content streams that are uploaded.";
             // Create options for all the parameters
             var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
             };
@@ -52,14 +52,14 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.Content {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
-                requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
-                requestInfo.PathParameters.Add("attachmentSession%2Did", attachmentSessionId);
+                if (todoTaskListId is not null) requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
+                if (todoTaskId is not null) requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
+                if (attachmentSessionId is not null) requestInfo.PathParameters.Add("attachmentSession%2Did", attachmentSessionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
@@ -74,11 +74,11 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.Content {
             return command;
         }
         /// <summary>
-        /// Update content for the navigation property attachmentSessions in me
+        /// The content streams that are uploaded.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "Update content for the navigation property attachmentSessions in me";
+            command.Description = "The content streams that are uploaded.";
             // Create options for all the parameters
             var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
             };
@@ -102,12 +102,13 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.Content {
                 var attachmentSessionId = invocationContext.ParseResult.GetValueForOption(attachmentSessionIdOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                if (file is null || !file.Exists) return;
                 using var stream = file.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
-                requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
-                requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
-                requestInfo.PathParameters.Add("attachmentSession%2Did", attachmentSessionId);
+                if (todoTaskListId is not null) requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
+                if (todoTaskId is not null) requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
+                if (attachmentSessionId is not null) requestInfo.PathParameters.Add("attachmentSession%2Did", attachmentSessionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -131,7 +132,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.Content {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get content for the navigation property attachmentSessions from me
+        /// The content streams that are uploaded.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -155,7 +156,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.Content {
             return requestInfo;
         }
         /// <summary>
-        /// Update content for the navigation property attachmentSessions in me
+        /// The content streams that are uploaded.
         /// </summary>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

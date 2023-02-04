@@ -69,12 +69,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Relation
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("group%2Did1", groupId1);
-                requestInfo.PathParameters.Add("set%2Did", setId);
-                requestInfo.PathParameters.Add("relation%2Did", relationId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (groupId1 is not null) requestInfo.PathParameters.Add("group%2Did1", groupId1);
+                if (setId is not null) requestInfo.PathParameters.Add("set%2Did", setId);
+                if (relationId is not null) requestInfo.PathParameters.Add("relation%2Did", relationId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -155,24 +155,24 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Relation
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("group%2Did1", groupId1);
-                requestInfo.PathParameters.Add("set%2Did", setId);
-                requestInfo.PathParameters.Add("relation%2Did", relationId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (groupId1 is not null) requestInfo.PathParameters.Add("group%2Did1", groupId1);
+                if (setId is not null) requestInfo.PathParameters.Add("set%2Did", setId);
+                if (relationId is not null) requestInfo.PathParameters.Add("relation%2Did", relationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -229,29 +229,30 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Relation
                 var groupId1 = invocationContext.ParseResult.GetValueForOption(groupId1Option);
                 var setId = invocationContext.ParseResult.GetValueForOption(setIdOption);
                 var relationId = invocationContext.ParseResult.GetValueForOption(relationIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Relation>(Relation.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("group%2Did1", groupId1);
-                requestInfo.PathParameters.Add("set%2Did", setId);
-                requestInfo.PathParameters.Add("relation%2Did", relationId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (groupId1 is not null) requestInfo.PathParameters.Add("group%2Did1", groupId1);
+                if (setId is not null) requestInfo.PathParameters.Add("set%2Did", setId);
+                if (relationId is not null) requestInfo.PathParameters.Add("relation%2Did", relationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);

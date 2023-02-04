@@ -2,8 +2,8 @@ using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.DirectReports.Count;
 using ApiSdk.Users.Item.DirectReports.Item;
-using ApiSdk.Users.Item.DirectReports.OrgContact;
-using ApiSdk.Users.Item.DirectReports.User;
+using ApiSdk.Users.Item.DirectReports.MicrosoftGraphOrgContact;
+using ApiSdk.Users.Item.DirectReports.MicrosoftGraphUser;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -35,8 +35,8 @@ namespace ApiSdk.Users.Item.DirectReports {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildOrgContactCommand());
-            command.AddCommand(builder.BuildUserCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
             return command;
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace ApiSdk.Users.Item.DirectReports {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The users and contacts that report to the user. (The users and contacts that have their manager property set to this user.) Read-only. Nullable. Supports $expand.";
+            command.Description = "The users and contacts that report to the user. (The users and contacts that have their manager property set to this user.) Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-directreports?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -131,9 +131,9 @@ namespace ApiSdk.Users.Item.DirectReports {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -145,8 +145,8 @@ namespace ApiSdk.Users.Item.DirectReports {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -158,7 +158,7 @@ namespace ApiSdk.Users.Item.DirectReports {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -170,8 +170,8 @@ namespace ApiSdk.Users.Item.DirectReports {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildOrgContactCommand() {
-            var command = new Command("org-contact");
+        public Command BuildMicrosoftGraphOrgContactCommand() {
+            var command = new Command("microsoft-graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new OrgContactRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCountCommand());
@@ -181,8 +181,8 @@ namespace ApiSdk.Users.Item.DirectReports {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildUserCommand() {
-            var command = new Command("user");
+        public Command BuildMicrosoftGraphUserCommand() {
+            var command = new Command("microsoft-graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCountCommand());

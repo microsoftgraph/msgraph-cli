@@ -1,7 +1,7 @@
-using ApiSdk.Groups.Item.Sites.Add;
 using ApiSdk.Groups.Item.Sites.Count;
 using ApiSdk.Groups.Item.Sites.Item;
-using ApiSdk.Groups.Item.Sites.Remove;
+using ApiSdk.Groups.Item.Sites.MicrosoftGraphAdd;
+using ApiSdk.Groups.Item.Sites.MicrosoftGraphRemove;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,16 +29,6 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the add method.
-        /// </summary>
-        public Command BuildAddCommand() {
-            var command = new Command("add");
-            command.Description = "Provides operations to call the add method.";
-            var builder = new AddRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the sites property of the microsoft.graph.group entity.
         /// </summary>
         public Command BuildCommand() {
@@ -53,6 +43,7 @@ namespace ApiSdk.Groups.Item.Sites {
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildItemsCommand());
             command.AddCommand(builder.BuildListsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetActivitiesByIntervalCommand());
             command.AddCommand(builder.BuildOnenoteCommand());
             command.AddCommand(builder.BuildOperationsCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -147,9 +138,9 @@ namespace ApiSdk.Groups.Item.Sites {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -161,7 +152,7 @@ namespace ApiSdk.Groups.Item.Sites {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -173,7 +164,7 @@ namespace ApiSdk.Groups.Item.Sites {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -183,10 +174,20 @@ namespace ApiSdk.Groups.Item.Sites {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the add method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAddCommand() {
+            var command = new Command("microsoft-graph-add");
+            command.Description = "Provides operations to call the add method.";
+            var builder = new AddRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the remove method.
         /// </summary>
-        public Command BuildRemoveCommand() {
-            var command = new Command("remove");
+        public Command BuildMicrosoftGraphRemoveCommand() {
+            var command = new Command("microsoft-graph-remove");
             command.Description = "Provides operations to call the remove method.";
             var builder = new RemoveRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());

@@ -1,14 +1,14 @@
-using ApiSdk.Chats.Item.HideForUser;
 using ApiSdk.Chats.Item.InstalledApps;
 using ApiSdk.Chats.Item.LastMessagePreview;
-using ApiSdk.Chats.Item.MarkChatReadForUser;
-using ApiSdk.Chats.Item.MarkChatUnreadForUser;
 using ApiSdk.Chats.Item.Members;
 using ApiSdk.Chats.Item.Messages;
+using ApiSdk.Chats.Item.MicrosoftGraphHideForUser;
+using ApiSdk.Chats.Item.MicrosoftGraphMarkChatReadForUser;
+using ApiSdk.Chats.Item.MicrosoftGraphMarkChatUnreadForUser;
+using ApiSdk.Chats.Item.MicrosoftGraphSendActivityNotification;
+using ApiSdk.Chats.Item.MicrosoftGraphUnhideForUser;
 using ApiSdk.Chats.Item.PinnedMessages;
-using ApiSdk.Chats.Item.SendActivityNotification;
 using ApiSdk.Chats.Item.Tabs;
-using ApiSdk.Chats.Item.UnhideForUser;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,11 +36,11 @@ namespace ApiSdk.Chats.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from chats by key (id)
+        /// Delete entity from chats
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from chats by key (id)";
+            command.Description = "Delete entity from chats";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -57,8 +57,8 @@ namespace ApiSdk.Chats.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("chat%2Did", chatId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -74,7 +74,7 @@ namespace ApiSdk.Chats.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.";
+            command.Description = "Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -110,34 +110,24 @@ namespace ApiSdk.Chats.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("chat%2Did", chatId);
+                if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the hideForUser method.
-        /// </summary>
-        public Command BuildHideForUserCommand() {
-            var command = new Command("hide-for-user");
-            command.Description = "Provides operations to call the hideForUser method.";
-            var builder = new HideForUserRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -166,37 +156,17 @@ namespace ApiSdk.Chats.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the markChatReadForUser method.
-        /// </summary>
-        public Command BuildMarkChatReadForUserCommand() {
-            var command = new Command("mark-chat-read-for-user");
-            command.Description = "Provides operations to call the markChatReadForUser method.";
-            var builder = new MarkChatReadForUserRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the markChatUnreadForUser method.
-        /// </summary>
-        public Command BuildMarkChatUnreadForUserCommand() {
-            var command = new Command("mark-chat-unread-for-user");
-            command.Description = "Provides operations to call the markChatUnreadForUser method.";
-            var builder = new MarkChatUnreadForUserRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.chat entity.
         /// </summary>
         public Command BuildMembersCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.chat entity.";
             var builder = new MembersRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
             return command;
         }
         /// <summary>
@@ -210,6 +180,57 @@ namespace ApiSdk.Chats.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the hideForUser method.
+        /// </summary>
+        public Command BuildMicrosoftGraphHideForUserCommand() {
+            var command = new Command("microsoft-graph-hide-for-user");
+            command.Description = "Provides operations to call the hideForUser method.";
+            var builder = new HideForUserRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the markChatReadForUser method.
+        /// </summary>
+        public Command BuildMicrosoftGraphMarkChatReadForUserCommand() {
+            var command = new Command("microsoft-graph-mark-chat-read-for-user");
+            command.Description = "Provides operations to call the markChatReadForUser method.";
+            var builder = new MarkChatReadForUserRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the markChatUnreadForUser method.
+        /// </summary>
+        public Command BuildMicrosoftGraphMarkChatUnreadForUserCommand() {
+            var command = new Command("microsoft-graph-mark-chat-unread-for-user");
+            command.Description = "Provides operations to call the markChatUnreadForUser method.";
+            var builder = new MarkChatUnreadForUserRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendActivityNotification method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSendActivityNotificationCommand() {
+            var command = new Command("microsoft-graph-send-activity-notification");
+            command.Description = "Provides operations to call the sendActivityNotification method.";
+            var builder = new SendActivityNotificationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unhideForUser method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUnhideForUserCommand() {
+            var command = new Command("microsoft-graph-unhide-for-user");
+            command.Description = "Provides operations to call the unhideForUser method.";
+            var builder = new UnhideForUserRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -218,7 +239,7 @@ namespace ApiSdk.Chats.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a chat object.";
+            command.Description = "Update the properties of a chat object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-patch?view=graph-rest-1.0";
             // Create options for all the parameters
             var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
             };
@@ -243,25 +264,26 @@ namespace ApiSdk.Chats.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var chatId = invocationContext.ParseResult.GetValueForOption(chatIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Chat>(ApiSdk.Models.Chat.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("chat%2Did", chatId);
+                if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -282,16 +304,6 @@ namespace ApiSdk.Chats.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the sendActivityNotification method.
-        /// </summary>
-        public Command BuildSendActivityNotificationCommand() {
-            var command = new Command("send-activity-notification");
-            command.Description = "Provides operations to call the sendActivityNotification method.";
-            var builder = new SendActivityNotificationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the tabs property of the microsoft.graph.chat entity.
         /// </summary>
         public Command BuildTabsCommand() {
@@ -302,16 +314,6 @@ namespace ApiSdk.Chats.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unhideForUser method.
-        /// </summary>
-        public Command BuildUnhideForUserCommand() {
-            var command = new Command("unhide-for-user");
-            command.Description = "Provides operations to call the unhideForUser method.";
-            var builder = new UnhideForUserRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -328,7 +330,7 @@ namespace ApiSdk.Chats.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from chats by key (id)
+        /// Delete entity from chats
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

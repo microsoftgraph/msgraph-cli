@@ -1,13 +1,13 @@
-using ApiSdk.Drives.Item.List.ContentTypes.Item.AssociateWithHubSites;
 using ApiSdk.Drives.Item.List.ContentTypes.Item.Base;
 using ApiSdk.Drives.Item.List.ContentTypes.Item.BaseTypes;
 using ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnLinks;
 using ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnPositions;
 using ApiSdk.Drives.Item.List.ContentTypes.Item.Columns;
-using ApiSdk.Drives.Item.List.ContentTypes.Item.CopyToDefaultContentLocation;
-using ApiSdk.Drives.Item.List.ContentTypes.Item.IsPublished;
-using ApiSdk.Drives.Item.List.ContentTypes.Item.Publish;
-using ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish;
+using ApiSdk.Drives.Item.List.ContentTypes.Item.MicrosoftGraphAssociateWithHubSites;
+using ApiSdk.Drives.Item.List.ContentTypes.Item.MicrosoftGraphCopyToDefaultContentLocation;
+using ApiSdk.Drives.Item.List.ContentTypes.Item.MicrosoftGraphIsPublished;
+using ApiSdk.Drives.Item.List.ContentTypes.Item.MicrosoftGraphPublish;
+using ApiSdk.Drives.Item.List.ContentTypes.Item.MicrosoftGraphUnpublish;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,16 +34,6 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the associateWithHubSites method.
-        /// </summary>
-        public Command BuildAssociateWithHubSitesCommand() {
-            var command = new Command("associate-with-hub-sites");
-            command.Description = "Provides operations to call the associateWithHubSites method.";
-            var builder = new AssociateWithHubSitesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Provides operations to manage the base property of the microsoft.graph.contentType entity.
         /// </summary>
@@ -105,16 +95,6 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the copyToDefaultContentLocation method.
-        /// </summary>
-        public Command BuildCopyToDefaultContentLocationCommand() {
-            var command = new Command("copy-to-default-content-location");
-            command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
-            var builder = new CopyToDefaultContentLocationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Delete navigation property contentTypes for drives
         /// </summary>
         public Command BuildDeleteCommand() {
@@ -141,9 +121,9 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("drive%2Did", driveId);
-                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (contentTypeId is not null) requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -199,25 +179,75 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("drive%2Did", driveId);
-                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (contentTypeId is not null) requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the associateWithHubSites method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAssociateWithHubSitesCommand() {
+            var command = new Command("microsoft-graph-associate-with-hub-sites");
+            command.Description = "Provides operations to call the associateWithHubSites method.";
+            var builder = new AssociateWithHubSitesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the copyToDefaultContentLocation method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCopyToDefaultContentLocationCommand() {
+            var command = new Command("microsoft-graph-copy-to-default-content-location");
+            command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
+            var builder = new CopyToDefaultContentLocationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the isPublished method.
+        /// </summary>
+        public Command BuildMicrosoftGraphIsPublishedCommand() {
+            var command = new Command("microsoft-graph-is-published");
+            command.Description = "Provides operations to call the isPublished method.";
+            var builder = new IsPublishedRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the publish method.
+        /// </summary>
+        public Command BuildMicrosoftGraphPublishCommand() {
+            var command = new Command("microsoft-graph-publish");
+            command.Description = "Provides operations to call the publish method.";
+            var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unpublish method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUnpublishCommand() {
+            var command = new Command("microsoft-graph-unpublish");
+            command.Description = "Provides operations to call the unpublish method.";
+            var builder = new UnpublishRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -255,50 +285,31 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item {
             command.SetHandler(async (invocationContext) => {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var contentTypeId = invocationContext.ParseResult.GetValueForOption(contentTypeIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ContentType>(ContentType.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("drive%2Did", driveId);
-                requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (contentTypeId is not null) requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the publish method.
-        /// </summary>
-        public Command BuildPublishCommand() {
-            var command = new Command("publish");
-            command.Description = "Provides operations to call the publish method.";
-            var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unpublish method.
-        /// </summary>
-        public Command BuildUnpublishCommand() {
-            var command = new Command("unpublish");
-            command.Description = "Provides operations to call the unpublish method.";
-            var builder = new UnpublishRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -313,12 +324,6 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the isPublished method.
-        /// </summary>
-        public IsPublishedRequestBuilder IsPublished() {
-            return new IsPublishedRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Delete navigation property contentTypes for drives

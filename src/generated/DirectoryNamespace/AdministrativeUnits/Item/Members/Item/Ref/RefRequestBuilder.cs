@@ -56,9 +56,9 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.Ref {
                 var requestInfo = ToDeleteRequestInformation(q => {
                     if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
-                requestInfo.PathParameters.Add("administrativeUnit%2Did", administrativeUnitId);
-                requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (administrativeUnitId is not null) requestInfo.PathParameters.Add("administrativeUnit%2Did", administrativeUnitId);
+                if (directoryObjectId is not null) requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

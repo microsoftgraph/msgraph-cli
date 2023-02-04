@@ -1,6 +1,6 @@
 using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item.HostedContents;
-using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item.SoftDelete;
-using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item.UndoSoftDelete;
+using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item.MicrosoftGraphSoftDelete;
+using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item.MicrosoftGraphUndoSoftDelete;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -59,10 +59,10 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
-                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                if (chatMessageId1 is not null) requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -123,22 +123,22 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
-                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                if (chatMessageId1 is not null) requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -156,6 +156,26 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the softDelete method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSoftDeleteCommand() {
+            var command = new Command("microsoft-graph-soft-delete");
+            command.Description = "Provides operations to call the softDelete method.";
+            var builder = new SoftDeleteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the undoSoftDelete method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUndoSoftDeleteCommand() {
+            var command = new Command("microsoft-graph-undo-soft-delete");
+            command.Description = "Provides operations to call the undoSoftDelete method.";
+            var builder = new UndoSoftDeleteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -198,51 +218,32 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item {
                 var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
                 var chatMessageId = invocationContext.ParseResult.GetValueForOption(chatMessageIdOption);
                 var chatMessageId1 = invocationContext.ParseResult.GetValueForOption(chatMessageId1Option);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
-                requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                if (chatMessageId1 is not null) requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the softDelete method.
-        /// </summary>
-        public Command BuildSoftDeleteCommand() {
-            var command = new Command("soft-delete");
-            command.Description = "Provides operations to call the softDelete method.";
-            var builder = new SoftDeleteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the undoSoftDelete method.
-        /// </summary>
-        public Command BuildUndoSoftDeleteCommand() {
-            var command = new Command("undo-soft-delete");
-            command.Description = "Provides operations to call the undoSoftDelete method.";
-            var builder = new UndoSoftDeleteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

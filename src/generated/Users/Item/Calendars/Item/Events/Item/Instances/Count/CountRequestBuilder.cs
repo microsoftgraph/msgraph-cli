@@ -51,19 +51,19 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Count {
                 var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
                 var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
-                requestInfo.PathParameters.Add("event%2Did", eventId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 var formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 await formatter.WriteOutputAsync(response, null, cancellationToken);
             });

@@ -56,9 +56,9 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Item.Ref {
                 var requestInfo = ToDeleteRequestInformation(q => {
                     if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
-                requestInfo.PathParameters.Add("application%2Did", applicationId);
-                requestInfo.PathParameters.Add("tokenIssuancePolicy%2Did", tokenIssuancePolicyId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
+                if (tokenIssuancePolicyId is not null) requestInfo.PathParameters.Add("tokenIssuancePolicy%2Did", tokenIssuancePolicyId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

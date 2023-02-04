@@ -29,7 +29,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The zip file that contains all attachments for a message.";
+            command.Description = "The zip file that contains all attachments for a message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0";
             // Create options for all the parameters
             var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
             };
@@ -43,12 +43,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
+                if (serviceUpdateMessageId is not null) requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
@@ -81,10 +81,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
                 var serviceUpdateMessageId = invocationContext.ParseResult.GetValueForOption(serviceUpdateMessageIdOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                if (file is null || !file.Exists) return;
                 using var stream = file.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
-                requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
+                if (serviceUpdateMessageId is not null) requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Count;
-using ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Delta;
 using ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item;
+using ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.MicrosoftGraphDelta;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -35,20 +35,20 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
             var builder = new MessageItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildContentCommand());
-            command.AddCommand(builder.BuildCopyCommand());
-            command.AddCommand(builder.BuildCreateForwardCommand());
-            command.AddCommand(builder.BuildCreateReplyAllCommand());
-            command.AddCommand(builder.BuildCreateReplyCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMoveCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCopyCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCreateForwardCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCreateReplyAllCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCreateReplyCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphForwardCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphMoveCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphReplyAllCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphReplyCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSendCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildReplyAllCommand());
-            command.AddCommand(builder.BuildReplyCommand());
-            command.AddCommand(builder.BuildSendCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
             return command;
         }
@@ -68,7 +68,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new Message in a mailfolder.";
+            command.Description = "Use this API to create a new Message in a mailfolder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -103,27 +103,28 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var mailFolderId = invocationContext.ParseResult.GetValueForOption(mailFolderIdOption);
                 var mailFolderId1 = invocationContext.ParseResult.GetValueForOption(mailFolderId1Option);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
-                requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (mailFolderId is not null) requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                if (mailFolderId1 is not null) requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -136,7 +137,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.";
+            command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -216,9 +217,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -230,9 +231,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
-                requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (mailFolderId is not null) requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                if (mailFolderId1 is not null) requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -244,13 +245,23 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeltaCommand() {
+            var command = new Command("microsoft-graph-delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -265,12 +276,6 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public DeltaRequestBuilder Delta() {
-            return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.

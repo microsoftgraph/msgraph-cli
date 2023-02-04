@@ -57,15 +57,15 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Cont
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("notebook%2Did", notebookId);
-                requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
-                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (notebookId is not null) requestInfo.PathParameters.Add("notebook%2Did", notebookId);
+                if (onenoteSectionId is not null) requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
+                if (onenotePageId is not null) requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
@@ -113,13 +113,14 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Cont
                 var onenotePageId = invocationContext.ParseResult.GetValueForOption(onenotePageIdOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                if (file is null || !file.Exists) return;
                 using var stream = file.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("notebook%2Did", notebookId);
-                requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
-                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (notebookId is not null) requestInfo.PathParameters.Add("notebook%2Did", notebookId);
+                if (onenoteSectionId is not null) requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
+                if (onenotePageId is not null) requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

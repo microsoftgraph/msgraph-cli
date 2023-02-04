@@ -1,8 +1,8 @@
-using ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Groups.Item.Calendar.CalendarPermissions;
 using ApiSdk.Groups.Item.Calendar.CalendarView;
 using ApiSdk.Groups.Item.Calendar.Events;
-using ApiSdk.Groups.Item.Calendar.GetSchedule;
+using ApiSdk.Groups.Item.Calendar.MicrosoftGraphAllowedCalendarSharingRolesWithUser;
+using ApiSdk.Groups.Item.Calendar.MicrosoftGraphGetSchedule;
 using ApiSdk.Groups.Item.Calendar.MultiValueExtendedProperties;
 using ApiSdk.Groups.Item.Calendar.SingleValueExtendedProperties;
 using ApiSdk.Models;
@@ -32,14 +32,6 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the allowedCalendarSharingRoles method.
-        /// </summary>
-        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
-        public AllowedCalendarSharingRolesWithUserRequestBuilder AllowedCalendarSharingRolesWithUser(string user) {
-            if(string.IsNullOrEmpty(user)) throw new ArgumentNullException(nameof(user));
-            return new AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters, RequestAdapter, user);
-        }
-        /// <summary>
         /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
         /// </summary>
         public Command BuildCalendarPermissionsCommand() {
@@ -62,6 +54,7 @@ namespace ApiSdk.Groups.Item.Calendar {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -75,6 +68,7 @@ namespace ApiSdk.Groups.Item.Calendar {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -112,19 +106,19 @@ namespace ApiSdk.Groups.Item.Calendar {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -134,8 +128,8 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>
         /// Provides operations to call the getSchedule method.
         /// </summary>
-        public Command BuildGetScheduleCommand() {
-            var command = new Command("get-schedule");
+        public Command BuildMicrosoftGraphGetScheduleCommand() {
+            var command = new Command("microsoft-graph-get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
             var builder = new GetScheduleRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -179,6 +173,14 @@ namespace ApiSdk.Groups.Item.Calendar {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Provides operations to call the allowedCalendarSharingRoles method.
+        /// </summary>
+        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
+        public AllowedCalendarSharingRolesWithUserRequestBuilder MicrosoftGraphAllowedCalendarSharingRolesWithUser(string user) {
+            if(string.IsNullOrEmpty(user)) throw new ArgumentNullException(nameof(user));
+            return new AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters, RequestAdapter, user);
         }
         /// <summary>
         /// The group&apos;s calendar. Read-only.

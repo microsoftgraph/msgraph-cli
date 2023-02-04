@@ -1,12 +1,12 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.ServicePrincipals.Item.Owners.AppRoleAssignment;
 using ApiSdk.ServicePrincipals.Item.Owners.Count;
-using ApiSdk.ServicePrincipals.Item.Owners.Endpoint;
 using ApiSdk.ServicePrincipals.Item.Owners.Item;
+using ApiSdk.ServicePrincipals.Item.Owners.MicrosoftGraphAppRoleAssignment;
+using ApiSdk.ServicePrincipals.Item.Owners.MicrosoftGraphEndpoint;
+using ApiSdk.ServicePrincipals.Item.Owners.MicrosoftGraphServicePrincipal;
+using ApiSdk.ServicePrincipals.Item.Owners.MicrosoftGraphUser;
 using ApiSdk.ServicePrincipals.Item.Owners.Ref;
-using ApiSdk.ServicePrincipals.Item.Owners.ServicePrincipal;
-using ApiSdk.ServicePrincipals.Item.Owners.User;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -32,27 +32,16 @@ namespace ApiSdk.ServicePrincipals.Item.Owners {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Casts the previous resource to appRoleAssignment.
-        /// </summary>
-        public Command BuildAppRoleAssignmentCommand() {
-            var command = new Command("app-role-assignment");
-            command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Gets an item from the ApiSdk.servicePrincipals.item.owners.item collection
         /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildEndpointCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAppRoleAssignmentCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphEndpointCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
             command.AddCommand(builder.BuildRefCommand());
-            command.AddCommand(builder.BuildServicePrincipalCommand());
-            command.AddCommand(builder.BuildUserCommand());
             return command;
         }
         /// <summary>
@@ -66,23 +55,12 @@ namespace ApiSdk.ServicePrincipals.Item.Owners {
             return command;
         }
         /// <summary>
-        /// Casts the previous resource to endpoint.
-        /// </summary>
-        public Command BuildEndpointCommand() {
-            var command = new Command("endpoint");
-            command.Description = "Casts the previous resource to endpoint.";
-            var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Directory objects that are owners of this servicePrincipal. The owners are a set of non-admin users or servicePrincipals who are allowed to modify this object. Read-only. Nullable.  Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Directory objects that are owners of this servicePrincipal. The owners are a set of non-admin users or servicePrincipals who are allowed to modify this object. Read-only. Nullable.  Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).";
+            command.Description = "Directory objects that are owners of this servicePrincipal. The owners are a set of non-admin users or servicePrincipals who are allowed to modify this object. Read-only. Nullable.  Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
@@ -158,9 +136,9 @@ namespace ApiSdk.ServicePrincipals.Item.Owners {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -172,8 +150,8 @@ namespace ApiSdk.ServicePrincipals.Item.Owners {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
-                requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
+                if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -185,13 +163,57 @@ namespace ApiSdk.ServicePrincipals.Item.Owners {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to appRoleAssignment.
+        /// </summary>
+        public Command BuildMicrosoftGraphAppRoleAssignmentCommand() {
+            var command = new Command("microsoft-graph-app-role-assignment");
+            command.Description = "Casts the previous resource to appRoleAssignment.";
+            var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to endpoint.
+        /// </summary>
+        public Command BuildMicrosoftGraphEndpointCommand() {
+            var command = new Command("microsoft-graph-endpoint");
+            command.Description = "Casts the previous resource to endpoint.";
+            var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to servicePrincipal.
+        /// </summary>
+        public Command BuildMicrosoftGraphServicePrincipalCommand() {
+            var command = new Command("microsoft-graph-service-principal");
+            command.Description = "Casts the previous resource to servicePrincipal.";
+            var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to user.
+        /// </summary>
+        public Command BuildMicrosoftGraphUserCommand() {
+            var command = new Command("microsoft-graph-user");
+            command.Description = "Casts the previous resource to user.";
+            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -203,28 +225,6 @@ namespace ApiSdk.ServicePrincipals.Item.Owners {
             var builder = new RefRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to servicePrincipal.
-        /// </summary>
-        public Command BuildServicePrincipalCommand() {
-            var command = new Command("service-principal");
-            command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to user.
-        /// </summary>
-        public Command BuildUserCommand() {
-            var command = new Command("user");
-            command.Description = "Casts the previous resource to user.";
-            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

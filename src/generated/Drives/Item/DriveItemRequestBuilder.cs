@@ -2,10 +2,10 @@ using ApiSdk.Drives.Item.Bundles;
 using ApiSdk.Drives.Item.Following;
 using ApiSdk.Drives.Item.Items;
 using ApiSdk.Drives.Item.List;
-using ApiSdk.Drives.Item.Recent;
+using ApiSdk.Drives.Item.MicrosoftGraphRecent;
+using ApiSdk.Drives.Item.MicrosoftGraphSearchWithQ;
+using ApiSdk.Drives.Item.MicrosoftGraphSharedWithMe;
 using ApiSdk.Drives.Item.Root;
-using ApiSdk.Drives.Item.SearchWithQ;
-using ApiSdk.Drives.Item.SharedWithMe;
 using ApiSdk.Drives.Item.Special;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -46,11 +46,11 @@ namespace ApiSdk.Drives.Item {
             return command;
         }
         /// <summary>
-        /// Delete entity from drives by key (id)
+        /// Delete entity from drives
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from drives by key (id)";
+            command.Description = "Delete entity from drives";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -67,8 +67,8 @@ namespace ApiSdk.Drives.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("drive%2Did", driveId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -96,7 +96,7 @@ namespace ApiSdk.Drives.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.";
+            command.Description = "Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/drive-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -132,20 +132,20 @@ namespace ApiSdk.Drives.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -184,11 +184,31 @@ namespace ApiSdk.Drives.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in drives by key (id)
+        /// Provides operations to call the recent method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRecentCommand() {
+            var command = new Command("microsoft-graph-recent");
+            command.Description = "Provides operations to call the recent method.";
+            var builder = new RecentRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sharedWithMe method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSharedWithMeCommand() {
+            var command = new Command("microsoft-graph-shared-with-me");
+            command.Description = "Provides operations to call the sharedWithMe method.";
+            var builder = new SharedWithMeRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Update entity in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in drives by key (id)";
+            command.Description = "Update entity in drives";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -213,25 +233,26 @@ namespace ApiSdk.Drives.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -245,28 +266,8 @@ namespace ApiSdk.Drives.Item {
             var command = new Command("root");
             command.Description = "Provides operations to manage the root property of the microsoft.graph.drive entity.";
             var builder = new RootRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAnalyticsCommand());
-            command.AddCommand(builder.BuildCheckinCommand());
-            command.AddCommand(builder.BuildCheckoutCommand());
-            command.AddCommand(builder.BuildChildrenCommand());
             command.AddCommand(builder.BuildContentCommand());
-            command.AddCommand(builder.BuildCopyCommand());
-            command.AddCommand(builder.BuildCreateLinkCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFollowCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildInviteCommand());
-            command.AddCommand(builder.BuildListItemCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPermissionsCommand());
-            command.AddCommand(builder.BuildPreviewCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
-            command.AddCommand(builder.BuildSubscriptionsCommand());
-            command.AddCommand(builder.BuildThumbnailsCommand());
-            command.AddCommand(builder.BuildUnfollowCommand());
-            command.AddCommand(builder.BuildValidatePermissionCommand());
-            command.AddCommand(builder.BuildVersionsCommand());
             return command;
         }
         /// <summary>
@@ -295,27 +296,15 @@ namespace ApiSdk.Drives.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Provides operations to call the recent method.
-        /// </summary>
-        public RecentRequestBuilder Recent() {
-            return new RecentRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
         /// Provides operations to call the search method.
         /// </summary>
         /// <param name="q">Usage: q=&apos;{q}&apos;</param>
-        public SearchWithQRequestBuilder SearchWithQ(string q) {
+        public SearchWithQRequestBuilder MicrosoftGraphSearchWithQ(string q) {
             if(string.IsNullOrEmpty(q)) throw new ArgumentNullException(nameof(q));
             return new SearchWithQRequestBuilder(PathParameters, RequestAdapter, q);
         }
         /// <summary>
-        /// Provides operations to call the sharedWithMe method.
-        /// </summary>
-        public SharedWithMeRequestBuilder SharedWithMe() {
-            return new SharedWithMeRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Delete entity from drives by key (id)
+        /// Delete entity from drives
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -365,7 +354,7 @@ namespace ApiSdk.Drives.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in drives by key (id)
+        /// Update entity in drives
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

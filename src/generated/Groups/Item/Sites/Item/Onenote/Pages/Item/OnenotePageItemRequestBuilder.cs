@@ -1,9 +1,9 @@
 using ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.Content;
-using ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.CopyToSection;
-using ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.OnenotePatchContent;
+using ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.MicrosoftGraphCopyToSection;
+using ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.MicrosoftGraphOnenotePatchContent;
+using ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.MicrosoftGraphPreview;
 using ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.ParentNotebook;
 using ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.ParentSection;
-using ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.Preview;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,16 +42,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the copyToSection method.
-        /// </summary>
-        public Command BuildCopyToSectionCommand() {
-            var command = new Command("copy-to-section");
-            command.Description = "Provides operations to call the copyToSection method.";
-            var builder = new CopyToSectionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Delete navigation property pages for groups
         /// </summary>
         public Command BuildDeleteCommand() {
@@ -83,10 +73,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (onenotePageId is not null) requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -147,22 +137,22 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (onenotePageId is not null) requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -170,13 +160,33 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the copyToSection method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCopyToSectionCommand() {
+            var command = new Command("microsoft-graph-copy-to-section");
+            command.Description = "Provides operations to call the copyToSection method.";
+            var builder = new CopyToSectionRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the onenotePatchContent method.
         /// </summary>
-        public Command BuildOnenotePatchContentCommand() {
-            var command = new Command("onenote-patch-content");
+        public Command BuildMicrosoftGraphOnenotePatchContentCommand() {
+            var command = new Command("microsoft-graph-onenote-patch-content");
             command.Description = "Provides operations to call the onenotePatchContent method.";
             var builder = new OnenotePatchContentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the preview method.
+        /// </summary>
+        public Command BuildMicrosoftGraphPreviewCommand() {
+            var command = new Command("microsoft-graph-preview");
+            command.Description = "Provides operations to call the preview method.";
+            var builder = new PreviewRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -239,27 +249,28 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
                 var onenotePageId = invocationContext.ParseResult.GetValueForOption(onenotePageIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OnenotePage>(OnenotePage.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (onenotePageId is not null) requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -278,12 +289,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the preview method.
-        /// </summary>
-        public PreviewRequestBuilder Preview() {
-            return new PreviewRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Delete navigation property pages for groups

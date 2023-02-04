@@ -1,11 +1,11 @@
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.Application;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.CheckMemberGroups;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.CheckMemberObjects;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.GetMemberGroups;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.GetMemberObjects;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.Group;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.Restore;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.User;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphApplication;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphCheckMemberGroups;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphCheckMemberObjects;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphGetMemberGroups;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphGetMemberObjects;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphGroup;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphRestore;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphUser;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,36 +33,6 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Casts the previous resource to application.
-        /// </summary>
-        public Command BuildApplicationCommand() {
-            var command = new Command("application");
-            command.Description = "Casts the previous resource to application.";
-            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildCheckMemberGroupsCommand() {
-            var command = new Command("check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildCheckMemberObjectsCommand() {
-            var command = new Command("check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Delete navigation property deletedItems for directory
         /// </summary>
         public Command BuildDeleteCommand() {
@@ -84,8 +54,8 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (directoryObjectId is not null) requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -136,20 +106,20 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
+                if (directoryObjectId is not null) requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -157,10 +127,40 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to application.
+        /// </summary>
+        public Command BuildMicrosoftGraphApplicationCommand() {
+            var command = new Command("microsoft-graph-application");
+            command.Description = "Casts the previous resource to application.";
+            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
+            var command = new Command("microsoft-graph-check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
+            var command = new Command("microsoft-graph-check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildGetMemberGroupsCommand() {
-            var command = new Command("get-member-groups");
+        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
+            var command = new Command("microsoft-graph-get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -169,8 +169,8 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildGetMemberObjectsCommand() {
-            var command = new Command("get-member-objects");
+        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
+            var command = new Command("microsoft-graph-get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -179,10 +179,30 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGroupCommand() {
-            var command = new Command("group");
+        public Command BuildMicrosoftGraphGroupCommand() {
+            var command = new Command("microsoft-graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRestoreCommand() {
+            var command = new Command("microsoft-graph-restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to user.
+        /// </summary>
+        public Command BuildMicrosoftGraphUserCommand() {
+            var command = new Command("microsoft-graph-user");
+            command.Description = "Casts the previous resource to user.";
+            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -216,49 +236,30 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var directoryObjectId = invocationContext.ParseResult.GetValueForOption(directoryObjectIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
+                if (directoryObjectId is not null) requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildRestoreCommand() {
-            var command = new Command("restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to user.
-        /// </summary>
-        public Command BuildUserCommand() {
-            var command = new Command("user");
-            command.Description = "Casts the previous resource to user.";
-            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

@@ -1,5 +1,5 @@
-using ApiSdk.GroupLifecyclePolicies.Item.AddGroup;
-using ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup;
+using ApiSdk.GroupLifecyclePolicies.Item.MicrosoftGraphAddGroup;
+using ApiSdk.GroupLifecyclePolicies.Item.MicrosoftGraphRemoveGroup;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,22 +27,12 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the addGroup method.
-        /// </summary>
-        public Command BuildAddGroupCommand() {
-            var command = new Command("add-group");
-            command.Description = "Provides operations to call the addGroup method.";
-            var builder = new AddGroupRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Delete a groupLifecyclePolicy.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a groupLifecyclePolicy.";
+            command.Description = "Delete a groupLifecyclePolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };
@@ -59,8 +49,8 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("groupLifecyclePolicy%2Did", groupLifecyclePolicyId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (groupLifecyclePolicyId is not null) requestInfo.PathParameters.Add("groupLifecyclePolicy%2Did", groupLifecyclePolicyId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -76,7 +66,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a groupLifecyclePolicies object.";
+            command.Description = "Retrieve the properties and relationships of a groupLifecyclePolicies object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };
@@ -112,24 +102,44 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("groupLifecyclePolicy%2Did", groupLifecyclePolicyId);
+                if (groupLifecyclePolicyId is not null) requestInfo.PathParameters.Add("groupLifecyclePolicy%2Did", groupLifecyclePolicyId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the addGroup method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAddGroupCommand() {
+            var command = new Command("microsoft-graph-add-group");
+            command.Description = "Provides operations to call the addGroup method.";
+            var builder = new AddGroupRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removeGroup method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRemoveGroupCommand() {
+            var command = new Command("microsoft-graph-remove-group");
+            command.Description = "Provides operations to call the removeGroup method.";
+            var builder = new RemoveGroupRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -138,7 +148,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a groupLifecyclePolicygroupLifecyclePolicy resource type object.";
+            command.Description = "Update the properties of a groupLifecyclePolicygroupLifecyclePolicy resource type object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };
@@ -163,39 +173,30 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var groupLifecyclePolicyId = invocationContext.ParseResult.GetValueForOption(groupLifecyclePolicyIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GroupLifecyclePolicy>(GroupLifecyclePolicy.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("groupLifecyclePolicy%2Did", groupLifecyclePolicyId);
+                if (groupLifecyclePolicyId is not null) requestInfo.PathParameters.Add("groupLifecyclePolicy%2Did", groupLifecyclePolicyId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removeGroup method.
-        /// </summary>
-        public Command BuildRemoveGroupCommand() {
-            var command = new Command("remove-group");
-            command.Description = "Provides operations to call the removeGroup method.";
-            var builder = new RemoveGroupRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

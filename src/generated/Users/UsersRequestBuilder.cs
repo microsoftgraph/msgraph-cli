@@ -1,11 +1,11 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Count;
-using ApiSdk.Users.Delta;
-using ApiSdk.Users.GetAvailableExtensionProperties;
-using ApiSdk.Users.GetByIds;
 using ApiSdk.Users.Item;
-using ApiSdk.Users.ValidateProperties;
+using ApiSdk.Users.MicrosoftGraphDelta;
+using ApiSdk.Users.MicrosoftGraphGetAvailableExtensionProperties;
+using ApiSdk.Users.MicrosoftGraphGetByIds;
+using ApiSdk.Users.MicrosoftGraphValidateProperties;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -39,16 +39,12 @@ namespace ApiSdk.Users {
             command.AddCommand(builder.BuildActivitiesCommand());
             command.AddCommand(builder.BuildAgreementAcceptancesCommand());
             command.AddCommand(builder.BuildAppRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildAssignLicenseCommand());
             command.AddCommand(builder.BuildAuthenticationCommand());
             command.AddCommand(builder.BuildCalendarCommand());
             command.AddCommand(builder.BuildCalendarGroupsCommand());
             command.AddCommand(builder.BuildCalendarsCommand());
             command.AddCommand(builder.BuildCalendarViewCommand());
-            command.AddCommand(builder.BuildChangePasswordCommand());
             command.AddCommand(builder.BuildChatsCommand());
-            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
             command.AddCommand(builder.BuildContactFoldersCommand());
             command.AddCommand(builder.BuildContactsCommand());
             command.AddCommand(builder.BuildCreatedObjectsCommand());
@@ -58,14 +54,9 @@ namespace ApiSdk.Users {
             command.AddCommand(builder.BuildDriveCommand());
             command.AddCommand(builder.BuildDrivesCommand());
             command.AddCommand(builder.BuildEventsCommand());
-            command.AddCommand(builder.BuildExportPersonalDataCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildFindMeetingTimesCommand());
             command.AddCommand(builder.BuildFollowedSitesCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMailTipsCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsCommand());
             command.AddCommand(builder.BuildInferenceClassificationCommand());
             command.AddCommand(builder.BuildInsightsCommand());
             command.AddCommand(builder.BuildJoinedTeamsCommand());
@@ -76,6 +67,26 @@ namespace ApiSdk.Users {
             command.AddCommand(builder.BuildManagerCommand());
             command.AddCommand(builder.BuildMemberOfCommand());
             command.AddCommand(builder.BuildMessagesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAssignLicenseCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphChangePasswordCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberGroupsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberObjectsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphExportDeviceAndAppManagementDataCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphExportPersonalDataCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphFindMeetingTimesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMailTipsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetManagedAppDiagnosticStatusesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetManagedAppPoliciesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetManagedDevicesWithAppFailuresCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMemberGroupsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMemberObjectsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRemoveAllDevicesFromManagementCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphReprocessLicenseAssignmentCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRevokeSignInSessionsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSendMailCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphTranslateExchangeIdsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphWipeManagedAppRegistrationsByDeviceTagCommand());
             command.AddCommand(builder.BuildOauth2PermissionGrantsCommand());
             command.AddCommand(builder.BuildOnenoteCommand());
             command.AddCommand(builder.BuildOnlineMeetingsCommand());
@@ -89,18 +100,11 @@ namespace ApiSdk.Users {
             command.AddCommand(builder.BuildPlannerCommand());
             command.AddCommand(builder.BuildPresenceCommand());
             command.AddCommand(builder.BuildRegisteredDevicesCommand());
-            command.AddCommand(builder.BuildRemoveAllDevicesFromManagementCommand());
-            command.AddCommand(builder.BuildReprocessLicenseAssignmentCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
-            command.AddCommand(builder.BuildRevokeSignInSessionsCommand());
             command.AddCommand(builder.BuildScopedRoleMemberOfCommand());
-            command.AddCommand(builder.BuildSendMailCommand());
             command.AddCommand(builder.BuildSettingsCommand());
             command.AddCommand(builder.BuildTeamworkCommand());
             command.AddCommand(builder.BuildTodoCommand());
             command.AddCommand(builder.BuildTransitiveMemberOfCommand());
-            command.AddCommand(builder.BuildTranslateExchangeIdsCommand());
-            command.AddCommand(builder.BuildWipeManagedAppRegistrationsByDeviceTagCommand());
             return command;
         }
         /// <summary>
@@ -119,7 +123,7 @@ namespace ApiSdk.Users {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new user.The request body contains the user to create. At a minimum, you must specify the required properties for the user. You can optionally specify any other writable properties.";
+            command.Description = "Create a new user.The request body contains the user to create. At a minimum, you must specify the required properties for the user. You can optionally specify any other writable properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-users?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -139,48 +143,29 @@ namespace ApiSdk.Users {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAvailableExtensionProperties method.
-        /// </summary>
-        public Command BuildGetAvailableExtensionPropertiesCommand() {
-            var command = new Command("get-available-extension-properties");
-            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
-            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getByIds method.
-        /// </summary>
-        public Command BuildGetByIdsCommand() {
-            var command = new Command("get-by-ids");
-            command.Description = "Provides operations to call the getByIds method.";
-            var builder = new GetByIdsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -189,7 +174,7 @@ namespace ApiSdk.Users {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of user objects.";
+            command.Description = "Retrieve a list of user objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -260,9 +245,9 @@ namespace ApiSdk.Users {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -274,7 +259,7 @@ namespace ApiSdk.Users {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
+                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -286,7 +271,7 @@ namespace ApiSdk.Users {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -296,10 +281,40 @@ namespace ApiSdk.Users {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeltaCommand() {
+            var command = new Command("microsoft-graph-delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAvailableExtensionProperties method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand() {
+            var command = new Command("microsoft-graph-get-available-extension-properties");
+            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
+            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getByIds method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetByIdsCommand() {
+            var command = new Command("microsoft-graph-get-by-ids");
+            command.Description = "Provides operations to call the getByIds method.";
+            var builder = new GetByIdsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesCommand() {
-            var command = new Command("validate-properties");
+        public Command BuildMicrosoftGraphValidatePropertiesCommand() {
+            var command = new Command("microsoft-graph-validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -317,12 +332,6 @@ namespace ApiSdk.Users {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public DeltaRequestBuilder Delta() {
-            return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Retrieve a list of user objects.

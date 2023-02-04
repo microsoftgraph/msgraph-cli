@@ -46,18 +46,18 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.MessageRules.Count {
                 var mailFolderId = invocationContext.ParseResult.GetValueForOption(mailFolderIdOption);
                 var mailFolderId1 = invocationContext.ParseResult.GetValueForOption(mailFolderId1Option);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                 });
-                requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
-                requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
+                if (mailFolderId is not null) requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                if (mailFolderId1 is not null) requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 var formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 await formatter.WriteOutputAsync(response, null, cancellationToken);
             });

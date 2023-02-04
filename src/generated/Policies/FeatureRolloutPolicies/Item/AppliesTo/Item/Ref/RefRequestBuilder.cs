@@ -56,9 +56,9 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item.Ref {
                 var requestInfo = ToDeleteRequestInformation(q => {
                     if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
-                requestInfo.PathParameters.Add("featureRolloutPolicy%2Did", featureRolloutPolicyId);
-                requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (featureRolloutPolicyId is not null) requestInfo.PathParameters.Add("featureRolloutPolicy%2Did", featureRolloutPolicyId);
+                if (directoryObjectId is not null) requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

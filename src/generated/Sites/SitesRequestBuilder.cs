@@ -1,9 +1,9 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Sites.Add;
 using ApiSdk.Sites.Count;
 using ApiSdk.Sites.Item;
-using ApiSdk.Sites.Remove;
+using ApiSdk.Sites.MicrosoftGraphAdd;
+using ApiSdk.Sites.MicrosoftGraphRemove;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -29,16 +29,6 @@ namespace ApiSdk.Sites {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the add method.
-        /// </summary>
-        public Command BuildAddCommand() {
-            var command = new Command("add");
-            command.Description = "Provides operations to call the add method.";
-            var builder = new AddRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the collection of site entities.
         /// </summary>
         public Command BuildCommand() {
@@ -53,6 +43,7 @@ namespace ApiSdk.Sites {
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildItemsCommand());
             command.AddCommand(builder.BuildListsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetActivitiesByIntervalCommand());
             command.AddCommand(builder.BuildOnenoteCommand());
             command.AddCommand(builder.BuildOperationsCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -78,7 +69,7 @@ namespace ApiSdk.Sites {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is **createdDateTime**. The search filter is a free text search that uses multiple properties when retrieving the search results.";
+            command.Description = "Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is **createdDateTime**. The search filter is a free text search that uses multiple properties when retrieving the search results.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-search?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -143,9 +134,9 @@ namespace ApiSdk.Sites {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -168,7 +159,7 @@ namespace ApiSdk.Sites {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -178,10 +169,20 @@ namespace ApiSdk.Sites {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the add method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAddCommand() {
+            var command = new Command("microsoft-graph-add");
+            command.Description = "Provides operations to call the add method.";
+            var builder = new AddRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the remove method.
         /// </summary>
-        public Command BuildRemoveCommand() {
-            var command = new Command("remove");
+        public Command BuildMicrosoftGraphRemoveCommand() {
+            var command = new Command("microsoft-graph-remove");
             command.Description = "Provides operations to call the remove method.";
             var builder = new RemoveRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());

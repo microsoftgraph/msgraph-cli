@@ -34,8 +34,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
             var builder = new DocumentSetVersionItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
             return command;
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new version of a document set item in a list.";
+            command.Description = "Create a new version of a document set item in a list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -94,28 +94,29 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
                 var listId = invocationContext.ParseResult.GetValueForOption(listIdOption);
                 var listItemId = invocationContext.ParseResult.GetValueForOption(listItemIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DocumentSetVersion>(DocumentSetVersion.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("list%2Did", listId);
-                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
+                if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -128,7 +129,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the versions of a document set item in a list.";
+            command.Description = "Get a list of the versions of a document set item in a list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -213,9 +214,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -227,10 +228,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("list%2Did", listId);
-                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
+                if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -242,7 +243,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);

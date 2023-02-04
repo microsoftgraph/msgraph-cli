@@ -1,8 +1,8 @@
-using ApiSdk.DirectoryRoleTemplates.Item.CheckMemberGroups;
-using ApiSdk.DirectoryRoleTemplates.Item.CheckMemberObjects;
-using ApiSdk.DirectoryRoleTemplates.Item.GetMemberGroups;
-using ApiSdk.DirectoryRoleTemplates.Item.GetMemberObjects;
-using ApiSdk.DirectoryRoleTemplates.Item.Restore;
+using ApiSdk.DirectoryRoleTemplates.Item.MicrosoftGraphCheckMemberGroups;
+using ApiSdk.DirectoryRoleTemplates.Item.MicrosoftGraphCheckMemberObjects;
+using ApiSdk.DirectoryRoleTemplates.Item.MicrosoftGraphGetMemberGroups;
+using ApiSdk.DirectoryRoleTemplates.Item.MicrosoftGraphGetMemberObjects;
+using ApiSdk.DirectoryRoleTemplates.Item.MicrosoftGraphRestore;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,31 +30,11 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildCheckMemberGroupsCommand() {
-            var command = new Command("check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildCheckMemberObjectsCommand() {
-            var command = new Command("check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Delete entity from directoryRoleTemplates by key (id)
+        /// Delete entity from directoryRoleTemplates
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from directoryRoleTemplates by key (id)";
+            command.Description = "Delete entity from directoryRoleTemplates";
             // Create options for all the parameters
             var directoryRoleTemplateIdOption = new Option<string>("--directory-role-template-id", description: "key: id of directoryRoleTemplate") {
             };
@@ -71,8 +51,8 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("directoryRoleTemplate%2Did", directoryRoleTemplateId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (directoryRoleTemplateId is not null) requestInfo.PathParameters.Add("directoryRoleTemplate%2Did", directoryRoleTemplateId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -88,7 +68,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a directoryroletemplate object.";
+            command.Description = "Retrieve the properties and relationships of a directoryroletemplate object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryroletemplate-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var directoryRoleTemplateIdOption = new Option<string>("--directory-role-template-id", description: "key: id of directoryRoleTemplate") {
             };
@@ -124,20 +104,20 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("directoryRoleTemplate%2Did", directoryRoleTemplateId);
+                if (directoryRoleTemplateId is not null) requestInfo.PathParameters.Add("directoryRoleTemplate%2Did", directoryRoleTemplateId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -145,10 +125,30 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
+            var command = new Command("microsoft-graph-check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
+            var command = new Command("microsoft-graph-check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildGetMemberGroupsCommand() {
-            var command = new Command("get-member-groups");
+        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
+            var command = new Command("microsoft-graph-get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -157,19 +157,29 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildGetMemberObjectsCommand() {
-            var command = new Command("get-member-objects");
+        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
+            var command = new Command("microsoft-graph-get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
-        /// Update entity in directoryRoleTemplates by key (id)
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRestoreCommand() {
+            var command = new Command("microsoft-graph-restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Update entity in directoryRoleTemplates
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in directoryRoleTemplates by key (id)";
+            command.Description = "Update entity in directoryRoleTemplates";
             // Create options for all the parameters
             var directoryRoleTemplateIdOption = new Option<string>("--directory-role-template-id", description: "key: id of directoryRoleTemplate") {
             };
@@ -194,39 +204,30 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var directoryRoleTemplateId = invocationContext.ParseResult.GetValueForOption(directoryRoleTemplateIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DirectoryRoleTemplate>(DirectoryRoleTemplate.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("directoryRoleTemplate%2Did", directoryRoleTemplateId);
+                if (directoryRoleTemplateId is not null) requestInfo.PathParameters.Add("directoryRoleTemplate%2Did", directoryRoleTemplateId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildRestoreCommand() {
-            var command = new Command("restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -243,7 +244,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from directoryRoleTemplates by key (id)
+        /// Delete entity from directoryRoleTemplates
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -293,7 +294,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in directoryRoleTemplates by key (id)
+        /// Update entity in directoryRoleTemplates
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

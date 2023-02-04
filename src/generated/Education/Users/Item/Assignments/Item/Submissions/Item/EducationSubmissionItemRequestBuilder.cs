@@ -1,11 +1,11 @@
+using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.MicrosoftGraphReassign;
+using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.MicrosoftGraphReturn;
+using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.MicrosoftGraphSetUpResourcesFolder;
+using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.MicrosoftGraphSubmit;
+using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.MicrosoftGraphUnsubmit;
 using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Outcomes;
-using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Reassign;
 using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resources;
-using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Return;
-using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.SetUpResourcesFolder;
-using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submit;
 using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.SubmittedResources;
-using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Unsubmit;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,10 +64,10 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
-                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
-                requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (educationUserId is not null) requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
+                if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                if (educationSubmissionId is not null) requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -128,26 +128,76 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
-                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
-                requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
+                if (educationUserId is not null) requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
+                if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                if (educationSubmissionId is not null) requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reassign method.
+        /// </summary>
+        public Command BuildMicrosoftGraphReassignCommand() {
+            var command = new Command("microsoft-graph-reassign");
+            command.Description = "Provides operations to call the reassign method.";
+            var builder = new ReassignRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the return method.
+        /// </summary>
+        public Command BuildMicrosoftGraphReturnCommand() {
+            var command = new Command("microsoft-graph-return");
+            command.Description = "Provides operations to call the return method.";
+            var builder = new ReturnRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUpResourcesFolder method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSetUpResourcesFolderCommand() {
+            var command = new Command("microsoft-graph-set-up-resources-folder");
+            command.Description = "Provides operations to call the setUpResourcesFolder method.";
+            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the submit method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSubmitCommand() {
+            var command = new Command("microsoft-graph-submit");
+            command.Description = "Provides operations to call the submit method.";
+            var builder = new SubmitRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unsubmit method.
+        /// </summary>
+        public Command BuildMicrosoftGraphUnsubmitCommand() {
+            var command = new Command("microsoft-graph-unsubmit");
+            command.Description = "Provides operations to call the unsubmit method.";
+            var builder = new UnsubmitRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -203,41 +253,32 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item {
                 var educationUserId = invocationContext.ParseResult.GetValueForOption(educationUserIdOption);
                 var educationAssignmentId = invocationContext.ParseResult.GetValueForOption(educationAssignmentIdOption);
                 var educationSubmissionId = invocationContext.ParseResult.GetValueForOption(educationSubmissionIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationSubmission>(EducationSubmission.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
-                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
-                requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
+                if (educationUserId is not null) requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
+                if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                if (educationSubmissionId is not null) requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reassign method.
-        /// </summary>
-        public Command BuildReassignCommand() {
-            var command = new Command("reassign");
-            command.Description = "Provides operations to call the reassign method.";
-            var builder = new ReassignRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -254,36 +295,6 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the return method.
-        /// </summary>
-        public Command BuildReturnCommand() {
-            var command = new Command("return");
-            command.Description = "Provides operations to call the return method.";
-            var builder = new ReturnRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setUpResourcesFolder method.
-        /// </summary>
-        public Command BuildSetUpResourcesFolderCommand() {
-            var command = new Command("set-up-resources-folder");
-            command.Description = "Provides operations to call the setUpResourcesFolder method.";
-            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the submit method.
-        /// </summary>
-        public Command BuildSubmitCommand() {
-            var command = new Command("submit");
-            command.Description = "Provides operations to call the submit method.";
-            var builder = new SubmitRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the submittedResources property of the microsoft.graph.educationSubmission entity.
         /// </summary>
         public Command BuildSubmittedResourcesCommand() {
@@ -294,16 +305,6 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unsubmit method.
-        /// </summary>
-        public Command BuildUnsubmitCommand() {
-            var command = new Command("unsubmit");
-            command.Description = "Provides operations to call the unsubmit method.";
-            var builder = new UnsubmitRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

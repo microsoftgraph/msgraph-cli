@@ -1,11 +1,11 @@
-using ApiSdk.Devices.Item.TransitiveMemberOf.Application;
 using ApiSdk.Devices.Item.TransitiveMemberOf.Count;
-using ApiSdk.Devices.Item.TransitiveMemberOf.Device;
-using ApiSdk.Devices.Item.TransitiveMemberOf.Group;
 using ApiSdk.Devices.Item.TransitiveMemberOf.Item;
-using ApiSdk.Devices.Item.TransitiveMemberOf.OrgContact;
-using ApiSdk.Devices.Item.TransitiveMemberOf.ServicePrincipal;
-using ApiSdk.Devices.Item.TransitiveMemberOf.User;
+using ApiSdk.Devices.Item.TransitiveMemberOf.MicrosoftGraphApplication;
+using ApiSdk.Devices.Item.TransitiveMemberOf.MicrosoftGraphDevice;
+using ApiSdk.Devices.Item.TransitiveMemberOf.MicrosoftGraphGroup;
+using ApiSdk.Devices.Item.TransitiveMemberOf.MicrosoftGraphOrgContact;
+using ApiSdk.Devices.Item.TransitiveMemberOf.MicrosoftGraphServicePrincipal;
+using ApiSdk.Devices.Item.TransitiveMemberOf.MicrosoftGraphUser;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,29 +33,18 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Casts the previous resource to application.
-        /// </summary>
-        public Command BuildApplicationCommand() {
-            var command = new Command("application");
-            command.Description = "Casts the previous resource to application.";
-            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.device entity.
         /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildApplicationCommand());
-            command.AddCommand(builder.BuildDeviceCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGroupCommand());
-            command.AddCommand(builder.BuildOrgContactCommand());
-            command.AddCommand(builder.BuildServicePrincipalCommand());
-            command.AddCommand(builder.BuildUserCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
             return command;
         }
         /// <summary>
@@ -69,34 +58,12 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
             return command;
         }
         /// <summary>
-        /// Casts the previous resource to device.
-        /// </summary>
-        public Command BuildDeviceCommand() {
-            var command = new Command("device");
-            command.Description = "Casts the previous resource to device.";
-            var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to group.
-        /// </summary>
-        public Command BuildGroupCommand() {
-            var command = new Command("group");
-            command.Description = "Casts the previous resource to group.";
-            var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/device-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.";
+            command.Description = "Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-list-transitivememberof?view=graph-rest-1.0";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };
@@ -172,9 +139,9 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -186,8 +153,8 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("device%2Did", deviceId);
-                requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
+                if (deviceId is not null) requestInfo.PathParameters.Add("device%2Did", deviceId);
+                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -199,7 +166,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -209,10 +176,43 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to application.
+        /// </summary>
+        public Command BuildMicrosoftGraphApplicationCommand() {
+            var command = new Command("microsoft-graph-application");
+            command.Description = "Casts the previous resource to application.";
+            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to device.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeviceCommand() {
+            var command = new Command("microsoft-graph-device");
+            command.Description = "Casts the previous resource to device.";
+            var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to group.
+        /// </summary>
+        public Command BuildMicrosoftGraphGroupCommand() {
+            var command = new Command("microsoft-graph-group");
+            command.Description = "Casts the previous resource to group.";
+            var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildOrgContactCommand() {
-            var command = new Command("org-contact");
+        public Command BuildMicrosoftGraphOrgContactCommand() {
+            var command = new Command("microsoft-graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new OrgContactRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCountCommand());
@@ -222,8 +222,8 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildServicePrincipalCommand() {
-            var command = new Command("service-principal");
+        public Command BuildMicrosoftGraphServicePrincipalCommand() {
+            var command = new Command("microsoft-graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCountCommand());
@@ -233,8 +233,8 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildUserCommand() {
-            var command = new Command("user");
+        public Command BuildMicrosoftGraphUserCommand() {
+            var command = new Command("microsoft-graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCountCommand());

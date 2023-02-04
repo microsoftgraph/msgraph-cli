@@ -1,11 +1,11 @@
-using ApiSdk.Admin.ServiceAnnouncement.Messages.Archive;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Count;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Item;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphArchive;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphFavorite;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphMarkRead;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphMarkUnread;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphUnarchive;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphUnfavorite;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,16 +32,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the archive method.
-        /// </summary>
-        public Command BuildArchiveCommand() {
-            var command = new Command("archive");
-            command.Description = "Provides operations to call the archive method.";
-            var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
@@ -90,38 +80,29 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ServiceUpdateMessage>(ServiceUpdateMessage.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the favorite method.
-        /// </summary>
-        public Command BuildFavoriteCommand() {
-            var command = new Command("favorite");
-            command.Description = "Provides operations to call the favorite method.";
-            var builder = new FavoriteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -130,7 +111,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the serviceUpdateMessage resources from the **messages** navigation property. This operation retrieves all service update messages that exist for the tenant.";
+            command.Description = "Retrieve the serviceUpdateMessage resources from the **messages** navigation property. This operation retrieves all service update messages that exist for the tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -195,9 +176,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -220,7 +201,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -230,10 +211,30 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the archive method.
+        /// </summary>
+        public Command BuildMicrosoftGraphArchiveCommand() {
+            var command = new Command("microsoft-graph-archive");
+            command.Description = "Provides operations to call the archive method.";
+            var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the favorite method.
+        /// </summary>
+        public Command BuildMicrosoftGraphFavoriteCommand() {
+            var command = new Command("microsoft-graph-favorite");
+            command.Description = "Provides operations to call the favorite method.";
+            var builder = new FavoriteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the markRead method.
         /// </summary>
-        public Command BuildMarkReadCommand() {
-            var command = new Command("mark-read");
+        public Command BuildMicrosoftGraphMarkReadCommand() {
+            var command = new Command("microsoft-graph-mark-read");
             command.Description = "Provides operations to call the markRead method.";
             var builder = new MarkReadRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -242,8 +243,8 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the markUnread method.
         /// </summary>
-        public Command BuildMarkUnreadCommand() {
-            var command = new Command("mark-unread");
+        public Command BuildMicrosoftGraphMarkUnreadCommand() {
+            var command = new Command("microsoft-graph-mark-unread");
             command.Description = "Provides operations to call the markUnread method.";
             var builder = new MarkUnreadRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -252,8 +253,8 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the unarchive method.
         /// </summary>
-        public Command BuildUnarchiveCommand() {
-            var command = new Command("unarchive");
+        public Command BuildMicrosoftGraphUnarchiveCommand() {
+            var command = new Command("microsoft-graph-unarchive");
             command.Description = "Provides operations to call the unarchive method.";
             var builder = new UnarchiveRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -262,8 +263,8 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the unfavorite method.
         /// </summary>
-        public Command BuildUnfavoriteCommand() {
-            var command = new Command("unfavorite");
+        public Command BuildMicrosoftGraphUnfavoriteCommand() {
+            var command = new Command("microsoft-graph-unfavorite");
             command.Description = "Provides operations to call the unfavorite method.";
             var builder = new UnfavoriteRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());

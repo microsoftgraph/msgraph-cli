@@ -61,21 +61,21 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
                 var postId = invocationContext.ParseResult.GetValueForOption(postIdOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("conversation%2Did", conversationId);
-                requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
-                requestInfo.PathParameters.Add("post%2Did", postId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (conversationId is not null) requestInfo.PathParameters.Add("conversation%2Did", conversationId);
+                if (conversationThreadId is not null) requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
+                if (postId is not null) requestInfo.PathParameters.Add("post%2Did", postId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 var formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 await formatter.WriteOutputAsync(response, null, cancellationToken);
             });

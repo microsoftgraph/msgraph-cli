@@ -1,7 +1,7 @@
-using ApiSdk.Devices.Item.RegisteredUsers.Item.AppRoleAssignment;
-using ApiSdk.Devices.Item.RegisteredUsers.Item.Endpoint;
-using ApiSdk.Devices.Item.RegisteredUsers.Item.ServicePrincipal;
-using ApiSdk.Devices.Item.RegisteredUsers.Item.User;
+using ApiSdk.Devices.Item.RegisteredUsers.Item.MicrosoftGraphAppRoleAssignment;
+using ApiSdk.Devices.Item.RegisteredUsers.Item.MicrosoftGraphEndpoint;
+using ApiSdk.Devices.Item.RegisteredUsers.Item.MicrosoftGraphServicePrincipal;
+using ApiSdk.Devices.Item.RegisteredUsers.Item.MicrosoftGraphUser;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,26 +28,6 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Casts the previous resource to appRoleAssignment.
-        /// </summary>
-        public Command BuildAppRoleAssignmentCommand() {
-            var command = new Command("app-role-assignment");
-            command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to endpoint.
-        /// </summary>
-        public Command BuildEndpointCommand() {
-            var command = new Command("endpoint");
-            command.Description = "Casts the previous resource to endpoint.";
-            var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
         /// <summary>
         /// Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.
         /// </summary>
@@ -100,22 +80,22 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("device%2Did", deviceId);
-                requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
-                requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
+                if (deviceId is not null) requestInfo.PathParameters.Add("device%2Did", deviceId);
+                if (directoryObjectId is not null) requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
+                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -123,10 +103,30 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Item {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to appRoleAssignment.
+        /// </summary>
+        public Command BuildMicrosoftGraphAppRoleAssignmentCommand() {
+            var command = new Command("microsoft-graph-app-role-assignment");
+            command.Description = "Casts the previous resource to appRoleAssignment.";
+            var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to endpoint.
+        /// </summary>
+        public Command BuildMicrosoftGraphEndpointCommand() {
+            var command = new Command("microsoft-graph-endpoint");
+            command.Description = "Casts the previous resource to endpoint.";
+            var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildServicePrincipalCommand() {
-            var command = new Command("service-principal");
+        public Command BuildMicrosoftGraphServicePrincipalCommand() {
+            var command = new Command("microsoft-graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -135,8 +135,8 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildUserCommand() {
-            var command = new Command("user");
+        public Command BuildMicrosoftGraphUserCommand() {
+            var command = new Command("microsoft-graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());

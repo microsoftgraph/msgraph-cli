@@ -41,11 +41,11 @@ namespace ApiSdk.Agreements.Item {
             return command;
         }
         /// <summary>
-        /// Delete entity from agreements by key (id)
+        /// Delete entity from agreements
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from agreements by key (id)";
+            command.Description = "Delete entity from agreements";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
             };
@@ -62,8 +62,8 @@ namespace ApiSdk.Agreements.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("agreement%2Did", agreementId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (agreementId is not null) requestInfo.PathParameters.Add("agreement%2Did", agreementId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -100,11 +100,11 @@ namespace ApiSdk.Agreements.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from agreements by key (id)
+        /// Get entity from agreements by key
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from agreements by key (id)";
+            command.Description = "Get entity from agreements by key";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
             };
@@ -134,19 +134,19 @@ namespace ApiSdk.Agreements.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
-                requestInfo.PathParameters.Add("agreement%2Did", agreementId);
+                if (agreementId is not null) requestInfo.PathParameters.Add("agreement%2Did", agreementId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -154,11 +154,11 @@ namespace ApiSdk.Agreements.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in agreements by key (id)
+        /// Update entity in agreements
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in agreements by key (id)";
+            command.Description = "Update entity in agreements";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
             };
@@ -183,25 +183,26 @@ namespace ApiSdk.Agreements.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var agreementId = invocationContext.ParseResult.GetValueForOption(agreementIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Agreement>(Agreement.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("agreement%2Did", agreementId);
+                if (agreementId is not null) requestInfo.PathParameters.Add("agreement%2Did", agreementId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -222,7 +223,7 @@ namespace ApiSdk.Agreements.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from agreements by key (id)
+        /// Delete entity from agreements
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +247,7 @@ namespace ApiSdk.Agreements.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from agreements by key (id)
+        /// Get entity from agreements by key
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -272,7 +273,7 @@ namespace ApiSdk.Agreements.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in agreements by key (id)
+        /// Update entity in agreements
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -316,7 +317,7 @@ namespace ApiSdk.Agreements.Item {
             }
         }
         /// <summary>
-        /// Get entity from agreements by key (id)
+        /// Get entity from agreements by key
         /// </summary>
         public class AgreementItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

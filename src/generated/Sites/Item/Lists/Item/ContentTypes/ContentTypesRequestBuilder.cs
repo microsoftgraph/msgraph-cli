@@ -1,10 +1,10 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Sites.Item.Lists.Item.ContentTypes.AddCopy;
-using ApiSdk.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Count;
-using ApiSdk.Sites.Item.Lists.Item.ContentTypes.GetCompatibleHubContentTypes;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item;
+using ApiSdk.Sites.Item.Lists.Item.ContentTypes.MicrosoftGraphAddCopy;
+using ApiSdk.Sites.Item.Lists.Item.ContentTypes.MicrosoftGraphAddCopyFromContentTypeHub;
+using ApiSdk.Sites.Item.Lists.Item.ContentTypes.MicrosoftGraphGetCompatibleHubContentTypes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -30,43 +30,24 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the addCopy method.
-        /// </summary>
-        public Command BuildAddCopyCommand() {
-            var command = new Command("add-copy");
-            command.Description = "Provides operations to call the addCopy method.";
-            var builder = new AddCopyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the addCopyFromContentTypeHub method.
-        /// </summary>
-        public Command BuildAddCopyFromContentTypeHubCommand() {
-            var command = new Command("add-copy-from-content-type-hub");
-            command.Description = "Provides operations to call the addCopyFromContentTypeHub method.";
-            var builder = new AddCopyFromContentTypeHubRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the contentTypes property of the microsoft.graph.list entity.
         /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ContentTypeItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAssociateWithHubSitesCommand());
             command.AddCommand(builder.BuildBaseCommand());
             command.AddCommand(builder.BuildBaseTypesCommand());
             command.AddCommand(builder.BuildColumnLinksCommand());
             command.AddCommand(builder.BuildColumnPositionsCommand());
             command.AddCommand(builder.BuildColumnsCommand());
-            command.AddCommand(builder.BuildCopyToDefaultContentLocationCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAssociateWithHubSitesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCopyToDefaultContentLocationCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphIsPublishedCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphPublishCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphUnpublishCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPublishCommand());
-            command.AddCommand(builder.BuildUnpublishCommand());
             return command;
         }
         /// <summary>
@@ -114,26 +95,27 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
             command.SetHandler(async (invocationContext) => {
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
                 var listId = invocationContext.ParseResult.GetValueForOption(listIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ContentType>(ContentType.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("list%2Did", listId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -146,7 +128,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of [contentType][contentType] resources in a [list][].";
+            command.Description = "Get the collection of [contentType][contentType] resources in a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-list-contenttypes?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -221,9 +203,9 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -235,8 +217,8 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("list%2Did", listId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -248,13 +230,43 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the addCopy method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAddCopyCommand() {
+            var command = new Command("microsoft-graph-add-copy");
+            command.Description = "Provides operations to call the addCopy method.";
+            var builder = new AddCopyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the addCopyFromContentTypeHub method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAddCopyFromContentTypeHubCommand() {
+            var command = new Command("microsoft-graph-add-copy-from-content-type-hub");
+            command.Description = "Provides operations to call the addCopyFromContentTypeHub method.";
+            var builder = new AddCopyFromContentTypeHubRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getCompatibleHubContentTypes method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetCompatibleHubContentTypesCommand() {
+            var command = new Command("microsoft-graph-get-compatible-hub-content-types");
+            command.Description = "Provides operations to call the getCompatibleHubContentTypes method.";
+            var builder = new GetCompatibleHubContentTypesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -269,12 +281,6 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the getCompatibleHubContentTypes method.
-        /// </summary>
-        public GetCompatibleHubContentTypesRequestBuilder GetCompatibleHubContentTypes() {
-            return new GetCompatibleHubContentTypesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Get the collection of [contentType][contentType] resources in a [list][].

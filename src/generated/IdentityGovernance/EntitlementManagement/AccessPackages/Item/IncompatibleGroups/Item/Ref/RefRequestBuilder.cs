@@ -56,9 +56,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
                 var requestInfo = ToDeleteRequestInformation(q => {
                     if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
-                requestInfo.PathParameters.Add("accessPackage%2Did", accessPackageId);
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (accessPackageId is not null) requestInfo.PathParameters.Add("accessPackage%2Did", accessPackageId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

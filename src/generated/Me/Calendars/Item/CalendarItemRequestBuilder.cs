@@ -1,8 +1,8 @@
-using ApiSdk.Me.Calendars.Item.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Me.Calendars.Item.CalendarPermissions;
 using ApiSdk.Me.Calendars.Item.CalendarView;
 using ApiSdk.Me.Calendars.Item.Events;
-using ApiSdk.Me.Calendars.Item.GetSchedule;
+using ApiSdk.Me.Calendars.Item.MicrosoftGraphAllowedCalendarSharingRolesWithUser;
+using ApiSdk.Me.Calendars.Item.MicrosoftGraphGetSchedule;
 using ApiSdk.Me.Calendars.Item.MultiValueExtendedProperties;
 using ApiSdk.Me.Calendars.Item.SingleValueExtendedProperties;
 using ApiSdk.Models;
@@ -32,14 +32,6 @@ namespace ApiSdk.Me.Calendars.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the allowedCalendarSharingRoles method.
-        /// </summary>
-        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
-        public AllowedCalendarSharingRolesWithUserRequestBuilder AllowedCalendarSharingRolesWithUser(string user) {
-            if(string.IsNullOrEmpty(user)) throw new ArgumentNullException(nameof(user));
-            return new AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters, RequestAdapter, user);
-        }
-        /// <summary>
         /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
         /// </summary>
         public Command BuildCalendarPermissionsCommand() {
@@ -62,6 +54,7 @@ namespace ApiSdk.Me.Calendars.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -86,8 +79,8 @@ namespace ApiSdk.Me.Calendars.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -108,6 +101,7 @@ namespace ApiSdk.Me.Calendars.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -145,19 +139,19 @@ namespace ApiSdk.Me.Calendars.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
-                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -167,8 +161,8 @@ namespace ApiSdk.Me.Calendars.Item {
         /// <summary>
         /// Provides operations to call the getSchedule method.
         /// </summary>
-        public Command BuildGetScheduleCommand() {
-            var command = new Command("get-schedule");
+        public Command BuildMicrosoftGraphGetScheduleCommand() {
+            var command = new Command("microsoft-graph-get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
             var builder = new GetScheduleRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -217,25 +211,26 @@ namespace ApiSdk.Me.Calendars.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Calendar>(ApiSdk.Models.Calendar.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -267,6 +262,14 @@ namespace ApiSdk.Me.Calendars.Item {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Provides operations to call the allowedCalendarSharingRoles method.
+        /// </summary>
+        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
+        public AllowedCalendarSharingRolesWithUserRequestBuilder MicrosoftGraphAllowedCalendarSharingRolesWithUser(string user) {
+            if(string.IsNullOrEmpty(user)) throw new ArgumentNullException(nameof(user));
+            return new AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters, RequestAdapter, user);
         }
         /// <summary>
         /// Delete navigation property calendars for me

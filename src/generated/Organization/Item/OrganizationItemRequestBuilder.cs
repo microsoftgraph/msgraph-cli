@@ -2,13 +2,13 @@ using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Organization.Item.Branding;
 using ApiSdk.Organization.Item.CertificateBasedAuthConfiguration;
-using ApiSdk.Organization.Item.CheckMemberGroups;
-using ApiSdk.Organization.Item.CheckMemberObjects;
 using ApiSdk.Organization.Item.Extensions;
-using ApiSdk.Organization.Item.GetMemberGroups;
-using ApiSdk.Organization.Item.GetMemberObjects;
-using ApiSdk.Organization.Item.Restore;
-using ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority;
+using ApiSdk.Organization.Item.MicrosoftGraphCheckMemberGroups;
+using ApiSdk.Organization.Item.MicrosoftGraphCheckMemberObjects;
+using ApiSdk.Organization.Item.MicrosoftGraphGetMemberGroups;
+using ApiSdk.Organization.Item.MicrosoftGraphGetMemberObjects;
+using ApiSdk.Organization.Item.MicrosoftGraphRestore;
+using ApiSdk.Organization.Item.MicrosoftGraphSetMobileDeviceManagementAuthority;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -62,31 +62,11 @@ namespace ApiSdk.Organization.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildCheckMemberGroupsCommand() {
-            var command = new Command("check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildCheckMemberObjectsCommand() {
-            var command = new Command("check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Delete entity from organization by key (id)
+        /// Delete entity from organization
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from organization by key (id)";
+            command.Description = "Delete entity from organization";
             // Create options for all the parameters
             var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
             };
@@ -103,8 +83,8 @@ namespace ApiSdk.Organization.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("organization%2Did", organizationId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -133,7 +113,7 @@ namespace ApiSdk.Organization.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of the currently authenticated organization. Since the **organization** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in an **organization** instance.";
+            command.Description = "Get the properties and relationships of the currently authenticated organization. Since the **organization** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in an **organization** instance.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organization-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
             };
@@ -169,20 +149,20 @@ namespace ApiSdk.Organization.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -190,10 +170,30 @@ namespace ApiSdk.Organization.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
+            var command = new Command("microsoft-graph-check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
+            var command = new Command("microsoft-graph-check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildGetMemberGroupsCommand() {
-            var command = new Command("get-member-groups");
+        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
+            var command = new Command("microsoft-graph-get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -202,10 +202,30 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildGetMemberObjectsCommand() {
-            var command = new Command("get-member-objects");
+        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
+            var command = new Command("microsoft-graph-get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRestoreCommand() {
+            var command = new Command("microsoft-graph-restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setMobileDeviceManagementAuthority method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSetMobileDeviceManagementAuthorityCommand() {
+            var command = new Command("microsoft-graph-set-mobile-device-management-authority");
+            command.Description = "Provides operations to call the setMobileDeviceManagementAuthority method.";
+            var builder = new SetMobileDeviceManagementAuthorityRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -215,7 +235,7 @@ namespace ApiSdk.Organization.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of the currently authenticated organization. In this case, `organization` is defined as a collection of exactly one record, and so its **ID** must be specified in the request.  The **ID** is also known as the **tenantId** of the organization.";
+            command.Description = "Update the properties of the currently authenticated organization. In this case, `organization` is defined as a collection of exactly one record, and so its **ID** must be specified in the request.  The **ID** is also known as the **tenantId** of the organization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organization-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
             };
@@ -240,49 +260,30 @@ namespace ApiSdk.Organization.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var organizationId = invocationContext.ParseResult.GetValueForOption(organizationIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Organization>(ApiSdk.Models.Organization.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildRestoreCommand() {
-            var command = new Command("restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setMobileDeviceManagementAuthority method.
-        /// </summary>
-        public Command BuildSetMobileDeviceManagementAuthorityCommand() {
-            var command = new Command("set-mobile-device-management-authority");
-            command.Description = "Provides operations to call the setMobileDeviceManagementAuthority method.";
-            var builder = new SetMobileDeviceManagementAuthorityRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -299,7 +300,7 @@ namespace ApiSdk.Organization.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from organization by key (id)
+        /// Delete entity from organization
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>
-    /// Represents a particular service offered by a booking business.
-    /// </summary>
     public class BookingService : Entity, IParsable {
         /// <summary>Additional information that is sent to the customer when an appointment is confirmed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

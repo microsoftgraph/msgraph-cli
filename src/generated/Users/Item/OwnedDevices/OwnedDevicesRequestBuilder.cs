@@ -1,10 +1,10 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Users.Item.OwnedDevices.AppRoleAssignment;
 using ApiSdk.Users.Item.OwnedDevices.Count;
-using ApiSdk.Users.Item.OwnedDevices.Device;
-using ApiSdk.Users.Item.OwnedDevices.Endpoint;
 using ApiSdk.Users.Item.OwnedDevices.Item;
+using ApiSdk.Users.Item.OwnedDevices.MicrosoftGraphAppRoleAssignment;
+using ApiSdk.Users.Item.OwnedDevices.MicrosoftGraphDevice;
+using ApiSdk.Users.Item.OwnedDevices.MicrosoftGraphEndpoint;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -30,26 +30,15 @@ namespace ApiSdk.Users.Item.OwnedDevices {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Casts the previous resource to appRoleAssignment.
-        /// </summary>
-        public Command BuildAppRoleAssignmentCommand() {
-            var command = new Command("app-role-assignment");
-            command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the ownedDevices property of the microsoft.graph.user entity.
         /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildDeviceCommand());
-            command.AddCommand(builder.BuildEndpointCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAppRoleAssignmentCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphEndpointCommand());
             return command;
         }
         /// <summary>
@@ -63,34 +52,12 @@ namespace ApiSdk.Users.Item.OwnedDevices {
             return command;
         }
         /// <summary>
-        /// Casts the previous resource to device.
-        /// </summary>
-        public Command BuildDeviceCommand() {
-            var command = new Command("device");
-            command.Description = "Casts the previous resource to device.";
-            var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to endpoint.
-        /// </summary>
-        public Command BuildEndpointCommand() {
-            var command = new Command("endpoint");
-            command.Description = "Casts the previous resource to endpoint.";
-            var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-owneddevices?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).";
+            command.Description = "Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-owneddevices?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -166,9 +133,9 @@ namespace ApiSdk.Users.Item.OwnedDevices {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -180,8 +147,8 @@ namespace ApiSdk.Users.Item.OwnedDevices {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -193,13 +160,46 @@ namespace ApiSdk.Users.Item.OwnedDevices {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to appRoleAssignment.
+        /// </summary>
+        public Command BuildMicrosoftGraphAppRoleAssignmentCommand() {
+            var command = new Command("microsoft-graph-app-role-assignment");
+            command.Description = "Casts the previous resource to appRoleAssignment.";
+            var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to device.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeviceCommand() {
+            var command = new Command("microsoft-graph-device");
+            command.Description = "Casts the previous resource to device.";
+            var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to endpoint.
+        /// </summary>
+        public Command BuildMicrosoftGraphEndpointCommand() {
+            var command = new Command("microsoft-graph-endpoint");
+            command.Description = "Casts the previous resource to endpoint.";
+            var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

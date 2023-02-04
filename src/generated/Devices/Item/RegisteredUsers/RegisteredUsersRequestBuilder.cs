@@ -1,9 +1,9 @@
-using ApiSdk.Devices.Item.RegisteredUsers.AppRoleAssignment;
 using ApiSdk.Devices.Item.RegisteredUsers.Count;
-using ApiSdk.Devices.Item.RegisteredUsers.Endpoint;
 using ApiSdk.Devices.Item.RegisteredUsers.Item;
-using ApiSdk.Devices.Item.RegisteredUsers.ServicePrincipal;
-using ApiSdk.Devices.Item.RegisteredUsers.User;
+using ApiSdk.Devices.Item.RegisteredUsers.MicrosoftGraphAppRoleAssignment;
+using ApiSdk.Devices.Item.RegisteredUsers.MicrosoftGraphEndpoint;
+using ApiSdk.Devices.Item.RegisteredUsers.MicrosoftGraphServicePrincipal;
+using ApiSdk.Devices.Item.RegisteredUsers.MicrosoftGraphUser;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,27 +31,16 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Casts the previous resource to appRoleAssignment.
-        /// </summary>
-        public Command BuildAppRoleAssignmentCommand() {
-            var command = new Command("app-role-assignment");
-            command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.
         /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildEndpointCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildServicePrincipalCommand());
-            command.AddCommand(builder.BuildUserCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAppRoleAssignmentCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphEndpointCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
             return command;
         }
         /// <summary>
@@ -65,23 +54,12 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
             return command;
         }
         /// <summary>
-        /// Casts the previous resource to endpoint.
-        /// </summary>
-        public Command BuildEndpointCommand() {
-            var command = new Command("endpoint");
-            command.Description = "Casts the previous resource to endpoint.";
-            var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/device-list-registeredusers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.";
+            command.Description = "Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-list-registeredusers?view=graph-rest-1.0";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
             };
@@ -157,9 +135,9 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -171,8 +149,8 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("device%2Did", deviceId);
-                requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
+                if (deviceId is not null) requestInfo.PathParameters.Add("device%2Did", deviceId);
+                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -184,7 +162,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -194,10 +172,32 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to appRoleAssignment.
+        /// </summary>
+        public Command BuildMicrosoftGraphAppRoleAssignmentCommand() {
+            var command = new Command("microsoft-graph-app-role-assignment");
+            command.Description = "Casts the previous resource to appRoleAssignment.";
+            var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to endpoint.
+        /// </summary>
+        public Command BuildMicrosoftGraphEndpointCommand() {
+            var command = new Command("microsoft-graph-endpoint");
+            command.Description = "Casts the previous resource to endpoint.";
+            var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildServicePrincipalCommand() {
-            var command = new Command("service-principal");
+        public Command BuildMicrosoftGraphServicePrincipalCommand() {
+            var command = new Command("microsoft-graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCountCommand());
@@ -207,8 +207,8 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildUserCommand() {
-            var command = new Command("user");
+        public Command BuildMicrosoftGraphUserCommand() {
+            var command = new Command("microsoft-graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCountCommand());

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class AttachmentBase : Entity, IParsable {
-        /// <summary>The contentType property</summary>
+        /// <summary>The MIME type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ContentType { get; set; }
@@ -13,9 +13,9 @@ namespace ApiSdk.Models {
 #else
         public string ContentType { get; set; }
 #endif
-        /// <summary>The lastModifiedDateTime property</summary>
+        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>The name property</summary>
+        /// <summary>The display name of the attachment. This does not need to be the actual file name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The size property</summary>
+        /// <summary>The length of the attachment in bytes.</summary>
         public int? Size { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

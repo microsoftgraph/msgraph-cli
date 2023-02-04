@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class OpenTypeExtension : Extension, IParsable {
-        /// <summary>A unique text identifier for an open type data extension. Required.</summary>
+        /// <summary>A unique text identifier for an open type data extension. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExtensionName { get; set; }

@@ -1,6 +1,6 @@
-using ApiSdk.Communications.Calls.Item.Participants.Item.Mute;
-using ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic;
-using ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic;
+using ApiSdk.Communications.Calls.Item.Participants.Item.MicrosoftGraphMute;
+using ApiSdk.Communications.Calls.Item.Participants.Item.MicrosoftGraphStartHoldMusic;
+using ApiSdk.Communications.Calls.Item.Participants.Item.MicrosoftGraphStopHoldMusic;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,9 +54,9 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("call%2Did", callId);
-                requestInfo.PathParameters.Add("participant%2Did", participantId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (callId is not null) requestInfo.PathParameters.Add("call%2Did", callId);
+                if (participantId is not null) requestInfo.PathParameters.Add("participant%2Did", participantId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,21 +112,21 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("call%2Did", callId);
-                requestInfo.PathParameters.Add("participant%2Did", participantId);
+                if (callId is not null) requestInfo.PathParameters.Add("call%2Did", callId);
+                if (participantId is not null) requestInfo.PathParameters.Add("participant%2Did", participantId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -136,10 +136,30 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
         /// <summary>
         /// Provides operations to call the mute method.
         /// </summary>
-        public Command BuildMuteCommand() {
-            var command = new Command("mute");
+        public Command BuildMicrosoftGraphMuteCommand() {
+            var command = new Command("microsoft-graph-mute");
             command.Description = "Provides operations to call the mute method.";
             var builder = new MuteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the startHoldMusic method.
+        /// </summary>
+        public Command BuildMicrosoftGraphStartHoldMusicCommand() {
+            var command = new Command("microsoft-graph-start-hold-music");
+            command.Description = "Provides operations to call the startHoldMusic method.";
+            var builder = new StartHoldMusicRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stopHoldMusic method.
+        /// </summary>
+        public Command BuildMicrosoftGraphStopHoldMusicCommand() {
+            var command = new Command("microsoft-graph-stop-hold-music");
+            command.Description = "Provides operations to call the stopHoldMusic method.";
+            var builder = new StopHoldMusicRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -178,50 +198,31 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
             command.SetHandler(async (invocationContext) => {
                 var callId = invocationContext.ParseResult.GetValueForOption(callIdOption);
                 var participantId = invocationContext.ParseResult.GetValueForOption(participantIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Participant>(Participant.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("call%2Did", callId);
-                requestInfo.PathParameters.Add("participant%2Did", participantId);
+                if (callId is not null) requestInfo.PathParameters.Add("call%2Did", callId);
+                if (participantId is not null) requestInfo.PathParameters.Add("participant%2Did", participantId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the startHoldMusic method.
-        /// </summary>
-        public Command BuildStartHoldMusicCommand() {
-            var command = new Command("start-hold-music");
-            command.Description = "Provides operations to call the startHoldMusic method.";
-            var builder = new StartHoldMusicRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the stopHoldMusic method.
-        /// </summary>
-        public Command BuildStopHoldMusicCommand() {
-            var command = new Command("stop-hold-music");
-            command.Description = "Provides operations to call the stopHoldMusic method.";
-            var builder = new StopHoldMusicRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

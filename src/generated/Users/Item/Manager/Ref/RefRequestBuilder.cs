@@ -46,8 +46,8 @@ namespace ApiSdk.Users.Item.Manager.Ref {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -63,7 +63,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node.";
+            command.Description = "Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-manager?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -71,16 +71,16 @@ namespace ApiSdk.Users.Item.Manager.Ref {
             command.AddOption(userIdOption);
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 var formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 await formatter.WriteOutputAsync(response, null, cancellationToken);
             });
@@ -103,14 +103,15 @@ namespace ApiSdk.Users.Item.Manager.Ref {
             command.AddOption(bodyOption);
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ReferenceUpdate>(ReferenceUpdate.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPutRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

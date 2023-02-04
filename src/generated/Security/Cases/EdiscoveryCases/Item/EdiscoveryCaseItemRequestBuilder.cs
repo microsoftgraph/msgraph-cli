@@ -1,10 +1,10 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Close;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityClose;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityReopen;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Reopen;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings;
@@ -34,28 +34,18 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the close method.
-        /// </summary>
-        public Command BuildCloseCommand() {
-            var command = new Command("close");
-            command.Description = "Provides operations to call the close method.";
-            var builder = new CloseRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
         public Command BuildCustodiansCommand() {
             var command = new Command("custodians");
             command.Description = "Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new CustodiansRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildApplyHoldCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRemoveHoldCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSecurityApplyHoldCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSecurityRemoveHoldCommand());
             return command;
         }
         /// <summary>
@@ -80,8 +70,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -132,24 +122,44 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the close method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityCloseCommand() {
+            var command = new Command("microsoft-graph-security-close");
+            command.Description = "Provides operations to call the close method.";
+            var builder = new CloseRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reopen method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityReopenCommand() {
+            var command = new Command("microsoft-graph-security-reopen");
+            command.Description = "Provides operations to call the reopen method.";
+            var builder = new ReopenRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -159,12 +169,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             var command = new Command("noncustodial-data-sources");
             command.Description = "Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new NoncustodialDataSourcesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildApplyHoldCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRemoveHoldCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSecurityApplyHoldCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSecurityRemoveHoldCommand());
             return command;
         }
         /// <summary>
@@ -210,39 +220,30 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var ediscoveryCaseId = invocationContext.ParseResult.GetValueForOption(ediscoveryCaseIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EdiscoveryCase>(EdiscoveryCase.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reopen method.
-        /// </summary>
-        public Command BuildReopenCommand() {
-            var command = new Command("reopen");
-            command.Description = "Provides operations to call the reopen method.";
-            var builder = new ReopenRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -280,8 +281,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             var builder = new SettingsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSecurityResetToDefaultCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildResetToDefaultCommand());
             return command;
         }
         /// <summary>
@@ -295,6 +296,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSecurityAsHierarchyCommand());
             return command;
         }
         /// <summary>

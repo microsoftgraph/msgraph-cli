@@ -1,10 +1,10 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.Application;
-using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.AppRoleAssignment;
-using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.Endpoint;
-using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.Group;
-using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.ServicePrincipal;
+using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.MicrosoftGraphApplication;
+using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.MicrosoftGraphAppRoleAssignment;
+using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.MicrosoftGraphEndpoint;
+using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.MicrosoftGraphGroup;
+using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.MicrosoftGraphServicePrincipal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -29,36 +29,6 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Casts the previous resource to application.
-        /// </summary>
-        public Command BuildApplicationCommand() {
-            var command = new Command("application");
-            command.Description = "Casts the previous resource to application.";
-            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to appRoleAssignment.
-        /// </summary>
-        public Command BuildAppRoleAssignmentCommand() {
-            var command = new Command("app-role-assignment");
-            command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to endpoint.
-        /// </summary>
-        public Command BuildEndpointCommand() {
-            var command = new Command("endpoint");
-            command.Description = "Casts the previous resource to endpoint.";
-            var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
         /// <summary>
         /// Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         /// </summary>
@@ -105,21 +75,21 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
-                requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
+                if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                if (directoryObjectId is not null) requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -127,10 +97,40 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to application.
+        /// </summary>
+        public Command BuildMicrosoftGraphApplicationCommand() {
+            var command = new Command("microsoft-graph-application");
+            command.Description = "Casts the previous resource to application.";
+            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to appRoleAssignment.
+        /// </summary>
+        public Command BuildMicrosoftGraphAppRoleAssignmentCommand() {
+            var command = new Command("microsoft-graph-app-role-assignment");
+            command.Description = "Casts the previous resource to appRoleAssignment.";
+            var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to endpoint.
+        /// </summary>
+        public Command BuildMicrosoftGraphEndpointCommand() {
+            var command = new Command("microsoft-graph-endpoint");
+            command.Description = "Casts the previous resource to endpoint.";
+            var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGroupCommand() {
-            var command = new Command("group");
+        public Command BuildMicrosoftGraphGroupCommand() {
+            var command = new Command("microsoft-graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
@@ -139,8 +139,8 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildServicePrincipalCommand() {
-            var command = new Command("service-principal");
+        public Command BuildMicrosoftGraphServicePrincipalCommand() {
+            var command = new Command("microsoft-graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());

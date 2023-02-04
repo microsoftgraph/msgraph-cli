@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.Photos.Item.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property photos from groups";
+            command.Description = "Get media content for the navigation property photos from groups\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-photos?view=graph-rest-1.0";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
             };
@@ -48,13 +48,13 @@ namespace ApiSdk.Groups.Item.Photos.Item.Value {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("profilePhoto%2Did", profilePhotoId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (profilePhotoId is not null) requestInfo.PathParameters.Add("profilePhoto%2Did", profilePhotoId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
@@ -92,11 +92,12 @@ namespace ApiSdk.Groups.Item.Photos.Item.Value {
                 var profilePhotoId = invocationContext.ParseResult.GetValueForOption(profilePhotoIdOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                if (file is null || !file.Exists) return;
                 using var stream = file.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("profilePhoto%2Did", profilePhotoId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (profilePhotoId is not null) requestInfo.PathParameters.Add("profilePhoto%2Did", profilePhotoId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,8 +1,8 @@
-using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.AdditionalAccess;
-using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageId;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Count;
-using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.MicrosoftGraphAdditionalAccess;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.MicrosoftGraphAdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageId;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.MicrosoftGraphFilterByCurrentUserWithOn;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,22 +30,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the additionalAccess method.
-        /// </summary>
-        public AdditionalAccessRequestBuilder AdditionalAccess() {
-            return new AdditionalAccessRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the additionalAccess method.
-        /// </summary>
-        /// <param name="accessPackageId">Usage: accessPackageId=&apos;{accessPackageId}&apos;</param>
-        /// <param name="incompatibleAccessPackageId">Usage: incompatibleAccessPackageId=&apos;{incompatibleAccessPackageId}&apos;</param>
-        public AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageId(string accessPackageId, string incompatibleAccessPackageId) {
-            if(string.IsNullOrEmpty(accessPackageId)) throw new ArgumentNullException(nameof(accessPackageId));
-            if(string.IsNullOrEmpty(incompatibleAccessPackageId)) throw new ArgumentNullException(nameof(incompatibleAccessPackageId));
-            return new AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder(PathParameters, RequestAdapter, accessPackageId, incompatibleAccessPackageId);
-        }
-        /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
         public Command BuildCommand() {
@@ -55,8 +39,8 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             command.AddCommand(builder.BuildAssignmentPolicyCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphReprocessCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildReprocessCommand());
             command.AddCommand(builder.BuildTargetCommand());
             return command;
         }
@@ -95,24 +79,25 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AccessPackageAssignment>(AccessPackageAssignment.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -125,7 +110,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'`.";
+            command.Description = "In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagement-list-assignments?view=graph-rest-1.0";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -190,9 +175,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -215,13 +200,23 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the additionalAccess method.
+        /// </summary>
+        public Command BuildMicrosoftGraphAdditionalAccessCommand() {
+            var command = new Command("microsoft-graph-additional-access");
+            command.Description = "Provides operations to call the additionalAccess method.";
+            var builder = new AdditionalAccessRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -238,10 +233,20 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
+        /// Provides operations to call the additionalAccess method.
+        /// </summary>
+        /// <param name="accessPackageId">Usage: accessPackageId=&apos;{accessPackageId}&apos;</param>
+        /// <param name="incompatibleAccessPackageId">Usage: incompatibleAccessPackageId=&apos;{incompatibleAccessPackageId}&apos;</param>
+        public AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder MicrosoftGraphAdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageId(string accessPackageId, string incompatibleAccessPackageId) {
+            if(string.IsNullOrEmpty(accessPackageId)) throw new ArgumentNullException(nameof(accessPackageId));
+            if(string.IsNullOrEmpty(incompatibleAccessPackageId)) throw new ArgumentNullException(nameof(incompatibleAccessPackageId));
+            return new AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder(PathParameters, RequestAdapter, accessPackageId, incompatibleAccessPackageId);
+        }
+        /// <summary>
         /// Provides operations to call the filterByCurrentUser method.
         /// </summary>
         /// <param name="on">Usage: on=&apos;{on}&apos;</param>
-        public FilterByCurrentUserWithOnRequestBuilder FilterByCurrentUserWithOn(string on) {
+        public FilterByCurrentUserWithOnRequestBuilder MicrosoftGraphFilterByCurrentUserWithOn(string on) {
             if(string.IsNullOrEmpty(on)) throw new ArgumentNullException(nameof(on));
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }

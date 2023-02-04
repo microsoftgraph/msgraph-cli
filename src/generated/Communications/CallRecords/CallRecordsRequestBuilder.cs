@@ -1,7 +1,7 @@
 using ApiSdk.Communications.CallRecords.Count;
-using ApiSdk.Communications.CallRecords.GetDirectRoutingCallsWithFromDateTimeWithToDateTime;
-using ApiSdk.Communications.CallRecords.GetPstnCallsWithFromDateTimeWithToDateTime;
 using ApiSdk.Communications.CallRecords.Item;
+using ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTime;
+using ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTime;
 using ApiSdk.Models.CallRecords;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -75,24 +75,25 @@ namespace ApiSdk.Communications.CallRecords {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CallRecord>(CallRecord.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -169,9 +170,9 @@ namespace ApiSdk.Communications.CallRecords {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -194,7 +195,7 @@ namespace ApiSdk.Communications.CallRecords {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -221,7 +222,7 @@ namespace ApiSdk.Communications.CallRecords {
         /// </summary>
         /// <param name="fromDateTime">Usage: fromDateTime={fromDateTime}</param>
         /// <param name="toDateTime">Usage: toDateTime={toDateTime}</param>
-        public GetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder GetDirectRoutingCallsWithFromDateTimeWithToDateTime(DateTimeOffset? fromDateTime, DateTimeOffset? toDateTime) {
+        public GetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTime(DateTimeOffset? fromDateTime, DateTimeOffset? toDateTime) {
             _ = fromDateTime ?? throw new ArgumentNullException(nameof(fromDateTime));
             _ = toDateTime ?? throw new ArgumentNullException(nameof(toDateTime));
             return new GetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder(PathParameters, RequestAdapter, fromDateTime, toDateTime);
@@ -231,7 +232,7 @@ namespace ApiSdk.Communications.CallRecords {
         /// </summary>
         /// <param name="fromDateTime">Usage: fromDateTime={fromDateTime}</param>
         /// <param name="toDateTime">Usage: toDateTime={toDateTime}</param>
-        public GetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder GetPstnCallsWithFromDateTimeWithToDateTime(DateTimeOffset? fromDateTime, DateTimeOffset? toDateTime) {
+        public GetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTime(DateTimeOffset? fromDateTime, DateTimeOffset? toDateTime) {
             _ = fromDateTime ?? throw new ArgumentNullException(nameof(fromDateTime));
             _ = toDateTime ?? throw new ArgumentNullException(nameof(toDateTime));
             return new GetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(PathParameters, RequestAdapter, fromDateTime, toDateTime);

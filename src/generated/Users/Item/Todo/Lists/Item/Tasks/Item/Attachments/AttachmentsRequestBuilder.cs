@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Count;
-using ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.CreateUploadSession;
 using ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item;
+using ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.MicrosoftGraphCreateUploadSession;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -49,11 +49,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to attachments for users
+        /// Add a new taskFileAttachment object to a todoTask. This operation limits the size of the attachment you can add to under 3 MB. If the size of the file attachments is more than 3 MB, create an upload session to upload the attachments.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/todotask-post-attachments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to attachments for users";
+            command.Description = "Add a new taskFileAttachment object to a todoTask. This operation limits the size of the attachment you can add to under 3 MB. If the size of the file attachments is more than 3 MB, create an upload session to upload the attachments.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todotask-post-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -88,27 +89,28 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var todoTaskListId = invocationContext.ParseResult.GetValueForOption(todoTaskListIdOption);
                 var todoTaskId = invocationContext.ParseResult.GetValueForOption(todoTaskIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AttachmentBase>(AttachmentBase.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
-                requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (todoTaskListId is not null) requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
+                if (todoTaskId is not null) requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -116,21 +118,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the createUploadSession method.
-        /// </summary>
-        public Command BuildCreateUploadSessionCommand() {
-            var command = new Command("create-upload-session");
-            command.Description = "Provides operations to call the createUploadSession method.";
-            var builder = new CreateUploadSessionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Get attachments from users
+        /// Get a list of the taskFileAttachment objects and their properties. The **contentBytes** property will not be returned in the response. Use the Get attachment API to view the **contentBytes**.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/todotask-list-attachments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get attachments from users";
+            command.Description = "Get a list of the taskFileAttachment objects and their properties. The **contentBytes** property will not be returned in the response. Use the Get attachment API to view the **contentBytes**.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todotask-list-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -199,9 +192,9 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -211,9 +204,9 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
-                requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (todoTaskListId is not null) requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
+                if (todoTaskId is not null) requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -225,13 +218,23 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createUploadSession method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCreateUploadSessionCommand() {
+            var command = new Command("microsoft-graph-create-upload-session");
+            command.Description = "Provides operations to call the createUploadSession method.";
+            var builder = new CreateUploadSessionRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -248,7 +251,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get attachments from users
+        /// Get a list of the taskFileAttachment objects and their properties. The **contentBytes** property will not be returned in the response. Use the Get attachment API to view the **contentBytes**.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +277,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to attachments for users
+        /// Add a new taskFileAttachment object to a todoTask. This operation limits the size of the attachment you can add to under 3 MB. If the size of the file attachments is more than 3 MB, create an upload session to upload the attachments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -302,7 +305,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Get attachments from users
+        /// Get a list of the taskFileAttachment objects and their properties. The **contentBytes** property will not be returned in the response. Use the Get attachment API to view the **contentBytes**.
         /// </summary>
         public class AttachmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

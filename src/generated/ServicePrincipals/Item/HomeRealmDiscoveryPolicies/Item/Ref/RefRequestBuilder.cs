@@ -56,9 +56,9 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Item.Ref {
                 var requestInfo = ToDeleteRequestInformation(q => {
                     if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
-                requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
-                requestInfo.PathParameters.Add("homeRealmDiscoveryPolicy%2Did", homeRealmDiscoveryPolicyId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                if (homeRealmDiscoveryPolicyId is not null) requestInfo.PathParameters.Add("homeRealmDiscoveryPolicy%2Did", homeRealmDiscoveryPolicyId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

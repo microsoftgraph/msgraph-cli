@@ -1,9 +1,9 @@
 using ApiSdk.Education.Me.Assignments.Item.Categories;
-using ApiSdk.Education.Me.Assignments.Item.Publish;
+using ApiSdk.Education.Me.Assignments.Item.MicrosoftGraphPublish;
+using ApiSdk.Education.Me.Assignments.Item.MicrosoftGraphSetUpFeedbackResourcesFolder;
+using ApiSdk.Education.Me.Assignments.Item.MicrosoftGraphSetUpResourcesFolder;
 using ApiSdk.Education.Me.Assignments.Item.Resources;
 using ApiSdk.Education.Me.Assignments.Item.Rubric;
-using ApiSdk.Education.Me.Assignments.Item.SetUpFeedbackResourcesFolder;
-using ApiSdk.Education.Me.Assignments.Item.SetUpResourcesFolder;
 using ApiSdk.Education.Me.Assignments.Item.Submissions;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -42,6 +42,7 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             command.AddCommand(builder.BuildRefCommand());
             return command;
         }
@@ -67,8 +68,8 @@ namespace ApiSdk.Education.Me.Assignments.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -119,24 +120,54 @@ namespace ApiSdk.Education.Me.Assignments.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the publish method.
+        /// </summary>
+        public Command BuildMicrosoftGraphPublishCommand() {
+            var command = new Command("microsoft-graph-publish");
+            command.Description = "Provides operations to call the publish method.";
+            var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUpFeedbackResourcesFolder method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSetUpFeedbackResourcesFolderCommand() {
+            var command = new Command("microsoft-graph-set-up-feedback-resources-folder");
+            command.Description = "Provides operations to call the setUpFeedbackResourcesFolder method.";
+            var builder = new SetUpFeedbackResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUpResourcesFolder method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSetUpResourcesFolderCommand() {
+            var command = new Command("microsoft-graph-set-up-resources-folder");
+            command.Description = "Provides operations to call the setUpResourcesFolder method.";
+            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -169,39 +200,30 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var educationAssignmentId = invocationContext.ParseResult.GetValueForOption(educationAssignmentIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationAssignment>(EducationAssignment.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the publish method.
-        /// </summary>
-        public Command BuildPublishCommand() {
-            var command = new Command("publish");
-            command.Description = "Provides operations to call the publish method.";
-            var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -228,26 +250,6 @@ namespace ApiSdk.Education.Me.Assignments.Item {
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildRefCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setUpFeedbackResourcesFolder method.
-        /// </summary>
-        public Command BuildSetUpFeedbackResourcesFolderCommand() {
-            var command = new Command("set-up-feedback-resources-folder");
-            command.Description = "Provides operations to call the setUpFeedbackResourcesFolder method.";
-            var builder = new SetUpFeedbackResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setUpResourcesFolder method.
-        /// </summary>
-        public Command BuildSetUpResourcesFolderCommand() {
-            var command = new Command("set-up-resources-folder");
-            command.Description = "Provides operations to call the setUpResourcesFolder method.";
-            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

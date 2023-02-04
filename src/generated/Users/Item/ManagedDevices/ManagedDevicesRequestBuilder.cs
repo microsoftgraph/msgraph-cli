@@ -32,31 +32,31 @@ namespace ApiSdk.Users.Item.ManagedDevices {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ManagedDeviceItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildBypassActivationLockCommand());
-            command.AddCommand(builder.BuildCleanWindowsDeviceCommand());
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDeleteUserFromSharedAppleDeviceCommand());
             command.AddCommand(builder.BuildDeviceCategoryCommand());
             command.AddCommand(builder.BuildDeviceCompliancePolicyStatesCommand());
             command.AddCommand(builder.BuildDeviceConfigurationStatesCommand());
-            command.AddCommand(builder.BuildDisableLostModeCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLocateDeviceCommand());
-            command.AddCommand(builder.BuildLogoutSharedAppleDeviceActiveUserCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphBypassActivationLockCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCleanWindowsDeviceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeleteUserFromSharedAppleDeviceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDisableLostModeCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphLocateDeviceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphLogoutSharedAppleDeviceActiveUserCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRebootNowCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRecoverPasscodeCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRemoteLockCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRequestRemoteAssistanceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphResetPasscodeCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRetireCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphShutDownCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSyncDeviceCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphUpdateWindowsDeviceAccountCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphWindowsDefenderScanCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphWindowsDefenderUpdateSignaturesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphWipeCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRebootNowCommand());
-            command.AddCommand(builder.BuildRecoverPasscodeCommand());
-            command.AddCommand(builder.BuildRemoteLockCommand());
-            command.AddCommand(builder.BuildRequestRemoteAssistanceCommand());
-            command.AddCommand(builder.BuildResetPasscodeCommand());
-            command.AddCommand(builder.BuildRetireCommand());
-            command.AddCommand(builder.BuildShutDownCommand());
-            command.AddCommand(builder.BuildSyncDeviceCommand());
-            command.AddCommand(builder.BuildUpdateWindowsDeviceAccountCommand());
             command.AddCommand(builder.BuildUsersCommand());
-            command.AddCommand(builder.BuildWindowsDefenderScanCommand());
-            command.AddCommand(builder.BuildWindowsDefenderUpdateSignaturesCommand());
-            command.AddCommand(builder.BuildWipeCommand());
             return command;
         }
         /// <summary>
@@ -99,25 +99,26 @@ namespace ApiSdk.Users.Item.ManagedDevices {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedDevice>(ManagedDevice.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -199,9 +200,9 @@ namespace ApiSdk.Users.Item.ManagedDevices {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -213,7 +214,7 @@ namespace ApiSdk.Users.Item.ManagedDevices {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -225,7 +226,7 @@ namespace ApiSdk.Users.Item.ManagedDevices {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);

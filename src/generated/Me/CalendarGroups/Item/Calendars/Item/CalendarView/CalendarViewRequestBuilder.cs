@@ -1,6 +1,6 @@
 using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Count;
-using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Delta;
 using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item;
+using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,20 +33,20 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new EventItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAcceptCommand());
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildCalendarCommand());
-            command.AddCommand(builder.BuildCancelCommand());
-            command.AddCommand(builder.BuildDeclineCommand());
-            command.AddCommand(builder.BuildDismissReminderCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstancesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAcceptCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCancelCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeclineCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDismissReminderCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphForwardCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSnoozeReminderCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphTentativelyAcceptCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildSnoozeReminderCommand());
-            command.AddCommand(builder.BuildTentativelyAcceptCommand());
             return command;
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user's default calendar `(../me/calendarview)` or some other calendar of the user's.";
+            command.Description = "Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user's default calendar `(../me/calendarview)` or some other calendar of the user's.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0";
             // Create options for all the parameters
             var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
             };
@@ -129,9 +129,9 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -141,8 +141,8 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView {
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
                 });
-                requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
-                requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                if (calendarGroupId is not null) requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
+                if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -154,13 +154,23 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeltaCommand() {
+            var command = new Command("microsoft-graph-delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -175,12 +185,6 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public DeltaRequestBuilder Delta() {
-            return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user&apos;s default calendar `(../me/calendarview)` or some other calendar of the user&apos;s.

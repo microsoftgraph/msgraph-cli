@@ -7,9 +7,9 @@ namespace ApiSdk.Models {
     public class AttachmentInfo : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The attachmentType property</summary>
+        /// <summary>The type of the attachment. The possible values are: file, item, reference. Required.</summary>
         public ApiSdk.Models.AttachmentType? AttachmentType { get; set; }
-        /// <summary>The contentType property</summary>
+        /// <summary>The nature of the data in the attachment. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ContentType { get; set; }
@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
 #else
         public string ContentType { get; set; }
 #endif
-        /// <summary>The name property</summary>
+        /// <summary>The display name of the attachment. This can be a descriptive string and does not have to be the actual file name. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The size property</summary>
+        /// <summary>The length of the attachment in bytes. Required.</summary>
         public long? Size { get; set; }
         /// <summary>
         /// Instantiates a new attachmentInfo and sets the default values.

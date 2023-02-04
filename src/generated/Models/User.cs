@@ -255,6 +255,8 @@ namespace ApiSdk.Models {
 #else
         public string EmployeeId { get; set; }
 #endif
+        /// <summary>The employeeLeaveDateTime property</summary>
+        public DateTimeOffset? EmployeeLeaveDateTime { get; set; }
         /// <summary>Represents organization data (e.g. division and costCenter) associated with a user. Returned only on $select. Supports $filter (eq, ne, not , ge, le, in).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -925,6 +927,7 @@ namespace ApiSdk.Models {
                 {"drives", n => { Drives = n.GetCollectionOfObjectValues<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"employeeHireDate", n => { EmployeeHireDate = n.GetDateTimeOffsetValue(); } },
                 {"employeeId", n => { EmployeeId = n.GetStringValue(); } },
+                {"employeeLeaveDateTime", n => { EmployeeLeaveDateTime = n.GetDateTimeOffsetValue(); } },
                 {"employeeOrgData", n => { EmployeeOrgData = n.GetObjectValue<ApiSdk.Models.EmployeeOrgData>(ApiSdk.Models.EmployeeOrgData.CreateFromDiscriminatorValue); } },
                 {"employeeType", n => { EmployeeType = n.GetStringValue(); } },
                 {"events", n => { Events = n.GetCollectionOfObjectValues<Event>(Event.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -1052,6 +1055,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Drive>("drives", Drives);
             writer.WriteDateTimeOffsetValue("employeeHireDate", EmployeeHireDate);
             writer.WriteStringValue("employeeId", EmployeeId);
+            writer.WriteDateTimeOffsetValue("employeeLeaveDateTime", EmployeeLeaveDateTime);
             writer.WriteObjectValue<ApiSdk.Models.EmployeeOrgData>("employeeOrgData", EmployeeOrgData);
             writer.WriteStringValue("employeeType", EmployeeType);
             writer.WriteCollectionOfObjectValues<Event>("events", Events);

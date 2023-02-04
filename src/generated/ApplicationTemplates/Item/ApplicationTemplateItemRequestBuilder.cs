@@ -1,4 +1,4 @@
-using ApiSdk.ApplicationTemplates.Item.Instantiate;
+using ApiSdk.ApplicationTemplates.Item.MicrosoftGraphInstantiate;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,11 +26,11 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from applicationTemplates by key (id)
+        /// Delete entity from applicationTemplates
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from applicationTemplates by key (id)";
+            command.Description = "Delete entity from applicationTemplates";
             // Create options for all the parameters
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "key: id of applicationTemplate") {
             };
@@ -47,8 +47,8 @@ namespace ApiSdk.ApplicationTemplates.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("applicationTemplate%2Did", applicationTemplateId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (applicationTemplateId is not null) requestInfo.PathParameters.Add("applicationTemplate%2Did", applicationTemplateId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -64,7 +64,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of an applicationTemplate object.";
+            command.Description = "Retrieve the properties of an applicationTemplate object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/applicationtemplate-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "key: id of applicationTemplate") {
             };
@@ -100,20 +100,20 @@ namespace ApiSdk.ApplicationTemplates.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("applicationTemplate%2Did", applicationTemplateId);
+                if (applicationTemplateId is not null) requestInfo.PathParameters.Add("applicationTemplate%2Did", applicationTemplateId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -123,19 +123,19 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// <summary>
         /// Provides operations to call the instantiate method.
         /// </summary>
-        public Command BuildInstantiateCommand() {
-            var command = new Command("instantiate");
+        public Command BuildMicrosoftGraphInstantiateCommand() {
+            var command = new Command("microsoft-graph-instantiate");
             command.Description = "Provides operations to call the instantiate method.";
             var builder = new InstantiateRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
-        /// Update entity in applicationTemplates by key (id)
+        /// Update entity in applicationTemplates
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in applicationTemplates by key (id)";
+            command.Description = "Update entity in applicationTemplates";
             // Create options for all the parameters
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "key: id of applicationTemplate") {
             };
@@ -160,25 +160,26 @@ namespace ApiSdk.ApplicationTemplates.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var applicationTemplateId = invocationContext.ParseResult.GetValueForOption(applicationTemplateIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApplicationTemplate>(ApplicationTemplate.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("applicationTemplate%2Did", applicationTemplateId);
+                if (applicationTemplateId is not null) requestInfo.PathParameters.Add("applicationTemplate%2Did", applicationTemplateId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -199,7 +200,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from applicationTemplates by key (id)
+        /// Delete entity from applicationTemplates
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -249,7 +250,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in applicationTemplates by key (id)
+        /// Update entity in applicationTemplates
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

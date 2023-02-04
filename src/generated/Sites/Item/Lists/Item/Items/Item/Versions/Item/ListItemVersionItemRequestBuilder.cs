@@ -1,7 +1,7 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields;
-using ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.RestoreVersion;
+using ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.MicrosoftGraphRestoreVersion;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -63,11 +63,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("list%2Did", listId);
-                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
-                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
+                if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                if (listItemVersionId is not null) requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -145,27 +145,37 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("list%2Did", listId);
-                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
-                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
+                if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                if (listItemVersionId is not null) requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restoreVersion method.
+        /// </summary>
+        public Command BuildMicrosoftGraphRestoreVersionCommand() {
+            var command = new Command("microsoft-graph-restore-version");
+            command.Description = "Provides operations to call the restoreVersion method.";
+            var builder = new RestoreVersionRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -213,42 +223,33 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item {
                 var listId = invocationContext.ParseResult.GetValueForOption(listIdOption);
                 var listItemId = invocationContext.ParseResult.GetValueForOption(listItemIdOption);
                 var listItemVersionId = invocationContext.ParseResult.GetValueForOption(listItemVersionIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ListItemVersion>(ListItemVersion.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("list%2Did", listId);
-                requestInfo.PathParameters.Add("listItem%2Did", listItemId);
-                requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
+                if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                if (listItemVersionId is not null) requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restoreVersion method.
-        /// </summary>
-        public Command BuildRestoreVersionCommand() {
-            var command = new Command("restore-version");
-            command.Description = "Provides operations to call the restoreVersion method.";
-            var builder = new RestoreVersionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

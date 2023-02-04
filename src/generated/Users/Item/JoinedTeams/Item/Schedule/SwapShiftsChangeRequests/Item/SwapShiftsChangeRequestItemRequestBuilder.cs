@@ -56,10 +56,10 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests.I
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("swapShiftsChangeRequest%2Did", swapShiftsChangeRequestId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (swapShiftsChangeRequestId is not null) requestInfo.PathParameters.Add("swapShiftsChangeRequest%2Did", swapShiftsChangeRequestId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -120,22 +120,22 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests.I
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("swapShiftsChangeRequest%2Did", swapShiftsChangeRequestId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (swapShiftsChangeRequestId is not null) requestInfo.PathParameters.Add("swapShiftsChangeRequest%2Did", swapShiftsChangeRequestId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -182,27 +182,28 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests.I
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
                 var swapShiftsChangeRequestId = invocationContext.ParseResult.GetValueForOption(swapShiftsChangeRequestIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SwapShiftsChangeRequest>(SwapShiftsChangeRequest.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("swapShiftsChangeRequest%2Did", swapShiftsChangeRequestId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (swapShiftsChangeRequestId is not null) requestInfo.PathParameters.Add("swapShiftsChangeRequest%2Did", swapShiftsChangeRequestId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);

@@ -51,9 +51,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Rubric.Ref {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
-                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (educationClassId is not null) requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -69,7 +69,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Rubric.Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the educationRubric object attached to an educationAssignment, if one exists. Only teachers, students, and applications with application permissions can perform this operation.";
+            command.Description = "Get the educationRubric object attached to an educationAssignment, if one exists. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-get-rubric?view=graph-rest-1.0";
             // Create options for all the parameters
             var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
@@ -82,17 +82,17 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Rubric.Ref {
             command.SetHandler(async (invocationContext) => {
                 var educationClassId = invocationContext.ParseResult.GetValueForOption(educationClassIdOption);
                 var educationAssignmentId = invocationContext.ParseResult.GetValueForOption(educationAssignmentIdOption);
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
-                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                if (educationClassId is not null) requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 var formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 await formatter.WriteOutputAsync(response, null, cancellationToken);
             });
@@ -120,15 +120,16 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Rubric.Ref {
             command.SetHandler(async (invocationContext) => {
                 var educationClassId = invocationContext.ParseResult.GetValueForOption(educationClassIdOption);
                 var educationAssignmentId = invocationContext.ParseResult.GetValueForOption(educationAssignmentIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ReferenceUpdate>(ReferenceUpdate.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPutRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
-                requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                if (educationClassId is not null) requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

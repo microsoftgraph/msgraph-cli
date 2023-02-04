@@ -1,6 +1,6 @@
 using ApiSdk.Me.CalendarView.Count;
-using ApiSdk.Me.CalendarView.Delta;
 using ApiSdk.Me.CalendarView.Item;
+using ApiSdk.Me.CalendarView.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,20 +33,20 @@ namespace ApiSdk.Me.CalendarView {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new EventItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAcceptCommand());
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildCalendarCommand());
-            command.AddCommand(builder.BuildCancelCommand());
-            command.AddCommand(builder.BuildDeclineCommand());
-            command.AddCommand(builder.BuildDismissReminderCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstancesCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAcceptCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCancelCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDeclineCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphDismissReminderCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphForwardCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSnoozeReminderCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphTentativelyAcceptCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildSnoozeReminderCommand());
-            command.AddCommand(builder.BuildTentativelyAcceptCommand());
             return command;
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Me.CalendarView {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Read-only. Nullable.";
+            command.Description = "The calendar view for the calendar. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-calendarview?view=graph-rest-1.0";
             // Create options for all the parameters
             var startDateTimeOption = new Option<string>("--start-date-time", description: "The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00") {
             };
@@ -129,9 +129,9 @@ namespace ApiSdk.Me.CalendarView {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     if (!string.IsNullOrEmpty(startDateTime)) q.QueryParameters.StartDateTime = startDateTime;
@@ -154,13 +154,23 @@ namespace ApiSdk.Me.CalendarView {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeltaCommand() {
+            var command = new Command("microsoft-graph-delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -175,12 +185,6 @@ namespace ApiSdk.Me.CalendarView {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public DeltaRequestBuilder Delta() {
-            return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only. Nullable.

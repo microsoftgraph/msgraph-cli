@@ -1,10 +1,10 @@
 using ApiSdk.Domains.Item.DomainNameReferences;
 using ApiSdk.Domains.Item.FederationConfiguration;
-using ApiSdk.Domains.Item.ForceDelete;
-using ApiSdk.Domains.Item.Promote;
+using ApiSdk.Domains.Item.MicrosoftGraphForceDelete;
+using ApiSdk.Domains.Item.MicrosoftGraphPromote;
+using ApiSdk.Domains.Item.MicrosoftGraphVerify;
 using ApiSdk.Domains.Item.ServiceConfigurationRecords;
 using ApiSdk.Domains.Item.VerificationDnsRecords;
-using ApiSdk.Domains.Item.Verify;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,7 +37,7 @@ namespace ApiSdk.Domains.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a domain from a tenant.";
+            command.Description = "Deletes a domain from a tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };
@@ -54,8 +54,8 @@ namespace ApiSdk.Domains.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("domain%2Did", domainId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (domainId is not null) requestInfo.PathParameters.Add("domain%2Did", domainId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -91,22 +91,12 @@ namespace ApiSdk.Domains.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the forceDelete method.
-        /// </summary>
-        public Command BuildForceDeleteCommand() {
-            var command = new Command("force-delete");
-            command.Description = "Provides operations to call the forceDelete method.";
-            var builder = new ForceDeleteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Retrieve the properties and relationships of domain object.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/domain-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of domain object.";
+            command.Description = "Retrieve the properties and relationships of domain object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };
@@ -142,24 +132,54 @@ namespace ApiSdk.Domains.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("domain%2Did", domainId);
+                if (domainId is not null) requestInfo.PathParameters.Add("domain%2Did", domainId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the forceDelete method.
+        /// </summary>
+        public Command BuildMicrosoftGraphForceDeleteCommand() {
+            var command = new Command("microsoft-graph-force-delete");
+            command.Description = "Provides operations to call the forceDelete method.";
+            var builder = new ForceDeleteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the promote method.
+        /// </summary>
+        public Command BuildMicrosoftGraphPromoteCommand() {
+            var command = new Command("microsoft-graph-promote");
+            command.Description = "Provides operations to call the promote method.";
+            var builder = new PromoteRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the verify method.
+        /// </summary>
+        public Command BuildMicrosoftGraphVerifyCommand() {
+            var command = new Command("microsoft-graph-verify");
+            command.Description = "Provides operations to call the verify method.";
+            var builder = new VerifyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -168,7 +188,7 @@ namespace ApiSdk.Domains.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of domain object.";
+            command.Description = "Update the properties of domain object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-update?view=graph-rest-1.0";
             // Create options for all the parameters
             var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
             };
@@ -193,39 +213,30 @@ namespace ApiSdk.Domains.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var domainId = invocationContext.ParseResult.GetValueForOption(domainIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Domain>(Domain.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("domain%2Did", domainId);
+                if (domainId is not null) requestInfo.PathParameters.Add("domain%2Did", domainId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the promote method.
-        /// </summary>
-        public Command BuildPromoteCommand() {
-            var command = new Command("promote");
-            command.Description = "Provides operations to call the promote method.";
-            var builder = new PromoteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -252,16 +263,6 @@ namespace ApiSdk.Domains.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the verify method.
-        /// </summary>
-        public Command BuildVerifyCommand() {
-            var command = new Command("verify");
-            command.Description = "Provides operations to call the verify method.";
-            var builder = new VerifyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

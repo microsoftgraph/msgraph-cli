@@ -1,9 +1,9 @@
 using ApiSdk.Groups.Count;
-using ApiSdk.Groups.Delta;
-using ApiSdk.Groups.GetAvailableExtensionProperties;
-using ApiSdk.Groups.GetByIds;
 using ApiSdk.Groups.Item;
-using ApiSdk.Groups.ValidateProperties;
+using ApiSdk.Groups.MicrosoftGraphDelta;
+using ApiSdk.Groups.MicrosoftGraphGetAvailableExtensionProperties;
+using ApiSdk.Groups.MicrosoftGraphGetByIds;
+using ApiSdk.Groups.MicrosoftGraphValidateProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,14 +37,9 @@ namespace ApiSdk.Groups {
             var command = new Command("item");
             var builder = new GroupItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAcceptedSendersCommand());
-            command.AddCommand(builder.BuildAddFavoriteCommand());
             command.AddCommand(builder.BuildAppRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildAssignLicenseCommand());
             command.AddCommand(builder.BuildCalendarCommand());
             command.AddCommand(builder.BuildCalendarViewCommand());
-            command.AddCommand(builder.BuildCheckGrantedPermissionsForAppCommand());
-            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
             command.AddCommand(builder.BuildConversationsCommand());
             command.AddCommand(builder.BuildCreatedOnBehalfOfCommand());
             command.AddCommand(builder.BuildDeleteCommand());
@@ -53,12 +48,24 @@ namespace ApiSdk.Groups {
             command.AddCommand(builder.BuildEventsCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsCommand());
             command.AddCommand(builder.BuildGroupLifecyclePoliciesCommand());
             command.AddCommand(builder.BuildMemberOfCommand());
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildMembersWithLicenseErrorsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddFavoriteCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAssignLicenseCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckGrantedPermissionsForAppCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberGroupsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberObjectsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMemberGroupsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMemberObjectsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRemoveFavoriteCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRenewCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphResetUnseenCountCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphSubscribeByMailCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphUnsubscribeByMailCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             command.AddCommand(builder.BuildOnenoteCommand());
             command.AddCommand(builder.BuildOwnersCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -67,19 +74,12 @@ namespace ApiSdk.Groups {
             command.AddCommand(builder.BuildPhotosCommand());
             command.AddCommand(builder.BuildPlannerCommand());
             command.AddCommand(builder.BuildRejectedSendersCommand());
-            command.AddCommand(builder.BuildRemoveFavoriteCommand());
-            command.AddCommand(builder.BuildRenewCommand());
-            command.AddCommand(builder.BuildResetUnseenCountCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
             command.AddCommand(builder.BuildSettingsCommand());
             command.AddCommand(builder.BuildSitesCommand());
-            command.AddCommand(builder.BuildSubscribeByMailCommand());
             command.AddCommand(builder.BuildTeamCommand());
             command.AddCommand(builder.BuildThreadsCommand());
             command.AddCommand(builder.BuildTransitiveMemberOfCommand());
             command.AddCommand(builder.BuildTransitiveMembersCommand());
-            command.AddCommand(builder.BuildUnsubscribeByMailCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -98,7 +98,7 @@ namespace ApiSdk.Groups {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new group as specified in the request body. You can create the following types of groups: This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation and specify the properties in a `$select` OData query option.";
+            command.Description = "Create a new group as specified in the request body. You can create the following types of groups: This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation and specify the properties in a `$select` OData query option.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-post-groups?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -118,48 +118,29 @@ namespace ApiSdk.Groups {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Group>(ApiSdk.Models.Group.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAvailableExtensionProperties method.
-        /// </summary>
-        public Command BuildGetAvailableExtensionPropertiesCommand() {
-            var command = new Command("get-available-extension-properties");
-            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
-            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getByIds method.
-        /// </summary>
-        public Command BuildGetByIdsCommand() {
-            var command = new Command("get-by-ids");
-            command.Description = "Provides operations to call the getByIds method.";
-            var builder = new GetByIdsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -168,7 +149,7 @@ namespace ApiSdk.Groups {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all the groups available in an organization, excluding dynamic distribution groups. To retrieve dynamic distribution groups, use the Exchange admin center. This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the group and specify the properties in a `$select` OData query option. The **hasMembersWithLicenseErrors** and **isArchived** properties are an exception and are not returned in the `$select` query.";
+            command.Description = "List all the groups available in an organization, excluding dynamic distribution groups. To retrieve dynamic distribution groups, use the Exchange admin center. This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the group and specify the properties in a `$select` OData query option. The **hasMembersWithLicenseErrors** and **isArchived** properties are an exception and are not returned in the `$select` query.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -239,9 +220,9 @@ namespace ApiSdk.Groups {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -253,7 +234,7 @@ namespace ApiSdk.Groups {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
+                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -265,7 +246,7 @@ namespace ApiSdk.Groups {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -275,10 +256,40 @@ namespace ApiSdk.Groups {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeltaCommand() {
+            var command = new Command("microsoft-graph-delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAvailableExtensionProperties method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand() {
+            var command = new Command("microsoft-graph-get-available-extension-properties");
+            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
+            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getByIds method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetByIdsCommand() {
+            var command = new Command("microsoft-graph-get-by-ids");
+            command.Description = "Provides operations to call the getByIds method.";
+            var builder = new GetByIdsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesCommand() {
-            var command = new Command("validate-properties");
+        public Command BuildMicrosoftGraphValidatePropertiesCommand() {
+            var command = new Command("microsoft-graph-validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -296,12 +307,6 @@ namespace ApiSdk.Groups {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public DeltaRequestBuilder Delta() {
-            return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// List all the groups available in an organization, excluding dynamic distribution groups. To retrieve dynamic distribution groups, use the Exchange admin center. This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the group and specify the properties in a `$select` OData query option. The **hasMembersWithLicenseErrors** and **isArchived** properties are an exception and are not returned in the `$select` query.

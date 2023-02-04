@@ -53,7 +53,7 @@ namespace ApiSdk.Models.ODataErrors {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"client-request-id", n => { ClientRequestId = n.GetStringValue(); } },
-                {"Date", n => { Date = n.GetDateTimeOffsetValue(); } },
+                {"date", n => { Date = n.GetDateTimeOffsetValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"request-id", n => { RequestId = n.GetStringValue(); } },
             };
@@ -65,7 +65,7 @@ namespace ApiSdk.Models.ODataErrors {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("client-request-id", ClientRequestId);
-            writer.WriteDateTimeOffsetValue("Date", Date);
+            writer.WriteDateTimeOffsetValue("date", Date);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("request-id", RequestId);
             writer.WriteAdditionalData(AdditionalData);

@@ -25,11 +25,11 @@ namespace ApiSdk.SubscribedSkus.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from subscribedSkus by key (id)
+        /// Delete entity from subscribedSkus
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from subscribedSkus by key (id)";
+            command.Description = "Delete entity from subscribedSkus";
             // Create options for all the parameters
             var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
             };
@@ -46,8 +46,8 @@ namespace ApiSdk.SubscribedSkus.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("subscribedSku%2Did", subscribedSkuId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (subscribedSkuId is not null) requestInfo.PathParameters.Add("subscribedSku%2Did", subscribedSkuId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -63,7 +63,7 @@ namespace ApiSdk.SubscribedSkus.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a specific commercial subscription that an organization has acquired.";
+            command.Description = "Get a specific commercial subscription that an organization has acquired.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subscribedsku-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
             };
@@ -93,19 +93,19 @@ namespace ApiSdk.SubscribedSkus.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
-                requestInfo.PathParameters.Add("subscribedSku%2Did", subscribedSkuId);
+                if (subscribedSkuId is not null) requestInfo.PathParameters.Add("subscribedSku%2Did", subscribedSkuId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -113,11 +113,11 @@ namespace ApiSdk.SubscribedSkus.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in subscribedSkus by key (id)
+        /// Update entity in subscribedSkus
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in subscribedSkus by key (id)";
+            command.Description = "Update entity in subscribedSkus";
             // Create options for all the parameters
             var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
             };
@@ -142,25 +142,26 @@ namespace ApiSdk.SubscribedSkus.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var subscribedSkuId = invocationContext.ParseResult.GetValueForOption(subscribedSkuIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SubscribedSku>(SubscribedSku.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("subscribedSku%2Did", subscribedSkuId);
+                if (subscribedSkuId is not null) requestInfo.PathParameters.Add("subscribedSku%2Did", subscribedSkuId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -181,7 +182,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from subscribedSkus by key (id)
+        /// Delete entity from subscribedSkus
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -231,7 +232,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in subscribedSkus by key (id)
+        /// Update entity in subscribedSkus
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

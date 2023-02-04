@@ -1,13 +1,13 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.Activate;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.ApplyHold;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOperation;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.Release;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.RemoveHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityActivate;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityApplyHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityRelease;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityRemoveHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityUpdateIndex;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UnifiedGroupSources;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UpdateIndex;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UserSources;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,26 +33,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        /// <summary>
-        /// Provides operations to call the activate method.
-        /// </summary>
-        public Command BuildActivateCommand() {
-            var command = new Command("activate");
-            command.Description = "Provides operations to call the activate method.";
-            var builder = new ActivateRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyHold method.
-        /// </summary>
-        public Command BuildApplyHoldCommand() {
-            var command = new Command("apply-hold");
-            command.Description = "Provides operations to call the applyHold method.";
-            var builder = new ApplyHoldRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
         /// <summary>
         /// Delete navigation property custodians for security
         /// </summary>
@@ -80,9 +60,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
-                requestInfo.PathParameters.Add("ediscoveryCustodian%2Did", ediscoveryCustodianId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                if (ediscoveryCustodianId is not null) requestInfo.PathParameters.Add("ediscoveryCustodian%2Did", ediscoveryCustodianId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -138,21 +118,21 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
-                requestInfo.PathParameters.Add("ediscoveryCustodian%2Did", ediscoveryCustodianId);
+                if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                if (ediscoveryCustodianId is not null) requestInfo.PathParameters.Add("ediscoveryCustodian%2Did", ediscoveryCustodianId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -167,6 +147,56 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
             command.Description = "Provides operations to manage the lastIndexOperation property of the microsoft.graph.security.ediscoveryCustodian entity.";
             var builder = new LastIndexOperationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the activate method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityActivateCommand() {
+            var command = new Command("microsoft-graph-security-activate");
+            command.Description = "Provides operations to call the activate method.";
+            var builder = new ActivateRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyHold method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityApplyHoldCommand() {
+            var command = new Command("microsoft-graph-security-apply-hold");
+            command.Description = "Provides operations to call the applyHold method.";
+            var builder = new ApplyHoldRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the release method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityReleaseCommand() {
+            var command = new Command("microsoft-graph-security-release");
+            command.Description = "Provides operations to call the release method.";
+            var builder = new ReleaseRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removeHold method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityRemoveHoldCommand() {
+            var command = new Command("microsoft-graph-security-remove-hold");
+            command.Description = "Provides operations to call the removeHold method.";
+            var builder = new RemoveHoldRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the updateIndex method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityUpdateIndexCommand() {
+            var command = new Command("microsoft-graph-security-update-index");
+            command.Description = "Provides operations to call the updateIndex method.";
+            var builder = new UpdateIndexRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -204,50 +234,31 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
             command.SetHandler(async (invocationContext) => {
                 var ediscoveryCaseId = invocationContext.ParseResult.GetValueForOption(ediscoveryCaseIdOption);
                 var ediscoveryCustodianId = invocationContext.ParseResult.GetValueForOption(ediscoveryCustodianIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EdiscoveryCustodian>(EdiscoveryCustodian.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
-                requestInfo.PathParameters.Add("ediscoveryCustodian%2Did", ediscoveryCustodianId);
+                if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                if (ediscoveryCustodianId is not null) requestInfo.PathParameters.Add("ediscoveryCustodian%2Did", ediscoveryCustodianId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the release method.
-        /// </summary>
-        public Command BuildReleaseCommand() {
-            var command = new Command("release");
-            command.Description = "Provides operations to call the release method.";
-            var builder = new ReleaseRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removeHold method.
-        /// </summary>
-        public Command BuildRemoveHoldCommand() {
-            var command = new Command("remove-hold");
-            command.Description = "Provides operations to call the removeHold method.";
-            var builder = new RemoveHoldRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -274,16 +285,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the updateIndex method.
-        /// </summary>
-        public Command BuildUpdateIndexCommand() {
-            var command = new Command("update-index");
-            command.Description = "Provides operations to call the updateIndex method.";
-            var builder = new UpdateIndexRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

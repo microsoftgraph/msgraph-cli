@@ -1,9 +1,9 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Outlook.MasterCategories;
-using ApiSdk.Users.Item.Outlook.SupportedLanguages;
-using ApiSdk.Users.Item.Outlook.SupportedTimeZones;
-using ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard;
+using ApiSdk.Users.Item.Outlook.MicrosoftGraphSupportedLanguages;
+using ApiSdk.Users.Item.Outlook.MicrosoftGraphSupportedTimeZones;
+using ApiSdk.Users.Item.Outlook.MicrosoftGraphSupportedTimeZonesWithTimeZoneStandard;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -63,19 +63,19 @@ namespace ApiSdk.Users.Item.Outlook {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -96,6 +96,26 @@ namespace ApiSdk.Users.Item.Outlook {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the supportedLanguages method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSupportedLanguagesCommand() {
+            var command = new Command("microsoft-graph-supported-languages");
+            command.Description = "Provides operations to call the supportedLanguages method.";
+            var builder = new SupportedLanguagesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the supportedTimeZones method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSupportedTimeZonesCommand() {
+            var command = new Command("microsoft-graph-supported-time-zones");
+            command.Description = "Provides operations to call the supportedTimeZones method.";
+            var builder = new SupportedTimeZonesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Instantiates a new OutlookRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
@@ -109,22 +129,10 @@ namespace ApiSdk.Users.Item.Outlook {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Provides operations to call the supportedLanguages method.
-        /// </summary>
-        public SupportedLanguagesRequestBuilder SupportedLanguages() {
-            return new SupportedLanguagesRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the supportedTimeZones method.
-        /// </summary>
-        public SupportedTimeZonesRequestBuilder SupportedTimeZones() {
-            return new SupportedTimeZonesRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
         /// Provides operations to call the supportedTimeZones method.
         /// </summary>
         /// <param name="timeZoneStandard">Usage: TimeZoneStandard=&apos;{TimeZoneStandard}&apos;</param>
-        public SupportedTimeZonesWithTimeZoneStandardRequestBuilder SupportedTimeZonesWithTimeZoneStandard(string timeZoneStandard) {
+        public SupportedTimeZonesWithTimeZoneStandardRequestBuilder MicrosoftGraphSupportedTimeZonesWithTimeZoneStandard(string timeZoneStandard) {
             if(string.IsNullOrEmpty(timeZoneStandard)) throw new ArgumentNullException(nameof(timeZoneStandard));
             return new SupportedTimeZonesWithTimeZoneStandardRequestBuilder(PathParameters, RequestAdapter, timeZoneStandard);
         }

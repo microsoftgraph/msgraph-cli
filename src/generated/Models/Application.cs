@@ -221,6 +221,14 @@ namespace ApiSdk.Models {
 #else
         public string PublisherDomain { get; set; }
 #endif
+        /// <summary>The requestSignatureVerification property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.RequestSignatureVerification? RequestSignatureVerification { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.RequestSignatureVerification RequestSignatureVerification { get; set; }
+#endif
         /// <summary>Specifies the resources that the application needs to access. This property also specifies the set of delegated permissions and application roles that it needs for each of those resources. This configuration of access to the required resources drives the consent experience. No more than 50 resource services (APIs) can be configured. Beginning mid-October 2021, the total number of required permissions must not exceed 400. For more information, see Limits on requested permissions per app. Not nullable. Supports $filter (eq, not, ge, le).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -304,7 +312,7 @@ namespace ApiSdk.Models {
         public WebApplication Web { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new application and sets the default values.
+        /// Instantiates a new Application and sets the default values.
         /// </summary>
         public Application() : base() {
             OdataType = "#microsoft.graph.application";
@@ -352,6 +360,7 @@ namespace ApiSdk.Models {
                 {"passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<PasswordCredential>(PasswordCredential.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"publicClient", n => { PublicClient = n.GetObjectValue<PublicClientApplication>(PublicClientApplication.CreateFromDiscriminatorValue); } },
                 {"publisherDomain", n => { PublisherDomain = n.GetStringValue(); } },
+                {"requestSignatureVerification", n => { RequestSignatureVerification = n.GetObjectValue<ApiSdk.Models.RequestSignatureVerification>(ApiSdk.Models.RequestSignatureVerification.CreateFromDiscriminatorValue); } },
                 {"requiredResourceAccess", n => { RequiredResourceAccess = n.GetCollectionOfObjectValues<ApiSdk.Models.RequiredResourceAccess>(ApiSdk.Models.RequiredResourceAccess.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"samlMetadataUrl", n => { SamlMetadataUrl = n.GetStringValue(); } },
                 {"serviceManagementReference", n => { ServiceManagementReference = n.GetStringValue(); } },
@@ -402,6 +411,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<PasswordCredential>("passwordCredentials", PasswordCredentials);
             writer.WriteObjectValue<PublicClientApplication>("publicClient", PublicClient);
             writer.WriteStringValue("publisherDomain", PublisherDomain);
+            writer.WriteObjectValue<ApiSdk.Models.RequestSignatureVerification>("requestSignatureVerification", RequestSignatureVerification);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.RequiredResourceAccess>("requiredResourceAccess", RequiredResourceAccess);
             writer.WriteStringValue("samlMetadataUrl", SamlMetadataUrl);
             writer.WriteStringValue("serviceManagementReference", ServiceManagementReference);

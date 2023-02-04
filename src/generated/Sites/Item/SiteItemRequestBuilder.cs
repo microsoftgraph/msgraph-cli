@@ -6,12 +6,12 @@ using ApiSdk.Sites.Item.ContentTypes;
 using ApiSdk.Sites.Item.Drive;
 using ApiSdk.Sites.Item.Drives;
 using ApiSdk.Sites.Item.ExternalColumns;
-using ApiSdk.Sites.Item.GetActivitiesByInterval;
-using ApiSdk.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
-using ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId;
-using ApiSdk.Sites.Item.GetByPathWithPath;
 using ApiSdk.Sites.Item.Items;
 using ApiSdk.Sites.Item.Lists;
+using ApiSdk.Sites.Item.MicrosoftGraphGetActivitiesByInterval;
+using ApiSdk.Sites.Item.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
+using ApiSdk.Sites.Item.MicrosoftGraphGetApplicableContentTypesForListWithListId;
+using ApiSdk.Sites.Item.MicrosoftGraphGetByPathWithPath;
 using ApiSdk.Sites.Item.Onenote;
 using ApiSdk.Sites.Item.Operations;
 using ApiSdk.Sites.Item.Permissions;
@@ -72,12 +72,13 @@ namespace ApiSdk.Sites.Item {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.site entity.";
             var builder = new ContentTypesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAddCopyCommand());
-            command.AddCommand(builder.BuildAddCopyFromContentTypeHubCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddCopyCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddCopyFromContentTypeHubCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetCompatibleHubContentTypesCommand());
             return command;
         }
         /// <summary>
@@ -120,7 +121,7 @@ namespace ApiSdk.Sites.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve properties and relationships for a [site][] resource.A **site** resource represents a team site in SharePoint.";
+            command.Description = "Retrieve properties and relationships for a [site][] resource.A **site** resource represents a team site in SharePoint.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -156,20 +157,20 @@ namespace ApiSdk.Sites.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -199,6 +200,16 @@ namespace ApiSdk.Sites.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetActivitiesByIntervalCommand() {
+            var command = new Command("microsoft-graph-get-activities-by-interval");
+            command.Description = "Provides operations to call the getActivitiesByInterval method.";
+            var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -233,11 +244,11 @@ namespace ApiSdk.Sites.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in sites by key (id)
+        /// Update entity in sites
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in sites by key (id)";
+            command.Description = "Update entity in sites";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
             };
@@ -262,25 +273,26 @@ namespace ApiSdk.Sites.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Site>(ApiSdk.Models.Site.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -355,16 +367,10 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
-        public GetActivitiesByIntervalRequestBuilder GetActivitiesByInterval() {
-            return new GetActivitiesByIntervalRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Provides operations to call the getActivitiesByInterval method.
-        /// </summary>
         /// <param name="endDateTime">Usage: endDateTime=&apos;{endDateTime}&apos;</param>
         /// <param name="interval">Usage: interval=&apos;{interval}&apos;</param>
         /// <param name="startDateTime">Usage: startDateTime=&apos;{startDateTime}&apos;</param>
-        public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval(string endDateTime, string interval, string startDateTime) {
+        public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval(string endDateTime, string interval, string startDateTime) {
             if(string.IsNullOrEmpty(endDateTime)) throw new ArgumentNullException(nameof(endDateTime));
             if(string.IsNullOrEmpty(interval)) throw new ArgumentNullException(nameof(interval));
             if(string.IsNullOrEmpty(startDateTime)) throw new ArgumentNullException(nameof(startDateTime));
@@ -374,7 +380,7 @@ namespace ApiSdk.Sites.Item {
         /// Provides operations to call the getApplicableContentTypesForList method.
         /// </summary>
         /// <param name="listId">Usage: listId=&apos;{listId}&apos;</param>
-        public GetApplicableContentTypesForListWithListIdRequestBuilder GetApplicableContentTypesForListWithListId(string listId) {
+        public GetApplicableContentTypesForListWithListIdRequestBuilder MicrosoftGraphGetApplicableContentTypesForListWithListId(string listId) {
             if(string.IsNullOrEmpty(listId)) throw new ArgumentNullException(nameof(listId));
             return new GetApplicableContentTypesForListWithListIdRequestBuilder(PathParameters, RequestAdapter, listId);
         }
@@ -382,7 +388,7 @@ namespace ApiSdk.Sites.Item {
         /// Provides operations to call the getByPath method.
         /// </summary>
         /// <param name="path">Usage: path=&apos;{path}&apos;</param>
-        public GetByPathWithPathRequestBuilder GetByPathWithPath(string path) {
+        public GetByPathWithPathRequestBuilder MicrosoftGraphGetByPathWithPath(string path) {
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException(nameof(path));
             return new GetByPathWithPathRequestBuilder(PathParameters, RequestAdapter, path);
         }
@@ -413,7 +419,7 @@ namespace ApiSdk.Sites.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in sites by key (id)
+        /// Update entity in sites
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -1,11 +1,11 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.ServicePrincipals.Count;
-using ApiSdk.ServicePrincipals.Delta;
-using ApiSdk.ServicePrincipals.GetAvailableExtensionProperties;
-using ApiSdk.ServicePrincipals.GetByIds;
 using ApiSdk.ServicePrincipals.Item;
-using ApiSdk.ServicePrincipals.ValidateProperties;
+using ApiSdk.ServicePrincipals.MicrosoftGraphDelta;
+using ApiSdk.ServicePrincipals.MicrosoftGraphGetAvailableExtensionProperties;
+using ApiSdk.ServicePrincipals.MicrosoftGraphGetByIds;
+using ApiSdk.ServicePrincipals.MicrosoftGraphValidateProperties;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -36,13 +36,8 @@ namespace ApiSdk.ServicePrincipals {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ServicePrincipalItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAddKeyCommand());
-            command.AddCommand(builder.BuildAddPasswordCommand());
-            command.AddCommand(builder.BuildAddTokenSigningCertificateCommand());
             command.AddCommand(builder.BuildAppRoleAssignedToCommand());
             command.AddCommand(builder.BuildAppRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
             command.AddCommand(builder.BuildClaimsMappingPoliciesCommand());
             command.AddCommand(builder.BuildCreatedObjectsCommand());
             command.AddCommand(builder.BuildDelegatedPermissionClassificationsCommand());
@@ -50,17 +45,22 @@ namespace ApiSdk.ServicePrincipals {
             command.AddCommand(builder.BuildEndpointsCommand());
             command.AddCommand(builder.BuildFederatedIdentityCredentialsCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsCommand());
             command.AddCommand(builder.BuildHomeRealmDiscoveryPoliciesCommand());
             command.AddCommand(builder.BuildMemberOfCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddKeyCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddPasswordCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAddTokenSigningCertificateCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberGroupsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberObjectsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMemberGroupsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphGetMemberObjectsCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRemoveKeyCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRemovePasswordCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
             command.AddCommand(builder.BuildOauth2PermissionGrantsCommand());
             command.AddCommand(builder.BuildOwnedObjectsCommand());
             command.AddCommand(builder.BuildOwnersCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRemoveKeyCommand());
-            command.AddCommand(builder.BuildRemovePasswordCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
             command.AddCommand(builder.BuildTokenIssuancePoliciesCommand());
             command.AddCommand(builder.BuildTokenLifetimePoliciesCommand());
             command.AddCommand(builder.BuildTransitiveMemberOfCommand());
@@ -82,7 +82,7 @@ namespace ApiSdk.ServicePrincipals {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new servicePrincipal object.";
+            command.Description = "Create a new servicePrincipal object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-post-serviceprincipals?view=graph-rest-1.0";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
@@ -102,48 +102,29 @@ namespace ApiSdk.ServicePrincipals {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.ServicePrincipal>(ApiSdk.Models.ServicePrincipal.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ServicePrincipal>(ServicePrincipal.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAvailableExtensionProperties method.
-        /// </summary>
-        public Command BuildGetAvailableExtensionPropertiesCommand() {
-            var command = new Command("get-available-extension-properties");
-            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
-            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getByIds method.
-        /// </summary>
-        public Command BuildGetByIdsCommand() {
-            var command = new Command("get-by-ids");
-            command.Description = "Provides operations to call the getByIds method.";
-            var builder = new GetByIdsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -152,7 +133,7 @@ namespace ApiSdk.ServicePrincipals {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of servicePrincipal objects.";
+            command.Description = "Retrieve a list of servicePrincipal objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -223,9 +204,9 @@ namespace ApiSdk.ServicePrincipals {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -237,7 +218,7 @@ namespace ApiSdk.ServicePrincipals {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
+                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -249,7 +230,7 @@ namespace ApiSdk.ServicePrincipals {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -259,10 +240,40 @@ namespace ApiSdk.ServicePrincipals {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildMicrosoftGraphDeltaCommand() {
+            var command = new Command("microsoft-graph-delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAvailableExtensionProperties method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand() {
+            var command = new Command("microsoft-graph-get-available-extension-properties");
+            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
+            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getByIds method.
+        /// </summary>
+        public Command BuildMicrosoftGraphGetByIdsCommand() {
+            var command = new Command("microsoft-graph-get-by-ids");
+            command.Description = "Provides operations to call the getByIds method.";
+            var builder = new GetByIdsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesCommand() {
-            var command = new Command("validate-properties");
+        public Command BuildMicrosoftGraphValidatePropertiesCommand() {
+            var command = new Command("microsoft-graph-validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
@@ -280,12 +291,6 @@ namespace ApiSdk.ServicePrincipals {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public DeltaRequestBuilder Delta() {
-            return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Retrieve a list of servicePrincipal objects.
@@ -320,10 +325,10 @@ namespace ApiSdk.ServicePrincipals {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.ServicePrincipal body, Action<ServicePrincipalsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ServicePrincipal body, Action<ServicePrincipalsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.ServicePrincipal body, Action<ServicePrincipalsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ServicePrincipal body, Action<ServicePrincipalsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {

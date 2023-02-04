@@ -29,7 +29,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The content stream, if the item represents a file.";
+            command.Description = "The content stream, if the item represents a file.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -48,13 +48,13 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("channel%2Did", channelId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (channelId is not null) requestInfo.PathParameters.Add("channel%2Did", channelId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
@@ -92,11 +92,12 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
                 var channelId = invocationContext.ParseResult.GetValueForOption(channelIdOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                if (file is null || !file.Exists) return;
                 using var stream = file.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
-                requestInfo.PathParameters.Add("team%2Did", teamId);
-                requestInfo.PathParameters.Add("channel%2Did", channelId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (channelId is not null) requestInfo.PathParameters.Add("channel%2Did", channelId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

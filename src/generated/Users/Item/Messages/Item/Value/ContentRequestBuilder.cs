@@ -29,7 +29,7 @@ namespace ApiSdk.Users.Item.Messages.Item.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property messages from users";
+            command.Description = "Get media content for the navigation property messages from users\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/opentypeextension-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -48,13 +48,13 @@ namespace ApiSdk.Users.Item.Messages.Item.Value {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("message%2Did", messageId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
@@ -92,11 +92,12 @@ namespace ApiSdk.Users.Item.Messages.Item.Value {
                 var messageId = invocationContext.ParseResult.GetValueForOption(messageIdOption);
                 var file = invocationContext.ParseResult.GetValueForOption(fileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                if (file is null || !file.Exists) return;
                 using var stream = file.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("message%2Did", messageId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

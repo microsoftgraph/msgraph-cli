@@ -30,7 +30,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "List the tokenIssuancePolicy objects that are assigned to an application.";
+            command.Description = "List the tokenIssuancePolicy objects that are assigned to an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0";
             // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
             };
@@ -88,9 +88,9 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -100,7 +100,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
                 });
-                requestInfo.PathParameters.Add("application%2Did", applicationId);
+                if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +112,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -138,14 +138,15 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
             command.AddOption(bodyOption);
             command.SetHandler(async (invocationContext) => {
                 var applicationId = invocationContext.ParseResult.GetValueForOption(applicationIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ReferenceCreate>(ReferenceCreate.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("application%2Did", applicationId);
+                if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

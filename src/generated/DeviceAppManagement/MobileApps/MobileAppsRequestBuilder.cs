@@ -1,7 +1,7 @@
 using ApiSdk.DeviceAppManagement.MobileApps.Count;
 using ApiSdk.DeviceAppManagement.MobileApps.Item;
-using ApiSdk.DeviceAppManagement.MobileApps.ManagedMobileLobApp;
-using ApiSdk.DeviceAppManagement.MobileApps.MobileLobApp;
+using ApiSdk.DeviceAppManagement.MobileApps.MicrosoftGraphManagedMobileLobApp;
+using ApiSdk.DeviceAppManagement.MobileApps.MicrosoftGraphMobileLobApp;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,13 +34,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new MobileAppItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAssignCommand());
             command.AddCommand(builder.BuildAssignmentsCommand());
             command.AddCommand(builder.BuildCategoriesCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildManagedMobileLobAppCommand());
-            command.AddCommand(builder.BuildMobileLobAppCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphAssignCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphManagedMobileLobAppCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphMobileLobAppCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -79,24 +79,25 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MobileApp>(MobileApp.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -173,9 +174,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -198,7 +199,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -210,8 +211,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         /// <summary>
         /// Casts the previous resource to managedMobileLobApp.
         /// </summary>
-        public Command BuildManagedMobileLobAppCommand() {
-            var command = new Command("managed-mobile-lob-app");
+        public Command BuildMicrosoftGraphManagedMobileLobAppCommand() {
+            var command = new Command("microsoft-graph-managed-mobile-lob-app");
             command.Description = "Casts the previous resource to managedMobileLobApp.";
             var builder = new ManagedMobileLobAppRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCountCommand());
@@ -221,8 +222,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         /// <summary>
         /// Casts the previous resource to mobileLobApp.
         /// </summary>
-        public Command BuildMobileLobAppCommand() {
-            var command = new Command("mobile-lob-app");
+        public Command BuildMicrosoftGraphMobileLobAppCommand() {
+            var command = new Command("microsoft-graph-mobile-lob-app");
             command.Description = "Casts the previous resource to mobileLobApp.";
             var builder = new MobileLobAppRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCountCommand());

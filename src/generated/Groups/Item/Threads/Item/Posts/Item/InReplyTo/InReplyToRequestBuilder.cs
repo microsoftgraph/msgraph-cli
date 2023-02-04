@@ -1,8 +1,8 @@
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Extensions;
-using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Forward;
+using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.MicrosoftGraphForward;
+using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.MicrosoftGraphReply;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.MultiValueExtendedProperties;
-using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Reply;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.SingleValueExtendedProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -40,8 +40,8 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCreateUploadSessionCommand());
             return command;
         }
         /// <summary>
@@ -55,16 +55,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the forward method.
-        /// </summary>
-        public Command BuildForwardCommand() {
-            var command = new Command("forward");
-            command.Description = "Provides operations to call the forward method.";
-            var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -118,26 +108,46 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("group%2Did", groupId);
-                requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
-                requestInfo.PathParameters.Add("post%2Did", postId);
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (conversationThreadId is not null) requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
+                if (postId is not null) requestInfo.PathParameters.Add("post%2Did", postId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the forward method.
+        /// </summary>
+        public Command BuildMicrosoftGraphForwardCommand() {
+            var command = new Command("microsoft-graph-forward");
+            command.Description = "Provides operations to call the forward method.";
+            var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reply method.
+        /// </summary>
+        public Command BuildMicrosoftGraphReplyCommand() {
+            var command = new Command("microsoft-graph-reply");
+            command.Description = "Provides operations to call the reply method.";
+            var builder = new ReplyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -151,16 +161,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reply method.
-        /// </summary>
-        public Command BuildReplyCommand() {
-            var command = new Command("reply");
-            command.Description = "Provides operations to call the reply method.";
-            var builder = new ReplyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

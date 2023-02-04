@@ -56,9 +56,9 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Item.Ref {
                 var requestInfo = ToDeleteRequestInformation(q => {
                     if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
-                requestInfo.PathParameters.Add("application%2Did", applicationId);
-                requestInfo.PathParameters.Add("tokenLifetimePolicy%2Did", tokenLifetimePolicyId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
+                if (tokenLifetimePolicyId is not null) requestInfo.PathParameters.Add("tokenLifetimePolicy%2Did", tokenLifetimePolicyId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

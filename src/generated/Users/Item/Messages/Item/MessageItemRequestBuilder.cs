@@ -1,17 +1,17 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Messages.Item.Attachments;
-using ApiSdk.Users.Item.Messages.Item.Copy;
-using ApiSdk.Users.Item.Messages.Item.CreateForward;
-using ApiSdk.Users.Item.Messages.Item.CreateReply;
-using ApiSdk.Users.Item.Messages.Item.CreateReplyAll;
 using ApiSdk.Users.Item.Messages.Item.Extensions;
-using ApiSdk.Users.Item.Messages.Item.Forward;
-using ApiSdk.Users.Item.Messages.Item.Move;
+using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphCopy;
+using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphCreateForward;
+using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphCreateReply;
+using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphCreateReplyAll;
+using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphForward;
+using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphMove;
+using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphReply;
+using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphReplyAll;
+using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphSend;
 using ApiSdk.Users.Item.Messages.Item.MultiValueExtendedProperties;
-using ApiSdk.Users.Item.Messages.Item.Reply;
-using ApiSdk.Users.Item.Messages.Item.ReplyAll;
-using ApiSdk.Users.Item.Messages.Item.Send;
 using ApiSdk.Users.Item.Messages.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.Messages.Item.Value;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,8 +48,8 @@ namespace ApiSdk.Users.Item.Messages.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildMicrosoftGraphCreateUploadSessionCommand());
             return command;
         }
         /// <summary>
@@ -61,46 +61,6 @@ namespace ApiSdk.Users.Item.Messages.Item {
             var builder = new ContentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPutCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copy method.
-        /// </summary>
-        public Command BuildCopyCommand() {
-            var command = new Command("copy");
-            command.Description = "Provides operations to call the copy method.";
-            var builder = new CopyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createForward method.
-        /// </summary>
-        public Command BuildCreateForwardCommand() {
-            var command = new Command("create-forward");
-            command.Description = "Provides operations to call the createForward method.";
-            var builder = new CreateForwardRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createReplyAll method.
-        /// </summary>
-        public Command BuildCreateReplyAllCommand() {
-            var command = new Command("create-reply-all");
-            command.Description = "Provides operations to call the createReplyAll method.";
-            var builder = new CreateReplyAllRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createReply method.
-        /// </summary>
-        public Command BuildCreateReplyCommand() {
-            var command = new Command("create-reply");
-            command.Description = "Provides operations to call the createReply method.";
-            var builder = new CreateReplyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -130,9 +90,9 @@ namespace ApiSdk.Users.Item.Messages.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("message%2Did", messageId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -153,16 +113,6 @@ namespace ApiSdk.Users.Item.Messages.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the forward method.
-        /// </summary>
-        public Command BuildForwardCommand() {
-            var command = new Command("forward");
-            command.Description = "Provides operations to call the forward method.";
-            var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -205,20 +155,20 @@ namespace ApiSdk.Users.Item.Messages.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("message%2Did", messageId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -226,12 +176,92 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the copy method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCopyCommand() {
+            var command = new Command("microsoft-graph-copy");
+            command.Description = "Provides operations to call the copy method.";
+            var builder = new CopyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createForward method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCreateForwardCommand() {
+            var command = new Command("microsoft-graph-create-forward");
+            command.Description = "Provides operations to call the createForward method.";
+            var builder = new CreateForwardRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createReplyAll method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCreateReplyAllCommand() {
+            var command = new Command("microsoft-graph-create-reply-all");
+            command.Description = "Provides operations to call the createReplyAll method.";
+            var builder = new CreateReplyAllRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createReply method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCreateReplyCommand() {
+            var command = new Command("microsoft-graph-create-reply");
+            command.Description = "Provides operations to call the createReply method.";
+            var builder = new CreateReplyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the forward method.
+        /// </summary>
+        public Command BuildMicrosoftGraphForwardCommand() {
+            var command = new Command("microsoft-graph-forward");
+            command.Description = "Provides operations to call the forward method.";
+            var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the move method.
         /// </summary>
-        public Command BuildMoveCommand() {
-            var command = new Command("move");
+        public Command BuildMicrosoftGraphMoveCommand() {
+            var command = new Command("microsoft-graph-move");
             command.Description = "Provides operations to call the move method.";
             var builder = new MoveRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the replyAll method.
+        /// </summary>
+        public Command BuildMicrosoftGraphReplyAllCommand() {
+            var command = new Command("microsoft-graph-reply-all");
+            command.Description = "Provides operations to call the replyAll method.";
+            var builder = new ReplyAllRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reply method.
+        /// </summary>
+        public Command BuildMicrosoftGraphReplyCommand() {
+            var command = new Command("microsoft-graph-reply");
+            command.Description = "Provides operations to call the reply method.";
+            var builder = new ReplyRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the send method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSendCommand() {
+            var command = new Command("microsoft-graph-send");
+            command.Description = "Provides operations to call the send method.";
+            var builder = new SendRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -283,60 +313,31 @@ namespace ApiSdk.Users.Item.Messages.Item {
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var messageId = invocationContext.ParseResult.GetValueForOption(messageIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("user%2Did", userId);
-                requestInfo.PathParameters.Add("message%2Did", messageId);
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the replyAll method.
-        /// </summary>
-        public Command BuildReplyAllCommand() {
-            var command = new Command("reply-all");
-            command.Description = "Provides operations to call the replyAll method.";
-            var builder = new ReplyAllRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reply method.
-        /// </summary>
-        public Command BuildReplyCommand() {
-            var command = new Command("reply");
-            command.Description = "Provides operations to call the reply method.";
-            var builder = new ReplyRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the send method.
-        /// </summary>
-        public Command BuildSendCommand() {
-            var command = new Command("send");
-            command.Description = "Provides operations to call the send method.";
-            var builder = new SendRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

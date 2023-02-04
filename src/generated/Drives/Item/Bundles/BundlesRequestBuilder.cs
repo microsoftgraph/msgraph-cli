@@ -47,12 +47,11 @@ namespace ApiSdk.Drives.Item.Bundles {
             return command;
         }
         /// <summary>
-        /// Get a list of all the [bundles][bundle] in a user&apos;s drive.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bundle-list?view=graph-rest-1.0" />
+        /// Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of all the [bundles][bundle] in a user's drive.";
+            command.Description = "Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
             };
@@ -122,9 +121,9 @@ namespace ApiSdk.Drives.Item.Bundles {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
@@ -136,7 +135,7 @@ namespace ApiSdk.Drives.Item.Bundles {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -148,7 +147,7 @@ namespace ApiSdk.Drives.Item.Bundles {
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
-                    response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                    response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                     formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
@@ -171,7 +170,7 @@ namespace ApiSdk.Drives.Item.Bundles {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get a list of all the [bundles][bundle] in a user&apos;s drive.
+        /// Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -197,7 +196,7 @@ namespace ApiSdk.Drives.Item.Bundles {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of all the [bundles][bundle] in a user&apos;s drive.
+        /// Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
         /// </summary>
         public class BundlesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

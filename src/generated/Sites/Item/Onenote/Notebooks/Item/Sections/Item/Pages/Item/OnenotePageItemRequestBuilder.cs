@@ -1,11 +1,11 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Content;
-using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.CopyToSection;
-using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.OnenotePatchContent;
+using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.MicrosoftGraphCopyToSection;
+using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.MicrosoftGraphOnenotePatchContent;
+using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.MicrosoftGraphPreview;
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.ParentNotebook;
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.ParentSection;
-using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Preview;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -39,16 +39,6 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item {
             var builder = new ContentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPutCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copyToSection method.
-        /// </summary>
-        public Command BuildCopyToSectionCommand() {
-            var command = new Command("copy-to-section");
-            command.Description = "Provides operations to call the copyToSection method.";
-            var builder = new CopyToSectionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -88,11 +78,11 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("notebook%2Did", notebookId);
-                requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
-                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (notebookId is not null) requestInfo.PathParameters.Add("notebook%2Did", notebookId);
+                if (onenoteSectionId is not null) requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
+                if (onenotePageId is not null) requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -158,23 +148,23 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("notebook%2Did", notebookId);
-                requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
-                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (notebookId is not null) requestInfo.PathParameters.Add("notebook%2Did", notebookId);
+                if (onenoteSectionId is not null) requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
+                if (onenotePageId is not null) requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -182,13 +172,33 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the copyToSection method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCopyToSectionCommand() {
+            var command = new Command("microsoft-graph-copy-to-section");
+            command.Description = "Provides operations to call the copyToSection method.";
+            var builder = new CopyToSectionRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the onenotePatchContent method.
         /// </summary>
-        public Command BuildOnenotePatchContentCommand() {
-            var command = new Command("onenote-patch-content");
+        public Command BuildMicrosoftGraphOnenotePatchContentCommand() {
+            var command = new Command("microsoft-graph-onenote-patch-content");
             command.Description = "Provides operations to call the onenotePatchContent method.";
             var builder = new OnenotePatchContentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the preview method.
+        /// </summary>
+        public Command BuildMicrosoftGraphPreviewCommand() {
+            var command = new Command("microsoft-graph-preview");
+            command.Description = "Provides operations to call the preview method.";
+            var builder = new PreviewRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -256,28 +266,29 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item {
                 var notebookId = invocationContext.ParseResult.GetValueForOption(notebookIdOption);
                 var onenoteSectionId = invocationContext.ParseResult.GetValueForOption(onenoteSectionIdOption);
                 var onenotePageId = invocationContext.ParseResult.GetValueForOption(onenotePageIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OnenotePage>(OnenotePage.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("site%2Did", siteId);
-                requestInfo.PathParameters.Add("notebook%2Did", notebookId);
-                requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
-                requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (notebookId is not null) requestInfo.PathParameters.Add("notebook%2Did", notebookId);
+                if (onenoteSectionId is not null) requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
+                if (onenotePageId is not null) requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -296,12 +307,6 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item {
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the preview method.
-        /// </summary>
-        public PreviewRequestBuilder Preview() {
-            return new PreviewRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Delete navigation property pages for sites

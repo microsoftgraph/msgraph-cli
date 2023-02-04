@@ -26,11 +26,11 @@ namespace ApiSdk.Invitations.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete entity from invitations by key (id)
+        /// Delete entity from invitations
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete entity from invitations by key (id)";
+            command.Description = "Delete entity from invitations";
             // Create options for all the parameters
             var invitationIdOption = new Option<string>("--invitation-id", description: "key: id of invitation") {
             };
@@ -47,8 +47,8 @@ namespace ApiSdk.Invitations.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
-                requestInfo.PathParameters.Add("invitation%2Did", invitationId);
-                requestInfo.Headers.Add("If-Match", ifMatch);
+                if (invitationId is not null) requestInfo.PathParameters.Add("invitation%2Did", invitationId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -59,11 +59,11 @@ namespace ApiSdk.Invitations.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from invitations by key (id)
+        /// Get entity from invitations by key
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from invitations by key (id)";
+            command.Description = "Get entity from invitations by key";
             // Create options for all the parameters
             var invitationIdOption = new Option<string>("--invitation-id", description: "key: id of invitation") {
             };
@@ -99,20 +99,20 @@ namespace ApiSdk.Invitations.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
-                requestInfo.PathParameters.Add("invitation%2Did", invitationId);
+                if (invitationId is not null) requestInfo.PathParameters.Add("invitation%2Did", invitationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -130,11 +130,11 @@ namespace ApiSdk.Invitations.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in invitations by key (id)
+        /// Update entity in invitations
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update entity in invitations by key (id)";
+            command.Description = "Update entity in invitations";
             // Create options for all the parameters
             var invitationIdOption = new Option<string>("--invitation-id", description: "key: id of invitation") {
             };
@@ -159,25 +159,26 @@ namespace ApiSdk.Invitations.Item {
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var invitationId = invocationContext.ParseResult.GetValueForOption(invitationIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                var outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                var outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Invitation>(Invitation.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
-                requestInfo.PathParameters.Add("invitation%2Did", invitationId);
+                if (invitationId is not null) requestInfo.PathParameters.Add("invitation%2Did", invitationId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
@@ -198,7 +199,7 @@ namespace ApiSdk.Invitations.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete entity from invitations by key (id)
+        /// Delete entity from invitations
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -222,7 +223,7 @@ namespace ApiSdk.Invitations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from invitations by key (id)
+        /// Get entity from invitations by key
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +249,7 @@ namespace ApiSdk.Invitations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in invitations by key (id)
+        /// Update entity in invitations
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -292,7 +293,7 @@ namespace ApiSdk.Invitations.Item {
             }
         }
         /// <summary>
-        /// Get entity from invitations by key (id)
+        /// Get entity from invitations by key
         /// </summary>
         public class InvitationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
