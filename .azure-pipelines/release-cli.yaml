@@ -37,7 +37,7 @@ variables:
       value: '$(Build.SourceBranchName)'
   - group: ESRP
   - name: targetBranch
-    value: $(System.PullRequest.TargetBranch)
+    value: '$(System.PullRequest.TargetBranch)'
 
 #                   
 # test -> build -> | sign |
@@ -54,6 +54,7 @@ stages:
         - pwsh: |
             Write-Host $(targetBranch)
           displayName: Test
+          condition: eq('$(Build.Reason)', 'PullRequest')
         - task: UseDotNet@2
           displayName: 'Use .NET 7'
           inputs:
