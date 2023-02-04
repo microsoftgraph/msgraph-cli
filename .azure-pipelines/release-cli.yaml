@@ -48,12 +48,12 @@ stages:
     displayName: Run tests
     dependsOn: []
     jobs:
-      - pwsh: |
-          Write-Host $(targetBranch)
-        displayName: Test
       - job: test
         displayName: Run tests
         steps:
+        - pwsh: |
+            Write-Host $(targetBranch)
+          displayName: Test
         - task: UseDotNet@2
           displayName: 'Use .NET 7'
           inputs:
