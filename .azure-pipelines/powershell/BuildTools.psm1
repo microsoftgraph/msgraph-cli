@@ -190,5 +190,5 @@ function Update-SignedArchive {
 
     Expand-Archive -Path "$InputFile" -DestinationPath "$extractOutput"
 
-    Compress-SignedFiles -SourceDir $extractOutput -ReportDir $ReportDir -OutputFile $OutputFile -Cleanup $Cleanup
+    Compress-SignedFiles -SourceDir $extractOutput -ReportDir $ReportDir -OutputFile $OutputFile -Cleanup:$Cleanup
 }
