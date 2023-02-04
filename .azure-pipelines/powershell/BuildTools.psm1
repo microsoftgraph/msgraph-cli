@@ -100,7 +100,7 @@ function Move-NonExecutableItems {
         $ExecutableItemNames
     )
 
-    $parentDir = Split-Path -Path $SourcePath -Parent
+    $parentDir = Split-Path -Path $SourcePath -Parent -Resolve
     $backupDir = Join-Path -Path $parentDir -ChildPath backup
 
     if (-Not (Test-Path -Path $backupDir/*)) {
@@ -142,7 +142,7 @@ function Compress-SignedFiles {
         Move-Item -Path "$SourceDir/*.md" -Destination $ReportDir
     }
     
-    $parentDir = Split-Path -Path $SourceDir -Parent
+    $parentDir = Split-Path -Path $SourceDir -Parent -Resolve
     $backupDir = Join-Path -Path $parentDir -ChildPath backup
 
     if ($backupDir -and (Test-Path -Path "$backupDir/*")) {
@@ -185,10 +185,11 @@ function Update-SignedArchive {
         return
     }
 
-    $parentDir = Split-Path -Path $InputFile -Parent
-    $extractOutput = Join-Path -Path $parentDir -ChildPath tmp
+    $extractOutput = Split-Path -Path $InputFile -Parent -Resolve
 
     Expand-Archive -Path "$InputFile" -DestinationPath "$extractOutput"
+
+    Remove-Item -Path "$InputFile" -Force
 
     Compress-SignedFiles -SourceDir $extractOutput -ReportDir $ReportDir -OutputFile $OutputFile -Cleanup:$Cleanup
 }
