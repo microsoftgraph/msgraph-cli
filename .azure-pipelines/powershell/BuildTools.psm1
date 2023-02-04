@@ -42,7 +42,7 @@ function Compress-BuildOutput {
     )
 
     if (-Not (Test-Path -Path $SourceDir/*)) {
-        Write-Output "Source dir is empty."
+        Write-Error "Source dir is empty."
         return
     }
 
@@ -56,6 +56,7 @@ function Compress-BuildOutput {
     Compress-Archive -Path $SourceDir/* -DestinationPath $zipPath -Force
 
     if ($Cleanup) {
+        Write-Information "Cleaning up $SourceDir"
         Remove-Item $SourceDir -Recurse -Force
     }
 }
@@ -85,6 +86,7 @@ function Expand-EsrpArtifacts {
     if ($Cleanup) {
         # -Force so there's no confirmation
         # -Recurse so the child items warning isn't shown
+        Write-Information "Cleaning up $SourceDir"
         Remove-Item $SourceDir -Recurse -Force
     }
 }
@@ -94,18 +96,21 @@ function Move-NonExecutableItems {
         [Parameter(Mandatory)]
         [string]
         $SourcePath,
-        [Parameter(Mandatory)]
-        [string]
-        $DestinationPath,
         [string[]]
         $ExecutableItemNames
     )
 
-    if (-Not (Test-Path -Path $DestinationPath)) {
-        New-Item $DestinationPath -ItemType Directory
+    $parentDir = Split-Path -Path $SourcePath -Parent
+    $backupDir = Join-Path -Path $parentDir -ChildPath backup
+
+    if (-Not (Test-Path -Path $backupDir/*)) {
+        New-Item $backupDir -ItemType Directory
+    } else {
+        Write-Error "The directory $backupDir already exists and is not empty."
+        return
     }
 
-    Move-Item -Path $SourcePath/* -Exclude $ExecutableItemNames -Destination $DestinationPath
+    Move-Item -Path $SourcePath/* -Exclude $ExecutableItemNames -Destination $backupDir
 }
 
 function Compress-SignedFiles {
@@ -115,8 +120,6 @@ function Compress-SignedFiles {
         $SourceDir,
         [string]
         $ReportDir,
-        [string]
-        $ExtraSourceDir,
         [Parameter(Mandatory)]
         [string]
         $OutputFile,
@@ -125,28 +128,35 @@ function Compress-SignedFiles {
     )
 
     if (-Not (Test-Path -Path "$SourceDir/*")) {
-        Write-Output "Source dir is empty."
+        Write-Error "Source dir is invalid."
         return
     }
 
     if (-Not $OutputFile) {
-        Write-Output "Output zip file path not provided."
+        Write-Error "Output zip file path not provided."
         return
     }
 
-    if ($ReportDir -and (Test-Path -Path $ReportDir)) {
+    if ($ReportDir -and (Test-Path -Path "$ReportDir/*.md")) {
+        Write-Information "Moving signing report to $ReportDir"
         Move-Item -Path "$SourceDir/*.md" -Destination $ReportDir
     }
     
-    if ($ExtraSourceDir -and (Test-Path -Path "$ExtraSourceDir/*")) {
-        Move-Item -Path "$ExtraSourceDir/*" -Destination "$SourceDir"
+    $parentDir = Split-Path -Path $SourceDir -Parent
+    $backupDir = Join-Path -Path $parentDir -ChildPath backup
+
+    if ($backupDir -and (Test-Path -Path "$backupDir/*")) {
+        Write-Information "Moving the following files to archive source location"
+        Get-ChildItem -Path "$backupDir/*" -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
+        Move-Item -Path "$backupDir/*" -Destination "$SourceDir"
     }
 
     Compress-Archive -Path "$SourceDir/*" -DestinationPath $OutputFile -Force
 
     if ($Cleanup) {
+        Write-Information "Cleaning up $SourceDir and $backupDir"
         Remove-Item "$SourceDir" -Recurse -Force
-        Remove-Item "$ExtraSourceDir" -Recurse -Force
+        Remove-Item "$backupDir" -Recurse -Force
     }
 }
 
@@ -157,11 +167,7 @@ function Update-SignedArchive {
         $InputFile,
         [Parameter(Mandatory)]
         [string]
-        $TempDir,
-        [string]
         $ReportDir,
-        [string]
-        $ExtraSourceDir,
         [Parameter(Mandatory)]
         [string]
         $OutputFile,
@@ -169,26 +175,20 @@ function Update-SignedArchive {
         $Cleanup
     )
 
-    if (-Not (Test-Path -Path "$InputFile")) {
-        Write-Output "Input zip file does not exist."
+    if (-Not (Test-Path -Path "$InputFile" -PathType Leaf)) {
+        Write-Error "Input zip file does not exist."
         return
     }
 
     if (-Not $OutputFile) {
-        Write-Output "Output zip file path not provided."
+        Write-Error "Output zip file path not provided."
         return
     }
 
-    if (-Not (Test-Path -Path "$TempDir")) {
-        Write-Output "Temp dir is empty."
-        return
-    }
+    $parentDir = Split-Path -Path $InputFile -Parent
+    $extractOutput = Join-Path -Path $parentDir -ChildPath tmp
 
-    Expand-Archive -Path "$InputFile" -DestinationPath "$TempDir"
+    Expand-Archive -Path "$InputFile" -DestinationPath "$extractOutput"
 
-    if ($ReportDir -and (Test-Path -Path $ReportDir)) {
-        Move-Item -Path "$TempDir/*.md" -Destination $ReportDir
-    }
-
-    Compress-SignedFiles -SourceDir $TempDir -ExtraSourceDir $ExtraSourceDir -OutputFile $OutputFile -Cleanup $Cleanup
+    Compress-SignedFiles -SourceDir $extractOutput -ReportDir $ReportDir -OutputFile $OutputFile -Cleanup $Cleanup
 }

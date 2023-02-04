@@ -243,15 +243,14 @@ stages:
               $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
               Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
 
-              $backupPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath backup
-              Move-NonExecutableItems -SourcePath $extractPath -DestinationPath $backupPath -ExecutableItemNames mgc,mgc.exe
-              Write-Host "##vso[task.setvariable variable=BACKUP_PATH]$backupPath"
+              Move-NonExecutableItems -SourcePath $extractPath -ExecutableItemNames mgc,mgc.exe
+              Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$extractPath"
             displayName: Extract zip
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
           - template: templates/prepare-unsigned-executable-darwin.yaml
             parameters:
-              executablePath: $(WORKING_DIR)/artifacts
+              executablePath: $(ARTIFACTS_PATH)
               executableName: mgc
               zipName: $(ZIP_NAME)
               targetRuntime: $(rid)
@@ -271,7 +270,7 @@ stages:
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(WORKING_DIR)/artifacts
+              FolderPath: $(ARTIFACTS_PATH)
               signConfigType: inlineSignParams
               UseMinimatch: true
               Pattern: $(ESRP_FILE_PATTERN)
@@ -284,7 +283,7 @@ stages:
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(WORKING_DIR)/artifacts
+              FolderPath: $(ARTIFACTS_PATH)
               signConfigType: inlineSignParams
               UseMinimatch: true
               Pattern: $(ESRP_FILE_PATTERN)
@@ -294,18 +293,15 @@ stages:
 
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              $artifactsPath = "$(WORKING_DIR)/artifacts"
-              Compress-SignedFiles -SourceDir $artifactsPath -ReportDir '$(WORKING_DIR)' -ExtraSourceDir '$(BACKUP_PATH)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
-
+              Compress-SignedFiles -SourceDir '$(ARTIFACTS_PATH)' -ReportDir '$(WORKING_DIR)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Compress signed files (Windows)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'win'))
 
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              $artifactsPath = "$(WORKING_DIR)/artifacts"
-              $zipPath = Join-Path -Path $artifactsPath -ChildPath '$(ZIP_NAME)'
-              Update-SignedArchive -InputFile $zipPath -TempDir $artifactsPath -ReportDir '$(WORKING_DIR)' -ExtraSourceDir '$(BACKUP_PATH)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
+              $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
+              Update-SignedArchive -InputFile $zipPath -ReportDir '$(WORKING_DIR)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Update signed files (MacOS)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
