@@ -36,8 +36,6 @@ variables:
     ${{ else }}: # Version from the tag. Can be a branch name. Only mainline branches use latest
       value: '$(Build.SourceBranchName)'
   - group: ESRP
-  - name: targetBranch
-    value: '$(System.PullRequest.TargetBranch)'
 
 #                   
 # test -> build -> | sign |
@@ -54,7 +52,7 @@ stages:
         - pwsh: |
             Write-Host $(targetBranch)
           displayName: Test
-          condition: eq('$(Build.Reason)', 'PullRequest')
+          condition: eq(variables['Build.Reason'], 'PullRequest')
         - task: UseDotNet@2
           displayName: 'Use .NET 7'
           inputs:
@@ -108,9 +106,8 @@ stages:
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
               Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -SourceDir '$(outputDir)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
               Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]True"
-            # Only create artifacts if we're building a tag or building main
-            # Ideally, we'd add a condition for testing PRs targeting main but it doesn't seem to be supported
-            condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('refs/heads/main', '$(Build.SourceBranch)')))
+            # Only create artifacts if we're building a tag, building main, or building a PR targeting main
+            condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
@@ -139,7 +136,7 @@ stages:
       vmImage: windows-latest
     dependsOn: [build]
     # Only sign binaries if we're building a tag.
-    condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
+    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
     jobs:
       - job: esrpSign
         dependsOn: []
@@ -327,7 +324,7 @@ stages:
     pool:
       vmImage: windows-latest
     # Only scan binaries if we're building a tag or building main
-    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('refs/heads/main', '$(Build.SourceBranch)')))
+    condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
     jobs:
       - job: scan
         displayName: Scanning binaries
@@ -340,7 +337,7 @@ stages:
   - stage: upload
     dependsOn: [binaryScan, sign]
     # Only upload release if we're building a tag.
-    condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
+    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
     variables:
       currentTag: '$(branchOrTagName)'
       isPreRelease: $[ contains(variables.currentTag, 'preview') ]
