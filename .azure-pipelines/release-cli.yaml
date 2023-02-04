@@ -101,12 +101,13 @@ stages:
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
               Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -SourceDir '$(outputDir)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
-            # condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
+            # Only compress build outputs if we're going to publish them
+            condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
-            # Only publish artifacts if we're building a tag, main or testing a PR targeting main
-            # condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
+            # Only publish artifacts if we're building a tag, building main or testing a PR targeting main
+            condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
             inputs:
               artifact: build-output-$(rid)
               path: $(outputDir)-$(rid)
@@ -130,7 +131,7 @@ stages:
       vmImage: windows-latest
     dependsOn: [build]
     # Only sign binaries if we're building a tag.
-    # condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
+    condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
     jobs:
       - job: esrpSign
         dependsOn: []
@@ -317,7 +318,7 @@ stages:
     dependsOn: [build, srcScan]
     pool:
       vmImage: windows-latest
-    # Only publish artifacts if we're building a tag, main or testing a PR targeting main
+    # Only scan binaries if we're building a tag, building main or testing a PR targeting main
     condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
     jobs:
       - job: scan
