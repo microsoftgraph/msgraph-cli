@@ -49,10 +49,6 @@ stages:
       - job: test
         displayName: Run tests
         steps:
-        - pwsh: |
-            Write-Host $(targetBranch)
-          displayName: Test
-          condition: eq(variables['Build.Reason'], 'PullRequest')
         - task: UseDotNet@2
           displayName: 'Use .NET 7'
           inputs:
@@ -323,7 +319,7 @@ stages:
     dependsOn: [build, srcScan]
     pool:
       vmImage: windows-latest
-    # Only scan binaries if we're building a tag or building main
+    # Only scan binaries if we're building a tag, building main, or building a PR targeting main
     condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
     jobs:
       - job: scan
