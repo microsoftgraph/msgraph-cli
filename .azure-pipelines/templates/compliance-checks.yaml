@@ -20,11 +20,12 @@ steps:
   - ${{ if eq(parameters.scanSource, true) }}:
     - task: PoliCheck@2
       displayName: 'Run PoliCheck - Source code scan'
-      enabled: false
+      enabled: true
       inputs:
         termTypeT: 0001aCustom
         termTypeTCustom: 9
         targetArgument: $(Build.SourcesDirectory)/src
+        optionsUEPATH: $(System.DefaultWorkingDirectory)/.azure-pipelines/config/PoliCheckExclusions.xml
         optionsSEV: "1|2"
         optionsPE: 2
 
