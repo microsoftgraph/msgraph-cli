@@ -102,8 +102,9 @@ stages:
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
               Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -SourceDir '$(outputDir)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
               Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]True"
-            # Only create artifacts if we're building a tag, building main or testing a PR targeting main
-            condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('refs/heads/main', '$(Build.SourceBranch)'), eq('main', '$(System.PullRequest.TargetBranch)')))
+            # Only create artifacts if we're building a tag or building main
+            # Ideally, we'd add a condition for testing PRs targeting main but it doesn't seem to be supported
+            condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('refs/heads/main', '$(Build.SourceBranch)')))
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
@@ -319,8 +320,8 @@ stages:
     dependsOn: [build, srcScan]
     pool:
       vmImage: windows-latest
-    # Only scan binaries if we're building a tag, building main or testing a PR targeting main
-    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('refs/heads/main', '$(Build.SourceBranch)'), eq('main', '$(System.PullRequest.TargetBranch)')))
+    # Only scan binaries if we're building a tag or building main
+    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), eq('refs/heads/main', '$(Build.SourceBranch)')))
     jobs:
       - job: scan
         displayName: Scanning binaries
