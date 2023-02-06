@@ -28,6 +28,8 @@ variables:
     value: $(Pipeline.Workspace)/artifacts
   - name: internalFeed
     value: "Graph Developer Experiences/microsoft-graph-packages" # Format projectName/feedName
+  - name: powershellScriptsDir
+    value: $(System.DefaultWorkingDirectory)/.azure-pipelines/powershell
   - name: branchOrTagName
     ${{ if in(variables['Build.SourceBranch'], 'refs/heads/main', 'refs/heads/dev') }}:
       value: 'latest'
@@ -69,21 +71,8 @@ stages:
     displayName: Build CLI
     dependsOn: [test]
     jobs:
-      - job: prepare
-        displayName: Prepare build
-        steps:
-          - pwsh: |
-              # Get the version
-              $version = '$(branchOrTagName)'
-              $version = $version.TrimStart('refs/tags/v')
-              # Export version for use later
-              Write-Host "##vso[task.setvariable variable=versionVar;isOutput=true]$version"
-            name: version
       - job: build
-        dependsOn: [prepare]
         displayName: Build and publish
-        variables:
-          version: $[ dependencies.prepare.outputs['version.versionVar'] ]
         strategy:
           matrix:
             'Windows-x64':
@@ -110,19 +99,16 @@ stages:
             displayName: DotNet publish
 
           - pwsh: |
-              # Get the archive name
-              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
-
-              $outputLocation = '$(outputDir)-$(rid)'
-              # Ensure output directory exists
-              New-Item $outputLocation -ItemType Directory -Force
-              Compress-Archive -Path $(outputDir)/* -DestinationPath $outputLocation/$zipName
-              Remove-Item '$(outputDir)/*'
+              Import-Module $(powershellScriptsDir)/BuildTools.psm1
+              Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -SourceDir '$(outputDir)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
+              Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]True"
+            # Only create artifacts if we're building a tag, building main, or building a PR targeting main
+            condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
-            # Only publish artifacts if we're building a tag, main or testing a PR targeting main
-            condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
+            # Only publish artifacts if they exist
+            condition: and(succeeded(), eq(variables['HAS_ARTIFACTS'], 'True'))
             inputs:
               artifact: build-output-$(rid)
               path: $(outputDir)-$(rid)
@@ -145,10 +131,8 @@ stages:
     pool:
       vmImage: windows-latest
     dependsOn: [build]
-    variables:
-      version: $[ stageDependencies.build.prepare.outputs['version.versionVar'] ]
     # Only sign binaries if we're building a tag.
-    condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
+    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
     jobs:
       - job: esrpSign
         dependsOn: []
@@ -230,7 +214,6 @@ stages:
               Write-Verbose -Verbose 'pattern = ''$(pattern)'''
               Write-Verbose -Verbose 'zipTemplate = ''$(zipTemplate)'''
               Write-Verbose -Verbose 'artifactsDownloadLocation = ''$(artifactsDownloadLocation)'''
-              Write-Verbose -Verbose 'version = ''$(version)'''
               Write-Verbose -Verbose 'sign = ''$(sign)'''
               Write-Verbose -Verbose 'inlineSignOperation = ''$(inlineSignOperation)'''
               Write-Verbose -Verbose 'inlineNotarizeOperation = ''$(inlineNotarizeOperation)'''
@@ -250,38 +233,26 @@ stages:
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
           
           - pwsh: |
-              $zipName = '$(zipTemplate)' -f '$(rid)','$(version)'
+              Import-Module $(powershellScriptsDir)/BuildTools.psm1
+              $zipName = Get-ZipName -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
               Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
             displayName: Compute zip name
 
           - pwsh: |
-              # Get the archive name
-              # artifactsDownloadLocation = $(Pipeline.Workspace)/artifacts
-              # WORKING_DIR = $(artifactsDownloadLocation)/$(rid)
-              $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
-              $zipPath = Join-Path -Path $downloadDir -ChildPath '$(ZIP_NAME)'
-              Write-Host $zipPath
-              $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
-              # extractPath = $(artifactsDownloadLocation)/$(rid)/artifacts
-              Expand-Archive -Path $zipPath -DestinationPath $extractPath
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
+              Import-Module $(powershellScriptsDir)/BuildTools.psm1
 
-              $backupPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath backup
-              # backupPath = $(artifactsDownloadLocation)/$(rid)/backup
-              New-Item "$backupPath" -ItemType "Directory"
-              # Move non-exe items
-              Move-Item -Path $extractPath/* -Exclude mgc,mgc.exe -Destination "$backupPath"
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
-              # -Force so there's no confirmation
-              # -Recurse so the child items warning isn't shown
-              Remove-Item $downloadDir -Recurse -Force
-              Write-Host "##vso[task.setvariable variable=BACKUP_PATH]$backupPath"
+              $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
+              $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
+              Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
+
+              Move-NonExecutableItems -SourcePath $extractPath -ExecutableItemNames mgc,mgc.exe
+              Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$extractPath"
             displayName: Extract zip
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
           - template: templates/prepare-unsigned-executable-darwin.yaml
             parameters:
-              executablePath: $(WORKING_DIR)/artifacts
+              executablePath: $(ARTIFACTS_PATH)
               executableName: mgc
               zipName: $(ZIP_NAME)
               targetRuntime: $(rid)
@@ -301,7 +272,7 @@ stages:
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(WORKING_DIR)/artifacts
+              FolderPath: $(ARTIFACTS_PATH)
               signConfigType: inlineSignParams
               UseMinimatch: true
               Pattern: $(ESRP_FILE_PATTERN)
@@ -314,7 +285,7 @@ stages:
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(WORKING_DIR)/artifacts
+              FolderPath: $(ARTIFACTS_PATH)
               signConfigType: inlineSignParams
               UseMinimatch: true
               Pattern: $(ESRP_FILE_PATTERN)
@@ -323,31 +294,16 @@ stages:
             condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), eq(variables['SHOULD_SIGN'], 'True'))
 
           - pwsh: |
-              $artifactsPath = "$(WORKING_DIR)/artifacts"
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
-              # artifactsPath = $(artifactsDownloadLocation)/$(rid)/artifacts
-              Move-Item -Path "$artifactsPath/*.md" -Destination "$(WORKING_DIR)"
-              # Move backup back
-              # BACKUP_PATH = $(artifactsDownloadLocation)/$(rid)/backup
-              Move-Item -Path '$(BACKUP_PATH)/*' -Destination "$artifactsPath"
-              Compress-Archive -Path "$artifactsPath/*" -DestinationPath $(WORKING_DIR)/$(ZIP_NAME)
-              Remove-Item "$artifactsPath" -Recurse -Force
-              Remove-Item '$(BACKUP_PATH)' -Recurse -Force
+              Import-Module $(powershellScriptsDir)/BuildTools.psm1
+              Compress-SignedFiles -SourceDir '$(ARTIFACTS_PATH)' -ReportDir '$(WORKING_DIR)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Compress signed files (Windows)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'win'))
 
           - pwsh: |
-              $artifactsPath = "$(WORKING_DIR)/artifacts"
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
-              $zipPath = Join-Path -Path $artifactsPath -ChildPath '$(ZIP_NAME)'
-              Expand-Archive -Path "$zipPath" -DestinationPath "$artifactsPath"
-              Move-Item -Path "$artifactsPath/*.md" -Destination "$(WORKING_DIR)"
-              Remove-Item -Path "$zipPath" -Force
-              Move-Item -Path '$(BACKUP_PATH)/*' -Destination "$artifactsPath"
-              Compress-Archive -Path "$artifactsPath/*" -DestinationPath $(WORKING_DIR)/$(ZIP_NAME)
-              Remove-Item "$artifactsPath" -Recurse -Force
-              Remove-Item '$(BACKUP_PATH)' -Recurse -Force
+              Import-Module $(powershellScriptsDir)/BuildTools.psm1
+              $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
+              Update-SignedArchive -InputFile $zipPath -ReportDir '$(WORKING_DIR)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Update signed files (MacOS)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
@@ -363,8 +319,8 @@ stages:
     dependsOn: [build, srcScan]
     pool:
       vmImage: windows-latest
-    # Only publish artifacts if we're building a tag, main or testing a PR targeting main
-    condition: and(succeeded(), or(startsWith('$(Build.SourceBranch)', 'refs/tags/v'), in('refs/heads/main', '$(System.PullRequest.TargetBranch)', '$(Build.SourceBranch)')))
+    # Only scan binaries if we're building a tag, building main, or building a PR targeting main
+    condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
     jobs:
       - job: scan
         displayName: Scanning binaries
@@ -377,7 +333,7 @@ stages:
   - stage: upload
     dependsOn: [binaryScan, sign]
     # Only upload release if we're building a tag.
-    condition: and(succeeded(), startsWith('$(Build.SourceBranch)', 'refs/tags/v'))
+    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
     variables:
       currentTag: '$(branchOrTagName)'
       isPreRelease: $[ contains(variables.currentTag, 'preview') ]
