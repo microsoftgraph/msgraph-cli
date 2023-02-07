@@ -41,16 +41,17 @@
       },
       "Microsoft.Graph.Cli.Core": {
         "type": "Direct",
-        "requested": "[0.1.6-preview.1, )",
-        "resolved": "0.1.6-preview.1",
-        "contentHash": "L8yEO9ltGgjVxwRFnH//wtbVjSuxTMw2CNY2Tt49gGKRIp6JfYfKvKlRNu+Qmi05jCXBcwJDtzZIq2448OVzgQ==",
+        "requested": "[0.1.8-preview.1, )",
+        "resolved": "0.1.8-preview.1",
+        "contentHash": "hnoP87G4BIT8598ePiRDfJysCAWM+LyAwTlGtColHh9Oshn2yEzD7AbvhHdRgtQoQ6E3uxgw9jc6IDtyrZ2CnA==",
         "dependencies": {
           "Azure.Identity": "1.8.1",
           "JmesPath.Net": "1.0.205",
           "Microsoft.Extensions.Hosting": "7.0.0",
-          "Microsoft.Graph.Core": "3.0.0-rc.3",
-          "Microsoft.Kiota.Cli.Commons": "0.1.12-preview.2",
-          "Microsoft.Kiota.Http.HttpClientLibrary": "1.0.0-rc.5",
+          "Microsoft.Extensions.Http": "7.0.0",
+          "Microsoft.Graph.Core": "3.0.0-rc.5",
+          "Microsoft.Kiota.Cli.Commons": "0.1.13-preview.1",
+          "Microsoft.Kiota.Http.HttpClientLibrary": "1.0.0-rc.6",
           "Spectre.Console": "0.46.0",
           "System.CommandLine": "2.0.0-beta4.22272.1"
         }
@@ -465,7 +466,7 @@
       "Microsoft.Kiota.Cli.Commons": {
         "type": "Transitive",
         "resolved": "0.1.13-preview.1",
-        "contentHash": "eDjunnPu1Jbb3MkZnNifWMDrh6w37IVj7FmDGAQpPPrYJl2RVbo0EQP53+lHaHrI5EDKSmWMtX017knhdU5Oiw==",
+        "contentHash": "0zI1sh/gM/tpjM7U8//+zxtqg8PIdJ6ex/OktwaNDjqYOvVyPkjVWAZpwq3syATslMEG1WQm5AOolfasCZwZiw==",
         "dependencies": {
           "JmesPath.Net": "1.0.205",
           "Microsoft.Kiota.Abstractions": "1.0.0-rc.7",
@@ -585,11 +586,11 @@
       },
       "System.IdentityModel.Tokens.Jwt": {
         "type": "Transitive",
-        "resolved": "6.25.1",
-        "contentHash": "0ypg2Vj2gSm7guuO152Y4kVCyLQ4aZyakAogmZlmB3M5QZTDUW0wjXzKafqAtFBzw+pGWH0bFAfH2FyNt7Uo6A==",
+        "resolved": "6.26.0",
+        "contentHash": "GT6imbntzCpoGHTRFUa98TPCF9PTnzV1v5KiTj9sT5ZmeYZErNA5ks5VDvYBaOC59y3dQ78IsMzEJm+XrxDk6w==",
         "dependencies": {
-          "Microsoft.IdentityModel.JsonWebTokens": "6.25.1",
-          "Microsoft.IdentityModel.Tokens": "6.25.1"
+          "Microsoft.IdentityModel.JsonWebTokens": "6.26.0",
+          "Microsoft.IdentityModel.Tokens": "6.26.0"
         }
       },
       "System.IO": {
