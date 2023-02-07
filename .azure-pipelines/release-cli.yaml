@@ -37,7 +37,6 @@ variables:
       value: '$(Build.SourceBranchName)'
   - group: ESRP
 
-#                   
 # test -> build -> | sign |
 #                  |------| -> upload
 # srcScan -------> | scan |
@@ -58,6 +57,9 @@ stages:
         - template: templates/nuget-packages.yaml
           parameters:
             vstsFeedName: ${{variables.internalFeed}}
+
+        - pwsh: dotnet format --no-restore --include ./src/ --exclude ./src/generated/ --verify-no-changes
+          displayName: Validate formatting
 
         - task: DotNetCoreCLI@2
           displayName: Run tests
@@ -231,7 +233,7 @@ stages:
               patterns: build-output-$(rid)/**/*
               path: $(WORKING_DIR)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
-          
+
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
               $zipName = Get-ZipName -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
@@ -359,4 +361,3 @@ stages:
                 $(artifactsDownloadLocation)/build-output-linux-*/*.zip
                 $(artifactsDownloadLocation)/sign-output-*/*.zip
               isPreRelease: $(isPreRelease)
-    
