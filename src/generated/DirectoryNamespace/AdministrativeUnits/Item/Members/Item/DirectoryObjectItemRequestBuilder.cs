@@ -23,8 +23,6 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
     public class DirectoryObjectItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -33,7 +31,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         public Command BuildMicrosoftGraphApplicationCommand() {
             var command = new Command("microsoft-graph-application");
             command.Description = "Casts the previous resource to application.";
-            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplicationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -43,7 +41,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         public Command BuildMicrosoftGraphDeviceCommand() {
             var command = new Command("microsoft-graph-device");
             command.Description = "Casts the previous resource to device.";
-            var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDeviceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -53,7 +51,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         public Command BuildMicrosoftGraphGroupCommand() {
             var command = new Command("microsoft-graph-group");
             command.Description = "Casts the previous resource to group.";
-            var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGroupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -63,7 +61,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         public Command BuildMicrosoftGraphOrgContactCommand() {
             var command = new Command("microsoft-graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
-            var builder = new OrgContactRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphOrgContactRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -73,7 +71,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         public Command BuildMicrosoftGraphServicePrincipalCommand() {
             var command = new Command("microsoft-graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -83,7 +81,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         public Command BuildMicrosoftGraphUserCommand() {
             var command = new Command("microsoft-graph-user");
             command.Description = "Casts the previous resource to user.";
-            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -93,7 +91,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of directory entities.";
-            var builder = new RefRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             return command;
         }
@@ -101,14 +99,11 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
     }
 }

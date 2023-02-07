@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -27,8 +28,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
     public class EdiscoverySearchItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -37,7 +36,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         public Command BuildAdditionalSourcesCommand() {
             var command = new Command("additional-sources");
             command.Description = "Provides operations to manage the additionalSources property of the microsoft.graph.security.ediscoverySearch entity.";
-            var builder = new AdditionalSourcesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AdditionalSourcesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -50,7 +49,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         public Command BuildAddToReviewSetOperationCommand() {
             var command = new Command("add-to-review-set-operation");
             command.Description = "Provides operations to manage the addToReviewSetOperation property of the microsoft.graph.security.ediscoverySearch entity.";
-            var builder = new AddToReviewSetOperationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AddToReviewSetOperationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -60,7 +59,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         public Command BuildCustodianSourcesCommand() {
             var command = new Command("custodian-sources");
             command.Description = "Provides operations to manage the custodianSources property of the microsoft.graph.security.ediscoverySearch entity.";
-            var builder = new CustodianSourcesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CustodianSourcesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -91,6 +90,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                 var ediscoverySearchId = invocationContext.ParseResult.GetValueForOption(ediscoverySearchIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
@@ -100,7 +100,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -154,6 +154,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -164,7 +165,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -178,7 +179,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         public Command BuildLastEstimateStatisticsOperationCommand() {
             var command = new Command("last-estimate-statistics-operation");
             command.Description = "Provides operations to manage the lastEstimateStatisticsOperation property of the microsoft.graph.security.ediscoverySearch entity.";
-            var builder = new LastEstimateStatisticsOperationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new LastEstimateStatisticsOperationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -188,7 +189,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         public Command BuildMicrosoftGraphSecurityEstimateStatisticsCommand() {
             var command = new Command("microsoft-graph-security-estimate-statistics");
             command.Description = "Provides operations to call the estimateStatistics method.";
-            var builder = new EstimateStatisticsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -198,7 +199,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         public Command BuildMicrosoftGraphSecurityPurgeDataCommand() {
             var command = new Command("microsoft-graph-security-purge-data");
             command.Description = "Provides operations to call the purgeData method.";
-            var builder = new PurgeDataRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSecurityPurgeDataRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -208,7 +209,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         public Command BuildNoncustodialSourcesCommand() {
             var command = new Command("noncustodial-sources");
             command.Description = "Provides operations to manage the noncustodialSources property of the microsoft.graph.security.ediscoverySearch entity.";
-            var builder = new NoncustodialSourcesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new NoncustodialSourcesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -256,6 +257,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EdiscoverySearch>(EdiscoverySearch.CreateFromDiscriminatorValue);
@@ -268,7 +270,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -280,14 +282,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// Instantiates a new EdiscoverySearchItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EdiscoverySearchItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public EdiscoverySearchItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property searches for security
@@ -358,7 +357,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new EdiscoverySearchItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

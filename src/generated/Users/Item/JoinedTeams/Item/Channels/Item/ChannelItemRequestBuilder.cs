@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,6 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
     public class ChannelItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -63,6 +62,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
                 var channelId = invocationContext.ParseResult.GetValueForOption(channelIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
@@ -73,7 +73,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -84,7 +84,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
         public Command BuildFilesFolderCommand() {
             var command = new Command("files-folder");
             command.Description = "Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.";
-            var builder = new FilesFolderRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new FilesFolderRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildContentCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -143,6 +143,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -154,7 +155,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -168,7 +169,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
         public Command BuildMembersCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.channel entity.";
-            var builder = new MembersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MembersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -182,7 +183,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
         public Command BuildMessagesCommand() {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.channel entity.";
-            var builder = new MessagesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MessagesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -196,7 +197,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
         public Command BuildMicrosoftGraphCompleteMigrationCommand() {
             var command = new Command("microsoft-graph-complete-migration");
             command.Description = "Provides operations to call the completeMigration method.";
-            var builder = new CompleteMigrationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCompleteMigrationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -206,7 +207,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
         public Command BuildMicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand() {
             var command = new Command("microsoft-graph-does-user-have-accessuser-id-user-id-tenant-id-tenant-id-user-principal-name-user-principal-name");
             command.Description = "Provides operations to call the doesUserHaveAccess method.";
-            var builder = new DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -216,7 +217,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
         public Command BuildMicrosoftGraphProvisionEmailCommand() {
             var command = new Command("microsoft-graph-provision-email");
             command.Description = "Provides operations to call the provisionEmail method.";
-            var builder = new ProvisionEmailRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphProvisionEmailRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -226,7 +227,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
         public Command BuildMicrosoftGraphRemoveEmailCommand() {
             var command = new Command("microsoft-graph-remove-email");
             command.Description = "Provides operations to call the removeEmail method.";
-            var builder = new RemoveEmailRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRemoveEmailRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -277,6 +278,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Channel>(Channel.CreateFromDiscriminatorValue);
@@ -290,7 +292,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -304,7 +306,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
         public Command BuildSharedWithTeamsCommand() {
             var command = new Command("shared-with-teams");
             command.Description = "Provides operations to manage the sharedWithTeams property of the microsoft.graph.channel entity.";
-            var builder = new SharedWithTeamsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SharedWithTeamsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -317,7 +319,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
         public Command BuildTabsCommand() {
             var command = new Command("tabs");
             command.Description = "Provides operations to manage the tabs property of the microsoft.graph.channel entity.";
-            var builder = new TabsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TabsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -328,14 +330,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
         /// Instantiates a new ChannelItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ChannelItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public ChannelItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property channels for users
@@ -406,7 +405,6 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new ChannelItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

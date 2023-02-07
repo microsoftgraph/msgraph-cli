@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
     public class EdiscoveryCaseItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -39,7 +38,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         public Command BuildCustodiansCommand() {
             var command = new Command("custodians");
             command.Description = "Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.";
-            var builder = new CustodiansRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CustodiansRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -68,6 +67,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                 var ediscoveryCaseId = invocationContext.ParseResult.GetValueForOption(ediscoveryCaseIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
@@ -76,7 +76,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -125,6 +125,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -134,7 +135,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -148,7 +149,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         public Command BuildMicrosoftGraphSecurityCloseCommand() {
             var command = new Command("microsoft-graph-security-close");
             command.Description = "Provides operations to call the close method.";
-            var builder = new CloseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSecurityCloseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -158,7 +159,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         public Command BuildMicrosoftGraphSecurityReopenCommand() {
             var command = new Command("microsoft-graph-security-reopen");
             command.Description = "Provides operations to call the reopen method.";
-            var builder = new ReopenRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSecurityReopenRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -168,7 +169,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         public Command BuildNoncustodialDataSourcesCommand() {
             var command = new Command("noncustodial-data-sources");
             command.Description = "Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.";
-            var builder = new NoncustodialDataSourcesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new NoncustodialDataSourcesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -183,7 +184,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.security.ediscoveryCase entity.";
-            var builder = new OperationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OperationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -227,6 +228,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EdiscoveryCase>(EdiscoveryCase.CreateFromDiscriminatorValue);
@@ -238,7 +240,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -252,7 +254,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         public Command BuildReviewSetsCommand() {
             var command = new Command("review-sets");
             command.Description = "Provides operations to manage the reviewSets property of the microsoft.graph.security.ediscoveryCase entity.";
-            var builder = new ReviewSetsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ReviewSetsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -265,7 +267,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         public Command BuildSearchesCommand() {
             var command = new Command("searches");
             command.Description = "Provides operations to manage the searches property of the microsoft.graph.security.ediscoveryCase entity.";
-            var builder = new SearchesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SearchesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -278,7 +280,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         public Command BuildSettingsCommand() {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.security.ediscoveryCase entity.";
-            var builder = new SettingsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SettingsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMicrosoftGraphSecurityResetToDefaultCommand());
@@ -291,7 +293,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         public Command BuildTagsCommand() {
             var command = new Command("tags");
             command.Description = "Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.";
-            var builder = new TagsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TagsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -303,14 +305,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// Instantiates a new EdiscoveryCaseItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EdiscoveryCaseItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public EdiscoveryCaseItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property ediscoveryCases for security
@@ -381,7 +380,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new EdiscoveryCaseItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

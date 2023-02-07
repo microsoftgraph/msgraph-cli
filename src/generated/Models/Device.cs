@@ -150,7 +150,7 @@ namespace ApiSdk.Models {
         public string TrustType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Device and sets the default values.
+        /// Instantiates a new device and sets the default values.
         /// </summary>
         public Device() : base() {
             OdataType = "#microsoft.graph.device";

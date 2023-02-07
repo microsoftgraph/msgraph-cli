@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -27,8 +28,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
     public class ListItemItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -37,7 +36,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         public Command BuildAnalyticsCommand() {
             var command = new Command("analytics");
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.listItem entity.";
-            var builder = new AnalyticsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AnalyticsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -76,6 +75,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
                 var listItemId = invocationContext.ParseResult.GetValueForOption(listItemIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -87,7 +87,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -98,7 +98,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         public Command BuildDocumentSetVersionsCommand() {
             var command = new Command("document-set-versions");
             command.Description = "Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.";
-            var builder = new DocumentSetVersionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DocumentSetVersionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -111,7 +111,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         public Command BuildDriveItemCommand() {
             var command = new Command("drive-item");
             command.Description = "Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.";
-            var builder = new DriveItemRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DriveItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildContentCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -122,7 +122,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         public Command BuildFieldsCommand() {
             var command = new Command("fields");
             command.Description = "Provides operations to manage the fields property of the microsoft.graph.listItem entity.";
-            var builder = new FieldsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new FieldsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -187,6 +187,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -199,7 +200,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -213,7 +214,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         public Command BuildMicrosoftGraphGetActivitiesByIntervalCommand() {
             var command = new Command("microsoft-graph-get-activities-by-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
-            var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetActivitiesByIntervalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -269,6 +270,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.ListItem>(ApiSdk.Models.ListItem.CreateFromDiscriminatorValue);
@@ -283,7 +285,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -297,7 +299,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         public Command BuildVersionsCommand() {
             var command = new Command("versions");
             command.Description = "Provides operations to manage the versions property of the microsoft.graph.listItem entity.";
-            var builder = new VersionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new VersionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -308,26 +310,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// Instantiates a new ListItemItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ListItemItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public ListItemItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the getActivitiesByInterval method.
-        /// </summary>
-        /// <param name="endDateTime">Usage: endDateTime=&apos;{endDateTime}&apos;</param>
-        /// <param name="interval">Usage: interval=&apos;{interval}&apos;</param>
-        /// <param name="startDateTime">Usage: startDateTime=&apos;{startDateTime}&apos;</param>
-        public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval(string endDateTime, string interval, string startDateTime) {
-            if(string.IsNullOrEmpty(endDateTime)) throw new ArgumentNullException(nameof(endDateTime));
-            if(string.IsNullOrEmpty(interval)) throw new ArgumentNullException(nameof(interval));
-            if(string.IsNullOrEmpty(startDateTime)) throw new ArgumentNullException(nameof(startDateTime));
-            return new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters, RequestAdapter, endDateTime, interval, startDateTime);
         }
         /// <summary>
         /// Delete navigation property items for groups
@@ -398,7 +385,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new ListItemItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

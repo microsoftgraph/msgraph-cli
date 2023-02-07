@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -31,8 +32,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
     public class WorkbookTableItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -41,7 +40,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public Command BuildColumnsCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.workbookTable entity.";
-            var builder = new ColumnsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ColumnsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -80,6 +79,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
                 var workbookTableId = invocationContext.ParseResult.GetValueForOption(workbookTableIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
@@ -90,7 +90,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -149,6 +149,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -160,7 +161,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -174,7 +175,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public Command BuildMicrosoftGraphClearFiltersCommand() {
             var command = new Command("microsoft-graph-clear-filters");
             command.Description = "Provides operations to call the clearFilters method.";
-            var builder = new ClearFiltersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphClearFiltersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -184,7 +185,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public Command BuildMicrosoftGraphConvertToRangeCommand() {
             var command = new Command("microsoft-graph-convert-to-range");
             command.Description = "Provides operations to call the convertToRange method.";
-            var builder = new ConvertToRangeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphConvertToRangeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -194,7 +195,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public Command BuildMicrosoftGraphDataBodyRangeCommand() {
             var command = new Command("microsoft-graph-data-body-range");
             command.Description = "Provides operations to call the dataBodyRange method.";
-            var builder = new DataBodyRangeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDataBodyRangeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -204,7 +205,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public Command BuildMicrosoftGraphHeaderRowRangeCommand() {
             var command = new Command("microsoft-graph-header-row-range");
             command.Description = "Provides operations to call the headerRowRange method.";
-            var builder = new HeaderRowRangeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphHeaderRowRangeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -214,7 +215,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public Command BuildMicrosoftGraphRangeCommand() {
             var command = new Command("microsoft-graph-range");
             command.Description = "Provides operations to call the range method.";
-            var builder = new RangeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRangeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -224,7 +225,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public Command BuildMicrosoftGraphReapplyFiltersCommand() {
             var command = new Command("microsoft-graph-reapply-filters");
             command.Description = "Provides operations to call the reapplyFilters method.";
-            var builder = new ReapplyFiltersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphReapplyFiltersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -234,7 +235,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public Command BuildMicrosoftGraphTotalRowRangeCommand() {
             var command = new Command("microsoft-graph-total-row-range");
             command.Description = "Provides operations to call the totalRowRange method.";
-            var builder = new TotalRowRangeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTotalRowRangeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -285,6 +286,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookTable>(WorkbookTable.CreateFromDiscriminatorValue);
@@ -298,7 +300,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -312,7 +314,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public Command BuildRowsCommand() {
             var command = new Command("rows");
             command.Description = "Provides operations to manage the rows property of the microsoft.graph.workbookTable entity.";
-            var builder = new RowsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RowsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -327,7 +329,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public Command BuildSortCommand() {
             var command = new Command("sort");
             command.Description = "Provides operations to manage the sort property of the microsoft.graph.workbookTable entity.";
-            var builder = new SortRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SortRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMicrosoftGraphApplyCommand());
@@ -342,7 +344,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public Command BuildWorksheetCommand() {
             var command = new Command("worksheet");
             command.Description = "Provides operations to manage the worksheet property of the microsoft.graph.workbookTable entity.";
-            var builder = new WorksheetRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new WorksheetRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -350,14 +352,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         /// Instantiates a new WorkbookTableItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WorkbookTableItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public WorkbookTableItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property tables for drives
@@ -428,7 +427,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new WorkbookTableItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

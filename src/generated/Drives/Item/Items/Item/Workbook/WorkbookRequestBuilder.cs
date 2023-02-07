@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
     public class WorkbookRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -42,7 +41,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildApplicationCommand() {
             var command = new Command("application");
             command.Description = "Provides operations to manage the application property of the microsoft.graph.workbook entity.";
-            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApplicationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMicrosoftGraphCalculateCommand());
@@ -55,7 +54,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildCommentsCommand() {
             var command = new Command("comments");
             command.Description = "Provides operations to manage the comments property of the microsoft.graph.workbook entity.";
-            var builder = new CommentsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CommentsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -87,6 +86,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
@@ -96,7 +96,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildFunctionsCommand() {
             var command = new Command("functions");
             command.Description = "Provides operations to manage the functions property of the microsoft.graph.workbook entity.";
-            var builder = new FunctionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new FunctionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMicrosoftGraphAbsCommand());
@@ -528,6 +528,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -538,7 +539,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -552,7 +553,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildMicrosoftGraphCloseSessionCommand() {
             var command = new Command("microsoft-graph-close-session");
             command.Description = "Provides operations to call the closeSession method.";
-            var builder = new CloseSessionRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCloseSessionRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -562,7 +563,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildMicrosoftGraphCreateSessionCommand() {
             var command = new Command("microsoft-graph-create-session");
             command.Description = "Provides operations to call the createSession method.";
-            var builder = new CreateSessionRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCreateSessionRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -572,7 +573,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildMicrosoftGraphRefreshSessionCommand() {
             var command = new Command("microsoft-graph-refresh-session");
             command.Description = "Provides operations to call the refreshSession method.";
-            var builder = new RefreshSessionRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRefreshSessionRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -582,7 +583,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildNamesCommand() {
             var command = new Command("names");
             command.Description = "Provides operations to manage the names property of the microsoft.graph.workbook entity.";
-            var builder = new NamesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new NamesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -597,7 +598,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.workbook entity.";
-            var builder = new OperationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OperationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -646,6 +647,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Workbook>(ApiSdk.Models.Workbook.CreateFromDiscriminatorValue);
@@ -658,7 +660,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -672,7 +674,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildTablesCommand() {
             var command = new Command("tables");
             command.Description = "Provides operations to manage the tables property of the microsoft.graph.workbook entity.";
-            var builder = new TablesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TablesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -687,7 +689,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildWorksheetsCommand() {
             var command = new Command("worksheets");
             command.Description = "Provides operations to manage the worksheets property of the microsoft.graph.workbook entity.";
-            var builder = new WorksheetsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new WorksheetsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -699,30 +701,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// Instantiates a new WorkbookRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WorkbookRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public WorkbookRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the sessionInfoResource method.
-        /// </summary>
-        /// <param name="key">Usage: key=&apos;{key}&apos;</param>
-        public SessionInfoResourceWithKeyRequestBuilder MicrosoftGraphSessionInfoResourceWithKey(string key) {
-            if(string.IsNullOrEmpty(key)) throw new ArgumentNullException(nameof(key));
-            return new SessionInfoResourceWithKeyRequestBuilder(PathParameters, RequestAdapter, key);
-        }
-        /// <summary>
-        /// Provides operations to call the tableRowOperationResult method.
-        /// </summary>
-        /// <param name="key">Usage: key=&apos;{key}&apos;</param>
-        public TableRowOperationResultWithKeyRequestBuilder MicrosoftGraphTableRowOperationResultWithKey(string key) {
-            if(string.IsNullOrEmpty(key)) throw new ArgumentNullException(nameof(key));
-            return new TableRowOperationResultWithKeyRequestBuilder(PathParameters, RequestAdapter, key);
         }
         /// <summary>
         /// Delete navigation property workbook for drives
@@ -793,7 +776,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new WorkbookRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

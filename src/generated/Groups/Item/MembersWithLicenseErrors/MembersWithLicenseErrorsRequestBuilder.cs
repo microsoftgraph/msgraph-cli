@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,6 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
     public class MembersWithLicenseErrorsRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -37,7 +36,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
-            var builder = new DirectoryObjectItemRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
             command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
@@ -53,7 +52,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         public Command BuildCountCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CountRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -142,6 +141,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
@@ -159,7 +159,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
-                var pageResponse = await pagingService.GetPagedDataAsync((info, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
+                var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
                 IOutputFormatterOptions? formatterOptions = null;
                 IOutputFormatter? formatter = null;
@@ -180,7 +180,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         public Command BuildMicrosoftGraphApplicationCommand() {
             var command = new Command("microsoft-graph-application");
             command.Description = "Casts the previous resource to application.";
-            var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplicationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -191,7 +191,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         public Command BuildMicrosoftGraphDeviceCommand() {
             var command = new Command("microsoft-graph-device");
             command.Description = "Casts the previous resource to device.";
-            var builder = new DeviceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDeviceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -202,7 +202,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         public Command BuildMicrosoftGraphGroupCommand() {
             var command = new Command("microsoft-graph-group");
             command.Description = "Casts the previous resource to group.";
-            var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGroupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -213,7 +213,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         public Command BuildMicrosoftGraphOrgContactCommand() {
             var command = new Command("microsoft-graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
-            var builder = new OrgContactRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphOrgContactRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -224,7 +224,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         public Command BuildMicrosoftGraphServicePrincipalCommand() {
             var command = new Command("microsoft-graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -235,7 +235,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         public Command BuildMicrosoftGraphUserCommand() {
             var command = new Command("microsoft-graph-user");
             command.Description = "Casts the previous resource to user.";
-            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -244,14 +244,11 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         /// Instantiates a new MembersWithLicenseErrorsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MembersWithLicenseErrorsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public MembersWithLicenseErrorsRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// A list of group members with license errors from this group-based license assignment. Read-only.
