@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -30,8 +31,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
     public class ContentTypeItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -40,7 +39,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         public Command BuildBaseCommand() {
             var command = new Command("base");
             command.Description = "Provides operations to manage the base property of the microsoft.graph.contentType entity.";
-            var builder = new BaseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new BaseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -50,7 +49,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         public Command BuildBaseTypesCommand() {
             var command = new Command("base-types");
             command.Description = "Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.";
-            var builder = new BaseTypesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new BaseTypesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -62,7 +61,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         public Command BuildColumnLinksCommand() {
             var command = new Command("column-links");
             command.Description = "Provides operations to manage the columnLinks property of the microsoft.graph.contentType entity.";
-            var builder = new ColumnLinksRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ColumnLinksRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -75,7 +74,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         public Command BuildColumnPositionsCommand() {
             var command = new Command("column-positions");
             command.Description = "Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.";
-            var builder = new ColumnPositionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ColumnPositionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -87,7 +86,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         public Command BuildColumnsCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.contentType entity.";
-            var builder = new ColumnsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ColumnsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -124,6 +123,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
                 var contentTypeId = invocationContext.ParseResult.GetValueForOption(contentTypeIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -134,7 +134,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -193,6 +193,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -204,7 +205,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -218,7 +219,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         public Command BuildMicrosoftGraphAssociateWithHubSitesCommand() {
             var command = new Command("microsoft-graph-associate-with-hub-sites");
             command.Description = "Provides operations to call the associateWithHubSites method.";
-            var builder = new AssociateWithHubSitesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAssociateWithHubSitesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -228,7 +229,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         public Command BuildMicrosoftGraphCopyToDefaultContentLocationCommand() {
             var command = new Command("microsoft-graph-copy-to-default-content-location");
             command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
-            var builder = new CopyToDefaultContentLocationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCopyToDefaultContentLocationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -238,7 +239,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         public Command BuildMicrosoftGraphIsPublishedCommand() {
             var command = new Command("microsoft-graph-is-published");
             command.Description = "Provides operations to call the isPublished method.";
-            var builder = new IsPublishedRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsPublishedRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -248,7 +249,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         public Command BuildMicrosoftGraphPublishCommand() {
             var command = new Command("microsoft-graph-publish");
             command.Description = "Provides operations to call the publish method.";
-            var builder = new PublishRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPublishRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -258,7 +259,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         public Command BuildMicrosoftGraphUnpublishCommand() {
             var command = new Command("microsoft-graph-unpublish");
             command.Description = "Provides operations to call the unpublish method.";
-            var builder = new UnpublishRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUnpublishRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -309,6 +310,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ContentType>(ContentType.CreateFromDiscriminatorValue);
@@ -322,7 +324,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -334,14 +336,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// Instantiates a new ContentTypeItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ContentTypeItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public ContentTypeItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/contentTypes/{contentType%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property contentTypes for groups
@@ -412,7 +411,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new ContentTypeItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,6 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
     public class MobileAppItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -35,7 +34,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AssignmentsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -48,7 +47,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         public Command BuildCategoriesCommand() {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.";
-            var builder = new CategoriesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CategoriesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -74,6 +73,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 var mobileAppId = invocationContext.ParseResult.GetValueForOption(mobileAppIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (mobileAppId is not null) requestInfo.PathParameters.Add("mobileApp%2Did", mobileAppId);
@@ -82,7 +82,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -131,6 +131,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -140,7 +141,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -154,7 +155,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         public Command BuildMicrosoftGraphAssignCommand() {
             var command = new Command("microsoft-graph-assign");
             command.Description = "Provides operations to call the assign method.";
-            var builder = new AssignRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAssignRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -164,7 +165,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         public Command BuildMicrosoftGraphManagedMobileLobAppCommand() {
             var command = new Command("microsoft-graph-managed-mobile-lob-app");
             command.Description = "Casts the previous resource to managedMobileLobApp.";
-            var builder = new ManagedMobileLobAppRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphManagedMobileLobAppRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -174,7 +175,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         public Command BuildMicrosoftGraphMobileLobAppCommand() {
             var command = new Command("microsoft-graph-mobile-lob-app");
             command.Description = "Casts the previous resource to mobileLobApp.";
-            var builder = new MobileLobAppRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMobileLobAppRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -215,6 +216,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MobileApp>(MobileApp.CreateFromDiscriminatorValue);
@@ -226,7 +228,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -238,14 +240,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// Instantiates a new MobileAppItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MobileAppItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public MobileAppItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property mobileApps for deviceAppManagement
@@ -316,7 +315,6 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new MobileAppItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

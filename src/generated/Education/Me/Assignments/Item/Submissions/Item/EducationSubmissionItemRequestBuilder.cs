@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,6 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
     public class EducationSubmissionItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -57,6 +56,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                 var educationSubmissionId = invocationContext.ParseResult.GetValueForOption(educationSubmissionIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
@@ -66,7 +66,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -120,6 +120,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -130,7 +131,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -144,7 +145,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         public Command BuildMicrosoftGraphReassignCommand() {
             var command = new Command("microsoft-graph-reassign");
             command.Description = "Provides operations to call the reassign method.";
-            var builder = new ReassignRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphReassignRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -154,7 +155,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         public Command BuildMicrosoftGraphReturnCommand() {
             var command = new Command("microsoft-graph-return");
             command.Description = "Provides operations to call the return method.";
-            var builder = new ReturnRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphReturnRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -164,7 +165,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         public Command BuildMicrosoftGraphSetUpResourcesFolderCommand() {
             var command = new Command("microsoft-graph-set-up-resources-folder");
             command.Description = "Provides operations to call the setUpResourcesFolder method.";
-            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSetUpResourcesFolderRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -174,7 +175,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         public Command BuildMicrosoftGraphSubmitCommand() {
             var command = new Command("microsoft-graph-submit");
             command.Description = "Provides operations to call the submit method.";
-            var builder = new SubmitRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSubmitRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -184,7 +185,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         public Command BuildMicrosoftGraphUnsubmitCommand() {
             var command = new Command("microsoft-graph-unsubmit");
             command.Description = "Provides operations to call the unsubmit method.";
-            var builder = new UnsubmitRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUnsubmitRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -194,7 +195,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         public Command BuildOutcomesCommand() {
             var command = new Command("outcomes");
             command.Description = "Provides operations to manage the outcomes property of the microsoft.graph.educationSubmission entity.";
-            var builder = new OutcomesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OutcomesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -243,6 +244,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationSubmission>(EducationSubmission.CreateFromDiscriminatorValue);
@@ -255,7 +257,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -269,7 +271,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         public Command BuildResourcesCommand() {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.educationSubmission entity.";
-            var builder = new ResourcesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ResourcesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -282,7 +284,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         public Command BuildSubmittedResourcesCommand() {
             var command = new Command("submitted-resources");
             command.Description = "Provides operations to manage the submittedResources property of the microsoft.graph.educationSubmission entity.";
-            var builder = new SubmittedResourcesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SubmittedResourcesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -293,14 +295,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// Instantiates a new EducationSubmissionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EducationSubmissionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public EducationSubmissionItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/education/me/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property submissions for education
@@ -371,7 +370,6 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new EducationSubmissionItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

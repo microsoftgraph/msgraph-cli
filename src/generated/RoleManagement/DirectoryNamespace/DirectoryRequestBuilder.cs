@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,6 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
     public class DirectoryRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -47,6 +46,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
             command.SetHandler(async (invocationContext) => {
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
@@ -54,7 +54,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -98,6 +98,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -106,7 +107,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -146,6 +147,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RbacApplication>(RbacApplication.CreateFromDiscriminatorValue);
@@ -156,7 +158,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -170,7 +172,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         public Command BuildRoleAssignmentScheduleInstancesCommand() {
             var command = new Command("role-assignment-schedule-instances");
             command.Description = "Provides operations to manage the roleAssignmentScheduleInstances property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleAssignmentScheduleInstancesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RoleAssignmentScheduleInstancesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -183,7 +185,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         public Command BuildRoleAssignmentScheduleRequestsCommand() {
             var command = new Command("role-assignment-schedule-requests");
             command.Description = "Provides operations to manage the roleAssignmentScheduleRequests property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleAssignmentScheduleRequestsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RoleAssignmentScheduleRequestsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -196,7 +198,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         public Command BuildRoleAssignmentSchedulesCommand() {
             var command = new Command("role-assignment-schedules");
             command.Description = "Provides operations to manage the roleAssignmentSchedules property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleAssignmentSchedulesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RoleAssignmentSchedulesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -209,7 +211,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         public Command BuildRoleAssignmentsCommand() {
             var command = new Command("role-assignments");
             command.Description = "Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleAssignmentsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RoleAssignmentsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -222,7 +224,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         public Command BuildRoleDefinitionsCommand() {
             var command = new Command("role-definitions");
             command.Description = "Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleDefinitionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RoleDefinitionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -235,7 +237,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         public Command BuildRoleEligibilityScheduleInstancesCommand() {
             var command = new Command("role-eligibility-schedule-instances");
             command.Description = "Provides operations to manage the roleEligibilityScheduleInstances property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleEligibilityScheduleInstancesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RoleEligibilityScheduleInstancesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -248,7 +250,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         public Command BuildRoleEligibilityScheduleRequestsCommand() {
             var command = new Command("role-eligibility-schedule-requests");
             command.Description = "Provides operations to manage the roleEligibilityScheduleRequests property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleEligibilityScheduleRequestsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RoleEligibilityScheduleRequestsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -261,7 +263,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         public Command BuildRoleEligibilitySchedulesCommand() {
             var command = new Command("role-eligibility-schedules");
             command.Description = "Provides operations to manage the roleEligibilitySchedules property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleEligibilitySchedulesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RoleEligibilitySchedulesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -272,14 +274,11 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// Instantiates a new DirectoryRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DirectoryRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public DirectoryRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/roleManagement/directory{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property directory for roleManagement
@@ -350,7 +349,6 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new DirectoryRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

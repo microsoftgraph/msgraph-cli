@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,6 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
     public class EventItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -42,7 +41,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildAttachmentsCommand() {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.event entity.";
-            var builder = new AttachmentsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AttachmentsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -56,7 +55,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildCalendarCommand() {
             var command = new Command("calendar");
             command.Description = "Provides operations to manage the calendar property of the microsoft.graph.event entity.";
-            var builder = new CalendarRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CalendarRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -66,7 +65,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.event entity.";
-            var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ExtensionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -121,6 +120,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                 });
@@ -131,7 +131,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -145,7 +145,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildMicrosoftGraphAcceptCommand() {
             var command = new Command("microsoft-graph-accept");
             command.Description = "Provides operations to call the accept method.";
-            var builder = new AcceptRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAcceptRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -155,7 +155,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildMicrosoftGraphCancelCommand() {
             var command = new Command("microsoft-graph-cancel");
             command.Description = "Provides operations to call the cancel method.";
-            var builder = new CancelRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCancelRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -165,7 +165,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildMicrosoftGraphDeclineCommand() {
             var command = new Command("microsoft-graph-decline");
             command.Description = "Provides operations to call the decline method.";
-            var builder = new DeclineRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDeclineRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -175,7 +175,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildMicrosoftGraphDismissReminderCommand() {
             var command = new Command("microsoft-graph-dismiss-reminder");
             command.Description = "Provides operations to call the dismissReminder method.";
-            var builder = new DismissReminderRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDismissReminderRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -185,7 +185,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildMicrosoftGraphForwardCommand() {
             var command = new Command("microsoft-graph-forward");
             command.Description = "Provides operations to call the forward method.";
-            var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphForwardRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -195,7 +195,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildMicrosoftGraphSnoozeReminderCommand() {
             var command = new Command("microsoft-graph-snooze-reminder");
             command.Description = "Provides operations to call the snoozeReminder method.";
-            var builder = new SnoozeReminderRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSnoozeReminderRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -205,7 +205,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildMicrosoftGraphTentativelyAcceptCommand() {
             var command = new Command("microsoft-graph-tentatively-accept");
             command.Description = "Provides operations to call the tentativelyAccept method.";
-            var builder = new TentativelyAcceptRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTentativelyAcceptRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -215,7 +215,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
             command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -228,7 +228,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
             command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -239,14 +239,11 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item {
         /// Instantiates a new EventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EventItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/me/calendars/{calendar%2Did}/calendarView/{event%2Did}/instances/{event%2Did1}{?%24select}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.

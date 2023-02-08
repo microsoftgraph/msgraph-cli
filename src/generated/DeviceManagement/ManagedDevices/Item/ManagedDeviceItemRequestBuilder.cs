@@ -26,6 +26,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -42,8 +43,6 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
     public class ManagedDeviceItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -66,6 +65,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
                 var managedDeviceId = invocationContext.ParseResult.GetValueForOption(managedDeviceIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (managedDeviceId is not null) requestInfo.PathParameters.Add("managedDevice%2Did", managedDeviceId);
@@ -74,7 +74,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -85,7 +85,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildDeviceCategoryCommand() {
             var command = new Command("device-category");
             command.Description = "Provides operations to manage the deviceCategory property of the microsoft.graph.managedDevice entity.";
-            var builder = new DeviceCategoryRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DeviceCategoryRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -97,7 +97,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildDeviceCompliancePolicyStatesCommand() {
             var command = new Command("device-compliance-policy-states");
             command.Description = "Provides operations to manage the deviceCompliancePolicyStates property of the microsoft.graph.managedDevice entity.";
-            var builder = new DeviceCompliancePolicyStatesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DeviceCompliancePolicyStatesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -110,7 +110,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildDeviceConfigurationStatesCommand() {
             var command = new Command("device-configuration-states");
             command.Description = "Provides operations to manage the deviceConfigurationStates property of the microsoft.graph.managedDevice entity.";
-            var builder = new DeviceConfigurationStatesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DeviceConfigurationStatesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -161,6 +161,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -170,7 +171,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -184,7 +185,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphBypassActivationLockCommand() {
             var command = new Command("microsoft-graph-bypass-activation-lock");
             command.Description = "Provides operations to call the bypassActivationLock method.";
-            var builder = new BypassActivationLockRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBypassActivationLockRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -194,7 +195,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphCleanWindowsDeviceCommand() {
             var command = new Command("microsoft-graph-clean-windows-device");
             command.Description = "Provides operations to call the cleanWindowsDevice method.";
-            var builder = new CleanWindowsDeviceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCleanWindowsDeviceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -204,7 +205,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphDeleteUserFromSharedAppleDeviceCommand() {
             var command = new Command("microsoft-graph-delete-user-from-shared-apple-device");
             command.Description = "Provides operations to call the deleteUserFromSharedAppleDevice method.";
-            var builder = new DeleteUserFromSharedAppleDeviceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDeleteUserFromSharedAppleDeviceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -214,7 +215,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphDisableLostModeCommand() {
             var command = new Command("microsoft-graph-disable-lost-mode");
             command.Description = "Provides operations to call the disableLostMode method.";
-            var builder = new DisableLostModeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDisableLostModeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -224,7 +225,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphLocateDeviceCommand() {
             var command = new Command("microsoft-graph-locate-device");
             command.Description = "Provides operations to call the locateDevice method.";
-            var builder = new LocateDeviceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLocateDeviceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -234,7 +235,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphLogoutSharedAppleDeviceActiveUserCommand() {
             var command = new Command("microsoft-graph-logout-shared-apple-device-active-user");
             command.Description = "Provides operations to call the logoutSharedAppleDeviceActiveUser method.";
-            var builder = new LogoutSharedAppleDeviceActiveUserRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLogoutSharedAppleDeviceActiveUserRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -244,7 +245,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphRebootNowCommand() {
             var command = new Command("microsoft-graph-reboot-now");
             command.Description = "Provides operations to call the rebootNow method.";
-            var builder = new RebootNowRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRebootNowRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -254,7 +255,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphRecoverPasscodeCommand() {
             var command = new Command("microsoft-graph-recover-passcode");
             command.Description = "Provides operations to call the recoverPasscode method.";
-            var builder = new RecoverPasscodeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRecoverPasscodeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -264,7 +265,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphRemoteLockCommand() {
             var command = new Command("microsoft-graph-remote-lock");
             command.Description = "Provides operations to call the remoteLock method.";
-            var builder = new RemoteLockRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRemoteLockRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -274,7 +275,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphRequestRemoteAssistanceCommand() {
             var command = new Command("microsoft-graph-request-remote-assistance");
             command.Description = "Provides operations to call the requestRemoteAssistance method.";
-            var builder = new RequestRemoteAssistanceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRequestRemoteAssistanceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -284,7 +285,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphResetPasscodeCommand() {
             var command = new Command("microsoft-graph-reset-passcode");
             command.Description = "Provides operations to call the resetPasscode method.";
-            var builder = new ResetPasscodeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphResetPasscodeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -294,7 +295,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphRetireCommand() {
             var command = new Command("microsoft-graph-retire");
             command.Description = "Provides operations to call the retire method.";
-            var builder = new RetireRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRetireRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -304,7 +305,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphShutDownCommand() {
             var command = new Command("microsoft-graph-shut-down");
             command.Description = "Provides operations to call the shutDown method.";
-            var builder = new ShutDownRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphShutDownRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -314,7 +315,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphSyncDeviceCommand() {
             var command = new Command("microsoft-graph-sync-device");
             command.Description = "Provides operations to call the syncDevice method.";
-            var builder = new SyncDeviceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSyncDeviceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -324,7 +325,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphUpdateWindowsDeviceAccountCommand() {
             var command = new Command("microsoft-graph-update-windows-device-account");
             command.Description = "Provides operations to call the updateWindowsDeviceAccount method.";
-            var builder = new UpdateWindowsDeviceAccountRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUpdateWindowsDeviceAccountRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -334,7 +335,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphWindowsDefenderScanCommand() {
             var command = new Command("microsoft-graph-windows-defender-scan");
             command.Description = "Provides operations to call the windowsDefenderScan method.";
-            var builder = new WindowsDefenderScanRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphWindowsDefenderScanRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -344,7 +345,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphWindowsDefenderUpdateSignaturesCommand() {
             var command = new Command("microsoft-graph-windows-defender-update-signatures");
             command.Description = "Provides operations to call the windowsDefenderUpdateSignatures method.";
-            var builder = new WindowsDefenderUpdateSignaturesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphWindowsDefenderUpdateSignaturesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -354,7 +355,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildMicrosoftGraphWipeCommand() {
             var command = new Command("microsoft-graph-wipe");
             command.Description = "Provides operations to call the wipe method.";
-            var builder = new WipeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphWipeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -395,6 +396,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedDevice>(ManagedDevice.CreateFromDiscriminatorValue);
@@ -406,7 +408,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -420,7 +422,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildUsersCommand() {
             var command = new Command("users");
             command.Description = "Provides operations to manage the users property of the microsoft.graph.managedDevice entity.";
-            var builder = new UsersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new UsersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -428,14 +430,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         /// Instantiates a new ManagedDeviceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ManagedDeviceItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public ManagedDeviceItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property managedDevices for deviceManagement
@@ -506,7 +505,6 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new ManagedDeviceItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
