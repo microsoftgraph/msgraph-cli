@@ -68,28 +68,6 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)
             arguments: --no-restore
 
-    # Format takes a long time. keep it in its own stage
-  - stage: checkFormat
-    displayName: Check formatting
-    dependsOn: []
-    jobs:
-      - job: checkFormat
-        displayName: Check formatting
-        steps:
-        - task: UseDotNet@2
-          displayName: 'Use .NET 7'
-          inputs:
-            version: 7.x
-
-        # Restore NuGet packages (enables cache by default)
-        - template: templates/nuget-packages.yaml
-          parameters:
-            vstsFeedName: ${{variables.internalFeed}}
-
-        - pwsh: dotnet format --no-restore --include ./src/ --exclude ./src/generated/ --verify-no-changes
-          displayName: Validate formatting
-          enabled: true
-
   - stage: build
     displayName: Build CLI
     dependsOn: [test]
@@ -135,6 +113,28 @@ stages:
             inputs:
               artifact: build-output-$(rid)
               path: $(outputDir)-$(rid)
+
+    # Format takes a long time. keep it in its own stage
+  - stage: checkFormat
+    displayName: Check formatting
+    dependsOn: []
+    jobs:
+      - job: checkFormat
+        displayName: Check formatting
+        steps:
+        - task: UseDotNet@2
+          displayName: 'Use .NET 7'
+          inputs:
+            version: 7.x
+
+        # Restore NuGet packages (enables cache by default)
+        - template: templates/nuget-packages.yaml
+          parameters:
+            vstsFeedName: ${{variables.internalFeed}}
+
+        - pwsh: dotnet format --no-restore --include ./src/ --exclude ./src/generated/ --verify-no-changes
+          displayName: Validate formatting
+          enabled: true
 
   - stage: srcScan
     displayName: Scan source code
