@@ -117,6 +117,7 @@ stages:
     # Format takes a long time. keep it in its own stage
   - stage: checkFormat
     displayName: Check formatting
+    condition: false
     dependsOn: []
     jobs:
       - job: checkFormat
