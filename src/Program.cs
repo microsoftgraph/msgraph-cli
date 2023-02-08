@@ -125,15 +125,6 @@ namespace Microsoft.Graph.Cli
             // --debug for configs.
             rootCommand.TreatUnmatchedTokensAsErrors = false;
 
-            // Serializers needed for error parsing
-            ApiClientBuilder.RegisterDefaultSerializer<JsonSerializationWriterFactory>();
-            ApiClientBuilder.RegisterDefaultSerializer<TextSerializationWriterFactory>();
-            ApiClientBuilder.RegisterDefaultSerializer<FormSerializationWriterFactory>();
-            // Deserializers needed for error parsing & request body deserialization
-            ApiClientBuilder.RegisterDefaultDeserializer<JsonParseNodeFactory>();
-            ApiClientBuilder.RegisterDefaultDeserializer<TextParseNodeFactory>();
-            ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
-
             foreach (var command in commands)
             {
                 rootCommand.AddCommand(command);
@@ -184,6 +175,16 @@ namespace Microsoft.Graph.Cli
                 {
                     var authProvider = p.GetRequiredService<IAuthenticationProvider>();
                     var client = p.GetRequiredService<HttpClient>();
+
+                    // Serializers needed for error parsing
+                    ApiClientBuilder.RegisterDefaultSerializer<JsonSerializationWriterFactory>();
+                    ApiClientBuilder.RegisterDefaultSerializer<TextSerializationWriterFactory>();
+                    ApiClientBuilder.RegisterDefaultSerializer<FormSerializationWriterFactory>();
+                    // Deserializers needed for error parsing & request body deserialization
+                    ApiClientBuilder.RegisterDefaultDeserializer<JsonParseNodeFactory>();
+                    ApiClientBuilder.RegisterDefaultDeserializer<TextParseNodeFactory>();
+                    ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
+
                     return new HttpClientRequestAdapter(authProvider, httpClient: client);
                 });
                 services.AddSingleton<IPathUtility, PathUtility>();
