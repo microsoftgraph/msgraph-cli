@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using ApiSdk;
+using ApiSdk.Models.ODataErrors;
 using Azure.Core.Diagnostics;
 using Azure.Identity;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +28,7 @@ using Microsoft.Graph.Cli.Core.Http;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Authentication;
+using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 using Microsoft.Kiota.Serialization.Form;
@@ -79,12 +81,29 @@ namespace Microsoft.Graph.Cli
                 ic.BindingContext.AddService(_ => host.Services.GetRequiredService<LogoutService>());
                 await next(ic);
             });
-            builder.UseExceptionHandler((ex, context) =>
+            builder.UseExceptionHandler(async (ex, context) =>
             {
+                Func<ODataError, System.CommandLine.Invocation.InvocationContext, Task<string>> processErrorAsync = static async (e, ctx) =>
+                {
+                    var writers = SerializationWriterFactoryRegistry.DefaultInstance.ContentTypeAssociatedFactories.Values;
+                    foreach (var factory in writers)
+                    {
+                        try
+                        {
+                            var writer = factory.GetSerializationWriter(factory.ValidContentType);
+                            e.Serialize(writer);
+                            using var reader = new StreamReader(writer.GetSerializedContent());
+                            return await reader.ReadToEndAsync(ctx.GetCancellationToken());
+                        }
+                        catch (Exception) { }
+                    }
+                    return e.Message;
+                };
                 var message = ex switch
                 {
                     _ when ex is AuthenticationRequiredException => "Token acquisition failed. Run mgc login command first to get an access token.",
                     _ when ex is TaskCanceledException => string.Empty,
+                    ODataError _e when ex is ODataError => await processErrorAsync(_e, context),
                     _ => ex.Message
                 };
 
