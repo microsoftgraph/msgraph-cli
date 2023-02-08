@@ -121,6 +121,11 @@ namespace Microsoft.Graph.Cli
             // --debug for configs.
             rootCommand.TreatUnmatchedTokensAsErrors = false;
 
+            // Serializers needed for error parsing
+            ApiClientBuilder.RegisterDefaultSerializer<JsonSerializationWriterFactory>();
+            ApiClientBuilder.RegisterDefaultSerializer<TextSerializationWriterFactory>();
+            ApiClientBuilder.RegisterDefaultSerializer<FormSerializationWriterFactory>();
+            // Deserializers needed for error parsing & request body deserialization
             ApiClientBuilder.RegisterDefaultDeserializer<JsonParseNodeFactory>();
             ApiClientBuilder.RegisterDefaultDeserializer<TextParseNodeFactory>();
             ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
