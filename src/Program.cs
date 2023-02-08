@@ -81,29 +81,14 @@ namespace Microsoft.Graph.Cli
                 ic.BindingContext.AddService(_ => host.Services.GetRequiredService<LogoutService>());
                 await next(ic);
             });
-            builder.UseExceptionHandler(async (ex, context) =>
+            builder.UseExceptionHandler((ex, context) =>
             {
-                Func<ODataError, System.CommandLine.Invocation.InvocationContext, Task<string>> processErrorAsync = static async (e, ctx) =>
-                {
-                    var writers = SerializationWriterFactoryRegistry.DefaultInstance.ContentTypeAssociatedFactories.Values;
-                    foreach (var factory in writers)
-                    {
-                        try
-                        {
-                            var writer = factory.GetSerializationWriter(factory.ValidContentType);
-                            e.Serialize(writer);
-                            using var reader = new StreamReader(writer.GetSerializedContent());
-                            return await reader.ReadToEndAsync(ctx.GetCancellationToken());
-                        }
-                        catch (Exception) { }
-                    }
-                    return e.Message;
-                };
                 var message = ex switch
                 {
                     _ when ex is AuthenticationRequiredException => "Token acquisition failed. Run mgc login command first to get an access token.",
                     _ when ex is TaskCanceledException => string.Empty,
-                    ODataError _e when ex is ODataError => await processErrorAsync(_e, context),
+                    ODataError _e when ex is ODataError => $"Error {_e.ResponseStatusCode}({_e.Error?.Code}) from API:\n  {_e.Error?.Message}",
+                    ApiException _e when ex is ApiException => $"Error {_e.ResponseStatusCode} from API.",
                     _ => ex.Message
                 };
 
