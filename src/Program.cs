@@ -29,6 +29,9 @@ using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Http.HttpClientLibrary;
+using Microsoft.Kiota.Serialization.Form;
+using Microsoft.Kiota.Serialization.Json;
+using Microsoft.Kiota.Serialization.Text;
 
 namespace Microsoft.Graph.Cli
 {
@@ -117,6 +120,10 @@ namespace Microsoft.Graph.Cli
             // e.g. if a command has an option --debug and we also want to use
             // --debug for configs.
             rootCommand.TreatUnmatchedTokensAsErrors = false;
+
+            ApiClientBuilder.RegisterDefaultDeserializer<JsonParseNodeFactory>();
+            ApiClientBuilder.RegisterDefaultDeserializer<TextParseNodeFactory>();
+            ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
 
             foreach (var command in commands)
             {
