@@ -170,6 +170,7 @@ namespace Microsoft.Graph.Cli
                 });
                 services.AddSingleton<IPathUtility, PathUtility>();
                 services.AddSingleton<IAuthenticationCacheUtility, AuthenticationCacheUtility>();
+                services.AddSingleton<LogoutService>();
                 services.AddSingleton<AuthenticationServiceFactory>(p =>
                 {
                     var authSettings = p.GetRequiredService<IOptions<AuthenticationOptions>>()?.Value;
