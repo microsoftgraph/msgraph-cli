@@ -39,7 +39,7 @@ variables:
 
 # test ----------> | build ->   |            |
 #                  |            | sign       |
-# checkFormat ---> |            |------------| -> upload
+# checkFormat ----------------> |------------| -> upload
 #                               | binaryScan |
 # srcScan --------------------> |            |
 stages:
@@ -92,7 +92,7 @@ stages:
 
   - stage: build
     displayName: Build CLI
-    dependsOn: [checkFormat, test]
+    dependsOn: [test]
     jobs:
       - job: build
         displayName: Build and publish
@@ -344,7 +344,7 @@ stages:
 
   - stage: binaryScan
     displayName: Scan binaries (Anti malware, BinSkim)
-    dependsOn: [build, srcScan]
+    dependsOn: [build, checkFormat, srcScan]
     pool:
       vmImage: windows-latest
     # Only scan binaries if we're building a tag, building main, or building a PR targeting main
