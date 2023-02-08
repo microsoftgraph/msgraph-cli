@@ -72,6 +72,8 @@ namespace Microsoft.Graph.Cli
 
                 ic.BindingContext.AddService(_ => host.Services.GetRequiredService<IAuthenticationCacheUtility>());
                 ic.BindingContext.AddService(_ => host.Services.GetRequiredService<AuthenticationServiceFactory>());
+                // Needed by LogoutCommand
+                ic.BindingContext.AddService(_ => host.Services.GetRequiredService<LogoutService>());
                 await next(ic);
             });
             builder.UseExceptionHandler((ex, context) =>
