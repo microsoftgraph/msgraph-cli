@@ -228,6 +228,11 @@ stages:
               Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
             displayName: Setup variables
 
+          - pwsh: |
+              New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
+            displayName: Enable long file paths on Windows
+          - checkout: self
+
           - task: DownloadPipelineArtifact@2
             inputs:
               patterns: build-output-$(rid)/**/*
