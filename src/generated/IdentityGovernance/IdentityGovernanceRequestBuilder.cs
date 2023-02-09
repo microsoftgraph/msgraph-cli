@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,6 @@ namespace ApiSdk.IdentityGovernance {
     public class IdentityGovernanceRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -34,7 +33,7 @@ namespace ApiSdk.IdentityGovernance {
         public Command BuildAccessReviewsCommand() {
             var command = new Command("access-reviews");
             command.Description = "Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.";
-            var builder = new AccessReviewsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AccessReviewsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDefinitionsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -48,7 +47,7 @@ namespace ApiSdk.IdentityGovernance {
         public Command BuildAppConsentCommand() {
             var command = new Command("app-consent");
             command.Description = "Provides operations to manage the appConsent property of the microsoft.graph.identityGovernance entity.";
-            var builder = new AppConsentRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AppConsentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAppConsentRequestsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -61,7 +60,7 @@ namespace ApiSdk.IdentityGovernance {
         public Command BuildEntitlementManagementCommand() {
             var command = new Command("entitlement-management");
             command.Description = "Provides operations to manage the entitlementManagement property of the microsoft.graph.identityGovernance entity.";
-            var builder = new EntitlementManagementRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new EntitlementManagementRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAccessPackageAssignmentApprovalsCommand());
             command.AddCommand(builder.BuildAccessPackagesCommand());
             command.AddCommand(builder.BuildAssignmentPoliciesCommand());
@@ -114,6 +113,7 @@ namespace ApiSdk.IdentityGovernance {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -122,7 +122,7 @@ namespace ApiSdk.IdentityGovernance {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -162,6 +162,7 @@ namespace ApiSdk.IdentityGovernance {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.IdentityGovernance>(ApiSdk.Models.IdentityGovernance.CreateFromDiscriminatorValue);
@@ -172,7 +173,7 @@ namespace ApiSdk.IdentityGovernance {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -186,7 +187,7 @@ namespace ApiSdk.IdentityGovernance {
         public Command BuildTermsOfUseCommand() {
             var command = new Command("terms-of-use");
             command.Description = "Provides operations to manage the termsOfUse property of the microsoft.graph.identityGovernance entity.";
-            var builder = new TermsOfUseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TermsOfUseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAgreementAcceptancesCommand());
             command.AddCommand(builder.BuildAgreementsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
@@ -198,14 +199,11 @@ namespace ApiSdk.IdentityGovernance {
         /// Instantiates a new IdentityGovernanceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public IdentityGovernanceRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public IdentityGovernanceRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/identityGovernance{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Get identityGovernance
@@ -252,7 +250,6 @@ namespace ApiSdk.IdentityGovernance {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new IdentityGovernanceRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

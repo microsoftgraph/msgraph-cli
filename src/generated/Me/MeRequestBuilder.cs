@@ -72,6 +72,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -88,8 +89,6 @@ namespace ApiSdk.Me {
     public class MeRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -98,7 +97,7 @@ namespace ApiSdk.Me {
         public Command BuildActivitiesCommand() {
             var command = new Command("activities");
             command.Description = "Provides operations to manage the activities property of the microsoft.graph.user entity.";
-            var builder = new ActivitiesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ActivitiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -112,7 +111,7 @@ namespace ApiSdk.Me {
         public Command BuildAgreementAcceptancesCommand() {
             var command = new Command("agreement-acceptances");
             command.Description = "Provides operations to manage the agreementAcceptances property of the microsoft.graph.user entity.";
-            var builder = new AgreementAcceptancesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AgreementAcceptancesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -124,7 +123,7 @@ namespace ApiSdk.Me {
         public Command BuildAppRoleAssignmentsCommand() {
             var command = new Command("app-role-assignments");
             command.Description = "Provides operations to manage the appRoleAssignments property of the microsoft.graph.user entity.";
-            var builder = new AppRoleAssignmentsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AppRoleAssignmentsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -137,7 +136,7 @@ namespace ApiSdk.Me {
         public Command BuildAuthenticationCommand() {
             var command = new Command("authentication");
             command.Description = "Provides operations to manage the authentication property of the microsoft.graph.user entity.";
-            var builder = new AuthenticationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AuthenticationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildEmailMethodsCommand());
             command.AddCommand(builder.BuildFido2MethodsCommand());
@@ -159,7 +158,7 @@ namespace ApiSdk.Me {
         public Command BuildCalendarCommand() {
             var command = new Command("calendar");
             command.Description = "Provides operations to manage the calendar property of the microsoft.graph.user entity.";
-            var builder = new CalendarRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CalendarRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCalendarPermissionsCommand());
             command.AddCommand(builder.BuildCalendarViewCommand());
             command.AddCommand(builder.BuildEventsCommand());
@@ -176,7 +175,7 @@ namespace ApiSdk.Me {
         public Command BuildCalendarGroupsCommand() {
             var command = new Command("calendar-groups");
             command.Description = "Provides operations to manage the calendarGroups property of the microsoft.graph.user entity.";
-            var builder = new CalendarGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CalendarGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -189,7 +188,7 @@ namespace ApiSdk.Me {
         public Command BuildCalendarsCommand() {
             var command = new Command("calendars");
             command.Description = "Provides operations to manage the calendars property of the microsoft.graph.user entity.";
-            var builder = new CalendarsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CalendarsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -202,7 +201,7 @@ namespace ApiSdk.Me {
         public Command BuildCalendarViewCommand() {
             var command = new Command("calendar-view");
             command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.user entity.";
-            var builder = new CalendarViewRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CalendarViewRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -215,7 +214,7 @@ namespace ApiSdk.Me {
         public Command BuildChatsCommand() {
             var command = new Command("chats");
             command.Description = "Provides operations to manage the chats property of the microsoft.graph.user entity.";
-            var builder = new ChatsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ChatsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -229,7 +228,7 @@ namespace ApiSdk.Me {
         public Command BuildContactFoldersCommand() {
             var command = new Command("contact-folders");
             command.Description = "Provides operations to manage the contactFolders property of the microsoft.graph.user entity.";
-            var builder = new ContactFoldersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ContactFoldersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -243,7 +242,7 @@ namespace ApiSdk.Me {
         public Command BuildContactsCommand() {
             var command = new Command("contacts");
             command.Description = "Provides operations to manage the contacts property of the microsoft.graph.user entity.";
-            var builder = new ContactsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ContactsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -257,7 +256,7 @@ namespace ApiSdk.Me {
         public Command BuildCreatedObjectsCommand() {
             var command = new Command("created-objects");
             command.Description = "Provides operations to manage the createdObjects property of the microsoft.graph.user entity.";
-            var builder = new CreatedObjectsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CreatedObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -270,7 +269,7 @@ namespace ApiSdk.Me {
         public Command BuildDeviceManagementTroubleshootingEventsCommand() {
             var command = new Command("device-management-troubleshooting-events");
             command.Description = "Provides operations to manage the deviceManagementTroubleshootingEvents property of the microsoft.graph.user entity.";
-            var builder = new DeviceManagementTroubleshootingEventsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DeviceManagementTroubleshootingEventsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -283,7 +282,7 @@ namespace ApiSdk.Me {
         public Command BuildDirectReportsCommand() {
             var command = new Command("direct-reports");
             command.Description = "Provides operations to manage the directReports property of the microsoft.graph.user entity.";
-            var builder = new DirectReportsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DirectReportsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -297,7 +296,7 @@ namespace ApiSdk.Me {
         public Command BuildDriveCommand() {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.user entity.";
-            var builder = new DriveRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DriveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -307,7 +306,7 @@ namespace ApiSdk.Me {
         public Command BuildDrivesCommand() {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the drives property of the microsoft.graph.user entity.";
-            var builder = new DrivesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DrivesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -319,7 +318,7 @@ namespace ApiSdk.Me {
         public Command BuildEventsCommand() {
             var command = new Command("events");
             command.Description = "Provides operations to manage the events property of the microsoft.graph.user entity.";
-            var builder = new EventsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new EventsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -333,7 +332,7 @@ namespace ApiSdk.Me {
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.user entity.";
-            var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ExtensionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -346,19 +345,19 @@ namespace ApiSdk.Me {
         public Command BuildFollowedSitesCommand() {
             var command = new Command("followed-sites");
             command.Description = "Provides operations to manage the followedSites property of the microsoft.graph.user entity.";
-            var builder = new FollowedSitesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new FollowedSitesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
-        /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-manager?view=graph-rest-1.0" />
+        /// Retrieve the properties and relationships of user object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-manager?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of user object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-get?view=graph-rest-1.0";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -398,6 +397,7 @@ namespace ApiSdk.Me {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -407,7 +407,7 @@ namespace ApiSdk.Me {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -421,7 +421,7 @@ namespace ApiSdk.Me {
         public Command BuildInferenceClassificationCommand() {
             var command = new Command("inference-classification");
             command.Description = "Provides operations to manage the inferenceClassification property of the microsoft.graph.user entity.";
-            var builder = new InferenceClassificationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new InferenceClassificationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildOverridesCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -433,7 +433,7 @@ namespace ApiSdk.Me {
         public Command BuildInsightsCommand() {
             var command = new Command("insights");
             command.Description = "Provides operations to manage the insights property of the microsoft.graph.user entity.";
-            var builder = new InsightsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new InsightsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -448,7 +448,7 @@ namespace ApiSdk.Me {
         public Command BuildJoinedTeamsCommand() {
             var command = new Command("joined-teams");
             command.Description = "Provides operations to manage the joinedTeams property of the microsoft.graph.user entity.";
-            var builder = new JoinedTeamsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new JoinedTeamsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -462,7 +462,7 @@ namespace ApiSdk.Me {
         public Command BuildLicenseDetailsCommand() {
             var command = new Command("license-details");
             command.Description = "Provides operations to manage the licenseDetails property of the microsoft.graph.user entity.";
-            var builder = new LicenseDetailsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new LicenseDetailsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -475,7 +475,7 @@ namespace ApiSdk.Me {
         public Command BuildMailFoldersCommand() {
             var command = new Command("mail-folders");
             command.Description = "Provides operations to manage the mailFolders property of the microsoft.graph.user entity.";
-            var builder = new MailFoldersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MailFoldersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -489,7 +489,7 @@ namespace ApiSdk.Me {
         public Command BuildManagedAppRegistrationsCommand() {
             var command = new Command("managed-app-registrations");
             command.Description = "Provides operations to manage the managedAppRegistrations property of the microsoft.graph.user entity.";
-            var builder = new ManagedAppRegistrationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ManagedAppRegistrationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -501,7 +501,7 @@ namespace ApiSdk.Me {
         public Command BuildManagedDevicesCommand() {
             var command = new Command("managed-devices");
             command.Description = "Provides operations to manage the managedDevices property of the microsoft.graph.user entity.";
-            var builder = new ManagedDevicesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ManagedDevicesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -514,7 +514,7 @@ namespace ApiSdk.Me {
         public Command BuildManagerCommand() {
             var command = new Command("manager");
             command.Description = "Provides operations to manage the manager property of the microsoft.graph.user entity.";
-            var builder = new ManagerRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ManagerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildRefCommand());
             return command;
@@ -525,7 +525,7 @@ namespace ApiSdk.Me {
         public Command BuildMemberOfCommand() {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.user entity.";
-            var builder = new MemberOfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MemberOfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -543,7 +543,7 @@ namespace ApiSdk.Me {
         public Command BuildMessagesCommand() {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.user entity.";
-            var builder = new MessagesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MessagesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -557,7 +557,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphAssignLicenseCommand() {
             var command = new Command("microsoft-graph-assign-license");
             command.Description = "Provides operations to call the assignLicense method.";
-            var builder = new AssignLicenseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAssignLicenseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -567,7 +567,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphChangePasswordCommand() {
             var command = new Command("microsoft-graph-change-password");
             command.Description = "Provides operations to call the changePassword method.";
-            var builder = new ChangePasswordRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphChangePasswordRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -577,7 +577,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
             var command = new Command("microsoft-graph-check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -587,7 +587,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
             var command = new Command("microsoft-graph-check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -597,7 +597,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphExportDeviceAndAppManagementDataCommand() {
             var command = new Command("microsoft-graph-export-device-and-app-management-data");
             command.Description = "Provides operations to call the exportDeviceAndAppManagementData method.";
-            var builder = new ExportDeviceAndAppManagementDataRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphExportDeviceAndAppManagementDataRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -607,7 +607,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphExportPersonalDataCommand() {
             var command = new Command("microsoft-graph-export-personal-data");
             command.Description = "Provides operations to call the exportPersonalData method.";
-            var builder = new ExportPersonalDataRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphExportPersonalDataRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -617,7 +617,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphFindMeetingTimesCommand() {
             var command = new Command("microsoft-graph-find-meeting-times");
             command.Description = "Provides operations to call the findMeetingTimes method.";
-            var builder = new FindMeetingTimesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFindMeetingTimesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -627,7 +627,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphGetMailTipsCommand() {
             var command = new Command("microsoft-graph-get-mail-tips");
             command.Description = "Provides operations to call the getMailTips method.";
-            var builder = new GetMailTipsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetMailTipsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -637,7 +637,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphGetManagedAppDiagnosticStatusesCommand() {
             var command = new Command("microsoft-graph-get-managed-app-diagnostic-statuses");
             command.Description = "Provides operations to call the getManagedAppDiagnosticStatuses method.";
-            var builder = new GetManagedAppDiagnosticStatusesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetManagedAppDiagnosticStatusesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -647,7 +647,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphGetManagedAppPoliciesCommand() {
             var command = new Command("microsoft-graph-get-managed-app-policies");
             command.Description = "Provides operations to call the getManagedAppPolicies method.";
-            var builder = new GetManagedAppPoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetManagedAppPoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -657,7 +657,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphGetManagedDevicesWithAppFailuresCommand() {
             var command = new Command("microsoft-graph-get-managed-devices-with-app-failures");
             command.Description = "Provides operations to call the getManagedDevicesWithAppFailures method.";
-            var builder = new GetManagedDevicesWithAppFailuresRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetManagedDevicesWithAppFailuresRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -667,7 +667,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
             var command = new Command("microsoft-graph-get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new GetMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -677,7 +677,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
             var command = new Command("microsoft-graph-get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new GetMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -687,7 +687,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphRemoveAllDevicesFromManagementCommand() {
             var command = new Command("microsoft-graph-remove-all-devices-from-management");
             command.Description = "Provides operations to call the removeAllDevicesFromManagement method.";
-            var builder = new RemoveAllDevicesFromManagementRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRemoveAllDevicesFromManagementRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -697,7 +697,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphReprocessLicenseAssignmentCommand() {
             var command = new Command("microsoft-graph-reprocess-license-assignment");
             command.Description = "Provides operations to call the reprocessLicenseAssignment method.";
-            var builder = new ReprocessLicenseAssignmentRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphReprocessLicenseAssignmentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -707,7 +707,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphRestoreCommand() {
             var command = new Command("microsoft-graph-restore");
             command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -717,7 +717,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphRevokeSignInSessionsCommand() {
             var command = new Command("microsoft-graph-revoke-sign-in-sessions");
             command.Description = "Provides operations to call the revokeSignInSessions method.";
-            var builder = new RevokeSignInSessionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRevokeSignInSessionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -727,7 +727,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphSendMailCommand() {
             var command = new Command("microsoft-graph-send-mail");
             command.Description = "Provides operations to call the sendMail method.";
-            var builder = new SendMailRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSendMailRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -737,7 +737,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphTranslateExchangeIdsCommand() {
             var command = new Command("microsoft-graph-translate-exchange-ids");
             command.Description = "Provides operations to call the translateExchangeIds method.";
-            var builder = new TranslateExchangeIdsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTranslateExchangeIdsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -747,7 +747,7 @@ namespace ApiSdk.Me {
         public Command BuildMicrosoftGraphWipeManagedAppRegistrationsByDeviceTagCommand() {
             var command = new Command("microsoft-graph-wipe-managed-app-registrations-by-device-tag");
             command.Description = "Provides operations to call the wipeManagedAppRegistrationsByDeviceTag method.";
-            var builder = new WipeManagedAppRegistrationsByDeviceTagRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphWipeManagedAppRegistrationsByDeviceTagRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -757,7 +757,7 @@ namespace ApiSdk.Me {
         public Command BuildOauth2PermissionGrantsCommand() {
             var command = new Command("oauth2-permission-grants");
             command.Description = "Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.user entity.";
-            var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -769,7 +769,7 @@ namespace ApiSdk.Me {
         public Command BuildOnenoteCommand() {
             var command = new Command("onenote");
             command.Description = "Provides operations to manage the onenote property of the microsoft.graph.user entity.";
-            var builder = new OnenoteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OnenoteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildNotebooksCommand());
@@ -787,7 +787,7 @@ namespace ApiSdk.Me {
         public Command BuildOnlineMeetingsCommand() {
             var command = new Command("online-meetings");
             command.Description = "Provides operations to manage the onlineMeetings property of the microsoft.graph.user entity.";
-            var builder = new OnlineMeetingsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OnlineMeetingsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -801,7 +801,7 @@ namespace ApiSdk.Me {
         public Command BuildOutlookCommand() {
             var command = new Command("outlook");
             command.Description = "Provides operations to manage the outlook property of the microsoft.graph.user entity.";
-            var builder = new OutlookRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OutlookRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMasterCategoriesCommand());
             command.AddCommand(builder.BuildMicrosoftGraphSupportedLanguagesCommand());
@@ -814,7 +814,7 @@ namespace ApiSdk.Me {
         public Command BuildOwnedDevicesCommand() {
             var command = new Command("owned-devices");
             command.Description = "Provides operations to manage the ownedDevices property of the microsoft.graph.user entity.";
-            var builder = new OwnedDevicesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OwnedDevicesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -829,7 +829,7 @@ namespace ApiSdk.Me {
         public Command BuildOwnedObjectsCommand() {
             var command = new Command("owned-objects");
             command.Description = "Provides operations to manage the ownedObjects property of the microsoft.graph.user entity.";
-            var builder = new OwnedObjectsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OwnedObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -871,6 +871,7 @@ namespace ApiSdk.Me {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue);
@@ -881,7 +882,7 @@ namespace ApiSdk.Me {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -895,7 +896,7 @@ namespace ApiSdk.Me {
         public Command BuildPeopleCommand() {
             var command = new Command("people");
             command.Description = "Provides operations to manage the people property of the microsoft.graph.user entity.";
-            var builder = new PeopleRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PeopleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -907,7 +908,7 @@ namespace ApiSdk.Me {
         public Command BuildPhotoCommand() {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.user entity.";
-            var builder = new PhotoRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PhotoRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildContentCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -919,7 +920,7 @@ namespace ApiSdk.Me {
         public Command BuildPhotosCommand() {
             var command = new Command("photos");
             command.Description = "Provides operations to manage the photos property of the microsoft.graph.user entity.";
-            var builder = new PhotosRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PhotosRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -931,7 +932,7 @@ namespace ApiSdk.Me {
         public Command BuildPlannerCommand() {
             var command = new Command("planner");
             command.Description = "Provides operations to manage the planner property of the microsoft.graph.user entity.";
-            var builder = new PlannerRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PlannerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -945,7 +946,7 @@ namespace ApiSdk.Me {
         public Command BuildPresenceCommand() {
             var command = new Command("presence");
             command.Description = "Provides operations to manage the presence property of the microsoft.graph.user entity.";
-            var builder = new PresenceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PresenceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMicrosoftGraphClearPresenceCommand());
@@ -961,7 +962,7 @@ namespace ApiSdk.Me {
         public Command BuildRegisteredDevicesCommand() {
             var command = new Command("registered-devices");
             command.Description = "Provides operations to manage the registeredDevices property of the microsoft.graph.user entity.";
-            var builder = new RegisteredDevicesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RegisteredDevicesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -976,7 +977,7 @@ namespace ApiSdk.Me {
         public Command BuildScopedRoleMemberOfCommand() {
             var command = new Command("scoped-role-member-of");
             command.Description = "Provides operations to manage the scopedRoleMemberOf property of the microsoft.graph.user entity.";
-            var builder = new ScopedRoleMemberOfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ScopedRoleMemberOfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -989,7 +990,7 @@ namespace ApiSdk.Me {
         public Command BuildSettingsCommand() {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.user entity.";
-            var builder = new SettingsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SettingsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -1002,7 +1003,7 @@ namespace ApiSdk.Me {
         public Command BuildTeamworkCommand() {
             var command = new Command("teamwork");
             command.Description = "Provides operations to manage the teamwork property of the microsoft.graph.user entity.";
-            var builder = new TeamworkRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TeamworkRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAssociatedTeamsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -1017,7 +1018,7 @@ namespace ApiSdk.Me {
         public Command BuildTodoCommand() {
             var command = new Command("todo");
             command.Description = "Provides operations to manage the todo property of the microsoft.graph.user entity.";
-            var builder = new TodoRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TodoRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildListsCommand());
@@ -1030,7 +1031,7 @@ namespace ApiSdk.Me {
         public Command BuildTransitiveMemberOfCommand() {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.user entity.";
-            var builder = new TransitiveMemberOfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -1046,37 +1047,14 @@ namespace ApiSdk.Me {
         /// Instantiates a new MeRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public MeRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/me{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Provides operations to call the exportDeviceAndAppManagementData method.
-        /// </summary>
-        /// <param name="skip">Usage: skip={skip}</param>
-        /// <param name="top">Usage: top={top}</param>
-        public ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder MicrosoftGraphExportDeviceAndAppManagementDataWithSkipWithTop(int? skip, int? top) {
-            _ = skip ?? throw new ArgumentNullException(nameof(skip));
-            _ = top ?? throw new ArgumentNullException(nameof(top));
-            return new ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(PathParameters, RequestAdapter, skip, top);
-        }
-        /// <summary>
-        /// Provides operations to call the reminderView method.
-        /// </summary>
-        /// <param name="endDateTime">Usage: EndDateTime=&apos;{EndDateTime}&apos;</param>
-        /// <param name="startDateTime">Usage: StartDateTime=&apos;{StartDateTime}&apos;</param>
-        public ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder MicrosoftGraphReminderViewWithStartDateTimeWithEndDateTime(string endDateTime, string startDateTime) {
-            if(string.IsNullOrEmpty(endDateTime)) throw new ArgumentNullException(nameof(endDateTime));
-            if(string.IsNullOrEmpty(startDateTime)) throw new ArgumentNullException(nameof(startDateTime));
-            return new ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(PathParameters, RequestAdapter, endDateTime, startDateTime);
-        }
-        /// <summary>
-        /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.
+        /// Retrieve the properties and relationships of user object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -1120,7 +1098,6 @@ namespace ApiSdk.Me {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new MeRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
@@ -1130,7 +1107,7 @@ namespace ApiSdk.Me {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.
+        /// Retrieve the properties and relationships of user object.
         /// </summary>
         public class MeRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

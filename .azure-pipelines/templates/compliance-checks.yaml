@@ -16,6 +16,11 @@ steps:
 
   - ${{ if ne(parameters.scanSource, true) }}:
     - checkout: none
+  - ${{ else }}:
+    - pwsh: git config --global core.longpaths true
+      displayName: Enable git's long file paths on Windows
+
+    - checkout: self
 
   - ${{ if eq(parameters.scanSource, true) }}:
     - task: PoliCheck@2

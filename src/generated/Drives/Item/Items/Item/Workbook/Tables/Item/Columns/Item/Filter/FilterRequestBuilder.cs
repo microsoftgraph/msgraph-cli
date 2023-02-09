@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
     public class FilterRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -71,6 +70,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
                 var workbookTableColumnId = invocationContext.ParseResult.GetValueForOption(workbookTableColumnIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
@@ -82,7 +82,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -146,6 +146,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -158,7 +159,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -172,7 +173,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphApplyBottomItemsFilterCommand() {
             var command = new Command("microsoft-graph-apply-bottom-items-filter");
             command.Description = "Provides operations to call the applyBottomItemsFilter method.";
-            var builder = new ApplyBottomItemsFilterRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplyBottomItemsFilterRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -182,7 +183,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphApplyBottomPercentFilterCommand() {
             var command = new Command("microsoft-graph-apply-bottom-percent-filter");
             command.Description = "Provides operations to call the applyBottomPercentFilter method.";
-            var builder = new ApplyBottomPercentFilterRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplyBottomPercentFilterRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -192,7 +193,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphApplyCellColorFilterCommand() {
             var command = new Command("microsoft-graph-apply-cell-color-filter");
             command.Description = "Provides operations to call the applyCellColorFilter method.";
-            var builder = new ApplyCellColorFilterRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplyCellColorFilterRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -202,7 +203,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphApplyCommand() {
             var command = new Command("microsoft-graph-apply");
             command.Description = "Provides operations to call the apply method.";
-            var builder = new ApplyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -212,7 +213,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphApplyCustomFilterCommand() {
             var command = new Command("microsoft-graph-apply-custom-filter");
             command.Description = "Provides operations to call the applyCustomFilter method.";
-            var builder = new ApplyCustomFilterRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplyCustomFilterRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -222,7 +223,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphApplyDynamicFilterCommand() {
             var command = new Command("microsoft-graph-apply-dynamic-filter");
             command.Description = "Provides operations to call the applyDynamicFilter method.";
-            var builder = new ApplyDynamicFilterRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplyDynamicFilterRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -232,7 +233,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphApplyFontColorFilterCommand() {
             var command = new Command("microsoft-graph-apply-font-color-filter");
             command.Description = "Provides operations to call the applyFontColorFilter method.";
-            var builder = new ApplyFontColorFilterRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplyFontColorFilterRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -242,7 +243,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphApplyIconFilterCommand() {
             var command = new Command("microsoft-graph-apply-icon-filter");
             command.Description = "Provides operations to call the applyIconFilter method.";
-            var builder = new ApplyIconFilterRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplyIconFilterRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -252,7 +253,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphApplyTopItemsFilterCommand() {
             var command = new Command("microsoft-graph-apply-top-items-filter");
             command.Description = "Provides operations to call the applyTopItemsFilter method.";
-            var builder = new ApplyTopItemsFilterRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplyTopItemsFilterRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -262,7 +263,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphApplyTopPercentFilterCommand() {
             var command = new Command("microsoft-graph-apply-top-percent-filter");
             command.Description = "Provides operations to call the applyTopPercentFilter method.";
-            var builder = new ApplyTopPercentFilterRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplyTopPercentFilterRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -272,7 +273,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphApplyValuesFilterCommand() {
             var command = new Command("microsoft-graph-apply-values-filter");
             command.Description = "Provides operations to call the applyValuesFilter method.";
-            var builder = new ApplyValuesFilterRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphApplyValuesFilterRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -282,7 +283,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public Command BuildMicrosoftGraphClearCommand() {
             var command = new Command("microsoft-graph-clear");
             command.Description = "Provides operations to call the clear method.";
-            var builder = new ClearRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphClearRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -338,6 +339,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookFilter>(WorkbookFilter.CreateFromDiscriminatorValue);
@@ -352,7 +354,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -364,14 +366,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// Instantiates a new FilterRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public FilterRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public FilterRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/filter{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property filter for drives
@@ -442,7 +441,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new FilterRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

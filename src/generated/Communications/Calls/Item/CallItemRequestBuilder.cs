@@ -22,6 +22,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -38,8 +39,6 @@ namespace ApiSdk.Communications.Calls.Item {
     public class CallItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -48,7 +47,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildAudioRoutingGroupsCommand() {
             var command = new Command("audio-routing-groups");
             command.Description = "Provides operations to manage the audioRoutingGroups property of the microsoft.graph.call entity.";
-            var builder = new AudioRoutingGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AudioRoutingGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -61,7 +60,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildContentSharingSessionsCommand() {
             var command = new Command("content-sharing-sessions");
             command.Description = "Provides operations to manage the contentSharingSessions property of the microsoft.graph.call entity.";
-            var builder = new ContentSharingSessionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ContentSharingSessionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -88,6 +87,7 @@ namespace ApiSdk.Communications.Calls.Item {
                 var callId = invocationContext.ParseResult.GetValueForOption(callIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (callId is not null) requestInfo.PathParameters.Add("call%2Did", callId);
@@ -96,7 +96,7 @@ namespace ApiSdk.Communications.Calls.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -145,6 +145,7 @@ namespace ApiSdk.Communications.Calls.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -154,7 +155,7 @@ namespace ApiSdk.Communications.Calls.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -168,7 +169,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphAddLargeGalleryViewCommand() {
             var command = new Command("microsoft-graph-add-large-gallery-view");
             command.Description = "Provides operations to call the addLargeGalleryView method.";
-            var builder = new AddLargeGalleryViewRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAddLargeGalleryViewRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -178,7 +179,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphAnswerCommand() {
             var command = new Command("microsoft-graph-answer");
             command.Description = "Provides operations to call the answer method.";
-            var builder = new AnswerRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAnswerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -188,7 +189,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphCancelMediaProcessingCommand() {
             var command = new Command("microsoft-graph-cancel-media-processing");
             command.Description = "Provides operations to call the cancelMediaProcessing method.";
-            var builder = new CancelMediaProcessingRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCancelMediaProcessingRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -198,7 +199,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphChangeScreenSharingRoleCommand() {
             var command = new Command("microsoft-graph-change-screen-sharing-role");
             command.Description = "Provides operations to call the changeScreenSharingRole method.";
-            var builder = new ChangeScreenSharingRoleRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphChangeScreenSharingRoleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -208,7 +209,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphKeepAliveCommand() {
             var command = new Command("microsoft-graph-keep-alive");
             command.Description = "Provides operations to call the keepAlive method.";
-            var builder = new KeepAliveRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphKeepAliveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -218,7 +219,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphMuteCommand() {
             var command = new Command("microsoft-graph-mute");
             command.Description = "Provides operations to call the mute method.";
-            var builder = new MuteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMuteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -228,7 +229,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphPlayPromptCommand() {
             var command = new Command("microsoft-graph-play-prompt");
             command.Description = "Provides operations to call the playPrompt method.";
-            var builder = new PlayPromptRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPlayPromptRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -238,7 +239,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphRecordResponseCommand() {
             var command = new Command("microsoft-graph-record-response");
             command.Description = "Provides operations to call the recordResponse method.";
-            var builder = new RecordResponseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRecordResponseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -248,7 +249,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphRedirectCommand() {
             var command = new Command("microsoft-graph-redirect");
             command.Description = "Provides operations to call the redirect method.";
-            var builder = new RedirectRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRedirectRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -258,7 +259,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphRejectCommand() {
             var command = new Command("microsoft-graph-reject");
             command.Description = "Provides operations to call the reject method.";
-            var builder = new RejectRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRejectRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -268,7 +269,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphSubscribeToToneCommand() {
             var command = new Command("microsoft-graph-subscribe-to-tone");
             command.Description = "Provides operations to call the subscribeToTone method.";
-            var builder = new SubscribeToToneRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSubscribeToToneRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -278,7 +279,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphTransferCommand() {
             var command = new Command("microsoft-graph-transfer");
             command.Description = "Provides operations to call the transfer method.";
-            var builder = new TransferRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTransferRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -288,7 +289,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphUnmuteCommand() {
             var command = new Command("microsoft-graph-unmute");
             command.Description = "Provides operations to call the unmute method.";
-            var builder = new UnmuteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUnmuteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -298,7 +299,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildMicrosoftGraphUpdateRecordingStatusCommand() {
             var command = new Command("microsoft-graph-update-recording-status");
             command.Description = "Provides operations to call the updateRecordingStatus method.";
-            var builder = new UpdateRecordingStatusRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUpdateRecordingStatusRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -308,7 +309,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.call entity.";
-            var builder = new OperationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OperationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -321,7 +322,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildParticipantsCommand() {
             var command = new Command("participants");
             command.Description = "Provides operations to manage the participants property of the microsoft.graph.call entity.";
-            var builder = new ParticipantsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ParticipantsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -366,6 +367,7 @@ namespace ApiSdk.Communications.Calls.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Call>(Call.CreateFromDiscriminatorValue);
@@ -377,7 +379,7 @@ namespace ApiSdk.Communications.Calls.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -389,14 +391,11 @@ namespace ApiSdk.Communications.Calls.Item {
         /// Instantiates a new CallItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CallItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public CallItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/communications/calls/{call%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property calls for communications
@@ -467,7 +466,6 @@ namespace ApiSdk.Communications.Calls.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new CallItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

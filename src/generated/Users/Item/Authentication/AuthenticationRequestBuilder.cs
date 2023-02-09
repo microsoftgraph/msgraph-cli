@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -30,8 +31,6 @@ namespace ApiSdk.Users.Item.Authentication {
     public class AuthenticationRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -54,6 +53,7 @@ namespace ApiSdk.Users.Item.Authentication {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
@@ -62,7 +62,7 @@ namespace ApiSdk.Users.Item.Authentication {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -73,7 +73,7 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildEmailMethodsCommand() {
             var command = new Command("email-methods");
             command.Description = "Provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.";
-            var builder = new EmailMethodsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new EmailMethodsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -86,7 +86,7 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildFido2MethodsCommand() {
             var command = new Command("fido2-methods");
             command.Description = "Provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.";
-            var builder = new Fido2MethodsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new Fido2MethodsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -136,6 +136,7 @@ namespace ApiSdk.Users.Item.Authentication {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -145,7 +146,7 @@ namespace ApiSdk.Users.Item.Authentication {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -159,7 +160,7 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildMethodsCommand() {
             var command = new Command("methods");
             command.Description = "Provides operations to manage the methods property of the microsoft.graph.authentication entity.";
-            var builder = new MethodsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MethodsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -172,7 +173,7 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildMicrosoftAuthenticatorMethodsCommand() {
             var command = new Command("microsoft-authenticator-methods");
             command.Description = "Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.";
-            var builder = new MicrosoftAuthenticatorMethodsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftAuthenticatorMethodsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -184,7 +185,7 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.authentication entity.";
-            var builder = new OperationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OperationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -197,7 +198,7 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildPasswordMethodsCommand() {
             var command = new Command("password-methods");
             command.Description = "Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.";
-            var builder = new PasswordMethodsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PasswordMethodsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -241,6 +242,7 @@ namespace ApiSdk.Users.Item.Authentication {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Authentication>(ApiSdk.Models.Authentication.CreateFromDiscriminatorValue);
@@ -252,7 +254,7 @@ namespace ApiSdk.Users.Item.Authentication {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -266,7 +268,7 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildPhoneMethodsCommand() {
             var command = new Command("phone-methods");
             command.Description = "Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.";
-            var builder = new PhoneMethodsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PhoneMethodsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -279,7 +281,7 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildSoftwareOathMethodsCommand() {
             var command = new Command("software-oath-methods");
             command.Description = "Provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.";
-            var builder = new SoftwareOathMethodsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SoftwareOathMethodsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -291,7 +293,7 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildTemporaryAccessPassMethodsCommand() {
             var command = new Command("temporary-access-pass-methods");
             command.Description = "Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.";
-            var builder = new TemporaryAccessPassMethodsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TemporaryAccessPassMethodsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -304,7 +306,7 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildWindowsHelloForBusinessMethodsCommand() {
             var command = new Command("windows-hello-for-business-methods");
             command.Description = "Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.";
-            var builder = new WindowsHelloForBusinessMethodsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new WindowsHelloForBusinessMethodsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -314,14 +316,11 @@ namespace ApiSdk.Users.Item.Authentication {
         /// Instantiates a new AuthenticationRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AuthenticationRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public AuthenticationRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/users/{user%2Did}/authentication{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property authentication for users
@@ -392,7 +391,6 @@ namespace ApiSdk.Users.Item.Authentication {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new AuthenticationRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

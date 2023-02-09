@@ -23,6 +23,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -39,8 +40,6 @@ namespace ApiSdk.Applications.Item {
     public class ApplicationItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -49,7 +48,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildCreatedOnBehalfOfCommand() {
             var command = new Command("created-on-behalf-of");
             command.Description = "Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.application entity.";
-            var builder = new CreatedOnBehalfOfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CreatedOnBehalfOfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -74,6 +73,7 @@ namespace ApiSdk.Applications.Item {
                 var applicationId = invocationContext.ParseResult.GetValueForOption(applicationIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
@@ -82,7 +82,7 @@ namespace ApiSdk.Applications.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -93,7 +93,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildExtensionPropertiesCommand() {
             var command = new Command("extension-properties");
             command.Description = "Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.";
-            var builder = new ExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ExtensionPropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -106,7 +106,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildFederatedIdentityCredentialsCommand() {
             var command = new Command("federated-identity-credentials");
             command.Description = "Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.";
-            var builder = new FederatedIdentityCredentialsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new FederatedIdentityCredentialsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -158,6 +158,7 @@ namespace ApiSdk.Applications.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -167,7 +168,7 @@ namespace ApiSdk.Applications.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -181,7 +182,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildHomeRealmDiscoveryPoliciesCommand() {
             var command = new Command("home-realm-discovery-policies");
             command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.";
-            var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -193,7 +194,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildLogoCommand() {
             var command = new Command("logo");
             command.Description = "Provides operations to manage the media for the application entity.";
-            var builder = new LogoRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new LogoRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPutCommand());
             return command;
@@ -204,7 +205,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildMicrosoftGraphAddKeyCommand() {
             var command = new Command("microsoft-graph-add-key");
             command.Description = "Provides operations to call the addKey method.";
-            var builder = new AddKeyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAddKeyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -214,7 +215,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildMicrosoftGraphAddPasswordCommand() {
             var command = new Command("microsoft-graph-add-password");
             command.Description = "Provides operations to call the addPassword method.";
-            var builder = new AddPasswordRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAddPasswordRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -224,7 +225,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
             var command = new Command("microsoft-graph-check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -234,7 +235,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
             var command = new Command("microsoft-graph-check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -244,7 +245,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
             var command = new Command("microsoft-graph-get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new GetMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -254,7 +255,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
             var command = new Command("microsoft-graph-get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new GetMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -264,7 +265,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildMicrosoftGraphRemoveKeyCommand() {
             var command = new Command("microsoft-graph-remove-key");
             command.Description = "Provides operations to call the removeKey method.";
-            var builder = new RemoveKeyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRemoveKeyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -274,7 +275,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildMicrosoftGraphRemovePasswordCommand() {
             var command = new Command("microsoft-graph-remove-password");
             command.Description = "Provides operations to call the removePassword method.";
-            var builder = new RemovePasswordRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRemovePasswordRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -284,7 +285,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildMicrosoftGraphRestoreCommand() {
             var command = new Command("microsoft-graph-restore");
             command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -294,7 +295,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildMicrosoftGraphSetVerifiedPublisherCommand() {
             var command = new Command("microsoft-graph-set-verified-publisher");
             command.Description = "Provides operations to call the setVerifiedPublisher method.";
-            var builder = new SetVerifiedPublisherRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSetVerifiedPublisherRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -304,7 +305,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildMicrosoftGraphUnsetVerifiedPublisherCommand() {
             var command = new Command("microsoft-graph-unset-verified-publisher");
             command.Description = "Provides operations to call the unsetVerifiedPublisher method.";
-            var builder = new UnsetVerifiedPublisherRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUnsetVerifiedPublisherRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -314,7 +315,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildOwnersCommand() {
             var command = new Command("owners");
             command.Description = "Provides operations to manage the owners property of the microsoft.graph.application entity.";
-            var builder = new OwnersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OwnersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -363,6 +364,7 @@ namespace ApiSdk.Applications.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Application>(ApiSdk.Models.Application.CreateFromDiscriminatorValue);
@@ -374,7 +376,7 @@ namespace ApiSdk.Applications.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -388,7 +390,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildTokenIssuancePoliciesCommand() {
             var command = new Command("token-issuance-policies");
             command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.application entity.";
-            var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -401,7 +403,7 @@ namespace ApiSdk.Applications.Item {
         public Command BuildTokenLifetimePoliciesCommand() {
             var command = new Command("token-lifetime-policies");
             command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.application entity.";
-            var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -412,14 +414,11 @@ namespace ApiSdk.Applications.Item {
         /// Instantiates a new ApplicationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ApplicationItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public ApplicationItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/applications/{application%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
@@ -490,7 +489,6 @@ namespace ApiSdk.Applications.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new ApplicationItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

@@ -22,6 +22,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -38,8 +39,6 @@ namespace ApiSdk.Groups.Item.Sites.Item {
     public class SiteItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -48,7 +47,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildAnalyticsCommand() {
             var command = new Command("analytics");
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.site entity.";
-            var builder = new AnalyticsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AnalyticsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -58,7 +57,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildColumnsCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.site entity.";
-            var builder = new ColumnsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ColumnsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -71,7 +70,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildContentTypesCommand() {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.site entity.";
-            var builder = new ContentTypesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ContentTypesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -87,7 +86,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildDriveCommand() {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.site entity.";
-            var builder = new DriveRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DriveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -97,7 +96,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildDrivesCommand() {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the drives property of the microsoft.graph.site entity.";
-            var builder = new DrivesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DrivesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -109,7 +108,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildExternalColumnsCommand() {
             var command = new Command("external-columns");
             command.Description = "Provides operations to manage the externalColumns property of the microsoft.graph.site entity.";
-            var builder = new ExternalColumnsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ExternalColumnsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -164,6 +163,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -174,7 +174,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -188,7 +188,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildItemsCommand() {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.site entity.";
-            var builder = new ItemsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ItemsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -200,7 +200,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildListsCommand() {
             var command = new Command("lists");
             command.Description = "Provides operations to manage the lists property of the microsoft.graph.site entity.";
-            var builder = new ListsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ListsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -213,7 +213,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildMicrosoftGraphGetActivitiesByIntervalCommand() {
             var command = new Command("microsoft-graph-get-activities-by-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
-            var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetActivitiesByIntervalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -223,7 +223,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildOnenoteCommand() {
             var command = new Command("onenote");
             command.Description = "Provides operations to manage the onenote property of the microsoft.graph.site entity.";
-            var builder = new OnenoteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OnenoteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildNotebooksCommand());
@@ -241,7 +241,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.site entity.";
-            var builder = new OperationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OperationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -290,6 +290,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Site>(ApiSdk.Models.Site.CreateFromDiscriminatorValue);
@@ -302,7 +303,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -316,7 +317,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildPermissionsCommand() {
             var command = new Command("permissions");
             command.Description = "Provides operations to manage the permissions property of the microsoft.graph.site entity.";
-            var builder = new PermissionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PermissionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -329,7 +330,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildSitesCommand() {
             var command = new Command("sites");
             command.Description = "Provides operations to manage the sites property of the microsoft.graph.site entity.";
-            var builder = new ApiSdk.Groups.Item.Sites.Item.Sites.SitesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Sites.SitesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -341,7 +342,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildTermStoreCommand() {
             var command = new Command("term-store");
             command.Description = "Provides operations to manage the termStore property of the microsoft.graph.site entity.";
-            var builder = new TermStoreRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TermStoreRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildGroupsCommand());
@@ -355,7 +356,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         public Command BuildTermStoresCommand() {
             var command = new Command("term-stores");
             command.Description = "Provides operations to manage the termStores property of the microsoft.graph.site entity.";
-            var builder = new TermStoresRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TermStoresRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -366,42 +367,11 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// Instantiates a new SiteItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SiteItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public SiteItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Provides operations to call the getActivitiesByInterval method.
-        /// </summary>
-        /// <param name="endDateTime">Usage: endDateTime=&apos;{endDateTime}&apos;</param>
-        /// <param name="interval">Usage: interval=&apos;{interval}&apos;</param>
-        /// <param name="startDateTime">Usage: startDateTime=&apos;{startDateTime}&apos;</param>
-        public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval(string endDateTime, string interval, string startDateTime) {
-            if(string.IsNullOrEmpty(endDateTime)) throw new ArgumentNullException(nameof(endDateTime));
-            if(string.IsNullOrEmpty(interval)) throw new ArgumentNullException(nameof(interval));
-            if(string.IsNullOrEmpty(startDateTime)) throw new ArgumentNullException(nameof(startDateTime));
-            return new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters, RequestAdapter, endDateTime, interval, startDateTime);
-        }
-        /// <summary>
-        /// Provides operations to call the getApplicableContentTypesForList method.
-        /// </summary>
-        /// <param name="listId">Usage: listId=&apos;{listId}&apos;</param>
-        public GetApplicableContentTypesForListWithListIdRequestBuilder MicrosoftGraphGetApplicableContentTypesForListWithListId(string listId) {
-            if(string.IsNullOrEmpty(listId)) throw new ArgumentNullException(nameof(listId));
-            return new GetApplicableContentTypesForListWithListIdRequestBuilder(PathParameters, RequestAdapter, listId);
-        }
-        /// <summary>
-        /// Provides operations to call the getByPath method.
-        /// </summary>
-        /// <param name="path">Usage: path=&apos;{path}&apos;</param>
-        public GetByPathWithPathRequestBuilder MicrosoftGraphGetByPathWithPath(string path) {
-            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException(nameof(path));
-            return new GetByPathWithPathRequestBuilder(PathParameters, RequestAdapter, path);
         }
         /// <summary>
         /// The list of SharePoint sites in this group. Access the default site with /sites/root.
@@ -448,7 +418,6 @@ namespace ApiSdk.Groups.Item.Sites.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new SiteItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

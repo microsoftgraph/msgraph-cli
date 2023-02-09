@@ -21,6 +21,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -37,8 +38,6 @@ namespace ApiSdk.Groups.Item.Team {
     public class TeamRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -47,7 +46,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildAllChannelsCommand() {
             var command = new Command("all-channels");
             command.Description = "Provides operations to manage the allChannels property of the microsoft.graph.team entity.";
-            var builder = new AllChannelsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AllChannelsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -59,7 +58,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildChannelsCommand() {
             var command = new Command("channels");
             command.Description = "Provides operations to manage the channels property of the microsoft.graph.team entity.";
-            var builder = new ChannelsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ChannelsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -87,6 +86,7 @@ namespace ApiSdk.Groups.Item.Team {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -95,7 +95,7 @@ namespace ApiSdk.Groups.Item.Team {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -144,6 +144,7 @@ namespace ApiSdk.Groups.Item.Team {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -153,7 +154,7 @@ namespace ApiSdk.Groups.Item.Team {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -167,7 +168,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildGroupCommand() {
             var command = new Command("group");
             command.Description = "Provides operations to manage the group property of the microsoft.graph.team entity.";
-            var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new GroupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -177,7 +178,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildIncomingChannelsCommand() {
             var command = new Command("incoming-channels");
             command.Description = "Provides operations to manage the incomingChannels property of the microsoft.graph.team entity.";
-            var builder = new IncomingChannelsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new IncomingChannelsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -189,7 +190,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildInstalledAppsCommand() {
             var command = new Command("installed-apps");
             command.Description = "Provides operations to manage the installedApps property of the microsoft.graph.team entity.";
-            var builder = new InstalledAppsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new InstalledAppsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -202,7 +203,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildMembersCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.team entity.";
-            var builder = new MembersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MembersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -216,7 +217,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildMicrosoftGraphArchiveCommand() {
             var command = new Command("microsoft-graph-archive");
             command.Description = "Provides operations to call the archive method.";
-            var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphArchiveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -226,7 +227,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildMicrosoftGraphCloneCommand() {
             var command = new Command("microsoft-graph-clone");
             command.Description = "Provides operations to call the clone method.";
-            var builder = new CloneRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCloneRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -236,7 +237,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildMicrosoftGraphCompleteMigrationCommand() {
             var command = new Command("microsoft-graph-complete-migration");
             command.Description = "Provides operations to call the completeMigration method.";
-            var builder = new CompleteMigrationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCompleteMigrationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -246,7 +247,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildMicrosoftGraphSendActivityNotificationCommand() {
             var command = new Command("microsoft-graph-send-activity-notification");
             command.Description = "Provides operations to call the sendActivityNotification method.";
-            var builder = new SendActivityNotificationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSendActivityNotificationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -256,7 +257,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildMicrosoftGraphUnarchiveCommand() {
             var command = new Command("microsoft-graph-unarchive");
             command.Description = "Provides operations to call the unarchive method.";
-            var builder = new UnarchiveRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUnarchiveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -266,7 +267,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.team entity.";
-            var builder = new OperationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OperationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -311,6 +312,7 @@ namespace ApiSdk.Groups.Item.Team {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Team>(ApiSdk.Models.Team.CreateFromDiscriminatorValue);
@@ -322,7 +324,7 @@ namespace ApiSdk.Groups.Item.Team {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -336,7 +338,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildPhotoCommand() {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.team entity.";
-            var builder = new PhotoRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PhotoRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildContentCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -349,7 +351,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildPrimaryChannelCommand() {
             var command = new Command("primary-channel");
             command.Description = "Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.";
-            var builder = new PrimaryChannelRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PrimaryChannelRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFilesFolderCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -370,7 +372,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildScheduleCommand() {
             var command = new Command("schedule");
             command.Description = "Provides operations to manage the schedule property of the microsoft.graph.team entity.";
-            var builder = new ScheduleRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ScheduleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMicrosoftGraphShareCommand());
@@ -392,7 +394,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildTagsCommand() {
             var command = new Command("tags");
             command.Description = "Provides operations to manage the tags property of the microsoft.graph.team entity.";
-            var builder = new TagsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TagsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -405,7 +407,7 @@ namespace ApiSdk.Groups.Item.Team {
         public Command BuildTemplateCommand() {
             var command = new Command("template");
             command.Description = "Provides operations to manage the template property of the microsoft.graph.team entity.";
-            var builder = new TemplateRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TemplateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -413,14 +415,11 @@ namespace ApiSdk.Groups.Item.Team {
         /// Instantiates a new TeamRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TeamRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public TeamRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/groups/{group%2Did}/team{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property team for groups
@@ -491,7 +490,6 @@ namespace ApiSdk.Groups.Item.Team {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new TeamRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

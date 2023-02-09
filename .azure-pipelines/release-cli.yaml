@@ -37,10 +37,11 @@ variables:
       value: '$(Build.SourceBranchName)'
   - group: ESRP
 
-#                   
-# test -> build -> | sign |
-#                  |------| -> upload
-# srcScan -------> | scan |
+# test ----------> | build ->   |            |
+#                  |            | sign       |
+# checkFormat ----------------> |------------| -> upload
+#                               | binaryScan |
+# srcScan --------------------> |            |
 stages:
   - stage: test
     displayName: Run tests
@@ -112,6 +113,29 @@ stages:
             inputs:
               artifact: build-output-$(rid)
               path: $(outputDir)-$(rid)
+
+    # Format takes a long time. keep it in its own stage
+  - stage: checkFormat
+    displayName: Check formatting
+    condition: false
+    dependsOn: []
+    jobs:
+      - job: checkFormat
+        displayName: Check formatting
+        steps:
+        - task: UseDotNet@2
+          displayName: 'Use .NET 7'
+          inputs:
+            version: 7.x
+
+        # Restore NuGet packages (enables cache by default)
+        - template: templates/nuget-packages.yaml
+          parameters:
+            vstsFeedName: ${{variables.internalFeed}}
+
+        - pwsh: dotnet format --no-restore --include ./src/ --exclude ./src/generated/ --verify-no-changes
+          displayName: Validate formatting
+          enabled: true
 
   - stage: srcScan
     displayName: Scan source code
@@ -226,12 +250,17 @@ stages:
               Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
             displayName: Setup variables
 
+          - pwsh: git config --global core.longpaths true
+            displayName: Enable git's long file paths on Windows
+
+          - checkout: self
+
           - task: DownloadPipelineArtifact@2
             inputs:
               patterns: build-output-$(rid)/**/*
               path: $(WORKING_DIR)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
-          
+
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
               $zipName = Get-ZipName -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
@@ -316,7 +345,7 @@ stages:
 
   - stage: binaryScan
     displayName: Scan binaries (Anti malware, BinSkim)
-    dependsOn: [build, srcScan]
+    dependsOn: [build, checkFormat, srcScan]
     pool:
       vmImage: windows-latest
     # Only scan binaries if we're building a tag, building main, or building a PR targeting main
@@ -359,4 +388,3 @@ stages:
                 $(artifactsDownloadLocation)/build-output-linux-*/*.zip
                 $(artifactsDownloadLocation)/sign-output-*/*.zip
               isPreRelease: $(isPreRelease)
-    

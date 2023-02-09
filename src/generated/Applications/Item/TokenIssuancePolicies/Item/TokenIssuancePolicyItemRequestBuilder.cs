@@ -17,8 +17,6 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Item {
     public class TokenIssuancePolicyItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -27,7 +25,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Item {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of application entities.";
-            var builder = new RefRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             return command;
         }
@@ -35,14 +33,11 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Item {
         /// Instantiates a new TokenIssuancePolicyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TokenIssuancePolicyItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public TokenIssuancePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/applications/{application%2Did}/tokenIssuancePolicies/{tokenIssuancePolicy%2Did}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
     }
 }

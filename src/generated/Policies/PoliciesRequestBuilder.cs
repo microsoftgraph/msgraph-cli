@@ -20,6 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -36,8 +37,6 @@ namespace ApiSdk.Policies {
     public class PoliciesRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -46,7 +45,7 @@ namespace ApiSdk.Policies {
         public Command BuildActivityBasedTimeoutPoliciesCommand() {
             var command = new Command("activity-based-timeout-policies");
             command.Description = "Provides operations to manage the activityBasedTimeoutPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new ActivityBasedTimeoutPoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ActivityBasedTimeoutPoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -59,7 +58,7 @@ namespace ApiSdk.Policies {
         public Command BuildAdminConsentRequestPolicyCommand() {
             var command = new Command("admin-consent-request-policy");
             command.Description = "Provides operations to manage the adminConsentRequestPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new AdminConsentRequestPolicyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AdminConsentRequestPolicyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -71,7 +70,7 @@ namespace ApiSdk.Policies {
         public Command BuildAuthenticationFlowsPolicyCommand() {
             var command = new Command("authentication-flows-policy");
             command.Description = "Provides operations to manage the authenticationFlowsPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new AuthenticationFlowsPolicyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AuthenticationFlowsPolicyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -83,7 +82,7 @@ namespace ApiSdk.Policies {
         public Command BuildAuthenticationMethodsPolicyCommand() {
             var command = new Command("authentication-methods-policy");
             command.Description = "Provides operations to manage the authenticationMethodsPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new AuthenticationMethodsPolicyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AuthenticationMethodsPolicyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAuthenticationMethodConfigurationsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -96,7 +95,7 @@ namespace ApiSdk.Policies {
         public Command BuildAuthorizationPolicyCommand() {
             var command = new Command("authorization-policy");
             command.Description = "Provides operations to manage the authorizationPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new AuthorizationPolicyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AuthorizationPolicyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -108,7 +107,7 @@ namespace ApiSdk.Policies {
         public Command BuildClaimsMappingPoliciesCommand() {
             var command = new Command("claims-mapping-policies");
             command.Description = "Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new ClaimsMappingPoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ClaimsMappingPoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -121,7 +120,7 @@ namespace ApiSdk.Policies {
         public Command BuildConditionalAccessPoliciesCommand() {
             var command = new Command("conditional-access-policies");
             command.Description = "Provides operations to manage the conditionalAccessPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new ConditionalAccessPoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ConditionalAccessPoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -134,7 +133,7 @@ namespace ApiSdk.Policies {
         public Command BuildCrossTenantAccessPolicyCommand() {
             var command = new Command("cross-tenant-access-policy");
             command.Description = "Provides operations to manage the crossTenantAccessPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new CrossTenantAccessPolicyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CrossTenantAccessPolicyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDefaultCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -148,7 +147,7 @@ namespace ApiSdk.Policies {
         public Command BuildFeatureRolloutPoliciesCommand() {
             var command = new Command("feature-rollout-policies");
             command.Description = "Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new FeatureRolloutPoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new FeatureRolloutPoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -194,6 +193,7 @@ namespace ApiSdk.Policies {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -202,7 +202,7 @@ namespace ApiSdk.Policies {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -216,7 +216,7 @@ namespace ApiSdk.Policies {
         public Command BuildHomeRealmDiscoveryPoliciesCommand() {
             var command = new Command("home-realm-discovery-policies");
             command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -229,7 +229,7 @@ namespace ApiSdk.Policies {
         public Command BuildIdentitySecurityDefaultsEnforcementPolicyCommand() {
             var command = new Command("identity-security-defaults-enforcement-policy");
             command.Description = "Provides operations to manage the identitySecurityDefaultsEnforcementPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new IdentitySecurityDefaultsEnforcementPolicyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new IdentitySecurityDefaultsEnforcementPolicyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -267,6 +267,7 @@ namespace ApiSdk.Policies {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PolicyRoot>(PolicyRoot.CreateFromDiscriminatorValue);
@@ -277,7 +278,7 @@ namespace ApiSdk.Policies {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -291,7 +292,7 @@ namespace ApiSdk.Policies {
         public Command BuildPermissionGrantPoliciesCommand() {
             var command = new Command("permission-grant-policies");
             command.Description = "Provides operations to manage the permissionGrantPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new PermissionGrantPoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PermissionGrantPoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -304,7 +305,7 @@ namespace ApiSdk.Policies {
         public Command BuildRoleManagementPoliciesCommand() {
             var command = new Command("role-management-policies");
             command.Description = "Provides operations to manage the roleManagementPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new RoleManagementPoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RoleManagementPoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -317,7 +318,7 @@ namespace ApiSdk.Policies {
         public Command BuildRoleManagementPolicyAssignmentsCommand() {
             var command = new Command("role-management-policy-assignments");
             command.Description = "Provides operations to manage the roleManagementPolicyAssignments property of the microsoft.graph.policyRoot entity.";
-            var builder = new RoleManagementPolicyAssignmentsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RoleManagementPolicyAssignmentsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -330,7 +331,7 @@ namespace ApiSdk.Policies {
         public Command BuildTokenIssuancePoliciesCommand() {
             var command = new Command("token-issuance-policies");
             command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -343,7 +344,7 @@ namespace ApiSdk.Policies {
         public Command BuildTokenLifetimePoliciesCommand() {
             var command = new Command("token-lifetime-policies");
             command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -354,14 +355,11 @@ namespace ApiSdk.Policies {
         /// Instantiates a new PoliciesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PoliciesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public PoliciesRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/policies{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Get policies
@@ -408,7 +406,6 @@ namespace ApiSdk.Policies {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new PoliciesRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

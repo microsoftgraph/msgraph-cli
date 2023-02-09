@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
     public class MessagesRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -37,7 +36,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
-            var builder = new ServiceUpdateMessageItemRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ServiceUpdateMessageItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAttachmentsArchiveCommand());
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
@@ -51,7 +50,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         public Command BuildCountCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CountRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -87,6 +86,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ServiceUpdateMessage>(ServiceUpdateMessage.CreateFromDiscriminatorValue);
@@ -97,7 +97,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -180,6 +180,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
@@ -195,7 +196,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
-                var pageResponse = await pagingService.GetPagedDataAsync((info, token) => RequestAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
+                var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
                 IOutputFormatterOptions? formatterOptions = null;
                 IOutputFormatter? formatter = null;
@@ -216,7 +217,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         public Command BuildMicrosoftGraphArchiveCommand() {
             var command = new Command("microsoft-graph-archive");
             command.Description = "Provides operations to call the archive method.";
-            var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphArchiveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -226,7 +227,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         public Command BuildMicrosoftGraphFavoriteCommand() {
             var command = new Command("microsoft-graph-favorite");
             command.Description = "Provides operations to call the favorite method.";
-            var builder = new FavoriteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFavoriteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -236,7 +237,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         public Command BuildMicrosoftGraphMarkReadCommand() {
             var command = new Command("microsoft-graph-mark-read");
             command.Description = "Provides operations to call the markRead method.";
-            var builder = new MarkReadRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMarkReadRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -246,7 +247,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         public Command BuildMicrosoftGraphMarkUnreadCommand() {
             var command = new Command("microsoft-graph-mark-unread");
             command.Description = "Provides operations to call the markUnread method.";
-            var builder = new MarkUnreadRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMarkUnreadRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -256,7 +257,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         public Command BuildMicrosoftGraphUnarchiveCommand() {
             var command = new Command("microsoft-graph-unarchive");
             command.Description = "Provides operations to call the unarchive method.";
-            var builder = new UnarchiveRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUnarchiveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -266,7 +267,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         public Command BuildMicrosoftGraphUnfavoriteCommand() {
             var command = new Command("microsoft-graph-unfavorite");
             command.Description = "Provides operations to call the unfavorite method.";
-            var builder = new UnfavoriteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUnfavoriteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -274,14 +275,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// Instantiates a new MessagesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MessagesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public MessagesRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/admin/serviceAnnouncement/messages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Retrieve the serviceUpdateMessage resources from the **messages** navigation property. This operation retrieves all service update messages that exist for the tenant.
@@ -328,7 +326,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new MessagesRequestBuilderPostRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

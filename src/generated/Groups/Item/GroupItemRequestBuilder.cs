@@ -45,6 +45,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -61,8 +62,6 @@ namespace ApiSdk.Groups.Item {
     public class GroupItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -71,7 +70,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildAcceptedSendersCommand() {
             var command = new Command("accepted-senders");
             command.Description = "Provides operations to manage the acceptedSenders property of the microsoft.graph.group entity.";
-            var builder = new AcceptedSendersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AcceptedSendersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -84,7 +83,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildAppRoleAssignmentsCommand() {
             var command = new Command("app-role-assignments");
             command.Description = "Provides operations to manage the appRoleAssignments property of the microsoft.graph.group entity.";
-            var builder = new AppRoleAssignmentsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AppRoleAssignmentsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -97,7 +96,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildCalendarCommand() {
             var command = new Command("calendar");
             command.Description = "Provides operations to manage the calendar property of the microsoft.graph.group entity.";
-            var builder = new CalendarRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CalendarRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCalendarPermissionsCommand());
             command.AddCommand(builder.BuildCalendarViewCommand());
             command.AddCommand(builder.BuildEventsCommand());
@@ -113,7 +112,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildCalendarViewCommand() {
             var command = new Command("calendar-view");
             command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.group entity.";
-            var builder = new CalendarViewRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CalendarViewRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -126,7 +125,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildConversationsCommand() {
             var command = new Command("conversations");
             command.Description = "Provides operations to manage the conversations property of the microsoft.graph.group entity.";
-            var builder = new ConversationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ConversationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -139,7 +138,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildCreatedOnBehalfOfCommand() {
             var command = new Command("created-on-behalf-of");
             command.Description = "Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.group entity.";
-            var builder = new CreatedOnBehalfOfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CreatedOnBehalfOfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -164,6 +163,7 @@ namespace ApiSdk.Groups.Item {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -172,7 +172,7 @@ namespace ApiSdk.Groups.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -183,7 +183,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildDriveCommand() {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.group entity.";
-            var builder = new DriveRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DriveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -193,7 +193,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildDrivesCommand() {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the drives property of the microsoft.graph.group entity.";
-            var builder = new DrivesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DrivesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -205,7 +205,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildEventsCommand() {
             var command = new Command("events");
             command.Description = "Provides operations to manage the events property of the microsoft.graph.group entity.";
-            var builder = new EventsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new EventsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -219,7 +219,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.group entity.";
-            var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ExtensionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -271,6 +271,7 @@ namespace ApiSdk.Groups.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -280,7 +281,7 @@ namespace ApiSdk.Groups.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -294,7 +295,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildGroupLifecyclePoliciesCommand() {
             var command = new Command("group-lifecycle-policies");
             command.Description = "Provides operations to manage the groupLifecyclePolicies property of the microsoft.graph.group entity.";
-            var builder = new GroupLifecyclePoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new GroupLifecyclePoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -307,7 +308,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMemberOfCommand() {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.group entity.";
-            var builder = new MemberOfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MemberOfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -325,7 +326,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMembersCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.group entity.";
-            var builder = new MembersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MembersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -344,7 +345,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMembersWithLicenseErrorsCommand() {
             var command = new Command("members-with-license-errors");
             command.Description = "Provides operations to manage the membersWithLicenseErrors property of the microsoft.graph.group entity.";
-            var builder = new MembersWithLicenseErrorsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MembersWithLicenseErrorsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -362,7 +363,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphAddFavoriteCommand() {
             var command = new Command("microsoft-graph-add-favorite");
             command.Description = "Provides operations to call the addFavorite method.";
-            var builder = new AddFavoriteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAddFavoriteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -372,7 +373,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphAssignLicenseCommand() {
             var command = new Command("microsoft-graph-assign-license");
             command.Description = "Provides operations to call the assignLicense method.";
-            var builder = new AssignLicenseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAssignLicenseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -382,7 +383,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphCheckGrantedPermissionsForAppCommand() {
             var command = new Command("microsoft-graph-check-granted-permissions-for-app");
             command.Description = "Provides operations to call the checkGrantedPermissionsForApp method.";
-            var builder = new CheckGrantedPermissionsForAppRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCheckGrantedPermissionsForAppRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -392,7 +393,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
             var command = new Command("microsoft-graph-check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -402,7 +403,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
             var command = new Command("microsoft-graph-check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -412,7 +413,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
             var command = new Command("microsoft-graph-get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new GetMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -422,7 +423,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
             var command = new Command("microsoft-graph-get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new GetMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -432,7 +433,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphRemoveFavoriteCommand() {
             var command = new Command("microsoft-graph-remove-favorite");
             command.Description = "Provides operations to call the removeFavorite method.";
-            var builder = new RemoveFavoriteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRemoveFavoriteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -442,7 +443,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphRenewCommand() {
             var command = new Command("microsoft-graph-renew");
             command.Description = "Provides operations to call the renew method.";
-            var builder = new RenewRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRenewRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -452,7 +453,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphResetUnseenCountCommand() {
             var command = new Command("microsoft-graph-reset-unseen-count");
             command.Description = "Provides operations to call the resetUnseenCount method.";
-            var builder = new ResetUnseenCountRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphResetUnseenCountRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -462,7 +463,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphRestoreCommand() {
             var command = new Command("microsoft-graph-restore");
             command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -472,7 +473,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphSubscribeByMailCommand() {
             var command = new Command("microsoft-graph-subscribe-by-mail");
             command.Description = "Provides operations to call the subscribeByMail method.";
-            var builder = new SubscribeByMailRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSubscribeByMailRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -482,7 +483,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphUnsubscribeByMailCommand() {
             var command = new Command("microsoft-graph-unsubscribe-by-mail");
             command.Description = "Provides operations to call the unsubscribeByMail method.";
-            var builder = new UnsubscribeByMailRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUnsubscribeByMailRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -492,7 +493,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildMicrosoftGraphValidatePropertiesCommand() {
             var command = new Command("microsoft-graph-validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
-            var builder = new ValidatePropertiesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphValidatePropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -502,7 +503,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildOnenoteCommand() {
             var command = new Command("onenote");
             command.Description = "Provides operations to manage the onenote property of the microsoft.graph.group entity.";
-            var builder = new OnenoteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OnenoteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildNotebooksCommand());
@@ -520,7 +521,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildOwnersCommand() {
             var command = new Command("owners");
             command.Description = "Provides operations to manage the owners property of the microsoft.graph.group entity.";
-            var builder = new OwnersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OwnersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -571,6 +572,7 @@ namespace ApiSdk.Groups.Item {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Group>(ApiSdk.Models.Group.CreateFromDiscriminatorValue);
@@ -582,7 +584,7 @@ namespace ApiSdk.Groups.Item {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -596,7 +598,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildPermissionGrantsCommand() {
             var command = new Command("permission-grants");
             command.Description = "Provides operations to manage the permissionGrants property of the microsoft.graph.group entity.";
-            var builder = new PermissionGrantsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PermissionGrantsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -612,7 +614,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildPhotoCommand() {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.group entity.";
-            var builder = new PhotoRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PhotoRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildContentCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -624,7 +626,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildPhotosCommand() {
             var command = new Command("photos");
             command.Description = "Provides operations to manage the photos property of the microsoft.graph.group entity.";
-            var builder = new PhotosRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PhotosRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -636,7 +638,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildPlannerCommand() {
             var command = new Command("planner");
             command.Description = "Provides operations to manage the planner property of the microsoft.graph.group entity.";
-            var builder = new PlannerRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PlannerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -649,7 +651,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildRejectedSendersCommand() {
             var command = new Command("rejected-senders");
             command.Description = "Provides operations to manage the rejectedSenders property of the microsoft.graph.group entity.";
-            var builder = new RejectedSendersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RejectedSendersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -662,7 +664,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildSettingsCommand() {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.group entity.";
-            var builder = new SettingsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SettingsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -675,7 +677,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildSitesCommand() {
             var command = new Command("sites");
             command.Description = "Provides operations to manage the sites property of the microsoft.graph.group entity.";
-            var builder = new SitesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SitesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -689,7 +691,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildTeamCommand() {
             var command = new Command("team");
             command.Description = "Provides operations to manage the team property of the microsoft.graph.group entity.";
-            var builder = new TeamRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TeamRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAllChannelsCommand());
             command.AddCommand(builder.BuildChannelsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
@@ -718,7 +720,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildThreadsCommand() {
             var command = new Command("threads");
             command.Description = "Provides operations to manage the threads property of the microsoft.graph.group entity.";
-            var builder = new ThreadsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ThreadsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -731,7 +733,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildTransitiveMemberOfCommand() {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.group entity.";
-            var builder = new TransitiveMemberOfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -749,7 +751,7 @@ namespace ApiSdk.Groups.Item {
         public Command BuildTransitiveMembersCommand() {
             var command = new Command("transitive-members");
             command.Description = "Provides operations to manage the transitiveMembers property of the microsoft.graph.group entity.";
-            var builder = new TransitiveMembersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TransitiveMembersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -765,14 +767,11 @@ namespace ApiSdk.Groups.Item {
         /// Instantiates a new GroupItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public GroupItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public GroupItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/groups/{group%2Did}{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they&apos;re permanently deleted. This isn&apos;t applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems.
@@ -843,7 +842,6 @@ namespace ApiSdk.Groups.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new GroupItemRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

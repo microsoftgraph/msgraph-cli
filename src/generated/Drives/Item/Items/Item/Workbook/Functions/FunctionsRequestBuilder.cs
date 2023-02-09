@@ -370,6 +370,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -386,8 +387,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
     public class FunctionsRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -415,6 +414,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
@@ -424,7 +424,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -478,6 +478,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -488,7 +489,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -502,7 +503,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAbsCommand() {
             var command = new Command("microsoft-graph-abs");
             command.Description = "Provides operations to call the abs method.";
-            var builder = new AbsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAbsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -512,7 +513,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAccrIntCommand() {
             var command = new Command("microsoft-graph-accr-int");
             command.Description = "Provides operations to call the accrInt method.";
-            var builder = new AccrIntRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAccrIntRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -522,7 +523,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAccrIntMCommand() {
             var command = new Command("microsoft-graph-accr-int-m");
             command.Description = "Provides operations to call the accrIntM method.";
-            var builder = new AccrIntMRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAccrIntMRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -532,7 +533,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAcosCommand() {
             var command = new Command("microsoft-graph-acos");
             command.Description = "Provides operations to call the acos method.";
-            var builder = new AcosRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAcosRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -542,7 +543,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAcoshCommand() {
             var command = new Command("microsoft-graph-acosh");
             command.Description = "Provides operations to call the acosh method.";
-            var builder = new AcoshRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAcoshRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -552,7 +553,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAcotCommand() {
             var command = new Command("microsoft-graph-acot");
             command.Description = "Provides operations to call the acot method.";
-            var builder = new AcotRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAcotRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -562,7 +563,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAcothCommand() {
             var command = new Command("microsoft-graph-acoth");
             command.Description = "Provides operations to call the acoth method.";
-            var builder = new AcothRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAcothRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -572,7 +573,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAmorDegrcCommand() {
             var command = new Command("microsoft-graph-amor-degrc");
             command.Description = "Provides operations to call the amorDegrc method.";
-            var builder = new AmorDegrcRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAmorDegrcRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -582,7 +583,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAmorLincCommand() {
             var command = new Command("microsoft-graph-amor-linc");
             command.Description = "Provides operations to call the amorLinc method.";
-            var builder = new AmorLincRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAmorLincRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -592,7 +593,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAndCommand() {
             var command = new Command("microsoft-graph-and");
             command.Description = "Provides operations to call the and method.";
-            var builder = new AndRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAndRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -602,7 +603,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphArabicCommand() {
             var command = new Command("microsoft-graph-arabic");
             command.Description = "Provides operations to call the arabic method.";
-            var builder = new ArabicRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphArabicRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -612,7 +613,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAreasCommand() {
             var command = new Command("microsoft-graph-areas");
             command.Description = "Provides operations to call the areas method.";
-            var builder = new AreasRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAreasRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -622,7 +623,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAscCommand() {
             var command = new Command("microsoft-graph-asc");
             command.Description = "Provides operations to call the asc method.";
-            var builder = new AscRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAscRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -632,7 +633,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAsinCommand() {
             var command = new Command("microsoft-graph-asin");
             command.Description = "Provides operations to call the asin method.";
-            var builder = new AsinRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAsinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -642,7 +643,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAsinhCommand() {
             var command = new Command("microsoft-graph-asinh");
             command.Description = "Provides operations to call the asinh method.";
-            var builder = new AsinhRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAsinhRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -652,7 +653,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAtan2Command() {
             var command = new Command("microsoft-graph-atan2");
             command.Description = "Provides operations to call the atan2 method.";
-            var builder = new Atan2RequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAtan2RequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -662,7 +663,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAtanCommand() {
             var command = new Command("microsoft-graph-atan");
             command.Description = "Provides operations to call the atan method.";
-            var builder = new AtanRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAtanRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -672,7 +673,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAtanhCommand() {
             var command = new Command("microsoft-graph-atanh");
             command.Description = "Provides operations to call the atanh method.";
-            var builder = new AtanhRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAtanhRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -682,7 +683,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAveDevCommand() {
             var command = new Command("microsoft-graph-ave-dev");
             command.Description = "Provides operations to call the aveDev method.";
-            var builder = new AveDevRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAveDevRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -692,7 +693,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAverageACommand() {
             var command = new Command("microsoft-graph-average-a");
             command.Description = "Provides operations to call the averageA method.";
-            var builder = new AverageARequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAverageARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -702,7 +703,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAverageCommand() {
             var command = new Command("microsoft-graph-average");
             command.Description = "Provides operations to call the average method.";
-            var builder = new AverageRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAverageRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -712,7 +713,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAverageIfCommand() {
             var command = new Command("microsoft-graph-average-if");
             command.Description = "Provides operations to call the averageIf method.";
-            var builder = new AverageIfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAverageIfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -722,7 +723,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphAverageIfsCommand() {
             var command = new Command("microsoft-graph-average-ifs");
             command.Description = "Provides operations to call the averageIfs method.";
-            var builder = new AverageIfsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAverageIfsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -732,7 +733,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBahtTextCommand() {
             var command = new Command("microsoft-graph-baht-text");
             command.Description = "Provides operations to call the bahtText method.";
-            var builder = new BahtTextRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBahtTextRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -742,7 +743,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBaseCommand() {
             var command = new Command("microsoft-graph-base");
             command.Description = "Provides operations to call the base method.";
-            var builder = new BaseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBaseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -752,7 +753,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBesselICommand() {
             var command = new Command("microsoft-graph-bessel-i");
             command.Description = "Provides operations to call the besselI method.";
-            var builder = new BesselIRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBesselIRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -762,7 +763,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBesselJCommand() {
             var command = new Command("microsoft-graph-bessel-j");
             command.Description = "Provides operations to call the besselJ method.";
-            var builder = new BesselJRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBesselJRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -772,7 +773,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBesselKCommand() {
             var command = new Command("microsoft-graph-bessel-k");
             command.Description = "Provides operations to call the besselK method.";
-            var builder = new BesselKRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBesselKRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -782,7 +783,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBesselYCommand() {
             var command = new Command("microsoft-graph-bessel-y");
             command.Description = "Provides operations to call the besselY method.";
-            var builder = new BesselYRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBesselYRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -792,7 +793,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBeta_DistCommand() {
             var command = new Command("microsoft-graph-beta_-dist");
             command.Description = "Provides operations to call the beta_Dist method.";
-            var builder = new Beta_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBeta_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -802,7 +803,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBeta_InvCommand() {
             var command = new Command("microsoft-graph-beta_-inv");
             command.Description = "Provides operations to call the beta_Inv method.";
-            var builder = new Beta_InvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBeta_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -812,7 +813,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBin2DecCommand() {
             var command = new Command("microsoft-graph-bin2-dec");
             command.Description = "Provides operations to call the bin2Dec method.";
-            var builder = new Bin2DecRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBin2DecRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -822,7 +823,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBin2HexCommand() {
             var command = new Command("microsoft-graph-bin2-hex");
             command.Description = "Provides operations to call the bin2Hex method.";
-            var builder = new Bin2HexRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBin2HexRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -832,7 +833,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBin2OctCommand() {
             var command = new Command("microsoft-graph-bin2-oct");
             command.Description = "Provides operations to call the bin2Oct method.";
-            var builder = new Bin2OctRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBin2OctRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -842,7 +843,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBinom_Dist_RangeCommand() {
             var command = new Command("microsoft-graph-binom_-dist_-range");
             command.Description = "Provides operations to call the binom_Dist_Range method.";
-            var builder = new Binom_Dist_RangeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBinom_Dist_RangeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -852,7 +853,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBinom_DistCommand() {
             var command = new Command("microsoft-graph-binom_-dist");
             command.Description = "Provides operations to call the binom_Dist method.";
-            var builder = new Binom_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBinom_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -862,7 +863,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBinom_InvCommand() {
             var command = new Command("microsoft-graph-binom_-inv");
             command.Description = "Provides operations to call the binom_Inv method.";
-            var builder = new Binom_InvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBinom_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -872,7 +873,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBitandCommand() {
             var command = new Command("microsoft-graph-bitand");
             command.Description = "Provides operations to call the bitand method.";
-            var builder = new BitandRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBitandRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -882,7 +883,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBitlshiftCommand() {
             var command = new Command("microsoft-graph-bitlshift");
             command.Description = "Provides operations to call the bitlshift method.";
-            var builder = new BitlshiftRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBitlshiftRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -892,7 +893,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBitorCommand() {
             var command = new Command("microsoft-graph-bitor");
             command.Description = "Provides operations to call the bitor method.";
-            var builder = new BitorRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBitorRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -902,7 +903,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBitrshiftCommand() {
             var command = new Command("microsoft-graph-bitrshift");
             command.Description = "Provides operations to call the bitrshift method.";
-            var builder = new BitrshiftRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBitrshiftRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -912,7 +913,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphBitxorCommand() {
             var command = new Command("microsoft-graph-bitxor");
             command.Description = "Provides operations to call the bitxor method.";
-            var builder = new BitxorRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphBitxorRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -922,7 +923,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCeiling_MathCommand() {
             var command = new Command("microsoft-graph-ceiling_-math");
             command.Description = "Provides operations to call the ceiling_Math method.";
-            var builder = new Ceiling_MathRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCeiling_MathRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -932,7 +933,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCeiling_PreciseCommand() {
             var command = new Command("microsoft-graph-ceiling_-precise");
             command.Description = "Provides operations to call the ceiling_Precise method.";
-            var builder = new Ceiling_PreciseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCeiling_PreciseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -942,7 +943,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCharCommand() {
             var command = new Command("microsoft-graph-char");
             command.Description = "Provides operations to call the char method.";
-            var builder = new CharRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCharRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -952,7 +953,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphChiSq_Dist_RTCommand() {
             var command = new Command("microsoft-graph-chi-sq_-dist_-r-t");
             command.Description = "Provides operations to call the chiSq_Dist_RT method.";
-            var builder = new ChiSq_Dist_RTRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphChiSq_Dist_RTRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -962,7 +963,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphChiSq_DistCommand() {
             var command = new Command("microsoft-graph-chi-sq_-dist");
             command.Description = "Provides operations to call the chiSq_Dist method.";
-            var builder = new ChiSq_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphChiSq_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -972,7 +973,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphChiSq_Inv_RTCommand() {
             var command = new Command("microsoft-graph-chi-sq_-inv_-r-t");
             command.Description = "Provides operations to call the chiSq_Inv_RT method.";
-            var builder = new ChiSq_Inv_RTRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphChiSq_Inv_RTRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -982,7 +983,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphChiSq_InvCommand() {
             var command = new Command("microsoft-graph-chi-sq_-inv");
             command.Description = "Provides operations to call the chiSq_Inv method.";
-            var builder = new ChiSq_InvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphChiSq_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -992,7 +993,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphChooseCommand() {
             var command = new Command("microsoft-graph-choose");
             command.Description = "Provides operations to call the choose method.";
-            var builder = new ChooseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphChooseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1002,7 +1003,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCleanCommand() {
             var command = new Command("microsoft-graph-clean");
             command.Description = "Provides operations to call the clean method.";
-            var builder = new CleanRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCleanRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1012,7 +1013,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCodeCommand() {
             var command = new Command("microsoft-graph-code");
             command.Description = "Provides operations to call the code method.";
-            var builder = new CodeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCodeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1022,7 +1023,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphColumnsCommand() {
             var command = new Command("microsoft-graph-columns");
             command.Description = "Provides operations to call the columns method.";
-            var builder = new ColumnsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphColumnsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1032,7 +1033,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCombinaCommand() {
             var command = new Command("microsoft-graph-combina");
             command.Description = "Provides operations to call the combina method.";
-            var builder = new CombinaRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCombinaRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1042,7 +1043,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCombinCommand() {
             var command = new Command("microsoft-graph-combin");
             command.Description = "Provides operations to call the combin method.";
-            var builder = new CombinRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCombinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1052,7 +1053,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphComplexCommand() {
             var command = new Command("microsoft-graph-complex");
             command.Description = "Provides operations to call the complex method.";
-            var builder = new ComplexRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphComplexRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1062,7 +1063,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphConcatenateCommand() {
             var command = new Command("microsoft-graph-concatenate");
             command.Description = "Provides operations to call the concatenate method.";
-            var builder = new ConcatenateRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphConcatenateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1072,7 +1073,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphConfidence_NormCommand() {
             var command = new Command("microsoft-graph-confidence_-norm");
             command.Description = "Provides operations to call the confidence_Norm method.";
-            var builder = new Confidence_NormRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphConfidence_NormRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1082,7 +1083,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphConfidence_TCommand() {
             var command = new Command("microsoft-graph-confidence_-t");
             command.Description = "Provides operations to call the confidence_T method.";
-            var builder = new Confidence_TRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphConfidence_TRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1092,7 +1093,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphConvertCommand() {
             var command = new Command("microsoft-graph-convert");
             command.Description = "Provides operations to call the convert method.";
-            var builder = new ConvertRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphConvertRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1102,7 +1103,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCosCommand() {
             var command = new Command("microsoft-graph-cos");
             command.Description = "Provides operations to call the cos method.";
-            var builder = new CosRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCosRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1112,7 +1113,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCoshCommand() {
             var command = new Command("microsoft-graph-cosh");
             command.Description = "Provides operations to call the cosh method.";
-            var builder = new CoshRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCoshRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1122,7 +1123,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCotCommand() {
             var command = new Command("microsoft-graph-cot");
             command.Description = "Provides operations to call the cot method.";
-            var builder = new CotRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCotRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1132,7 +1133,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCothCommand() {
             var command = new Command("microsoft-graph-coth");
             command.Description = "Provides operations to call the coth method.";
-            var builder = new CothRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCothRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1142,7 +1143,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCountACommand() {
             var command = new Command("microsoft-graph-count-a");
             command.Description = "Provides operations to call the countA method.";
-            var builder = new CountARequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCountARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1152,7 +1153,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCountBlankCommand() {
             var command = new Command("microsoft-graph-count-blank");
             command.Description = "Provides operations to call the countBlank method.";
-            var builder = new CountBlankRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCountBlankRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1162,7 +1163,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCountCommand() {
             var command = new Command("microsoft-graph-count");
             command.Description = "Provides operations to call the count method.";
-            var builder = new CountRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCountRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1172,7 +1173,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCountIfCommand() {
             var command = new Command("microsoft-graph-count-if");
             command.Description = "Provides operations to call the countIf method.";
-            var builder = new CountIfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCountIfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1182,7 +1183,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCountIfsCommand() {
             var command = new Command("microsoft-graph-count-ifs");
             command.Description = "Provides operations to call the countIfs method.";
-            var builder = new CountIfsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCountIfsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1192,7 +1193,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCoupDayBsCommand() {
             var command = new Command("microsoft-graph-coup-day-bs");
             command.Description = "Provides operations to call the coupDayBs method.";
-            var builder = new CoupDayBsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCoupDayBsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1202,7 +1203,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCoupDaysCommand() {
             var command = new Command("microsoft-graph-coup-days");
             command.Description = "Provides operations to call the coupDays method.";
-            var builder = new CoupDaysRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCoupDaysRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1212,7 +1213,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCoupDaysNcCommand() {
             var command = new Command("microsoft-graph-coup-days-nc");
             command.Description = "Provides operations to call the coupDaysNc method.";
-            var builder = new CoupDaysNcRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCoupDaysNcRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1222,7 +1223,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCoupNcdCommand() {
             var command = new Command("microsoft-graph-coup-ncd");
             command.Description = "Provides operations to call the coupNcd method.";
-            var builder = new CoupNcdRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCoupNcdRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1232,7 +1233,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCoupNumCommand() {
             var command = new Command("microsoft-graph-coup-num");
             command.Description = "Provides operations to call the coupNum method.";
-            var builder = new CoupNumRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCoupNumRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1242,7 +1243,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCoupPcdCommand() {
             var command = new Command("microsoft-graph-coup-pcd");
             command.Description = "Provides operations to call the coupPcd method.";
-            var builder = new CoupPcdRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCoupPcdRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1252,7 +1253,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCscCommand() {
             var command = new Command("microsoft-graph-csc");
             command.Description = "Provides operations to call the csc method.";
-            var builder = new CscRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCscRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1262,7 +1263,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCschCommand() {
             var command = new Command("microsoft-graph-csch");
             command.Description = "Provides operations to call the csch method.";
-            var builder = new CschRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCschRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1272,7 +1273,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCumIPmtCommand() {
             var command = new Command("microsoft-graph-cum-i-pmt");
             command.Description = "Provides operations to call the cumIPmt method.";
-            var builder = new CumIPmtRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCumIPmtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1282,7 +1283,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphCumPrincCommand() {
             var command = new Command("microsoft-graph-cum-princ");
             command.Description = "Provides operations to call the cumPrinc method.";
-            var builder = new CumPrincRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphCumPrincRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1292,7 +1293,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDateCommand() {
             var command = new Command("microsoft-graph-date");
             command.Description = "Provides operations to call the date method.";
-            var builder = new DateRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1302,7 +1303,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDatevalueCommand() {
             var command = new Command("microsoft-graph-datevalue");
             command.Description = "Provides operations to call the datevalue method.";
-            var builder = new DatevalueRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDatevalueRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1312,7 +1313,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDaverageCommand() {
             var command = new Command("microsoft-graph-daverage");
             command.Description = "Provides operations to call the daverage method.";
-            var builder = new DaverageRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDaverageRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1322,7 +1323,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDayCommand() {
             var command = new Command("microsoft-graph-day");
             command.Description = "Provides operations to call the day method.";
-            var builder = new DayRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDayRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1332,7 +1333,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDays360Command() {
             var command = new Command("microsoft-graph-days360");
             command.Description = "Provides operations to call the days360 method.";
-            var builder = new Days360RequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDays360RequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1342,7 +1343,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDaysCommand() {
             var command = new Command("microsoft-graph-days");
             command.Description = "Provides operations to call the days method.";
-            var builder = new DaysRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDaysRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1352,7 +1353,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDbCommand() {
             var command = new Command("microsoft-graph-db");
             command.Description = "Provides operations to call the db method.";
-            var builder = new DbRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDbRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1362,7 +1363,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDbcsCommand() {
             var command = new Command("microsoft-graph-dbcs");
             command.Description = "Provides operations to call the dbcs method.";
-            var builder = new DbcsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDbcsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1372,7 +1373,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDcountACommand() {
             var command = new Command("microsoft-graph-dcount-a");
             command.Description = "Provides operations to call the dcountA method.";
-            var builder = new DcountARequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDcountARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1382,7 +1383,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDcountCommand() {
             var command = new Command("microsoft-graph-dcount");
             command.Description = "Provides operations to call the dcount method.";
-            var builder = new DcountRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDcountRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1392,7 +1393,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDdbCommand() {
             var command = new Command("microsoft-graph-ddb");
             command.Description = "Provides operations to call the ddb method.";
-            var builder = new DdbRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDdbRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1402,7 +1403,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDec2BinCommand() {
             var command = new Command("microsoft-graph-dec2-bin");
             command.Description = "Provides operations to call the dec2Bin method.";
-            var builder = new Dec2BinRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDec2BinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1412,7 +1413,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDec2HexCommand() {
             var command = new Command("microsoft-graph-dec2-hex");
             command.Description = "Provides operations to call the dec2Hex method.";
-            var builder = new Dec2HexRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDec2HexRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1422,7 +1423,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDec2OctCommand() {
             var command = new Command("microsoft-graph-dec2-oct");
             command.Description = "Provides operations to call the dec2Oct method.";
-            var builder = new Dec2OctRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDec2OctRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1432,7 +1433,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDecimalCommand() {
             var command = new Command("microsoft-graph-decimal");
             command.Description = "Provides operations to call the decimal method.";
-            var builder = new DecimalRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDecimalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1442,7 +1443,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDegreesCommand() {
             var command = new Command("microsoft-graph-degrees");
             command.Description = "Provides operations to call the degrees method.";
-            var builder = new DegreesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDegreesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1452,7 +1453,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDeltaCommand() {
             var command = new Command("microsoft-graph-delta");
             command.Description = "Provides operations to call the delta method.";
-            var builder = new DeltaRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1462,7 +1463,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDevSqCommand() {
             var command = new Command("microsoft-graph-dev-sq");
             command.Description = "Provides operations to call the devSq method.";
-            var builder = new DevSqRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDevSqRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1472,7 +1473,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDgetCommand() {
             var command = new Command("microsoft-graph-dget");
             command.Description = "Provides operations to call the dget method.";
-            var builder = new DgetRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDgetRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1482,7 +1483,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDiscCommand() {
             var command = new Command("microsoft-graph-disc");
             command.Description = "Provides operations to call the disc method.";
-            var builder = new DiscRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDiscRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1492,7 +1493,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDmaxCommand() {
             var command = new Command("microsoft-graph-dmax");
             command.Description = "Provides operations to call the dmax method.";
-            var builder = new DmaxRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDmaxRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1502,7 +1503,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDminCommand() {
             var command = new Command("microsoft-graph-dmin");
             command.Description = "Provides operations to call the dmin method.";
-            var builder = new DminRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDminRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1512,7 +1513,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDollarCommand() {
             var command = new Command("microsoft-graph-dollar");
             command.Description = "Provides operations to call the dollar method.";
-            var builder = new DollarRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDollarRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1522,7 +1523,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDollarDeCommand() {
             var command = new Command("microsoft-graph-dollar-de");
             command.Description = "Provides operations to call the dollarDe method.";
-            var builder = new DollarDeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDollarDeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1532,7 +1533,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDollarFrCommand() {
             var command = new Command("microsoft-graph-dollar-fr");
             command.Description = "Provides operations to call the dollarFr method.";
-            var builder = new DollarFrRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDollarFrRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1542,7 +1543,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDproductCommand() {
             var command = new Command("microsoft-graph-dproduct");
             command.Description = "Provides operations to call the dproduct method.";
-            var builder = new DproductRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDproductRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1552,7 +1553,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDstDevCommand() {
             var command = new Command("microsoft-graph-dst-dev");
             command.Description = "Provides operations to call the dstDev method.";
-            var builder = new DstDevRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDstDevRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1562,7 +1563,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDstDevPCommand() {
             var command = new Command("microsoft-graph-dst-dev-p");
             command.Description = "Provides operations to call the dstDevP method.";
-            var builder = new DstDevPRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDstDevPRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1572,7 +1573,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDsumCommand() {
             var command = new Command("microsoft-graph-dsum");
             command.Description = "Provides operations to call the dsum method.";
-            var builder = new DsumRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDsumRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1582,7 +1583,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDurationCommand() {
             var command = new Command("microsoft-graph-duration");
             command.Description = "Provides operations to call the duration method.";
-            var builder = new DurationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDurationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1592,7 +1593,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDvarCommand() {
             var command = new Command("microsoft-graph-dvar");
             command.Description = "Provides operations to call the dvar method.";
-            var builder = new DvarRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDvarRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1602,7 +1603,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphDvarPCommand() {
             var command = new Command("microsoft-graph-dvar-p");
             command.Description = "Provides operations to call the dvarP method.";
-            var builder = new DvarPRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphDvarPRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1612,7 +1613,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphEcma_CeilingCommand() {
             var command = new Command("microsoft-graph-ecma_-ceiling");
             command.Description = "Provides operations to call the ecma_Ceiling method.";
-            var builder = new Ecma_CeilingRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphEcma_CeilingRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1622,7 +1623,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphEdateCommand() {
             var command = new Command("microsoft-graph-edate");
             command.Description = "Provides operations to call the edate method.";
-            var builder = new EdateRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphEdateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1632,7 +1633,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphEffectCommand() {
             var command = new Command("microsoft-graph-effect");
             command.Description = "Provides operations to call the effect method.";
-            var builder = new EffectRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphEffectRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1642,7 +1643,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphEoMonthCommand() {
             var command = new Command("microsoft-graph-eo-month");
             command.Description = "Provides operations to call the eoMonth method.";
-            var builder = new EoMonthRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphEoMonthRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1652,7 +1653,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphErf_PreciseCommand() {
             var command = new Command("microsoft-graph-erf_-precise");
             command.Description = "Provides operations to call the erf_Precise method.";
-            var builder = new Erf_PreciseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphErf_PreciseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1662,7 +1663,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphErfC_PreciseCommand() {
             var command = new Command("microsoft-graph-erf-c_-precise");
             command.Description = "Provides operations to call the erfC_Precise method.";
-            var builder = new ErfC_PreciseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphErfC_PreciseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1672,7 +1673,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphErfCCommand() {
             var command = new Command("microsoft-graph-erf-c");
             command.Description = "Provides operations to call the erfC method.";
-            var builder = new ErfCRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphErfCRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1682,7 +1683,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphErfCommand() {
             var command = new Command("microsoft-graph-erf");
             command.Description = "Provides operations to call the erf method.";
-            var builder = new ErfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphErfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1692,7 +1693,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphError_TypeCommand() {
             var command = new Command("microsoft-graph-error_-type");
             command.Description = "Provides operations to call the error_Type method.";
-            var builder = new Error_TypeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphError_TypeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1702,7 +1703,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphEvenCommand() {
             var command = new Command("microsoft-graph-even");
             command.Description = "Provides operations to call the even method.";
-            var builder = new EvenRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphEvenRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1712,7 +1713,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphExactCommand() {
             var command = new Command("microsoft-graph-exact");
             command.Description = "Provides operations to call the exact method.";
-            var builder = new ExactRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphExactRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1722,7 +1723,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphExpCommand() {
             var command = new Command("microsoft-graph-exp");
             command.Description = "Provides operations to call the exp method.";
-            var builder = new ExpRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphExpRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1732,7 +1733,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphExpon_DistCommand() {
             var command = new Command("microsoft-graph-expon_-dist");
             command.Description = "Provides operations to call the expon_Dist method.";
-            var builder = new Expon_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphExpon_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1742,7 +1743,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphF_Dist_RTCommand() {
             var command = new Command("microsoft-graph-f_-dist_-r-t");
             command.Description = "Provides operations to call the f_Dist_RT method.";
-            var builder = new F_Dist_RTRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphF_Dist_RTRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1752,7 +1753,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphF_DistCommand() {
             var command = new Command("microsoft-graph-f_-dist");
             command.Description = "Provides operations to call the f_Dist method.";
-            var builder = new F_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphF_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1762,7 +1763,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphF_Inv_RTCommand() {
             var command = new Command("microsoft-graph-f_-inv_-r-t");
             command.Description = "Provides operations to call the f_Inv_RT method.";
-            var builder = new F_Inv_RTRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphF_Inv_RTRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1772,7 +1773,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphF_InvCommand() {
             var command = new Command("microsoft-graph-f_-inv");
             command.Description = "Provides operations to call the f_Inv method.";
-            var builder = new F_InvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphF_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1782,7 +1783,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFactCommand() {
             var command = new Command("microsoft-graph-fact");
             command.Description = "Provides operations to call the fact method.";
-            var builder = new FactRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFactRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1792,7 +1793,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFactDoubleCommand() {
             var command = new Command("microsoft-graph-fact-double");
             command.Description = "Provides operations to call the factDouble method.";
-            var builder = new FactDoubleRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFactDoubleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1802,7 +1803,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFalseCommand() {
             var command = new Command("microsoft-graph-false");
             command.Description = "Provides operations to call the false method.";
-            var builder = new FalseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFalseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1812,7 +1813,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFindBCommand() {
             var command = new Command("microsoft-graph-find-b");
             command.Description = "Provides operations to call the findB method.";
-            var builder = new FindBRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFindBRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1822,7 +1823,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFindCommand() {
             var command = new Command("microsoft-graph-find");
             command.Description = "Provides operations to call the find method.";
-            var builder = new FindRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFindRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1832,7 +1833,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFisherCommand() {
             var command = new Command("microsoft-graph-fisher");
             command.Description = "Provides operations to call the fisher method.";
-            var builder = new FisherRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFisherRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1842,7 +1843,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFisherInvCommand() {
             var command = new Command("microsoft-graph-fisher-inv");
             command.Description = "Provides operations to call the fisherInv method.";
-            var builder = new FisherInvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFisherInvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1852,7 +1853,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFixedCommand() {
             var command = new Command("microsoft-graph-fixed");
             command.Description = "Provides operations to call the fixed method.";
-            var builder = new FixedRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFixedRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1862,7 +1863,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFloor_MathCommand() {
             var command = new Command("microsoft-graph-floor_-math");
             command.Description = "Provides operations to call the floor_Math method.";
-            var builder = new Floor_MathRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFloor_MathRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1872,7 +1873,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFloor_PreciseCommand() {
             var command = new Command("microsoft-graph-floor_-precise");
             command.Description = "Provides operations to call the floor_Precise method.";
-            var builder = new Floor_PreciseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFloor_PreciseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1882,7 +1883,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFvCommand() {
             var command = new Command("microsoft-graph-fv");
             command.Description = "Provides operations to call the fv method.";
-            var builder = new FvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1892,7 +1893,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphFvscheduleCommand() {
             var command = new Command("microsoft-graph-fvschedule");
             command.Description = "Provides operations to call the fvschedule method.";
-            var builder = new FvscheduleRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphFvscheduleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1902,7 +1903,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphGamma_DistCommand() {
             var command = new Command("microsoft-graph-gamma_-dist");
             command.Description = "Provides operations to call the gamma_Dist method.";
-            var builder = new Gamma_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGamma_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1912,7 +1913,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphGamma_InvCommand() {
             var command = new Command("microsoft-graph-gamma_-inv");
             command.Description = "Provides operations to call the gamma_Inv method.";
-            var builder = new Gamma_InvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGamma_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1922,7 +1923,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphGammaCommand() {
             var command = new Command("microsoft-graph-gamma");
             command.Description = "Provides operations to call the gamma method.";
-            var builder = new GammaRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGammaRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1932,7 +1933,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphGammaLn_PreciseCommand() {
             var command = new Command("microsoft-graph-gamma-ln_-precise");
             command.Description = "Provides operations to call the gammaLn_Precise method.";
-            var builder = new GammaLn_PreciseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGammaLn_PreciseRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1942,7 +1943,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphGammaLnCommand() {
             var command = new Command("microsoft-graph-gamma-ln");
             command.Description = "Provides operations to call the gammaLn method.";
-            var builder = new GammaLnRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGammaLnRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1952,7 +1953,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphGaussCommand() {
             var command = new Command("microsoft-graph-gauss");
             command.Description = "Provides operations to call the gauss method.";
-            var builder = new GaussRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGaussRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1962,7 +1963,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphGcdCommand() {
             var command = new Command("microsoft-graph-gcd");
             command.Description = "Provides operations to call the gcd method.";
-            var builder = new GcdRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGcdRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1972,7 +1973,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphGeoMeanCommand() {
             var command = new Command("microsoft-graph-geo-mean");
             command.Description = "Provides operations to call the geoMean method.";
-            var builder = new GeoMeanRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGeoMeanRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1982,7 +1983,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphGeStepCommand() {
             var command = new Command("microsoft-graph-ge-step");
             command.Description = "Provides operations to call the geStep method.";
-            var builder = new GeStepRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphGeStepRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1992,7 +1993,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphHarMeanCommand() {
             var command = new Command("microsoft-graph-har-mean");
             command.Description = "Provides operations to call the harMean method.";
-            var builder = new HarMeanRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphHarMeanRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2002,7 +2003,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphHex2BinCommand() {
             var command = new Command("microsoft-graph-hex2-bin");
             command.Description = "Provides operations to call the hex2Bin method.";
-            var builder = new Hex2BinRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphHex2BinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2012,7 +2013,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphHex2DecCommand() {
             var command = new Command("microsoft-graph-hex2-dec");
             command.Description = "Provides operations to call the hex2Dec method.";
-            var builder = new Hex2DecRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphHex2DecRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2022,7 +2023,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphHex2OctCommand() {
             var command = new Command("microsoft-graph-hex2-oct");
             command.Description = "Provides operations to call the hex2Oct method.";
-            var builder = new Hex2OctRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphHex2OctRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2032,7 +2033,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphHlookupCommand() {
             var command = new Command("microsoft-graph-hlookup");
             command.Description = "Provides operations to call the hlookup method.";
-            var builder = new HlookupRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphHlookupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2042,7 +2043,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphHourCommand() {
             var command = new Command("microsoft-graph-hour");
             command.Description = "Provides operations to call the hour method.";
-            var builder = new HourRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphHourRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2052,7 +2053,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphHyperlinkCommand() {
             var command = new Command("microsoft-graph-hyperlink");
             command.Description = "Provides operations to call the hyperlink method.";
-            var builder = new HyperlinkRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphHyperlinkRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2062,7 +2063,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphHypGeom_DistCommand() {
             var command = new Command("microsoft-graph-hyp-geom_-dist");
             command.Description = "Provides operations to call the hypGeom_Dist method.";
-            var builder = new HypGeom_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphHypGeom_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2072,7 +2073,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIfCommand() {
             var command = new Command("microsoft-graph-if");
             command.Description = "Provides operations to call the if method.";
-            var builder = new IfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2082,7 +2083,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImAbsCommand() {
             var command = new Command("microsoft-graph-im-abs");
             command.Description = "Provides operations to call the imAbs method.";
-            var builder = new ImAbsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImAbsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2092,7 +2093,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImaginaryCommand() {
             var command = new Command("microsoft-graph-imaginary");
             command.Description = "Provides operations to call the imaginary method.";
-            var builder = new ImaginaryRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImaginaryRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2102,7 +2103,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImArgumentCommand() {
             var command = new Command("microsoft-graph-im-argument");
             command.Description = "Provides operations to call the imArgument method.";
-            var builder = new ImArgumentRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImArgumentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2112,7 +2113,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImConjugateCommand() {
             var command = new Command("microsoft-graph-im-conjugate");
             command.Description = "Provides operations to call the imConjugate method.";
-            var builder = new ImConjugateRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImConjugateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2122,7 +2123,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImCosCommand() {
             var command = new Command("microsoft-graph-im-cos");
             command.Description = "Provides operations to call the imCos method.";
-            var builder = new ImCosRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImCosRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2132,7 +2133,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImCoshCommand() {
             var command = new Command("microsoft-graph-im-cosh");
             command.Description = "Provides operations to call the imCosh method.";
-            var builder = new ImCoshRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImCoshRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2142,7 +2143,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImCotCommand() {
             var command = new Command("microsoft-graph-im-cot");
             command.Description = "Provides operations to call the imCot method.";
-            var builder = new ImCotRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImCotRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2152,7 +2153,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImCscCommand() {
             var command = new Command("microsoft-graph-im-csc");
             command.Description = "Provides operations to call the imCsc method.";
-            var builder = new ImCscRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImCscRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2162,7 +2163,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImCschCommand() {
             var command = new Command("microsoft-graph-im-csch");
             command.Description = "Provides operations to call the imCsch method.";
-            var builder = new ImCschRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImCschRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2172,7 +2173,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImDivCommand() {
             var command = new Command("microsoft-graph-im-div");
             command.Description = "Provides operations to call the imDiv method.";
-            var builder = new ImDivRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImDivRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2182,7 +2183,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImExpCommand() {
             var command = new Command("microsoft-graph-im-exp");
             command.Description = "Provides operations to call the imExp method.";
-            var builder = new ImExpRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImExpRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2192,7 +2193,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImLnCommand() {
             var command = new Command("microsoft-graph-im-ln");
             command.Description = "Provides operations to call the imLn method.";
-            var builder = new ImLnRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImLnRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2202,7 +2203,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImLog10Command() {
             var command = new Command("microsoft-graph-im-log10");
             command.Description = "Provides operations to call the imLog10 method.";
-            var builder = new ImLog10RequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImLog10RequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2212,7 +2213,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImLog2Command() {
             var command = new Command("microsoft-graph-im-log2");
             command.Description = "Provides operations to call the imLog2 method.";
-            var builder = new ImLog2RequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImLog2RequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2222,7 +2223,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImPowerCommand() {
             var command = new Command("microsoft-graph-im-power");
             command.Description = "Provides operations to call the imPower method.";
-            var builder = new ImPowerRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImPowerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2232,7 +2233,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImProductCommand() {
             var command = new Command("microsoft-graph-im-product");
             command.Description = "Provides operations to call the imProduct method.";
-            var builder = new ImProductRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImProductRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2242,7 +2243,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImRealCommand() {
             var command = new Command("microsoft-graph-im-real");
             command.Description = "Provides operations to call the imReal method.";
-            var builder = new ImRealRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImRealRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2252,7 +2253,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImSecCommand() {
             var command = new Command("microsoft-graph-im-sec");
             command.Description = "Provides operations to call the imSec method.";
-            var builder = new ImSecRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImSecRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2262,7 +2263,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImSechCommand() {
             var command = new Command("microsoft-graph-im-sech");
             command.Description = "Provides operations to call the imSech method.";
-            var builder = new ImSechRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImSechRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2272,7 +2273,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImSinCommand() {
             var command = new Command("microsoft-graph-im-sin");
             command.Description = "Provides operations to call the imSin method.";
-            var builder = new ImSinRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImSinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2282,7 +2283,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImSinhCommand() {
             var command = new Command("microsoft-graph-im-sinh");
             command.Description = "Provides operations to call the imSinh method.";
-            var builder = new ImSinhRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImSinhRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2292,7 +2293,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImSqrtCommand() {
             var command = new Command("microsoft-graph-im-sqrt");
             command.Description = "Provides operations to call the imSqrt method.";
-            var builder = new ImSqrtRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImSqrtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2302,7 +2303,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImSubCommand() {
             var command = new Command("microsoft-graph-im-sub");
             command.Description = "Provides operations to call the imSub method.";
-            var builder = new ImSubRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImSubRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2312,7 +2313,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImSumCommand() {
             var command = new Command("microsoft-graph-im-sum");
             command.Description = "Provides operations to call the imSum method.";
-            var builder = new ImSumRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImSumRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2322,7 +2323,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphImTanCommand() {
             var command = new Command("microsoft-graph-im-tan");
             command.Description = "Provides operations to call the imTan method.";
-            var builder = new ImTanRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphImTanRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2332,7 +2333,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIntCommand() {
             var command = new Command("microsoft-graph-int");
             command.Description = "Provides operations to call the int method.";
-            var builder = new IntRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIntRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2342,7 +2343,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIntRateCommand() {
             var command = new Command("microsoft-graph-int-rate");
             command.Description = "Provides operations to call the intRate method.";
-            var builder = new IntRateRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIntRateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2352,7 +2353,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIpmtCommand() {
             var command = new Command("microsoft-graph-ipmt");
             command.Description = "Provides operations to call the ipmt method.";
-            var builder = new IpmtRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIpmtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2362,7 +2363,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIrrCommand() {
             var command = new Command("microsoft-graph-irr");
             command.Description = "Provides operations to call the irr method.";
-            var builder = new IrrRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIrrRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2372,7 +2373,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsErrCommand() {
             var command = new Command("microsoft-graph-is-err");
             command.Description = "Provides operations to call the isErr method.";
-            var builder = new IsErrRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsErrRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2382,7 +2383,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsErrorCommand() {
             var command = new Command("microsoft-graph-is-error");
             command.Description = "Provides operations to call the isError method.";
-            var builder = new IsErrorRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsErrorRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2392,7 +2393,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsEvenCommand() {
             var command = new Command("microsoft-graph-is-even");
             command.Description = "Provides operations to call the isEven method.";
-            var builder = new IsEvenRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsEvenRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2402,7 +2403,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsFormulaCommand() {
             var command = new Command("microsoft-graph-is-formula");
             command.Description = "Provides operations to call the isFormula method.";
-            var builder = new IsFormulaRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsFormulaRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2412,7 +2413,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsLogicalCommand() {
             var command = new Command("microsoft-graph-is-logical");
             command.Description = "Provides operations to call the isLogical method.";
-            var builder = new IsLogicalRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsLogicalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2422,7 +2423,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsNACommand() {
             var command = new Command("microsoft-graph-is-n-a");
             command.Description = "Provides operations to call the isNA method.";
-            var builder = new IsNARequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsNARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2432,7 +2433,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsNonTextCommand() {
             var command = new Command("microsoft-graph-is-non-text");
             command.Description = "Provides operations to call the isNonText method.";
-            var builder = new IsNonTextRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsNonTextRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2442,7 +2443,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsNumberCommand() {
             var command = new Command("microsoft-graph-is-number");
             command.Description = "Provides operations to call the isNumber method.";
-            var builder = new IsNumberRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsNumberRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2452,7 +2453,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIso_CeilingCommand() {
             var command = new Command("microsoft-graph-iso_-ceiling");
             command.Description = "Provides operations to call the iso_Ceiling method.";
-            var builder = new Iso_CeilingRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIso_CeilingRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2462,7 +2463,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsOddCommand() {
             var command = new Command("microsoft-graph-is-odd");
             command.Description = "Provides operations to call the isOdd method.";
-            var builder = new IsOddRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsOddRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2472,7 +2473,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsoWeekNumCommand() {
             var command = new Command("microsoft-graph-iso-week-num");
             command.Description = "Provides operations to call the isoWeekNum method.";
-            var builder = new IsoWeekNumRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsoWeekNumRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2482,7 +2483,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIspmtCommand() {
             var command = new Command("microsoft-graph-ispmt");
             command.Description = "Provides operations to call the ispmt method.";
-            var builder = new IspmtRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIspmtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2492,7 +2493,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsrefCommand() {
             var command = new Command("microsoft-graph-isref");
             command.Description = "Provides operations to call the isref method.";
-            var builder = new IsrefRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsrefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2502,7 +2503,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphIsTextCommand() {
             var command = new Command("microsoft-graph-is-text");
             command.Description = "Provides operations to call the isText method.";
-            var builder = new IsTextRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphIsTextRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2512,7 +2513,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphKurtCommand() {
             var command = new Command("microsoft-graph-kurt");
             command.Description = "Provides operations to call the kurt method.";
-            var builder = new KurtRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphKurtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2522,7 +2523,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLargeCommand() {
             var command = new Command("microsoft-graph-large");
             command.Description = "Provides operations to call the large method.";
-            var builder = new LargeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLargeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2532,7 +2533,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLcmCommand() {
             var command = new Command("microsoft-graph-lcm");
             command.Description = "Provides operations to call the lcm method.";
-            var builder = new LcmRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLcmRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2542,7 +2543,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLeftbCommand() {
             var command = new Command("microsoft-graph-leftb");
             command.Description = "Provides operations to call the leftb method.";
-            var builder = new LeftbRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLeftbRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2552,7 +2553,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLeftCommand() {
             var command = new Command("microsoft-graph-left");
             command.Description = "Provides operations to call the left method.";
-            var builder = new LeftRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLeftRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2562,7 +2563,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLenbCommand() {
             var command = new Command("microsoft-graph-lenb");
             command.Description = "Provides operations to call the lenb method.";
-            var builder = new LenbRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLenbRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2572,7 +2573,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLenCommand() {
             var command = new Command("microsoft-graph-len");
             command.Description = "Provides operations to call the len method.";
-            var builder = new LenRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLenRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2582,7 +2583,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLnCommand() {
             var command = new Command("microsoft-graph-ln");
             command.Description = "Provides operations to call the ln method.";
-            var builder = new LnRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLnRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2592,7 +2593,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLog10Command() {
             var command = new Command("microsoft-graph-log10");
             command.Description = "Provides operations to call the log10 method.";
-            var builder = new Log10RequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLog10RequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2602,7 +2603,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLogCommand() {
             var command = new Command("microsoft-graph-log");
             command.Description = "Provides operations to call the log method.";
-            var builder = new LogRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLogRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2612,7 +2613,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLogNorm_DistCommand() {
             var command = new Command("microsoft-graph-log-norm_-dist");
             command.Description = "Provides operations to call the logNorm_Dist method.";
-            var builder = new LogNorm_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLogNorm_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2622,7 +2623,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLogNorm_InvCommand() {
             var command = new Command("microsoft-graph-log-norm_-inv");
             command.Description = "Provides operations to call the logNorm_Inv method.";
-            var builder = new LogNorm_InvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLogNorm_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2632,7 +2633,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLookupCommand() {
             var command = new Command("microsoft-graph-lookup");
             command.Description = "Provides operations to call the lookup method.";
-            var builder = new LookupRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLookupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2642,7 +2643,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphLowerCommand() {
             var command = new Command("microsoft-graph-lower");
             command.Description = "Provides operations to call the lower method.";
-            var builder = new LowerRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphLowerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2652,7 +2653,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMatchCommand() {
             var command = new Command("microsoft-graph-match");
             command.Description = "Provides operations to call the match method.";
-            var builder = new MatchRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMatchRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2662,7 +2663,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMaxACommand() {
             var command = new Command("microsoft-graph-max-a");
             command.Description = "Provides operations to call the maxA method.";
-            var builder = new MaxARequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMaxARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2672,7 +2673,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMaxCommand() {
             var command = new Command("microsoft-graph-max");
             command.Description = "Provides operations to call the max method.";
-            var builder = new MaxRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMaxRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2682,7 +2683,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMdurationCommand() {
             var command = new Command("microsoft-graph-mduration");
             command.Description = "Provides operations to call the mduration method.";
-            var builder = new MdurationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMdurationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2692,7 +2693,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMedianCommand() {
             var command = new Command("microsoft-graph-median");
             command.Description = "Provides operations to call the median method.";
-            var builder = new MedianRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMedianRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2702,7 +2703,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMidbCommand() {
             var command = new Command("microsoft-graph-midb");
             command.Description = "Provides operations to call the midb method.";
-            var builder = new MidbRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMidbRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2712,7 +2713,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMidCommand() {
             var command = new Command("microsoft-graph-mid");
             command.Description = "Provides operations to call the mid method.";
-            var builder = new MidRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMidRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2722,7 +2723,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMinACommand() {
             var command = new Command("microsoft-graph-min-a");
             command.Description = "Provides operations to call the minA method.";
-            var builder = new MinARequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMinARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2732,7 +2733,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMinCommand() {
             var command = new Command("microsoft-graph-min");
             command.Description = "Provides operations to call the min method.";
-            var builder = new MinRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2742,7 +2743,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMinuteCommand() {
             var command = new Command("microsoft-graph-minute");
             command.Description = "Provides operations to call the minute method.";
-            var builder = new MinuteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMinuteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2752,7 +2753,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMirrCommand() {
             var command = new Command("microsoft-graph-mirr");
             command.Description = "Provides operations to call the mirr method.";
-            var builder = new MirrRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMirrRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2762,7 +2763,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphModCommand() {
             var command = new Command("microsoft-graph-mod");
             command.Description = "Provides operations to call the mod method.";
-            var builder = new ModRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphModRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2772,7 +2773,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMonthCommand() {
             var command = new Command("microsoft-graph-month");
             command.Description = "Provides operations to call the month method.";
-            var builder = new MonthRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMonthRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2782,7 +2783,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMroundCommand() {
             var command = new Command("microsoft-graph-mround");
             command.Description = "Provides operations to call the mround method.";
-            var builder = new MroundRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMroundRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2792,7 +2793,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphMultiNomialCommand() {
             var command = new Command("microsoft-graph-multi-nomial");
             command.Description = "Provides operations to call the multiNomial method.";
-            var builder = new MultiNomialRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphMultiNomialRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2802,7 +2803,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNaCommand() {
             var command = new Command("microsoft-graph-na");
             command.Description = "Provides operations to call the na method.";
-            var builder = new NaRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNaRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2812,7 +2813,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNCommand() {
             var command = new Command("microsoft-graph-n");
             command.Description = "Provides operations to call the n method.";
-            var builder = new NRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2822,7 +2823,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNegBinom_DistCommand() {
             var command = new Command("microsoft-graph-neg-binom_-dist");
             command.Description = "Provides operations to call the negBinom_Dist method.";
-            var builder = new NegBinom_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNegBinom_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2832,7 +2833,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNetworkDays_IntlCommand() {
             var command = new Command("microsoft-graph-network-days_-intl");
             command.Description = "Provides operations to call the networkDays_Intl method.";
-            var builder = new NetworkDays_IntlRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNetworkDays_IntlRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2842,7 +2843,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNetworkDaysCommand() {
             var command = new Command("microsoft-graph-network-days");
             command.Description = "Provides operations to call the networkDays method.";
-            var builder = new NetworkDaysRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNetworkDaysRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2852,7 +2853,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNominalCommand() {
             var command = new Command("microsoft-graph-nominal");
             command.Description = "Provides operations to call the nominal method.";
-            var builder = new NominalRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNominalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2862,7 +2863,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNorm_DistCommand() {
             var command = new Command("microsoft-graph-norm_-dist");
             command.Description = "Provides operations to call the norm_Dist method.";
-            var builder = new Norm_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNorm_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2872,7 +2873,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNorm_InvCommand() {
             var command = new Command("microsoft-graph-norm_-inv");
             command.Description = "Provides operations to call the norm_Inv method.";
-            var builder = new Norm_InvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNorm_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2882,7 +2883,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNorm_S_DistCommand() {
             var command = new Command("microsoft-graph-norm_-s_-dist");
             command.Description = "Provides operations to call the norm_S_Dist method.";
-            var builder = new Norm_S_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNorm_S_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2892,7 +2893,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNorm_S_InvCommand() {
             var command = new Command("microsoft-graph-norm_-s_-inv");
             command.Description = "Provides operations to call the norm_S_Inv method.";
-            var builder = new Norm_S_InvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNorm_S_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2902,7 +2903,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNotCommand() {
             var command = new Command("microsoft-graph-not");
             command.Description = "Provides operations to call the not method.";
-            var builder = new NotRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNotRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2912,7 +2913,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNowCommand() {
             var command = new Command("microsoft-graph-now");
             command.Description = "Provides operations to call the now method.";
-            var builder = new NowRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNowRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2922,7 +2923,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNperCommand() {
             var command = new Command("microsoft-graph-nper");
             command.Description = "Provides operations to call the nper method.";
-            var builder = new NperRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNperRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2932,7 +2933,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNpvCommand() {
             var command = new Command("microsoft-graph-npv");
             command.Description = "Provides operations to call the npv method.";
-            var builder = new NpvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNpvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2942,7 +2943,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphNumberValueCommand() {
             var command = new Command("microsoft-graph-number-value");
             command.Description = "Provides operations to call the numberValue method.";
-            var builder = new NumberValueRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphNumberValueRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2952,7 +2953,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphOct2BinCommand() {
             var command = new Command("microsoft-graph-oct2-bin");
             command.Description = "Provides operations to call the oct2Bin method.";
-            var builder = new Oct2BinRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphOct2BinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2962,7 +2963,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphOct2DecCommand() {
             var command = new Command("microsoft-graph-oct2-dec");
             command.Description = "Provides operations to call the oct2Dec method.";
-            var builder = new Oct2DecRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphOct2DecRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2972,7 +2973,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphOct2HexCommand() {
             var command = new Command("microsoft-graph-oct2-hex");
             command.Description = "Provides operations to call the oct2Hex method.";
-            var builder = new Oct2HexRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphOct2HexRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2982,7 +2983,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphOddCommand() {
             var command = new Command("microsoft-graph-odd");
             command.Description = "Provides operations to call the odd method.";
-            var builder = new OddRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphOddRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2992,7 +2993,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphOddFPriceCommand() {
             var command = new Command("microsoft-graph-odd-f-price");
             command.Description = "Provides operations to call the oddFPrice method.";
-            var builder = new OddFPriceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphOddFPriceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3002,7 +3003,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphOddFYieldCommand() {
             var command = new Command("microsoft-graph-odd-f-yield");
             command.Description = "Provides operations to call the oddFYield method.";
-            var builder = new OddFYieldRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphOddFYieldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3012,7 +3013,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphOddLPriceCommand() {
             var command = new Command("microsoft-graph-odd-l-price");
             command.Description = "Provides operations to call the oddLPrice method.";
-            var builder = new OddLPriceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphOddLPriceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3022,7 +3023,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphOddLYieldCommand() {
             var command = new Command("microsoft-graph-odd-l-yield");
             command.Description = "Provides operations to call the oddLYield method.";
-            var builder = new OddLYieldRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphOddLYieldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3032,7 +3033,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphOrCommand() {
             var command = new Command("microsoft-graph-or");
             command.Description = "Provides operations to call the or method.";
-            var builder = new OrRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphOrRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3042,7 +3043,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPdurationCommand() {
             var command = new Command("microsoft-graph-pduration");
             command.Description = "Provides operations to call the pduration method.";
-            var builder = new PdurationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPdurationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3052,7 +3053,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPercentile_ExcCommand() {
             var command = new Command("microsoft-graph-percentile_-exc");
             command.Description = "Provides operations to call the percentile_Exc method.";
-            var builder = new Percentile_ExcRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPercentile_ExcRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3062,7 +3063,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPercentile_IncCommand() {
             var command = new Command("microsoft-graph-percentile_-inc");
             command.Description = "Provides operations to call the percentile_Inc method.";
-            var builder = new Percentile_IncRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPercentile_IncRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3072,7 +3073,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPercentRank_ExcCommand() {
             var command = new Command("microsoft-graph-percent-rank_-exc");
             command.Description = "Provides operations to call the percentRank_Exc method.";
-            var builder = new PercentRank_ExcRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPercentRank_ExcRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3082,7 +3083,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPercentRank_IncCommand() {
             var command = new Command("microsoft-graph-percent-rank_-inc");
             command.Description = "Provides operations to call the percentRank_Inc method.";
-            var builder = new PercentRank_IncRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPercentRank_IncRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3092,7 +3093,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPermutationaCommand() {
             var command = new Command("microsoft-graph-permutationa");
             command.Description = "Provides operations to call the permutationa method.";
-            var builder = new PermutationaRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPermutationaRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3102,7 +3103,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPermutCommand() {
             var command = new Command("microsoft-graph-permut");
             command.Description = "Provides operations to call the permut method.";
-            var builder = new PermutRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPermutRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3112,7 +3113,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPhiCommand() {
             var command = new Command("microsoft-graph-phi");
             command.Description = "Provides operations to call the phi method.";
-            var builder = new PhiRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPhiRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3122,7 +3123,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPiCommand() {
             var command = new Command("microsoft-graph-pi");
             command.Description = "Provides operations to call the pi method.";
-            var builder = new PiRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPiRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3132,7 +3133,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPmtCommand() {
             var command = new Command("microsoft-graph-pmt");
             command.Description = "Provides operations to call the pmt method.";
-            var builder = new PmtRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPmtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3142,7 +3143,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPoisson_DistCommand() {
             var command = new Command("microsoft-graph-poisson_-dist");
             command.Description = "Provides operations to call the poisson_Dist method.";
-            var builder = new Poisson_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPoisson_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3152,7 +3153,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPowerCommand() {
             var command = new Command("microsoft-graph-power");
             command.Description = "Provides operations to call the power method.";
-            var builder = new PowerRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPowerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3162,7 +3163,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPpmtCommand() {
             var command = new Command("microsoft-graph-ppmt");
             command.Description = "Provides operations to call the ppmt method.";
-            var builder = new PpmtRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPpmtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3172,7 +3173,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPriceCommand() {
             var command = new Command("microsoft-graph-price");
             command.Description = "Provides operations to call the price method.";
-            var builder = new PriceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPriceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3182,7 +3183,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPriceDiscCommand() {
             var command = new Command("microsoft-graph-price-disc");
             command.Description = "Provides operations to call the priceDisc method.";
-            var builder = new PriceDiscRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPriceDiscRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3192,7 +3193,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPriceMatCommand() {
             var command = new Command("microsoft-graph-price-mat");
             command.Description = "Provides operations to call the priceMat method.";
-            var builder = new PriceMatRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPriceMatRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3202,7 +3203,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphProductCommand() {
             var command = new Command("microsoft-graph-product");
             command.Description = "Provides operations to call the product method.";
-            var builder = new ProductRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphProductRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3212,7 +3213,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphProperCommand() {
             var command = new Command("microsoft-graph-proper");
             command.Description = "Provides operations to call the proper method.";
-            var builder = new ProperRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphProperRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3222,7 +3223,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphPvCommand() {
             var command = new Command("microsoft-graph-pv");
             command.Description = "Provides operations to call the pv method.";
-            var builder = new PvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphPvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3232,7 +3233,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphQuartile_ExcCommand() {
             var command = new Command("microsoft-graph-quartile_-exc");
             command.Description = "Provides operations to call the quartile_Exc method.";
-            var builder = new Quartile_ExcRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphQuartile_ExcRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3242,7 +3243,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphQuartile_IncCommand() {
             var command = new Command("microsoft-graph-quartile_-inc");
             command.Description = "Provides operations to call the quartile_Inc method.";
-            var builder = new Quartile_IncRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphQuartile_IncRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3252,7 +3253,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphQuotientCommand() {
             var command = new Command("microsoft-graph-quotient");
             command.Description = "Provides operations to call the quotient method.";
-            var builder = new QuotientRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphQuotientRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3262,7 +3263,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRadiansCommand() {
             var command = new Command("microsoft-graph-radians");
             command.Description = "Provides operations to call the radians method.";
-            var builder = new RadiansRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRadiansRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3272,7 +3273,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRandBetweenCommand() {
             var command = new Command("microsoft-graph-rand-between");
             command.Description = "Provides operations to call the randBetween method.";
-            var builder = new RandBetweenRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRandBetweenRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3282,7 +3283,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRandCommand() {
             var command = new Command("microsoft-graph-rand");
             command.Description = "Provides operations to call the rand method.";
-            var builder = new RandRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRandRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3292,7 +3293,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRank_AvgCommand() {
             var command = new Command("microsoft-graph-rank_-avg");
             command.Description = "Provides operations to call the rank_Avg method.";
-            var builder = new Rank_AvgRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRank_AvgRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3302,7 +3303,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRank_EqCommand() {
             var command = new Command("microsoft-graph-rank_-eq");
             command.Description = "Provides operations to call the rank_Eq method.";
-            var builder = new Rank_EqRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRank_EqRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3312,7 +3313,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRateCommand() {
             var command = new Command("microsoft-graph-rate");
             command.Description = "Provides operations to call the rate method.";
-            var builder = new RateRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3322,7 +3323,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphReceivedCommand() {
             var command = new Command("microsoft-graph-received");
             command.Description = "Provides operations to call the received method.";
-            var builder = new ReceivedRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphReceivedRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3332,7 +3333,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphReplaceBCommand() {
             var command = new Command("microsoft-graph-replace-b");
             command.Description = "Provides operations to call the replaceB method.";
-            var builder = new ReplaceBRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphReplaceBRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3342,7 +3343,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphReplaceCommand() {
             var command = new Command("microsoft-graph-replace");
             command.Description = "Provides operations to call the replace method.";
-            var builder = new ReplaceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphReplaceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3352,7 +3353,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphReptCommand() {
             var command = new Command("microsoft-graph-rept");
             command.Description = "Provides operations to call the rept method.";
-            var builder = new ReptRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphReptRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3362,7 +3363,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRightbCommand() {
             var command = new Command("microsoft-graph-rightb");
             command.Description = "Provides operations to call the rightb method.";
-            var builder = new RightbRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRightbRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3372,7 +3373,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRightCommand() {
             var command = new Command("microsoft-graph-right");
             command.Description = "Provides operations to call the right method.";
-            var builder = new RightRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRightRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3382,7 +3383,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRomanCommand() {
             var command = new Command("microsoft-graph-roman");
             command.Description = "Provides operations to call the roman method.";
-            var builder = new RomanRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRomanRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3392,7 +3393,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRoundCommand() {
             var command = new Command("microsoft-graph-round");
             command.Description = "Provides operations to call the round method.";
-            var builder = new RoundRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRoundRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3402,7 +3403,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRoundDownCommand() {
             var command = new Command("microsoft-graph-round-down");
             command.Description = "Provides operations to call the roundDown method.";
-            var builder = new RoundDownRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRoundDownRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3412,7 +3413,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRoundUpCommand() {
             var command = new Command("microsoft-graph-round-up");
             command.Description = "Provides operations to call the roundUp method.";
-            var builder = new RoundUpRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRoundUpRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3422,7 +3423,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRowsCommand() {
             var command = new Command("microsoft-graph-rows");
             command.Description = "Provides operations to call the rows method.";
-            var builder = new RowsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRowsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3432,7 +3433,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphRriCommand() {
             var command = new Command("microsoft-graph-rri");
             command.Description = "Provides operations to call the rri method.";
-            var builder = new RriRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphRriRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3442,7 +3443,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSecCommand() {
             var command = new Command("microsoft-graph-sec");
             command.Description = "Provides operations to call the sec method.";
-            var builder = new SecRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSecRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3452,7 +3453,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSechCommand() {
             var command = new Command("microsoft-graph-sech");
             command.Description = "Provides operations to call the sech method.";
-            var builder = new SechRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSechRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3462,7 +3463,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSecondCommand() {
             var command = new Command("microsoft-graph-second");
             command.Description = "Provides operations to call the second method.";
-            var builder = new SecondRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSecondRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3472,7 +3473,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSeriesSumCommand() {
             var command = new Command("microsoft-graph-series-sum");
             command.Description = "Provides operations to call the seriesSum method.";
-            var builder = new SeriesSumRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSeriesSumRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3482,7 +3483,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSheetCommand() {
             var command = new Command("microsoft-graph-sheet");
             command.Description = "Provides operations to call the sheet method.";
-            var builder = new SheetRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSheetRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3492,7 +3493,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSheetsCommand() {
             var command = new Command("microsoft-graph-sheets");
             command.Description = "Provides operations to call the sheets method.";
-            var builder = new SheetsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSheetsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3502,7 +3503,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSignCommand() {
             var command = new Command("microsoft-graph-sign");
             command.Description = "Provides operations to call the sign method.";
-            var builder = new SignRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSignRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3512,7 +3513,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSinCommand() {
             var command = new Command("microsoft-graph-sin");
             command.Description = "Provides operations to call the sin method.";
-            var builder = new SinRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3522,7 +3523,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSinhCommand() {
             var command = new Command("microsoft-graph-sinh");
             command.Description = "Provides operations to call the sinh method.";
-            var builder = new SinhRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSinhRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3532,7 +3533,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSkew_pCommand() {
             var command = new Command("microsoft-graph-skew_p");
             command.Description = "Provides operations to call the skew_p method.";
-            var builder = new Skew_pRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSkew_pRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3542,7 +3543,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSkewCommand() {
             var command = new Command("microsoft-graph-skew");
             command.Description = "Provides operations to call the skew method.";
-            var builder = new SkewRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSkewRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3552,7 +3553,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSlnCommand() {
             var command = new Command("microsoft-graph-sln");
             command.Description = "Provides operations to call the sln method.";
-            var builder = new SlnRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSlnRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3562,7 +3563,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSmallCommand() {
             var command = new Command("microsoft-graph-small");
             command.Description = "Provides operations to call the small method.";
-            var builder = new SmallRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSmallRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3572,7 +3573,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSqrtCommand() {
             var command = new Command("microsoft-graph-sqrt");
             command.Description = "Provides operations to call the sqrt method.";
-            var builder = new SqrtRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSqrtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3582,7 +3583,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSqrtPiCommand() {
             var command = new Command("microsoft-graph-sqrt-pi");
             command.Description = "Provides operations to call the sqrtPi method.";
-            var builder = new SqrtPiRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSqrtPiRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3592,7 +3593,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphStandardizeCommand() {
             var command = new Command("microsoft-graph-standardize");
             command.Description = "Provides operations to call the standardize method.";
-            var builder = new StandardizeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphStandardizeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3602,7 +3603,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphStDev_PCommand() {
             var command = new Command("microsoft-graph-st-dev_-p");
             command.Description = "Provides operations to call the stDev_P method.";
-            var builder = new StDev_PRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphStDev_PRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3612,7 +3613,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphStDev_SCommand() {
             var command = new Command("microsoft-graph-st-dev_-s");
             command.Description = "Provides operations to call the stDev_S method.";
-            var builder = new StDev_SRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphStDev_SRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3622,7 +3623,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphStDevACommand() {
             var command = new Command("microsoft-graph-st-dev-a");
             command.Description = "Provides operations to call the stDevA method.";
-            var builder = new StDevARequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphStDevARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3632,7 +3633,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphStDevPACommand() {
             var command = new Command("microsoft-graph-st-dev-p-a");
             command.Description = "Provides operations to call the stDevPA method.";
-            var builder = new StDevPARequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphStDevPARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3642,7 +3643,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSubstituteCommand() {
             var command = new Command("microsoft-graph-substitute");
             command.Description = "Provides operations to call the substitute method.";
-            var builder = new SubstituteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSubstituteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3652,7 +3653,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSubtotalCommand() {
             var command = new Command("microsoft-graph-subtotal");
             command.Description = "Provides operations to call the subtotal method.";
-            var builder = new SubtotalRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSubtotalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3662,7 +3663,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSumCommand() {
             var command = new Command("microsoft-graph-sum");
             command.Description = "Provides operations to call the sum method.";
-            var builder = new SumRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSumRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3672,7 +3673,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSumIfCommand() {
             var command = new Command("microsoft-graph-sum-if");
             command.Description = "Provides operations to call the sumIf method.";
-            var builder = new SumIfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSumIfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3682,7 +3683,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSumIfsCommand() {
             var command = new Command("microsoft-graph-sum-ifs");
             command.Description = "Provides operations to call the sumIfs method.";
-            var builder = new SumIfsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSumIfsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3692,7 +3693,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSumSqCommand() {
             var command = new Command("microsoft-graph-sum-sq");
             command.Description = "Provides operations to call the sumSq method.";
-            var builder = new SumSqRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSumSqRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3702,7 +3703,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphSydCommand() {
             var command = new Command("microsoft-graph-syd");
             command.Description = "Provides operations to call the syd method.";
-            var builder = new SydRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphSydRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3712,7 +3713,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphT_Dist_2TCommand() {
             var command = new Command("microsoft-graph-t_-dist_2-t");
             command.Description = "Provides operations to call the t_Dist_2T method.";
-            var builder = new T_Dist_2TRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphT_Dist_2TRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3722,7 +3723,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphT_Dist_RTCommand() {
             var command = new Command("microsoft-graph-t_-dist_-r-t");
             command.Description = "Provides operations to call the t_Dist_RT method.";
-            var builder = new T_Dist_RTRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphT_Dist_RTRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3732,7 +3733,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphT_DistCommand() {
             var command = new Command("microsoft-graph-t_-dist");
             command.Description = "Provides operations to call the t_Dist method.";
-            var builder = new T_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphT_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3742,7 +3743,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphT_Inv_2TCommand() {
             var command = new Command("microsoft-graph-t_-inv_2-t");
             command.Description = "Provides operations to call the t_Inv_2T method.";
-            var builder = new T_Inv_2TRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphT_Inv_2TRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3752,7 +3753,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphT_InvCommand() {
             var command = new Command("microsoft-graph-t_-inv");
             command.Description = "Provides operations to call the t_Inv method.";
-            var builder = new T_InvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphT_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3762,7 +3763,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTanCommand() {
             var command = new Command("microsoft-graph-tan");
             command.Description = "Provides operations to call the tan method.";
-            var builder = new TanRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTanRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3772,7 +3773,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTanhCommand() {
             var command = new Command("microsoft-graph-tanh");
             command.Description = "Provides operations to call the tanh method.";
-            var builder = new TanhRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTanhRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3782,7 +3783,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTbillEqCommand() {
             var command = new Command("microsoft-graph-tbill-eq");
             command.Description = "Provides operations to call the tbillEq method.";
-            var builder = new TbillEqRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTbillEqRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3792,7 +3793,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTbillPriceCommand() {
             var command = new Command("microsoft-graph-tbill-price");
             command.Description = "Provides operations to call the tbillPrice method.";
-            var builder = new TbillPriceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTbillPriceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3802,7 +3803,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTbillYieldCommand() {
             var command = new Command("microsoft-graph-tbill-yield");
             command.Description = "Provides operations to call the tbillYield method.";
-            var builder = new TbillYieldRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTbillYieldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3812,7 +3813,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTCommand() {
             var command = new Command("microsoft-graph-t");
             command.Description = "Provides operations to call the t method.";
-            var builder = new TRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3822,7 +3823,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTextCommand() {
             var command = new Command("microsoft-graph-text");
             command.Description = "Provides operations to call the text method.";
-            var builder = new TextRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTextRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3832,7 +3833,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTimeCommand() {
             var command = new Command("microsoft-graph-time");
             command.Description = "Provides operations to call the time method.";
-            var builder = new TimeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTimeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3842,7 +3843,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTimevalueCommand() {
             var command = new Command("microsoft-graph-timevalue");
             command.Description = "Provides operations to call the timevalue method.";
-            var builder = new TimevalueRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTimevalueRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3852,7 +3853,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTodayCommand() {
             var command = new Command("microsoft-graph-today");
             command.Description = "Provides operations to call the today method.";
-            var builder = new TodayRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTodayRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3862,7 +3863,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTrimCommand() {
             var command = new Command("microsoft-graph-trim");
             command.Description = "Provides operations to call the trim method.";
-            var builder = new TrimRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTrimRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3872,7 +3873,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTrimMeanCommand() {
             var command = new Command("microsoft-graph-trim-mean");
             command.Description = "Provides operations to call the trimMean method.";
-            var builder = new TrimMeanRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTrimMeanRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3882,7 +3883,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTrueCommand() {
             var command = new Command("microsoft-graph-true");
             command.Description = "Provides operations to call the true method.";
-            var builder = new TrueRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTrueRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3892,7 +3893,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTruncCommand() {
             var command = new Command("microsoft-graph-trunc");
             command.Description = "Provides operations to call the trunc method.";
-            var builder = new TruncRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTruncRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3902,7 +3903,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphTypeCommand() {
             var command = new Command("microsoft-graph-type");
             command.Description = "Provides operations to call the type method.";
-            var builder = new TypeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphTypeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3912,7 +3913,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphUnicharCommand() {
             var command = new Command("microsoft-graph-unichar");
             command.Description = "Provides operations to call the unichar method.";
-            var builder = new UnicharRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUnicharRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3922,7 +3923,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphUnicodeCommand() {
             var command = new Command("microsoft-graph-unicode");
             command.Description = "Provides operations to call the unicode method.";
-            var builder = new UnicodeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUnicodeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3932,7 +3933,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphUpperCommand() {
             var command = new Command("microsoft-graph-upper");
             command.Description = "Provides operations to call the upper method.";
-            var builder = new UpperRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUpperRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3942,7 +3943,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphUsdollarCommand() {
             var command = new Command("microsoft-graph-usdollar");
             command.Description = "Provides operations to call the usdollar method.";
-            var builder = new UsdollarRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUsdollarRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3952,7 +3953,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphValueCommand() {
             var command = new Command("microsoft-graph-value");
             command.Description = "Provides operations to call the value method.";
-            var builder = new ValueRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphValueRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3962,7 +3963,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphVar_PCommand() {
             var command = new Command("microsoft-graph-var_-p");
             command.Description = "Provides operations to call the var_P method.";
-            var builder = new Var_PRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphVar_PRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3972,7 +3973,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphVar_SCommand() {
             var command = new Command("microsoft-graph-var_-s");
             command.Description = "Provides operations to call the var_S method.";
-            var builder = new Var_SRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphVar_SRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3982,7 +3983,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphVarACommand() {
             var command = new Command("microsoft-graph-var-a");
             command.Description = "Provides operations to call the varA method.";
-            var builder = new VarARequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphVarARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -3992,7 +3993,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphVarPACommand() {
             var command = new Command("microsoft-graph-var-p-a");
             command.Description = "Provides operations to call the varPA method.";
-            var builder = new VarPARequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphVarPARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4002,7 +4003,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphVdbCommand() {
             var command = new Command("microsoft-graph-vdb");
             command.Description = "Provides operations to call the vdb method.";
-            var builder = new VdbRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphVdbRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4012,7 +4013,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphVlookupCommand() {
             var command = new Command("microsoft-graph-vlookup");
             command.Description = "Provides operations to call the vlookup method.";
-            var builder = new VlookupRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphVlookupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4022,7 +4023,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphWeekdayCommand() {
             var command = new Command("microsoft-graph-weekday");
             command.Description = "Provides operations to call the weekday method.";
-            var builder = new WeekdayRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphWeekdayRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4032,7 +4033,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphWeekNumCommand() {
             var command = new Command("microsoft-graph-week-num");
             command.Description = "Provides operations to call the weekNum method.";
-            var builder = new WeekNumRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphWeekNumRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4042,7 +4043,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphWeibull_DistCommand() {
             var command = new Command("microsoft-graph-weibull_-dist");
             command.Description = "Provides operations to call the weibull_Dist method.";
-            var builder = new Weibull_DistRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphWeibull_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4052,7 +4053,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphWorkDay_IntlCommand() {
             var command = new Command("microsoft-graph-work-day_-intl");
             command.Description = "Provides operations to call the workDay_Intl method.";
-            var builder = new WorkDay_IntlRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphWorkDay_IntlRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4062,7 +4063,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphWorkDayCommand() {
             var command = new Command("microsoft-graph-work-day");
             command.Description = "Provides operations to call the workDay method.";
-            var builder = new WorkDayRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphWorkDayRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4072,7 +4073,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphXirrCommand() {
             var command = new Command("microsoft-graph-xirr");
             command.Description = "Provides operations to call the xirr method.";
-            var builder = new XirrRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphXirrRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4082,7 +4083,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphXnpvCommand() {
             var command = new Command("microsoft-graph-xnpv");
             command.Description = "Provides operations to call the xnpv method.";
-            var builder = new XnpvRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphXnpvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4092,7 +4093,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphXorCommand() {
             var command = new Command("microsoft-graph-xor");
             command.Description = "Provides operations to call the xor method.";
-            var builder = new XorRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphXorRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4102,7 +4103,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphYearCommand() {
             var command = new Command("microsoft-graph-year");
             command.Description = "Provides operations to call the year method.";
-            var builder = new YearRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphYearRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4112,7 +4113,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphYearFracCommand() {
             var command = new Command("microsoft-graph-year-frac");
             command.Description = "Provides operations to call the yearFrac method.";
-            var builder = new YearFracRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphYearFracRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4122,7 +4123,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphYieldCommand() {
             var command = new Command("microsoft-graph-yield");
             command.Description = "Provides operations to call the yield method.";
-            var builder = new YieldRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphYieldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4132,7 +4133,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphYieldDiscCommand() {
             var command = new Command("microsoft-graph-yield-disc");
             command.Description = "Provides operations to call the yieldDisc method.";
-            var builder = new YieldDiscRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphYieldDiscRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4142,7 +4143,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphYieldMatCommand() {
             var command = new Command("microsoft-graph-yield-mat");
             command.Description = "Provides operations to call the yieldMat method.";
-            var builder = new YieldMatRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphYieldMatRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4152,7 +4153,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public Command BuildMicrosoftGraphZ_TestCommand() {
             var command = new Command("microsoft-graph-z_-test");
             command.Description = "Provides operations to call the z_Test method.";
-            var builder = new Z_TestRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphZ_TestRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4198,6 +4199,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookFunctions>(WorkbookFunctions.CreateFromDiscriminatorValue);
@@ -4210,7 +4212,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -4222,14 +4224,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// Instantiates a new FunctionsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public FunctionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public FunctionsRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property functions for drives
@@ -4300,7 +4299,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new FunctionsRequestBuilderPatchRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

@@ -87,8 +87,6 @@ namespace ApiSdk {
     public class GraphClient {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -97,7 +95,7 @@ namespace ApiSdk {
         public Command BuildAdminCommand() {
             var command = new Command("admin");
             command.Description = "Provides operations to manage the admin singleton.";
-            var builder = new AdminRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AdminRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildServiceAnnouncementCommand());
@@ -109,7 +107,7 @@ namespace ApiSdk {
         public Command BuildAgreementAcceptancesCommand() {
             var command = new Command("agreement-acceptances");
             command.Description = "Provides operations to manage the collection of agreementAcceptance entities.";
-            var builder = new AgreementAcceptancesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AgreementAcceptancesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -121,7 +119,7 @@ namespace ApiSdk {
         public Command BuildAgreementsCommand() {
             var command = new Command("agreements");
             command.Description = "Provides operations to manage the collection of agreement entities.";
-            var builder = new AgreementsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AgreementsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -133,7 +131,7 @@ namespace ApiSdk {
         public Command BuildAppCatalogsCommand() {
             var command = new Command("app-catalogs");
             command.Description = "Provides operations to manage the appCatalogs singleton.";
-            var builder = new AppCatalogsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AppCatalogsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildTeamsAppsCommand());
@@ -145,7 +143,7 @@ namespace ApiSdk {
         public Command BuildApplicationsCommand() {
             var command = new Command("applications");
             command.Description = "Provides operations to manage the collection of application entities.";
-            var builder = new ApplicationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApplicationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -162,10 +160,9 @@ namespace ApiSdk {
         public Command BuildApplicationTemplatesCommand() {
             var command = new Command("application-templates");
             command.Description = "Provides operations to manage the collection of applicationTemplate entities.";
-            var builder = new ApplicationTemplatesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApplicationTemplatesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -175,7 +172,7 @@ namespace ApiSdk {
         public Command BuildAuditLogsCommand() {
             var command = new Command("audit-logs");
             command.Description = "Provides operations to manage the auditLogRoot singleton.";
-            var builder = new AuditLogsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AuditLogsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDirectoryAuditsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -189,7 +186,7 @@ namespace ApiSdk {
         public Command BuildAuthenticationMethodConfigurationsCommand() {
             var command = new Command("authentication-method-configurations");
             command.Description = "Provides operations to manage the collection of authenticationMethodConfiguration entities.";
-            var builder = new AuthenticationMethodConfigurationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AuthenticationMethodConfigurationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -202,7 +199,7 @@ namespace ApiSdk {
         public Command BuildAuthenticationMethodsPolicyCommand() {
             var command = new Command("authentication-methods-policy");
             command.Description = "Provides operations to manage the authenticationMethodsPolicy singleton.";
-            var builder = new AuthenticationMethodsPolicyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AuthenticationMethodsPolicyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAuthenticationMethodConfigurationsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -214,7 +211,7 @@ namespace ApiSdk {
         public Command BuildBrandingCommand() {
             var command = new Command("branding");
             command.Description = "Provides operations to manage the organizationalBranding singleton.";
-            var builder = new BrandingRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new BrandingRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildBackgroundImageCommand());
             command.AddCommand(builder.BuildBannerLogoCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -229,7 +226,7 @@ namespace ApiSdk {
         public Command BuildCertificateBasedAuthConfigurationCommand() {
             var command = new Command("certificate-based-auth-configuration");
             command.Description = "Provides operations to manage the collection of certificateBasedAuthConfiguration entities.";
-            var builder = new CertificateBasedAuthConfigurationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CertificateBasedAuthConfigurationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -242,7 +239,7 @@ namespace ApiSdk {
         public Command BuildChatsCommand() {
             var command = new Command("chats");
             command.Description = "Provides operations to manage the collection of chat entities.";
-            var builder = new ChatsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ChatsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -256,7 +253,7 @@ namespace ApiSdk {
         public Command BuildCommunicationsCommand() {
             var command = new Command("communications");
             command.Description = "Provides operations to manage the cloudCommunications singleton.";
-            var builder = new CommunicationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CommunicationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCallRecordsCommand());
             command.AddCommand(builder.BuildCallsCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -272,7 +269,7 @@ namespace ApiSdk {
         public Command BuildComplianceCommand() {
             var command = new Command("compliance");
             command.Description = "Provides operations to manage the compliance singleton.";
-            var builder = new ComplianceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ComplianceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -283,7 +280,7 @@ namespace ApiSdk {
         public Command BuildConnectionsCommand() {
             var command = new Command("connections");
             command.Description = "Provides operations to manage the collection of externalConnection entities.";
-            var builder = new ConnectionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ConnectionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -296,7 +293,7 @@ namespace ApiSdk {
         public Command BuildContactsCommand() {
             var command = new Command("contacts");
             command.Description = "Provides operations to manage the collection of orgContact entities.";
-            var builder = new ContactsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ContactsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -313,7 +310,7 @@ namespace ApiSdk {
         public Command BuildContractsCommand() {
             var command = new Command("contracts");
             command.Description = "Provides operations to manage the collection of contract entities.";
-            var builder = new ContractsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ContractsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -329,7 +326,7 @@ namespace ApiSdk {
         public Command BuildDataPolicyOperationsCommand() {
             var command = new Command("data-policy-operations");
             command.Description = "Provides operations to manage the collection of dataPolicyOperation entities.";
-            var builder = new DataPolicyOperationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DataPolicyOperationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -342,7 +339,7 @@ namespace ApiSdk {
         public Command BuildDeviceAppManagementCommand() {
             var command = new Command("device-app-management");
             command.Description = "Provides operations to manage the deviceAppManagement singleton.";
-            var builder = new DeviceAppManagementRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DeviceAppManagementRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAndroidManagedAppProtectionsCommand());
             command.AddCommand(builder.BuildDefaultManagedAppProtectionsCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -368,7 +365,7 @@ namespace ApiSdk {
         public Command BuildDeviceManagementCommand() {
             var command = new Command("device-management");
             command.Description = "Provides operations to manage the deviceManagement singleton.";
-            var builder = new DeviceManagementRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DeviceManagementRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildApplePushNotificationCertificateCommand());
             command.AddCommand(builder.BuildAuditEventsCommand());
             command.AddCommand(builder.BuildComplianceManagementPartnersCommand());
@@ -411,7 +408,7 @@ namespace ApiSdk {
         public Command BuildDevicesCommand() {
             var command = new Command("devices");
             command.Description = "Provides operations to manage the collection of device entities.";
-            var builder = new DevicesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DevicesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -428,7 +425,7 @@ namespace ApiSdk {
         public Command BuildDirectoryCommand() {
             var command = new Command("directory");
             command.Description = "Provides operations to manage the directory singleton.";
-            var builder = new DirectoryRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DirectoryRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAdministrativeUnitsCommand());
             command.AddCommand(builder.BuildDeletedItemsCommand());
             command.AddCommand(builder.BuildFederationConfigurationsCommand());
@@ -442,7 +439,7 @@ namespace ApiSdk {
         public Command BuildDirectoryObjectsCommand() {
             var command = new Command("directory-objects");
             command.Description = "Provides operations to manage the collection of directoryObject entities.";
-            var builder = new DirectoryObjectsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DirectoryObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -458,7 +455,7 @@ namespace ApiSdk {
         public Command BuildDirectoryRolesCommand() {
             var command = new Command("directory-roles");
             command.Description = "Provides operations to manage the collection of directoryRole entities.";
-            var builder = new DirectoryRolesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DirectoryRolesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -475,7 +472,7 @@ namespace ApiSdk {
         public Command BuildDirectoryRoleTemplatesCommand() {
             var command = new Command("directory-role-templates");
             command.Description = "Provides operations to manage the collection of directoryRoleTemplate entities.";
-            var builder = new DirectoryRoleTemplatesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DirectoryRoleTemplatesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -491,7 +488,7 @@ namespace ApiSdk {
         public Command BuildDomainDnsRecordsCommand() {
             var command = new Command("domain-dns-records");
             command.Description = "Provides operations to manage the collection of domainDnsRecord entities.";
-            var builder = new DomainDnsRecordsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DomainDnsRecordsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -504,7 +501,7 @@ namespace ApiSdk {
         public Command BuildDomainsCommand() {
             var command = new Command("domains");
             command.Description = "Provides operations to manage the collection of domain entities.";
-            var builder = new DomainsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DomainsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -517,7 +514,7 @@ namespace ApiSdk {
         public Command BuildDrivesCommand() {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the collection of drive entities.";
-            var builder = new DrivesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DrivesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -530,7 +527,7 @@ namespace ApiSdk {
         public Command BuildEducationCommand() {
             var command = new Command("education");
             command.Description = "Provides operations to manage the educationRoot singleton.";
-            var builder = new EducationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new EducationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildClassesCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMeCommand());
@@ -545,7 +542,7 @@ namespace ApiSdk {
         public Command BuildExternalCommand() {
             var command = new Command("external");
             command.Description = "Provides operations to manage the external singleton.";
-            var builder = new ExternalRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ExternalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildConnectionsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -557,7 +554,7 @@ namespace ApiSdk {
         public Command BuildGroupLifecyclePoliciesCommand() {
             var command = new Command("group-lifecycle-policies");
             command.Description = "Provides operations to manage the collection of groupLifecyclePolicy entities.";
-            var builder = new GroupLifecyclePoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new GroupLifecyclePoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -570,7 +567,7 @@ namespace ApiSdk {
         public Command BuildGroupsCommand() {
             var command = new Command("groups");
             command.Description = "Provides operations to manage the collection of group entities.";
-            var builder = new GroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new GroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -587,7 +584,7 @@ namespace ApiSdk {
         public Command BuildGroupSettingsCommand() {
             var command = new Command("group-settings");
             command.Description = "Provides operations to manage the collection of groupSetting entities.";
-            var builder = new GroupSettingsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new GroupSettingsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -600,7 +597,7 @@ namespace ApiSdk {
         public Command BuildGroupSettingTemplatesCommand() {
             var command = new Command("group-setting-templates");
             command.Description = "Provides operations to manage the collection of groupSettingTemplate entities.";
-            var builder = new GroupSettingTemplatesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new GroupSettingTemplatesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -616,7 +613,7 @@ namespace ApiSdk {
         public Command BuildIdentityCommand() {
             var command = new Command("identity");
             command.Description = "Provides operations to manage the identityContainer singleton.";
-            var builder = new IdentityRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new IdentityRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildApiConnectorsCommand());
             command.AddCommand(builder.BuildB2xUserFlowsCommand());
             command.AddCommand(builder.BuildConditionalAccessCommand());
@@ -632,7 +629,7 @@ namespace ApiSdk {
         public Command BuildIdentityGovernanceCommand() {
             var command = new Command("identity-governance");
             command.Description = "Provides operations to manage the identityGovernance singleton.";
-            var builder = new IdentityGovernanceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new IdentityGovernanceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAccessReviewsCommand());
             command.AddCommand(builder.BuildAppConsentCommand());
             command.AddCommand(builder.BuildEntitlementManagementCommand());
@@ -647,7 +644,7 @@ namespace ApiSdk {
         public Command BuildIdentityProtectionCommand() {
             var command = new Command("identity-protection");
             command.Description = "Provides operations to manage the identityProtectionRoot singleton.";
-            var builder = new IdentityProtectionRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new IdentityProtectionRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildRiskDetectionsCommand());
@@ -662,7 +659,7 @@ namespace ApiSdk {
         public Command BuildIdentityProvidersCommand() {
             var command = new Command("identity-providers");
             command.Description = "Provides operations to manage the collection of identityProvider entities.";
-            var builder = new IdentityProvidersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new IdentityProvidersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -676,7 +673,7 @@ namespace ApiSdk {
         public Command BuildInformationProtectionCommand() {
             var command = new Command("information-protection");
             command.Description = "Provides operations to manage the informationProtection singleton.";
-            var builder = new InformationProtectionRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new InformationProtectionRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildBitlockerCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -689,7 +686,7 @@ namespace ApiSdk {
         public Command BuildInvitationsCommand() {
             var command = new Command("invitations");
             command.Description = "Provides operations to manage the collection of invitation entities.";
-            var builder = new InvitationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new InvitationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -702,7 +699,7 @@ namespace ApiSdk {
         public Command BuildLocalizationsCommand() {
             var command = new Command("localizations");
             command.Description = "Provides operations to manage the collection of organizationalBrandingLocalization entities.";
-            var builder = new LocalizationsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new LocalizationsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -715,7 +712,7 @@ namespace ApiSdk {
         public Command BuildMeCommand() {
             var command = new Command("me");
             command.Description = "Provides operations to manage the user singleton.";
-            var builder = new MeRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildActivitiesCommand());
             command.AddCommand(builder.BuildAgreementAcceptancesCommand());
             command.AddCommand(builder.BuildAppRoleAssignmentsCommand());
@@ -792,7 +789,7 @@ namespace ApiSdk {
         public Command BuildOauth2PermissionGrantsCommand() {
             var command = new Command("oauth2-permission-grants");
             command.Description = "Provides operations to manage the collection of oAuth2PermissionGrant entities.";
-            var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -806,7 +803,7 @@ namespace ApiSdk {
         public Command BuildOrganizationCommand() {
             var command = new Command("organization");
             command.Description = "Provides operations to manage the collection of organization entities.";
-            var builder = new OrganizationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OrganizationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -822,7 +819,7 @@ namespace ApiSdk {
         public Command BuildPermissionGrantsCommand() {
             var command = new Command("permission-grants");
             command.Description = "Provides operations to manage the collection of resourceSpecificPermissionGrant entities.";
-            var builder = new PermissionGrantsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PermissionGrantsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -837,7 +834,7 @@ namespace ApiSdk {
         public Command BuildPlacesCommand() {
             var command = new Command("places");
             command.Description = "Provides operations to manage the collection of place entities.";
-            var builder = new PlacesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PlacesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -851,7 +848,7 @@ namespace ApiSdk {
         public Command BuildPlannerCommand() {
             var command = new Command("planner");
             command.Description = "Provides operations to manage the planner singleton.";
-            var builder = new PlannerRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PlannerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildBucketsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -865,7 +862,7 @@ namespace ApiSdk {
         public Command BuildPoliciesCommand() {
             var command = new Command("policies");
             command.Description = "Provides operations to manage the policyRoot singleton.";
-            var builder = new PoliciesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PoliciesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildActivityBasedTimeoutPoliciesCommand());
             command.AddCommand(builder.BuildAdminConsentRequestPolicyCommand());
             command.AddCommand(builder.BuildAuthenticationFlowsPolicyCommand());
@@ -892,7 +889,7 @@ namespace ApiSdk {
         public Command BuildPrintCommand() {
             var command = new Command("print");
             command.Description = "Provides operations to manage the print singleton.";
-            var builder = new PrintRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PrintRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildConnectorsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildOperationsCommand());
@@ -909,7 +906,7 @@ namespace ApiSdk {
         public Command BuildPrivacyCommand() {
             var command = new Command("privacy");
             command.Description = "Provides operations to manage the privacy singleton.";
-            var builder = new PrivacyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PrivacyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSubjectRightsRequestsCommand());
@@ -921,7 +918,7 @@ namespace ApiSdk {
         public Command BuildReportsCommand() {
             var command = new Command("reports");
             command.Description = "Provides operations to manage the reportRoot singleton.";
-            var builder = new ReportsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ReportsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDailyPrintUsageByPrinterCommand());
             command.AddCommand(builder.BuildDailyPrintUsageByUserCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -944,7 +941,7 @@ namespace ApiSdk {
         public Command BuildRoleManagementCommand() {
             var command = new Command("role-management");
             command.Description = "Provides operations to manage the roleManagement singleton.";
-            var builder = new RoleManagementRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RoleManagementRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDirectoryCommand());
             command.AddCommand(builder.BuildEntitlementManagementCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -1032,7 +1029,7 @@ namespace ApiSdk {
         public Command BuildSchemaExtensionsCommand() {
             var command = new Command("schema-extensions");
             command.Description = "Provides operations to manage the collection of schemaExtension entities.";
-            var builder = new SchemaExtensionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SchemaExtensionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -1045,7 +1042,7 @@ namespace ApiSdk {
         public Command BuildScopedRoleMembershipsCommand() {
             var command = new Command("scoped-role-memberships");
             command.Description = "Provides operations to manage the collection of scopedRoleMembership entities.";
-            var builder = new ScopedRoleMembershipsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ScopedRoleMembershipsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -1058,7 +1055,7 @@ namespace ApiSdk {
         public Command BuildSearchCommand() {
             var command = new Command("search");
             command.Description = "Provides operations to manage the searchEntity singleton.";
-            var builder = new SearchRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SearchRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMicrosoftGraphQueryCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -1070,7 +1067,7 @@ namespace ApiSdk {
         public Command BuildSecurityCommand() {
             var command = new Command("security");
             command.Description = "Provides operations to manage the security singleton.";
-            var builder = new SecurityRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SecurityRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAlerts_v2Command());
             command.AddCommand(builder.BuildAlertsCommand());
             command.AddCommand(builder.BuildAttackSimulationCommand());
@@ -1089,7 +1086,7 @@ namespace ApiSdk {
         public Command BuildServicePrincipalsCommand() {
             var command = new Command("service-principals");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
-            var builder = new ServicePrincipalsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ServicePrincipalsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -1106,7 +1103,7 @@ namespace ApiSdk {
         public Command BuildSharesCommand() {
             var command = new Command("shares");
             command.Description = "Provides operations to manage the collection of sharedDriveItem entities.";
-            var builder = new SharesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SharesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -1119,7 +1116,7 @@ namespace ApiSdk {
         public Command BuildSitesCommand() {
             var command = new Command("sites");
             command.Description = "Provides operations to manage the collection of site entities.";
-            var builder = new SitesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SitesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -1133,7 +1130,7 @@ namespace ApiSdk {
         public Command BuildSolutionsCommand() {
             var command = new Command("solutions");
             command.Description = "Provides operations to manage the solutionsRoot singleton.";
-            var builder = new SolutionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SolutionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildBookingBusinessesCommand());
             command.AddCommand(builder.BuildBookingCurrenciesCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -1146,7 +1143,7 @@ namespace ApiSdk {
         public Command BuildSubscribedSkusCommand() {
             var command = new Command("subscribed-skus");
             command.Description = "Provides operations to manage the collection of subscribedSku entities.";
-            var builder = new SubscribedSkusRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SubscribedSkusRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -1158,7 +1155,7 @@ namespace ApiSdk {
         public Command BuildSubscriptionsCommand() {
             var command = new Command("subscriptions");
             command.Description = "Provides operations to manage the collection of subscription entities.";
-            var builder = new SubscriptionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SubscriptionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -1170,7 +1167,7 @@ namespace ApiSdk {
         public Command BuildTeamsCommand() {
             var command = new Command("teams");
             command.Description = "Provides operations to manage the collection of team entities.";
-            var builder = new TeamsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TeamsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -1184,7 +1181,7 @@ namespace ApiSdk {
         public Command BuildTeamsTemplatesCommand() {
             var command = new Command("teams-templates");
             command.Description = "Provides operations to manage the collection of teamsTemplate entities.";
-            var builder = new TeamsTemplatesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TeamsTemplatesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -1197,7 +1194,7 @@ namespace ApiSdk {
         public Command BuildTeamworkCommand() {
             var command = new Command("teamwork");
             command.Description = "Provides operations to manage the teamwork singleton.";
-            var builder = new TeamworkRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TeamworkRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMicrosoftGraphSendActivityNotificationToRecipientsCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -1210,7 +1207,7 @@ namespace ApiSdk {
         public Command BuildTenantRelationshipsCommand() {
             var command = new Command("tenant-relationships");
             command.Description = "Provides operations to manage the tenantRelationship singleton.";
-            var builder = new TenantRelationshipsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TenantRelationshipsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDelegatedAdminCustomersCommand());
             command.AddCommand(builder.BuildDelegatedAdminRelationshipsCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -1223,7 +1220,7 @@ namespace ApiSdk {
         public Command BuildUsersCommand() {
             var command = new Command("users");
             command.Description = "Provides operations to manage the collection of user entities.";
-            var builder = new UsersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new UsersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -1237,22 +1234,9 @@ namespace ApiSdk {
         /// <summary>
         /// Instantiates a new GraphClient and sets the default values.
         /// </summary>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public GraphClient(IRequestAdapter requestAdapter) {
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+        public GraphClient() {
             PathParameters = new Dictionary<string, object>();
             UrlTemplate = "{+baseurl}";
-            RequestAdapter = requestAdapter;
-            ApiClientBuilder.RegisterDefaultSerializer<JsonSerializationWriterFactory>();
-            ApiClientBuilder.RegisterDefaultSerializer<TextSerializationWriterFactory>();
-            ApiClientBuilder.RegisterDefaultSerializer<FormSerializationWriterFactory>();
-            ApiClientBuilder.RegisterDefaultDeserializer<JsonParseNodeFactory>();
-            ApiClientBuilder.RegisterDefaultDeserializer<TextParseNodeFactory>();
-            ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
-            if (string.IsNullOrEmpty(RequestAdapter.BaseUrl)) {
-                RequestAdapter.BaseUrl = "https://graph.microsoft.com/v1.0";
-            }
-            PathParameters.TryAdd("baseurl", RequestAdapter.BaseUrl);
         }
     }
 }

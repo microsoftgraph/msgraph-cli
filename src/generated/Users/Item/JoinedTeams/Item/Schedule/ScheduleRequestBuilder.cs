@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -30,8 +31,6 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
     public class ScheduleRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -59,6 +58,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
                 var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
@@ -68,7 +68,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -123,6 +123,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -133,7 +134,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -147,7 +148,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         public Command BuildMicrosoftGraphShareCommand() {
             var command = new Command("microsoft-graph-share");
             command.Description = "Provides operations to call the share method.";
-            var builder = new ShareRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphShareRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -157,7 +158,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         public Command BuildOfferShiftRequestsCommand() {
             var command = new Command("offer-shift-requests");
             command.Description = "Provides operations to manage the offerShiftRequests property of the microsoft.graph.schedule entity.";
-            var builder = new OfferShiftRequestsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OfferShiftRequestsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -170,7 +171,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         public Command BuildOpenShiftChangeRequestsCommand() {
             var command = new Command("open-shift-change-requests");
             command.Description = "Provides operations to manage the openShiftChangeRequests property of the microsoft.graph.schedule entity.";
-            var builder = new OpenShiftChangeRequestsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OpenShiftChangeRequestsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -183,7 +184,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         public Command BuildOpenShiftsCommand() {
             var command = new Command("open-shifts");
             command.Description = "Provides operations to manage the openShifts property of the microsoft.graph.schedule entity.";
-            var builder = new OpenShiftsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OpenShiftsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -232,6 +233,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Schedule>(ApiSdk.Models.Schedule.CreateFromDiscriminatorValue);
@@ -244,7 +246,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -258,7 +260,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         public Command BuildSchedulingGroupsCommand() {
             var command = new Command("scheduling-groups");
             command.Description = "Provides operations to manage the schedulingGroups property of the microsoft.graph.schedule entity.";
-            var builder = new SchedulingGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SchedulingGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -271,7 +273,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         public Command BuildShiftsCommand() {
             var command = new Command("shifts");
             command.Description = "Provides operations to manage the shifts property of the microsoft.graph.schedule entity.";
-            var builder = new ShiftsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ShiftsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -284,7 +286,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         public Command BuildSwapShiftsChangeRequestsCommand() {
             var command = new Command("swap-shifts-change-requests");
             command.Description = "Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.";
-            var builder = new SwapShiftsChangeRequestsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SwapShiftsChangeRequestsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -297,7 +299,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         public Command BuildTimeOffReasonsCommand() {
             var command = new Command("time-off-reasons");
             command.Description = "Provides operations to manage the timeOffReasons property of the microsoft.graph.schedule entity.";
-            var builder = new TimeOffReasonsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TimeOffReasonsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -310,7 +312,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         public Command BuildTimeOffRequestsCommand() {
             var command = new Command("time-off-requests");
             command.Description = "Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.";
-            var builder = new TimeOffRequestsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TimeOffRequestsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -323,7 +325,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         public Command BuildTimesOffCommand() {
             var command = new Command("times-off");
             command.Description = "Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.";
-            var builder = new TimesOffRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TimesOffRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -334,14 +336,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// Instantiates a new ScheduleRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScheduleRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public ScheduleRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/schedule{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Delete navigation property schedule for users
@@ -412,7 +411,6 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
                 PathParameters = PathParameters,
             };
             requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             if (requestConfiguration != null) {
                 var requestConfig = new ScheduleRequestBuilderPutRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);

@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
     public class InReplyToRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -36,7 +35,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
         public Command BuildAttachmentsCommand() {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.post entity.";
-            var builder = new AttachmentsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AttachmentsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -50,7 +49,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.post entity.";
-            var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ExtensionsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -111,6 +110,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
                 var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -122,7 +122,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
@@ -136,7 +136,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
         public Command BuildMicrosoftGraphForwardCommand() {
             var command = new Command("microsoft-graph-forward");
             command.Description = "Provides operations to call the forward method.";
-            var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphForwardRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -146,7 +146,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
         public Command BuildMicrosoftGraphReplyCommand() {
             var command = new Command("microsoft-graph-reply");
             command.Description = "Provides operations to call the reply method.";
-            var builder = new ReplyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphReplyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -156,7 +156,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
             command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.post entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -169,7 +169,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
             command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.post entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
@@ -180,14 +180,11 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
         /// Instantiates a new InReplyToRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public InReplyToRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public InReplyToRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}/inReplyTo{?%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Read-only. Supports $expand.

@@ -21,8 +21,6 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
     public class DirectoryObjectItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>The request adapter to use to execute the requests.</summary>
-        private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
@@ -31,7 +29,7 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         public Command BuildMicrosoftGraphAppRoleAssignmentCommand() {
             var command = new Command("microsoft-graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new AppRoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphAppRoleAssignmentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -41,7 +39,7 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         public Command BuildMicrosoftGraphEndpointCommand() {
             var command = new Command("microsoft-graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
-            var builder = new EndpointRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphEndpointRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -51,7 +49,7 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         public Command BuildMicrosoftGraphServicePrincipalCommand() {
             var command = new Command("microsoft-graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -61,7 +59,7 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         public Command BuildMicrosoftGraphUserCommand() {
             var command = new Command("microsoft-graph-user");
             command.Description = "Casts the previous resource to user.";
-            var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -71,7 +69,7 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
-            var builder = new RefRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             return command;
         }
@@ -79,14 +77,11 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/owners/{directoryObject%2Did}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
         }
     }
 }
