@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0-preview.8] - 2023-02-10
+
 ### Added
 - Added documentation content for non-terminal sub-commands
 - MacOS binaries are now signed and notarized.
