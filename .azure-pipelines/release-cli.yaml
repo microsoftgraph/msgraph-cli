@@ -345,7 +345,7 @@ stages:
 
   - stage: binaryScan
     displayName: Scan binaries (Anti malware, BinSkim)
-    dependsOn: [build, checkFormat, srcScan]
+    dependsOn: [build, srcScan] # Check format would be a dependency if enabled.
     pool:
       vmImage: windows-latest
     # Only scan binaries if we're building a tag, building main, or building a PR targeting main
