@@ -19,7 +19,7 @@ function Get-ZipName {
         [string]
         $RuntimeIdentifier = "unknown"
     )
-    $version = Get-Version $BranchOrTagName 
+    $version = Get-Version $BranchOrTagName
     return "$FileNameTemplate" -f "$RuntimeIdentifier","$version"
 }
 
@@ -137,11 +137,15 @@ function Compress-SignedFiles {
         return
     }
 
-    if ($ReportDir -and (Test-Path -Path "$ReportDir/*.md")) {
+    if ($ReportDir -and (Test-Path -Path "$SourceDir/*.md")) {
+        if (-Not (Test-Path -Path $ReportDir)) {
+            New-Item $ReportDir -ItemType Directory
+        }
+
         Write-Information "Moving signing report to $ReportDir"
-        Move-Item -Path "$SourceDir/*.md" -Destination $ReportDir
+        Move-Item -Path "$SourceDir/*.md" -Destination $ReportDir/
     }
-    
+
     $parentDir = Split-Path -Path $SourceDir -Parent -Resolve
     $backupDir = Join-Path -Path $parentDir -ChildPath backup
 
