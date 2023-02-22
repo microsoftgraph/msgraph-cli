@@ -66,9 +66,9 @@ namespace Microsoft.Graph.Cli
 
             builder.AddMiddleware(async (ic, next) =>
             {
-                var op = ic.GetHost().Services.GetService<IOptions<ExtraOptions>>();
+                var op = ic.GetHost().Services.GetService<IOptions<ExtraOptions>>()?.Value;
                 // Show Azure Identity logs if the --debug option is set
-                using AzureEventSourceListener? listener = AzureEventSourceListener.CreateConsoleLogger(op?.Value?.DebugEnabled == true ? EventLevel.LogAlways : EventLevel.Warning);
+                using AzureEventSourceListener? listener = op?.DebugEnabled == true ? AzureEventSourceListener.CreateConsoleLogger(EventLevel.LogAlways) : null;
                 await next(ic);
             });
             builder.AddMiddleware(async (ic, next) =>
@@ -201,8 +201,9 @@ namespace Microsoft.Graph.Cli
             {
                 logBuilder.SetMinimumLevel(LogLevel.Warning);
                 // If a config is unavailable, troubleshoot using (ctx.Configuration as IConfigurationRoot)?.GetDebugView();
-                var options = ctx.GetInvocationContext().BindingContext.GetService<IOptions<ExtraOptions>>()?.Value;
-                if (options?.DebugEnabled == true)
+                // At this point, the host isn't ready. Get the config option directly.
+                var debugEnabled = ctx.Configuration.GetValue<bool>("Debug");
+                if (debugEnabled == true)
                 {
                     logBuilder.AddFilter("Microsoft.Graph.Cli", LogLevel.Debug);
                 }
