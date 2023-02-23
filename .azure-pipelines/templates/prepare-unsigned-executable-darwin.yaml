@@ -52,7 +52,6 @@ steps:
       security import $(agent.tempdirectory)/cert.p12 -k $(agent.tempdirectory)/buildagent.keychain -P "$(graph-cli-apple-developer-certificate-password)" -T /usr/bin/codesign
       security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k pwd $(agent.tempdirectory)/buildagent.keychain
       codesign -s $(CERTIFICATE_NAME) --deep --force --options runtime --entitlements .azure-pipelines/darwin/entitlements.plist $(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)
-      chmod u+x $(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)
     displayName: Set Hardened Entitlements
     condition: and(succeeded(), startsWith(variables['TARGET_RUNTIME'], 'osx'))
 

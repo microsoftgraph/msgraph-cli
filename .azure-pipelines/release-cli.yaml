@@ -18,8 +18,8 @@ pool:
 variables:
   - name: repositoryConnection
     value: 'GitHub - calebkiage'
-  - name: zipTemplate
-    value: msgraph-cli-{0}-{1}.zip
+  - name: fileNameTemplate
+    value: msgraph-cli-{0}-{1}
   - name: buildConfiguration
     value: 'Release'
   - name: outputDir
@@ -35,7 +35,16 @@ variables:
       value: 'latest'
     ${{ else }}: # Version from the tag. Can be a branch name. Only mainline branches use latest
       value: '$(Build.SourceBranchName)'
-  - group: ESRP
+
+parameters:
+  - name: forceSignOutput
+    displayName: Always Sign Build Output
+    type: boolean
+    default: false
+  - name: notarizeAfterSign
+    displayName: Notarize Build Output
+    type: boolean
+    default: true
 
 # test ----------> | build ->   |            |
 #                  |            | sign       |
@@ -78,31 +87,43 @@ stages:
           matrix:
             'Windows-x64':
               rid: win-x64
+              packageType: "zip"
+              compressionProgram: "none"
             'Linux-x64':
               rid: linux-x64
+              packageType: "tar"
+              compressionProgram: "gzip"
             'MacOS-x64':
               rid: osx-x64
+              packageType: "tar"
+              compressionProgram: "gzip"
             'MacOS-ARM':
               rid: osx-arm64
+              packageType: "tar"
+              compressionProgram: "gzip"
           # maxParallel: 2
         steps:
-          - task: UseDotNet@2
-            displayName: 'Use .NET 7'
-            inputs:
-              version: 7.x
+          # - task: UseDotNet@2
+          #   displayName: 'Use .NET 7'
+          #   inputs:
+          #     version: 7.x
 
-          - template: templates/nuget-packages.yaml
-            parameters:
-              vstsFeedName: ${{variables.internalFeed}}
+          # - template: templates/nuget-packages.yaml
+          #   parameters:
+          #     vstsFeedName: ${{variables.internalFeed}}
 
-          - pwsh: dotnet publish ./src/msgraph-cli.csproj --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
-            workingDirectory: $(Build.SourcesDirectory)
-            displayName: DotNet publish
+          # - pwsh: dotnet publish ./src/msgraph-cli.csproj --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
+          #   workingDirectory: $(Build.SourcesDirectory)
+          #   displayName: DotNet publish
+
+          - pwsh: |
+              New-Item $(outputDir)/mgc -ItemType File
 
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -SourceDir '$(outputDir)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
-              Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]True"
+              $archive = Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -Source '$(outputDir)/*' -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType '$(packageType)' -TarCompression $(compressionProgram)  -Cleanup
+              $hasArchive = Test-Path $archive -PathType Leaf
+              Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArchive"
             # Only create artifacts if we're building a tag, building main, or building a PR targeting main
             condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
             displayName: Compress published output
@@ -156,7 +177,7 @@ stages:
       vmImage: windows-latest
     dependsOn: [build]
     # Only sign binaries if we're building a tag.
-    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
+    condition: and(succeeded(), or(forceSignOutput, startsWith(variables['Build.SourceBranch'], 'refs/tags/v')))
     jobs:
       - job: esrpSign
         dependsOn: []
@@ -190,6 +211,8 @@ stages:
             'Windows-x64':
               rid: win-x64
               vmImage: windows-latest
+              packageType: "zip"
+              compressionProgram: "none"
               sign: true
               pattern: |
                 **\*.exe
@@ -221,13 +244,19 @@ stages:
             'MacOS-x64':
               rid: osx-x64
               vmImage: macOS-11
+              packageType: "tar"
+              compressionProgram: "gzip"
               sign: true
+              notarize: ${{ parameters.notarizeAfterSign }}
               inlineSignOperation: ${{ variables.macSignOp }}
               inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
             'MacOS-ARM':
               rid: osx-arm64
               vmImage: macOS-12
+              packageType: "tar"
+              compressionProgram: "gzip"
               sign: true
+              notarize: ${{ parameters.notarizeAfterSign }}
               inlineSignOperation: ${{ variables.macSignOp }}
               inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
         displayName: ESRP Signing
@@ -236,16 +265,19 @@ stages:
         steps:
           - pwsh: |
               Write-Verbose -Verbose 'pattern = ''$(pattern)'''
-              Write-Verbose -Verbose 'zipTemplate = ''$(zipTemplate)'''
+              Write-Verbose -Verbose 'fileNameTemplate = ''$(fileNameTemplate)'''
               Write-Verbose -Verbose 'artifactsDownloadLocation = ''$(artifactsDownloadLocation)'''
               Write-Verbose -Verbose 'sign = ''$(sign)'''
+              Write-Verbose -Verbose 'notarize = ''$(notarize)'''
               Write-Verbose -Verbose 'inlineSignOperation = ''$(inlineSignOperation)'''
               Write-Verbose -Verbose 'inlineNotarizeOperation = ''$(inlineNotarizeOperation)'''
               $rid = '$(rid)'
               $shouldSign = '$(sign)'
+              $shouldNotarize = '$(notarize)'
               $notarizeOp = '$(inlineNotarizeOperation)'
               Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
               Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
+              Write-Host "##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize"
               Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
               Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
             displayName: Setup variables
@@ -263,7 +295,7 @@ stages:
 
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              $zipName = Get-ZipName -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
+              $zipName = Get-PackageName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType "zip"
               Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
             displayName: Compute zip name
 
@@ -272,7 +304,7 @@ stages:
 
               $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
               $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
-              Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
+              Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType $(packageType) -TarCompression $(compressionProgram) -Cleanup
 
               Move-NonExecutableItems -SourcePath $extractPath -ExecutableItemNames mgc,mgc.exe
               Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$extractPath"
@@ -296,35 +328,36 @@ stages:
             displayName: Compute ESRP filter pattern Windows
             condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'win'))
 
-          - task: EsrpCodeSigning@2
-            displayName: 'ESRP CodeSigning (Sign)'
-            inputs:
-              # Pipeline validation can't expand service name from matrix variables
-              ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(ARTIFACTS_PATH)
-              signConfigType: inlineSignParams
-              UseMinimatch: true
-              Pattern: $(ESRP_FILE_PATTERN)
-              inlineOperation: $(inlineSignOperation)
-              SessionTimeout: 20
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+          # - task: EsrpCodeSigning@2
+          #   displayName: 'ESRP CodeSigning (Sign)'
+          #   inputs:
+          #     # Pipeline validation can't expand service name from matrix variables
+          #     ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
+          #     FolderPath: $(ARTIFACTS_PATH)
+          #     signConfigType: inlineSignParams
+          #     UseMinimatch: true
+          #     Pattern: $(ESRP_FILE_PATTERN)
+          #     inlineOperation: $(inlineSignOperation)
+          #     SessionTimeout: 20
+          #   condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
-          - task: EsrpCodeSigning@2
-            displayName: 'ESRP CodeSigning (Notarize)'
-            inputs:
-              # Pipeline validation can't expand service name from matrix variables
-              ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(ARTIFACTS_PATH)
-              signConfigType: inlineSignParams
-              UseMinimatch: true
-              Pattern: $(ESRP_FILE_PATTERN)
-              inlineOperation: $(inlineNotarizeOperation)
-              SessionTimeout: 20
-            condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), eq(variables['SHOULD_SIGN'], 'True'))
+          # - task: EsrpCodeSigning@2
+          #   displayName: 'ESRP CodeSigning (Notarize)'
+          #   inputs:
+          #     # Pipeline validation can't expand service name from matrix variables
+          #     ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
+          #     FolderPath: $(ARTIFACTS_PATH)
+          #     signConfigType: inlineSignParams
+          #     UseMinimatch: true
+          #     Pattern: $(ESRP_FILE_PATTERN)
+          #     inlineOperation: $(inlineNotarizeOperation)
+          #     SessionTimeout: 20
+          #   condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True'),))
 
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              Compress-SignedFiles -SourceDir '$(ARTIFACTS_PATH)' -ReportDir '$(WORKING_DIR)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
+              $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
+              Compress-SignedFiles -SourceDir '$(ARTIFACTS_PATH)' -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName $fileName -PackageType zip -Cleanup
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Compress signed files (Windows)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'win'))
@@ -332,7 +365,8 @@ stages:
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
               $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
-              Update-SignedArchive -InputFile $zipPath -ReportDir '$(WORKING_DIR)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
+              $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
+              Update-SignedArchive -InputFile $zipPath -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName "$fileName" -ExeNames mgc -Cleanup
               Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
             displayName: Update signed files (MacOS)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
