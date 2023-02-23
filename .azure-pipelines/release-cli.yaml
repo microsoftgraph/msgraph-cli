@@ -397,9 +397,6 @@ stages:
     dependsOn: [binaryScan, sign]
     # Only upload release if we're building a tag.
     condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
-    variables:
-      currentTag: '$(branchOrTagName)'
-      isPreRelease: $[ contains(variables.currentTag, 'preview') ]
     jobs:
       - job: upload
         displayName: Upload binaries
@@ -408,6 +405,9 @@ stages:
           - task: DownloadPipelineArtifact@2
             inputs:
               path: $(artifactsDownloadLocation)
+          - pwsh: |
+              $isPreview = '$(branchOrTagName)'.Contains("preview")
+              Write-Host "##vso[task.setvariable variable=IS_PREVIEW]$isPreview"
           - task: GithubRelease@1
             displayName: 'Create GitHub Draft Release'
             inputs:
@@ -421,4 +421,4 @@ stages:
               assets: |
                 $(artifactsDownloadLocation)/build-output-linux-*/*.zip
                 $(artifactsDownloadLocation)/sign-output-*/*.zip
-              isPreRelease: $(isPreRelease)
+              isPreRelease: $(IS_PREVIEW)
