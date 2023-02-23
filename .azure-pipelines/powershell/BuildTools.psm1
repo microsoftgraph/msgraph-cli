@@ -137,7 +137,7 @@ function Compress-Package {
 
     if ($PackageType -eq "zip") {
         Compress-Archive -Path $Source -DestinationPath $outputFile
-    } else if ($PackageType -eq "tar") {
+    } elseif ($PackageType -eq "tar") {
         if (Get-Command -Name tar -CommandType Application -ErrorAction Ignore) {
             $options = "-c"
             if ($TarCompression -eq "bzip") {
@@ -250,7 +250,7 @@ function Expand-Package {
 
     if ($PackageType -eq "zip") {
         Expand-Archive -Path $inputFile -DestinationPath $OutputDir
-    } else if ($PackageType -eq "tar") {
+    } elseif ($PackageType -eq "tar") {
         if (Get-Command -Name tar -CommandType Application -ErrorAction Ignore) {
             $options = "-x"
             if ($TarCompression -eq "bzip") {

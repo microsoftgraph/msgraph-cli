@@ -117,7 +117,9 @@ stages:
           #   displayName: DotNet publish
 
           - pwsh: |
+              New-Item $(outputDir) -ItemType Directory -Force
               New-Item $(outputDir)/mgc -ItemType File
+            displayName:
 
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
@@ -125,7 +127,7 @@ stages:
               $hasArchive = Test-Path $archive -PathType Leaf
               Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArchive"
             # Only create artifacts if we're building a tag, building main, or building a PR targeting main
-            condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
+            condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
@@ -177,7 +179,7 @@ stages:
       vmImage: windows-latest
     dependsOn: [build]
     # Only sign binaries if we're building a tag.
-    condition: and(succeeded(), or(forceSignOutput, startsWith(variables['Build.SourceBranch'], 'refs/tags/v')))
+    condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v')))
     jobs:
       - job: esrpSign
         dependsOn: []
