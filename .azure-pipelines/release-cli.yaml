@@ -135,7 +135,8 @@ stages:
               targetType: inline
               script: |
                 New-Item $(outputDir) -ItemType Directory -Force
-                New-Item $(outputDir)/mgc -ItemType File
+                echo "Test file" > $(outputDir)/mgc
+                echo "Test file2" > $(outputDir)/mgc.txt
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
@@ -148,9 +149,7 @@ stages:
               script: |
                 . $(powershellScriptsDir)/BuildTools.ps1
                 $archive = Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -Source '$(outputDir)/*' -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType '$(packageType)' -TarCompression $(compressionProgram) -Cleanup
-                Write-Verbose "$archive"
                 $hasArchive = Test-Path $archive -PathType Leaf
-                Write-Verbose "$hasArchive"
                 Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArchive"
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'

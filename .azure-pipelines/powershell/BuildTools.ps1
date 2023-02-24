@@ -131,7 +131,7 @@ function Compress-Package {
     }
 
     $OutputDir = Resolve-Path $OutputDir
-    Write-Verbose "Using the current dir '$OutputDir'."
+    Write-Verbose "Using the dir '$OutputDir'."
 
     $ext = $PackageType
     if ($ext -eq "tar" -and (-not ($TarCompression -eq "none"))) {
@@ -150,6 +150,8 @@ function Compress-Package {
         Remove-Item $outputFile
     }
 
+    Write-Verbose "$Source"
+
     if ($PackageType -eq "zip") {
         Compress-Archive -Path $Source -DestinationPath $outputFile
     } elseif ($PackageType -eq "tar") {
@@ -161,24 +163,32 @@ function Compress-Package {
                 $options += "z"
             }
 
-            if ($PSBoundParameters.ContainsKey('Verbose') -and $PSBoundParameters['Verbose'].IsPresent) {
+            if (($PSBoundParameters.ContainsKey('Verbose') -and $PSBoundParameters['Verbose'].IsPresent) -or ($PSCmdlet.GetVariableValue('VerbosePreference'))) {
                 # Use the verbose mode '-v' if '-Verbose' is specified
                 $options += "v"
             }
             $options += "f"
 
             # Match PowerShell Compress-Archive behavior
-            $_setRecursion = $False
-            $Source = $Source | ForEach-Object {
-                if ($_.EndsWith("*.*") -and (-not $_setRecursion)) {
-                    $options = "--no-recursion $options"
-                    $_setRecursion = $True
-                }
+            # Add the result of Get-Item -Name
+            $_args = $Source | ForEach-Object {
+                $items = Get-Item $_
+                # Get the working dir
+                $dir = $items | Select-Object -First 1 | ForEach-Object {[System.IO.Path]::GetDirectoryName("$_")}
+                # Get the file list
+                $_files = $items | ForEach-Object -Begin $null -Process {[System.IO.Path]::GetFileName("$_")},{ Write-Verbose "$($_.FullName)"} -End $null
 
-                $_.Replace(".*", "")
+                Write-Verbose "Adding files in dir '$dir':`n  $([string]::Join("`n  ", $_files))"
+                "-C $dir $([string]::Join(" ", $_files))"
             }
 
-            tar $options $outputFile $([string]::Join(" ", $Source))
+            $joined = $([string]::Join(" ", $_args))
+            Set-PSDebug -Trace 2
+            $cmd = "tar $options $outputFile $joined"
+            Invoke-Expression $cmd -OutVariable out > $null
+            if ($out) {
+                Write-Verbose "Command produced output:`n $out"
+            }
         } else {
             throw "Failed to create the package. Application 'tar' cannot be found."
         }
@@ -286,7 +296,7 @@ function Expand-Package {
                 $options += "z"
             }
 
-            if ($PSBoundParameters.ContainsKey('Verbose') -and $PSBoundParameters['Verbose'].IsPresent) {
+            if (($PSBoundParameters.ContainsKey('Verbose') -and $PSBoundParameters['Verbose'].IsPresent) -or ($PSCmdlet.GetVariableValue('VerbosePreference'))) {
                 # Use the verbose mode '-v' if '-Verbose' is specified
                 $options += "v"
             }
@@ -294,7 +304,11 @@ function Expand-Package {
 
             try {
                 Push-Location -Path $OutputDir
-                tar $options $inputFile
+                $cmd = "tar $options $inputFile"
+                Invoke-Expression $cmd -OutVariable out > $null
+                if ($out) {
+                    Write-Verbose "Command produced output:`n $out"
+                }
             } finally {
                 Pop-Location
             }
