@@ -456,7 +456,7 @@ function Compress-SignedFiles {
 
     Write-Verbose "Compress-SignedFiles: '$OutputFileName', '$PackageType', $TarCompression."
 
-    if ($ReportDir -and (Test-Path -Path "$SourceDir/*.md")) {
+    if ((Get-Item "$SourceDir/*.md" | Measure-Object).Count -gt 0) {
         if (-not (Test-Path -Path $ReportDir)) {
             $item = New-Item $ReportDir -ItemType Directory
             Write-Verbose "Compress-SignedFiles: Output directory '$item' did not exist. It has been created."
@@ -464,15 +464,19 @@ function Compress-SignedFiles {
 
         Write-Verbose "Compress-SignedFiles: Moving signing report to $ReportDir"
         Move-Item -Path "$SourceDir/*.md" -Destination $ReportDir/
+    } else {
+        Write-Verbose "Pattern '$SourceDir/*.md' didn't match any files."
     }
 
     $parentDir = Split-Path -Path $SourceDir -Parent -Resolve
     $backupDir = Join-Path -Path $parentDir -ChildPath backup
 
-    if ($backupDir -and (Test-Path -Path "$backupDir/*")) {
+    if ((Test-Path $backupDir -PathType Container) -and ((Get-ChildItem $backupDir | Measure-Object).Count -gt 0)) {
         $files = [string]::Join("`n  ", $(Get-Item "$backupDir/*" | Select-Object -ExpandProperty Name))
-        Write-Verbose "Compress-SignedFiles: Moving the following files from $backupDir to archive staging location:\n  $files"
+        Write-Verbose "Compress-SignedFiles: Moving the following files from $backupDir to archive staging location:`n  $files"
         Move-Item -Path "$backupDir/*" -Destination "$SourceDir"
+    } else {
+        Write-Verbose "The backup dir '$backupDir' has no files."
     }
 
     Write-Verbose "Compress-SignedFiles: Compressing '$SourceDir/*'"
