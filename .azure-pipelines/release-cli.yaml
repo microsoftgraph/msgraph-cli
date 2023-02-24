@@ -35,6 +35,15 @@ variables:
       value: 'latest'
     ${{ else }}: # Version from the tag. Can be a branch name. Only mainline branches use latest
       value: '$(Build.SourceBranchName)'
+  - name: debugPreference
+    # ${{ if eq(variables['System.Debug'], 'True') }}:
+    value: continue
+  - name: verbosePreference
+    # ${{ if eq(variables['System.Debug'], 'True') }}:
+    value: continue
+  - name: informationPreference
+    # ${{ if eq(variables['System.Debug'], 'True') }}:
+    value: continue
 
 parameters:
   - name: forceSignOutput
@@ -126,27 +135,26 @@ stages:
               script: |
                 New-Item $(outputDir) -ItemType Directory -Force
                 New-Item $(outputDir)/mgc -ItemType File
-              ${{ if eq(variables['System.Debug'], 'True') }}:
-                verbosePreference: continue
-                debugPreference: continue
-                informationPreference: continue
+                Write-Warning '$(System.Debug)'
+                Write-Warning '$(verbosePreference)'
+                Write-Warning '${{ variables.verbosePreference }}'
 
             displayName: Simulate publish
 
           - task: PowerShell@2
             inputs:
+              pwsh: true
               targetType: inline
               script: |
-                Import-Module $(powershellScriptsDir)/BuildTools.psm1
+                . $(powershellScriptsDir)/BuildTools.ps1
                 $archive = Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -Source '$(outputDir)/*' -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType '$(packageType)' -TarCompression $(compressionProgram) -Cleanup
-                Write-Verbose "$archive" -Verbose
+                Write-Verbose "$archive"
                 $hasArchive = Test-Path $archive -PathType Leaf
                 Write-Verbose "$hasArchive"
                 Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArchive"
-              ${{ if eq(variables['System.Debug'], 'True') }}:
-                verbosePreference: continue
-                debugPreference: continue
-                informationPreference: continue
+              verbosePreference: $(verbosePreference)
+              debugPreference: $(debugPreference)
+              informationPreference: $(informationPreference)
             # Only create artifacts if we're building a tag, building main, or building a PR targeting main
             condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), eq('${{ parameters.forcePublishArtifacts }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
             displayName: Compress published output
@@ -289,6 +297,7 @@ stages:
 
           - task: PowerShell@2
             inputs:
+              pwsh: true
               targetType: inline
               script: |
                 Write-Verbose 'pattern = ''$(pattern)'''
@@ -307,10 +316,9 @@ stages:
                 Write-Host "##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize"
                 Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
                 Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
-              ${{ if eq(variables['System.Debug'], 'True') }}:
-                verbosePreference: continue
-                debugPreference: continue
-                informationPreference: continue
+              verbosePreference: $(verbosePreference)
+              debugPreference: $(debugPreference)
+              informationPreference: $(informationPreference)
             displayName: Setup variables
 
           - pwsh: git config --global core.longpaths true
@@ -326,22 +334,23 @@ stages:
 
           - task: PowerShell@2
             inputs:
+              pwsh: true
               targetType: inline
               script: |
-                Import-Module $(powershellScriptsDir)/BuildTools.psm1
+                . $(powershellScriptsDir)/BuildTools.ps1
                 $zipName = Get-PackageName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType "zip"
                 Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
-              ${{ if eq(variables['System.Debug'], 'True') }}:
-                verbosePreference: continue
-                debugPreference: continue
-                informationPreference: continue
+              verbosePreference: $(verbosePreference)
+              debugPreference: $(debugPreference)
+              informationPreference: $(informationPreference)
             displayName: Compute zip name
 
           - task: PowerShell@2
             inputs:
+              pwsh: true
               targetType: inline
               script: |
-                Import-Module $(powershellScriptsDir)/BuildTools.psm1
+                . $(powershellScriptsDir)/BuildTools.ps1
 
                 $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
                 $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
@@ -349,10 +358,9 @@ stages:
 
                 Move-NonExecutableItems -SourcePath $extractPath -ExecutableItemNames mgc,mgc.exe
                 Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$extractPath"
-              ${{ if eq(variables['System.Debug'], 'True') }}:
-                verbosePreference: continue
-                debugPreference: continue
-                informationPreference: continue
+              verbosePreference: $(verbosePreference)
+              debugPreference: $(debugPreference)
+              informationPreference: $(informationPreference)
             displayName: Extract zip
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
@@ -401,32 +409,32 @@ stages:
 
           - task: PowerShell@2
             inputs:
+              pwsh: true
               targetType: inline
               script: |
-                Import-Module $(powershellScriptsDir)/BuildTools.psm1
+                . $(powershellScriptsDir)/BuildTools.ps1
                 $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
                 Compress-SignedFiles -SourceDir '$(ARTIFACTS_PATH)' -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName $fileName -PackageType zip -Cleanup
                 Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
-              ${{ if eq(variables['System.Debug'], 'True') }}:
-                verbosePreference: continue
-                debugPreference: continue
-                informationPreference: continue
+              verbosePreference: $(verbosePreference)
+              debugPreference: $(debugPreference)
+              informationPreference: $(informationPreference)
             displayName: Compress signed files (Windows)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'win'))
 
           - task: PowerShell@2
             inputs:
+              pwsh: true
               targetType: inline
               script: |
-                Import-Module $(powershellScriptsDir)/BuildTools.psm1
+                . $(powershellScriptsDir)/BuildTools.ps1
                 $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
                 $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
                 Update-SignedArchive -InputFile $zipPath -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName "$fileName" -ExeNames mgc -Cleanup
                 Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
-              ${{ if eq(variables['System.Debug'], 'True') }}:
-                verbosePreference: continue
-                debugPreference: continue
-                informationPreference: continue
+              verbosePreference: $(verbosePreference)
+              debugPreference: $(debugPreference)
+              informationPreference: $(informationPreference)
             displayName: Update signed files (MacOS)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
 

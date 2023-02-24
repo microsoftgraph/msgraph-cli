@@ -8,6 +8,14 @@ Class PackageTypes : System.Management.Automation.IValidateSetValuesGenerator {
     }
 }
 
+# function Test-Verbose {
+#     param()
+#     Write-Warning "Global pref: $($global:VerbosePreference)"
+#     Write-Warning "Script pref: $($script:VerbosePreference)"
+#     Write-Warning "Effect pref: $VerbosePreference"
+#     Write-Verbose "Test-Verbose is Verbose"
+# }
+
 function Get-Version {
     [OutputType([string])]
     param(
@@ -20,6 +28,7 @@ function Get-Version {
     # Get the version
     $version = "$BranchOrTagName"
     $version = $version.TrimStart('refs/tags/v')
+    Write-Verbose $version
     # Return the version
     return $version
 }
@@ -35,6 +44,7 @@ function Get-FileName {
 
         [string] $RuntimeIdentifier = "unknown"
     )
+
     if ([string]::IsNullOrWhitespace($RuntimeIdentifier)) {
         $RuntimeIdentifier = "unknown"
     }
@@ -88,6 +98,7 @@ function Get-PackageName {
 }
 
 function Compress-Package {
+    [cmdletbinding()]
     [OutputType([string])]
     param(
         [ValidateNotNullOrEmpty()]
@@ -178,6 +189,7 @@ function Compress-Package {
 }
 
 function Expand-Package {
+    [cmdletbinding()]
     [OutputType([string])]
     param(
         [Parameter(Mandatory)]
@@ -312,6 +324,7 @@ function Compress-BuildOutput {
 
         [switch] $Cleanup
     )
+
     if (-Not (Test-Path -Path $OutputDir)) {
         New-Item $OutputDir -ItemType Directory
     }
@@ -323,8 +336,10 @@ function Compress-BuildOutput {
     Write-Verbose "Package $package created."
 
     if ($Cleanup) {
-        Write-Verbose "Cleaning up $Source"
-        Remove-Item $Source -Force
+        foreach ($path in $Source) {
+            Write-Verbose "Cleaning up $path"
+            Remove-Item $path -Force
+        }
     }
 
     return "$package"
@@ -445,6 +460,7 @@ function Compress-SignedFiles {
 }
 
 function Set-UnixPermissions {
+    [cmdletbinding()]
     param(
         [Parameter(Mandatory)]
         [ValidatePattern("^(?:[ugoa]?(?:[-+=],?(?:[rwxXst]*|[ugo]),?)+(?<!,)|[-+=]?[0-7]{1,4})$", ErrorMessage="{0} is not a valid chmod mode")]
