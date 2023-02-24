@@ -22,13 +22,14 @@ function Get-Version {
         [string] $BranchOrTagName = "latest"
     )
 
+    Write-Verbose "Getting version."
+
     if ([string]::IsNullOrWhitespace($BranchOrTagName)) {
         $BranchOrTagName = "unknown"
     }
     # Get the version
     $version = "$BranchOrTagName"
     $version = $version.TrimStart('refs/tags/v')
-    Write-Verbose $version
     # Return the version
     return $version
 }
@@ -44,6 +45,8 @@ function Get-FileName {
 
         [string] $RuntimeIdentifier = "unknown"
     )
+
+    Write-Verbose "Getting file name."
 
     if ([string]::IsNullOrWhitespace($RuntimeIdentifier)) {
         $RuntimeIdentifier = "unknown"
@@ -74,19 +77,17 @@ function Get-PackageName {
         [string] $TarCompression = "none"
     )
 
+    Write-Verbose "Getting package name."
     if ([string]::IsNullOrWhitespace($FileName) -and [string]::IsNullOrWhitespace($FileNameTemplate)) {
         throw "Either FileName or FileNameTemplate must be specified."
     }
 
-    $version = Get-Version $BranchOrTagName
-
     $ext = $PackageType
     if ($ext -eq "tar" -and (-not ($TarCompression -eq "none"))) {
-        if ($TarCompression -eq "gzip") {
-            $ext += ".gz"
-        }
-        if ($TarCompression -eq "gzip") {
+        if ($TarCompression -eq "bzip") {
             $ext += ".bz2"
+        } elseif ($TarCompression -eq "gzip") {
+            $ext += ".gz"
         }
     }
 
@@ -123,6 +124,8 @@ function Compress-Package {
         [string] $TarCompression = "none"
     )
 
+    Write-Verbose "Compressing package '$FileName', '$PackageType', $TarCompression."
+
     if (($PackageType -eq "zip") -and ($TarCompression -ne "none")) {
         Write-Warning "Tar compression only has an effect on the tar package type. The option will be ignored."
     }
@@ -143,6 +146,7 @@ function Compress-Package {
     $outputFile = Join-Path $OutputDir $outputFileName
 
     if (Test-Path $outputFile) {
+        Write-Verbose "Removing existing file $outputFile."
         Remove-Item $outputFile
     }
 
@@ -214,6 +218,8 @@ function Expand-Package {
         [string] $TarCompression = "none"
     )
 
+    Write-Verbose "Expanding archive"
+
     if (($PackageType -eq "zip") -and ($TarCompression -ne "none")) {
         Write-Warning "Tar compression only has an effect on the tar package type. The option will be ignored."
     }
@@ -256,14 +262,17 @@ function Expand-Package {
         Write-Warning "Multiple files found matching '$pattern'.`n  $([string]::Join("`n  ", $names))`nUsing the closest match '$closestMatch'."
         $inputFile = $closestMatch
     } else {
+        Write-Verbose "Archive file $candidates found."
         # Only 1 match
         $inputFile = $candidates
     }
 
     if ($PackageType -eq "zip") {
+        Write-Verbose "Expanding zip archive '$inputFile'"
         Expand-Archive -Path $inputFile -DestinationPath $OutputDir
     } elseif ($PackageType -eq "tar") {
         if (Get-Command -Name tar -CommandType Application -ErrorAction Ignore) {
+            Write-Verbose "Expanding tar archive '$inputFile'"
             $options = "-x"
             if ($TarCompression -eq "bzip") {
                 $options += "j"
@@ -288,7 +297,7 @@ function Expand-Package {
         }
     }
 
-    if ((Test-Path -Path $OutputFile -PathType Container) -and ((Get-ChildItem $OutputDir) | Measure-Object).Count -gt 0) {
+    if ((Test-Path -Path $OutputDir -PathType Container) -and ((Get-ChildItem $OutputDir) | Measure-Object).Count -gt 0) {
         Write-Verbose "Archive '$inputFile' extracted to $OutputDir"
         return $OutputDir
     } else {
@@ -325,8 +334,12 @@ function Compress-BuildOutput {
         [switch] $Cleanup
     )
 
-    if (-Not (Test-Path -Path $OutputDir)) {
-        New-Item $OutputDir -ItemType Directory
+    Write-Verbose "Compressing build output."
+
+    if (-not (Test-Path -Path $OutputDir)) {
+        # Suppress command output to avoid poisoning this function's result
+        $item = New-Item $OutputDir -ItemType Directory
+        Write-Verbose "$item does not exist. Creating it."
     }
 
     $archiveName = Get-FileName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier
@@ -370,7 +383,9 @@ function Expand-EsrpArtifacts {
         [switch] $Cleanup
     )
 
-    $archiveName = Get-PackageName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier -PackageType $PackageType -TarCompression $TarCompression
+    Write-Verbose "Expanding build artifact for ESRP"
+
+    $archiveName = Get-FileName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier -PackageType $PackageType -TarCompression $TarCompression
 
     Expand-Package -OutputDir $OutputDir -SourceDir $SourceDir -FileName $archiveName -PackageType $PackageType -TarCompression $TarCompression
 
@@ -393,11 +408,10 @@ function Move-NonExecutableItems {
     $parentDir = Split-Path -Path $SourcePath -Parent -Resolve
     $backupDir = Join-Path -Path $parentDir -ChildPath backup
 
-    if (-Not (Test-Path -Path $backupDir/*)) {
-        New-Item $backupDir -ItemType Directory
+    if (-not (Test-Path -Path $backupDir/*)) {
+        New-Item $backupDir -ItemType Directory > $null
     } else {
-        Write-Error "The directory $backupDir already exists and is not empty."
-        return
+        throw "The directory $backupDir already exists and is not empty."
     }
 
     Move-Item -Path $SourcePath/* -Exclude $ExecutableItemNames -Destination $backupDir
@@ -435,8 +449,8 @@ function Compress-SignedFiles {
     )
 
     if ($ReportDir -and (Test-Path -Path "$SourceDir/*.md")) {
-        if (-Not (Test-Path -Path $ReportDir)) {
-            New-Item $ReportDir -ItemType Directory
+        if (-not (Test-Path -Path $ReportDir)) {
+            New-Item $ReportDir -ItemType Directory > $null
         }
 
         Write-Verbose "Moving signing report to $ReportDir"
