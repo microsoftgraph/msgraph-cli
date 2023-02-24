@@ -74,6 +74,7 @@ stages:
     jobs:
       - job: test
         displayName: Run tests
+        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
         steps:
         - task: UseDotNet@2
           displayName: 'Use .NET 7'
@@ -88,7 +89,6 @@ stages:
         - task: DotNetCoreCLI@2
           displayName: Run tests
           enabled: true
-          condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
           inputs:
             command: test
             workingDirectory: $(Build.SourcesDirectory)
