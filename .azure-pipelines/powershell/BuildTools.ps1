@@ -513,6 +513,7 @@ function Set-UnixPermissions {
         [string] $Path
     )
 
+    Write-Verbose "Setting permissions."
     if (-not $IsLinux -and -not $IsMacOS) {
         throw "Unix permissions are only supported on Linux or MacOS."
     }
@@ -524,7 +525,9 @@ function Set-UnixPermissions {
             $options += "v"
         }
 
-        chmod $options $Mode $Path
+        $cmd = "chmod $options $Mode $Path"
+        Write-Verbose "Running '$cmd'"
+        Invoke-Expression $cmd | Write-Verbose
     } else {
         throw "Failed to set permissions. Application 'chmod' could not be found."
     }
@@ -558,13 +561,16 @@ function Update-SignedArchive {
 
     $extractOutput = Split-Path -Path $InputFile -Parent
 
+    Write-Verbose "Extracting '$InputFile' to '$extractOutput'"
+
     Expand-Archive -Path "$InputFile" -DestinationPath "$extractOutput"
 
     foreach ($exe in $ExeNames) {
         $executableFile = Join-Path $extractOutput $exe
-        Set-UnixPermissions "u+x" $exe
+        Set-UnixPermissions "u+x" $(Join-Path $extractOutput $exe)
     }
 
+    Write-Verbose "Extracted '$InputFile' removing it."
     Remove-Item -Path "$InputFile" -Force
 
     Compress-SignedFiles -SourceDir $extractOutput -ReportDir $ReportDir -OutputDir $OutputDir -OutputFileName $OutputFileName -PackageType "tar" -TarCompression "gzip" -Cleanup:$Cleanup
