@@ -10,8 +10,7 @@ Class PackageTypes : System.Management.Automation.IValidateSetValuesGenerator {
 
 function Get-Version {
     param(
-        [string]
-        $BranchOrTagName = "latest"
+        [string] $BranchOrTagName = "latest"
     )
 
     if ([string]::IsNullOrWhitespace($BranchOrTagName)) {
@@ -27,13 +26,12 @@ function Get-Version {
 function Get-FileName {
     param(
         [ValidateNotNullOrEmpty()]
-        [string]
-        $FileNameTemplate = "msgraph-cli-{0}-{1}",
+        [string] $FileNameTemplate = "msgraph-cli-{0}-{1}",
+        
         [ValidateNotNullOrEmpty()]
-        [string]
-        $BranchOrTagName = "latest",
-        [string]
-        $RuntimeIdentifier = "unknown"
+        [string] $BranchOrTagName = "latest",
+        
+        [string] $RuntimeIdentifier = "unknown"
     )
     if ([string]::IsNullOrWhitespace($RuntimeIdentifier)) {
         $RuntimeIdentifier = "unknown"
@@ -46,22 +44,21 @@ function Get-FileName {
 function Get-PackageName {
     param(
         [ValidateNotNullOrEmpty()]
-        [string]
-        $FileName,
+        [string] $FileName,
+
         [ValidateNotNullOrEmpty()]
-        [string]
-        $FileNameTemplate,
+        [string] $FileNameTemplate,
+
         [ValidateNotNullOrEmpty()]
-        [string]
-        $BranchOrTagName = "latest",
-        [string]
-        $RuntimeIdentifier = "unknown",
+        [string] $BranchOrTagName = "latest",
+
+        [string] $RuntimeIdentifier = "unknown",
+
         [ValidateSet([PackageTypes])]
-        [string]
-        $PackageType = "zip",
+        [string] $PackageType = "zip",
+
         [ValidateSet("none", "bzip", "gzip")]
-        [string]
-        $TarCompression = "none"
+        [string] $TarCompression = "none"
     )
 
     if ([string]::IsNullOrWhitespace($FileName) -and [string]::IsNullOrWhitespace($FileNameTemplate)) {
@@ -91,25 +88,24 @@ function Compress-Package {
     param(
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path $_ -IsValid})]
-        [string]
-        $OutputDir = ".",
+        [string] $OutputDir = ".",
+
         [Parameter(Mandatory)]
         [ValidateScript({
             (Resolve-Path -Path $_ | Measure-Object).Count -gt 0
         }, ErrorMessage="The path '{0}' is invalid. Ensure it's a directory, a comma-separated list or a wildcard that resolves to a list of files.")]
-        [string[]]
-        $Source,
+        [string[]] $Source,
+
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path $_ -IsValid})]
-        [string]
-        $FileName,
+        [string] $FileName,
+
         [ValidateSet([PackageTypes])]
-        [string]
-        $PackageType = "zip",
+        [string] $PackageType = "zip",
+
         [ValidateSet("none", "bzip", "gzip")]
-        [string]
-        $TarCompression = "none"
+        [string] $TarCompression = "none"
     )
 
     if (($PackageType -eq "zip") -and ($TarCompression -ne "none")) {
@@ -182,24 +178,23 @@ function Expand-Package {
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path $_ -IsValid})]
-        [string]
-        $OutputDir,
+        [string] $OutputDir,
+
         [ValidateScript({
             Test-Path -Path $_ -PathType Container
         }, ErrorMessage="The work dir '{0}' is invalid. Check that it exists and is a directory.")]
-        [string]
-        $SourceDir,
+        [string] $SourceDir,
+
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path $_ -IsValid})]
-        [string]
-        $FileName,
+        [string] $FileName,
+
         [ValidateSet([PackageTypes])]
-        [string]
-        $PackageType = "zip",
+        [string] $PackageType = "zip",
+
         [ValidateSet("none", "bzip", "gzip")]
-        [string]
-        $TarCompression = "none",
+        [string] $TarCompression = "none"
     )
 
     if (($PackageType -eq "zip") -and ($TarCompression -ne "none")) {
@@ -289,28 +284,27 @@ function Compress-BuildOutput {
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path $_ -IsValid})]
-        [string]
-        $OutputDir,
+        [string] $OutputDir,
+
         [Parameter(Mandatory)]
         [ValidateScript({
             (Resolve-Path -Path $_ | Measure-Object).Count -gt 0
         }, ErrorMessage="The path '{0}' is invalid.")]
-        [string[]]
-        $Source,
-        [string]
-        $FileNameTemplate = "msgraph-cli-{0}-{1}",
-        [string]
-        $BranchOrTagName = "latest",
-        [string]
-        $RuntimeIdentifier = "unknown",
+        [string[]] $Source,
+
+        [string] $FileNameTemplate = "msgraph-cli-{0}-{1}",
+
+        [string] $BranchOrTagName = "latest",
+
+        [string] $RuntimeIdentifier = "unknown",
+
         [ValidateSet([PackageTypes])]
-        [string]
-        $PackageType = "zip",
+        [string] $PackageType = "zip",
+
         [ValidateSet("none", "bzip", "gzip")]
-        [string]
-        $TarCompression = "none",
-        [switch]
-        $Cleanup
+        [string] $TarCompression = "none",
+
+        [switch] $Cleanup
     )
     if (-Not (Test-Path -Path $OutputDir)) {
         New-Item $OutputDir -ItemType Directory
@@ -335,24 +329,23 @@ function Expand-EsrpArtifacts {
         [ValidateScript({
             Test-Path $_ -PathType Container
         }, ErrorMessage="Source dir '{0}' is not a valid directory")]
-        [string]
-        $SourceDir,
-        [string]
-        $OutputDir,
-        [string]
-        $FileNameTemplate = "msgraph-cli-{0}-{1}",
-        [string]
-        $BranchOrTagName = "latest",
-        [string]
-        $RuntimeIdentifier = "unknown",
+        [string] $SourceDir,
+
+        [string] $OutputDir,
+
+        [string] $FileNameTemplate = "msgraph-cli-{0}-{1}",
+
+        [string] $BranchOrTagName = "latest",
+
+        [string] $RuntimeIdentifier = "unknown",
+
         [ValidateSet([PackageTypes])]
-        [string]
-        $PackageType = "zip",
+        [string] $PackageType = "zip",
+
         [ValidateSet("none", "bzip", "gzip")]
-        [string]
-        $TarCompression = "none",
-        [switch]
-        $Cleanup
+        [string] $TarCompression = "none",
+
+        [switch] $Cleanup
     )
 
     $archiveName = Get-PackageName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier -PackageType $PackageType -TarCompression $TarCompression
@@ -370,10 +363,9 @@ function Expand-EsrpArtifacts {
 function Move-NonExecutableItems {
     param(
         [Parameter(Mandatory)]
-        [string]
-        $SourcePath,
-        [string[]]
-        $ExecutableItemNames
+        [string] $SourcePath,
+
+        [string[]] $ExecutableItemNames
     )
 
     $parentDir = Split-Path -Path $SourcePath -Parent -Resolve
@@ -395,29 +387,29 @@ function Compress-SignedFiles {
         [ValidateScript({
             ((Test-Path $_ -PathType Container) -and ((Get-ChildItem $_ | Measure-Object).Count -gt 0))
         }, ErrorMessage="Source dir '{0}' is invalid. Check that it is a non-empty directory.")]
-        [string]
-        $SourceDir,
+        [string] $SourceDir,
+
         [ValidateScript({Test-Path $_ -IsValid})]
-        [string]
-        $ReportDir,
+        [string] $ReportDir,
+
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path $_ -IsValid})]
-        [string]
-        $OutputDir,
+        [string] $OutputDir,
+
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path $_ -IsValid})]
-        [string]
-        $OutputFileName,
+        [string] $OutputFileName,
+
         [ValidateSet([PackageTypes])]
-        [string]
-        $PackageType = "zip",
+        [string] $PackageType = "zip",
+
         [ValidateSet("none", "bzip", "gzip")]
-        [string]
-        $TarCompression = "none"
-        [switch]
-        $Cleanup
+        [string] $TarCompression = "none",
+
+        [switch] $Cleanup
+
     )
 
     if ($ReportDir -and (Test-Path -Path "$SourceDir/*.md")) {
@@ -449,12 +441,11 @@ function Set-UnixPermissions {
     param(
         [Parameter(Mandatory)]
         [ValidatePattern("^(?:[ugoa]?(?:[-+=],?(?:[rwxXst]*|[ugo]),?)+(?<!,)|[-+=]?[0-7]{1,4})$", ErrorMessage="{0} is not a valid chmod mode")]
-        [string]
-        $Mode,
+        [string] $Mode,
+
         [Parameter(Mandatory)]
         [ValidateScript({Test-Path $_})]
-        [string]
-        $Path
+        [string] $Path
     )
 
     if (-not $IsLinux -and -not $IsMacOS) {
@@ -480,25 +471,24 @@ function Update-SignedArchive {
         [ValidateScript({
             Test-Path $_
         }, ErrorMessage="The input archive {0} does not exist.")]
-        [string]
-        $InputFile,
+        [string] $InputFile,
+
         [Parameter(Mandatory)]
-        [string]
-        $ReportDir,
-        [Parameter(Mandatory)]
-        [ValidateNotNullOrEmpty()]
-        [ValidateScript({Test-Path $_ -IsValid})]
-        [string]
-        $OutputDir,
+        [string] $ReportDir,
+
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path $_ -IsValid})]
-        [string]
-        $OutputFileName,
-        [string[]]
-        $ExeNames,
-        [switch]
-        $Cleanup
+        [string] $OutputDir,
+
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path $_ -IsValid})]
+        [string] $OutputFileName,
+
+        [string[]] $ExeNames,
+
+        [switch] $Cleanup
     )
 
     $extractOutput = Split-Path -Path $InputFile -Parent

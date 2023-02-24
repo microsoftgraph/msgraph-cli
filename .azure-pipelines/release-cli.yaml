@@ -45,6 +45,10 @@ parameters:
     displayName: Notarize Build Output
     type: boolean
     default: true
+  - name: forcePublishArtifacts
+    displayName: Always Publish Build Output
+    type: boolean
+    default: false
 
 # test ----------> | build ->   |            |
 #                  |            | sign       |
@@ -123,11 +127,11 @@ stages:
 
           - pwsh: |
               Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              $archive = Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -Source '$(outputDir)/*' -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType '$(packageType)' -TarCompression $(compressionProgram)  -Cleanup
+              $archive = Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -Source '$(outputDir)/*' -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType '$(packageType)' -TarCompression $(compressionProgram) -Cleanup
               $hasArchive = Test-Path $archive -PathType Leaf
               Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArchive"
             # Only create artifacts if we're building a tag, building main, or building a PR targeting main
-            condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
+            condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), eq('${{ parameters.forcePublishArtifacts }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
