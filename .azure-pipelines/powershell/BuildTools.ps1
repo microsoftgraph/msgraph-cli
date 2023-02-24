@@ -556,12 +556,13 @@ function Update-SignedArchive {
 
     Expand-Archive -Path "$InputFile" -DestinationPath "$extractOutput"
 
+    Write-Verbose "Update-SignedArchive: Extracted '$InputFile' removing it."
+
     foreach ($exe in $ExeNames) {
         $executableFile = Join-Path $extractOutput $exe
         Set-UnixPermissions "u+x" $(Join-Path $extractOutput $exe)
     }
 
-    Write-Verbose "Update-SignedArchive: Extracted '$InputFile' removing it."
     Remove-Item -Path "$InputFile" -Force
 
     Compress-SignedFiles -SourceDir $extractOutput -ReportDir $ReportDir -OutputDir $OutputDir -OutputFileName $OutputFileName -PackageType "tar" -TarCompression "gzip" -Cleanup:$Cleanup

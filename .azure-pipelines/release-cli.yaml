@@ -145,7 +145,6 @@ stages:
                 New-Item $(outputDir) -ItemType Directory -Force
                 echo "Test file" > $(outputDir)/mgc
                 echo "Test file2" > $(outputDir)/mgc.txt
-                echo "Test file2" > $(outputDir)/mgc.md
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
@@ -418,6 +417,36 @@ stages:
               inlineOperation: $(inlineNotarizeOperation)
               SessionTimeout: 20
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True')))
+
+          - task: PowerShell@2
+            displayName: Simulate ESRP
+            inputs:
+              pwsh: true
+              targetType: inline
+              script: |
+                Write-Verbose "Signing..."
+                . $(powershellScriptsDir)/BuildTools.ps1
+
+                if ($IsMacOS) {
+                  $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
+                  Write-Verbose "Expanding $zipPath"
+                  $output = Split-Path -Path $zipPath -Parent
+                  $output = Join-Path $output "out"
+                  $output = New-Item $output -ItemType Directory -Force
+                  Expand-Archive -Path "$zipPath" -DestinationPath "$output"
+                  Remove-Item $zipPath
+                }
+                echo "Success" > $(ARTIFACTS_PATH)/Sign-Summary.md
+                if ($IsMacOS) {
+                  Write-Verbose "Compressing updated source"
+                  Compress-Archive -Path "$output/*" -DestinationPath $zipPath -Force
+                  Remove-Item $output -Recurse -Force
+                }
+
+              verbosePreference: '$(OUTPUT_PREFERENCE)'
+              debugPreference: '$(OUTPUT_PREFERENCE)'
+              informationPreference: '$(OUTPUT_PREFERENCE)'
+            condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'))
 
           - task: PowerShell@2
             inputs:
