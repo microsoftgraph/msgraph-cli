@@ -218,7 +218,7 @@ function Expand-Package {
         [string] $TarCompression = "none"
     )
 
-    Write-Verbose "Expanding archive"
+    Write-Verbose "Expanding package '$FileName', '$PackageType', $TarCompression."
 
     if (($PackageType -eq "zip") -and ($TarCompression -ne "none")) {
         Write-Warning "Tar compression only has an effect on the tar package type. The option will be ignored."
@@ -272,6 +272,12 @@ function Expand-Package {
         Expand-Archive -Path $inputFile -DestinationPath $OutputDir
     } elseif ($PackageType -eq "tar") {
         if (Get-Command -Name tar -CommandType Application -ErrorAction Ignore) {
+            if (-not (Test-Path -Path $OutputDir)) {
+                # Suppress command output to avoid poisoning this function's result
+                $item = New-Item $OutputDir -ItemType Directory
+                Write-Verbose "Output directory '$item' did not exist. It has been created."
+            }
+
             Write-Verbose "Expanding tar archive '$inputFile'"
             $options = "-x"
             if ($TarCompression -eq "bzip") {
@@ -334,18 +340,18 @@ function Compress-BuildOutput {
         [switch] $Cleanup
     )
 
-    Write-Verbose "Compressing build output."
+    Write-Verbose "Compressing build output. '$FileName', '$PackageType', $TarCompression."
 
     if (-not (Test-Path -Path $OutputDir)) {
         # Suppress command output to avoid poisoning this function's result
         $item = New-Item $OutputDir -ItemType Directory
-        Write-Verbose "$item does not exist. Creating it."
+        Write-Verbose "Output directory '$item' did not exist. It has been created."
     }
 
     $archiveName = Get-FileName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier
     $archivePath = Join-Path -Path $OutputDir -ChildPath $archiveName
 
-    $package = Compress-Package -OutputDir $OutputDir -Source $Source -FileName $archiveName -PackageType $PackageType
+    $package = Compress-Package -OutputDir $OutputDir -Source $Source -FileName $archiveName -PackageType $PackageType -TarCompression $TarCompression
     Write-Verbose "Package $package created."
 
     if ($Cleanup) {
@@ -383,9 +389,9 @@ function Expand-EsrpArtifacts {
         [switch] $Cleanup
     )
 
-    Write-Verbose "Expanding build artifact for ESRP"
+    Write-Verbose "Expanding build artifact for ESRP."
 
-    $archiveName = Get-FileName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier -PackageType $PackageType -TarCompression $TarCompression
+    $archiveName = Get-FileName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier
 
     Expand-Package -OutputDir $OutputDir -SourceDir $SourceDir -FileName $archiveName -PackageType $PackageType -TarCompression $TarCompression
 
@@ -418,6 +424,7 @@ function Move-NonExecutableItems {
 }
 
 function Compress-SignedFiles {
+    [OutputType([string])]
     param(
         [Parameter(Mandatory)]
         [ValidateScript({
@@ -445,12 +452,14 @@ function Compress-SignedFiles {
         [string] $TarCompression = "none",
 
         [switch] $Cleanup
-
     )
+
+    Write-Verbose "Compressing signed files '$OutputFileName', '$PackageType', $TarCompression."
 
     if ($ReportDir -and (Test-Path -Path "$SourceDir/*.md")) {
         if (-not (Test-Path -Path $ReportDir)) {
-            New-Item $ReportDir -ItemType Directory > $null
+            $item = New-Item $ReportDir -ItemType Directory
+            Write-Verbose "Output directory '$item' did not exist. It has been created."
         }
 
         Write-Verbose "Moving signing report to $ReportDir"
@@ -466,11 +475,16 @@ function Compress-SignedFiles {
         Move-Item -Path "$backupDir/*" -Destination "$SourceDir"
     }
 
+    $package = Compress-Package -OutputDir $OutputDir -Source $SourceDir -FileName $OutputFileName -PackageType $PackageType -TarCompression $TarCompression
+    Write-Verbose "Package $package created."
+
     if ($Cleanup) {
         Write-Verbose "Cleaning up $SourceDir and $backupDir"
         Remove-Item "$SourceDir" -Recurse -Force
         Remove-Item "$backupDir" -Recurse -Force
     }
+
+    return "$package"
 }
 
 function Set-UnixPermissions {
