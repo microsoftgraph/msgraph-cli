@@ -1,0 +1,8 @@
+steps:
+    - pwsh: |
+        $preference = 'default'
+        if ('$(System.Debug)' -eq 'True') {
+            $preference = 'continue'
+        }
+        Write-Host "##vso[task.setvariable variable=OUTPUT_PREFERENCE]$preference"
+      displayName: Set preference

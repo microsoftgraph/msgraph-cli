@@ -18,8 +18,8 @@ pool:
 variables:
   - name: repositoryConnection
     value: 'GitHub - calebkiage'
-  - name: zipTemplate
-    value: msgraph-cli-{0}-{1}.zip
+  - name: fileNameTemplate
+    value: msgraph-cli-{0}-{1}
   - name: buildConfiguration
     value: 'Release'
   - name: outputDir
@@ -35,7 +35,20 @@ variables:
       value: 'latest'
     ${{ else }}: # Version from the tag. Can be a branch name. Only mainline branches use latest
       value: '$(Build.SourceBranchName)'
-  - group: ESRP
+
+parameters:
+  - name: forceSignOutput
+    displayName: Force Signing Build Output
+    type: boolean
+    default: false
+  - name: notarizeAfterSign
+    displayName: Notarize Build Output
+    type: boolean
+    default: true
+  - name: simulate
+    displayName: Simulate operations (faster)
+    type: boolean
+    default: false
 
 # test ----------> | build ->   |            |
 #                  |            | sign       |
@@ -49,6 +62,7 @@ stages:
     jobs:
       - job: test
         displayName: Run tests
+        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
         steps:
         - task: UseDotNet@2
           displayName: 'Use .NET 7'
@@ -78,33 +92,67 @@ stages:
           matrix:
             'Windows-x64':
               rid: win-x64
+              packageType: "zip"
+              compressionProgram: "none"
             'Linux-x64':
               rid: linux-x64
+              packageType: "tar"
+              compressionProgram: "gzip"
             'MacOS-x64':
               rid: osx-x64
+              packageType: "tar"
+              compressionProgram: "gzip"
             'MacOS-ARM':
               rid: osx-arm64
+              packageType: "tar"
+              compressionProgram: "gzip"
           # maxParallel: 2
         steps:
           - task: UseDotNet@2
             displayName: 'Use .NET 7'
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
             inputs:
               version: 7.x
 
-          - template: templates/nuget-packages.yaml
-            parameters:
-              vstsFeedName: ${{variables.internalFeed}}
+          - ${{ if ne(parameters.simulate, 'true') }}:
+            - template: templates/nuget-packages.yaml
+              parameters:
+                vstsFeedName: ${{variables.internalFeed}}
 
           - pwsh: dotnet publish ./src/msgraph-cli.csproj --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
             workingDirectory: $(Build.SourcesDirectory)
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
             displayName: DotNet publish
 
-          - pwsh: |
-              Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -SourceDir '$(outputDir)' -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
-              Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]True"
+          - template: templates/setup-powershell-environment.yml
+
+          - task: PowerShell@2
+            inputs:
+              targetType: inline
+              script: |
+                New-Item $(outputDir) -ItemType Directory -Force
+                echo "Test file" > $(outputDir)/mgc
+                echo "Test file2" > $(outputDir)/mgc.txt
+              verbosePreference: '$(OUTPUT_PREFERENCE)'
+              debugPreference: '$(OUTPUT_PREFERENCE)'
+              informationPreference: '$(OUTPUT_PREFERENCE)'
+            condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'))
+            displayName: Simulate publish
+
+          - task: PowerShell@2
+            inputs:
+              pwsh: true
+              targetType: inline
+              script: |
+                . $(powershellScriptsDir)/BuildTools.ps1
+                $archive = Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -Source '$(outputDir)/*' -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType '$(packageType)' -TarCompression $(compressionProgram) -Cleanup
+                $hasArchive = Test-Path $archive -PathType Leaf
+                Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArchive"
+              verbosePreference: '$(OUTPUT_PREFERENCE)'
+              debugPreference: '$(OUTPUT_PREFERENCE)'
+              informationPreference: '$(OUTPUT_PREFERENCE)'
             # Only create artifacts if we're building a tag, building main, or building a PR targeting main
-            condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
+            condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
@@ -122,6 +170,7 @@ stages:
     jobs:
       - job: checkFormat
         displayName: Check formatting
+        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
         steps:
         - task: UseDotNet@2
           displayName: 'Use .NET 7'
@@ -145,6 +194,7 @@ stages:
     jobs:
       - job: scan
         displayName: Scanning source
+        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
         steps:
           - template: templates/compliance-checks.yaml
             parameters:
@@ -156,7 +206,7 @@ stages:
       vmImage: windows-latest
     dependsOn: [build]
     # Only sign binaries if we're building a tag.
-    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
+    condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v')))
     jobs:
       - job: esrpSign
         dependsOn: []
@@ -190,6 +240,8 @@ stages:
             'Windows-x64':
               rid: win-x64
               vmImage: windows-latest
+              packageType: "zip"
+              compressionProgram: "none"
               sign: true
               pattern: |
                 **\*.exe
@@ -221,33 +273,51 @@ stages:
             'MacOS-x64':
               rid: osx-x64
               vmImage: macOS-11
+              packageType: "tar"
+              compressionProgram: "gzip"
               sign: true
+              notarize: ${{ parameters.notarizeAfterSign }}
               inlineSignOperation: ${{ variables.macSignOp }}
               inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
             'MacOS-ARM':
               rid: osx-arm64
               vmImage: macOS-12
+              packageType: "tar"
+              compressionProgram: "gzip"
               sign: true
+              notarize: ${{ parameters.notarizeAfterSign }}
               inlineSignOperation: ${{ variables.macSignOp }}
               inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
         displayName: ESRP Signing
         pool:
           vmImage: $(vmImage)
         steps:
-          - pwsh: |
-              Write-Verbose -Verbose 'pattern = ''$(pattern)'''
-              Write-Verbose -Verbose 'zipTemplate = ''$(zipTemplate)'''
-              Write-Verbose -Verbose 'artifactsDownloadLocation = ''$(artifactsDownloadLocation)'''
-              Write-Verbose -Verbose 'sign = ''$(sign)'''
-              Write-Verbose -Verbose 'inlineSignOperation = ''$(inlineSignOperation)'''
-              Write-Verbose -Verbose 'inlineNotarizeOperation = ''$(inlineNotarizeOperation)'''
-              $rid = '$(rid)'
-              $shouldSign = '$(sign)'
-              $notarizeOp = '$(inlineNotarizeOperation)'
-              Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
-              Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
-              Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
-              Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
+          - template: templates/setup-powershell-environment.yml
+
+          - task: PowerShell@2
+            inputs:
+              pwsh: true
+              targetType: inline
+              script: |
+                Write-Verbose 'pattern = ''$(pattern)'''
+                Write-Verbose 'fileNameTemplate = ''$(fileNameTemplate)'''
+                Write-Verbose 'artifactsDownloadLocation = ''$(artifactsDownloadLocation)'''
+                Write-Verbose 'sign = ''$(sign)'''
+                Write-Verbose 'notarize = ''$(notarize)'''
+                Write-Verbose 'inlineSignOperation = ''$(inlineSignOperation)'''
+                Write-Verbose 'inlineNotarizeOperation = ''$(inlineNotarizeOperation)'''
+                $rid = '$(rid)'
+                $shouldSign = '$(sign)'
+                $shouldNotarize = '$(notarize)'
+                $notarizeOp = '$(inlineNotarizeOperation)'
+                Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
+                Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
+                Write-Host "##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize"
+                Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
+                Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
+              verbosePreference: '$(OUTPUT_PREFERENCE)'
+              debugPreference: '$(OUTPUT_PREFERENCE)'
+              informationPreference: '$(OUTPUT_PREFERENCE)'
             displayName: Setup variables
 
           - pwsh: git config --global core.longpaths true
@@ -261,22 +331,36 @@ stages:
               path: $(WORKING_DIR)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
-          - pwsh: |
-              Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              $zipName = Get-ZipName -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
-              Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
+          - task: PowerShell@2
+            inputs:
+              pwsh: true
+              targetType: inline
+              script: |
+                . $(powershellScriptsDir)/BuildTools.ps1
+                $zipName = Get-PackageName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType "zip"
+                Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
+              verbosePreference: '$(OUTPUT_PREFERENCE)'
+              debugPreference: '$(OUTPUT_PREFERENCE)'
+              informationPreference: '$(OUTPUT_PREFERENCE)'
             displayName: Compute zip name
 
-          - pwsh: |
-              Import-Module $(powershellScriptsDir)/BuildTools.psm1
+          - task: PowerShell@2
+            inputs:
+              pwsh: true
+              targetType: inline
+              script: |
+                . $(powershellScriptsDir)/BuildTools.ps1
 
-              $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
-              $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
-              Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(zipTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -Cleanup
+                $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
+                $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
+                Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType $(packageType) -TarCompression $(compressionProgram) -Cleanup
 
-              Move-NonExecutableItems -SourcePath $extractPath -ExecutableItemNames mgc,mgc.exe
-              Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$extractPath"
-            displayName: Extract zip
+                Move-NonExecutableItems -SourcePath $extractPath -ExecutableItemNames mgc,mgc.exe
+                Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$extractPath"
+              verbosePreference: '$(OUTPUT_PREFERENCE)'
+              debugPreference: '$(OUTPUT_PREFERENCE)'
+              informationPreference: '$(OUTPUT_PREFERENCE)'
+            displayName: Extract archive
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
           - template: templates/prepare-unsigned-executable-darwin.yaml
@@ -307,7 +391,7 @@ stages:
               Pattern: $(ESRP_FILE_PATTERN)
               inlineOperation: $(inlineSignOperation)
               SessionTimeout: 20
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'))
 
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning (Notarize)'
@@ -320,20 +404,64 @@ stages:
               Pattern: $(ESRP_FILE_PATTERN)
               inlineOperation: $(inlineNotarizeOperation)
               SessionTimeout: 20
-            condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), eq(variables['SHOULD_SIGN'], 'True'))
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True')))
 
-          - pwsh: |
-              Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              Compress-SignedFiles -SourceDir '$(ARTIFACTS_PATH)' -ReportDir '$(WORKING_DIR)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
+          - task: PowerShell@2
+            displayName: Simulate ESRP
+            inputs:
+              pwsh: true
+              targetType: inline
+              script: |
+                Write-Verbose "Signing..."
+                . $(powershellScriptsDir)/BuildTools.ps1
+
+                if ($IsMacOS) {
+                  $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
+                  Write-Verbose "Expanding $zipPath"
+                  $output = Split-Path -Path $zipPath -Parent
+                  $output = Join-Path $output "out"
+                  $output = New-Item $output -ItemType Directory -Force
+                  Expand-Archive -Path "$zipPath" -DestinationPath "$output"
+                  Remove-Item $zipPath
+                }
+                echo "Success" > $(ARTIFACTS_PATH)/Sign-Summary.md
+                if ($IsMacOS) {
+                  Write-Verbose "Compressing updated source"
+                  Compress-Archive -Path "$output/*" -DestinationPath $zipPath -Force
+                  Remove-Item $output -Recurse -Force
+                }
+
+              verbosePreference: '$(OUTPUT_PREFERENCE)'
+              debugPreference: '$(OUTPUT_PREFERENCE)'
+              informationPreference: '$(OUTPUT_PREFERENCE)'
+            condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'))
+
+          - task: PowerShell@2
+            inputs:
+              pwsh: true
+              targetType: inline
+              script: |
+                . $(powershellScriptsDir)/BuildTools.ps1
+                $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
+                Compress-SignedFiles -SourceDir '$(ARTIFACTS_PATH)' -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName $fileName -PackageType zip -Cleanup
+              verbosePreference: '$(OUTPUT_PREFERENCE)'
+              debugPreference: '$(OUTPUT_PREFERENCE)'
+              informationPreference: '$(OUTPUT_PREFERENCE)'
             displayName: Compress signed files (Windows)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'win'))
 
-          - pwsh: |
-              Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
-              Update-SignedArchive -InputFile $zipPath -ReportDir '$(WORKING_DIR)' -OutputFile '$(WORKING_DIR)/$(ZIP_NAME)' -Cleanup
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
+          - task: PowerShell@2
+            inputs:
+              pwsh: true
+              targetType: inline
+              script: |
+                . $(powershellScriptsDir)/BuildTools.ps1
+                $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
+                $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
+                Update-SignedArchive -InputFile $zipPath -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName "$fileName" -ExeNames mgc -Cleanup
+              verbosePreference: '$(OUTPUT_PREFERENCE)'
+              debugPreference: '$(OUTPUT_PREFERENCE)'
+              informationPreference: '$(OUTPUT_PREFERENCE)'
             displayName: Update signed files (MacOS)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
 
@@ -353,6 +481,7 @@ stages:
     jobs:
       - job: scan
         displayName: Scanning binaries
+        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
         steps:
           - template: templates/compliance-checks.yaml
             parameters:
@@ -362,10 +491,7 @@ stages:
   - stage: upload
     dependsOn: [binaryScan, sign]
     # Only upload release if we're building a tag.
-    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
-    variables:
-      currentTag: '$(branchOrTagName)'
-      isPreRelease: $[ contains(variables.currentTag, 'preview') ]
+    condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
     jobs:
       - job: upload
         displayName: Upload binaries
@@ -374,6 +500,9 @@ stages:
           - task: DownloadPipelineArtifact@2
             inputs:
               path: $(artifactsDownloadLocation)
+          - pwsh: |
+              $isPreview = '$(branchOrTagName)'.Contains("preview")
+              Write-Host "##vso[task.setvariable variable=IS_PREVIEW]$isPreview"
           - task: GithubRelease@1
             displayName: 'Create GitHub Draft Release'
             inputs:
@@ -387,4 +516,4 @@ stages:
               assets: |
                 $(artifactsDownloadLocation)/build-output-linux-*/*.zip
                 $(artifactsDownloadLocation)/sign-output-*/*.zip
-              isPreRelease: $(isPreRelease)
+              isPreRelease: $(IS_PREVIEW)

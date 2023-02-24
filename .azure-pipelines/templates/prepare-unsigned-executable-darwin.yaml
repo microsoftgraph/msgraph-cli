@@ -25,13 +25,20 @@ steps:
       Write-Host "##vso[task.setvariable variable=EXECUTABLE_NAME]${{ parameters.executableName }}"
       Write-Host "##vso[task.setvariable variable=ZIP_NAME]${{ parameters.zipName }}"
     displayName: Resolve parameters
-  - pwsh: |
-      Get-ChildItem -Path '$(EXECUTABLE_PATH)/' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
-      if (-Not (Test-Path -Path '$(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)')) {
-        echo "##vso[task.logissue type=error;]The directory \"$(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)\" does not exist"
-        echo "##vso[task.complete result=Failed;]"
-      }
-    displayName: Validate executablePath location
+  - task: PowerShell@2
+    inputs:
+      pwsh: true
+      targetType: inline
+      script: |
+        Get-ChildItem -Path '$(EXECUTABLE_PATH)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName | Write-Verbose
+        if (-not (Test-Path -Path '$(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)')) {
+          throw "The executable file '$(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)' does not exist."
+          echo "##vso[task.complete result=Failed;]"
+        }
+      verbosePreference: '$(OUTPUT_PREFERENCE)'
+      debugPreference: '$(OUTPUT_PREFERENCE)'
+      informationPreference: '$(OUTPUT_PREFERENCE)'
+    displayName: Validate executable path location
     condition: and(succeeded(), startsWith(variables['TARGET_RUNTIME'], 'osx'))
 
   - task: AzureKeyVault@2
@@ -52,7 +59,6 @@ steps:
       security import $(agent.tempdirectory)/cert.p12 -k $(agent.tempdirectory)/buildagent.keychain -P "$(graph-cli-apple-developer-certificate-password)" -T /usr/bin/codesign
       security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k pwd $(agent.tempdirectory)/buildagent.keychain
       codesign -s $(CERTIFICATE_NAME) --deep --force --options runtime --entitlements .azure-pipelines/darwin/entitlements.plist $(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)
-      chmod u+x $(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)
     displayName: Set Hardened Entitlements
     condition: and(succeeded(), startsWith(variables['TARGET_RUNTIME'], 'osx'))
 
