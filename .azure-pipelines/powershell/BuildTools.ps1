@@ -8,21 +8,13 @@ Class PackageTypes : System.Management.Automation.IValidateSetValuesGenerator {
     }
 }
 
-# function Test-Verbose {
-#     param()
-#     Write-Warning "Global pref: $($global:VerbosePreference)"
-#     Write-Warning "Script pref: $($script:VerbosePreference)"
-#     Write-Warning "Effect pref: $VerbosePreference"
-#     Write-Verbose "Test-Verbose is Verbose"
-# }
-
 function Get-Version {
     [OutputType([string])]
     param(
         [string] $BranchOrTagName = "latest"
     )
 
-    Write-Verbose "Getting version."
+    Write-Verbose "Get-Version: Getting version."
 
     if ([string]::IsNullOrWhitespace($BranchOrTagName)) {
         $BranchOrTagName = "unknown"
@@ -46,7 +38,7 @@ function Get-FileName {
         [string] $RuntimeIdentifier = "unknown"
     )
 
-    Write-Verbose "Getting file name."
+    Write-Verbose "Get-FileName: Getting file name."
 
     if ([string]::IsNullOrWhitespace($RuntimeIdentifier)) {
         $RuntimeIdentifier = "unknown"
@@ -77,7 +69,7 @@ function Get-PackageName {
         [string] $TarCompression = "none"
     )
 
-    Write-Verbose "Getting package name."
+    Write-Verbose "Get-PackageName: Getting package name."
     if ([string]::IsNullOrWhitespace($FileName) -and [string]::IsNullOrWhitespace($FileNameTemplate)) {
         throw "Either FileName or FileNameTemplate must be specified."
     }
@@ -124,14 +116,14 @@ function Compress-Package {
         [string] $TarCompression = "none"
     )
 
-    Write-Verbose "Compressing package '$FileName', '$PackageType', $TarCompression."
+    Write-Verbose "Compress-Package: Compressing package '$FileName', '$PackageType', $TarCompression."
 
     if (($PackageType -eq "zip") -and ($TarCompression -ne "none")) {
-        Write-Warning "Tar compression only has an effect on the tar package type. The option will be ignored."
+        Write-Warning "Compress-Package: Tar compression only has an effect on the tar package type. The option will be ignored."
     }
 
     $OutputDir = Resolve-Path $OutputDir
-    Write-Verbose "Using the dir '$OutputDir'."
+    Write-Verbose "Compress-Package: Using the dir '$OutputDir'."
 
     $ext = $PackageType
     if ($ext -eq "tar" -and (-not ($TarCompression -eq "none"))) {
@@ -146,7 +138,7 @@ function Compress-Package {
     $outputFile = Join-Path $OutputDir $outputFileName
 
     if (Test-Path $outputFile) {
-        Write-Verbose "Removing existing file $outputFile."
+        Write-Verbose "Compress-Package: Removing existing file $outputFile."
         Remove-Item $outputFile
     }
 
@@ -178,17 +170,14 @@ function Compress-Package {
                 # Get the file list
                 $_files = $items | ForEach-Object -Begin $null -Process {[System.IO.Path]::GetFileName("$_")},{ Write-Verbose "$($_.FullName)"} -End $null
 
-                Write-Verbose "Adding files in dir '$dir':`n  $([string]::Join("`n  ", $_files))"
+                Write-Verbose "Compress-Package: Adding files in dir '$dir':`n  $([string]::Join("`n  ", $_files))"
                 "-C $dir $([string]::Join(" ", $_files))"
             }
 
             $joined = $([string]::Join(" ", $_args))
             # Set-PSDebug -Trace 2
             $cmd = "tar $options $outputFile $joined"
-            Invoke-Expression $cmd -OutVariable out > $null
-            if ($out) {
-                Write-Verbose "Command produced output:`n $out"
-            }
+            Invoke-Expression $cmd | Write-Verbose
         } else {
             throw "Failed to create the package. Application 'tar' cannot be found."
         }
@@ -228,15 +217,15 @@ function Expand-Package {
         [string] $TarCompression = "none"
     )
 
-    Write-Verbose "Expanding package '$FileName', '$PackageType', $TarCompression."
+    Write-Verbose "Expand-Package: Expanding package '$FileName', '$PackageType', $TarCompression."
 
     if (($PackageType -eq "zip") -and ($TarCompression -ne "none")) {
-        Write-Warning "Tar compression only has an effect on the tar package type. The option will be ignored."
+        Write-Warning "Expand-Package: Tar compression only has an effect on the tar package type. The option will be ignored."
     }
 
     if ([string]::IsNullOrWhitespace($SourceDir)) {
         $SourceDir = Resolve-Path $SourceDir
-        Write-Warning "The SourceDir parameter was not provided. Using the current directory '$SourceDir'."
+        Write-Warning "Expand-Package: The SourceDir parameter was not provided. Using the current directory '$SourceDir'."
     }
 
     $ext = $PackageType
@@ -269,26 +258,26 @@ function Expand-Package {
                 }
             }
         }
-        Write-Warning "Multiple files found matching '$pattern'.`n  $([string]::Join("`n  ", $names))`nUsing the closest match '$closestMatch'."
+        Write-Warning "Expand-Package: Multiple files found matching '$pattern'.`n  $([string]::Join("`n  ", $names))`nUsing the closest match '$closestMatch'."
         $inputFile = $closestMatch
     } else {
-        Write-Verbose "Archive file $candidates found."
+        Write-Verbose "Expand-Package: Archive file $candidates found."
         # Only 1 match
         $inputFile = $candidates
     }
 
     if ($PackageType -eq "zip") {
-        Write-Verbose "Expanding zip archive '$inputFile'"
+        Write-Verbose "Expand-Package: Expanding zip archive '$inputFile'"
         Expand-Archive -Path $inputFile -DestinationPath $OutputDir
     } elseif ($PackageType -eq "tar") {
         if (Get-Command -Name tar -CommandType Application -ErrorAction Ignore) {
             if (-not (Test-Path -Path $OutputDir)) {
                 # Suppress command output to avoid poisoning this function's result
                 $item = New-Item $OutputDir -ItemType Directory
-                Write-Verbose "Output directory '$item' did not exist. It has been created."
+                Write-Verbose "Expand-Package: Output directory '$item' did not exist. It has been created."
             }
 
-            Write-Verbose "Expanding tar archive '$inputFile'"
+            Write-Verbose "Expand-Package: Expanding tar archive '$inputFile'"
             $options = "-x"
             if ($TarCompression -eq "bzip") {
                 $options += "j"
@@ -305,10 +294,7 @@ function Expand-Package {
             try {
                 Push-Location -Path $OutputDir
                 $cmd = "tar $options $inputFile"
-                Invoke-Expression $cmd -OutVariable out > $null
-                if ($out) {
-                    Write-Verbose "Command produced output:`n $out"
-                }
+                Invoke-Expression $cmd | Write-Verbose
             } finally {
                 Pop-Location
             }
@@ -318,7 +304,7 @@ function Expand-Package {
     }
 
     if ((Test-Path -Path $OutputDir -PathType Container) -and ((Get-ChildItem $OutputDir) | Measure-Object).Count -gt 0) {
-        Write-Verbose "Archive '$inputFile' extracted to $OutputDir"
+        Write-Verbose "Expand-Package: Archive '$inputFile' extracted to $OutputDir"
         return $OutputDir
     } else {
         throw "Failed to extract archive $inputFile"
@@ -354,23 +340,23 @@ function Compress-BuildOutput {
         [switch] $Cleanup
     )
 
-    Write-Verbose "Compressing build output. '$FileName', '$PackageType', $TarCompression."
+    Write-Verbose "Compress-BuildOutput: Compressing build output. '$FileName', '$PackageType', $TarCompression."
 
     if (-not (Test-Path -Path $OutputDir)) {
         # Suppress command output to avoid poisoning this function's result
         $item = New-Item $OutputDir -ItemType Directory
-        Write-Verbose "Output directory '$item' did not exist. It has been created."
+        Write-Verbose "Compress-BuildOutput: Output directory '$item' did not exist. It has been created."
     }
 
     $archiveName = Get-FileName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier
     $archivePath = Join-Path -Path $OutputDir -ChildPath $archiveName
 
     $package = Compress-Package -OutputDir $OutputDir -Source $Source -FileName $archiveName -PackageType $PackageType -TarCompression $TarCompression
-    Write-Verbose "Package $package created."
+    Write-Verbose "Compress-BuildOutput: Package $package created."
 
     if ($Cleanup) {
         foreach ($path in $Source) {
-            Write-Verbose "Cleaning up $path"
+            Write-Verbose "Compress-BuildOutput: Cleaning up $path"
             Remove-Item $path -Force
         }
     }
@@ -403,7 +389,7 @@ function Expand-EsrpArtifacts {
         [switch] $Cleanup
     )
 
-    Write-Verbose "Expanding build artifact for ESRP."
+    Write-Verbose "Expand-EsrpArtifacts: Expanding build artifact for ESRP."
 
     $archiveName = Get-FileName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier
 
@@ -412,7 +398,7 @@ function Expand-EsrpArtifacts {
     if ($Cleanup) {
         # -Force so there's no confirmation
         # -Recurse so the child items warning isn't shown
-        Write-Verbose "Cleaning up $SourceDir"
+        Write-Verbose "Expand-EsrpArtifacts: Cleaning up $SourceDir"
         Remove-Item $SourceDir -Recurse -Force
     }
 }
@@ -468,15 +454,15 @@ function Compress-SignedFiles {
         [switch] $Cleanup
     )
 
-    Write-Verbose "Compressing signed files '$OutputFileName', '$PackageType', $TarCompression."
+    Write-Verbose "Compress-SignedFiles: '$OutputFileName', '$PackageType', $TarCompression."
 
     if ($ReportDir -and (Test-Path -Path "$SourceDir/*.md")) {
         if (-not (Test-Path -Path $ReportDir)) {
             $item = New-Item $ReportDir -ItemType Directory
-            Write-Verbose "Output directory '$item' did not exist. It has been created."
+            Write-Verbose "Compress-SignedFiles: Output directory '$item' did not exist. It has been created."
         }
 
-        Write-Verbose "Moving signing report to $ReportDir"
+        Write-Verbose "Compress-SignedFiles: Moving signing report to $ReportDir"
         Move-Item -Path "$SourceDir/*.md" -Destination $ReportDir/
     }
 
@@ -484,16 +470,17 @@ function Compress-SignedFiles {
     $backupDir = Join-Path -Path $parentDir -ChildPath backup
 
     if ($backupDir -and (Test-Path -Path "$backupDir/*")) {
-        $files = [string]::Join("`n  ", $(Get-Item "$backupDir/*" | Select-Object Name))
-        Write-Verbose "Moving the following files from $backupDir to archive staging location:\n  $files"
+        $files = [string]::Join("`n  ", $(Get-Item "$backupDir/*" | Select-Object -ExpandProperty Name))
+        Write-Verbose "Compress-SignedFiles: Moving the following files from $backupDir to archive staging location:\n  $files"
         Move-Item -Path "$backupDir/*" -Destination "$SourceDir"
     }
 
-    $package = Compress-Package -OutputDir $OutputDir -Source $SourceDir -FileName $OutputFileName -PackageType $PackageType -TarCompression $TarCompression
-    Write-Verbose "Package $package created."
+    Write-Verbose "Compress-SignedFiles: Compressing '$SourceDir/*'"
+    $package = Compress-Package -OutputDir $OutputDir -Source "$SourceDir/*" -FileName $OutputFileName -PackageType $PackageType -TarCompression $TarCompression
+    Write-Verbose "Compress-SignedFiles: Package $package created."
 
     if ($Cleanup) {
-        Write-Verbose "Cleaning up $SourceDir and $backupDir"
+        Write-Verbose "Compress-SignedFiles: Cleaning up $SourceDir and $backupDir"
         Remove-Item "$SourceDir" -Recurse -Force
         Remove-Item "$backupDir" -Recurse -Force
     }
@@ -513,7 +500,7 @@ function Set-UnixPermissions {
         [string] $Path
     )
 
-    Write-Verbose "Setting permissions."
+    Write-Verbose "Set-UnixPermissions: Setting permissions."
     if (-not $IsLinux -and -not $IsMacOS) {
         throw "Unix permissions are only supported on Linux or MacOS."
     }
@@ -526,7 +513,7 @@ function Set-UnixPermissions {
         }
 
         $cmd = "chmod $options $Mode $Path"
-        Write-Verbose "Running '$cmd'"
+        Write-Verbose "Set-UnixPermissions: Running '$cmd'"
         Invoke-Expression $cmd | Write-Verbose
     } else {
         throw "Failed to set permissions. Application 'chmod' could not be found."
@@ -561,7 +548,7 @@ function Update-SignedArchive {
 
     $extractOutput = Split-Path -Path $InputFile -Parent
 
-    Write-Verbose "Extracting '$InputFile' to '$extractOutput'"
+    Write-Verbose "Update-SignedArchive: Extracting '$InputFile' to '$extractOutput'"
 
     Expand-Archive -Path "$InputFile" -DestinationPath "$extractOutput"
 
@@ -570,7 +557,7 @@ function Update-SignedArchive {
         Set-UnixPermissions "u+x" $(Join-Path $extractOutput $exe)
     }
 
-    Write-Verbose "Extracted '$InputFile' removing it."
+    Write-Verbose "Update-SignedArchive: Extracted '$InputFile' removing it."
     Remove-Item -Path "$InputFile" -Force
 
     Compress-SignedFiles -SourceDir $extractOutput -ReportDir $ReportDir -OutputDir $OutputDir -OutputFileName $OutputFileName -PackageType "tar" -TarCompression "gzip" -Cleanup:$Cleanup

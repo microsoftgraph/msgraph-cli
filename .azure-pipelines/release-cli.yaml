@@ -137,6 +137,7 @@ stages:
                 New-Item $(outputDir) -ItemType Directory -Force
                 echo "Test file" > $(outputDir)/mgc
                 echo "Test file2" > $(outputDir)/mgc.txt
+                echo "Test file2" > $(outputDir)/mgc.md
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
