@@ -46,7 +46,7 @@ variables:
 
 parameters:
   - name: forceSignOutput
-    displayName: Always Sign Build Output
+    displayName: Force Signing Build Output
     type: boolean
     default: false
   - name: notarizeAfterSign
@@ -54,7 +54,7 @@ parameters:
     type: boolean
     default: true
   - name: forcePublishArtifacts
-    displayName: Always Publish Build Output
+    displayName: Force Publishing Build Output
     type: boolean
     default: false
 

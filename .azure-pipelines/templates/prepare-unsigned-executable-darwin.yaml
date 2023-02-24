@@ -30,9 +30,9 @@ steps:
       pwsh: true
       targetType: inline
       script: |
-        Get-ChildItem -Path '$(EXECUTABLE_PATH)/' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName | Write-Verbose
+        Get-ChildItem -Path '$(EXECUTABLE_PATH)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName | Write-Verbose
         if (-not (Test-Path -Path '$(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)')) {
-          throw "The executable file \"$(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)\" does not exist."
+          throw "The executable file '$(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)' does not exist."
           echo "##vso[task.complete result=Failed;]"
         }
       verbosePreference: '$(OUTPUT_PREFERENCE)'

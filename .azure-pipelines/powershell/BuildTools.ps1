@@ -183,7 +183,7 @@ function Compress-Package {
             }
 
             $joined = $([string]::Join(" ", $_args))
-            Set-PSDebug -Trace 2
+            # Set-PSDebug -Trace 2
             $cmd = "tar $options $outputFile $joined"
             Invoke-Expression $cmd -OutVariable out > $null
             if ($out) {
