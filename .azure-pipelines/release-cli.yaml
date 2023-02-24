@@ -57,6 +57,10 @@ parameters:
     displayName: Force Publishing Build Output
     type: boolean
     default: false
+  - name: simulate
+    displayName: Simulate operations (faster)
+    type: boolean
+    default: false
 
 # test ----------> | build ->   |            |
 #                  |            | sign       |
@@ -84,6 +88,7 @@ stages:
         - task: DotNetCoreCLI@2
           displayName: Run tests
           enabled: true
+          condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
           inputs:
             command: test
             workingDirectory: $(Build.SourcesDirectory)
@@ -115,18 +120,21 @@ stages:
               compressionProgram: "gzip"
           # maxParallel: 2
         steps:
-          # - task: UseDotNet@2
-          #   displayName: 'Use .NET 7'
-          #   inputs:
-          #     version: 7.x
+          - task: UseDotNet@2
+            displayName: 'Use .NET 7'
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
+            inputs:
+              version: 7.x
 
-          # - template: templates/nuget-packages.yaml
-          #   parameters:
-          #     vstsFeedName: ${{variables.internalFeed}}
+          - ${{ if ne(parameters.simulate, 'true') }}:
+            - template: templates/nuget-packages.yaml
+              parameters:
+                vstsFeedName: ${{variables.internalFeed}}
 
-          # - pwsh: dotnet publish ./src/msgraph-cli.csproj --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
-          #   workingDirectory: $(Build.SourcesDirectory)
-          #   displayName: DotNet publish
+          - pwsh: dotnet publish ./src/msgraph-cli.csproj --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
+            workingDirectory: $(Build.SourcesDirectory)
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
+            displayName: DotNet publish
 
           - template: templates/setup-powershell-environment.yml
 
@@ -141,6 +149,7 @@ stages:
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
+            condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'))
             displayName: Simulate publish
 
           - task: PowerShell@2
@@ -174,6 +183,7 @@ stages:
     jobs:
       - job: checkFormat
         displayName: Check formatting
+        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
         steps:
         - task: UseDotNet@2
           displayName: 'Use .NET 7'
@@ -197,6 +207,7 @@ stages:
     jobs:
       - job: scan
         displayName: Scanning source
+        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
         steps:
           - template: templates/compliance-checks.yaml
             parameters:
@@ -382,31 +393,31 @@ stages:
             displayName: Compute ESRP filter pattern Windows
             condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'win'))
 
-          # - task: EsrpCodeSigning@2
-          #   displayName: 'ESRP CodeSigning (Sign)'
-          #   inputs:
-          #     # Pipeline validation can't expand service name from matrix variables
-          #     ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-          #     FolderPath: $(ARTIFACTS_PATH)
-          #     signConfigType: inlineSignParams
-          #     UseMinimatch: true
-          #     Pattern: $(ESRP_FILE_PATTERN)
-          #     inlineOperation: $(inlineSignOperation)
-          #     SessionTimeout: 20
-          #   condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+          - task: EsrpCodeSigning@2
+            displayName: 'ESRP CodeSigning (Sign)'
+            inputs:
+              # Pipeline validation can't expand service name from matrix variables
+              ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
+              FolderPath: $(ARTIFACTS_PATH)
+              signConfigType: inlineSignParams
+              UseMinimatch: true
+              Pattern: $(ESRP_FILE_PATTERN)
+              inlineOperation: $(inlineSignOperation)
+              SessionTimeout: 20
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'))
 
-          # - task: EsrpCodeSigning@2
-          #   displayName: 'ESRP CodeSigning (Notarize)'
-          #   inputs:
-          #     # Pipeline validation can't expand service name from matrix variables
-          #     ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-          #     FolderPath: $(ARTIFACTS_PATH)
-          #     signConfigType: inlineSignParams
-          #     UseMinimatch: true
-          #     Pattern: $(ESRP_FILE_PATTERN)
-          #     inlineOperation: $(inlineNotarizeOperation)
-          #     SessionTimeout: 20
-          #   condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True'),))
+          - task: EsrpCodeSigning@2
+            displayName: 'ESRP CodeSigning (Notarize)'
+            inputs:
+              # Pipeline validation can't expand service name from matrix variables
+              ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
+              FolderPath: $(ARTIFACTS_PATH)
+              signConfigType: inlineSignParams
+              UseMinimatch: true
+              Pattern: $(ESRP_FILE_PATTERN)
+              inlineOperation: $(inlineNotarizeOperation)
+              SessionTimeout: 20
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True')))
 
           - task: PowerShell@2
             inputs:
@@ -455,6 +466,7 @@ stages:
     jobs:
       - job: scan
         displayName: Scanning binaries
+        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
         steps:
           - template: templates/compliance-checks.yaml
             parameters:
@@ -464,7 +476,7 @@ stages:
   - stage: upload
     dependsOn: [binaryScan, sign]
     # Only upload release if we're building a tag.
-    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
+    condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
     jobs:
       - job: upload
         displayName: Upload binaries
