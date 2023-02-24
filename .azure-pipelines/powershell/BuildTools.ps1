@@ -48,6 +48,30 @@ function Get-FileName {
     return "$FileNameTemplate" -f "$RuntimeIdentifier","$version"
 }
 
+function Get-TarFileExtension {
+    [OutputType([string])]
+    param(
+        [ValidateSet("none", "bzip", "gzip")]
+        [string] $TarCompression = "none"
+    )
+
+    Write-Verbose "Get-TarFileExtension: Computing file extension for compression program '$TarCompression'"
+
+    if (-not $IsLinux -and -not $IsMacOS) {
+        Write-Warning "Tar archives are only supported on Linux or MacOS. This function has no effect."
+        return ""
+    }
+
+    $ext = ""
+    if ($TarCompression -eq "bzip") {
+        $ext = "bz2"
+    } elseif ($TarCompression -eq "gzip") {
+        $ext = "gz"
+    }
+
+    return $ext
+}
+
 function Get-PackageName {
     [OutputType([string])]
     param(
@@ -75,12 +99,8 @@ function Get-PackageName {
     }
 
     $ext = $PackageType
-    if ($ext -eq "tar" -and (-not ($TarCompression -eq "none"))) {
-        if ($TarCompression -eq "bzip") {
-            $ext += ".bz2"
-        } elseif ($TarCompression -eq "gzip") {
-            $ext += ".gz"
-        }
+    if ($ext -eq "tar") {
+        $ext = [string]::Join(".", $ext, $(Get-TarFileExtension -TarCompression $TarCompression))
     }
 
     if ([string]::IsNullOrWhitespace($FileName)) {
@@ -100,7 +120,7 @@ function Compress-Package {
 
         [Parameter(Mandatory)]
         [ValidateScript({
-            (Resolve-Path -Path $_ | Measure-Object).Count -gt 0
+            (Resolve-Path -Path $_).Count -gt 0
         }, ErrorMessage="The path '{0}' is invalid. Ensure it's a directory, a comma-separated list or a wildcard that resolves to a list of files.")]
         [string[]] $Source,
 
@@ -126,12 +146,8 @@ function Compress-Package {
     Write-Verbose "Compress-Package: Using the dir '$OutputDir'."
 
     $ext = $PackageType
-    if ($ext -eq "tar" -and (-not ($TarCompression -eq "none"))) {
-        if ($TarCompression -eq "bzip") {
-            $ext += ".bz2"
-        } elseif ($TarCompression -eq "gzip") {
-            $ext += ".gz"
-        }
+    if ($ext -eq "tar") {
+        $ext = [string]::Join(".", $ext, $(Get-TarFileExtension -TarCompression $TarCompression))
     }
 
     $outputFileName = Get-PackageName -FileName $FileName -PackageType $PackageType -TarCompression $TarCompression
@@ -175,7 +191,6 @@ function Compress-Package {
             }
 
             $joined = $([string]::Join(" ", $_args))
-            # Set-PSDebug -Trace 2
             $cmd = "tar $options $outputFile $joined"
             Invoke-Expression $cmd | Write-Verbose
         } else {
@@ -237,9 +252,9 @@ function Expand-Package {
     $pattern = "$FileName.$ext"
     $candidates = Resolve-Path $(Join-Path $SourceDir $pattern) | Select-Object -ExpandProperty Path
 
-    if (($candidates | Measure-Object).Count -le 0) {
+    if ($candidates.Count -le 0) {
         throw "There are no files in '$SourceDir' matching pattern '$pattern'."
-    } elseif (($candidates | Measure-Object).Count -gt 1) {
+    } elseif ($candidates.Count -gt 1) {
         $names = $candidates | ForEach-Object { [io.path]::GetFileName($_) }
         $closestMatch = $names[0]
 
@@ -303,7 +318,7 @@ function Expand-Package {
         }
     }
 
-    if ((Test-Path -Path $OutputDir -PathType Container) -and ((Get-ChildItem $OutputDir) | Measure-Object).Count -gt 0) {
+    if ((Test-Path -Path $OutputDir -PathType Container) -and ((Get-ChildItem $OutputDir).Count -gt 0)) {
         Write-Verbose "Expand-Package: Archive '$inputFile' extracted to $OutputDir"
         return $OutputDir
     } else {
@@ -321,7 +336,7 @@ function Compress-BuildOutput {
 
         [Parameter(Mandatory)]
         [ValidateScript({
-            (Resolve-Path -Path $_ | Measure-Object).Count -gt 0
+            (Resolve-Path -Path $_).Count -gt 0
         }, ErrorMessage="The path '{0}' is invalid.")]
         [string[]] $Source,
 
@@ -428,7 +443,7 @@ function Compress-SignedFiles {
     param(
         [Parameter(Mandatory)]
         [ValidateScript({
-            ((Test-Path $_ -PathType Container) -and ((Get-ChildItem $_ | Measure-Object).Count -gt 0))
+            ((Test-Path $_ -PathType Container) -and ((Get-ChildItem $_).Count -gt 0))
         }, ErrorMessage="Source dir '{0}' is invalid. Check that it is a non-empty directory.")]
         [string] $SourceDir,
 
@@ -456,7 +471,7 @@ function Compress-SignedFiles {
 
     Write-Verbose "Compress-SignedFiles: '$OutputFileName', '$PackageType', $TarCompression."
 
-    if ((Get-Item "$SourceDir/*.md" | Measure-Object).Count -gt 0) {
+    if ((Get-Item "$SourceDir/*.md").Count -gt 0) {
         if (-not (Test-Path -Path $ReportDir)) {
             $item = New-Item $ReportDir -ItemType Directory
             Write-Verbose "Compress-SignedFiles: Output directory '$item' did not exist. It has been created."
@@ -471,7 +486,7 @@ function Compress-SignedFiles {
     $parentDir = Split-Path -Path $SourceDir -Parent -Resolve
     $backupDir = Join-Path -Path $parentDir -ChildPath backup
 
-    if ((Test-Path $backupDir -PathType Container) -and ((Get-ChildItem $backupDir | Measure-Object).Count -gt 0)) {
+    if ((Test-Path $backupDir -PathType Container) -and ((Get-ChildItem $backupDir).Count -gt 0)) {
         $files = [string]::Join("`n  ", $(Get-Item "$backupDir/*" | Select-Object -ExpandProperty Name))
         Write-Verbose "Compress-SignedFiles: Moving the following files from $backupDir to archive staging location:`n  $files"
         Move-Item -Path "$backupDir/*" -Destination "$SourceDir"
