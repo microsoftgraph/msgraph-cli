@@ -35,14 +35,6 @@ variables:
       value: 'latest'
     ${{ else }}: # Version from the tag. Can be a branch name. Only mainline branches use latest
       value: '$(Build.SourceBranchName)'
-  - name: debugPreference
-    value: continue
-  - name: verbosePreference
-    # ${{ if eq(variables['System.Debug'], 'True') }}:
-    value: continue
-  - name: informationPreference
-    # ${{ if eq(variables['System.Debug'], 'True') }}:
-    value: continue
 
 parameters:
   - name: forceSignOutput
@@ -53,10 +45,6 @@ parameters:
     displayName: Notarize Build Output
     type: boolean
     default: true
-  - name: forcePublishArtifacts
-    displayName: Force Publishing Build Output
-    type: boolean
-    default: false
   - name: simulate
     displayName: Simulate operations (faster)
     type: boolean
@@ -164,7 +152,7 @@ stages:
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
             # Only create artifacts if we're building a tag, building main, or building a PR targeting main
-            condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), eq('${{ parameters.forcePublishArtifacts }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
+            condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
             displayName: Compress published output
 
           - task: PublishPipelineArtifact@1
@@ -456,7 +444,6 @@ stages:
                 . $(powershellScriptsDir)/BuildTools.ps1
                 $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
                 Compress-SignedFiles -SourceDir '$(ARTIFACTS_PATH)' -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName $fileName -PackageType zip -Cleanup
-                Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
@@ -472,7 +459,6 @@ stages:
                 $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
                 $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
                 Update-SignedArchive -InputFile $zipPath -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName "$fileName" -ExeNames mgc -Cleanup
-                Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
