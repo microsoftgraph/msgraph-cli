@@ -120,16 +120,33 @@ stages:
           #   workingDirectory: $(Build.SourcesDirectory)
           #   displayName: DotNet publish
 
-          - pwsh: |
-              New-Item $(outputDir) -ItemType Directory -Force
-              New-Item $(outputDir)/mgc -ItemType File
-            displayName:
+          - task: PowerShell@2
+            inputs:
+              targetType: inline
+              script: |
+                New-Item $(outputDir) -ItemType Directory -Force
+                New-Item $(outputDir)/mgc -ItemType File
+              ${{ if eq(variables['System.Debug'], 'True') }}:
+                verbosePreference: continue
+                debugPreference: continue
+                informationPreference: continue
 
-          - pwsh: |
-              Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              $archive = Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -Source '$(outputDir)/*' -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType '$(packageType)' -TarCompression $(compressionProgram) -Cleanup
-              $hasArchive = Test-Path $archive -PathType Leaf
-              Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArchive"
+            displayName: Simulate publish
+
+          - task: PowerShell@2
+            inputs:
+              targetType: inline
+              script: |
+                Import-Module $(powershellScriptsDir)/BuildTools.psm1
+                $archive = Compress-BuildOutput -OutputDir '$(outputDir)-$(rid)' -Source '$(outputDir)/*' -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType '$(packageType)' -TarCompression $(compressionProgram) -Cleanup
+                Write-Verbose "$archive" -Verbose
+                $hasArchive = Test-Path $archive -PathType Leaf
+                Write-Verbose "$hasArchive"
+                Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArchive"
+              ${{ if eq(variables['System.Debug'], 'True') }}:
+                verbosePreference: continue
+                debugPreference: continue
+                informationPreference: continue
             # Only create artifacts if we're building a tag, building main, or building a PR targeting main
             condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), eq('${{ parameters.forcePublishArtifacts }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
             displayName: Compress published output
@@ -269,23 +286,31 @@ stages:
         pool:
           vmImage: $(vmImage)
         steps:
-          - pwsh: |
-              Write-Verbose -Verbose 'pattern = ''$(pattern)'''
-              Write-Verbose -Verbose 'fileNameTemplate = ''$(fileNameTemplate)'''
-              Write-Verbose -Verbose 'artifactsDownloadLocation = ''$(artifactsDownloadLocation)'''
-              Write-Verbose -Verbose 'sign = ''$(sign)'''
-              Write-Verbose -Verbose 'notarize = ''$(notarize)'''
-              Write-Verbose -Verbose 'inlineSignOperation = ''$(inlineSignOperation)'''
-              Write-Verbose -Verbose 'inlineNotarizeOperation = ''$(inlineNotarizeOperation)'''
-              $rid = '$(rid)'
-              $shouldSign = '$(sign)'
-              $shouldNotarize = '$(notarize)'
-              $notarizeOp = '$(inlineNotarizeOperation)'
-              Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
-              Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
-              Write-Host "##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize"
-              Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
-              Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
+
+          - task: PowerShell@2
+            inputs:
+              targetType: inline
+              script: |
+                Write-Verbose 'pattern = ''$(pattern)'''
+                Write-Verbose 'fileNameTemplate = ''$(fileNameTemplate)'''
+                Write-Verbose 'artifactsDownloadLocation = ''$(artifactsDownloadLocation)'''
+                Write-Verbose 'sign = ''$(sign)'''
+                Write-Verbose 'notarize = ''$(notarize)'''
+                Write-Verbose 'inlineSignOperation = ''$(inlineSignOperation)'''
+                Write-Verbose 'inlineNotarizeOperation = ''$(inlineNotarizeOperation)'''
+                $rid = '$(rid)'
+                $shouldSign = '$(sign)'
+                $shouldNotarize = '$(notarize)'
+                $notarizeOp = '$(inlineNotarizeOperation)'
+                Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
+                Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
+                Write-Host "##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize"
+                Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
+                Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
+              ${{ if eq(variables['System.Debug'], 'True') }}:
+                verbosePreference: continue
+                debugPreference: continue
+                informationPreference: continue
             displayName: Setup variables
 
           - pwsh: git config --global core.longpaths true
@@ -299,21 +324,35 @@ stages:
               path: $(WORKING_DIR)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
-          - pwsh: |
-              Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              $zipName = Get-PackageName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType "zip"
-              Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
+          - task: PowerShell@2
+            inputs:
+              targetType: inline
+              script: |
+                Import-Module $(powershellScriptsDir)/BuildTools.psm1
+                $zipName = Get-PackageName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType "zip"
+                Write-Host "##vso[task.setvariable variable=ZIP_NAME]$zipName"
+              ${{ if eq(variables['System.Debug'], 'True') }}:
+                verbosePreference: continue
+                debugPreference: continue
+                informationPreference: continue
             displayName: Compute zip name
 
-          - pwsh: |
-              Import-Module $(powershellScriptsDir)/BuildTools.psm1
+          - task: PowerShell@2
+            inputs:
+              targetType: inline
+              script: |
+                Import-Module $(powershellScriptsDir)/BuildTools.psm1
 
-              $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
-              $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
-              Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType $(packageType) -TarCompression $(compressionProgram) -Cleanup
+                $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
+                $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
+                Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType $(packageType) -TarCompression $(compressionProgram) -Cleanup
 
-              Move-NonExecutableItems -SourcePath $extractPath -ExecutableItemNames mgc,mgc.exe
-              Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$extractPath"
+                Move-NonExecutableItems -SourcePath $extractPath -ExecutableItemNames mgc,mgc.exe
+                Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$extractPath"
+              ${{ if eq(variables['System.Debug'], 'True') }}:
+                verbosePreference: continue
+                debugPreference: continue
+                informationPreference: continue
             displayName: Extract zip
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
@@ -360,20 +399,34 @@ stages:
           #     SessionTimeout: 20
           #   condition: and(succeeded(), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True'),))
 
-          - pwsh: |
-              Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
-              Compress-SignedFiles -SourceDir '$(ARTIFACTS_PATH)' -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName $fileName -PackageType zip -Cleanup
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
+          - task: PowerShell@2
+            inputs:
+              targetType: inline
+              script: |
+                Import-Module $(powershellScriptsDir)/BuildTools.psm1
+                $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
+                Compress-SignedFiles -SourceDir '$(ARTIFACTS_PATH)' -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName $fileName -PackageType zip -Cleanup
+                Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
+              ${{ if eq(variables['System.Debug'], 'True') }}:
+                verbosePreference: continue
+                debugPreference: continue
+                informationPreference: continue
             displayName: Compress signed files (Windows)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'win'))
 
-          - pwsh: |
-              Import-Module $(powershellScriptsDir)/BuildTools.psm1
-              $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
-              $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
-              Update-SignedArchive -InputFile $zipPath -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName "$fileName" -ExeNames mgc -Cleanup
-              Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
+          - task: PowerShell@2
+            inputs:
+              targetType: inline
+              script: |
+                Import-Module $(powershellScriptsDir)/BuildTools.psm1
+                $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
+                $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
+                Update-SignedArchive -InputFile $zipPath -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName "$fileName" -ExeNames mgc -Cleanup
+                Get-ChildItem -Path '$(WORKING_DIR)' -Recurse -Force -ErrorAction SilentlyContinue | Select-Object FullName
+              ${{ if eq(variables['System.Debug'], 'True') }}:
+                verbosePreference: continue
+                debugPreference: continue
+                informationPreference: continue
             displayName: Update signed files (MacOS)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
 

@@ -9,6 +9,7 @@ Class PackageTypes : System.Management.Automation.IValidateSetValuesGenerator {
 }
 
 function Get-Version {
+    [OutputType([string])]
     param(
         [string] $BranchOrTagName = "latest"
     )
@@ -24,13 +25,14 @@ function Get-Version {
 }
 
 function Get-FileName {
+    [OutputType([string])]
     param(
         [ValidateNotNullOrEmpty()]
         [string] $FileNameTemplate = "msgraph-cli-{0}-{1}",
-        
+
         [ValidateNotNullOrEmpty()]
         [string] $BranchOrTagName = "latest",
-        
+
         [string] $RuntimeIdentifier = "unknown"
     )
     if ([string]::IsNullOrWhitespace($RuntimeIdentifier)) {
@@ -42,6 +44,7 @@ function Get-FileName {
 }
 
 function Get-PackageName {
+    [OutputType([string])]
     param(
         [ValidateNotNullOrEmpty()]
         [string] $FileName,
@@ -85,6 +88,7 @@ function Get-PackageName {
 }
 
 function Compress-Package {
+    [OutputType([string])]
     param(
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path $_ -IsValid})]
@@ -167,13 +171,14 @@ function Compress-Package {
 
     if (Test-Path -Path $outputFile) {
         Write-Verbose "Archive created at $outputFile"
-        return $outputFile
+        return "$outputFile"
     } else {
         throw "Failed to create archive $outputFile"
     }
 }
 
 function Expand-Package {
+    [OutputType([string])]
     param(
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
@@ -280,6 +285,7 @@ function Expand-Package {
 }
 
 function Compress-BuildOutput {
+    [OutputType([string])]
     param(
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
@@ -310,17 +316,18 @@ function Compress-BuildOutput {
         New-Item $OutputDir -ItemType Directory
     }
 
-    $archiveName = Get-PackageName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier -PackageType $PackageType -TarCompression $TarCompression
+    $archiveName = Get-FileName -FileNameTemplate $FileNameTemplate -BranchOrTagName $BranchOrTagName -RuntimeIdentifier $RuntimeIdentifier
     $archivePath = Join-Path -Path $OutputDir -ChildPath $archiveName
 
-    $package = Compress-Package -OutputDir $OutputDir -Source $Source -FileName $archiveName -PackageType "zip"
+    $package = Compress-Package -OutputDir $OutputDir -Source $Source -FileName $archiveName -PackageType $PackageType
+    Write-Verbose "Package $package created."
 
     if ($Cleanup) {
         Write-Verbose "Cleaning up $Source"
         Remove-Item $Source -Force
     }
 
-    return $archivePath
+    return "$package"
 }
 
 function Expand-EsrpArtifacts {
