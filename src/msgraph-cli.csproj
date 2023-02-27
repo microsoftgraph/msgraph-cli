@@ -7,7 +7,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>mgc</AssemblyName>
-    <Version>0.1.0-preview.8</Version>
+    <Version>0.2.0-preview.1</Version>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0-preview.1] - 2023-02-27
+
+### Added
+
+### Changed
+- Change MacOS & Linux packages to use tar archives
+- Fix Azure Identity logs showing when not needed
+
 ## [0.1.0-preview.8] - 2023-02-10
 
 ### Added
