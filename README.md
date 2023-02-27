@@ -18,8 +18,6 @@ Windows, Mac, or Linux here on the assets link of the latest release: [CLI SDK D
 
 > **Note:** this step is required if your client will be calling APIs that are protected by the Microsoft Identity Platform like Microsoft Graph.
 
-Follow the instructions in [Register an application for Microsoft identity platform authentication](register-app.md) to get an application ID (also know as a client ID).
-
 ## Creating the client application
 
 Replace `YOUR_CLIENT_ID` with the client ID from your app registration.
