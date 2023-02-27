@@ -14,7 +14,7 @@ Windows, Mac, or Linux here on the assets link of the latest release: [CLI SDK D
 
 ## Registering an application in Azure AD
 
-## Creating an application registration
+## Authenticating on Microsoft graph CLI SDK
 
 > **Note:** this step is required if your client will be calling APIs that are protected by the Microsoft Identity Platform like Microsoft Graph.
 
