@@ -1,9 +1,8 @@
 # Microsoft Graph CLI
 
 ## Required tools
-A commandline tool is required. We recommend:
+A commandline tool should work on any terminal. We recommend:
 - [Windows Terminal + version](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-us&gl=us)
-- A commandline that supports Bash?
 - MacOS terminal
 - PowerShell version 7.3.2
 
@@ -14,13 +13,18 @@ Windows, Mac, or Linux here on the assets link of the latest release: [CLI SDK D
 
 ## Registering an application in Azure AD
 
-## Authenticating on Microsoft graph CLI SDK
+## Creating an application registration
 
 > **Note:** this step is required if your client will be calling APIs that are protected by the Microsoft Identity Platform like Microsoft Graph.
+
+Follow the instructions in [Register an application for Microsoft identity platform authentication](register-app.md) to get an application ID (also know as a client ID).
 
 ## Creating the client application
 
 Replace `YOUR_CLIENT_ID` with the client ID from your app registration.
+
+
+## Authenticating on the CLI tool
 
 ``` bash
 mgc login --client-id `YOUR_CLIENT_ID` --tenant-id `YOUR_TENANT_ID` --scopes User.ReadWrite --scopes Mail.ReadWrite
@@ -38,7 +42,6 @@ The SDK supports both delegeted and app-only authentication strategies. Run the 
 #View supported authentication strategies. Default is Device Code
 mgc login --help
 ```
-
 
 #### **Delegated access**
 **1. DeviceCode authentication strategy**
