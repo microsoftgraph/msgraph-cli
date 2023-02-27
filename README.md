@@ -38,7 +38,7 @@ The SDK supports both delegeted and app-only authentication strategies. Run the 
 
 ``` bash
 #View supported authentication strategies. Default is Device Code
-mgc login --strategy 
+mgc login --help
 ```
 
 
