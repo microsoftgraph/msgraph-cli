@@ -23,27 +23,24 @@ Follow the instructions in [Register an application for Microsoft identity platf
 
 Replace `YOUR_CLIENT_ID` with the client ID from your app registration.
 
-
-## Authenticating on the CLI tool
-
-``` bash
-mgc login --client-id `YOUR_CLIENT_ID` --tenant-id `YOUR_TENANT_ID` --scopes User.ReadWrite --scopes Mail.ReadWrite
-```
-
 ## Executing the application
 Navigate to your download folder and use the **mgc** command to run commands on the CLI SDK. 
 Add -h to your commands to view additional commands.
 
-
-### Authentication
+## Authenticating on the CLI tool
 The SDK supports both delegeted and app-only authentication strategies. Run the command below to see supported authentication strategies.
 
 ``` bash
 #View supported authentication strategies. Default is Device Code
 mgc login --help
 ```
+OR
 
-#### **Delegated access**
+``` bash
+mgc login --client-id `YOUR_CLIENT_ID` --tenant-id `YOUR_TENANT_ID` --scopes User.ReadWrite --scopes Mail.ReadWrite
+```
+
+### **Delegated access**
 **1. DeviceCode authentication strategy**
 
 
@@ -65,7 +62,7 @@ mgc login --strategy InteractiveBrowser
 
 ```
 
-#### **App-only access**
+### **App-only access**
 **1. Client Certificate authentication strategy**
 ``` bash
 # Using Client Certificate authentication.
