@@ -67,8 +67,24 @@ mgc login --strategy InteractiveBrowser
 ``` bash
 # Using Client Certificate authentication.
 mgc login --strategy ClientCertificate
-
 ```
+### **Linux users**
+
+>**Note:** For linux users please run the following commands before authenticating
+``` bash
+sudo apt install gnome-keyring libsecret-1-0
+
+sudo setcap cap_ipc_lock=+ep $(which gnome-keyring-daemon)
+
+export DBUS_SESSION_BUS_ADDRESS=$(dbus-daemon --session --fork --print-address)
+
+export KEYRING_PASSWORD=any-password
+
+dbus-run-session -- echo "$KEYRING_PASSWORD" | gnome-keyring-daemon --daemonize --components=secrets --unlock
+
+mgc login
+```
+
 ### Samples
 You can find additional samples here: [CLI SDK samples](https://github.com/microsoftgraph/msgraph-cli/tree/main/samples)
 
