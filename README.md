@@ -1,5 +1,7 @@
 # Microsoft Graph CLI
 
+Microsoft Graph CLI SDK provides convenient methods to access Microsoft Graph capabilities using a simplistic command line interface experience on any operating system and any shell. 
+
 ## Required tools
 A commandline tool should work on any terminal. We recommend:
 - [Windows Terminal + version](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-us&gl=us)
@@ -13,13 +15,11 @@ Windows, Mac, or Linux here on the assets link of the latest release: [CLI SDK D
 
 ## Registering an application in Azure AD
 
-## Creating an application registration
-
 > **Note:** this step is required if your client will be calling APIs that are protected by the Microsoft Identity Platform like Microsoft Graph.
 
 Follow the instructions in [Register an application for Microsoft identity platform authentication](register-app.md) to get an application ID (also know as a client ID).
 
-## Creating the client application
+### Creating the client application
 
 Replace `YOUR_CLIENT_ID` with the client ID from your app registration.
 
