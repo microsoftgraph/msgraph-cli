@@ -4,7 +4,18 @@ trigger:
   batch: true
   branches:
     include:
+      - main
       - refs/tags/v*
+  paths:
+    include:
+    - .azure-pipelines
+    - src
+    - msgraph-cli.sln
+
+pr:
+  branches:
+    include:
+    - '*'
   paths:
     include:
     - .azure-pipelines
