@@ -1,42 +1,137 @@
 # Microsoft Graph CLI
 
-Microsoft Graph CLI SDK provides convenient methods to access Microsoft Graph capabilities using a simplistic command line interface experience on any operating system and any shell. 
+Microsoft Graph CLI SDK provides convenient methods to access Microsoft Graph capabilities using a simplistic command line interface experience on any operating system and any shell.
 
 ## Required tools
 A commandline tool should work on any terminal. We recommend:
 - [Windows Terminal + version](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-us&gl=us)
-- MacOS terminal
+- MacOS (Minimum version: 10.12 Sierra) terminal
 - PowerShell version 7.3.2
 
 ## Installation
-Download the CLI SDK to get started for 
+Download the CLI SDK to get started for
 Windows, Mac, or Linux here on the assets link of the latest release: [CLI SDK Download](https://github.com/microsoftgraph/msgraph-cli/releases)
+
 
 ### Windows
 1. Extract downloaded CLI tool for Windows to folder
-2. Execute program using **mgc** (on Windows/Mac) or **./mgc** (on WSL or Linux) command
-
-**Windows environment setup**
+2. Execute program using **mgc** (on Windows CMD) or **./mgc** (on Windows PowerShell) command.
 
 
-### Mac
-1. Extract downloaded CLI tool for Mac to folder
-2. Execute program using **mgc** (on Windows/Mac) or **./mgc** (on WSL or Linux) command
+#### Windows environment setup (Optional)
 
-**Mac environment setup**
+To allow executing the mgc command without prefixing it with `./`, you can add the executable's directory to the OS Path environment variable.
+On Windows PowerShell, you can add the current directory to the path by running:
+
+```powershell
+$env:Path += ";$(pwd)`
+```
+
+On CMD, the command becomes:
+```cmd
+set PATH=%PATH%;%cd%
+```
+
+Though adding the current directory to the path doesn't change how you run mgc on CMD, it allows you to switch the directory you're working in.
+This is useful for when you need to use a different directory to save files downloaded from the CLI.
+
+The commands above will update your Path for the current command session, and will need to be run whenever you start a new session e.g. when opening a new window.
+To make the changes permanent, you can update the environment variables by using the **System properties** dialog.
+You can find it by either using windows search (it appears as _view advanced system settings_) in the start menu, or following the steps below:
+
+1. Open the **Settings** app
+2. Click on **System**
+3. Select the **About** option. It should be the last one in the list.
+4. In the **About** screen, locate and click on the _Advanced system settings_ link in the **Related links** section just below the device specifications.
+5. Once the dialog is open, click on the **Environment Variables** button on the bottom right.
+6. Select the Path environment variable and click **Edit**.
+7. Add the directory with the CLI to the path here.
+
+> The Environment Variables screen should have 2 sections that both have a Path entry. The _User variables_ section adds to the current user's path and other users' environments should remain unchanged. The _System variables_ section will make the changes for all users in the computer.
+
+
+### MacOS
+
+1. Download the CLI archive for your Mac.
+    - If you have an M1 Mac computer, download the `msgraph-cli-osx-arm64...` package.
+    - If you have an Intel processor, download the `msgraph-cli-osx-x64...` package.
+2. Extract downloaded CLI tool for Mac to a folder.
+3. Open a terminal in the new folder
+4. Execute the program using **./mgc** command.
+
+#### Mac environment setup (Optional)
+
+If you'd like to run the CLI from any folder, you need to either update the PATH environment variable for your shell,
+or add a symbolic link to the CLI into a location in the PATH (e.g. /usr/bin). Adding a symbolic link will need
+super user rights depending on the location you choose.
+
+Adding to the PATH for your current session is also an option as it is in Windows. To do this, run the following command
+from your terminal in the directory of the CLI:
+
+```sh
+export PATH=$PATH:$(PWD)
+```
+
+Adding the location permanently can be done for the current user by editing your `~/.bash-profile` file.
+Add the following line to your profile:
+
+```sh
+export PATH=$PATH:[path-to-the-cli-folder]
+```
+
+Adding a symbolic link into `/usr/bin` (not recommended) can be done with the command below:
+
+```sh
+sudo ln -s [path-to-the-cli-folder]/mgc /usr/bin
+```
 
 
 ### Linux
+
 Download from browser OR via Curl
+
 ``` bash
 curl -LO <link> && tar -xzf <filename>
 ```
 
-Add environment setup to ensure commands are not run every time. Edit environment files
+#### Linux environment setup (Required)
 
->**Note:** For linux users please run the following commands before authenticating
+The linux environment setup is similar to the Mac setup, but with one difference. For headless linux environments,
+there's an additional step to configure the keyring for access token encryption.
+
+To set up the PATH environment variable for your current session, run the following command from your terminal
+in the directory of the CLI:
+
+```sh
+export PATH=$PATH:$(PWD)
+```
+
+Adding the location permanently can be done for the current user by editing your shell's profile file
+(`~/.bash-profile` or `~/.zsh-profile`) file. Add the following line to your profile:
+
+```sh
+export PATH=$PATH:[path-to-the-cli-folder]
+```
+
+Adding a symbolic link into `/usr/bin` (not recommended) can be done with the command below:
+
+```sh
+sudo ln -s [path-to-the-cli-folder]/mgc /usr/bin
+```
+
+
+>**Note:** The following step is **Required** if your linux distribution does not have a desktop environment e.g. WSL, Docker
+Failure to set this up will result in authentication failures.
+
+Required packages:
+
+1. gnome-keyring
+2. dbus
+3. libsecret
+4. libcap
+
 ``` bash
-sudo apt install gnome-keyring libsecret-1-0
+sudo apt-get install --assume-yes gnome-keyring libsecret-1-0
 
 sudo setcap cap_ipc_lock=+ep $(which gnome-keyring-daemon)
 
@@ -48,12 +143,11 @@ dbus-run-session -- echo "$KEYRING_PASSWORD" | gnome-keyring-daemon --daemonize 
 
 mgc login
 ```
-**Linux environment setup**
 
---insert steps here
+See the [shell script](docker/init.sh) used for docker in this repository
 
 ### Using Docker
-Find docker instructions in the docker folder [here](https://github.com/microsoftgraph/msgraph-cli/tree/main/docker)
+Find docker instructions in the docker folder [here](docker)
 
 ## Uninstalling
 1. Delete the CLI installation folder
@@ -120,7 +214,7 @@ mgc login --strategy ClientCertificate
 Add -h to your command to view information that contains documentation links with permissions
 
 ## Check logged in user
-You can access the logged in user's details using: 
+You can access the logged in user's details using:
 ```bash
 mgc me get
 ```
