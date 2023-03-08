@@ -29,9 +29,14 @@ jobs:
                   id
                   fields(first:20) {
                     nodes {
-                      id
-                      name
-                      settings
+                      ... on ProjectV2SingleSelectField {
+                        id
+                        name
+                        options {
+                          id
+                          name
+                        }
+                      }
                     }
                   }
                 }
@@ -40,7 +45,7 @@ jobs:
 
           echo 'PROJECT_ID='$(jq '.data.organization.projectV2.id' project_data.json) >> $GITHUB_ENV
           echo 'STATUS_FIELD_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .id' project_data.json) >> $GITHUB_ENV
-          echo 'TRIAGE_OPTION_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") |.settings | fromjson.options[] | select(.name=="Needs Triage 🔍") |.id' project_data.json) >> $GITHUB_ENV
+          echo 'TRIAGE_OPTION_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .options[] | select(.name=="Needs Triage 🔍") |.id' project_data.json) >> $GITHUB_ENV
 
       - name: Add Issue to project
         env:
