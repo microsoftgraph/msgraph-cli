@@ -25,7 +25,7 @@ jobs:
           gh api graphql -f query='
             query($org: String!, $number: Int!) {
               organization(login: $org){
-                projectNext(number: $number) {
+                project(number: $number) {
                   id
                   fields(first:20) {
                     nodes {
@@ -38,9 +38,9 @@ jobs:
               }
             }' -f org=$ORGANIZATION -F number=$PROJECT_NUMBER > project_data.json
 
-          echo 'PROJECT_ID='$(jq '.data.organization.projectNext.id' project_data.json) >> $GITHUB_ENV
-          echo 'STATUS_FIELD_ID='$(jq '.data.organization.projectNext.fields.nodes[] | select(.name== "Status") | .id' project_data.json) >> $GITHUB_ENV
-          echo 'TRIAGE_OPTION_ID='$(jq '.data.organization.projectNext.fields.nodes[] | select(.name== "Status") |.settings | fromjson.options[] | select(.name=="Needs Triage 🔍") |.id' project_data.json) >> $GITHUB_ENV
+          echo 'PROJECT_ID='$(jq '.data.organization.project.id' project_data.json) >> $GITHUB_ENV
+          echo 'STATUS_FIELD_ID='$(jq '.data.organization.project.fields.nodes[] | select(.name== "Status") | .id' project_data.json) >> $GITHUB_ENV
+          echo 'TRIAGE_OPTION_ID='$(jq '.data.organization.project.fields.nodes[] | select(.name== "Status") |.settings | fromjson.options[] | select(.name=="Needs Triage 🔍") |.id' project_data.json) >> $GITHUB_ENV
 
       - name: Add Issue to project
         env:
