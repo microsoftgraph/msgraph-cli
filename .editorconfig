@@ -11,6 +11,9 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+[*.sh]
+end_of_line = lf
+
 [*.{y[a]ml,json}]
 indent_size = 2
 
