@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Add Environment login. Client secret login and certificate file login are now possible with this new strategy.
+
+### Changed
+- Update login command help text.
+- Fix a bug where the CLI didn't send the Content-Type header when sending requests with bodies.
+
 ## [0.2.0-preview.1] - 2023-02-27
 
 ### Added
